@@ -1,0 +1,344 @@
+{
+  "project": {
+    "id": "serro-001",
+    "slug": "serro-at-the-heights",
+    "name": "Serro at The Heights",
+    "status": "off-plan",
+    "construction_status": "active",
+    "launch_date": "2026-04-01",
+    "handover_date": "2030-03-31",
+    "area": {
+      "name": "Al Yalayis",
+      "emirate": "Dubai"
+    },
+    "developer": {
+      "name": "Emaar Properties",
+      "slug": "emaar-properties",
+      "founded_year": 1997,
+      "units_delivered": 118000,
+      "on_time_rating": 98,
+      "rera_registered": true,
+      "logo_url": "/images/developers/emaar.png",
+      "description": "Emaar Properties is one of the UAE's largest developers, known for delivering large-scale master communities including Downtown Dubai and Dubai Hills Estate."
+    },
+    "location": {
+      "lat": 24.8895,
+      "lng": 55.2686,
+      "address": "The Heights, Al Yalayis, Dubai"
+    },
+    "pricing": {
+      "price_from": 6000000,
+      "price_to": 9000000,
+      "price_per_sqft_from": 1732,
+      "currency": "AED"
+    },
+    "payment_plan": {
+      "type": "80/20",
+      "booking_percent": 10,
+      "construction_percent": 70,
+      "handover_percent": 20
+    },
+    "metrics": {
+      "total_units": 383,
+      "master_community_units": 11400,
+      "master_community_area_sqft": 81000000,
+      "yield_estimate": "5-6%"
+    },
+    "images": [
+      "/images/projects/serro/hero-1.jpg",
+      "/images/projects/serro/hero-2.jpg",
+      "/images/projects/serro/hero-3.jpg"
+    ],
+    "slide_labels": ["Villa Exterior", "Master Community", "Interior Living"],
+    "units": [
+      {
+        "type_name": "3-Bedroom Type A",
+        "bedrooms": 3,
+        "size_sqft_min": 3402,
+        "size_sqft_max": 3463,
+        "price": 6000000,
+        "price_per_sqft": 1732,
+        "availability": "available"
+      },
+      {
+        "type_name": "4-Bedroom Type A",
+        "bedrooms": 4,
+        "size_sqft_min": 4302,
+        "size_sqft_max": 4312,
+        "price": 7800000,
+        "price_per_sqft": 1800,
+        "availability": "limited"
+      },
+      {
+        "type_name": "5-Bedroom",
+        "bedrooms": 5,
+        "size_sqft_min": 5822,
+        "size_sqft_max": 5884,
+        "price": 9500000,
+        "price_per_sqft": 1950,
+        "availability": "upcoming"
+      }
+    ],
+    "hero_section": {
+      "subtitle": "Off-Plan Villas in Al Yalayis, Dubai",
+      "status_badges": [
+        { "label": "Off-Plan", "color": "gold" },
+        { "label": "Active Construction", "color": "emerald" }
+      ],
+      "data_grid": {
+        "starting_price": "AED 6.0M",
+        "price_per_sqft": "AED 1,732",
+        "yield_forecast": "5–6%",
+        "handover": "Q1 2030"
+      },
+      "cta_primary": "Get Availability & Floor Plans",
+      "cta_secondary": "Speak to an Expert",
+      "overview_paragraphs": [
+        "Serro at The Heights is a villa-only residential release by <strong>Emaar Properties</strong>, forming part of the expansive <strong>AED 55 billion</strong> The Heights Country Club & Wellness master community in Al Yalayis, Dubai. Positioned near the intersection of Emirates Road (E611) and Al Yalayis Street (E77), this development introduces <strong>383 three- to five-bedroom villas</strong> across two adjoining clusters (Serro and Serro 2), designed around a wellness-led lifestyle with 38 kilometres of cycling and jogging tracks, a dedicated Wellness Lake, and meditation gardens.",
+        "The broader master community spans <strong>7.5 million square metres</strong> (81 million sq.ft) and will ultimately comprise over 11,400 residential units across 21 clusters, positioning The Heights as one of Emaar's largest wellness-focused developments since Dubai Hills Estate. Unlike mixed-use projects, Serro maintains a strict residential focus, prioritising low-density living with approximately 25% of the total land dedicated to open green space and 1.36 million sqm of landscaped public realm."
+      ],
+      "data_led_hook": "Launched in Q1 2026 at an entry price of <strong>AED 6,000,000</strong> for a 3-bedroom Type A villa (3,463 sqft), the project sits at approximately <strong class=\"text-gold\">AED 1,732/sqft</strong>—positioning it below comparable Emaar villa communities such as Dubai Hills Estate (averaging AED 2,100+/sqft) but above entry-level Dubai South offerings. With handover scheduled for Q1–Q2 2030, this four-year construction timeline reflects the scale of master infrastructure development required for a 7.5 million sqm community rather than isolated villa construction.",
+      "key_facts": [
+        { "label": "Developer", "value": "Emaar Properties", "sub": "118,000+ units delivered globally" },
+        { "label": "Project Status", "value": "Off-Plan", "sub": "Booking opens April 2026" },
+        { "label": "Handover", "value": "Q1 2030 / Q2 2030", "sub": "4-year construction timeline" },
+        { "label": "Total Units", "value": "383 Villas", "sub": "200 Serro + 173 Serro 2" },
+        { "label": "Master Community", "value": "11,400+ Units", "sub": "21 clusters · 7.5M sqm" },
+        { "label": "Unit Types", "value": "3 to 5 Bed", "sub": "346 × 3BR · 347 × 4BR · 60 × 5BR" },
+        { "label": "Starting Price", "value": "AED 6,000,000", "sub": "3-bedroom Type A" },
+        { "label": "Payment Plan", "value": "80/20", "sub": "10% booking · 70% construction · 20% handover" }
+      ],
+      "infrastructure_items": [
+        {
+          "title": "Al Maktoum International Airport (DWC) Expansion",
+          "content": "Located just 10 minutes from Serro, DWC is undergoing a AED 128 billion (USD 35 billion) expansion to become the world's largest airport with 260 million passenger capacity by 2050. Passenger operations will progressively shift from Dubai International (DXB), concentrating aviation-driven employment and housing demand directly in Dubai South."
+        },
+        {
+          "title": "Expo City Dubai",
+          "content": "Situated 10 minutes from the community, Expo City is evolving into a mixed-use innovation hub, hosting headquarters for regional and international businesses, with continued development of residential and commercial phases through 2030."
+        },
+        {
+          "title": "Dubai South Growth Corridor",
+          "content": "The Heights sits within Dubai's southern development corridor, adjacent to Dubai South's 145 sq.km masterplan, which includes the Logistics District, EZDubai e-commerce zone, and residential communities targeting 1 million population by 2030."
+        },
+        {
+          "title": "Road Network Enhancements",
+          "content": "The junction of Emirates Road (E611) and Al Yalayis Street (E77) provides direct connectivity to recent RTA upgrades on Al Qudra Road (191% capacity increase) and planned expansions to the Dubai South road network supporting the airport growth corridor."
+        },
+        {
+          "title": "Economic Diversification",
+          "content": "The corridor is positioned to benefit from Dubai's economic diversification strategy, with Dubai South designated as a special economic zone offering tax incentives and streamlined business setup—attracting companies and their workforces to the surrounding residential catchment."
+        },
+        {
+          "title": "Proximity to Employment Hubs",
+          "content": "10–15 minutes to Dubai Investment Park (DIP) and Jebel Ali Industrial Area, two of Dubai's largest employment zones, supporting rental demand from professionals seeking short commutes."
+        }
+      ]
+    },
+    "unit_mix_section": {
+      "heading": "Unit Mix, Sizes & Price Trends — Serro at The Heights",
+      "units": [
+        { "type_name": "3-Bedroom (Type A)", "units_count": 200, "cluster": "Serro", "area_sqft": "3,402 – 3,463", "price": "AED 6,000,000", "price_per_sqft": "~1,732", "availability": "available" },
+        { "type_name": "3-Bedroom (Serro 2)", "units_count": 173, "cluster": "Serro 2", "area_sqft": "3,403", "price": "AED 6,200,000 (est.)", "price_per_sqft": "~1,822", "availability": "limited" },
+        { "type_name": "4-Bedroom (Type A)", "units_count": 172, "cluster": "Serro", "area_sqft": "4,302 – 4,312", "price": "Not yet released", "price_per_sqft": "TBD", "availability": "not_released" },
+        { "type_name": "4-Bedroom (Serro 2)", "units_count": 175, "cluster": "Serro 2", "area_sqft": "4,305", "price": "Not yet released", "price_per_sqft": "TBD", "availability": "not_released" },
+        { "type_name": "5-Bedroom (Type A)", "units_count": 11, "cluster": "Serro", "area_sqft": "5,828", "price": "Not yet released", "price_per_sqft": "TBD", "availability": "not_released" },
+        { "type_name": "5-Bedroom (Serro 2)", "units_count": 49, "cluster": "Serro 2", "area_sqft": "5,822", "price": "Not yet released", "price_per_sqft": "TBD", "availability": "not_released" }
+      ],
+      "pricing_note": "Pricing for 4- and 5-bedroom units has not been released as of February 2026. Emaar typically stages releases, with premium unit pricing following initial sell-through of 3-bedroom inventory. Based on comparable Emaar villa projects, 4-bedroom units are expected to launch at AED 7.5–8.5M, with 5-bedroom units exceeding AED 10M.",
+      "price_commentary": {
+        "intro": "The <strong>AED 6,000,000</strong> entry price for 3-bedroom villas reflects Emaar's strategy of establishing a pricing floor with initial releases. Two factors explain the positioning:",
+        "factors": [
+          {
+            "title": "Master Infrastructure Premium",
+            "content": "The Heights includes significant upfront investment in wellness infrastructure (lakes, tracks, clubhouse) that is <strong>priced into early phases</strong>."
+          },
+          {
+            "title": "Al Yalayis Location Premium vs. Discount",
+            "content": "At <strong>AED 1,732/sqft</strong>, Serro sits approximately <strong>18% below</strong> Dubai Hills' comparable product but <strong>15% above</strong> Emaar South's villa pricing (AED 1,400–1,500/sqft). This reflects The Heights' positioning as a premium wellness enclave rather than a commuter-focused community."
+          }
+        ]
+      },
+      "price_chart_data": [
+        { "label": "Emaar South\n(2024)", "serro": null, "district": 1450 },
+        { "label": "Serro\nLaunch", "serro": 1732, "district": 1800 },
+        { "label": "Dubai Hills\nCurrent", "serro": null, "district": 2100 },
+        { "label": "Projected\nHandover", "serro": 2050, "district": 2300 }
+      ],
+      "price_evolution": {
+        "intro": "DLD transaction data from comparable Emaar master communities (Dubai Hills, Arabian Ranches) shows that early phases typically appreciate <strong>15–25%</strong> by handover, driven by:",
+        "drivers": [
+          "Progressive infrastructure delivery (schools, retail completing 2027–2029)",
+          "Scarcity of villa inventory in the Dubai South growth corridor",
+          "Emaar's track record of pricing discipline across phases"
+        ],
+        "caveat": "However, the 4-year construction timeline introduces holding cost considerations. Investors should model <strong>7–9% annual opportunity cost</strong> of capital against projected appreciation."
+      },
+      "floor_plans": [
+        {
+          "bedrooms": "3",
+          "title": "3-Bedroom Configuration",
+          "description": "Ground floor features open-plan living/dining (approx. <strong>1,500 sqft</strong>) with guest bedroom and powder room; first floor contains three ensuite bedrooms, master with dressing area. Total covered terrace space averages <strong>107 sqft</strong>."
+        },
+        {
+          "bedrooms": "4",
+          "title": "4-Bedroom Configuration",
+          "description": "Adds a second floor with additional family lounge and fourth ensuite bedroom. Plot sizes increase to <strong>5,177–5,236 sqft</strong>, allowing for larger private gardens."
+        },
+        {
+          "bedrooms": "5",
+          "title": "5-Bedroom Configuration",
+          "description": "Full three-storey layout with roof terrace access; ground floor includes staff quarters. Total built-up area approaches <strong>5,800 sqft</strong> with <strong>7,000+ sqft</strong> plots."
+        }
+      ],
+      "distinguishing_features": [
+        "Mediterranean-contemporary aesthetic with whitewashed finishes, curved architectural elements, and terracotta accents",
+        "Floor-to-ceiling glazing maximising natural light and garden connectivity",
+        "Neutral material palette (beige stone, warm timber accents) designed for longevity",
+        "All villas include covered carports (494–739 sqft depending on typology)"
+      ],
+      "insider_tip": "The 3-bedroom Type A (3,463 sqft) and Type C (3,340 sqft) differ primarily in ground floor layout — Type C sacrifices some living area for a larger private garden. Buyers prioritising outdoor space should target Type C, despite the marginally smaller footprint."
+    },
+    "developer_section": {
+      "heading": "Developer Deep Dive — Emaar Properties",
+      "stats": [
+        { "label": "Years Active", "value": "27", "progress": 90 },
+        { "label": "Units Delivered", "value": "118K+", "progress": 95 },
+        { "label": "On-Time Rating", "value": "98%", "progress": 98 },
+        { "label": "Global Markets", "value": "36", "progress": 72 }
+      ],
+      "company_background": "Emaar Properties PJSC, founded in 1997 by Mohamed Alabbar, has delivered over <strong>118,000 residential units</strong> globally and maintains operations across <strong>36 markets</strong>. The company's portfolio includes iconic developments (Burj Khalifa, Dubai Mall, Dubai Marina) and master-planned communities (Dubai Hills Estate, Arabian Ranches, Emaar South). As of 2024, Emaar reported <strong>AED 177 billion</strong> in net asset value, <strong>AED 35.5 billion</strong> in revenue, and <strong>AED 13.51 billion</strong> in net profit, with <strong>AED 34.26 billion</strong> in cash reserves.",
+      "institutional_context": "Emaar operates through a vertically integrated model encompassing construction, facilities management, retail, and hospitality. This structure provides greater control over delivery timelines compared to developers who outsource construction. However, it also concentrates project risk within the same corporate structure — financial stress affects both developer and contractor simultaneously.",
+      "financial_highlights": [
+        { "value": "AED 34.26B", "label": "Cash & Deposits" },
+        { "value": "<0.5", "label": "Debt-to-Equity Ratio" },
+        { "value": "AED 13.51B", "label": "Net Profit (2024)" }
+      ],
+      "financial_assessment": "Emaar's 2024 financial position is robust: <strong>AED 34.26 billion</strong> in cash and bank deposits, debt-to-equity ratio below 0.5 (industry healthy benchmark), and continued project launches despite market conditions. This financial strength reduces — but does not eliminate — project completion risk. Large developers with strong balance sheets can absorb cost overruns and supply chain disruptions that would force smaller developers into delays or cancellation.",
+      "delivery_intro": "Emaar publicly cites a <strong>98% on-time delivery rate</strong>. However, a more granular examination of DLD project completion data reveals nuance:",
+      "delivery_track_record": [
+        { "project": "Emaar South (Phase 1)", "original": "2021", "actual": "2022–2023", "delay": "12–18 months", "notes": "Contractor/supply chain disruptions" },
+        { "project": "Dubai Hills – Maple 1", "original": "2022", "actual": "2022", "delay": "On time", "notes": "Established community infrastructure" },
+        { "project": "Creek Gate (Dubai Creek)", "original": "2024", "actual": "2025 (est.)", "delay": "~14 months", "notes": "Industry-wide supply chain cited" },
+        { "project": "The Valley – Phase 1", "original": "2024", "actual": "2024", "delay": "On time", "notes": "Smaller-scale community" }
+      ],
+      "delivery_analysis": "Emaar's delivery record is <strong>strongest in established, infrastructure-ready locations</strong>. Delays cluster in new growth corridors (Dubai South, Dubai Creek) where master infrastructure — roads, utilities, community facilities — is being built concurrently with residential phases.",
+      "known_quality_issues": [
+        { "icon": "🔧", "title": "Snagging Responsiveness", "content": "Common complaint pattern involves delays in post-handover defect rectification, particularly during peak handover periods when multiple phases complete simultaneously. Residents report 2–4 week wait times for initial snagging inspections." },
+        { "icon": "🔇", "title": "Acoustic Insulation", "content": "Multiple reviews across Dubai Hills and Arabian Ranches phases note inadequate sound insulation between floors and from external sources (AC units, neighbour activity). This appears to be a design specification issue rather than isolated construction defect." },
+        { "icon": "❄️", "title": "AC Efficiency", "content": "Several forum threads cite higher-than-expected cooling costs in south-facing villas, attributed to glazing specifications not optimised for solar gain in certain orientations." },
+        { "icon": "🌱", "title": "Landscaping Maturity", "content": "Early handovers in new communities often receive immature landscaping, with mature gardens taking 2–3 years to establish — a common issue across all developers, not Emaar-specific." }
+      ],
+      "positive_quality_indicators": [
+        "Emaar maintains ISO 9001:2008 certification for quality management",
+        "Post-handover maintenance teams remain accessible; response quality varies by community management",
+        "Structural defects are rare; issues typically relate to finishes, fittings, and systems commissioning"
+      ],
+      "strengths_applied": [
+        { "title": "Master Planning Expertise", "content": "The Heights' 7.5 million sqm scale, 25% green space allocation, and integrated wellness infrastructure reflect Emaar's capability in delivering comprehensive communities." },
+        { "title": "Financial Backing", "content": "AED 34B+ cash reserves ensure construction can proceed regardless of sales velocity — critical for a 4-year timeline." },
+        { "title": "Amenity Delivery", "content": "Track record suggests the Wellness Centre, lakes, and tracks will materialise as marketed, unlike developers who delay amenities to later phases." }
+      ],
+      "weaknesses_to_monitor": [
+        { "title": "Timeline Risk", "content": "4-year construction (2026–2030) exceeds Emaar's typical 2.5–3 year villa delivery. This extended timeline may reflect phased infrastructure delivery, staged construction across 383 units, and potential supply chain constraints in the Dubai South corridor." },
+        { "title": "Quality Consistency Risk", "content": "Early phases in new master communities sometimes experience more snagging issues than later phases, as contractors ramp up and quality control processes stabilise. Serro, as among the first residential releases in The Heights, carries this 'pioneer phase' risk." },
+        { "title": "Community Maturity at Handover", "content": "Q1–Q2 2030 handovers will occur while surrounding infrastructure (schools, retail, some amenities) may still be under construction. Early residents should expect a live building site environment for 12–24 months post-handover." }
+      ],
+      "rera_details": "Emaar holds an active RERA registration and maintains escrow compliance across all off-plan projects. While RERA does not publish a public \"developer rating\" comparable to consumer platforms, the following indicators are verifiable via DLD/RERA channels:",
+      "rera_indicators": [
+        "All active projects have registered escrow accounts",
+        "No pattern of fund misuse penalties in public records",
+        "Consistent project registration and milestone reporting via Dubai REST app"
+      ],
+      "verification_framework": [
+        { "phase": "Before Purchasing", "steps": ["Confirm RERA registration and escrow account via Dubai REST app", "Review Oqood registration process and timeline", "Visit Emaar's Dubai Hills or Arabian Ranches completed phases to assess finish quality firsthand"] },
+        { "phase": "During Construction", "steps": ["Track milestone progress against payment schedule (payments are construction-linked — ensure they match actual progress)", "Request broker site visit updates for verified on-ground intelligence"] },
+        { "phase": "Pre-Handover", "steps": ["Engage independent snagging inspector before taking possession", "Document all defects with photographic evidence within warranty period"] }
+      ],
+      "transparency_statement": "Emaar's track record is among the <strong>strongest in Dubai's development landscape</strong>. However, \"strongest\" does not mean \"perfect.\" The company has delivered delayed projects and units with finish defects — as have all volume developers operating at this scale. The critical distinction is that Emaar's financial position and institutional structure mean these issues are <strong>resolved eventually</strong>, and projects do complete. Buyers should enter with eyes open to the timeline and quality variability inherent in large-scale, long-duration master communities."
+    },
+    "target_buyer_section": {
+      "rental_benchmarking": [
+        { "community": "Emaar South", "annual_rent": "AED 148,000", "size": "~2,400", "rent_per_sqft": "AED 61.6", "highlight": false },
+        { "community": "DAMAC Hills 2", "annual_rent": "AED 112,000", "size": "~1,900", "rent_per_sqft": "AED 58.9", "highlight": false },
+        { "community": "Town Square", "annual_rent": "AED 140,000", "size": "~2,200", "rent_per_sqft": "AED 63.6", "highlight": false },
+        { "community": "Serro (Projected)", "annual_rent": "AED 240–300K", "size": "3,463", "rent_per_sqft": "AED 69–86", "highlight": true }
+      ],
+      "flip_strategies": [
+        { "title": "Launch Phase Flip", "timing": "Months 18–24", "target": "15–20% premium", "content": "Exit when superstructure is visible and later phases launch at higher prices. Target 15–20% premium over launch price." },
+        { "title": "Stressed Buyer Acquisition", "timing": "Months 12–36", "target": "20–30% below market", "content": "Acquire assignments from original buyers facing liquidity constraints, typically at 20–30% below market value. Requires cash and developer NOC (2–5% fee)." },
+        { "title": "Handover Flip", "timing": "At completion", "target": "10–15% premium", "content": "Sell immediately post-completion to end-users accessing mortgages. Target 10–15% premium over final handover price." }
+      ],
+      "infrastructure_timeline": [
+        { "facility": "IB School", "timeline": "2027–2029", "details": "Within community" },
+        { "facility": "Healthcare Centre", "timeline": "2027–2029", "details": "Integrated medical facilities" },
+        { "facility": "Retail/Dining", "timeline": "2027–2029", "details": "Community retail zones" },
+        { "facility": "Etihad Rail", "timeline": "2026+", "details": "Feeder bus integration" },
+        { "facility": "Al Maktoum Airport", "timeline": "10 min", "details": "AED 128B expansion to 260M capacity" }
+      ],
+      "recommendation_matrix": [
+        { "profile": "First-time Investor", "verdict": "⚠️ Consider", "rationale": "AED 6M entry significant; 4–5% yields below apartments, but Emaar credibility and Dubai South growth support long-term appreciation." },
+        { "profile": "Large Family (End-User)", "verdict": "✅ Buy", "rationale": "3–5BR layouts, wellness amenities, future school/healthcare, and proximity to DWC employment corridor. Car-dependent initially but infrastructure maturing by handover." },
+        { "profile": "Short-Term Flipper", "verdict": "⚠️ Opportunity", "rationale": "Not a traditional quick flip, but launch-phase resale, distressed acquisition, and handover exit strategies viable for experienced investors with structured capital." },
+        { "profile": "Residency-Focused Buyer", "verdict": "✅ Buy", "rationale": "AED 6M meets visa threshold; 10% booking secures eligibility; Emaar's handover process supports clean title deed." },
+        { "profile": "Yield Investor (5+ Year Hold)", "verdict": "⚠️ Consider", "rationale": "4–5% yields below apartment alternatives, but villa scarcity premium and infrastructure maturation (airport, rail) support 3–5 year post-handover appreciation." }
+      ]
+    },
+    "location_section": {
+      "timeline": [
+        { "year": "2026", "title": "Al Qudra Road Bridge", "detail": "600m four-lane bridge opens, 191% capacity increase" },
+        { "year": "2027", "title": "Community Retail Opens", "detail": "Retail zones, dining, and daily convenience within The Heights" },
+        { "year": "2030", "title": "Metro Blue Line (Est.)", "detail": "14 new stations connecting Dubai South to Creek Harbour" }
+      ],
+      "walkability": [
+        { "icon": "🚶", "title": "Internal Walkability", "content": "Extensive landscaped walking paths, jogging tracks, and pedestrian-friendly street design connecting residential clusters to amenity nodes — wellness lake, parks, and clubhouse.", "color": "#16a34a" },
+        { "icon": "🚇", "title": "External Walkability", "content": "A metro station is not within walking distance. The nearest existing stations are approximately 15–20 minutes by vehicle. The Blue Line extension will improve this post-2030.", "color": "#ca8a04" },
+        { "icon": "🛒", "title": "Daily Convenience", "content": "Grocery stores and retail outlets are planned within the community retail zones but will not be operational until 2027–2029. Early residents will require vehicular access to supermarkets in Dubai South or Expo City.", "color": "#dc2626" }
+      ],
+      "drive_times": [
+        { "destination": "DIFC / Dubai Mall", "off_peak": "28–32 min", "peak": "45–55 min", "notes": "Via Emirates Road (E611) and Sheikh Mohammed bin Zayed Road (E311)" },
+        { "destination": "Dubai International Airport (DXB)", "off_peak": "35–40 min", "peak": "50–65 min", "notes": "Congestion at Business Bay crossing during peak" },
+        { "destination": "Al Maktoum International (DWC)", "off_peak": "8–12 min", "peak": "12–18 min", "notes": "Major expansion underway; future primary airport" },
+        { "destination": "Dubai Marina", "off_peak": "22–28 min", "peak": "35–45 min", "notes": "Via Emirates Road and Hessa Street" },
+        { "destination": "Expo City Dubai", "off_peak": "12–15 min", "peak": "15–20 min", "notes": "Direct access via Expo Road" },
+        { "destination": "Jebel Ali Port / Industrial", "off_peak": "15–18 min", "peak": "20–25 min", "notes": "Key employment corridor" },
+        { "destination": "Nearest Hospital (Mediclinic)", "off_peak": "18–22 min", "peak": "25–30 min", "notes": "Comprehensive medical facilities" }
+      ],
+      "infrastructure_developments": [
+        {
+          "title": "RTA Al Qudra Road Development (February 2026 Opening)",
+          "paragraphs": [
+            "The Roads and Transport Authority has recently completed a <strong>600-metre, four-lane bridge</strong> at the intersection of Al Qudra Road and the link road connecting Arabian Ranches with Dubai Studio City, increasing capacity by <strong>191%</strong> (from 6,600 to 19,200 vehicles per hour) and reducing waiting time by 55%.",
+            "A second bridge opening on 15 February 2026 at the intersection of Al Qudra Road and Sheikh Zayed bin Hamdan Al Nahyan Street will provide four lanes in each direction, reducing waiting times by <strong>85%</strong> (from 393 seconds to 60 seconds)."
+          ],
+          "relevance": "These improvements directly benefit residents by improving connectivity between the southern growth corridor and central Dubai. The enhanced Al Qudra Road corridor serves communities including Arabian Ranches, DAMAC Hills, and The Sustainable City — all positioned similarly to The Heights in terms of Dubai South access."
+        },
+        {
+          "title": "Dubai Metro Blue Line (Awarded AED 20.5 Billion Contract)",
+          "paragraphs": [
+            "The <strong>30-kilometre Blue Line extension</strong> will connect Dubai Creek Harbour and Festival City directly to Dubai South and Expo City, with <strong>14 new stations</strong>. While completion is post-2030, the awarded contract signals long-term government commitment to transit-oriented development in the southern corridor."
+          ],
+          "relevance": null
+        },
+        {
+          "title": "Al Maktoum International Airport Expansion",
+          "paragraphs": [
+            "<strong>AED 128 billion</strong> (USD 34–35 billion) investment approved for new terminal infrastructure, positioning DWC as the world's largest airport with <strong>260 million passenger capacity</strong>. Major passenger operations will progressively shift from Dubai International (DXB) to Al Maktoum, concentrating aviation-driven employment and housing demand directly in Dubai South."
+          ],
+          "relevance": null
+        }
+      ],
+      "neighbourhood_vibe": [
+        { "icon": "🏡", "title": "Low-Density Living", "content": "25% green space allocation, villa-only product mix. No high-rises, no commercial towers — purely residential with integrated wellness." },
+        { "icon": "🧘", "title": "Wellness Orientation", "content": "Dedicated wellness lake, meditation gardens, extensive 38km trail network. Amenities typically found in communities priced 20–30% higher." },
+        { "icon": "👨‍👩‍👧‍👦", "title": "Family Focus", "content": "School catchments, children's play areas, community safety. IB school planned within community by 2027–2029." },
+        { "icon": "🏗️", "title": "Construction Phase", "content": "2026–2030 will see active development. Early residents should expect a live building site environment for 12–24 months post-first handovers." }
+      ]
+    },
+    "seo": {
+      "meta_title": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai",
+      "meta_description": "Serro by Emaar offers 3–5 bedroom villas starting from AED 6M in The Heights, Dubai. 80/20 payment plan. Handover Q1 2030.",
+      "h1": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai"
+    }
+  }
+}
