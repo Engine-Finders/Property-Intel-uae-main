@@ -73,7 +73,7 @@ const TargetBuyerSection = ({ data }) => {
   const matrix = data.recommendation_matrix;
 
   return (
-    <section style={{ background: t.bg }} className="py-16 lg:py-24">
+    <section style={{ background: t.bg }} className="py-6 lg:py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center mb-10 lg:mb-14">

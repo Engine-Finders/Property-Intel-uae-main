@@ -29,7 +29,7 @@ const DeveloperSection = ({ data }) => {
   const verificationSteps = data.verification_framework;
 
   return (
-    <section style={{ background: t.bgAlt }} className="py-16 lg:py-24">
+    <section style={{ background: t.bgAlt }} className="py-6 lg:py-10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: "#B68A35" }}>Developer Profile & Track Record</p>

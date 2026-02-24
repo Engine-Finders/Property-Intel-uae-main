@@ -5,6 +5,9 @@ import projectData from "@/app/(public)/data/ProjectData.json";
 import UnitMixSection from "@/app/components/home/UnitMixSection";
 import DeveloperSection from "@/app/components/home/DeveloperSection";
 import TargetBuyerSection from "@/app/components/home/TargetBuyerSection";
+import LocationSection from "@/app/components/home/LocationSection";
+import FinancingSection from "@/app/components/home/FinancingSection";
+import RisksSection from "@/app/components/home/RiskSection";
 
 const data = projectData.project;
 
@@ -17,6 +20,9 @@ export default function Project() {
         <UnitMixSection data={data.unit_mix_section} />
         <DeveloperSection data={data.developer_section} />
         <TargetBuyerSection data={data.target_buyer_section} />
+        <LocationSection data={data.location_section} />
+        <FinancingSection data={data.financing_section} />
+        <RisksSection data={data.risks_section} />
       </div>
       <Footer />
     </main>

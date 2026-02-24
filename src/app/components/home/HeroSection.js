@@ -99,7 +99,7 @@ const HeroSection = ({ data }) => {
       </div>
 
       {/* Project Overview */}
-      <div className="max-w-7xl mx-auto px-6 py-16 lg:py-24">
+      <div className="max-w-7xl mx-auto px-6 py-6 lg:py-10">
         {hero.overview_paragraphs.map((paragraph, i) => (
           <p key={i} className={`${i > 0 ? "mt-6" : ""} text-base lg:text-lg leading-relaxed`} style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: paragraph }} />
         ))}
