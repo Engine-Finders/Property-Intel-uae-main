@@ -8,6 +8,9 @@ import TargetBuyerSection from "@/app/components/home/TargetBuyerSection";
 import LocationSection from "@/app/components/home/LocationSection";
 import FinancingSection from "@/app/components/home/FinancingSection";
 import RisksSection from "@/app/components/home/RiskSection";
+import ConstructionSection from "@/app/components/home/ConstructionSection";
+import ComparisonSection from "@/app/components/home/ComparisonSection";
+import ReviewsSection from "@/app/components/home/ReviewSection";
 
 const data = projectData.project;
 
@@ -23,6 +26,9 @@ export default function Project() {
         <LocationSection data={data.location_section} />
         <FinancingSection data={data.financing_section} />
         <RisksSection data={data.risks_section} />
+         <ConstructionSection data={data.construction_section} />
+        <ComparisonSection data={data.comparison_section} />
+        <ReviewsSection data={data.reviews_section} />
       </div>
       <Footer />
     </main>
