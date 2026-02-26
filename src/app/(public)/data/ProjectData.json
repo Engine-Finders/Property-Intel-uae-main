@@ -744,6 +744,158 @@
       },
       "transparency_note": "We will update this section with Serro-specific reviews as they become available. No reviews have been omitted or selectively filtered."
     },
+    "expert_tips_section": {
+      "badge": "Expert Tips & Scam Avoidance",
+      "title": "Insider Tips for Off‑Plan Buyers",
+      "subtitle": "Specific to Serro at The Heights",
+      "tips_title": "Five Actionable Tips for Serro Buyers",
+      "tips": [
+        {
+          "title": "Verify Payment Plan Alignment with Construction Milestones",
+          "paragraphs": [
+            "Serro's 80/20 structure (10% booking, 70% during construction, 20% on handover) is marketed as construction-linked. Before signing, confirm that each instalment corresponds to a verifiable milestone (e.g., foundation completion, structural framing, finishing works).",
+            "Payments tied to dates rather than progress increase your risk if construction delays occur."
+          ],
+          "action": "Request the milestone schedule in your Sales and Purchase Agreement. Cross-reference with Dubai REST app updates during construction."
+        },
+        {
+          "title": "Negotiate on Multi-Unit Purchases",
+          "paragraphs": [
+            "Developers, including Emaar, often discount for bulk buyers or multiple unit acquisitions. If you're acquiring adjacent villas for extended family or investment pooling, negotiate pricing or payment term flexibility before booking."
+          ],
+          "action": "Engage through a reputable broker who can present multi-unit offers directly to Emaar's sales team."
+        },
+        {
+          "title": "Understand the True Cost of Ownership — Not Just the Purchase Price",
+          "paragraphs": [
+            "For a AED 6,000,000 Serro villa, total cash required at purchase approximates AED 3,285,000:"
+          ],
+          "table": {
+            "rows": [
+              ["Down Payment (50%)", "AED 3,000,000"],
+              ["DLD Transfer Fee (4%)", "AED 240,000"],
+              ["DLD Mortgage Registration (0.25%)", "AED 7,500"],
+              ["Bank Arrangement Fee (~1% + VAT)", "AED 31,500"],
+              ["Valuation/Admin Fees", "~AED 6,500"],
+              ["Total", "~AED 3,285,000"]
+            ],
+            "source": "Gulf News off-plan buying guide"
+          },
+          "action": "Budget 10–12% above purchase price for transaction costs. Do not rely on developer DLD fee waivers without verifying total cost impact."
+        },
+        {
+          "title": "Verify Escrow Compliance — Never Transfer Funds Outside Official Channels",
+          "paragraphs": [
+            "Dubai Law No. (8) of 2007 and subsequent amendments mandate that all off-plan payments be held in RERA-regulated escrow accounts. Funds are released to developers only upon verification of construction milestones by licensed consultants."
+          ],
+          "red_flag": "If a broker or developer representative requests payment to a personal account, offshore entity, or non-RERA account, cease all communication and report to Dubai Land Department immediately.",
+          "action": "Confirm escrow account details are registered and visible via the Dubai REST app before transferring any funds."
+        },
+        {
+          "title": "Reject Guaranteed Rental Income Promises",
+          "paragraphs": [
+            "No legitimate developer or broker can guarantee rental returns. Market fluctuations, handover timing, and property-specific factors render such promises unenforceable and often indicate a misrepresentation risk."
+          ],
+          "red_flag": "\"Guaranteed 8% ROI for 5 years\" claims should be treated as marketing gimmicks. Legitimate projections are presented as estimates with clear disclaimers.",
+          "action": "Request written disclaimers on any yield projections. Compare against RERA rental index data for the area."
+        }
+      ],
+      "scam_red_flags": {
+        "title": "Scam Red Flags — Specific to Dubai Off-Plan Market",
+        "headers": ["Red Flag", "Why It Matters"],
+        "rows": [
+          ["Payment to non-escrow accounts", "Funds unprotected; project may not be RERA-registered"],
+          ["Pressure to sign without independent legal review", "SPA contains binding terms; independent review is essential"],
+          ["\"Too good to be true\" pricing", "May indicate off-plan flipping without title transfer risks"],
+          ["Broker unwilling to provide RERA credentials", "All licensed brokers have RERA cards; verify before engaging"],
+          ["Promises of \"immediate handover\" on newly launched projects", "Off-plan means construction not started; verify actual status"]
+        ]
+      },
+      "regulatory": {
+        "title": "Key Regulatory Protections — Law No. 7 of 2025",
+        "intro": "Effective January 2026, Dubai's new Contracting Law introduces enhanced protections for off-plan buyers:",
+        "items": [
+          { "label": "Mandatory contractor registration and classification", "desc": "Prevents unqualified entities from undertaking large-scale projects" },
+          { "label": "Subcontractor oversight", "desc": "Main contractors remain fully accountable for delegated work quality" },
+          { "label": "10-year document retention", "desc": "Critical for post-handover warranty claims" },
+          { "label": "Penalties up to AED 200,000", "desc": "Deters negligence and misrepresentation" }
+        ],
+        "action": "Familiarize yourself with these protections. They provide recourse if construction quality or timeline issues arise."
+      },
+      "final_word": {
+        "title": "Final Word — Due Diligence Is Your Best Protection",
+        "text": "The off-plan market rewards informed buyers. Serro at The Heights, backed by Emaar's institutional strength and Dubai's evolving regulatory framework, represents a relatively secure entry point. However, \"secure\" does not mean \"risk-free.\" Verify every claim, understand every cost, and never rely on verbal assurances."
+      }
+    },
+    "faq_section": {
+      "badge": "FAQ",
+      "title": "Frequently Asked Questions — Serro at The Heights by Emaar",
+      "note": "These FAQs are developed based on \"People also ask\" queries, forum discussions, and high-volume search terms related to Serro, The Heights, and Dubai South off-plan investments.",
+      "items": [
+        {
+          "question": "What is the payment plan for Serro at The Heights?",
+          "answer": ["Serro follows an 80/20 payment plan structure: 10% booking deposit, 70% payable during construction in milestone-linked instalments, and 20% due on handover (Q1 2030 for Serro, Q2 2030 for Serro 2). Buyers should confirm the milestone schedule in their Sales and Purchase Agreement to ensure payments align with construction progress rather than fixed dates."]
+        },
+        {
+          "question": "When is the handover date for Serro villas?",
+          "answer": ["Official handover is scheduled for Q1 2030 (Serro) and Q2 2030 (Serro 2). This 48–50 month construction timeline is longer than Emaar's typical villa projects due to the scale of master infrastructure development within The Heights' 81 million sq.ft community."]
+        },
+        {
+          "question": "Is Serro at The Heights a good investment?",
+          "answer": ["Serro presents a long-term investment case tied to Dubai South's growth corridor and Emaar's wellness positioning. Projected gross yields are 4–6% based on comparable villa communities, with capital appreciation potential of 15–25% by handover if infrastructure delivers as planned.", "The AED 6M entry price qualifies for Golden Visa, and Emaar's track record reduces completion risk. However, the 4-year timeline ties up capital, and investors seeking immediate rental coverage should consider shorter-duration projects."]
+        },
+        {
+          "question": "What are the service charges for Serro at The Heights?",
+          "answer": ["Estimated service charges range from AED 3–5 per sq.ft annually, based on comparable Emaar villa communities. For a 3,463 sq.ft villa, this equates to AED 10,389–17,315 per year (AED 866–1,443 monthly). Final charges are confirmed via owners' association budgets near handover and may increase 10–15% over initial estimates as communities mature."]
+        },
+        {
+          "question": "How does Serro compare to Emaar South?",
+          "answer": ["Serro targets the premium wellness segment with dedicated lake, 38km track network, and meditation gardens, priced at ~AED 1,732/sq.ft. Emaar South offers golf course-adjacent living at AED 1,550–1,700/sq.ft with earlier handovers (2027–2028).", "Serro suits buyers prioritizing lifestyle and long-term family living; Emaar South appeals to aviation professionals and those seeking earlier occupancy."]
+        },
+        {
+          "question": "What are the unit sizes and layouts at Serro?",
+          "answer": ["Serro offers 3-bedroom (3,340–3,463 sq.ft), 4-bedroom (4,302–4,312 sq.ft), and 5-bedroom (5,761–5,884 sq.ft) villas. All feature G+2 layouts with open-plan living, private gardens, covered carports, and Mediterranean-inspired architecture. Three-bedroom Type A prioritises interior space; Type C offers larger gardens."]
+        },
+        {
+          "question": "Is Serro freehold for foreigners?",
+          "answer": ["Yes, Serro at The Heights is located in a designated freehold area, permitting full ownership rights to UAE nationals and GCC citizens, as well as expatriates and foreign investors. Freehold ownership qualifies buyers for UAE residency visas, including the Golden Visa for properties valued at AED 2M+."]
+        },
+        {
+          "question": "What amenities are included at Serro?",
+          "answer": ["Serro residents access The Heights' extensive wellness infrastructure: 38km cycling/jogging tracks, Wellness Lake, meditation gardens, country club with fitness facilities, sports courts, community pools, children's playscapes, and planned retail zones. The community emphasizes outdoor living with 25% green space allocation across the 81 million sq.ft masterplan."]
+        },
+        {
+          "question": "Can I sell my Serro off-plan villa before completion?",
+          "answer": ["Yes, off-plan resale is permitted subject to developer approval and Dubai Land Department regulations. Sellers must have made all payments due up to the point of sale and complete transfer via Oqood registration. Emaar typically allows transfers with administrative fees; check your SPA for specific terms."]
+        },
+        {
+          "question": "What are the risks of buying at Serro?",
+          "answer": ["Key risks include: extended 4-year construction timeline (capital locked longer), location immaturity (retail/schools complete 2027–2029), service charge creep (10–15% increases likely), oversupply pressure in Dubai South (moderate risk for villas, higher for apartments), and construction quality variability (mitigated by Emaar's track record and Law No. 7 protections)."]
+        },
+        {
+          "question": "What schools are near Serro at The Heights?",
+          "answer": ["Major educational facilities within 15–20 minutes include South View School, Jebel Ali School, and Greenfield International. The Heights masterplan includes an IB-certified school scheduled for completion 2027–2029. Until then, school commutes require vehicular transport."]
+        },
+        {
+          "question": "How do I verify Serro's RERA registration and escrow account?",
+          "answer": ["Use the Dubai REST app (available via DLD) to search for \"Serro at The Heights\" and confirm:"],
+          "list": ["RERA project registration number", "Escrow account details (bank, account number)", "Milestone reporting status", "Any registered encumbrances"]
+        },
+        {
+          "question": "What is the minimum down payment for Serro?",
+          "answer": ["Based on the 80/20 payment plan, the initial booking deposit is 10% of the purchase price (AED 600,000 for a AED 6M villa). However, total cash required at purchase (including DLD fees and transaction costs) approximates AED 3.285M for a 50% financed purchase."]
+        },
+        {
+          "question": "Is post-handover payment available for Serro?",
+          "answer": ["No, Serro follows an 80/20 structure with final payment due on handover. Emaar rarely offers post-handover plans; buyers should expect to settle the 20% balance upon completion, either from cash reserves or mortgage financing arranged near handover."]
+        },
+        {
+          "question": "What is Dubai's new Contracting Law (No. 7 of 2025) and how does it protect Serro buyers?",
+          "answer": ["Effective January 2026, Law No. 7 introduces mandatory contractor registration, subcontractor oversight, and 10-year document retention requirements. For Serro buyers, this means:"],
+          "list": ["Enhanced accountability for construction quality", "Clearer recourse if defects emerge post-handover", "Government oversight of contractor performance", "Penalties (up to AED 200,000) for violations"]
+        }
+      ]
+    },
     "seo": {
       "meta_title": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai",
       "meta_description": "Serro by Emaar offers 3–5 bedroom villas starting from AED 6M in The Heights, Dubai. 80/20 payment plan. Handover Q1 2030.",

@@ -11,6 +11,8 @@ import RisksSection from "@/app/components/home/RiskSection";
 import ConstructionSection from "@/app/components/home/ConstructionSection";
 import ComparisonSection from "@/app/components/home/ComparisonSection";
 import ReviewsSection from "@/app/components/home/ReviewSection";
+import FaqSection from "@/app/components/home/FaqSection";
+import ExpertTipsSection from "@/app/components/home/ExpertTipsSection";
 
 const data = projectData.project;
 
@@ -29,6 +31,8 @@ export default function Project() {
          <ConstructionSection data={data.construction_section} />
         <ComparisonSection data={data.comparison_section} />
         <ReviewsSection data={data.reviews_section} />
+        <ExpertTipsSection data={data.expert_tips_section} />
+        <FaqSection data={data.faq_section} />
       </div>
       <Footer />
     </main>
