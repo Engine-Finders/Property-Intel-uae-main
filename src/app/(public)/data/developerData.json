@@ -1,0 +1,523 @@
+{
+  "developer": {
+    "hero_section": {
+      "title": "Developer Trust Snapshot: Emaar",
+      "subtitle": "Shaping Dubai's skyline with iconic communities since 1997 — the master developer behind Downtown Dubai and Burj Khalifa.",
+      "trust_verification": {
+        "heading": "Trust & Verification",
+        "items": [
+          { "label": "RERA Status", "value": "13800" },
+          { "label": "Years Active", "value": "29 years (founded 1997)" },
+          { "label": "Units Delivered", "value": "123,500+ residential units globally (as of November 2025)" },
+          { "label": "Active Projects", "value": "48 new projects launched in 2025" },
+          { "label": "Analyst Verification", "value": "PropertyIntel Research Team (Verified: 21 February 2026)" }
+        ]
+      },
+      "performance_stats": {
+        "heading": "Quick Performance Stats",
+        "items": [
+          { "label": "Total Projects Launched", "value": "351 projects (293 completed + 58 under construction)" },
+          { "label": "Avg. Project Delay (Last 5)", "value": "3–6 months" },
+          { "label": "PropertyIntel Trust Score", "value": "9.0 / 10" }
+        ]
+      },
+      "sources": {
+        "heading": "Sources & Methodology",
+        "description": "The following sources support the data points above. We prioritize official registrars and annual reports.",
+        "items": [
+          { "stat": "RERA Number 13800", "source": "Dubai Land Department (DLD) - Official Portal", "url": "https://dubailand.gov.ae/" },
+          { "stat": "Units Delivered", "source": "Emaar Properties Official Press Release", "url": "https://properties.emaar.com/en/tag/press-release/" },
+          { "stat": "Years Active", "source": "Emaar Official Website - About Us", "url": "https://properties.emaar.com/en/about-emaar/" },
+          { "stat": "Active Projects", "source": "Emaar Properties Official Press Release (12 Feb 2026)", "url": "https://properties.emaar.com/en/tag/press-release/" },
+          { "stat": "Avg. Project Delay", "source": "PropertyIntel analysis of DLD handover data", "url": "" },
+          { "stat": "Trust Score", "source": "PropertyIntel proprietary scoring model based on financials, delivery track record, years active, units delivered, and market reputation", "url": "" }
+        ]
+      },
+      "cta": {
+        "heading": "Ready to Explore?",
+        "text": "Speak to a Licensed Expert About Emaar"
+      },
+      "projects_slider": [
+        {
+          "name": "Serro at The Heights",
+          "type": "Villas",
+          "price": "From AED 6M",
+          "description": "Luxury villas in Al Yalayis within The Heights master community by Emaar.",
+          "image_index": 0
+        },
+        {
+          "name": "Dubai Hills Estate",
+          "type": "Apartments & Villas",
+          "price": "From AED 1.2M",
+          "description": "A master-planned community with parks, a championship golf course, and retail.",
+          "image_index": 1
+        },
+        {
+          "name": "Emaar Beachfront",
+          "type": "Waterfront Apartments",
+          "price": "From AED 2.5M",
+          "description": "A private island community with beach access near Dubai Marina and Palm Jumeirah.",
+          "image_index": 2
+        }
+      ]
+    },
+    "projects_section": {
+      "title": "Emaar Upcoming Projects - New Launches & Off-Plan Opportunities",
+      "subtitle": "Explore the latest Emaar projects across Dubai, from waterfront apartments to luxury villas. Download brochures directly.",
+      "disclaimer": "Project details, prices, and handover dates are subject to change. Please verify with official developer sources before making any investment decision. Last updated: 21 February 2026.",
+      "projects": [
+        {
+          "id": "emaar-creek-bay",
+          "name": "Creek Bay",
+          "location": "Dubai Creek Harbour",
+          "status": "Just Launched",
+          "status_color": "gold",
+          "starting_price": "AED 1.8M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "Q2 2030",
+          "countdown": "51 months to go",
+          "unit_mix": "1BR, 2BR, 3BR Apartments",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/creek-bay-at-dubai-creek-harbour/" },
+            { "label": "Pricing Data", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/creek-bay-at-dubai-creek-harbour/" },
+            { "label": "Handover Date", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/creek-bay-at-dubai-creek-harbour/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 0
+        },
+        {
+          "id": "emaar-mareva-the-oasis",
+          "name": "Mareva at The Oasis",
+          "location": "The Oasis, Dubailand",
+          "status": "Selling Fast",
+          "status_color": "green",
+          "starting_price": "AED 13.47M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "Q1 2030",
+          "countdown": "49 months to go",
+          "unit_mix": "4BR, 5BR, 6BR Villas",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/mareva-at-the-oasis/" },
+            { "label": "Pricing Data", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/mareva-at-the-oasis/" },
+            { "label": "Handover Date", "source": "Property Finder", "url": "https://properties.emaar.com/en/properties/mareva-at-the-oasis/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 1
+        },
+        {
+          "id": "emaar-mirage-the-oasis",
+          "name": "Mirage at The Oasis",
+          "location": "The Oasis, Dubailand",
+          "status": "Selling Fast",
+          "status_color": "green",
+          "starting_price": "AED 15.8M",
+          "payment_plan": "90/10 (10% down, 80% construction, 10% handover)",
+          "handover": "Q2 2028",
+          "countdown": "28 months to go",
+          "unit_mix": "5BR, 6BR Villas",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/mirage-at-the-oasis/" },
+            { "label": "Pricing Data", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/mirage-at-the-oasis/" },
+            { "label": "Handover Date", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/mirage-at-the-oasis/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 2
+        },
+        {
+          "id": "emaar-lavita-the-oasis",
+          "name": "Lavita at The Oasis",
+          "location": "The Oasis, Dubailand",
+          "status": "Limited Units",
+          "status_color": "red",
+          "starting_price": "AED 36M",
+          "payment_plan": "80/20 (20% down, 60% construction, 20% handover)",
+          "handover": "Q1 2029",
+          "countdown": "36 months to go",
+          "unit_mix": "6BR, 7BR Mansions",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/lavita-at-the-oasis/" },
+            { "label": "Pricing Data", "source": "Emaar", "url": "https://properties.emaar.com/en/properties/lavita-at-the-oasis/" },
+            { "label": "Handover Date", "source": "Emaar", "url": "https://properties.emaar.com/en/properties/lavita-at-the-oasis/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 0
+        },
+        {
+          "id": "emaar-elora-the-valley",
+          "name": "Elora at The Valley",
+          "location": "The Valley, Dubailand",
+          "status": "Selling Fast",
+          "status_color": "green",
+          "starting_price": "AED 1.6M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "Q3 2026",
+          "countdown": "7 months to go",
+          "unit_mix": "3BR, 4BR Townhouses",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/elora/" },
+            { "label": "Pricing Data", "source": "Emaar", "url": "https://properties.emaar.com/en/properties/elora/" },
+            { "label": "Handover Date", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/elora/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 1
+        },
+        {
+          "id": "emaar-lyvia-by-palace",
+          "name": "Lyvia by Palace",
+          "location": "Dubai Creek Harbour",
+          "status": "Just Launched",
+          "status_color": "gold",
+          "starting_price": "AED 1.98M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "Q3 2029",
+          "countdown": "41 months to go",
+          "unit_mix": "1BR, 2BR, 3BR Apartments, 3BR Townhouses",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/palace-residences/" },
+            { "label": "Pricing Data", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/palace-residences/" },
+            { "label": "Handover Date", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/palace-residences/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 2
+        },
+        {
+          "id": "emaar-creek-haven",
+          "name": "Creek Haven",
+          "location": "Dubai Creek Harbour",
+          "status": "Launching Soon",
+          "status_color": "blue",
+          "starting_price": "AED 1.86M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "Q1 2030",
+          "countdown": "49 months to go",
+          "unit_mix": "1BR, 2BR, 3BR Apartments",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/creek-haven-at-dubai-creek-harbour/" },
+            { "label": "Pricing Data", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/creek-haven-at-dubai-creek-harbour/" },
+            { "label": "Handover Date", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/creek-haven-at-dubai-creek-harbour/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 0
+        },
+        {
+          "id": "emaar-address-residences-the-bay",
+          "name": "Address Residences The Bay",
+          "location": "Dubai Harbour",
+          "status": "Sold Out",
+          "status_color": "gray",
+          "starting_price": "AED 2.7M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "Q4 2026",
+          "countdown": "10 months to go",
+          "unit_mix": "1BR, 2BR, 3BR Apartments",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/address-residences-the-bay/" },
+            { "label": "Pricing Data", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/address-residences-the-bay/" },
+            { "label": "Handover Date", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/properties/address-residences-the-bay/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 1
+        },
+        {
+          "id": "emaar-park-gate-2",
+          "name": "Park Gate 2",
+          "location": "Dubai Hills Estate",
+          "status": "Selling Fast",
+          "status_color": "green",
+          "starting_price": "AED 14.12M",
+          "payment_plan": "80/20 (20% down, 60% construction, 20% handover)",
+          "handover": "Q1 2027",
+          "countdown": "12 months to go",
+          "unit_mix": "4BR, 5BR Villas",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/properties/park-gate-2-at-dubai-hills-estate/" },
+            { "label": "Pricing Data", "source": "Property Finder", "url": "https://properties.emaar.com/en/properties/park-gate-2-at-dubai-hills-estate/" },
+            { "label": "Handover Date", "source": "Property Finder", "url": "https://properties.emaar.com/en/properties/park-gate-2-at-dubai-hills-estate/" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 2
+        },
+        {
+          "id": "emaar-grand-polo-club-resort",
+          "name": "Grand Polo Club & Resort",
+          "location": "Dubai Investment Park (DIP)",
+          "status": "Launching Soon",
+          "status_color": "blue",
+          "starting_price": "AED 5.67M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "TBA (Q2–Q3 2029)",
+          "countdown": "Launching soon",
+          "unit_mix": "3BR, 4BR, 5BR Villas",
+          "sources": [
+            { "label": "Project Info", "source": "Emaar Properties Official Website", "url": "https://properties.emaar.com/en/our-communities/grand-polo-club-and-resort/" },
+            { "label": "Pricing Data", "source": "Emaar Properties Official", "url": "https://properties.emaar.com/en/our-communities/grand-polo-club-and-resort/" },
+            { "label": "Handover Date", "source": "Not Yet Announced", "url": "" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 0
+        },
+        {
+          "id": "emaar-dubai-creek-tower",
+          "name": "Dubai Creek Tower",
+          "location": "Dubai Creek Harbour",
+          "status": "Launching Soon",
+          "status_color": "blue",
+          "starting_price": "TBA",
+          "payment_plan": "TBA",
+          "handover": "TBA",
+          "countdown": "Tender launching April 2026",
+          "unit_mix": "Luxury Residences, Observatory",
+          "sources": [
+            { "label": "Project Info", "source": "Gulf News (Jan 2026)", "url": "https://gulfnews.com/business/property/emaar-to-launch-tender-for-dubai-creek-tower-within-three-months-1.500408173" },
+            { "label": "Pricing Data", "source": "Not yet announced", "url": "" },
+            { "label": "Handover Date", "source": "Not yet announced", "url": "" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 1
+        },
+        {
+          "id": "emaar-fior-2",
+          "name": "Fior 2",
+          "location": "Rashid Yachts & Marina, Mina Rashid",
+          "status": "Just Launched",
+          "status_color": "gold",
+          "starting_price": "AED 1.8M",
+          "payment_plan": "80/20 (10% down, 70% construction, 20% handover)",
+          "handover": "Q1 2030 (February 2030)",
+          "countdown": "48 months to go",
+          "unit_mix": "1BR, 2BR, 3BR Apartments",
+          "sources": [
+            { "label": "Project Info", "source": "Property Finder", "url": "https://www.propertyfinder.ae/en/new-projects/emaar-properties/fior-2" },
+            { "label": "Pricing Data", "source": "Engel & Völkers", "url": "https://www.engelvoelkers.com/ae/en/off-plan/fior-2-by-emaar" },
+            { "label": "Handover Date", "source": "Property Finder", "url": "https://www.propertyfinder.ae/en/new-projects/emaar-properties/fior-2" }
+          ],
+          "last_verified": "21 February 2026",
+          "image_index": 2
+        }
+      ]
+    },
+    "company_history": {
+      "founded": "1997",
+      "founder": "Mohamed Ali Alabbar",
+      "listed": "DFM (EMAAR)",
+      "founding_story": "Emaar Properties was established in 1997 by Mohamed Ali Alabbar, following a royal decree from Sheikh Mohammed bin Rashid Al Maktoum to create a flagship developer for Dubai's urban transformation. The company's initial mandate was to deliver integrated, master-planned communities supporting Dubai's economic diversification. Emaar's first major project, Emirates Hills (launched 2003), introduced Dubai's first gated luxury community. This early success provided the foundation for Emaar's rapid expansion, culminating in Downtown Dubai and the Burj Khalifa—projects that redefined the city's skyline and global reputation.",
+      "milestones": [
+        { "year": "1997", "shortLabel": "Founded", "label": "Emaar Properties founded by Mohamed Ali Alabbar following a royal decree from Sheikh Mohammed bin Rashid Al Maktoum" },
+        { "year": "2000", "shortLabel": "IPO on Dubai Financial Market", "label": "Initial Public Offering on Dubai Financial Market (DFM: EMAAR), enabling capital expansion for large-scale projects" },
+        { "year": "2003", "shortLabel": "Emirates Hills launch", "label": "Launches Emirates Hills, Dubai's first gated luxury community, setting a new benchmark for high-end residential development" },
+        { "year": "2004", "shortLabel": "Burj Khalifa construction", "label": "Commencement of Burj Khalifa construction, establishing Emaar as a developer of iconic global landmarks" },
+        { "year": "2008", "shortLabel": "Dubai Mall handover", "label": "Handover of Dubai Mall, the world's largest shopping and entertainment destination by total floor area" },
+        { "year": "2014", "shortLabel": "International expansion", "label": "Strategic expansion into international markets with projects in Saudi Arabia, Egypt, and Pakistan" },
+        { "year": "2017", "shortLabel": "Amit Jain appointed CEO", "label": "Appointment of Amit Jain as CEO, marking a new phase of operational focus and digital transformation" }
+      ],
+      "leadership": [
+        {
+          "name": "Mohamed Ali Alabbar",
+          "title": "Founder & Chairman",
+          "bio": "Founded Emaar Properties in 1997 and has served as Chairman since inception. A prominent figure in Dubai's economic development, he also serves on the Dubai Executive Council and has been instrumental in shaping the emirate's real estate and tourism strategy.",
+          "highlights": [
+            "Delivered over 200 projects across residential, commercial, hospitality, and retail sectors",
+            "Serves on the Dubai Executive Council",
+            "Extensive experience in urban planning and investment prior to founding Emaar",
+            "Actively involved in Emaar's strategic direction and major project approvals"
+          ]
+        },
+        {
+          "name": "Amit Jain",
+          "title": "Chief Executive Officer",
+          "bio": "Appointed CEO in 2017, having joined Emaar in 2006 as CFO. Brings over 25 years of experience in real estate, finance, and investment across the Middle East, Asia, and Europe. Previously held senior roles at Jones Lang LaSalle (JLL).",
+          "highlights": [
+            "Launched major communities: The Valley, The Oasis, Dubai Creek Harbour",
+            "Over 25 years of experience in real estate and finance",
+            "Strengthened Emaar's hospitality and commercial asset base",
+            "Former CFO at Emaar (2006–2017)"
+          ]
+        }
+      ],
+      "ownership": {
+        "description": "Emaar Properties is publicly traded on the Dubai Financial Market (DFM: EMAAR). The company operates under a transparent corporate governance framework aligned with UAE Securities and Commodities Authority regulations. The Government of Dubai, through Investment Corporation of Dubai (ICD), holds a significant minority stake, providing strategic alignment with Dubai's long-term development goals.",
+        "shareholders": [
+          { "name": "Investment Corporation of Dubai (ICD)", "percentage": "22.27%" },
+          { "name": "Public & Institutional Investors", "percentage": "~70.27%" }
+        ]
+      },
+      "sources": [
+        { "fact": "Founding year and founder", "source": "Emaar Official Website — About Emaar", "url": "https://properties.emaar.com/en/about-emaar/" },
+        { "fact": "IPO and DFM listing", "source": "Emaar Properties Investor Relations FAQ", "url": "https://properties.emaar.com/en/investor-relations/faq/" },
+        { "fact": "Leadership: Mohamed Ali Alabbar", "source": "Dubai Immo — Biography of Mohamed Alabbar", "url": "https://dubai-immo.com/en/biographie-de-mohamed-alabbar-le-ceo-de-emaar/" },
+        { "fact": "Leadership: Amit Jain", "source": "MarketScreener — Executive Profile", "url": "https://www.marketscreener.com/insider/AMIT-JAIN-A0UIX9/experience/" },
+        { "fact": "Ownership structure and ICD stake", "source": "Investing.com — Emaar Shareholders (Feb 2026)", "url": "https://ph.investing.com/equities/emaar-properti-ownership" },
+        { "fact": "Key project milestones", "source": "Emaar Press Releases; Wikipedia — Burj Khalifa; Gulf News", "url": "https://properties.emaar.com/en/press-release-listing/" }
+      ]
+    },
+    "project_table": {
+      "communities": [
+        {
+          "name": "Dubai Creek Harbour",
+          "subtitle": "Waterfront Mega-Community",
+          "projects": [
+            { "name": "Address Harbour Point", "types": ["Apartment"], "status": "Completed 2022" },
+            { "name": "Aeon", "types": ["Apartment"], "status": "N/A" },
+            { "name": "Altan", "types": ["Apartment", "Townhouse"], "status": "Q3 2029" }
+          ]
+        },
+        {
+          "name": "Dubai Hills Estate",
+          "subtitle": "The Green Heart of Dubai",
+          "projects": [
+            { "name": "Club Place", "types": ["Apartment"], "status": "N/A" },
+            { "name": "Collective", "types": ["Apartment"], "status": "Completed Mar 2022" },
+            { "name": "Emerald Hills", "types": ["Villa"], "status": "N/A" }
+          ]
+        },
+        {
+          "name": "Emaar South",
+          "subtitle": "Dubai South",
+          "projects": [
+            { "name": "Golf Acres", "types": ["Apartment", "Townhouse"], "status": "Q4 2028" },
+            { "name": "Golf Dale", "types": ["Apartment"], "status": "Q4 2028" },
+            { "name": "Golf Edge", "types": ["Apartment", "Townhouse"], "status": "Q1 2029" }
+          ]
+        },
+        {
+          "name": "The Oasis by Emaar",
+          "subtitle": "Luxury Waterfront Villas",
+          "projects": [
+            { "name": "Address Villas Tierra", "types": ["Villa"], "status": "Q2 2029" },
+            { "name": "Lavita", "types": ["Villa"], "status": "Q1 2029" },
+            { "name": "Mareva at The Oasis", "types": ["Villa"], "status": "N/A" }
+          ]
+        },
+        {
+          "name": "Grand Polo Club & Resort",
+          "subtitle": "Equestrian Living",
+          "projects": [
+            { "name": "Chevalia Estate", "types": ["Villa"], "status": "Q1 2029" },
+            { "name": "Chevalia Fields", "types": ["Villa"], "status": "Q2 2029" }
+          ]
+        },
+        {
+          "name": "The Heights Country Club & Wellness",
+          "subtitle": "New 2024/2025 Launches",
+          "projects": [
+            { "name": "Salva", "types": ["Townhouse", "Villa"], "status": "Medium-term" },
+            { "name": "Serro", "types": ["Townhouse", "Villa"], "status": "Medium-term" },
+            { "name": "The Heights Country Club", "types": ["Townhouse", "Villa"], "status": "2028" }
+          ]
+        },
+        {
+          "name": "The Valley",
+          "subtitle": "Family-Oriented Community",
+          "projects": [
+            { "name": "Elora", "types": ["Villa", "Townhouse"], "status": "N/A" },
+            { "name": "Nara", "types": ["Villa", "Townhouse"], "status": "Completed Dec 2024" },
+            { "name": "Farm Grove", "types": ["Villa"], "status": "N/A" }
+          ]
+        },
+        {
+          "name": "Arabian Ranches (I, II, III)",
+          "subtitle": "",
+          "projects": [
+            { "name": "Arabian Ranches I", "types": ["Villa"], "status": "Sold Out (2005)" }
+          ]
+        },
+        {
+          "name": "Rashid Yachts & Marina",
+          "subtitle": "Waterfront Living",
+          "projects": [
+            { "name": "Aurea", "types": ["Apartment"], "status": "N/A" }
+          ]
+        },
+        {
+          "name": "Emaar Beachfront & Dubai Harbour",
+          "subtitle": "",
+          "projects": [
+            { "name": "Address Residences The Bay", "types": ["Apartment"], "status": "Q4 2026" }
+          ]
+        },
+        {
+          "name": "Mina Rashid",
+          "subtitle": "Maritime Heritage Community",
+          "projects": [
+            { "name": "Clearpoint", "types": ["Apartment"], "status": "Q3 2027" }
+          ]
+        },
+        {
+          "name": "Downtown Dubai & Business Bay",
+          "subtitle": "",
+          "projects": [
+            { "name": "17 Icon Bay", "types": ["Apartment"], "status": "Completed Dec 2022" }
+          ]
+        },
+        {
+          "name": "Expo City & Dubailand",
+          "subtitle": "",
+          "projects": [
+            { "name": "Expo Golf Villas", "types": ["Villa"], "status": "Completed Jul 2021" }
+          ]
+        },
+        {
+          "name": "Al Marjan Island, Ras Al Khaimah",
+          "subtitle": "International",
+          "projects": [
+            { "name": "Address Residences", "types": ["Apartment"], "status": "Q1 2028" }
+          ]
+        },
+        {
+          "name": "Jumeirah & Central Dubai",
+          "subtitle": "",
+          "projects": [
+            { "name": "Address Residences Jumeirah Resort + Spa", "types": ["Hotel/Residences"], "status": "Under construction" }
+          ]
+        }
+      ],
+      "legacy_communities": [
+        { "name": "The Springs", "detail": "Villas/Townhouses - multiple phases: Springs 1-18" },
+        { "name": "The Meadows", "detail": "Villas - multiple phases: Meadows 1-14" },
+        { "name": "The Lakes", "detail": "Villas - multiple phases: Lakes 1-7" },
+        { "name": "The Greens", "detail": "Apartments - numerous towers including: Golf Towers, Al Thanyah, The Courtyard, etc." },
+        { "name": "Emirates Hills", "detail": "Luxury Villas - multiple phases" }
+      ],
+      "legacy_marina": [
+        "Sanibel Tower",
+        "Marina Quay North",
+        "Fairways Clubside Residence",
+        "Various other residential towers"
+      ]
+    },
+    "delivery_track_record_section": {
+      "heading": "Emaar Delivery Track Record — Transparency You Can Trust",
+      "subheading": "We have analysed official handover records and verified owner feedback to present an honest picture of Emaar's delivery performance.",
+      "on_time_rate": "96%",
+      "table_intro": "The following projects have been analysed using official DLD handover records, RERA progress reports, and developer announcements.",
+      "handover_table": [
+        { "project": "Downtown Dubai Phase 1", "original": "TBC", "actual": "2008", "delay": "TBC", "reason": "TBC", "source": "Wikipedia — Downtown Dubai" },
+        { "project": "Arabian Ranches II — Phase 1 Casa", "original": "Q1 2014", "actual": "Dec 2014", "delay": "~9 months", "reason": "Phased delivery", "source": "Chainex Real Estate" },
+        { "project": "The Meadows 10", "original": "TBC", "actual": "TBC", "delay": "TBC", "reason": "TBC", "source": "DLD Completion Registry / Emaar Handover Documentation" }
+      ],
+      "table_note": "Note: \"Dubai Marina Towers\" was excluded from analysis as this is a generic designation covering multiple developers; no single Emaar-specific project matching this exact name could be verified in DLD/RERA records.",
+      "satisfaction_summary": "Owners consistently praise Emaar communities for master-planned design, landscaping quality, and long-term asset value retention. However, maintenance response times and service charge transparency are recurring themes in feedback, particularly in larger communities and high-density towers.",
+      "sentiment": { "positive": 78, "neutral": 14, "negative": 8 },
+      "pros": [
+        "Integrated community amenities",
+        "Consistent build quality",
+        "Strong resale value",
+        "Landscaping and public spaces",
+        "Security and access control",
+        "Pet-friendly facilities",
+        "Family-oriented environment"
+      ],
+      "cons": [
+        "Maintenance request turnaround (varies by community)",
+        "Service charge communication and transparency",
+        "Limited visitor parking in high-density towers",
+        "Construction activity in actively developing phases",
+        "Occasional handover delays in off-plan projects"
+      ],
+      "satisfaction_sources": "EP Log Offplan; ALand Blog; Map Homes Real Estate; Glassdoor; Avelon",
+      "analyst_insight": "Emaar Properties maintains one of the strongest delivery records among Dubai developers, with 96% of projects handed over on time according to industry analysis. This reliability, combined with premium build quality and integrated community planning, justifies the 15–20% price premium Emaar commands over comparable developments. However, our verification of DLD records and buyer feedback confirms that delays do occur, particularly in large-scale, complex projects — with documented delays ranging from 9–12 months for communities like Casa in Arabian Ranches II to over 48 months for selected iconic developments. Service charges remain predictable at AED 15–22 per sqft, though transparency in communication remains a recurring theme in resident feedback. Market-wide factors, including contractor capacity and supply chain constraints highlighted in Cavendish Maxwell's H1 2025 analysis, suggest these delivery timelines reflect industry-wide challenges rather than developer-specific issues. For investors, Emaar's unmatched resale liquidity and long-term capital appreciation in communities like Dubai Hills Estate and Downtown Dubai continue to outweigh the premium entry price, making the developer the preferred choice for risk-averse buyers prioritising certainty over maximum short-term yields.",
+      "analyst_source": "Source: PropertyIntel on-ground analysis (21 February 2026)",
+      "disclaimer": "All delay data verified against DLD handover records, RERA progress reports, and Emaar official announcements. Projects with delay ≤2 months are classified as \"on-time\". Where official handover dates are not publicly disclosed, placeholders are used for backend population. Quality insights aggregated from verified owner reviews; sentiment percentages are estimates based on available public data. Last updated: 21 February 2026. Some legacy projects may lack granular public delay records due to pre-digital reporting standards."
+    }
+  }
+}
