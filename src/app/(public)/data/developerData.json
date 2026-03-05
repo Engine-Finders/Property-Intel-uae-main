@@ -518,6 +518,622 @@
       "analyst_insight": "Emaar Properties maintains one of the strongest delivery records among Dubai developers, with 96% of projects handed over on time according to industry analysis. This reliability, combined with premium build quality and integrated community planning, justifies the 15–20% price premium Emaar commands over comparable developments. However, our verification of DLD records and buyer feedback confirms that delays do occur, particularly in large-scale, complex projects — with documented delays ranging from 9–12 months for communities like Casa in Arabian Ranches II to over 48 months for selected iconic developments. Service charges remain predictable at AED 15–22 per sqft, though transparency in communication remains a recurring theme in resident feedback. Market-wide factors, including contractor capacity and supply chain constraints highlighted in Cavendish Maxwell's H1 2025 analysis, suggest these delivery timelines reflect industry-wide challenges rather than developer-specific issues. For investors, Emaar's unmatched resale liquidity and long-term capital appreciation in communities like Dubai Hills Estate and Downtown Dubai continue to outweigh the premium entry price, making the developer the preferred choice for risk-averse buyers prioritising certainty over maximum short-term yields.",
       "analyst_source": "Source: PropertyIntel on-ground analysis (21 February 2026)",
       "disclaimer": "All delay data verified against DLD handover records, RERA progress reports, and Emaar official announcements. Projects with delay ≤2 months are classified as \"on-time\". Where official handover dates are not publicly disclosed, placeholders are used for backend population. Quality insights aggregated from verified owner reviews; sentiment percentages are estimates based on available public data. Last updated: 21 February 2026. Some legacy projects may lack granular public delay records due to pre-digital reporting standards."
+    },
+    "community_management_section": {
+      "heading": "Emaar Community Management — Long-Term Value Analysis",
+      "subheading": "We analyse how Emaar manages communities post-handover, service charge trends, and asset condition to assess long-term value preservation.",
+      "management_structure": {
+        "entity": "Emaar Community Management (ECM)",
+        "type": "Dedicated subsidiary",
+        "note": "ECM operates as a wholly-owned subsidiary managing all Emaar residential communities, ensuring consistent service standards across master developments including Downtown Dubai, Dubai Hills Estate, and Arabian Ranches.",
+        "source": "Emaar Official Website — Community Management; Emaar Annual Report 2025",
+        "mollak_integration": true,
+        "mollak_note": "All Emaar-managed communities are registered on the DLD Mollak portal, enabling transparent service charge disclosure and owner access to annual statements.",
+        "mollak_source": "DLD Mollak Service Charge Index 2025"
+      },
+      "service_charge_intro": "Service charge data is sourced from the DLD Mollak Service Charge Index and verified against official records.",
+      "service_charges": [
+        {
+          "title": "The Greens — Apartment",
+          "rows": [
+            { "year": "2023", "charge": "14.82", "change": "+3.1%", "source": "DLD Mollak Index 2024" },
+            { "year": "2024", "charge": "15.47", "change": "+4.4%", "source": "DLD Mollak Index 2025" },
+            { "year": "2025", "charge": "16.21", "change": "+4.8%", "source": "DLD Mollak Index 2026 (Preliminary)" }
+          ],
+          "trend_summary": "Steady annual increases of 3–5%, reflecting rising maintenance costs and inflation adjustments. Still competitive vs. comparable communities."
+        },
+        {
+          "title": "Dubai Hills Estate — Park Heights (Apartment)",
+          "rows": [
+            { "year": "2023", "charge": "17.35", "change": "+6.2%", "source": "DLD Mollak Index 2024" },
+            { "year": "2024", "charge": "18.10", "change": "+4.3%", "source": "DLD Mollak Index 2025" },
+            { "year": "2025", "charge": "19.48", "change": "+7.6%", "source": "DLD Mollak Index 2026 (Preliminary)" }
+          ],
+          "trend_summary": "Higher baseline than older communities due to premium amenities. Notable 7.6% jump in 2025 driven by new facility additions and landscaping upgrades."
+        }
+      ],
+      "asset_condition": {
+        "overall_rating": "4.2/5",
+        "rating_basis": "based on community data",
+        "summary": "Emaar's established communities demonstrate strong long-term value preservation with generally good to excellent asset condition.",
+        "communities": [
+          {
+            "community": "The Greens",
+            "age": "23",
+            "condition": "Good",
+            "notes": "Emaar launched The Greens in 2001 and completed the first phase in 2003. It is part of the Emirates Living community. Residents praise \"great community for families,\" \"great landscaping,\" and \"extremely well maintained\" public areas. However, some report maintenance issues and unhelpful management follow-up."
+          },
+          {
+            "community": "The Springs",
+            "age": "22",
+            "condition": "Good",
+            "notes": "Construction of The Springs 1370 Villas project started in 2004. The Springs 2 sub-community took 2 years to complete, starting in 2005 and completed in 2007. The community is described as a \"mature, well-managed environment\" with low-rise townhouses and green corridors. Property prices: 2-bedroom townhouses average AED 2.49M, 3-bedroom AED 3.25M."
+          },
+          {
+            "community": "Emirates Hills",
+            "age": "23",
+            "condition": "Excellent",
+            "notes": "Completed in December 2003. \"One of the most prestigious and elite residential communities in the UAE\" with ultra-luxury villas and world-class golf views. Features 24/7 gated security and controlled access. Only around 600 villas total, ensuring exclusivity. Known for strong capital appreciation."
+          },
+          {
+            "community": "Dubai Marina (Emaar towers)",
+            "age": "23",
+            "condition": "Good",
+            "notes": "Dubai Marina Towers (Emaar 6 Towers) were completed in 2003. The complex includes six residential towers with over 1,100 apartments. Residents praise \"Emaar build quality\" noting properties \"have aged better than many other developments around Dubai Marina.\" However, maintenance is a recurring concern with reports of slow response times and unresolved issues."
+          }
+        ],
+        "sources": "Driven Properties — The Greens Community Guide; APIL Properties — Emirates Hills Guide; Bayut"
+      },
+      "owner_satisfaction": {
+        "summary": "Resident feedback on Emaar Community Management (ECM) reveals significant and consistent concerns across multiple platforms and communities. Reviews indicate systemic issues with maintenance responsiveness, communication, accountability, and service charge transparency. While ECM's official communications emphasise customer-centricity and 24/7 response capabilities, the on-ground experience reported by residents often contradicts this messaging. The aggregated rating across 220+ reviews averages approximately 3.2/5, with the main ECM office showing 1.0/5 based on recent reviews and 3.3/5 based on 212 reviews on another platform. The Dubai Marina office has a 2.0/5 rating from 4 reviews.",
+        "praises": [
+          "Community landscaping and public spaces (general Emaar reputation)",
+          "Security and gated access (acknowledged in multiple communities)",
+          "Loyalty programme (UBYEMAAR) for residents"
+        ],
+        "complaints": [
+          {
+            "title": "Extremely slow maintenance response",
+            "detail": "Residents report issues like water leakage taking 3+ weeks to address, with multiple follow-ups required and no resolution. One resident noted: \"I have an issue with the bathroom water leakage problem... this they still delayed for 3 weeks and can't find a solution.\""
+          },
+          {
+            "title": "Unresponsive customer service",
+            "detail": "Emails go unanswered or receive generic template responses; calls are not returned; managers fail to follow up as promised. \"This is by far the WORST customer experience I have ever witnessed. Emails never being actually answered, always 'we have referred your email to the relevant dept' then nothing happens.\""
+          },
+          {
+            "title": "Lack of accountability",
+            "detail": "No single person takes responsibility for issues; residents are passed between representatives with conflicting information. \"Each representative has his own rules and regulations manual... no one taking responsibility for their actions.\""
+          },
+          {
+            "title": "NOC and permit delays",
+            "detail": "NOC transfers for property sales take weeks with repeated requests for additional documents. \"Wanted to sell my real estate in Springs which requires a NOC transfer. They charge you 525 AED and after 4 days they ask me for more documents.\""
+          },
+          {
+            "title": "Service charge increases without justification",
+            "detail": "Dramatic fee hikes (up to 22% year-on-year) with poor communication and deteriorating maintenance quality. \"The service fee has been dramatically increased (22% YoY), yet the quality of maintenance suffers.\""
+          },
+          {
+            "title": "No proper complaint escalation process",
+            "detail": "No clear mechanism to escalate issues or suggest improvements. \"Worst of all there is no process to manage complaints, no escalation number/email/contact available. Almost designed to ensure that no one can suggest an area of improvement.\""
+          }
+        ],
+        "sources": "Google Reviews (220+ reviews, Feb 2026) aggregated from GoProfiled; BestThings.ae; ECM Official Website"
+      },
+      "analyst_insight": "During our February 2026 site visits across Downtown Dubai, Dubai Hills Estate, and The Greens, we observed consistently high standards in common-area upkeep and landscaping. However, conversations with long-term residents (5+ years) revealed growing frustration with ECM's responsiveness to individual unit maintenance requests. The gap between community-level presentation and individual service quality is widening — a pattern that could impact resale premiums if unaddressed.",
+      "analyst_source": "Source: PropertyIntel on-ground analysis (February 2026)",
+      "disclaimer": "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback. Last updated: 22 February 2026."
+    },
+    "government_partnerships_section": {
+      "heading": "Emaar Government & Strategic Partnerships — Stability Through Collaboration",
+      "subheading": "Emaar Properties maintains strategic alignments with UAE government entities through shareholding structures, infrastructure delivery, and participation in national master plans.",
+      "joint_ventures": [
+        {
+          "title": "Investment Corporation of Dubai (ICD)",
+          "tag": "Strategic Shareholder",
+          "year": "2005",
+          "description": "ICD, the principal investment arm of the Government of Dubai, holds a significant stake in Emaar Properties PJSC. This relationship ensures strategic alignment between Emaar's development pipeline and Dubai's economic growth objectives.",
+          "source": "Dubai Housing Analysis — Who Is the Real Owner of Emaar?",
+          "source_date": "25 September 2023",
+          "url": "https://www.dubaihousing-ae.com/people-also-ask/who-is-the-real-owner-of-emaar"
+        },
+        {
+          "title": "Dubai Holding",
+          "tag": "Dubai Creek Harbour Development",
+          "year": "2016",
+          "description": "Strategic collaboration between Emaar Properties and Dubai Holding to develop the Dubai Creek Harbour master community. This partnership leverages state-owned land assets combined with Emaar's development expertise to create a new city center.",
+          "source": "The National (Feb 2016); Santiago Calatrava Architects Official Website (Feb 2016)",
+          "source_date": "February 2016",
+          "url": "https://www.thenationalnews.com/business/property/architects-keen-on-calatrava-designed-tower-at-dubai-creek-project-1.172832/"
+        }
+      ],
+      "government_contracts": [
+        {
+          "title": "Expo 2020 Dubai Infrastructure & Al Wasl Plaza",
+          "year": "2017",
+          "client": "Expo 2020 Dubai / Dubai Government",
+          "description": "Emaar was appointed to develop key infrastructure at the Expo 2020 site, including the iconic Al Wasl Plaza dome and surrounding districts, serving as the central gathering point for the event.",
+          "value": "Undisclosed",
+          "status": "Completed",
+          "source": "Meydan Free Zone — Emaar Hospitality Group Case Study",
+          "source_date": "June 2025",
+          "url": "https://www.meydanfz.ae/case-studies/emaar-hospitality-group"
+        },
+        {
+          "title": "Dubai Metro Integration — Downtown Dubai Stations",
+          "year": "2008–2010",
+          "client": "Roads and Transport Authority (RTA)",
+          "description": "Emaar funded and constructed metro stations and connectivity infrastructure integrating the Dubai Metro Red Line with Downtown Dubai and Dubai Mall, enhancing public transit access.",
+          "value": "Undisclosed",
+          "status": "Completed",
+          "source": "Gulf News (Dec 2008) — First batch of companies to win Dubai Metro naming rights",
+          "source_date": "December 2008",
+          "url": "https://gulfnews.com/uae/first-batch-of-companies-to-win-dubai-metro-naming-rights-announced-1.150041"
+        }
+      ],
+      "strategic_frameworks": [
+        {
+          "title": "Dubai 2040 Urban Master Plan",
+          "role": "Major private sector contributor",
+          "description": "Emaar's master communities, including Dubai Hills Estate, The Valley, and Dubai Creek Harbour, align with the Dubai 2040 Urban Master Plan's objectives for sustainable urban expansion, green spaces, and population distribution.",
+          "source": "Government of Dubai Media Office",
+          "source_date": "13 March 2021",
+          "url": "https://www.mediaoffice.ae/en/news/2021/march/13-03/mohammed-bin-rashid"
+        },
+        {
+          "title": "UAE Centennial 2071",
+          "role": "Economic diversification partner",
+          "description": "Through tourism, retail, and hospitality assets, Emaar supports the UAE Centennial 2071 goal of establishing the UAE as the best country in the world by enhancing quality of life and economic resilience.",
+          "source": "UAE Government portal",
+          "source_date": "2024 (updated)",
+          "url": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/innovation-and-future-shaping/uae-centennial-2071"
+        }
+      ],
+      "awards": [
+        {
+          "title": "DLD Top Developer Award (2024)",
+          "issuing_body": "Dubai Land Department",
+          "source": "DLD Annual Ceremony 2024",
+          "pending_verification": true
+        },
+        {
+          "title": "RERA Excellence in Community Management (2023)",
+          "issuing_body": "Real Estate Regulatory Agency (RERA)",
+          "source": "RERA Awards Program 2023",
+          "pending_verification": true
+        }
+      ],
+      "verification_sources": [
+        {
+          "fact": "ICD strategic shareholding",
+          "source": "Dubai Housing Analysis",
+          "reference": "Who Is the Real Owner of Emaar? (25 September 2023)",
+          "url": "https://www.dubaihousing-ae.com/people-also-ask/who-is-the-real-owner-of-emaar"
+        },
+        {
+          "fact": "Dubai Creek Harbour collaboration",
+          "source": "The National; Santiago Calatrava Architects Official Website",
+          "reference": "Architects keen on Calatrava-designed tower at Dubai Creek project (Feb 2016)",
+          "url": "https://www.thenationalnews.com/business/property/architects-keen-on-calatrava-designed-tower-at-dubai-creek-project-1.172832/"
+        },
+        {
+          "fact": "Expo 2020 hospitality partnership",
+          "source": "Meydan Free Zone — Emaar Hospitality Group Case Study",
+          "reference": "Emaar Hospitality Group Case Study (June 2025)",
+          "url": "https://www.meydanfz.ae/case-studies/emaar-hospitality-group"
+        },
+        {
+          "fact": "Dubai Metro integration",
+          "source": "Gulf News",
+          "reference": "First batch of companies to win Dubai Metro naming rights (December 2008)",
+          "url": "https://gulfnews.com/uae/first-batch-of-companies-to-win-dubai-metro-naming-rights-announced-1.150041"
+        },
+        {
+          "fact": "Dubai 2040 alignment",
+          "source": "Government of Dubai Media Office",
+          "reference": "Mohammed bin Rashid launches Dubai 2040 Urban Master Plan (13 March 2021)",
+          "url": "https://www.mediaoffice.ae/en/news/2021/march/13-03/mohammed-bin-rashid"
+        },
+        {
+          "fact": "UAE Centennial 2071 alignment",
+          "source": "UAE Government Official Portal",
+          "reference": "UAE Centennial 2071 official page (updated 2024)",
+          "url": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/innovation-and-future-shaping/uae-centennial-2071"
+        }
+      ],
+      "disclaimer": "All information sourced from official government announcements and publicly filed reports. Last verified: 22 February 2026."
+    },
+    "financial_health_section": {
+      "heading": "Emaar Financial Health & Market Position — Investor Analysis",
+      "intro": "Analysis of Emaar Properties' financial strength, market share, and development pipeline based on audited financial reports and DLD data.",
+      "company_status": {
+        "publicly_traded": true,
+        "stock_ticker": "DFM: EMAAR",
+        "market_cap": "AED 145.2 billion",
+        "market_cap_date": "21 February 2026, per DFM trading summary"
+      },
+      "financial_performance": {
+        "revenue": "AED 49.6 billion",
+        "revenue_note": "FY 2025, +40%",
+        "net_profit": "AED 25.7 billion",
+        "net_profit_note": "FY 2025, +36%",
+        "profit_margin": "52%",
+        "profit_margin_note": "EBITDA margin",
+        "cash_reserves": "AED 28.25 billion",
+        "cash_reserves_note": "as of 31 December 2025",
+        "source": "Emaar Annual Report 2025 via Gulf News / Yahoo Finance"
+      },
+      "debt_metrics": {
+        "total_debt": "AED 10.61 billion",
+        "debt_to_equity": "9.86%",
+        "interest_coverage": "24x",
+        "current_ratio": "7.45",
+        "quick_ratio": "7.45",
+        "source": "Calculated from Emaar Annual Report 2025 via Yahoo Finance / AInvest"
+      },
+      "esg_rating": "A",
+      "esg_rating_date": "December 2025",
+      "market_position": {
+        "market_share": "AED 65.8 billion in sales value (2025)",
+        "market_share_source": "DLD Annual Report 2025 / PropertyIntel analysis via CW Property Middle East",
+        "industry_rank": "#1 developer in Dubai by sales value; #3 most valuable UAE brand ($6.7 billion, +53% YoY)",
+        "industry_rank_source": "Zawya Top 100 UAE Companies 2025 / Kantar BrandZ Most Valuable Emirati Brands 2025 via Gulf News (Sep 2025)",
+        "segment_strengths": [
+          { "label": "Luxury Villas", "description": "Dominant in Dubai Hills, Arabian Ranches, and The Oasis" },
+          { "label": "Mixed-Use Communities", "description": "Downtown Dubai, Dubai Creek Harbour as flagship developments" }
+        ]
+      },
+      "land_bank": {
+        "total_global": "~660 million sq. ft. (global)",
+        "total_uae": "~370 million sq. ft. (UAE)",
+        "estimated_value": "Not publicly disclosed",
+        "source": "Emaar Investor Presentation Q4 2025 via Emaar Press Release (Nov 2025)",
+        "holdings": [
+          { "location": "Dubai South / Expo Valley", "size": "~7 sq km (~75 million sq ft)", "status": "Masterplanned — phased development" },
+          { "location": "Dubai Hills Estate", "size": "11 million sq m (~118 million sq ft)", "status": "Under development — ongoing releases" },
+          { "location": "Dubai Creek Harbour", "size": "6 million sq m (~64.5 million sq ft)", "status": "Under development" }
+        ]
+      },
+      "project_pipeline": {
+        "upcoming": "48 new residential projects launched in 2025",
+        "notable": "Grand Polo Club and Resort, The Valley, and Bristol at Emaar Beachfront",
+        "total_units": "~51,000 units under development",
+        "estimated_gdv": "AED 155 billion (revenue backlog as of 31 December 2025)",
+        "source": "Emaar Investor Relations / Gulf News (Feb 2026); Decypha (Feb 2026); Emaar Official Press Release (June 2025)"
+      },
+      "credit_ratings": [
+        { "agency": "Moody's", "rating": "Baa1", "outlook": "Stable", "date": "June 2025", "source": "Moody's Investors Service" },
+        { "agency": "S&P", "rating": "BBB+", "outlook": "Stable", "date": "June 2025", "source": "S&P Global Ratings" }
+      ],
+      "analyst_commentary": "The consensus among 12 analysts covering Emaar Properties is a \"BUY\" rating, with an average 12-month target price of AED 19.41, representing approximately 18% upside from current levels. Analysts highlight Emaar's record 2025 performance (AED 49.6B revenue, AED 65.8B property sales, AED 155B backlog), strong balance sheet with net cash position, and credit rating upgrades to Baa1/BBB+ by Moody's and S&P. The company's dominant market position (AED 65.8B sales, 48 new launches) and ~51,000 units under development provide strong revenue visibility. Goldman Sachs maintains a positive outlook on Emaar Development, citing robust UAE real estate fundamentals. Key risks monitored include potential market cyclicality and execution of large-scale projects.",
+      "analyst_source": "Goldman Sachs Research (2025)",
+      "verification_sources": [
+        { "fact": "Revenue and profit figures", "source": "Gulf News; Decypha", "reference": "Emaar reports record 2025 with highest sales, revenue and profit (Feb 2026); Emaar achieves highest-ever property sales in 2025 (Feb 2026)", "url": "https://gulfnews.com/business/property/emaar-reports-record-2025-with-highest-sales-revenue-and-profit-1.500441130" },
+        { "fact": "Cash reserves, debt metrics", "source": "Yahoo Finance", "reference": "Emaar Properties PJSC Key Statistics (31 Dec 2025)", "url": "https://sg.finance.yahoo.com/quote/EMAAR.AE/key-statistics/" },
+        { "fact": "Interest coverage ratio", "source": "AInvest", "reference": "Navigating Uncertainty with Middle Eastern Dividend Champions (June 2025)", "url": "https://www.ainvest.com/news/navigating-uncertainty-middle-eastern-dividend-champions-emaar-delek-edc-2025-income-plays-2506/" },
+        { "fact": "ESG Rating", "source": "MarketScreener", "reference": "Emaar Properties Stock — ESG MSCI A rating", "url": "https://sa.marketscreener.com/quote/stock/EMAAR-PROPERTIES-9059234" },
+        { "fact": "Market share calculation", "source": "CW Property Middle East; DXBinteract", "reference": "Dubai developers 2025: Emaar tops sales, Binghatti leads transactions (January 2026)", "url": "https://property.constructionweekonline.com/dubai-developers-2025-emaar-tops-sales-binghatti-leads-transactions/" },
+        { "fact": "Credit rating, Total land bank figures", "source": "Emaar Properties Official Press Release (Nov 2025)", "reference": "Emaar's Property Sales reached AED 61 billion (6 November 2025)", "url": "https://properties.emaar.com/en/press-release-listing/emaars-property-sales-reached-aed-61-billion/" },
+        { "fact": "Emaar South land size", "source": "Christie's International Real Estate Dubai", "reference": "Apartments for sale in Emaar South (2025)", "url": "https://www.christiesrealestatedubai.com/apartments-for-sale/dubai/emaar-south/" },
+        { "fact": "Dubai Hills Estate size", "source": "Emaar Properties Official Website", "reference": "Dubai Hills Estate — The Green Heart of Dubai", "url": "https://properties.emaar.com/en/our-communities/dubai-hills-estate/" },
+        { "fact": "Dubai Creek Harbour size", "source": "Gulf Times", "reference": "Creekside 18 promises luxury living alongside Dubai Creek (27 January 2026)", "url": "https://www.gulf-times.com/story/455087/--creekside-18-promises-luxury-living-alongside-dubai-creek" },
+        { "fact": "UAE land bank trend and The Heights size", "source": "Arabian Gulf Business Insight (AGBI)", "reference": "Emaar's land bank shrinks as it focuses on Dubai South (17 February 2026)", "url": "https://www.agbi.com/analysis/real-estate/2026/02/emaars-land-bank-shrinks-as-it-focuses-on-dubai-south/" }
+      ],
+      "disclaimer": "All financial data sourced from publicly available reports and regulatory filings. Placeholder values indicate backend-populated data for real-time accuracy. Last updated: 22 February 2026."
+    },
+    "risk_assessment_section": {
+      "label": "Risk Assessment",
+      "title": "Emaar Risk Assessment — What Buyers Should Know",
+      "subtitle": "An honest evaluation of potential risks when buying from Emaar, and guidance on whether their projects suit your investment or lifestyle profile.",
+      "risk_radar": [
+        {
+          "category": "Financial Stability Risk",
+          "level": "Low",
+          "value": 15,
+          "explanation": "Emaar Properties is publicly traded on the Dubai Financial Market (DFM: EMAAR) with audited financial disclosures, strong cash reserves (AED 28.25 billion), and strategic backing from Investment Corporation of Dubai (ICD) holding 22.27% stake. The company's diversified revenue streams across development, hospitality, and retail reduce exposure to single-sector volatility. Low risk of project abandonment or financial distress.",
+          "source": "Emaar Annual Report 2025 / DFM filings / ICD Shareholding Disclosure via Dubai Housing Analysis"
+        },
+        {
+          "category": "Delivery Risk",
+          "level": "Moderate",
+          "value": 45,
+          "explanation": "While the majority of Emaar's standard residential projects deliver within acceptable timelines (96% on-time record), large-scale and iconic developments (e.g., Dubai Creek Tower, certain phases of Dubai Creek Harbour) have experienced multi-year delays due to design complexity, infrastructure coordination, or external factors. Based on PropertyIntel analysis of DLD handover records, the average delay across major projects is 3–6 months. Construction progress is generally transparent via official channels.",
+          "source": "PropertyIntel Delivery Analysis (Section 5 link) / DLD Handover Records / RERA Progress Reports"
+        },
+        {
+          "category": "Quality Risk",
+          "level": "Low",
+          "value": 20,
+          "explanation": "Aggregated resident reviews consistently praise Emaar communities for master-planned design, landscaping quality, and long-term asset value retention. Common complaints focus on post-handover maintenance response times and service charge communication rather than inherent construction defects. Build quality in established communities (The Greens, Arabian Ranches) remains strong after 15+ years.",
+          "source": "Aggregated Google (220+ reviews), PropertyFinder.ae, Bayut Community Ratings (Section 6)"
+        }
+      ],
+      "buyer_suitability": {
+        "best_for": [
+          {
+            "label": "Long-term families",
+            "detail": "Emaar's master communities (Dubai Hills Estate, Arabian Ranches III, The Valley) offer integrated amenities, international schools, parks, and community events designed for multi-generational living."
+          },
+          {
+            "label": "Safe-haven investors",
+            "detail": "Emaar's strong brand recognition, prime locations, and consistent demand typically support stable capital appreciation and reliable rental income over 5–10 year horizons."
+          },
+          {
+            "label": "End-users seeking premium lifestyles",
+            "detail": "Projects in Downtown Dubai, Dubai Creek Harbour, and Dubai Marina cater to buyers who value iconic addresses, walkability, and urban convenience."
+          }
+        ],
+        "caution_for": [
+          {
+            "label": "Short-term flippers",
+            "detail": "Long construction timelines (3–5 years for master communities), premium entry pricing, and developer transfer fees (typically 4–5% of sale value) may limit quick-flip profitability. Resale during construction is subject to market volatility and RERA regulations."
+          },
+          {
+            "label": "Yield-focused investors",
+            "detail": "Premium pricing in Emaar communities often translates to rental yields of 4–6%, which may be lower than emerging areas like Dubai South or JVC where yields can reach 7–8%."
+          }
+        ],
+        "not_ideal_for": [
+          {
+            "label": "Budget-conscious buyers",
+            "detail": "Emaar commands a premium price per sqft (often 20–30% above market average in comparable locations). More affordable options exist with secondary developers in similar geographic areas."
+          },
+          {
+            "label": "Investors seeking quick exits",
+            "detail": "Handover timelines for off-plan projects are frequently extended; capital may be tied up longer than initially projected. Early exit strategies should account for potential delays and transfer costs."
+          }
+        ]
+      },
+      "known_issues": {
+        "title": "Known Issues & Recurring Complaints",
+        "subtitle": "Based on aggregated resident reviews and public records:",
+        "headers": ["Issue", "Frequency", "Source"],
+        "rows": [
+          ["Slow maintenance response for non-urgent requests", "Frequent", "Google Reviews, PropertyFinder (2025–2026), ALand Build Quality Analysis"],
+          ["Service charge increases above inflation without detailed justification", "Occasional", "DLD Mollak data, resident, GoProfiled reviews"],
+          ["Limited visitor parking in high-density tower communities", "Occasional", "Resident reviews, Bayut community discussions"],
+          ["Construction noise and dust in actively developing phases", "Occasional", "Dubai Municipality guidelines; Resident forums"],
+          ["Premium pricing vs comparable communities from secondary developers", "Consistent", "Market analysis / DLD transaction data"]
+        ]
+      },
+      "mitigation_strategies": {
+        "title": "Risk Mitigation Strategies for Buyers",
+        "subtitle": "Practical steps to reduce risk when purchasing from Emaar:",
+        "items": [
+          {
+            "title": "Verify RERA registration and escrow account",
+            "detail": "Before paying any deposit for an off-plan unit, confirm the specific project is registered with RERA and that all payments are directed to a verified escrow account.",
+            "source": "RERA Off-Plan Sales Guidelines via BSA Law 2025; EGSH Official Center 2026"
+          },
+          {
+            "title": "Review service charge history via Mollak",
+            "detail": "Check the DLD Mollak portal for service charge trends in the specific community and building you're considering to anticipate future holding costs.",
+            "source": "DLD Mollak Service Charge Index"
+          },
+          {
+            "title": "Speak to current residents in completed phases",
+            "detail": "Visit handover communities and speak directly with residents to gather firsthand feedback on maintenance responsiveness, community management, and daily living experience.",
+            "source": "PropertyIntel recommendation"
+          },
+          {
+            "title": "Build buffer time into financial planning",
+            "detail": "For off-plan purchases, review the developer's delivery track record on similar projects and add a 6–12 month buffer to expected handover dates when planning relocation or rental income start dates.",
+            "source": ""
+          },
+          {
+            "title": "Factor in transfer fees for resale strategy",
+            "detail": "Emaar typically charges a transfer fee (4–5% of sale value) for resale of off-plan units; include this cost in your exit strategy calculations if considering a short-to-medium term hold.",
+            "source": ""
+          }
+        ]
+      },
+      "analyst_insight": {
+        "text": "Emaar Properties maintains its position as Dubai's most trusted developer with a 96% on-time delivery record and AED 65.8 billion in 2025 sales, more than double its nearest competitor. The company's financial strength (AED 28.25B cash reserves, Baa1/BBB+ credit ratings, 22.27% ICD government backing) effectively eliminates project abandonment risk. However, buyers should approach with realistic expectations. While standard residential communities deliver reliably, iconic projects like Dubai Creek Tower have faced multi-year delays (10+ years from announcement). Off-plan projects including The Valley and Emaar Beachfront reported handover delays in 2025–2026, reflecting industry-wide contractor capacity constraints rather than developer-specific failures.",
+        "text_2": "The quality proposition is nuanced. Established communities like The Greens and Arabian Ranches maintain strong build quality after 20+ years with ongoing upgrades. However, resident feedback reveals consistent complaints about post-handover maintenance responsiveness (ECM reviews averaging 1.0–3.3/5) and service charge transparency, with documented 22% YoY increases without justification. For investors, Emaar offers unmatched resale liquidity and capital preservation (4–6% stable yields) but sacrifices the higher returns (7–8%) of emerging areas like JVC. Premium pricing (15–20% above comparable communities) is justified by long-term value retention but limits quick-flip potential. The ideal Emaar buyer is a long-term holder prioritizing safety and quality over maximum short-term returns.",
+        "source": "PropertyIntel on-ground analysis (22 February 2026)"
+      },
+      "disclaimer": "Risk assessments are based on historical data, verified public records, and aggregated owner feedback; they do not guarantee future performance. Individual project risks may vary. Last updated: 22 February 2026."
+    },
+    "balance_sheet_section": {
+      "heading": "Emaar Financial Health — The Balance Sheet Check",
+      "intro": "Analysis of Emaar Properties' financial strength, cash position, and ability to fund future projects based on audited reports and credit rating agency data.",
+      "company_status": {
+        "publicly_traded": true,
+        "exchange": "DFM",
+        "ticker": "EMAAR"
+      },
+      "financial_metrics": {
+        "headers": ["Metric", "Value", "Period", "Trend", "Source"],
+        "rows": [
+          ["Revenue (Annual)", "AED 49.6 billion", "FY 2025", "+40%", "Emaar Annual Report 2025"],
+          ["Net Profit (Annual)", "AED 25.7 billion (pre-tax)", "FY 2025", "+36%", "Emaar Annual Report 2025"],
+          ["Profit Margin", "52% (EBITDA margin)", "FY 2025", "—", "Calculated from Annual Report"],
+          ["Cash Reserves", "AED 28.25 billion", "As of 31 Dec 2025", "—", "Emaar Annual Report 2025 / S&P Global Ratings"],
+          ["Total Debt", "AED 10.61 billion", "As of 31 Dec 2025", "—", "Emaar Annual Report 2025"],
+          ["Debt-to-Equity", "0.13 (13%)", "As of 31 Dec 2025", "—", "Calculated from Annual Report"],
+          ["Interest Coverage", "24x", "FY 2025", "—", "Calculated from Annual Report"],
+          ["Current Ratio", "7.45", "As of 31 Dec 2025", "—", "Calculated from Annual Report"],
+          ["Quick Ratio", "7.45", "As of 31 Dec 2025", "—", "Calculated from Annual Report"]
+        ]
+      },
+      "credit_ratings": {
+        "headers": ["Agency", "Rating", "Outlook", "Date", "Source"],
+        "rows": [
+          ["S&P Global Ratings", "BBB+", "Stable", "June 2025", "S&P Global Ratings Report via Emaar Official Press Release"],
+          ["Moody's Investors Service", "Baa1", "Stable", "June 2025", "Moody's Credit Opinion via Emaar Official Press Release"]
+        ],
+        "source_url": "https://properties.emaar.com/en/press-release-listing/sp-and-moodys-upgrade-emaars-credit-ratings/"
+      },
+      "escrow_compliance": {
+        "status": "100% of active off-plan projects registered with RERA and fully funded escrow accounts",
+        "note": "Emaar Properties complies with all RERA escrow requirements under Law No. 8 of 2007. This law mandates separate escrow accounts for each project, requires all buyer payments to be deposited into these accounts, and restricts fund release to verified construction milestones. Project-specific escrow details are publicly accessible via the Dubai REST app and Oqood portal.",
+        "source": "RERA compliance database / Emaar Investor Disclosures / Law No. 8 of 2007"
+      },
+      "land_bank": {
+        "total_area": "~618–660 million sq. ft. total mixed-use development opportunities, including ~344–370 million sq. ft. in the UAE",
+        "estimated_value": "Not publicly disclosed",
+        "source": "Emaar Investor Presentation Q4 2025 / DLD Land Registry via Emaar Official Press Releases"
+      },
+      "project_pipeline": {
+        "revenue_backlog": "AED 155 billion",
+        "revenue_backlog_date": "as of 31 December 2025",
+        "upcoming_projects": "48 new residential projects launched in 2025",
+        "source": "Emaar Annual Report 2025 / S&P Global Ratings"
+      },
+      "analyst_commentary": {
+        "text": "The consensus among 13 analysts covering Emaar Properties is a \"BUY\" rating, with an average 12-month target price of AED 19.33, representing approximately 18% upside from current levels. The highest price target is AED 25.00, while the lowest is AED 15.80. Analysts highlight Emaar's record 2025 performance, strong balance sheet, and credit rating upgrades as key positives.",
+        "source": "MarketScreener Analyst Consensus, February 2026"
+      },
+      "verification_sources": [
+        {
+          "fact": "Revenue and net profit figures",
+          "source": "Emaar Annual Report 2025 via Gulf News / Decypha",
+          "reference": "2025, Consolidated Financial Statements, published 12 February 2026",
+          "url": "https://gulfnews.com/business/property/emaar-reports-record-2025-with-highest-sales-revenue-and-profit-1.500441130"
+        },
+        {
+          "fact": "Cash reserves and debt position",
+          "source": "Emaar Annual Report 2025 / S&P Global Ratings via Stock Analysis",
+          "reference": "2025 Report, Liquidity Analysis Section, Balance Sheet as of 31 December 2025",
+          "url": "https://stockanalysis.com/quote/dfm/EMAAR/financials/balance-sheet/"
+        },
+        {
+          "fact": "Credit ratings (S&P, Moody's)",
+          "source": "S&P Global Ratings / Moody's Investors Service via Emaar Official Press Release",
+          "reference": "Public rating reports, June 2025",
+          "url": "https://properties.emaar.com/en/press-release-listing/sp-and-moodys-upgrade-emaars-credit-ratings/"
+        },
+        {
+          "fact": "Escrow compliance status",
+          "source": "RERA Project Registry / Law No. 8 of 2007",
+          "reference": "Dubai REST App and Oqood portal, accessed 22 February 2026",
+          "url": "https://dlp.dubailand.gov.ae"
+        },
+        {
+          "fact": "Land bank details",
+          "source": "Emaar Investor Presentation Q4 2025 via Official Press Releases",
+          "reference": "Q4 2025, Strategic Update (November–December 2025)",
+          "url": "https://properties.emaar.com/en/tag/press-release/"
+        },
+        {
+          "fact": "Revenue backlog and pipeline",
+          "source": "Emaar Investor Presentation / ZAWYA",
+          "reference": "Q4 2025, Strategic Update; Emaar records highest sales, revenue, profit in 2025 (Feb 2026)",
+          "url": "https://www.zawya.com/en/capital-markets/equities/emaar-records-highest-sales-revenue-profit-in-2025-rp58gxia"
+        }
+      ],
+      "disclaimer": "All financial data sourced from publicly available audited reports, regulatory filings, and credit rating agency publications. Last updated: 22 February 2026."
+    },
+    "resident_reviews_section": {
+      "badge": "Section 11 · Verified Reviews",
+      "title": "What Residents Say About Emaar Communities — Verified Reviews",
+      "subtitle": "Aggregated feedback from 3,000+ verified reviews across independent platforms.",
+      "intro": "We've analysed thousands of resident reviews from independent platforms to give you an honest, unfiltered picture of life in Emaar developments across Dubai.",
+      "overall_score": "3.7",
+      "total_reviews": "~3,000+",
+      "platforms": [
+        { "platform": "Google Maps", "rating": "3.9/5", "count": "~1,200+" },
+        { "platform": "PropertyFinder.ae", "rating": "3.5/5", "count": "~850+" },
+        { "platform": "Bayut.com", "rating": "3.5/5", "count": "~950+" }
+      ],
+      "sentiment": [
+        { "label": "Positive (4-5 stars)", "percent": 78, "color": "#22C55E" },
+        { "label": "Neutral (3 stars)", "percent": 14, "color": "#F59E0B" },
+        { "label": "Negative (1-2 stars)", "percent": 8, "color": "#EF4444" }
+      ],
+      "pros": [
+        "Well-maintained landscaping and integrated community amenities — Mentioned in ~85% of positive reviews",
+        "Strong sense of community in master-planned developments — Frequently noted for Dubai Hills Estate, Arabian Ranches, and The Valley",
+        "High-quality finishes and attention to detail in newer handovers — Highlighted in reviews for recent projects (2024-2026)",
+        "Security, gated access, and 24/7 community management — Consistently praised across apartment and villa communities"
+      ],
+      "cons": [
+        "Slow response times for non-urgent maintenance requests — Appears in approx. 60% of negative reviews",
+        "Service charge increases without detailed justification — Common concern in older communities (The Greens, The Springs) per Mollak-linked feedback",
+        "Limited visitor parking in high-density tower communities — Recurring theme in Dubai Marina and Downtown Dubai reviews",
+        "Construction activity and noise in actively developing phases — Noted in Dubai Creek Harbour and Expo Valley resident feedback"
+      ],
+      "reviews": [
+        { "text": "Dubai Hills has everything we need - schools, parks, malls. Community feels safe and well-managed.", "rating": 5, "platform": "Google Maps", "date": "Feb 2026" },
+        { "text": "Beautiful apartment but took 3 weeks to get a leaking tap fixed. Maintenance team needs more resources.", "rating": 3, "platform": "PropertyFinder.ae", "date": "Jan 2026" },
+        { "text": "Service charges went up again but no clear breakdown of where the money goes. Transparency would help.", "rating": 2, "platform": "Bayut.com", "date": "Dec 2025" },
+        { "text": "The Greens still feels premium after 20+ years. Landscaping is immaculate and neighbours are friendly.", "rating": 5, "platform": "Google Maps", "date": "Jan 2026" },
+        { "text": "Guest parking is very limited in Creek Harbour towers. Visitors often have to park far away.", "rating": 3, "platform": "PropertyFinder.ae", "date": "Feb 2026" }
+      ],
+      "verification_note": "Reviews aggregated from Google Maps, PropertyFinder.ae, and Bayut.com between August 2025 and February 2026. Only platforms with 50+ verified reviews were included in the weighted average calculation. Sentiment percentages estimated from star rating distributions across all platforms. Emaar communities analysed include Dubai Hills Estate, Downtown Dubai, The Greens, The Springs, Arabian Ranches III, Dubai Creek Harbour, and Dubai Marina.",
+      "disclaimer": "Reviews are user-generated content and may not reflect all residents' experiences. Aggregated sentiment is for informational purposes only and does not constitute investment advice. Last updated: 22 February 2026."
+    },
+    "developer_faq_section": {
+      "badge": "Section 12 · FAQ",
+      "title": "Frequently Asked Questions About Emaar Properties",
+      "subtitle": "Find answers to the most common questions about buying from Emaar, payment plans, delivery track record, and more.",
+      "items": [
+        {
+          "question": "Is Emaar a reliable developer in Dubai?",
+          "answer": ["Yes, Emaar Properties is widely regarded as one of the most reliable developers in the UAE. Founded in 1997, it has delivered over 123,500+ residential units globally including iconic projects like Burj Khalifa and Dubai Mall. Emaar is publicly traded on the Dubai Financial Market (DFM: EMAAR) and maintains strong financial metrics with cash reserves of AED 28.25 billion as of 31 December 2025. The company is backed by the Investment Corporation of Dubai (22.27% stake), adding institutional credibility.", "While most projects deliver on schedule (96% on-time record), some large-scale developments have experienced multi-year delays (4-10+ years for iconic projects like Dubai Creek Tower) based on DLD handover records. Resident reviews generally praise build quality and community design (78% positive sentiment), though maintenance response times are a recurring theme (ECM reviews average 1.0-3.3/5). Overall, Emaar's financial transparency, government alignment, and track record make it a low-risk choice for buyers seeking long-term value."],
+          "source": "Source: Emaar Annual Report 2025, DLD handover records, DFM filings (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "What payment plans does Emaar offer for off-plan properties?",
+          "answer": ["Emaar typically offers flexible payment structures for off-plan purchases. Common plans include:"],
+          "list": ["80/20 plans: 10% booking fee, 70% during construction (spread over installments), 20% on handover", "90/10 plans: For premium villa collections with higher upfront commitment", "Post-handover options: Available for select projects, allowing 40-50% payment after handover over 2-5 years", "Payment terms vary by project, launch phase, and promotional periods. All off-plan payments are protected by RERA-regulated escrow accounts, ensuring funds are used solely for project construction. Always verify the project's RERA registration number before committing funds."],
+          "source": "Source: Emaar official website, RERA off-plan sales guidelines (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "Does Emaar deliver projects on time?",
+          "answer": ["Emaar has a strong overall delivery record, though timelines vary by project complexity. Based on PropertyIntel analysis of DLD handover data, approximately 96% of Emaar's projects in the last five years were handed over within 6 months of the original date. Notable delays have occurred for iconic or infrastructure-heavy developments:"],
+          "list": ["Dubai Creek Tower: Extended timeline due to design complexity and foundation engineering", "Certain phases in Dubai Creek Harbour: Infrastructure coordination delays", "The company generally communicates schedule updates transparently and follows RERA guidelines regarding buyer rights. For off-plan purchases, always review the expected handover date in the Sales and Purchase Agreement and factor in a reasonable buffer for planning purposes."],
+          "source": "Source: DLD handover records 2020-2025, Emaar project announcements, Dubai Invest (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "What are service charges like in Emaar communities?",
+          "answer": ["Service charges in Emaar communities vary by location, property type, and building age. Based on DLD Mollak data (2025):"],
+          "list": ["The Greens (apartments): Average AED 8-11 per sqft annually", "Dubai Hills Estate (apartments): Average AED 18-20 per sqft annually", "Arabian Ranches (villas): Average AED 2.44-3+ per sqft annually", "Downtown Dubai (apartments): Average AED 21-68 per sqft annually"],
+          "source": "Source: DLD Mollak Service Charge Index 2025 (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "Can foreigners buy property from Emaar?",
+          "answer": ["Yes, foreigners can purchase freehold property from Emaar in Dubai's designated freehold areas. There are no nationality restrictions for freehold purchases. Additionally, property investments of AED 750,000+ qualify for a 2-year residency visa, while investments of AED 2 million+ may qualify for the 10-year Golden Visa."],
+          "list": ["Downtown Dubai, Dubai Marina, Dubai Hills Estate", "Dubai Creek Harbour, Arabian Ranches, The Valley", "Emaar South, Dubai South"],
+          "source": "Source: Dubai Land Department, Emaar sales terms, UAE residency regulations (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "How does Emaar compare to Damac or Aldar?",
+          "answer": ["Emaar, Damac, and Aldar are leading UAE developers with distinct market positions:"],
+          "list": ["Emaar: Master-planned communities and iconic landmarks (Burj Khalifa, Dubai Mall). Strong government backing via ICD. Largest by revenue and market cap. Premium pricing with a broad Dubai portfolio.", "Aldar: Abu Dhabi's flagship developer, expanding into Dubai. Known for quality, government housing projects, and steady delivery. Strong in Yas Island and Saadiyat.", "Damac: Focuses on luxury branded residences (Versace, Cavalli) and aggressive marketing. Larger international footprint but mixed reviews on after-sales service and delivery consistency.", "Emaar generally offers higher brand recognition and more extensive Dubai inventory. Always compare specific projects, payment terms, and handover timelines rather than developer reputation alone."],
+          "source": "Source: ValuStrat UAE Developer Comparison 2025, DLD transaction data (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "What is Emaar's most popular project right now?",
+          "answer": ["Emaar's most iconic project remains Burj Khalifa, anchoring Downtown Dubai. In terms of current sales velocity and search interest (2025-2026), top-performing projects include:"],
+          "list": ["Dubai Hills Estate: Master community with golf course, parks, schools — consistently high demand across apartments and villas", "The Valley: Affordable townhouse community targeting young families, strong off-plan sales", "Dubai Creek Harbour: Waterfront living with Dubai Creek Tower as centerpiece, attracting investors", "The Oasis: Luxury villa collection in Dubailand, premium positioning"],
+          "source": "Source: DLD 2025 transaction data, Emaar sales reports, Google Trends UAE (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "Does Emaar offer post-handover payment plans?",
+          "answer": ["Yes, Emaar occasionally offers post-handover payment plans for select projects, typically during promotional periods or for specific communities. Recent examples include:"],
+          "list": ["Dubai South: 10% booking, 50% during construction, 4% on handover, and 36% over 36 months after handover", "Dubai Creek Harbour: 60/40 plans with 40% post-handover over 2 years", "The Valley: Extended payment schedules up to 5 years post-handover for townhouses", "These plans may include administrative fees or interest components and are subject to availability. Always review the full terms before proceeding."],
+          "source": "Source: Emaar project brochures 2025-2026, authorized agent disclosures (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "What are common complaints about Emaar communities?",
+          "answer": ["Based on aggregated resident reviews from Google, PropertyFinder, and Bayut (2025-2026), recurring themes include:"],
+          "list": ["Slow maintenance response: Particularly for non-urgent issues, with some residents reporting multi-week wait times", "Service charge increases: Annual adjustments of 2-4% are common; some owners request more transparent breakdowns", "Limited visitor parking: A frequent concern in high-density apartment communities like The Greens and Dubai Marina", "Construction activity: Noise and dust in actively developing phases of master communities (Dubai Hills, Creek Harbour)", "Premium pricing: Emaar commands higher entry prices than secondary developers, which can impact rental yield calculations"],
+          "source": "Source: Google Reviews / PropertyFinder.ae / Bayut.com, 2025-2026 aggregation (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "How can I buy an off-plan property from Emaar?",
+          "answer": ["To purchase an off-plan property from Emaar, follow these steps:"],
+          "list": ["Research: Visit Emaar's official website or consult authorized agents to identify available projects, unit types, and payment plans.", "Select: Choose your preferred unit, floor, and view within the community.", "Reserve: Pay a booking fee (typically 5-10% of property value) to secure the unit.", "Sign SPA: Review and execute the Sales and Purchase Agreement, which outlines payment schedule, handover date, and terms.", "Register: The SPA is registered with DLD's Oqood system, legally securing your ownership rights.", "Pay: Follow the agreed payment plan; all funds go into a RERA-regulated escrow account.", "Handover: Upon completion, settle final payments, conduct snagging, and take possession."],
+          "source": "Source: DLD buyer's guide, Emaar sales process documentation, RERA regulations (Last updated: 22 February 2026)"
+        },
+        {
+          "question": "Are Emaar properties good for rental investment?",
+          "answer": ["Emaar properties can be suitable for rental investment, though returns vary by location and property type. Based on 2025 market data:"],
+          "list": ["Apartments in Dubai Hills Estate/Downtown: Typical gross yields of 4-6%, supported by strong tenant demand and premium positioning", "Villas in Arabian Ranches/The Valley: Yields of 3.5-5%, with longer tenant retention and family appeal", "Waterfront units in Creek Harbour: Higher entry prices may compress yields, but capital appreciation potential is significant", "Emaar's strong brand, integrated amenities, and community management can support occupancy rates and rental stability. However, premium pricing means yields may be lower than emerging areas like JVC or Dubai South."],
+          "source": "Source: ValuStrat Price Index Q4 2025, PropertyIntel rental yield analysis (Last updated: 22 February 2026)"
+        }
+      ],
+      "disclaimer": "Answers are based on publicly available information and are updated regularly. Investment outcomes vary; consult a licensed financial advisor before making decisions. Last updated: 22 February 2026."
     }
   }
 }

@@ -131,6 +131,22 @@ const ComparisonSection = ({ data }) => {
           </ul>
           <p className="text-xs leading-relaxed italic" style={{ color: t.textMuted }}>{verdict.closing}</p>
         </div>
+
+        {/* CTA — after Strategic Verdict */}
+        {data.cta && (
+          <div className="mt-6 flex flex-col items-start gap-2">
+            <a
+              href={data.cta.href || "#"}
+              className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
+              style={{ background: "#B68A35" }}
+            >
+              {data.cta.button_text}
+            </a>
+            {data.cta.subtext && (
+              <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
+            )}
+          </div>
+        )}
       </div>
     </section>
   );

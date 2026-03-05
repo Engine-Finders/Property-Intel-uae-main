@@ -84,6 +84,22 @@ const DeveloperSection = ({ data }) => {
               <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.institutional_context }} />
             </div>
 
+            {data.cta && (
+              <div className="flex flex-col items-start gap-2">
+                <a
+                  href={data.cta.href || "#"}
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:opacity-90"
+                  style={{ color: "#B68A35" }}
+                >
+                  {data.cta.button_text}
+                  <span aria-hidden>→</span>
+                </a>
+                {data.cta.subtext && (
+                  <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
+                )}
+              </div>
+            )}
+
             {/* RERA Trust Badge */}
             <div className="rounded-2xl p-5 flex items-center gap-4" style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02))", border: "1px solid rgba(16,185,129,0.2)" }}>
               <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(16,185,129,0.15)" }}>

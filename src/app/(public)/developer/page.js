@@ -6,6 +6,13 @@ import DeveloperProjectsSection from "@/app/components/developer/DeveloperProjec
 import DeveloperProjectTable from "@/app/components/developer/DeveloperProjectTable";
 import CompanyHistorySection from "@/app/components/developer/CompanyHistorySection";
 import DeliveryTrackRecordSection from "@/app/components/developer/DeliveryTrackRecordSection";
+import CommunityManagementSection from "@/app/components/developer/CommunityManagementSection";
+import GovernmentPartnershipsSection from "@/app/components/developer/GovernmentPartnershipsSection";
+import FinancialHealthSection from "@/app/components/developer/FinancialHealthSection";
+import RiskAssessmentSection from "@/app/components/developer/RiskAssessmentSection";
+import BalanceSheetSection from "@/app/components/developer/BalanceSheetSection";
+import ResidentReviewsSection from "@/app/components/developer/ResidentReviewsSection";
+import DeveloperFaqSection from "@/app/components/developer/DeveloperFaqSection";
 
 const data = developerData.developer;
 
@@ -19,6 +26,14 @@ export default function Developer() {
         <DeveloperProjectTable data={data.project_table} />
         <CompanyHistorySection data={data} />
         <DeliveryTrackRecordSection data={data.delivery_track_record_section} />
+        <CommunityManagementSection data={data.community_management_section} />
+        <GovernmentPartnershipsSection data={data.government_partnerships_section} />
+        <FinancialHealthSection data={data.financial_health_section} />
+        <RiskAssessmentSection data={data.risk_assessment_section} />
+        <BalanceSheetSection data={data.balance_sheet_section} />
+        <ResidentReviewsSection data={data.resident_reviews_section} />
+        <DeveloperFaqSection data={data.developer_faq_section} />
+
       </div>
       <Footer />
     </main>
