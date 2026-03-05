@@ -370,6 +370,27 @@ const FinancingSection = ({ data }) => {
             </div>
           </AccordionCard>
         </div>
+
+        {/* CTA — gray area below accordions */}
+        {data.cta && (
+          <div
+            className="mt-6 py-6 px-6 rounded-xl"
+            style={{ background: t.bgAlt, border: `1px solid ${t.cardBorder}` }}
+          >
+            <div className="flex flex-col items-start gap-2">
+              <a
+                href={data.cta.href || "#"}
+                className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
+                style={{ background: "#B68A35" }}
+              >
+                {data.cta.button_text}
+              </a>
+              {data.cta.subtext && (
+                <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

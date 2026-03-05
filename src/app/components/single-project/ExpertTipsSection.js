@@ -159,6 +159,22 @@ const ExpertTipsSection = ({ data }) => {
               </div>
             </div>
 
+            {/* CTA — before Final Word */}
+            {data.cta && (
+              <div className="flex flex-col items-start gap-2">
+                <a
+                  href={data.cta.href || "#"}
+                  className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
+                  style={{ background: "#B68A35" }}
+                >
+                  {data.cta.button_text}
+                </a>
+                {data.cta.subtext && (
+                  <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
+                )}
+              </div>
+            )}
+
             {/* Final Word */}
             <div className="rounded-xl p-5 lg:p-7" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.05)", border: "1px solid rgba(182,138,53,0.25)" }}>
               <h3 className="text-base font-bold mb-3 flex items-center gap-2" style={{ color: t.text }}>

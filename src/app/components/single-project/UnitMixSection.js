@@ -120,6 +120,22 @@ const UnitMixSection = ({ data }) => {
                 <p className="text-sm leading-relaxed pl-6" style={{ color: t.textSecondary, borderLeft: "2px solid rgba(182,138,53,0.3)" }}>{data.pricing_note}</p>
               </div>
             </div>
+
+            {/* CTA — left aligned */}
+            {data.cta && (
+              <div className="mt-8 flex flex-col items-start gap-2">
+                <a
+                  href={data.cta.href || "#"}
+                  className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
+                  style={{ background: "#B68A35" }}
+                >
+                  {data.cta.button_text}
+                </a>
+                {data.cta.subtext && (
+                  <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
+                )}
+              </div>
+            )}
           </div>
         )}
 

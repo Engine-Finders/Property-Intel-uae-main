@@ -92,8 +92,40 @@ const HeroSection = ({ data }) => {
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <button className="flex-1 px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors focus:outline-none" style={{ background: "#286CFF" }}>{hero.cta_primary}</button>
-            <button className="flex-1 px-6 py-3.5 rounded-lg font-semibold text-sm transition-colors focus:outline-none" style={{ color: "#B68A35", border: "1px solid rgba(182,138,53,0.4)" }}>{hero.cta_secondary}</button>
+            <div className="flex-1 flex flex-col gap-1.5">
+              {(() => {
+                const primary = hero.cta_primary;
+                const text = typeof primary === "string" ? primary : primary?.button_text;
+                const href = typeof primary === "object" && primary?.href;
+                const className = "w-full px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors focus:outline-none inline-flex items-center justify-center " + (href ? "hover:opacity-90" : "");
+                const style = { background: "#286CFF" };
+                return href ? (
+                  <a href={href} className={className} style={style}>{text}</a>
+                ) : (
+                  <button type="button" className={className} style={style}>{text}</button>
+                );
+              })()}
+              {(typeof hero.cta_primary === "object" && hero.cta_primary?.subtext) && (
+                <p className="text-xs leading-relaxed" style={{ color: t.textMuted }}>{hero.cta_primary.subtext}</p>
+              )}
+            </div>
+            <div className="flex-1 flex flex-col gap-1.5">
+              {(() => {
+                const secondary = hero.cta_secondary;
+                const text = typeof secondary === "string" ? secondary : secondary?.button_text;
+                const href = typeof secondary === "object" && secondary?.href;
+                const className = "w-full px-6 py-3.5 rounded-lg font-semibold text-sm transition-colors focus:outline-none inline-flex items-center justify-center " + (href ? "hover:opacity-90" : "");
+                const style = { color: "#B68A35", border: "1px solid rgba(182,138,53,0.4)" };
+                return href ? (
+                  <a href={href} className={className} style={style}>{text}</a>
+                ) : (
+                  <button type="button" className={className} style={style}>{text}</button>
+                );
+              })()}
+              {(typeof hero.cta_secondary === "object" && hero.cta_secondary?.subtext) && (
+                <p className="text-xs leading-relaxed" style={{ color: t.textMuted }}>{hero.cta_secondary.subtext}</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -103,6 +135,19 @@ const HeroSection = ({ data }) => {
         {hero.overview_paragraphs.map((paragraph, i) => (
           <p key={i} className={`${i > 0 ? "mt-6" : ""} text-base lg:text-lg leading-relaxed`} style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: paragraph }} />
         ))}
+
+        {hero.explore_link && (
+          <div className="mt-6 flex justify-center">
+            <a
+              href={hero.explore_link.href || "#"}
+              className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors hover:opacity-90 cursor-pointer"
+              style={{ color: "#B68A35" }}
+            >
+              {hero.explore_link.text}
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        )}
 
         <div className="mt-10 p-6 lg:p-8 rounded-2xl" style={{ border: "1px solid rgba(182,138,53,0.2)", background: "rgba(182,138,53,0.05)" }}>
           <h3 className="text-lg lg:text-xl font-bold mb-4" style={{ color: "#B68A35" }}>Data-Led Hook</h3>

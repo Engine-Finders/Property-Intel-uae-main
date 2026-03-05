@@ -196,6 +196,23 @@ const ReviewsSection = ({ data }) => {
           )}
         </div>
 
+        {/* CTA — before Transparency Note */}
+        {data.cta && (
+          <div className="mb-6 flex flex-col items-start gap-2">
+            <a
+              href={data.cta.href || "#"}
+              className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:opacity-90"
+              style={{ color: "#B68A35" }}
+            >
+              {data.cta.button_text}
+              <span aria-hidden>→</span>
+            </a>
+            {data.cta.subtext && (
+              <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
+            )}
+          </div>
+        )}
+
         {/* Transparency Note */}
         <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(245,158,11,0.08)" : "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
           <div className="flex gap-2 items-start">

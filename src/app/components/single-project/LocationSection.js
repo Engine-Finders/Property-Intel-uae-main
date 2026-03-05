@@ -169,7 +169,7 @@ const LocationSection = ({ data }) => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-4">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -188,6 +188,28 @@ const LocationSection = ({ data }) => {
             </button>
           ))}
         </div>
+
+        {/* CTA — gray area below tabs, before content */}
+        {data.cta && (
+          <div
+            className="py-4 px-5 mb-6 rounded-xl"
+            style={{ background: t.bgAlt, border: `1px solid ${t.cardBorder}` }}
+          >
+            <div className="flex flex-col items-start gap-2">
+              <a
+                href={data.cta.href || "#"}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:opacity-90"
+                style={{ color: "#B68A35" }}
+              >
+                {data.cta.button_text}
+                <span aria-hidden>→</span>
+              </a>
+              {data.cta.subtext && (
+                <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Tab Content */}
         <div

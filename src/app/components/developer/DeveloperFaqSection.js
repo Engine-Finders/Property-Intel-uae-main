@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 
@@ -24,7 +23,7 @@ const FaqItem = ({ faq, isOpen, onToggle, t }) => (
     </button>
     <div
       className="overflow-hidden transition-all duration-300 ease-in-out"
-      style={{ maxHeight: isOpen ? "600px" : "0px", opacity: isOpen ? 1 : 0 }}
+      style={{ maxHeight: isOpen ? "1200px" : "0px", opacity: isOpen ? 1 : 0 }}
     >
       <div className="pb-4 space-y-2">
         {faq.answer.map((p, i) => (
@@ -40,38 +39,49 @@ const FaqItem = ({ faq, isOpen, onToggle, t }) => (
             ))}
           </ul>
         )}
+        {faq.source && (
+          <p className="text-[10px] italic mt-3" style={{ color: t.textMuted }}>{faq.source}</p>
+        )}
       </div>
     </div>
   </div>
 );
 
-const FaqSection = ({ data }) => {
+const DeveloperFaqSection = ({ data }) => {
   const { t } = useTheme();
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggle = (i) => setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
-    <section id="faq" className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
+    <section id="developer-faq" className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4" style={{ background: "#B68A3520", color: "#B68A35" }}>
             {data.badge}
           </span>
           <h2 className="text-2xl lg:text-3xl font-bold mb-2" style={{ color: t.text }}>{data.title}</h2>
-          <p className="text-xs leading-relaxed max-w-3xl" style={{ color: t.textMuted }}>{data.note}</p>
+          <p className="text-xs leading-relaxed max-w-3xl" style={{ color: t.textMuted }}>{data.subtitle}</p>
         </div>
 
-        {/* FAQ Accordions */}
-        <div className="rounded-xl p-5 lg:p-7" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+        <div className="rounded-xl p-5 lg:p-7 mb-4" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
           {(data.items || []).map((faq, i) => (
             <FaqItem key={i} faq={faq} isOpen={openIndex === i} onToggle={() => toggle(i)} t={t} />
           ))}
+        </div>
+
+        {/* Disclaimer */}
+        <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(245,158,11,0.08)" : "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
+          <div className="flex gap-2 items-start">
+            <span className="text-sm mt-0.5">⚠️</span>
+            <p className="text-xs leading-relaxed" style={{ color: t.isDark ? "#fcd34d" : "#92400e" }}>
+              <strong>Disclaimer:</strong> {data.disclaimer}
+            </p>
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default FaqSection;
+export default DeveloperFaqSection;
