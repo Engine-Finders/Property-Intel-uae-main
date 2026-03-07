@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Image from "next/image";
 
 const ACCENT = "#B68A35";
 
@@ -109,6 +110,7 @@ const ThemeItem = ({ text, icon, color, t }) => (
 /* ── Main ── */
 const ResidentReviewsSection = ({ data }) => {
   const { t } = useTheme();
+  const [themesTab, setThemesTab] = useState(0); // 0 = Pros, 1 = Cons — mobile only
 
   const sentiment = data.sentiment || [];
   const pros = data.pros || [];
@@ -121,85 +123,146 @@ const ResidentReviewsSection = ({ data }) => {
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="mb-8">
-          <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4" style={{ background: ACCENT + "20", color: ACCENT }}>
-            {data.badge}
-          </span>
-          <h2 className="text-2xl lg:text-3xl font-bold mb-1" style={{ color: t.text }}>{data.title}</h2>
-          <p className="text-sm mb-4" style={{ color: t.textMuted }}>{data.subtitle}</p>
-          <p className="text-xs leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
-        </div>
-
-        {/* Aggregated Rating */}
-        <div className="rounded-xl p-5 lg:p-7 mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-          <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: ACCENT + "20", color: ACCENT }}>⭐</span>
-            Aggregated Rating
-          </h3>
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-5">
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-black" style={{ color: ACCENT }}>{data.overall_score}</span>
-              <span className="text-lg font-medium" style={{ color: t.textMuted }}>/ 5</span>
-            </div>
-            <div>
-              <Stars rating={parseFloat(data.overall_score)} />
-              <p className="text-[10px] mt-1" style={{ color: t.textMuted }}>{data.total_reviews} reviews analysed</p>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div>
+            <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4" style={{ background: ACCENT + "20", color: ACCENT }}>
+              {data.badge}
+            </span>
+            <h2 className="text-2xl lg:text-3xl font-bold mb-1" style={{ color: t.text }}>{data.title}</h2>
+            <p className="text-sm mb-4" style={{ color: t.textMuted }}>{data.subtitle}</p>
+            <p className="text-xs leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
           </div>
-          <PlatformTable platforms={platforms} t={t} />
+          <div className="relative rounded-2xl overflow-hidden min-h-40 lg:min-h-52">
+            <Image
+              src="/projects/villa-render-1.jpg"
+              fill
+              alt="Emaar Resident Reviews"
+              className="object-cover"
+            />
+          </div>
         </div>
 
-        {/* Sentiment Breakdown */}
-        <div className="rounded-xl p-5 lg:p-7 mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-          <h3 className="text-sm font-bold mb-5 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: ACCENT + "20", color: ACCENT }}>📊</span>
-            Sentiment Breakdown
-          </h3>
-          {sentiment.map((s, i) => (
-            <div key={i} className="mb-4">
-              <div className="flex justify-between items-center mb-1.5">
-                <span className="text-xs font-semibold" style={{ color: t.text }}>{s.label}</span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: s.color + "20", color: s.color }}>{s.percent}%</span>
+        {/* Aggregated Rating (left) + Recent Review Highlights (right) | Sentiment Breakdown (below left) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          {/* Left column: Aggregated Rating (top) + Sentiment Breakdown (below) */}
+          <div className="flex flex-col gap-6">
+            <div className="rounded-xl p-5 lg:p-7" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+              <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
+                <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: ACCENT + "20", color: ACCENT }}>⭐</span>
+                Aggregated Rating
+              </h3>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-5">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl font-black" style={{ color: ACCENT }}>{data.overall_score}</span>
+                  <span className="text-lg font-medium" style={{ color: t.textMuted }}>/ 5</span>
+                </div>
+                <div>
+                  <Stars rating={parseFloat(data.overall_score)} />
+                  <p className="text-[10px] mt-1" style={{ color: t.textMuted }}>{data.total_reviews} reviews analysed</p>
+                </div>
               </div>
-              <AnimatedBar percent={s.percent} color={s.color} t={t} />
+              <PlatformTable platforms={platforms} t={t} />
             </div>
-          ))}
+            <div className="rounded-xl p-5 lg:p-7" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+              <h3 className="text-sm font-bold mb-5 flex items-center gap-2" style={{ color: t.text }}>
+                <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: ACCENT + "20", color: ACCENT }}>📊</span>
+                Sentiment Breakdown
+              </h3>
+              {sentiment.map((s, i) => (
+                <div key={i} className="mb-4">
+                  <div className="flex justify-between items-center mb-1.5">
+                    <span className="text-xs font-semibold" style={{ color: t.text }}>{s.label}</span>
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: s.color + "20", color: s.color }}>{s.percent}%</span>
+                  </div>
+                  <AnimatedBar percent={s.percent} color={s.color} t={t} />
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Right column: Recent Review Highlights */}
+          <div className="rounded-xl p-5 lg:p-7" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+            <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
+              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: ACCENT + "20", color: ACCENT }}>💬</span>
+              Recent Review Highlights
+            </h3>
+            <div className="space-y-3">
+              {reviews.map((r, i) => (
+                <ReviewCard key={i} review={r} t={t} />
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Common Themes */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-          {/* Pros */}
-          <div className="rounded-xl p-5" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-            <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
-              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#22C55E20", color: "#22C55E" }}>✓</span>
-              What Residents Appreciate
-            </h3>
-            {pros.map((p, i) => (
-              <ThemeItem key={i} text={p} icon="✓" color="#22C55E" t={t} />
-            ))}
+        {/* Common Themes — tabs on mobile, side-by-side on desktop */}
+        <div className="mb-6">
+          {/* Mobile: tabs */}
+          <div className="lg:hidden mb-4">
+            <div className="flex gap-1 p-1 rounded-lg" style={{ background: t.isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)" }}>
+              <button
+                onClick={() => setThemesTab(0)}
+                className="flex-1 py-2.5 px-3 rounded-md text-xs font-semibold transition-all"
+                style={{
+                  background: themesTab === 0 ? "#22C55E" : "transparent",
+                  color: themesTab === 0 ? "#fff" : t.textSecondary,
+                }}
+              >
+                ✓ Appreciate
+              </button>
+              <button
+                onClick={() => setThemesTab(1)}
+                className="flex-1 py-2.5 px-3 rounded-md text-xs font-semibold transition-all"
+                style={{
+                  background: themesTab === 1 ? "#EF4444" : "transparent",
+                  color: themesTab === 1 ? "#fff" : t.textSecondary,
+                }}
+              >
+                ! Mention
+              </button>
+            </div>
+            <div className="rounded-xl p-5 mt-0" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+              {themesTab === 0 ? (
+                <>
+                  <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
+                    <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#22C55E20", color: "#22C55E" }}>✓</span>
+                    What Residents Appreciate
+                  </h3>
+                  {pros.map((p, i) => (
+                    <ThemeItem key={i} text={p} icon="✓" color="#22C55E" t={t} />
+                  ))}
+                </>
+              ) : (
+                <>
+                  <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
+                    <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#EF444420", color: "#EF4444" }}>!</span>
+                    What Residents Frequently Mention
+                  </h3>
+                  {cons.map((c, i) => (
+                    <ThemeItem key={i} text={c} icon="→" color="#F59E0B" t={t} />
+                  ))}
+                </>
+              )}
+            </div>
           </div>
-          {/* Cons */}
-          <div className="rounded-xl p-5" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-            <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
-              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#EF444420", color: "#EF4444" }}>!</span>
-              What Residents Frequently Mention
-            </h3>
-            {cons.map((c, i) => (
-              <ThemeItem key={i} text={c} icon="→" color="#F59E0B" t={t} />
-            ))}
-          </div>
-        </div>
-
-        {/* Recent Reviews */}
-        <div className="rounded-xl p-5 lg:p-7 mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-          <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: ACCENT + "20", color: ACCENT }}>💬</span>
-            Recent Review Highlights
-          </h3>
-          <div className="space-y-3">
-            {reviews.map((r, i) => (
-              <ReviewCard key={i} review={r} t={t} />
-            ))}
+          {/* Desktop: side by side */}
+          <div className="hidden lg:grid grid-cols-2 gap-4">
+            <div className="rounded-xl p-5" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+              <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
+                <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#22C55E20", color: "#22C55E" }}>✓</span>
+                What Residents Appreciate
+              </h3>
+              {pros.map((p, i) => (
+                <ThemeItem key={i} text={p} icon="✓" color="#22C55E" t={t} />
+              ))}
+            </div>
+            <div className="rounded-xl p-5" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+              <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
+                <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#EF444420", color: "#EF4444" }}>!</span>
+                What Residents Frequently Mention
+              </h3>
+              {cons.map((c, i) => (
+                <ThemeItem key={i} text={c} icon="→" color="#F59E0B" t={t} />
+              ))}
+            </div>
           </div>
         </div>
 

@@ -1,6 +1,14 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Image from "next/image";
+
+/* ── Chevron (small) ── */
+const ChevronSmall = ({ open }) => (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: open ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s", flexShrink: 0 }} className="ml-1">
+    <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
 
 /* ── Risk Card (Box layout) ── */
 const RiskCard = ({ category, level, value, explanation, source, t }) => {
@@ -18,16 +26,18 @@ const RiskCard = ({ category, level, value, explanation, source, t }) => {
   }, [value]);
 
   const barColor = value >= 60 ? "#EF4444" : value >= 35 ? "#F59E0B" : "#22C55E";
+  const isExpanded = expanded;
+  const handleToggle = () => setExpanded((p) => !p);
 
   return (
     <div
       ref={ref}
-      className="rounded-xl p-5 cursor-pointer transition-all flex flex-col h-full"
+      className="rounded-xl p-5 cursor-pointer transition-all flex flex-col min-h-[140px] self-start"
       style={{
         background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc",
-        border: `1px solid ${expanded ? barColor + "40" : t.cardBorder}`,
+        border: `1px solid ${isExpanded ? barColor + "40" : t.cardBorder}`,
       }}
-      onClick={() => setExpanded(!expanded)}
+      onClick={handleToggle}
     >
       <div className="flex items-center justify-between mb-3">
         <span
@@ -38,7 +48,7 @@ const RiskCard = ({ category, level, value, explanation, source, t }) => {
         </span>
         <svg
           width="12" height="12" viewBox="0 0 12 12" fill="none"
-          style={{ color: t.textMuted, transform: expanded ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s" }}
+          style={{ color: t.textMuted, transform: isExpanded ? "rotate(180deg)" : "rotate(0)", transition: "transform 0.2s" }}
         >
           <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -50,7 +60,7 @@ const RiskCard = ({ category, level, value, explanation, source, t }) => {
           style={{ width: `${width}%`, background: barColor }}
         />
       </div>
-      {expanded && (
+      {isExpanded && (
         <div className="mt-3 pt-3" style={{ borderTop: `1px solid ${t.cardBorder}` }}>
           <p className="text-[11px] leading-relaxed mb-2" style={{ color: t.textSecondary }}>{explanation}</p>
           {source && (
@@ -62,22 +72,34 @@ const RiskCard = ({ category, level, value, explanation, source, t }) => {
   );
 };
 
-/* ── Suitability Card ── */
+/* ── Suitability Card (items as simple text accordions) ── */
+const SuitabilityItemAccordion = ({ item, color, t }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="py-1.5">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between gap-2 text-left cursor-pointer"
+      >
+        <span className="text-xs font-semibold" style={{ color: t.text }}>{item.label}</span>
+        <span style={{ color: t.textMuted }}><ChevronSmall open={open} /></span>
+      </button>
+      {open && (
+        <p className="text-[11px] leading-relaxed mt-1.5 pr-4" style={{ color: t.textSecondary }}>{item.detail}</p>
+      )}
+    </div>
+  );
+};
+
 const SuitabilityCard = ({ items, color, icon, title, t }) => (
   <div className="rounded-xl p-5 h-full" style={{ background: color + "08", border: `1px solid ${color}25` }}>
     <div className="flex items-center gap-2 mb-3">
       <span className="text-sm">{icon}</span>
       <span className="text-xs font-bold" style={{ color }}>{title}</span>
     </div>
-    <div className="space-y-3">
+    <div className="space-y-0">
       {items.map((item, i) => (
-        <div key={i} className="flex gap-2.5 items-start">
-          <span className="shrink-0 mt-0.5 text-[10px]" style={{ color }}>●</span>
-          <div>
-            <p className="text-xs font-semibold mb-0.5" style={{ color: t.text }}>{item.label}</p>
-            <p className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{item.detail}</p>
-          </div>
-        </div>
+        <SuitabilityItemAccordion key={i} item={item} color={color} t={t} />
       ))}
     </div>
   </div>
@@ -173,6 +195,8 @@ const MitigationStep = ({ item, index, t }) => (
 /* ── Main Component ── */
 const RiskAssessmentSection = ({ data }) => {
   const { t } = useTheme();
+  const [openKnownIssues, setOpenKnownIssues] = useState(false);
+  const [openMitigation, setOpenMitigation] = useState(false);
 
   const radar = data.risk_radar || [];
   const suit = data.buyer_suitability || {};
@@ -184,19 +208,29 @@ const RiskAssessmentSection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <span
-            className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
-            style={{ background: "#EF444420", color: "#EF4444" }}
-          >
-            {data.label}
-          </span>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: t.text }}>
-            {data.title}
-          </h2>
-          <p className="text-xs sm:text-sm leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>
-            {data.subtitle}
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div>
+            <span
+              className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
+              style={{ background: "#EF444420", color: "#EF4444" }}
+            >
+              {data.label}
+            </span>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: t.text }}>
+              {data.title}
+            </h2>
+            <p className="text-xs sm:text-sm leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>
+              {data.subtitle}
+            </p>
+          </div>
+          <div className="relative rounded-2xl overflow-hidden h-24 lg:h-32">
+            <Image
+              src="/projects/villa-render-1.jpg"
+              fill
+              alt="Emaar Risk Assessment"
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Risk Radar - 3 column boxes */}
@@ -208,7 +242,7 @@ const RiskAssessmentSection = ({ data }) => {
             <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#EF444420", color: "#EF4444" }}>📊</span>
             Risk Radar
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-start">
             {radar.map((r, i) => (
               <RiskCard key={i} {...r} t={t} />
             ))}
@@ -231,41 +265,63 @@ const RiskAssessmentSection = ({ data }) => {
           </div>
         </div>
 
-        {/* Known Issues Table */}
+        {/* Known Issues Table — Accordion */}
         <div
-          className="rounded-xl p-5 lg:p-7 mb-6"
+          className="rounded-xl overflow-hidden mb-6"
           style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
         >
-          <h3 className="text-sm font-bold mb-2 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#F59E0B20", color: "#F59E0B" }}>⚡</span>
-            {issues.title}
-          </h3>
-          <p className="text-[11px] mb-4" style={{ color: t.textMuted }}>{issues.subtitle}</p>
-
-          <div className="block lg:hidden">
-            <MobileCards headers={issues.headers || []} rows={issues.rows || []} t={t} />
-          </div>
-          <div className="hidden lg:block">
-            <DesktopTable headers={issues.headers || []} rows={issues.rows || []} t={t} />
-          </div>
+          <button
+            onClick={() => setOpenKnownIssues(!openKnownIssues)}
+            className="w-full p-5 lg:p-7 flex items-center justify-between gap-2 text-left cursor-pointer"
+          >
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#F59E0B20", color: "#F59E0B" }}>⚡</span>
+              <div>
+                <h3 className="text-sm font-bold" style={{ color: t.text }}>{issues.title}</h3>
+                <p className="text-[11px] mt-0.5" style={{ color: t.textMuted }}>{issues.subtitle}</p>
+              </div>
+            </div>
+            <span style={{ color: t.textMuted }}><ChevronSmall open={openKnownIssues} /></span>
+          </button>
+          {openKnownIssues && (
+            <div className="px-5 lg:px-7 pb-5 lg:pb-7 pt-0" style={{ borderTop: `1px solid ${t.cardBorder}` }}>
+              <div className="block lg:hidden">
+                <MobileCards headers={issues.headers || []} rows={issues.rows || []} t={t} />
+              </div>
+              <div className="hidden lg:block">
+                <DesktopTable headers={issues.headers || []} rows={issues.rows || []} t={t} />
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Mitigation Strategies */}
+        {/* Mitigation Strategies — Accordion */}
         <div
-          className="rounded-xl p-5 lg:p-7 mb-6"
+          className="rounded-xl overflow-hidden mb-6"
           style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
         >
-          <h3 className="text-sm font-bold mb-2 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#3B82F620", color: "#3B82F6" }}>🛡️</span>
-            {mitigation.title}
-          </h3>
-          <p className="text-[11px] mb-4" style={{ color: t.textMuted }}>{mitigation.subtitle}</p>
-
-          <div className="space-y-3">
-            {(mitigation.items || []).map((item, i) => (
-              <MitigationStep key={i} item={item} index={i} t={t} />
-            ))}
-          </div>
+          <button
+            onClick={() => setOpenMitigation(!openMitigation)}
+            className="w-full p-5 lg:p-7 flex items-center justify-between gap-2 text-left cursor-pointer"
+          >
+            <div className="flex items-center gap-2">
+              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#3B82F620", color: "#3B82F6" }}>🛡️</span>
+              <div>
+                <h3 className="text-sm font-bold" style={{ color: t.text }}>{mitigation.title}</h3>
+                <p className="text-[11px] mt-0.5" style={{ color: t.textMuted }}>{mitigation.subtitle}</p>
+              </div>
+            </div>
+            <span style={{ color: t.textMuted }}><ChevronSmall open={openMitigation} /></span>
+          </button>
+          {openMitigation && (
+            <div className="px-5 lg:px-7 pb-5 lg:pb-7 pt-0" style={{ borderTop: `1px solid ${t.cardBorder}` }}>
+              <div className="space-y-3">
+                {(mitigation.items || []).map((item, i) => (
+                  <MitigationStep key={i} item={item} index={i} t={t} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Analyst Insight */}

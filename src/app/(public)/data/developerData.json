@@ -585,7 +585,14 @@
         "sources": "Driven Properties — The Greens Community Guide; APIL Properties — Emirates Hills Guide; Bayut"
       },
       "owner_satisfaction": {
-        "summary": "Resident feedback on Emaar Community Management (ECM) reveals significant and consistent concerns across multiple platforms and communities. Reviews indicate systemic issues with maintenance responsiveness, communication, accountability, and service charge transparency. While ECM's official communications emphasise customer-centricity and 24/7 response capabilities, the on-ground experience reported by residents often contradicts this messaging. The aggregated rating across 220+ reviews averages approximately 3.2/5, with the main ECM office showing 1.0/5 based on recent reviews and 3.3/5 based on 212 reviews on another platform. The Dubai Marina office has a 2.0/5 rating from 4 reviews.",
+        "average_rating": "3.2",
+        "review_count": "220+ reviews",
+        "platforms": [
+          { "label": "ECM Main Office (Google)", "rating": "1.0" },
+          { "label": "BestThings.ae (212 reviews)", "rating": "3.3" },
+          { "label": "Dubai Marina Office (Google)", "rating": "2.0" }
+        ],
+        "summary": "Resident feedback on Emaar Community Management (ECM) reveals significant and consistent concerns across multiple platforms and communities. Reviews indicate systemic issues with maintenance responsiveness, communication, accountability, and service charge transparency. While ECM's official communications emphasise customer-centricity and 24/7 response capabilities, the on-ground experience reported by residents often contradicts this messaging.",
         "praises": [
           "Community landscaping and public spaces (general Emaar reputation)",
           "Security and gated access (acknowledged in multiple communities)",
@@ -693,13 +700,13 @@
           "title": "DLD Top Developer Award (2024)",
           "issuing_body": "Dubai Land Department",
           "source": "DLD Annual Ceremony 2024",
-          "pending_verification": true
+          "icon": "award"
         },
         {
           "title": "RERA Excellence in Community Management (2023)",
           "issuing_body": "Real Estate Regulatory Agency (RERA)",
           "source": "RERA Awards Program 2023",
-          "pending_verification": true
+          "icon": "award"
         }
       ],
       "verification_sources": [
@@ -936,11 +943,6 @@
     "balance_sheet_section": {
       "heading": "Emaar Financial Health — The Balance Sheet Check",
       "intro": "Analysis of Emaar Properties' financial strength, cash position, and ability to fund future projects based on audited reports and credit rating agency data.",
-      "company_status": {
-        "publicly_traded": true,
-        "exchange": "DFM",
-        "ticker": "EMAAR"
-      },
       "financial_metrics": {
         "headers": ["Metric", "Value", "Period", "Trend", "Source"],
         "rows": [
@@ -955,29 +957,10 @@
           ["Quick Ratio", "7.45", "As of 31 Dec 2025", "—", "Calculated from Annual Report"]
         ]
       },
-      "credit_ratings": {
-        "headers": ["Agency", "Rating", "Outlook", "Date", "Source"],
-        "rows": [
-          ["S&P Global Ratings", "BBB+", "Stable", "June 2025", "S&P Global Ratings Report via Emaar Official Press Release"],
-          ["Moody's Investors Service", "Baa1", "Stable", "June 2025", "Moody's Credit Opinion via Emaar Official Press Release"]
-        ],
-        "source_url": "https://properties.emaar.com/en/press-release-listing/sp-and-moodys-upgrade-emaars-credit-ratings/"
-      },
       "escrow_compliance": {
         "status": "100% of active off-plan projects registered with RERA and fully funded escrow accounts",
         "note": "Emaar Properties complies with all RERA escrow requirements under Law No. 8 of 2007. This law mandates separate escrow accounts for each project, requires all buyer payments to be deposited into these accounts, and restricts fund release to verified construction milestones. Project-specific escrow details are publicly accessible via the Dubai REST app and Oqood portal.",
         "source": "RERA compliance database / Emaar Investor Disclosures / Law No. 8 of 2007"
-      },
-      "land_bank": {
-        "total_area": "~618–660 million sq. ft. total mixed-use development opportunities, including ~344–370 million sq. ft. in the UAE",
-        "estimated_value": "Not publicly disclosed",
-        "source": "Emaar Investor Presentation Q4 2025 / DLD Land Registry via Emaar Official Press Releases"
-      },
-      "project_pipeline": {
-        "revenue_backlog": "AED 155 billion",
-        "revenue_backlog_date": "as of 31 December 2025",
-        "upcoming_projects": "48 new residential projects launched in 2025",
-        "source": "Emaar Annual Report 2025 / S&P Global Ratings"
       },
       "analyst_commentary": {
         "text": "The consensus among 13 analysts covering Emaar Properties is a \"BUY\" rating, with an average 12-month target price of AED 19.33, representing approximately 18% upside from current levels. The highest price target is AED 25.00, while the lowest is AED 15.80. Analysts highlight Emaar's record 2025 performance, strong balance sheet, and credit rating upgrades as key positives.",
