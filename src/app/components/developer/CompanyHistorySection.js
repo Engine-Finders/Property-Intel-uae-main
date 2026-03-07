@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
 const GOLD = "#B68A35";
@@ -159,6 +160,72 @@ const DonutChart = ({ segments, t }) => {
   );
 };
 
+const SourcesAccordion = ({ sources, t }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="rounded-2xl overflow-hidden"
+      style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-5 sm:px-6 py-4"
+      >
+        <span className="text-lg font-semibold" style={{ color: t.text }}>
+          Sources & Verification
+        </span>
+        <ChevronDown
+          className="w-5 h-5 transition-transform duration-200"
+          style={{ color: t.textMuted, transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+        />
+      </button>
+      {open && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-5 sm:px-6 pb-5">
+          {sources.map((src, i) => (
+            <div
+              key={i}
+              className="rounded-xl p-4 flex items-start gap-3"
+              style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", border: `1px solid ${t.cardBorder}` }}
+            >
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                style={{ background: "rgba(182,138,53,0.1)" }}
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke={GOLD} strokeWidth="1.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs mb-1" style={{ color: t.textMuted }}>{src.fact}</p>
+                <p className="text-sm font-semibold" style={{ color: t.text }}>{src.source}</p>
+                {src.url && (
+                  <a
+                    href={src.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs inline-flex items-center gap-1 mt-1.5 hover:underline"
+                    style={{ color: GOLD }}
+                  >
+                    View Source
+                    <svg viewBox="0 0 24 24" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const CompanyHistorySection = ({ data }) => {
   const { t } = useTheme();
   const d = data.company_history;
@@ -199,7 +266,7 @@ const CompanyHistorySection = ({ data }) => {
               {d.founding_story}
             </p>
             {/* Info chips below paragraph */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible">
               {[
                 { label: "Founded", value: d.founded },
                 { label: "Founder", value: d.founder },
@@ -245,7 +312,7 @@ const CompanyHistorySection = ({ data }) => {
             className="rounded-2xl p-5 sm:p-6 overflow-x-auto"
             style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
           >
-            <p className="text-xs font-semibold uppercase tracking-wider mb-5" style={{ color: t.textMuted }}>
+            <p className="text-xs font-semibold uppercase tracking-wider mb-5 text-center sm:text-left" style={{ color: t.textMuted }}>
               Key Milestones
             </p>
             <div className="relative flex items-start justify-between pb-2" style={{ minWidth: milestones.length * 120 }}>
@@ -339,52 +406,7 @@ const CompanyHistorySection = ({ data }) => {
         </div>
 
         {/* ─── SOURCES ─── */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4" style={{ color: t.text }}>
-            Sources & Verification
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {sources.map((src, i) => (
-              <div
-                key={i}
-                className="rounded-xl p-4 flex items-start gap-3"
-                style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
-              >
-                <div
-                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                  style={{ background: "rgba(182,138,53,0.1)" }}
-                >
-                  <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke={GOLD} strokeWidth="1.5">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                  </svg>
-                </div>
-                <div className="min-w-0">
-                  <p className="text-xs mb-1" style={{ color: t.textMuted }}>{src.fact}</p>
-                  <p className="text-sm font-semibold" style={{ color: t.text }}>{src.source}</p>
-                  {src.url && (
-                    <a
-                      href={src.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs inline-flex items-center gap-1 mt-1.5 hover:underline"
-                      style={{ color: GOLD }}
-                    >
-                      View Source
-                      <svg viewBox="0 0 24 24" className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                        <polyline points="15 3 21 3 21 9" />
-                        <line x1="10" y1="14" x2="21" y2="3" />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <SourcesAccordion sources={sources} t={t} />
       </div>
     </section>
   );

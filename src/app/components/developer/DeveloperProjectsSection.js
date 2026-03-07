@@ -2,6 +2,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { MapPin, Calendar, Clock, Home, ChevronLeft, ChevronRight, ExternalLink, Download, FileText } from "lucide-react";
+import Image from "next/image";
 
 const slideImages = ["/projects/villa-render-1.jpg", "/projects/villa-render-2.jpg", "/projects/villa-render-3.jpg"];
 
@@ -53,10 +54,17 @@ const DeveloperProjectsSection = ({ data }) => {
     resetTimer();
   };
 
-  // Get visible indices (3 cards)
+  const [visibleCount, setVisibleCount] = useState(typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 3);
+
+  useEffect(() => {
+    const onResize = () => setVisibleCount(window.innerWidth < 768 ? 1 : 3);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const getVisibleIndices = () => {
     const indices = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < visibleCount; i++) {
       indices.push((current + i) % projects.length);
     }
     return indices;
@@ -75,23 +83,29 @@ const DeveloperProjectsSection = ({ data }) => {
         style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
       >
         {/* Image */}
-        <div className="relative h-[180px] sm:h-[200px] overflow-hidden">
-          <img
-            src={slideImages[project.image_index]}
-            alt={project.name}
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute top-3 left-3">
-            <span
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold backdrop-blur-sm"
-              style={{ background: sc.bg, color: sc.text, border: `1px solid ${sc.border}` }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: sc.dot }} />
-              {project.status}
-            </span>
-          </div>
-        </div>
+       <div className="relative h-[180px] sm:h-[200px] overflow-hidden">
+  <Image
+    src={slideImages[project.image_index]}
+    alt={project.name}
+    fill
+    className="object-cover"
+    loading="lazy"
+    sizes="(max-width: 640px) 100vw, 50vw"
+  />
+
+  <div className="absolute top-3 left-3">
+    <span
+      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold backdrop-blur-sm"
+      style={{ background: sc.bg, color: sc.text, border: `1px solid ${sc.border}` }}
+    >
+      <span
+        className="w-1.5 h-1.5 rounded-full animate-pulse"
+        style={{ background: sc.dot }}
+      />
+      {project.status}
+    </span>
+  </div>
+</div>
 
         {/* Content */}
         <div className="p-4 flex flex-col flex-1">
@@ -225,7 +239,7 @@ const DeveloperProjectsSection = ({ data }) => {
         </div>
 
         {/* Cards - 3 visible */}
-        <div className="mt-6 grid grid-cols-3 gap-4">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           {visibleIndices.map((idx) => renderCard(projects[idx], idx))}
         </div>
 
