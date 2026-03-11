@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Image from "next/image";
 
 /* ─── Chevron Icon ─── */
 const ChevronIcon = ({ open, color }) => (
@@ -141,18 +142,14 @@ const OverviewBlock = ({ data, t }) => {
         <MollakAccordion mgmt={mgmt} t={t} />
       </div>
 
-      {/* Right — Image Placeholder */}
-      <div className="rounded-2xl overflow-hidden flex items-center justify-center min-h-[320px] lg:min-h-[400px]"
-        style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f1f5f9", border: `1px solid ${t.cardBorder}` }}>
-        <div className="text-center">
-          {/* Placeholder icon */}
-          <svg viewBox="0 0 24 24" className="w-16 h-16 mx-auto mb-3" fill="none" stroke={t.textMuted} strokeWidth="0.8">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <path d="M21 15l-5-5L5 21" />
-          </svg>
-          <p className="text-sm font-medium" style={{ color: t.textMuted }}>IMAGE</p>
-        </div>
+      {/* Right — Image */}
+      <div className="relative rounded-2xl overflow-hidden min-h-[320px] lg:min-h-[400px]">
+        <Image
+          src="/developer/community-section.webp"
+          alt="Emaar Community Management"
+          fill
+          className="object-fit"
+        />
       </div>
     </div>
   );

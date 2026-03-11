@@ -245,58 +245,11 @@ const DeveloperProjectTable = ({ data }) => {
             Complete Emaar Project Database
           </h2>
           <p
-            className="text-sm sm:text-base leading-relaxed max-w-3xl mb-6"
+            className="text-sm sm:text-base leading-relaxed max-w-3xl"
             style={{ color: t.textSecondary || "#6b7280" }}
           >
             Browse all current and past projects by Emaar Properties, from iconic towers to master communities. Data verified against DLD and RERA records.
           </p>
-
-          {/* Sources Metadata */}
-          <div
-            className="rounded-lg p-4 mb-6"
-            style={{
-              background: t.cardBg,
-              border: `1px solid ${t.cardBorder || "#2a2d33"}`,
-            }}
-          >
-            <p
-              className="text-xs sm:text-sm font-semibold mb-2"
-              style={{ color: t.text }}
-            >
-              Sources Metadata:
-            </p>
-            <ul className="text-xs sm:text-sm space-y-1 mb-3">
-              <li style={{ color: t.textSecondary || "#6b7280" }}>
-                <span className="font-medium">Primary Sources:</span> DLD Dubai REST App, RERA Project Tracker, Oqood Portal
-              </li>
-              <li style={{ color: t.textSecondary || "#6b7280" }}>
-                <span className="font-medium">Secondary Sources:</span> Emaar Annual Report 2025, DLD Open Data 2025
-              </li>
-            </ul>
-            <p
-              className="text-xs"
-              style={{ color: t.textSecondary || "#6b7280" }}
-            >
-              <span className="font-medium">Overall Last Verified:</span> 21 February 2026
-            </p>
-          </div>
-
-          {/* Disclaimer */}
-          <div
-            className="rounded-lg p-4"
-            style={{
-              background: "rgba(253, 224, 71, 0.1)",
-              borderColor: "#fde047",
-              border: "1px solid #fde047",
-            }}
-          >
-            <p
-              className="text-xs sm:text-sm"
-              style={{ color: t.text }}
-            >
-              <span className="font-semibold">Disclaimer:</span> Project status, prices, and performance data are verified against DLD and RERA records as of 21 February 2026. Capital appreciation calculated from launch price to current market value.
-            </p>
-          </div>
         </div>
 
         {/* Project Database Table H3 */}
@@ -536,45 +489,108 @@ const DeveloperProjectTable = ({ data }) => {
           )}
         </div>
 
-        {/* Legacy communities */}
+        {/* CTA */}
+        <div className="mt-6">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
+          >
+            Compare Emaar Communities
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary || "#6b7280" }}>
+            Get a side-by-side comparison showing how Emaar communities stack up on pricing, amenities, and ROI.
+          </p>
+        </div>
+
+        {/* Legacy communities - side by side */}
         <div
-          className="mt-4 rounded-xl p-4 sm:p-6"
+          className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 rounded-xl p-4 sm:p-6"
           style={{
-            border: `1px solid ${t.cardBorder || "#2a2d33"}`,
-            background: t.cardBg,
+            border: `1px solid rgba(182,138,53,0.25)`,
+            background: "rgba(182,138,53,0.06)",
           }}
         >
-          <h4
-            className="text-base sm:text-lg font-semibold mb-2"
-            style={{ color: t.text }}
-          >
-            Emirates Living Legacy Communities
-          </h4>
-          <p className="text-xs mb-3" style={{ color: t.textSecondary || "#6b7280" }}>
-            These master communities contain dozens of individual towers and villa clusters not individually listed in search results.
-          </p>
-          <ul className="list-disc list-inside space-y-1.5 mb-6">
-            {legacyCommunities.map((c, i) => (
-              <li key={i} className="text-sm" style={{ color: t.text }}>
-                <span className="font-medium">{c.name}</span>
-                <span style={{ color: t.textSecondary || "#6b7280" }}> — {c.detail}</span>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <h4
+              className="text-base sm:text-lg font-semibold mb-2"
+              style={{ color: t.text }}
+            >
+              Emirates Living Legacy Communities
+            </h4>
+            <p className="text-xs mb-3" style={{ color: t.textSecondary || "#6b7280" }}>
+              These master communities contain dozens of individual towers and villa clusters not individually listed in search results.
+            </p>
+            <ul className="list-disc list-inside space-y-1.5">
+              {legacyCommunities.map((c, i) => (
+                <li key={i} className="text-sm" style={{ color: t.text }}>
+                  <span className="font-medium">{c.name}</span>
+                  <span style={{ color: t.textSecondary || "#6b7280" }}> — {c.detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4
+              className="text-base sm:text-lg font-semibold mb-2"
+              style={{ color: t.text }}
+            >
+              Dubai Marina Legacy Projects
+            </h4>
+            <ul className="list-disc list-inside space-y-1.5">
+              {legacyMarina.map((name, i) => (
+                <li key={i} className="text-sm" style={{ color: t.textSecondary || "#6b7280" }}>
+                  {name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-          <h4
-            className="text-base sm:text-lg font-semibold mb-2"
+        {/* Sources Metadata */}
+        <div
+          className="mt-6 rounded-lg p-4"
+          style={{
+            background: t.cardBg,
+            border: `1px solid ${t.cardBorder || "#2a2d33"}`,
+          }}
+        >
+          <p
+            className="text-xs sm:text-sm font-semibold mb-2"
             style={{ color: t.text }}
           >
-            Dubai Marina Legacy Projects
-          </h4>
-          <ul className="list-disc list-inside space-y-1.5">
-            {legacyMarina.map((name, i) => (
-              <li key={i} className="text-sm" style={{ color: t.textSecondary || "#6b7280" }}>
-                {name}
-              </li>
-            ))}
+            Sources Metadata:
+          </p>
+          <ul className="text-xs sm:text-sm space-y-1 mb-3">
+            <li style={{ color: t.textSecondary || "#6b7280" }}>
+              <span className="font-medium">Primary Sources:</span> DLD Dubai REST App, RERA Project Tracker, Oqood Portal
+            </li>
+            <li style={{ color: t.textSecondary || "#6b7280" }}>
+              <span className="font-medium">Secondary Sources:</span> Emaar Annual Report 2025, DLD Open Data 2025
+            </li>
           </ul>
+          <p
+            className="text-xs"
+            style={{ color: t.textSecondary || "#6b7280" }}
+          >
+            <span className="font-medium">Overall Last Verified:</span> 21 February 2026
+          </p>
+        </div>
+
+        {/* Disclaimer */}
+        <div
+          className="mt-4 rounded-lg p-4"
+          style={{
+            background: t.cardBg,
+            border: `1px solid ${t.cardBorder || "#2a2d33"}`,
+          }}
+        >
+          <p
+            className="text-xs sm:text-sm"
+            style={{ color: t.text }}
+          >
+            <span className="font-semibold">Disclaimer:</span> Project status, prices, and performance data are verified against DLD and RERA records as of 21 February 2026. Capital appreciation calculated from launch price to current market value.
+          </p>
         </div>
       </div>
     </section>

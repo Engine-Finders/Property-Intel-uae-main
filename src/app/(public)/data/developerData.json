@@ -62,8 +62,12 @@
       ]
     },
     "projects_section": {
-      "title": "Emaar Upcoming Projects - New Launches & Off-Plan Opportunities",
+      "title": "Emaar Upcoming Projects - New Off-Plan Launches & Investment Opportunities",
       "subtitle": "Explore the latest Emaar projects across Dubai, from waterfront apartments to luxury villas. Download brochures directly.",
+      "expert_cta": {
+        "heading": "Get Expert Advice on Emaar Projects",
+        "subtext": "Speak with a licensed specialist to compare projects and find the right fit for your investment goals."
+      },
       "disclaimer": "Project details, prices, and handover dates are subject to change. Please verify with official developer sources before making any investment decision. Last updated: 21 February 2026.",
       "projects": [
         {

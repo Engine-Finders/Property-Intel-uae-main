@@ -8,11 +8,11 @@ const slideImages = ["/projects/villa-render-1.jpg", "/projects/villa-render-2.j
 
 
 const statusColors = {
-  gold: { bg: "rgba(182,138,53,0.15)", text: "#B68A35", border: "rgba(182,138,53,0.3)", dot: "#fbbf24" },
-  green: { bg: "rgba(16,185,129,0.15)", text: "#10b981", border: "rgba(16,185,129,0.3)", dot: "#34d399" },
-  blue: { bg: "rgba(59,130,246,0.15)", text: "#3b82f6", border: "rgba(59,130,246,0.3)", dot: "#60a5fa" },
-  red: { bg: "rgba(239,68,68,0.15)", text: "#ef4444", border: "rgba(239,68,68,0.3)", dot: "#f87171" },
-  gray: { bg: "rgba(107,114,128,0.15)", text: "#6b7280", border: "rgba(107,114,128,0.3)", dot: "#9ca3af" },
+  gold: { bg: "rgba(182,138,53,0.25)", text: "#996515", border: "rgba(182,138,53,0.5)", dot: "#d4a017" },
+  green: { bg: "rgba(16,185,129,0.25)", text: "#047857", border: "rgba(16,185,129,0.5)", dot: "#059669" },
+  blue: { bg: "rgba(59,130,246,0.25)", text: "#1d4ed8", border: "rgba(59,130,246,0.5)", dot: "#2563eb" },
+  red: { bg: "rgba(239,68,68,0.25)", text: "#b91c1c", border: "rgba(239,68,68,0.5)", dot: "#dc2626" },
+  gray: { bg: "rgba(107,114,128,0.3)", text: "#374151", border: "rgba(107,114,128,0.5)", dot: "#4b5563" },
 };
 
 const DeveloperProjectsSection = ({ data }) => {
@@ -95,11 +95,11 @@ const DeveloperProjectsSection = ({ data }) => {
 
   <div className="absolute top-3 left-3">
     <span
-      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold backdrop-blur-sm"
-      style={{ background: sc.bg, color: sc.text, border: `1px solid ${sc.border}` }}
+      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm shadow-sm"
+      style={{ background: sc.bg, color: sc.text, border: `1.5px solid ${sc.border}` }}
     >
       <span
-        className="w-1.5 h-1.5 rounded-full animate-pulse"
+        className="w-2 h-2 rounded-full animate-pulse"
         style={{ background: sc.dot }}
       />
       {project.status}
@@ -184,11 +184,45 @@ const DeveloperProjectsSection = ({ data }) => {
           </div>
 
           {/* CTA */}
-          <div className="mt-auto pt-4 flex gap-2">
-            <button className="flex-1 px-3 py-2.5 rounded-lg font-semibold text-xs text-white flex items-center justify-center gap-1.5 transition-colors" style={{ background: "#286CFF" }}>
+          <div className="mt-auto pt-4 space-y-2">
+            <button className="w-full px-3 py-2.5 rounded-lg font-semibold text-xs text-white flex items-center justify-center gap-1.5 transition-colors" style={{ background: "#286CFF" }}>
               <Download size={13} />
               Download Brochure
             </button>
+            <div className="flex flex-col items-center gap-1.5">
+              <div className="flex gap-1.5">
+                <a
+                  href="tel:+971600000000"
+                  className="inline-flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg transition-opacity hover:opacity-90"
+                  style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
+                  title="Call"
+                >
+                  <Image src="/telephone.webp" alt="Call" width={16} height={16} className="object-contain" />
+                  <span className="text-[10px] font-medium">Call</span>
+                </a>
+                <a
+                  href="mailto:expert@example.com"
+                  className="inline-flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg transition-opacity hover:opacity-90"
+                  style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
+                  title="Email"
+                >
+                  <Image src="/email.webp" alt="Email" width={16} height={16} className="object-contain" />
+                  <span className="text-[10px] font-medium">Email</span>
+                </a>
+                <a
+                  href="https://wa.me/971600000000"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg transition-opacity hover:opacity-90"
+                  style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
+                  title="WhatsApp"
+                >
+                  <Image src="/whatsapp.webp" alt="WhatsApp" width={16} height={16} className="object-contain" />
+                  <span className="text-[10px] font-medium">WhatsApp</span>
+                </a>
+              </div>
+              <p className="text-[10px]" style={{ color: t.textMuted }}>Call | Email | WhatsApp</p>
+            </div>
           </div>
         </div>
       </div>
@@ -243,8 +277,22 @@ const DeveloperProjectsSection = ({ data }) => {
           {visibleIndices.map((idx) => renderCard(projects[idx], idx))}
         </div>
 
+        {/* Expert CTA */}
+        {/* <a
+          href="tel:+971600000000"
+          className="mt-6 block rounded-xl p-5 transition-opacity hover:opacity-95"
+          style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
+        >
+          <h3 className="text-base sm:text-lg font-bold">
+            {section.expert_cta?.heading || "Get Expert Advice on Emaar Projects"}
+          </h3>
+          <p className="mt-1 text-xs sm:text-sm opacity-90">
+            {section.expert_cta?.subtext || "Speak with a licensed specialist to compare projects and find the right fit for your investment goals."}
+          </p>
+        </a> */}
+
         {/* Disclaimer */}
-        <p className="mt-6 text-[10px] leading-relaxed" style={{ color: t.textMuted }}>
+        <p className="mt-4 text-[10px] leading-relaxed" style={{ color: t.textMuted }}>
           {section.disclaimer}
         </p>
       </div>

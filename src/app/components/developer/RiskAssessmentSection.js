@@ -32,7 +32,7 @@ const RiskCard = ({ category, level, value, explanation, source, t }) => {
   return (
     <div
       ref={ref}
-      className="rounded-xl p-5 cursor-pointer transition-all flex flex-col min-h-[140px] self-start"
+      className="rounded-xl p-5 cursor-pointer transition-all flex flex-col min-h-[100px] w-full min-w-0"
       style={{
         background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc",
         border: `1px solid ${isExpanded ? barColor + "40" : t.cardBorder}`,
@@ -61,8 +61,8 @@ const RiskCard = ({ category, level, value, explanation, source, t }) => {
         />
       </div>
       {isExpanded && (
-        <div className="mt-3 pt-3" style={{ borderTop: `1px solid ${t.cardBorder}` }}>
-          <p className="text-[11px] leading-relaxed mb-2" style={{ color: t.textSecondary }}>{explanation}</p>
+        <div className="mt-3 pt-3 min-w-0" style={{ borderTop: `1px solid ${t.cardBorder}` }}>
+          <p className="text-[11px] leading-relaxed mb-2 break-words" style={{ color: t.textSecondary }}>{explanation}</p>
           {source && (
             <p className="text-[10px] italic" style={{ color: t.textMuted }}>Source: {source}</p>
           )}
@@ -207,45 +207,45 @@ const RiskAssessmentSection = ({ data }) => {
   return (
     <section style={{ background: t.bg }} className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div>
-            <span
-              className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
-              style={{ background: "#EF444420", color: "#EF4444" }}
+        {/* Left: Header + Risk Radar | Right: Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6 items-stretch">
+          <div className="lg:col-span-3 flex flex-col gap-6">
+            <div>
+              <span
+                className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
+                style={{ background: "#EF444420", color: "#EF4444" }}
+              >
+                {data.label}
+              </span>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: t.text }}>
+                {data.title}
+              </h2>
+              <p className="text-xs sm:text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+                {data.subtitle}
+              </p>
+            </div>
+            <div
+              className="rounded-xl p-5 lg:p-7 flex-1 min-w-0"
+              style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
             >
-              {data.label}
-            </span>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: t.text }}>
-              {data.title}
-            </h2>
-            <p className="text-xs sm:text-sm leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>
-              {data.subtitle}
-            </p>
+              <h3 className="text-sm font-bold mb-5 flex items-center gap-2" style={{ color: t.text }}>
+                <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#EF444420", color: "#EF4444" }}>📊</span>
+                Risk Radar
+              </h3>
+              <div className="flex flex-col gap-3">
+                {radar.map((r, i) => (
+                  <RiskCard key={i} {...r} t={t} />
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="relative rounded-2xl overflow-hidden h-24 lg:h-32">
+          <div className="lg:col-span-2 relative rounded-2xl overflow-hidden min-h-[320px] lg:min-h-0 lg:h-full">
             <Image
               src="/projects/villa-render-1.jpg"
               fill
               alt="Emaar Risk Assessment"
               className="object-cover"
             />
-          </div>
-        </div>
-
-        {/* Risk Radar - 3 column boxes */}
-        <div
-          className="rounded-xl p-5 lg:p-7 mb-6"
-          style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
-        >
-          <h3 className="text-sm font-bold mb-5 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#EF444420", color: "#EF4444" }}>📊</span>
-            Risk Radar
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 items-start">
-            {radar.map((r, i) => (
-              <RiskCard key={i} {...r} t={t} />
-            ))}
           </div>
         </div>
 

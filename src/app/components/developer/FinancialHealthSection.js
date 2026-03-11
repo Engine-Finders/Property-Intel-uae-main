@@ -48,6 +48,35 @@ const TabBar = ({ tabs, activeTab, onTabChange, t }) => (
   </div>
 );
 
+/* Section header: full-width bg image with text on top (same as GovernmentPartnershipsSection) */
+const SectionHeader = ({ heading, subheading, t }) => (
+  <div className="relative rounded-2xl overflow-hidden mb-10 h-80 lg:h-72">
+    <Image
+      src="/developer/finance-section.webp"
+      alt=""
+      fill
+      className="object-cover"
+      priority
+    />
+    <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.15) 100%)" }} />
+    <div className="absolute left-4 lg:left-8 top-8 opacity-30 hidden sm:block">
+      <svg viewBox="0 0 24 24" className="w-16 h-16 lg:w-20 lg:h-20" fill="none" stroke="#B68A35" strokeWidth="0.6">
+        <path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+    <div className="absolute right-4 lg:right-8 top-8 opacity-30 hidden sm:block">
+      <svg viewBox="0 0 24 24" className="w-16 h-16 lg:w-20 lg:h-20" fill="none" stroke="#B68A35" strokeWidth="0.6">
+        <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+    <div className="relative z-10 max-w-3xl mx-auto text-center pt-8 lg:pt-10 px-6">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: "#B68A35" }}>Financial Analysis</p>
+      <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight text-white">{heading}</h2>
+      <p className="text-sm lg:text-base leading-relaxed text-white/80">{subheading}</p>
+    </div>
+  </div>
+);
+
 const FinancialHealthSection = ({ data }) => {
   const { t } = useTheme();
   const [sourcesOpen, setSourcesOpen] = useState(false);
@@ -65,22 +94,8 @@ const FinancialHealthSection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* 1 — Section Introduction */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: ACCENT }}>Financial Analysis</p>
-            <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight" style={{ color: t.text }}>{data.heading}</h2>
-            <p className="mt-3 text-sm lg:text-base leading-relaxed" style={{ color: t.textSecondary }}>{data.intro}</p>
-          </div>
-          <div className="relative rounded-2xl overflow-hidden h-24 lg:h-32">
-            <Image
-              src="/projects/villa-render-1.jpg"
-              fill
-              alt="Emaar Financial Overview"
-              className="object-cover"
-            />
-          </div>
-        </div>
+        {/* Section header: full-width image with heading + intro on top */}
+        <SectionHeader heading={data.heading} subheading={data.intro} t={t} />
 
         {/* 2 — Company Status & Valuation */}
         <div className="mb-8">

@@ -106,8 +106,8 @@ const SectionHeader = ({ heading, subheading, t }) => (
   <div className="relative rounded-2xl overflow-hidden mb-12 h-80 lg:h-72">
     
 <Image
-  src="/projects/villa-render-1.jpg"
-  alt="Villa render"
+  src="/developer/governament-section.webp"
+  alt="Emaar Government Partnerships"
   fill
   className="absolute inset-0 w-full h-full object-cover"
 />
