@@ -329,6 +329,20 @@ const FinancialHealthSection = ({ data }) => {
           </div>
         </div>
 
+        {/* CTA */}
+        <div className="mb-6">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: ACCENT, color: "#fff" }}
+          >
+            Consult Emaar Intelligence Experts
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            Personalized advice on Emaar's top projects, payment plans, and investment strategy from our intelligence experts.
+          </p>
+        </div>
+
         {/* 7 — Sources & Verification Accordion */}
         <div className="mb-4">
           <button onClick={() => setSourcesOpen(!sourcesOpen)} className="w-full rounded-xl p-4 flex items-center justify-between" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>

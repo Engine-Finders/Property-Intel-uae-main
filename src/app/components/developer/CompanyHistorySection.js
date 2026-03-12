@@ -83,21 +83,40 @@ const LeaderCard = ({ name, title, bio, highlights, t }) => (
   >
     {/* Gold top accent */}
     <div style={{ height: 3, background: `linear-gradient(90deg, ${GOLD}, rgba(182,138,53,0.3))` }} />
-    <div className="p-5 sm:p-6 flex flex-col sm:flex-row gap-5">
-      {/* Text content */}
-      <div className="flex-1 min-w-0">
-        <h4
-          className="text-base sm:text-lg font-bold"
-          style={{ color: t.text, fontFamily: "Georgia, serif" }}
-        >
-          {name}
-        </h4>
-        <p
-          className="text-[10px] font-semibold uppercase tracking-[0.15em] mt-1 mb-3"
-          style={{ color: GOLD }}
-        >
-          {title}
-        </p>
+    <div className="p-5 sm:p-6 space-y-4">
+      {/* Heading + portrait row (mobile and desktop) */}
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex-1 min-w-0">
+          <h4
+            className="text-base sm:text-lg font-bold"
+            style={{ color: t.text, fontFamily: "Georgia, serif" }}
+          >
+            {name}
+          </h4>
+          <p
+            className="text-[10px] font-semibold uppercase tracking-[0.15em] mt-1"
+            style={{ color: GOLD }}
+          >
+            {title}
+          </p>
+        </div>
+        <div className="flex justify-end flex-shrink-0">
+          <div
+            className="w-24 h-32 sm:w-28 sm:h-36 rounded-lg flex-shrink-0 flex items-center justify-center"
+            style={{
+              background: t.isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.05)",
+              border: `2px solid ${GOLD}`,
+            }}
+          >
+            <svg viewBox="0 0 24 24" className="w-9 h-9" fill="none" stroke={GOLD} strokeWidth="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      {/* Bio + highlights full width */}
+      <div>
         <p className="text-sm leading-relaxed mb-4" style={{ color: t.textSecondary }}>
           {bio}
         </p>
@@ -109,21 +128,6 @@ const LeaderCard = ({ name, title, bio, highlights, t }) => (
             </li>
           ))}
         </ul>
-      </div>
-      {/* Portrait placeholder — order first on mobile */}
-      <div className="order-first sm:order-last flex justify-center sm:justify-end">
-        <div
-          className="w-24 h-32 sm:w-28 sm:h-36 rounded-lg flex-shrink-0 flex items-center justify-center"
-          style={{
-            background: t.isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.05)",
-            border: `2px solid ${GOLD}`,
-          }}
-        >
-          <svg viewBox="0 0 24 24" className="w-9 h-9" fill="none" stroke={GOLD} strokeWidth="1.5">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-        </div>
       </div>
     </div>
   </div>
@@ -244,8 +248,69 @@ const CompanyHistorySection = ({ data }) => {
   return (
     <section style={{ background: t.bg }} className="py-6 sm:py-10">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section header: text left, portrait+chips right — stacks on mobile */}
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
+        {/* Section header */}
+        {/* Mobile: headings + portrait in one row, paragraph below full-width */}
+        <div className="sm:hidden mb-8">
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-xs font-semibold uppercase tracking-[0.2em] mb-2"
+                style={{ color: GOLD }}
+              >
+                Corporate Profile
+              </p>
+              <h2
+                className="text-xl font-bold mb-2"
+                style={{ color: t.text }}
+              >
+                Emaar Leadership & Company History
+              </h2>
+              <h3 className="text-lg font-semibold" style={{ color: t.text }}>
+                Founding & History
+              </h3>
+            </div>
+            <div className="flex justify-end flex-shrink-0">
+              <div
+                className="w-24 h-32 rounded-lg flex items-center justify-center"
+                style={{
+                  background: t.isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.05)",
+                  border: `2px solid ${GOLD}`,
+                }}
+              >
+                <svg viewBox="0 0 24 24" className="w-9 h-9" fill="none" stroke={GOLD} strokeWidth="1.5">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <p className="text-sm leading-relaxed mb-4" style={{ color: t.textSecondary }}>
+            {d.founding_story}
+          </p>
+          <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1">
+            {[
+              { label: "Founded", value: d.founded },
+              { label: "Founder", value: d.founder },
+              { label: "Listed", value: d.listed },
+            ].map((chip, i) => (
+              <div
+                key={i}
+                className="rounded-full px-3 py-1 text-[10px] whitespace-nowrap"
+                style={{
+                  background: t.isDark ? "rgba(182,138,53,0.1)" : "rgba(182,138,53,0.08)",
+                  border: `1px solid rgba(182,138,53,0.25)`,
+                  color: t.text,
+                }}
+              >
+                <span style={{ color: GOLD }}>{chip.label}:</span>{" "}
+                <span className="font-semibold">{chip.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop / tablet: original layout, text left image right */}
+        <div className="hidden sm:flex sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
           <div className="flex-1">
             <p
               className="text-xs font-semibold uppercase tracking-[0.2em] mb-2"
@@ -257,7 +322,7 @@ const CompanyHistorySection = ({ data }) => {
               className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4"
               style={{ color: t.text }}
             >
-              Company History & Leadership
+              Emaar Leadership & Company History
             </h2>
             <h3 className="text-lg font-semibold mb-3" style={{ color: t.text }}>
               Founding & History
@@ -265,8 +330,7 @@ const CompanyHistorySection = ({ data }) => {
             <p className="text-sm leading-relaxed mb-4" style={{ color: t.textSecondary }}>
               {d.founding_story}
             </p>
-            {/* Info chips below paragraph */}
-            <div className="flex flex-nowrap gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible">
+            <div className="flex flex-wrap gap-2">
               {[
                 { label: "Founded", value: d.founded },
                 { label: "Founder", value: d.founder },
@@ -287,8 +351,7 @@ const CompanyHistorySection = ({ data }) => {
               ))}
             </div>
           </div>
-          {/* Founder portrait — passport size on right */}
-          <div className="flex justify-center sm:justify-end flex-shrink-0">
+          <div className="flex justify-end flex-shrink-0">
             <div
               className="w-28 h-36 sm:w-32 sm:h-40 rounded-lg flex items-center justify-center"
               style={{
@@ -369,18 +432,18 @@ const CompanyHistorySection = ({ data }) => {
               <div className="space-y-4">
                 {ownership.shareholders.map((s, i) => (
                   <div key={i}>
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2">
                       <div
                         className="w-3 h-3 rounded-sm"
                         style={{ background: i === 0 ? GOLD : (t.isDark ? "rgba(255,255,255,0.12)" : "#cbd5e1") }}
                       />
-                      <span className="text-sm font-medium" style={{ color: t.text }}>
-                        {s.name}
-                      </span>
+                      <p className="text-sm font-medium" style={{ color: t.text }}>
+                        {s.name}{" "}
+                        <span className="font-bold" style={{ color: i === 0 ? GOLD : t.text }}>
+                          {s.percentage}
+                        </span>
+                      </p>
                     </div>
-                    <p className="text-2xl font-bold ml-5" style={{ color: i === 0 ? GOLD : t.text }}>
-                      {s.percentage}
-                    </p>
                   </div>
                 ))}
                 <div
@@ -403,6 +466,20 @@ const CompanyHistorySection = ({ data }) => {
               {ownership.description}
             </p>
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mb-8">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: GOLD, color: "#fff" }}
+          >
+            Speak to an Emaar Investment Expert
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            Get personalized guidance on Emaar's financial strength, leadership, and long-term stability.
+          </p>
         </div>
 
         {/* ─── SOURCES ─── */}

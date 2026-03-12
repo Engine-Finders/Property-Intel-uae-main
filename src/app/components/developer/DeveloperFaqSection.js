@@ -70,6 +70,20 @@ const DeveloperFaqSection = ({ data }) => {
           ))}
         </div>
 
+        {/* CTA */}
+        <div className="mb-6">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: "#B68A35", color: "#fff" }}
+          >
+            Ask a Specific Emaar Question
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            Didn't find your answer? Speak with a specialist about your specific Emaar-related queries.
+          </p>
+        </div>
+
         {/* Disclaimer */}
         <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(245,158,11,0.08)" : "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
           <div className="flex gap-2 items-start">

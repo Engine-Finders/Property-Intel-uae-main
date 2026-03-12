@@ -247,10 +247,26 @@ const StrategicFrameworksBlock = ({ frameworks, awards, t }) => {
 /* ═══════════════════════════════════════════════════════════
    BLOCK 5 — Sources & Verification (Accordion)
    ═══════════════════════════════════════════════════════════ */
+const GOLD = "#B68A35";
+
 const SourcesVerificationAccordion = ({ sources, disclaimer, t }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="mb-8">
+      {/* CTA */}
+      <div className="mb-4">
+        <a
+          href="#"
+          className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+          style={{ background: GOLD, color: "#fff" }}
+        >
+          Verify Emaar's Government Ties
+        </a>
+        <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+          Independent insights on ICD stake, government contracts, and alignment with Dubai 2040.
+        </p>
+      </div>
+
       <div className="rounded-2xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
         <button
           onClick={() => setOpen(!open)}

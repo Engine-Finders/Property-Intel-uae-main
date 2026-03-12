@@ -12,46 +12,54 @@ const ChevronIcon = ({ open }) => (
   </svg>
 );
 
-const MobileCards = ({ headers, rows, t }) => (
-  <div className="space-y-3 lg:hidden">
-    {rows.map((row, i) => (
-      <div key={i} className="rounded-lg p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", border: `1px solid ${t.cardBorder}` }}>
-        <p className="text-sm font-semibold mb-2" style={{ color: t.text }}>{row[0]}</p>
-        <div className="grid grid-cols-2 gap-2">
-          {headers.slice(1).map((h, j) => (
-            <div key={j}>
-              <p className="text-[10px] uppercase tracking-wider" style={{ color: t.textMuted }}>{h}</p>
-              <p className="text-xs mt-0.5" style={{ color: row[j + 1] && (row[j + 1].startsWith("+") ? GREEN : t.textSecondary) }}>{row[j + 1]}</p>
-            </div>
-          ))}
+const MobileCards = ({ headers, rows, t }) => {
+  const headerColor = t.isDark ? "rgba(255,255,255,0.95)" : (t.text || "#1e293b");
+  const cellColor = t.isDark ? "rgba(255,255,255,0.88)" : (t.textSecondary || "#475569");
+  return (
+    <div className="space-y-3 lg:hidden">
+      {rows.map((row, i) => (
+        <div key={i} className="rounded-lg p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", border: `1px solid ${t.cardBorder}` }}>
+          <p className="text-sm font-bold mb-2" style={{ color: headerColor }}>{row[0]}</p>
+          <div className="grid grid-cols-2 gap-2">
+            {headers.slice(1).map((h, j) => (
+              <div key={j}>
+                <p className="text-[10px] font-bold uppercase tracking-wider" style={{ color: headerColor }}>{h}</p>
+                <p className="text-xs font-medium mt-0.5" style={{ color: row[j + 1] && row[j + 1].startsWith("+") ? GREEN : cellColor }}>{row[j + 1]}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
+};
 
-const DesktopTable = ({ headers, rows, t }) => (
-  <div className="hidden lg:block rounded-xl overflow-hidden" style={{ border: `1px solid ${t.cardBorder}` }}>
-    <table className="w-full">
-      <thead>
-        <tr style={{ background: t.cardBg }}>
-          {headers.map((h) => (
-            <th key={h} className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider" style={{ color: t.textMuted }}>{h}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, i) => (
-          <tr key={i} style={{ borderTop: `1px solid ${t.cardBorder}`, background: i % 2 !== 0 ? (t.isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)") : "transparent" }}>
-            {row.map((cell, j) => (
-              <td key={j} className={`px-4 py-3 text-sm ${j === 0 ? "font-medium" : ""}`} style={{ color: cell && cell.startsWith && cell.startsWith("+") ? GREEN : (j === 0 ? t.text : t.textSecondary) }}>{cell}</td>
+const DesktopTable = ({ headers, rows, t }) => {
+  const headerColor = t.isDark ? "rgba(255,255,255,0.95)" : (t.text || "#1e293b");
+  const cellColor = t.isDark ? "rgba(255,255,255,0.88)" : (t.textSecondary || "#475569");
+  return (
+    <div className="hidden lg:block rounded-xl overflow-hidden" style={{ border: `1px solid ${t.cardBorder}` }}>
+      <table className="w-full">
+        <thead>
+          <tr style={{ background: t.cardBg }}>
+            {headers.map((h) => (
+              <th key={h} className="text-left px-4 py-3 text-xs font-bold uppercase tracking-wider" style={{ color: headerColor }}>{h}</th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i} style={{ borderTop: `1px solid ${t.cardBorder}`, background: i % 2 !== 0 ? (t.isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)") : "transparent" }}>
+              {row.map((cell, j) => (
+                <td key={j} className={`px-4 py-3 text-sm ${j === 0 ? "font-bold" : ""}`} style={{ color: cell && cell.startsWith && cell.startsWith("+") ? GREEN : (j === 0 ? headerColor : cellColor) }}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const StatCard = ({ label, value, note, t, accent = ACCENT }) => (
   <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.02)", border: `1px solid ${t.cardBorder}` }}>
@@ -134,6 +142,20 @@ const BalanceSheetSection = ({ data }) => {
               <p className="text-xs italic mt-3" style={{ color: t.textMuted }}>Source: {esc.source}</p>
             </div>
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mb-6">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: ACCENT, color: "#fff" }}
+          >
+            Verify Emaar's Liquidity Position
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            Confirm Emaar's cash reserves, debt-to-equity ratio, and ability to fund projects through market cycles.
+          </p>
         </div>
 
         {/* Sources & Verification — accordion */}

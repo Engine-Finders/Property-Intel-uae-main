@@ -326,7 +326,7 @@ const RiskAssessmentSection = ({ data }) => {
 
         {/* Analyst Insight */}
         <div
-          className="rounded-xl p-5 lg:p-7 mb-6"
+          className="rounded-xl p-5 lg:p-7 mb-4"
           style={{
             background: "linear-gradient(135deg, rgba(182,138,53,0.1), rgba(182,138,53,0.03))",
             border: "1px solid rgba(182,138,53,0.25)",
@@ -339,6 +339,20 @@ const RiskAssessmentSection = ({ data }) => {
           <p className="text-xs leading-relaxed mb-3" style={{ color: t.textSecondary }}>{analyst.text}</p>
           <p className="text-xs leading-relaxed mb-3" style={{ color: t.textSecondary }}>{analyst.text_2}</p>
           <p className="text-[10px] italic" style={{ color: t.textMuted }}>Source: {analyst.source}</p>
+        </div>
+
+        {/* CTA */}
+        <div className="mb-6">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: "#B68A35", color: "#fff" }}
+          >
+            Get Your Emaar Risk Profile
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            Personalized risk assessment based on your investment horizon, budget, and shortlist.
+          </p>
         </div>
 
         {/* Disclaimer */}

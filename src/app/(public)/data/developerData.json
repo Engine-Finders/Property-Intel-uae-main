@@ -490,7 +490,7 @@
       ]
     },
     "delivery_track_record_section": {
-      "heading": "Emaar Delivery Track Record — Transparency You Can Trust",
+      "heading": "Emaar Project Delays Handover History and Completion Data",
       "subheading": "We have analysed official handover records and verified owner feedback to present an honest picture of Emaar's delivery performance.",
       "on_time_rate": "96%",
       "table_intro": "The following projects have been analysed using official DLD handover records, RERA progress reports, and developer announcements.",
@@ -524,7 +524,7 @@
       "disclaimer": "All delay data verified against DLD handover records, RERA progress reports, and Emaar official announcements. Projects with delay ≤2 months are classified as \"on-time\". Where official handover dates are not publicly disclosed, placeholders are used for backend population. Quality insights aggregated from verified owner reviews; sentiment percentages are estimates based on available public data. Last updated: 21 February 2026. Some legacy projects may lack granular public delay records due to pre-digital reporting standards."
     },
     "community_management_section": {
-      "heading": "Emaar Community Management — Long-Term Value Analysis",
+      "heading": "Emaar Community Management Review Service Charges and Resident Feedback",
       "subheading": "We analyse how Emaar manages communities post-handover, service charge trends, and asset condition to assess long-term value preservation.",
       "management_structure": {
         "entity": "Emaar Community Management (ECM)",
@@ -635,7 +635,7 @@
       "disclaimer": "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback. Last updated: 22 February 2026."
     },
     "government_partnerships_section": {
-      "heading": "Emaar Government & Strategic Partnerships — Stability Through Collaboration",
+      "heading": "Emaar Government and Strategic Partnerships Built on Stability",
       "subheading": "Emaar Properties maintains strategic alignments with UAE government entities through shareholding structures, infrastructure delivery, and participation in national master plans.",
       "joint_ventures": [
         {
@@ -754,7 +754,7 @@
       "disclaimer": "All information sourced from official government announcements and publicly filed reports. Last verified: 22 February 2026."
     },
     "financial_health_section": {
-      "heading": "Emaar Financial Health & Market Position — Investor Analysis",
+      "heading": "Emaar Financial Health Revenue Backlog and Market Share",
       "intro": "Analysis of Emaar Properties' financial strength, market share, and development pipeline based on audited financial reports and DLD data.",
       "company_status": {
         "publicly_traded": true,
@@ -833,7 +833,7 @@
     },
     "risk_assessment_section": {
       "label": "Risk Assessment",
-      "title": "Emaar Risk Assessment — What Buyers Should Know",
+      "title": "Emaar Risk Assessment What Buyers Should Know",
       "subtitle": "An honest evaluation of potential risks when buying from Emaar, and guidance on whether their projects suit your investment or lifestyle profile.",
       "risk_radar": [
         {
@@ -945,7 +945,7 @@
       "disclaimer": "Risk assessments are based on historical data, verified public records, and aggregated owner feedback; they do not guarantee future performance. Individual project risks may vary. Last updated: 22 February 2026."
     },
     "balance_sheet_section": {
-      "heading": "Emaar Financial Health — The Balance Sheet Check",
+      "heading": "Emaar Financial Strength and Balance Sheet Analysis",
       "intro": "Analysis of Emaar Properties' financial strength, cash position, and ability to fund future projects based on audited reports and credit rating agency data.",
       "financial_metrics": {
         "headers": ["Metric", "Value", "Period", "Trend", "Source"],
@@ -1012,7 +1012,7 @@
     },
     "resident_reviews_section": {
       "badge": "Section 11 · Verified Reviews",
-      "title": "What Residents Say About Emaar Communities — Verified Reviews",
+      "title": "Verified Resident Reviews of Emaar Communities",
       "subtitle": "Aggregated feedback from 3,000+ verified reviews across independent platforms.",
       "intro": "We've analysed thousands of resident reviews from independent platforms to give you an honest, unfiltered picture of life in Emaar developments across Dubai.",
       "overall_score": "3.7",

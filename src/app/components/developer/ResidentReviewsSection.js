@@ -266,6 +266,20 @@ const ResidentReviewsSection = ({ data }) => {
           </div>
         </div>
 
+        {/* CTA */}
+        <div className="mb-6">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: ACCENT, color: "#fff" }}
+          >
+            Read Unfiltered Emaar Reviews
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            The good, the bad, and the honest straight from residents.
+          </p>
+        </div>
+
         {/* Verification Note */}
         <div className="rounded-xl p-4 mb-4" style={{ background: t.isDark ? "rgba(59,130,246,0.08)" : "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.25)" }}>
           <div className="flex gap-2 items-start">

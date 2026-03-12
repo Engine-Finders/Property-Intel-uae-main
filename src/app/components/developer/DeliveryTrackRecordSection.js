@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import { ChevronDown } from "lucide-react";
 
 const GOLD = "#B68A35";
 const GREEN = "#10b981";
@@ -91,6 +92,7 @@ const DesktopTable = ({ headers, rows, t }) => (
 const DeliveryTrackRecordSection = ({ data }) => {
   const { t } = useTheme();
   const d = data;
+  const [analystExpanded, setAnalystExpanded] = useState(false);
 
   const tableHeaders = ["Project Name", "Original Handover", "Actual Handover", "Delay (Months)", "Reason", "Source"];
   const tableRows = d.handover_table.map((r) => [r.project, r.original, r.actual, r.delay, r.reason, r.source]);
@@ -208,8 +210,36 @@ const DeliveryTrackRecordSection = ({ data }) => {
               <p className="text-[10px] uppercase tracking-wider" style={{ color: t.textMuted }}>PropertyIntel Research Team</p>
             </div>
           </div>
-          <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{d.analyst_insight}</p>
+          <p
+            className={`text-sm leading-relaxed ${!analystExpanded ? "line-clamp-4 lg:line-clamp-none" : ""}`}
+            style={{ color: t.textSecondary }}
+          >
+            {d.analyst_insight}
+          </p>
+          {!analystExpanded && (
+            <button
+              onClick={() => setAnalystExpanded(true)}
+              className="lg:hidden mt-2 flex items-center gap-1 text-sm font-semibold"
+              style={{ color: GOLD }}
+            >
+              Expand <ChevronDown className="w-4 h-4" />
+            </button>
+          )}
           <p className="text-[10px] mt-4 italic" style={{ color: t.textMuted }}>{d.analyst_source}</p>
+        </div>
+
+        {/* CTA */}
+        <div className="mb-8">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: GOLD, color: "#fff" }}
+          >
+            Verify Emaar's Delivery Track Record
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            Speak with a specialist to understand delivery timelines and choose a project with confidence.
+          </p>
         </div>
 
         {/* Disclaimer */}

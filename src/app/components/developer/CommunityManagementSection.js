@@ -158,6 +158,8 @@ const OverviewBlock = ({ data, t }) => {
 /* ═══════════════════════════════════════════════════════════
    BLOCK 2 — Service Charges + Asset Condition
    ═══════════════════════════════════════════════════════════ */
+const GOLD = "#B68A35";
+
 const ServiceChargeBlock = ({ serviceCharges, serviceChargeIntro, t }) => {
   const [activeTab, setActiveTab] = useState(0);
   const tabNames = serviceCharges.map((sc) => sc.title);
@@ -165,7 +167,7 @@ const ServiceChargeBlock = ({ serviceCharges, serviceChargeIntro, t }) => {
 
   return (
     <div className="rounded-2xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-      <div className="p-5 pb-3">
+      <div className="p-6 pb-3">
         <div className="flex items-center gap-2 mb-2">
           {/* Placeholder icon */}
           <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#B68A35" strokeWidth="1.5">
@@ -177,7 +179,7 @@ const ServiceChargeBlock = ({ serviceCharges, serviceChargeIntro, t }) => {
       </div>
       <TabBar tabs={tabNames} activeTab={activeTab} onTabChange={setActiveTab} t={t} />
       <div
-        className="p-5 max-h-[300px] overflow-y-auto space-y-3"
+        className="p-6 max-h-[360px] overflow-y-auto space-y-3"
         style={{
           scrollbarWidth: "thin",
           scrollbarColor: `${t.cardBorder} transparent`,
@@ -204,7 +206,7 @@ const ServiceChargeBlock = ({ serviceCharges, serviceChargeIntro, t }) => {
           </div>
         ))}
       </div>
-      <div className="px-5 pb-4">
+      <div className="px-6 pb-5">
         <p className="text-xs italic" style={{ color: t.textMuted }}>Trend: {active.trend_summary}</p>
       </div>
     </div>
@@ -388,6 +390,20 @@ const CommunityManagementSection = ({ data }) => {
           analystSource={data.analyst_source}
           t={t}
         />
+
+        {/* CTA */}
+        <div className="mb-8">
+          <a
+            href="#"
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: GOLD, color: "#fff" }}
+          >
+            Speak to an Emaar Post-Handover Specialist
+          </a>
+          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+            Get independent advice on service charges, maintenance, and what to expect after handover in Emaar communities.
+          </p>
+        </div>
 
         {/* Disclaimer */}
         <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#f8fafc", border: `1px solid ${t.cardBorder}` }}>
