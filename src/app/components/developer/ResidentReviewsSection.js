@@ -125,9 +125,6 @@ const ResidentReviewsSection = ({ data }) => {
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div>
-            <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4" style={{ background: ACCENT + "20", color: ACCENT }}>
-              {data.badge}
-            </span>
             <h2 className="text-2xl lg:text-3xl font-bold mb-1" style={{ color: t.text }}>{data.title}</h2>
             <p className="text-sm mb-4" style={{ color: t.textMuted }}>{data.subtitle}</p>
             <p className="text-xs leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
@@ -267,18 +264,22 @@ const ResidentReviewsSection = ({ data }) => {
         </div>
 
         {/* CTA */}
-        <div className="mb-6">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: ACCENT, color: "#fff" }}
-          >
-            Read Unfiltered Emaar Reviews
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-            The good, the bad, and the honest straight from residents.
-          </p>
-        </div>
+        {data.cta && (
+          <div className="mb-6">
+            <a
+              href={data.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: ACCENT, color: "#fff" }}
+            >
+              {data.cta.button_text}
+            </a>
+            {data.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+                {data.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Verification Note */}
         <div className="rounded-xl p-4 mb-4" style={{ background: t.isDark ? "rgba(59,130,246,0.08)" : "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.25)" }}>

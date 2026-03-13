@@ -70,7 +70,6 @@ const SectionHeader = ({ heading, subheading, t }) => (
       </svg>
     </div>
     <div className="relative z-10 max-w-3xl mx-auto text-center pt-8 lg:pt-10 px-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: "#B68A35" }}>Financial Analysis</p>
       <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight text-white">{heading}</h2>
       <p className="text-sm lg:text-base leading-relaxed text-white/80">{subheading}</p>
     </div>
@@ -330,18 +329,22 @@ const FinancialHealthSection = ({ data }) => {
         </div>
 
         {/* CTA */}
-        <div className="mb-6">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: ACCENT, color: "#fff" }}
-          >
-            Consult Emaar Intelligence Experts
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-            Personalized advice on Emaar's top projects, payment plans, and investment strategy from our intelligence experts.
-          </p>
-        </div>
+        {data.cta && (
+          <div className="mb-6">
+            <a
+              href={data.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: ACCENT, color: "#fff" }}
+            >
+              {data.cta.button_text}
+            </a>
+            {data.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+                {data.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* 7 — Sources & Verification Accordion */}
         <div className="mb-4">

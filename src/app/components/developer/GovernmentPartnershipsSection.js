@@ -125,7 +125,6 @@ const SectionHeader = ({ heading, subheading, t }) => (
       </svg>
     </div>
     <div className="relative z-10 max-w-3xl mx-auto text-center pt-8 lg:pt-10 px-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: "#B68A35" }}>Government Relations</p>
       <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight text-white">{heading}</h2>
       <p className="text-sm lg:text-base leading-relaxed text-white/80">{subheading}</p>
     </div>
@@ -249,23 +248,27 @@ const StrategicFrameworksBlock = ({ frameworks, awards, t }) => {
    ═══════════════════════════════════════════════════════════ */
 const GOLD = "#B68A35";
 
-const SourcesVerificationAccordion = ({ sources, disclaimer, t }) => {
+const SourcesVerificationAccordion = ({ sources, disclaimer, cta, t }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="mb-8">
       {/* CTA */}
-      <div className="mb-4">
-        <a
-          href="#"
-          className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-          style={{ background: GOLD, color: "#fff" }}
-        >
-          Verify Emaar's Government Ties
-        </a>
-        <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-          Independent insights on ICD stake, government contracts, and alignment with Dubai 2040.
-        </p>
-      </div>
+      {cta && (
+        <div className="mb-4">
+          <a
+            href={cta.href || "#"}
+            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+            style={{ background: GOLD, color: "#fff" }}
+          >
+            {cta.button_text}
+          </a>
+          {cta.subtext && (
+            <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+              {cta.subtext}
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="rounded-2xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
         <button
@@ -320,7 +323,7 @@ const GovernmentPartnershipsSection = ({ data }) => {
         <JointVenturesBlock items={data.joint_ventures} t={t} />
         <GovernmentContractsBlock items={data.government_contracts} t={t} />
         <StrategicFrameworksBlock frameworks={data.strategic_frameworks} awards={data.awards} t={t} />
-        <SourcesVerificationAccordion sources={data.verification_sources} disclaimer={data.disclaimer} t={t} />
+        <SourcesVerificationAccordion sources={data.verification_sources} disclaimer={data.disclaimer} cta={data.cta} t={t} />
       </div>
     </section>
   );

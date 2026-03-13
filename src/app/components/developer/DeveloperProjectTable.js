@@ -242,14 +242,16 @@ const DeveloperProjectTable = ({ data }) => {
             className="text-2xl sm:text-3xl font-bold mb-3"
             style={{ color: t.text }}
           >
-            Complete Emaar Project Database
+            {data.title}
           </h2>
-          <p
-            className="text-sm sm:text-base leading-relaxed max-w-3xl"
-            style={{ color: t.textSecondary || "#6b7280" }}
-          >
-            Browse all current and past projects by Emaar Properties, from iconic towers to master communities. Data verified against DLD and RERA records.
-          </p>
+          {data.subtitle && (
+            <p
+              className="text-sm sm:text-base leading-relaxed max-w-3xl"
+              style={{ color: t.textSecondary || "#6b7280" }}
+            >
+              {data.subtitle}
+            </p>
+          )}
         </div>
 
         {/* Project Database Table H3 */}
@@ -490,18 +492,22 @@ const DeveloperProjectTable = ({ data }) => {
         </div>
 
         {/* CTA */}
-        <div className="mt-6">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
-          >
-            Compare Emaar Communities
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary || "#6b7280" }}>
-            Get a side-by-side comparison showing how Emaar communities stack up on pricing, amenities, and ROI.
-          </p>
-        </div>
+        {data.cta && (
+          <div className="mt-6">
+            <a
+              href={data.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
+            >
+              {data.cta.button_text}
+            </a>
+            {data.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary || "#6b7280" }}>
+                {data.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Legacy communities - side by side */}
         <div

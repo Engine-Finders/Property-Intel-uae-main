@@ -108,9 +108,6 @@ const OverviewBlock = ({ data, t }) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
       {/* Left — Text */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: "#B68A35" }}>
-          Post-Handover Analysis
-        </p>
         <h2 className="text-2xl lg:text-3xl font-bold mb-4 leading-tight" style={{ color: t.text }}>
           {data.heading}
         </h2>
@@ -392,18 +389,22 @@ const CommunityManagementSection = ({ data }) => {
         />
 
         {/* CTA */}
-        <div className="mb-8">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: GOLD, color: "#fff" }}
-          >
-            Speak to an Emaar Post-Handover Specialist
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-            Get independent advice on service charges, maintenance, and what to expect after handover in Emaar communities.
-          </p>
-        </div>
+        {data.cta && (
+          <div className="mb-8">
+            <a
+              href={data.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: GOLD, color: "#fff" }}
+            >
+              {data.cta.button_text}
+            </a>
+            {data.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+                {data.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Disclaimer */}
         <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#f8fafc", border: `1px solid ${t.cardBorder}` }}>

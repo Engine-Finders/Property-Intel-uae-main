@@ -93,7 +93,6 @@ const BalanceSheetSection = ({ data }) => {
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: ACCENT }}>Balance Sheet</p>
             <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight" style={{ color: t.text }}>{data.heading}</h2>
             <p className="mt-3 text-sm lg:text-base leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
           </div>
@@ -145,18 +144,22 @@ const BalanceSheetSection = ({ data }) => {
         </div>
 
         {/* CTA */}
-        <div className="mb-6">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: ACCENT, color: "#fff" }}
-          >
-            Verify Emaar's Liquidity Position
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-            Confirm Emaar's cash reserves, debt-to-equity ratio, and ability to fund projects through market cycles.
-          </p>
-        </div>
+        {data.cta && (
+          <div className="mb-6">
+            <a
+              href={data.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: ACCENT, color: "#fff" }}
+            >
+              {data.cta.button_text}
+            </a>
+            {data.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+                {data.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Sources & Verification — accordion */}
         <div className="mb-4 rounded-xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>

@@ -108,7 +108,6 @@ const DeliveryTrackRecordSection = ({ data }) => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="mb-12">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: GOLD }}>Delivery & Satisfaction</p>
           <h2 className="text-2xl lg:text-4xl font-bold mb-3" style={{ color: t.text }}>{d.heading}</h2>
           <p className="text-sm lg:text-base leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>{d.subheading}</p>
         </div>
@@ -229,18 +228,22 @@ const DeliveryTrackRecordSection = ({ data }) => {
         </div>
 
         {/* CTA */}
-        <div className="mb-8">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: GOLD, color: "#fff" }}
-          >
-            Verify Emaar's Delivery Track Record
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-            Speak with a specialist to understand delivery timelines and choose a project with confidence.
-          </p>
-        </div>
+        {d.cta && (
+          <div className="mb-8">
+            <a
+              href={d.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: GOLD, color: "#fff" }}
+            >
+              {d.cta.button_text}
+            </a>
+            {d.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+                {d.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Disclaimer */}
         <div className="rounded-2xl p-5" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#f8fafc", border: `1px solid ${t.cardBorder}` }}>

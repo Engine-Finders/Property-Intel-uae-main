@@ -277,19 +277,21 @@ const DeveloperProjectsSection = ({ data }) => {
           {visibleIndices.map((idx) => renderCard(projects[idx], idx))}
         </div>
 
-        {/* Expert CTA */}
-        {/* <a
-          href="tel:+971600000000"
-          className="mt-6 block rounded-xl p-5 transition-opacity hover:opacity-95"
-          style={{ background: "rgb(182, 139, 53)", color: "#fff" }}
-        >
-          <h3 className="text-base sm:text-lg font-bold">
-            {section.expert_cta?.heading || "Get Expert Advice on Emaar Projects"}
-          </h3>
-          <p className="mt-1 text-xs sm:text-sm opacity-90">
-            {section.expert_cta?.subtext || "Speak with a licensed specialist to compare projects and find the right fit for your investment goals."}
-          </p>
-        </a> */}
+        {/* CTA */}
+        {(section.cta || section.expert_cta) && (
+          <div className="mt-6 mb-6">
+            <a
+              href={section.cta?.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: "#B68A35", color: "#fff" }}
+            >
+              {section.cta?.button_text || section.expert_cta?.heading || "Get Expert Advice on Emaar Projects"}
+            </a>
+            <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+              {section.cta?.subtext || section.expert_cta?.subtext || "Speak with a licensed specialist to compare projects and find the right fit for your investment goals."}
+            </p>
+          </div>
+        )}
 
         {/* Disclaimer */}
         <p className="mt-4 text-[10px] leading-relaxed" style={{ color: t.textMuted }}>

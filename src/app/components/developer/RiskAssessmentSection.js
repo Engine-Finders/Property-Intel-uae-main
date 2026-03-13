@@ -211,12 +211,6 @@ const RiskAssessmentSection = ({ data }) => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6 items-stretch">
           <div className="lg:col-span-3 flex flex-col gap-6">
             <div>
-              <span
-                className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
-                style={{ background: "#EF444420", color: "#EF4444" }}
-              >
-                {data.label}
-              </span>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2" style={{ color: t.text }}>
                 {data.title}
               </h2>
@@ -342,18 +336,22 @@ const RiskAssessmentSection = ({ data }) => {
         </div>
 
         {/* CTA */}
-        <div className="mb-6">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: "#B68A35", color: "#fff" }}
-          >
-            Get Your Emaar Risk Profile
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-            Personalized risk assessment based on your investment horizon, budget, and shortlist.
-          </p>
-        </div>
+        {data.cta && (
+          <div className="mb-6">
+            <a
+              href={data.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: "#B68A35", color: "#fff" }}
+            >
+              {data.cta.button_text}
+            </a>
+            {data.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+                {data.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Disclaimer */}
         <div className="rounded-lg p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#f8fafc", border: `1px solid ${t.cardBorder}` }}>

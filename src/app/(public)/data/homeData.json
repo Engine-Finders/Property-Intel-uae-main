@@ -1,0 +1,152 @@
+{
+  "hero_section": {
+    "trust_badges": [
+      "RERA-Registered Platform",
+      "Data Sourced from DXBinteract.com"
+    ],
+    "last_update": "March 2026",
+    "h1": "Verified Dubai Real Estate Data & Off Plan Projects in UAE",
+    "h2": "Data-driven insights to help you buy property in Dubai with confidence. Access exclusive Golden Visa properties and verified listings backed by real market data.",
+    "social_proof": "Trusted by 5,000+ Monthly Investors | 200+ Verified Developers | Updated Weekly",
+    "search_placeholder": "Search for new projects in Dubai... (e.g., \"Dubai Creek Harbour,\" \"Emaar,\" \"JVC\")",
+    "golden_visa_toggle": "Show Golden Visa Eligible Only (AED 2M+)",
+    "secondary_cta": "Get a Free Investment Consultation",
+    "project_options": [
+      "All Projects",
+      "Off-Plan",
+      "Ready to Move",
+      "Under Construction"
+    ],
+    "developer_options": [
+      "All Developers",
+      "Emaar",
+      "DAMAC",
+      "Sobha",
+      "Nakheel",
+      "Meraas",
+      "Dubai Properties"
+    ],
+    "location_options": [
+      "All Locations",
+      "Dubai Marina",
+      "Downtown Dubai",
+      "Business Bay",
+      "JVC (Jumeirah Village Circle)",
+      "Dubai Hills Estate",
+      "Dubai Creek Harbour",
+      "Palm Jumeirah",
+      "Al Yalayis",
+      "MBR City",
+      "Dubailand",
+      "Dubai South",
+      "Jumeirah Lake Towers"
+    ]
+  },
+  "market_pulse_section": {
+    "last_updated": "March 13, 2026",
+    "h2": "Dubai Property Market Analytics & Deep Dive",
+    "h3": "We go beyond surface-level stats to analyze raw DLD data — giving you a 360-degree view of the Dubai real estate market, where it stands today and where it's heading. The clarity you need to buy property in Dubai with confidence.",
+    "metrics": [
+      {
+        "label": "Total Active Off-Plan Projects",
+        "value": "242+",
+        "sub_value": "Vetted Developments",
+        "trend": "↑ 5.2% MoM",
+        "trend_direction": "up",
+        "context": "Verified off plan projects in UAE"
+      },
+      {
+        "label": "Avg. Price/Sq. Ft (City-Wide)",
+        "value": "AED 1,924",
+        "sub_value": "",
+        "trend": "↑ 1.8% YoY",
+        "trend_direction": "up",
+        "context": "Dubai property valuation baseline"
+      },
+      {
+        "label": "Total Jan 2026 Sales Volume",
+        "value": "15,756",
+        "sub_value": "Transactions",
+        "trend": "↑ 12% YoY",
+        "trend_direction": "up",
+        "context": "Market liquidity indicator"
+      },
+      {
+        "label": "Total Jan 2026 Sales Value",
+        "value": "AED 55.18",
+        "sub_value": "Billion",
+        "trend": "↑ 43.9% YoY",
+        "trend_direction": "up",
+        "context": "Total capital deployed"
+      },
+      {
+        "label": "Market Growth (Value YoY)",
+        "value": "+43.9%",
+        "sub_value": "",
+        "trend": "↔ Stable",
+        "trend_direction": "stable",
+        "context": "Dubai property market health"
+      },
+      {
+        "label": "Avg. Gross Rental Yield",
+        "value": "6.9%",
+        "sub_value": "",
+        "trend": "↑ 0.4% YoY",
+        "trend_direction": "up",
+        "context": "ROI for property in Dubai for sale"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "money-flow",
+        "title": "Where is the Money Flowing?",
+        "sub_title": "Off-Plan vs. Ready",
+        "chart_type": "donut",
+        "chart_data": [
+          { "label": "Off-Plan", "value": 71, "color": "#B68A35" },
+          { "label": "Ready", "value": 29, "color": "#3B4A6B" }
+        ],
+        "content": "January 2026 confirmed a market powered by future growth. The off-plan segment continues to dominate, accounting for over 71% of all sales activity. This isn't speculation; it's confidence in Dubai new construction pipelines. However, the ready market is showing remarkable strength in value, with a 49% year-on-year increase, signaling sustained appetite for immediate income-generating assets for investors looking to buy property off plan in dubai or ready units.",
+        "source": "Dubai Land Department (DLD) / DXBinteract.com"
+      },
+      {
+        "id": "price-sqft",
+        "title": "Price Per Square Foot",
+        "sub_title": "The Micro-Climate Report",
+        "chart_type": "table",
+        "intro": "A city-wide average of AED 1,924/sq.ft hides massive variation. Here is the real picture across key investor communities. The actual numbers behind property in dubai for sale:",
+        "table_data": [
+          { "area": "Downtown Dubai", "price": "AED 2,980/sq.ft", "insight": "Global benchmark; pricing power & prestige." },
+          { "area": "Dubai Marina", "price": "AED 2,061/sq.ft", "insight": "Established lifestyle; strong rental liquidity." },
+          { "area": "Dubai Hills Estate", "price": "AED 2,442 - 2,876/sq.ft", "insight": "Balanced luxury; family demand drives stability." },
+          { "area": "JVC", "price": "AED 1,448/sq.ft", "insight": "Yield-driven mid-market; high transaction volume." },
+          { "area": "Dubai South", "price": "AED 1,250 - 1,450/sq.ft", "insight": "Future growth corridor; infrastructure-led appreciation." },
+          { "area": "Arjan", "price": "AED 1,551/sq.ft", "insight": "Emerging hub; affordability with upside." }
+        ],
+        "source": "Engel & Völkers / Property Monitor Data"
+      },
+      {
+        "id": "top-areas",
+        "title": "Top Performing Areas",
+        "sub_title": "By Transaction Value",
+        "chart_type": "bar",
+        "intro": "JVC leads in transaction volume and ROI. Meanwhile, value is concentrating in established and emerging prime nodes. This data is critical for identifying the best real estate investment in dubai:",
+        "bar_data": [
+          { "area": "Al Rowaiyah 1", "value": 6.31, "display": "AED 6.31 Billion" },
+          { "area": "Meydan 2 (Me'aisem 2)", "value": 6.04, "display": "AED 6.04 Billion" },
+          { "area": "Al Yalayis 1", "value": 4.6, "display": "AED 4.6 Billion" },
+          { "area": "Business Bay", "value": 3.51, "display": "AED 3.51 Billion" },
+          { "area": "Palm Jebel Ali", "value": 1.7, "display": "> AED 1.7 Billion" }
+        ],
+        "insight": "Al Yalayis's emergence as a top-3 value generator signals a major shift of capital toward the southern logistics corridor.",
+        "source": "Dubai Land Department (DLD) / DXBinteract.com"
+      }
+    ],
+    "footer": {
+      "attribution": "Data aggregated from the Dubai Land Department (DLD), DXBinteract.com, and verified partner portals. We believe in radical transparency—all numbers are current as of {{date}} and can be independently verified. This dubai property market analysis is updated monthly to ensure accuracy for all investors.",
+      "primary_cta": "Download Full January 2026 Market Report (PDF)",
+      "secondary_link_text": "View DXBinteract.com Historical Data",
+      "secondary_link_url": "https://dxbinteract.com"
+    }
+  }
+}

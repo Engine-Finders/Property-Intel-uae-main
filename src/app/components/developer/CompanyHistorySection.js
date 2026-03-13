@@ -253,17 +253,11 @@ const CompanyHistorySection = ({ data }) => {
         <div className="sm:hidden mb-8">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="flex-1 min-w-0">
-              <p
-                className="text-xs font-semibold uppercase tracking-[0.2em] mb-2"
-                style={{ color: GOLD }}
-              >
-                Corporate Profile
-              </p>
               <h2
                 className="text-xl font-bold mb-2"
                 style={{ color: t.text }}
               >
-                Emaar Leadership & Company History
+                {d.title}
               </h2>
               <h3 className="text-lg font-semibold" style={{ color: t.text }}>
                 Founding & History
@@ -312,17 +306,11 @@ const CompanyHistorySection = ({ data }) => {
         {/* Desktop / tablet: original layout, text left image right */}
         <div className="hidden sm:flex sm:flex-row sm:items-start sm:justify-between gap-6 mb-8">
           <div className="flex-1">
-            <p
-              className="text-xs font-semibold uppercase tracking-[0.2em] mb-2"
-              style={{ color: GOLD }}
-            >
-              Corporate Profile
-            </p>
             <h2
               className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4"
               style={{ color: t.text }}
             >
-              Emaar Leadership & Company History
+              {d.title}
             </h2>
             <h3 className="text-lg font-semibold mb-3" style={{ color: t.text }}>
               Founding & History
@@ -469,18 +457,22 @@ const CompanyHistorySection = ({ data }) => {
         </div>
 
         {/* CTA */}
-        <div className="mb-8">
-          <a
-            href="#"
-            className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
-            style={{ background: GOLD, color: "#fff" }}
-          >
-            Speak to an Emaar Investment Expert
-          </a>
-          <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
-            Get personalized guidance on Emaar's financial strength, leadership, and long-term stability.
-          </p>
-        </div>
+        {d.cta && (
+          <div className="mb-8">
+            <a
+              href={d.cta.href || "#"}
+              className="inline-block rounded-xl px-6 py-3 font-semibold text-sm sm:text-base transition-opacity hover:opacity-95"
+              style={{ background: GOLD, color: "#fff" }}
+            >
+              {d.cta.button_text}
+            </a>
+            {d.cta.subtext && (
+              <p className="mt-2 text-xs sm:text-sm" style={{ color: t.textSecondary }}>
+                {d.cta.subtext}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* ─── SOURCES ─── */}
         <SourcesAccordion sources={sources} t={t} />
