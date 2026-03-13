@@ -1,7 +1,7 @@
 // src/app/api/admin/login/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST(req) {
   try {
     const { username, password } = await req.json();
     const validUsername = process.env.ADMIN_USERNAME;
