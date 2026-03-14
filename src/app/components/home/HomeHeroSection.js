@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { CheckSquare, Square, ArrowRight } from "lucide-react";
-// import dubaiVideo from "@/assets/dubai-lifestyle.mp4";
+
 
 const GOLD = "#B68A35";
 
@@ -70,7 +70,7 @@ const HomeHeroSection = ({ data }) => {
       <div className="block lg:hidden absolute inset-0 z-0">
         <div className="absolute inset-0 bottom-auto" style={{ height: "55%" }}>
           <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-            <source src="dubai-lifestyle.mp4" type="video/mp4" />
+            <source src="home.webm" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/50" />
           <div className="absolute inset-x-0 bottom-0 h-32" style={{ background: `linear-gradient(to top, ${t.bg}, transparent)` }} />
@@ -191,7 +191,7 @@ const HomeHeroSection = ({ data }) => {
           {/* Right: Video */}
           <div className="hidden lg:block w-[55%] relative -ml-[5%]">
             <video autoPlay muted loop playsInline className="w-full h-full object-cover" style={{ minHeight: "100%" }}>
-              <source src="dubai-lifestyle.mp4" type="video/mp4" />
+              <source src="home.webm" type="video/mp4" />
             </video>
             <div className="absolute inset-y-0 left-0 w-40" style={{ background: `linear-gradient(to right, ${t.bg}, transparent)` }} />
             <div className="absolute inset-x-0 bottom-0 h-24" style={{ background: `linear-gradient(to top, ${t.bg}, transparent)` }} />
