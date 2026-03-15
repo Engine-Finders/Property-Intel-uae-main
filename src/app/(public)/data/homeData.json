@@ -148,5 +148,187 @@
       "secondary_link_text": "View DXBinteract.com Historical Data",
       "secondary_link_url": "https://dxbinteract.com"
     }
+  },
+  "curated_section": {
+    "last_updated": "March 2026",
+    "h2": "Curated: Best Real Estate Investment in Dubai",
+    "h3": "We analyze every launch to bring you the projects with the strongest fundamentals. These are not just listings; they are data-backed off plan projects in uae and property in dubai for sale verified against DLD records.",
+    "trust_badges": ["RERA Verified Selections", "Updated: March 2026"],
+    "filters": [
+      "BY ROI POTENTIAL",
+      "BY DEVELOPER",
+      "PAYMENT PLAN PROPERTY DUBAI",
+      "BY HANDOVER DATE",
+      "HIGH CAPITAL GROWTH",
+      "Golden Visa Properties (AED 2M+)"
+    ],
+    "projects": [
+      {
+        "id": "sobha-hartland-ii",
+        "title": "The S at Sobha Hartland II",
+        "developer": "Sobha Realty",
+        "image_alt": "Luxury off plan property in dubai at Sobha Hartland II featuring panoramic views.",
+        "price": "AED 6.8M",
+        "yield": "Est. 5-7%",
+        "handover": "Q4 2028",
+        "plan": "60/40",
+        "tags": ["Golden Visa Properties", "Ultra-Luxury", "MBR City"],
+        "description": "A 71-storey architectural landmark offering just two expansive residences per floor. This is a play for scarcity and long-term capital appreciation for those looking to buy property in Dubai in a prime district.",
+        "cta": "View Investment Analysis",
+        "rera_verified": true
+      },
+      {
+        "id": "five-jvc",
+        "title": "FIVE at Jumeirah Village Circle",
+        "developer": "Five Holdings",
+        "image_alt": "Modern off plan apartments for sale in dubai at FIVE JVC with high rental yield potential.",
+        "price": "AED 1.7M",
+        "yield": "Est. 8-9%",
+        "handover": "Q2 2027",
+        "plan": "50/50",
+        "tags": ["High ROI", "Branded Residence", "Prime JVC"],
+        "description": "A landmark 60-storey tower in the heart of JVC, offering luxury amenities. This targets the high-volume search for off plan apartments for sale in dubai with strong rental yield potential.",
+        "cta": "View Investment Analysis",
+        "rera_verified": true
+      },
+      {
+        "id": "bay-villas-dubai-islands",
+        "title": "Bay Villas Phase 2, Dubai Islands",
+        "developer": "Nakheel",
+        "image_alt": "Waterfront new projects in dubai at Dubai Islands by Nakheel.",
+        "price": "AED 4.7M",
+        "yield": "Est. 6-8%",
+        "handover": "Q1 2028",
+        "plan": "70/30",
+        "tags": ["Waterfront", "Capital Growth", "Dubai Property"],
+        "description": "Early-phase launch on Dubai's new coastal destination. Proximity to DXB and future growth corridors makes this a prime candidate for those seeking best real estate investment in dubai with a long-term view.",
+        "cta": "View Investment Analysis",
+        "rera_verified": true
+      }
+    ],
+    "footer": {
+      "note": "The projects featured above represent a balanced portfolio of opportunities based on current market data from March 2026. We manually review and update these selections monthly to ensure accuracy. All projects are RERA approved and escrow verified.",
+      "secondary_link_text": "View All Off Plan Projects in UAE"
+    }
+  },
+  "trust_index_section": {
+    "last_updated": "March 2026",
+    "h2": "Verified Property Developers in UAE: The Trust Index",
+    "h3": "We independently audit over 200 UAE developers. With thousands of units scheduled for delivery, empirical data separates the reliable institutions from the speculative risks. We grade the builders so you can maximize returns on dubai real estate projects.",
+    "trust_statement": "Our platform only lists RERA approved projects from the top 10 real estate developers in Dubai. Our proprietary grading system is based on on-time delivery history, financial transparency, and post-handover service charge competitiveness.",
+    "leaderboard_title": "The Leaderboard",
+    "leaderboard_subtitle": "Dynamic matrix ranking developers based on hard operational data.",
+    "columns": [
+      "Developer Institution",
+      "PropertyIntel Grade",
+      "Project Delivery Reliability",
+      "Avg. Service Charges (AED/sq.ft)",
+      "Signature 2026 Projects",
+      "Market Positioning"
+    ],
+    "developers": [
+      {
+        "name": "Emaar Properties",
+        "grade": "Gold",
+        "delivery": "Tier 1 (85%+ Consistently)",
+        "service_charges": "15 – 22",
+        "projects": "The Oasis, Emaar South",
+        "positioning": "Apex market leader; unmatched multi-cycle consistency.",
+        "link": "/developer"
+      },
+      {
+        "name": "Sobha Realty",
+        "grade": "Gold",
+        "delivery": "Tier 1 (85%+ Consistently)",
+        "service_charges": "14 – 18",
+        "projects": "Sobha Hartland II, Seahaven",
+        "positioning": "Vertically integrated; exceptional craftsmanship.",
+        "link": null
+      },
+      {
+        "name": "Aldar Properties",
+        "grade": "Gold",
+        "delivery": "Tier 1 (90%+ Consistently)",
+        "service_charges": "15 – 20",
+        "projects": "Saadiyat Lagoons, Yas Riva",
+        "positioning": "Sovereign-backed stability; flawless delivery record.",
+        "link": null
+      },
+      {
+        "name": "Nakheel",
+        "grade": "Gold",
+        "delivery": "Tier 1 (75%+ Consistently)",
+        "service_charges": "12 – 25",
+        "projects": "Palm Jebel Ali, Dubai Islands",
+        "positioning": "Government-backed; master developer of iconic waterfronts.",
+        "link": null
+      },
+      {
+        "name": "Meraas",
+        "grade": "Silver",
+        "delivery": "Tier 1 (80%+ Consistently)",
+        "service_charges": "18 – 26",
+        "projects": "Nad Al Sheba Gardens, Ghaf Woods",
+        "positioning": "Lifestyle-oriented districts; strong placemaking vision.",
+        "link": null
+      },
+      {
+        "name": "DAMAC Properties",
+        "grade": "Silver",
+        "delivery": "Tier 2 (70%+ Market Avg)",
+        "service_charges": "18 – 25+",
+        "projects": "DAMAC Hills 2, Cavalli Tower",
+        "positioning": "Branded luxury focus; large-scale developer.",
+        "link": null
+      },
+      {
+        "name": "Azizi Developments",
+        "grade": "Bronze",
+        "delivery": "Tier 2 (70%+ Market Avg)",
+        "service_charges": "10 – 16",
+        "projects": "Azizi Venice, Riviera",
+        "positioning": "Volume-driven; wide geographic footprint.",
+        "link": null
+      },
+      {
+        "name": "Danube Properties",
+        "grade": "Silver",
+        "delivery": "Tier 2 (85%+ Early/On-Time)",
+        "service_charges": "10 – 16",
+        "projects": "Dreamz, Elitz",
+        "positioning": "Mid-market leader; multiple 2025 projects delivered early.",
+        "link": null
+      },
+      {
+        "name": "Binghatti",
+        "grade": "Bronze",
+        "delivery": "Tier 2 (70%+ Market Avg)",
+        "service_charges": "10 – 15",
+        "projects": "Binghatti Galaxy, Orchid",
+        "positioning": "High-volume residential; distinctive architecture.",
+        "link": null
+      }
+    ],
+    "insights": [
+      {
+        "headline": "The Delivery Reality",
+        "sub_headline": "Navigating Off Plan Projects in Dubai Risks",
+        "content": "Of the approximately 45,000 units scheduled for 2026 completion, independent market intelligence suggests only an estimated 48% will be delivered on time. This means nearly 22,800 units face potential delays. Our Trust Index isolates institutions capable of executing at scale from those hindered by supply chain bottlenecks.",
+        "source": "PropertyIntel Analysis based on DLD Transaction Data"
+      },
+      {
+        "headline": "Service Charge Transparency",
+        "sub_headline": "Impact on Net Yield",
+        "content": "Annual service charges directly impact your net yield. RERA approved projects from Gold-rated developers consistently demonstrate competitive, transparent fee structures verified through DLD's Mollak system. Bronze-rated developers may offer lower entry prices but often carry higher execution risk.",
+        "source": "DLD Mollak System Data"
+      }
+    ],
+    "footer": {
+      "attribution": "Developer grades are based on analysis of DLD transaction data, escrow account compliance, and verified project completion records. Updated quarterly. We verify all entities against the Dubai Land Department registry to ensure they are RERA approved projects.",
+      "primary_cta": "View Full Developer Audit: Emaar Properties",
+      "primary_cta_link": "/developer",
+      "secondary_cta": "View All 200+ Developer Pages",
+      "disclaimer": "Grades are proprietary to PropertyIntel.ae and based on publicly available data as of {{date}}."
+    }
   }
 }

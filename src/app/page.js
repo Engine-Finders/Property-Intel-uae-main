@@ -1,18 +1,41 @@
 import Link from "next/link";
 
+const GOLD = "#B68A35";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <Link href="/project" className="text-blue-500 hover:underline">
-        <h1 className="text-2xl font-bold">1) View Project Page</h1>
-      </Link>
-      <Link href="/developer" className="text-sm text-blue-500 hover:underline">
-        <h2 className="m-22 text-2xl font-bold">2) View Developer Page</h2>
-      </Link>
-      <Link href="/admin" className="text-sm text-blue-500 hover:underline">
-        <h2 className="m-22 text-2xl font-bold">3) Admin Panel</h2>
-      </Link>
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 font-sans" style={{ background: "#232528" }}>
+      <h1 className="mb-4 text-xl font-bold text-white">Quick Links</h1>
+      <div className="flex flex-col gap-3">
+        <Link
+          href="/home"
+          className="inline-flex items-center justify-center rounded-lg border-2 px-6 py-3 text-base font-bold transition-all text-[#B68A35] hover:bg-[#B68A35] hover:border-[#B68A35] hover:text-black"
+          style={{ borderColor: GOLD }}
+        >
+          1) Home Page
+        </Link>
+        <Link
+          href="/project"
+          className="inline-flex items-center justify-center rounded-lg border-2 px-6 py-3 text-base font-bold transition-all text-[#B68A35] hover:bg-[#B68A35] hover:border-[#B68A35] hover:text-black"
+          style={{ borderColor: GOLD }}
+        >
+          2) View Project Page
+        </Link>
+        <Link
+          href="/developer"
+          className="inline-flex items-center justify-center rounded-lg border-2 px-6 py-3 text-base font-bold transition-all text-[#B68A35] hover:bg-[#B68A35] hover:border-[#B68A35] hover:text-black"
+          style={{ borderColor: GOLD }}
+        >
+          3) View Developer Page
+        </Link>
+        <Link
+          href="/admin"
+          className="inline-flex items-center justify-center rounded-lg border-2 px-6 py-3 text-base font-bold transition-all text-[#B68A35] hover:bg-[#B68A35] hover:border-[#B68A35] hover:text-black"
+          style={{ borderColor: GOLD }}
+        >
+          4) Admin Panel
+        </Link>
+      </div>
     </div>
   );
 }

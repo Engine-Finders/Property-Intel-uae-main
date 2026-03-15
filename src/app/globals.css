@@ -24,3 +24,20 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Theme scrollbar - simple blackish */
+.scrollbar-theme {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2d33 transparent;
+}
+.scrollbar-theme::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+.scrollbar-theme::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-theme::-webkit-scrollbar-thumb {
+  background: #2a2d33;
+  border-radius: 7px;
+}
