@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 
-const API_BASE = "http://134.255.232.233:8080/api";
+const API_BASE = "https://134.255.232.233:8080/api";
 const LOGIN_API = "/api/admin/login";
 
 export default function AdminPanel() {
