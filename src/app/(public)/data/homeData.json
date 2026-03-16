@@ -330,5 +330,18 @@
       "secondary_cta": "View All 200+ Developer Pages",
       "disclaimer": "Grades are proprietary to PropertyIntel.ae and based on publicly available data as of {{date}}."
     }
+  },
+  "growth_map_section": {
+    "last_updated": "March 2026",
+    "h2": "Map the Future: Dubai Upcoming Projects & Growth Corridors",
+    "h3": "Urban economics dictates that property valuations follow state-sponsored infrastructure. Here are the best areas to invest in dubai for the next decade of wealth.",
+    "trust_statement": "Our growth vectors are based on verified government infrastructure announcements from the RTA and Dubai Economy & Tourism. We track new developments in dubai against actual construction milestones, not just marketing hype.",
+    "map_placeholder_text": "Interactive Growth Map Coming Soon",
+    "footer": {
+      "attribution": "Growth corridors identified based on Dubai 2040 Urban Master Plan and RTA Transport Master Plan 2030. We update this map quarterly to reflect dubai property market forecast changes and infrastructure completion status.",
+      "primary_cta": "Explore Area Investment Guides",
+      "secondary_cta": "View Dubai Property Market Data",
+      "disclaimer": "Infrastructure timelines are subject to government approval. Past performance does not guarantee future results. Data verified as of {{date}}."
+    }
   }
 }
