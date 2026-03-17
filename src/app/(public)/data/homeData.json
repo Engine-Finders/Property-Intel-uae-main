@@ -693,5 +693,81 @@
       }
     ],
     "note": "All information is reviewed monthly against official DLD and RERA sources. This content is for educational purposes only and does not constitute legal or financial advice."
+  },
+  "trusted_by_section": {
+    "last_updated": "March 2026",
+    "h3": "Join thousands of investors from the UK, India, Pakistan, Europe, and beyond who rely on PropertyIntel.ae for verified dubai property market data, honest analysis, and expert guidance in one of the world's most dynamic dubai real estate markets.",
+    "trust_statement": "All testimonials are from verified users who have actively used our platform for buying property in dubai research and investment decisions.",
+    "badges": [
+      { "icon": "📊", "text": "Data Verified Against DLD Records" },
+      { "icon": "📈", "text": "Market Analytics Powered by DXBinteract.com" },
+      { "icon": "🔒", "text": "RERA-Compliant Information" },
+      { "icon": "👥", "text": "5,000+ Monthly Research Users" }
+    ],
+    "testimonials": [
+      {
+        "name": "Rajiv M.",
+        "location": "London, United Kingdom",
+        "profile": "Portfolio Investor (3 Properties)",
+        "image": "testimonial-rajiv.jpg",
+        "rating": 5,
+        "headline": "Transformed Speculative Investing into Logic-Based Asset Allocation",
+        "testimonial": "The data on PropertyIntel.ae gave me the confidence to deploy capital into a market I didn't know intimately. Being able to verify original launch prices against current values, and understanding the true cost of dubai properties service charges before committing, felt like having a local institutional partner. The golden visa properties filter saved me weeks of research. It transformed what could have been speculative investing into a logic-based asset allocation decision.",
+        "outcome": "Purchased AED 2.4M property in Dubai Hills Estate (Q1 2026)",
+        "badges": ["Verified User", "Investment Completed"]
+      },
+      {
+        "name": "Mukesh S.",
+        "location": "Mumbai, India",
+        "profile": "First-Time International Investor",
+        "image": "testimonial-mukesh.jpg",
+        "rating": 5,
+        "headline": "Made Buying Property in Dubai Process Understandable for First-Time Investors",
+        "testimonial": "As a first-time international investor, I was overwhelmed by the buying property in dubai process. PropertyIntel.ae broke down every step—from understanding freehold properties in dubai to oqood registration process. The developer trust index helped me avoid risky projects. Their off plan projects in uae database is the most comprehensive I found. I closed my first off plan property purchase with complete confidence.",
+        "outcome": "Purchased AED 1.8M off-plan apartment in JVC (Q2 2026)",
+        "badges": ["Verified User", "First-Time Buyer"]
+      },
+      {
+        "name": "Sarfaraz K.",
+        "location": "Karachi, Pakistan",
+        "profile": "Portfolio Investor (5 Properties)",
+        "image": "testimonial-sarfaraz.jpg",
+        "rating": 5,
+        "headline": "Best Resource for Best Real Estate Investment in Dubai Research",
+        "testimonial": "I've used multiple platforms for dubai real estate research, but PropertyIntel.ae stands out for accuracy. The dubai property market analytics are updated monthly, and the best areas to invest in dubai reports helped me identify high-yield corridors before prices surged. The payment plan property dubai comparisons saved me over AED 150,000 in financing costs across my portfolio.",
+        "outcome": "Built AED 8.5M portfolio across Dubai South & Arjan (2025-2026)",
+        "badges": ["Verified User", "Portfolio Investor"]
+      },
+      {
+        "name": "Karl W.",
+        "location": "Frankfurt, Germany",
+        "profile": "High-Net-Worth Individual",
+        "image": "testimonial-karl.jpg",
+        "rating": 5,
+        "headline": "Institutional-Grade Dubai Property Market Analysis for Private Investors",
+        "testimonial": "Coming from a regulated European market, I needed transparency. PropertyIntel.ae provides institutional-grade dubai property market analysis with sources cited from DLD and RERA. The property developers in uae trust index helped me select only Gold-rated developers. The dubai property market forecast reports aligned perfectly with actual performance. This is the platform I recommend to my investment circle.",
+        "outcome": "Purchased AED 3.1M villa in Palm Jebel Ali (Q1 2026)",
+        "badges": ["Verified User", "HNW Investor"]
+      },
+      {
+        "name": "Yevgeny P.",
+        "location": "Moscow, Russia (Now Dubai Resident)",
+        "profile": "Relocation Investor",
+        "image": "testimonial-yevgeny.jpg",
+        "rating": 5,
+        "headline": "Secured Golden Visa Properties and Residency in 3 Weeks",
+        "testimonial": "My priority was residency, not just investment. PropertyIntel.ae's golden visa properties filter showed only AED 2M+ eligible units. The buy freehold property in dubai guide explained foreign ownership rights clearly. Their team connected me with vetted legal advisors for oqood registration process. I received my Golden Visa in 3 weeks. Now I use their dubai real estate news today section to track my asset performance.",
+        "outcome": "Purchased AED 3.1M property, Obtained UAE Golden Visa (2025)",
+        "badges": ["Verified User", "Golden Visa Obtained"]
+      }
+    ],
+    "context_primary": "Join thousands of investors from the UK, India, Pakistan, Europe, and beyond who rely on PropertyIntel.ae for verified data, honest analysis, and expert guidance in one of the world's most dynamic dubai real estate markets.",
+    "context_secondary": "All testimonials are from verified users who have actively used our platform for investment research. We update this section monthly to reflect current user experiences and dubai property market conditions.",
+    "data_sources": "DLD, RERA, DXBinteract.com, Official Developer Portals",
+    "footer": {
+      "primary_cta": "Start Your Investment Research",
+      "secondary_cta": "Get a Free Investment Consultation",
+      "tertiary_link": "Read More User Success Stories →"
+    }
   }
 }

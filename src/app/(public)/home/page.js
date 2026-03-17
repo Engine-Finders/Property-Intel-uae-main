@@ -7,6 +7,7 @@ import GrowthMapSection from "@/app/components/home/GrowthMapHome";
 import TrustAuthHome from "@/app/components/home/TrustAuthHome";
 import IntelligenceSection from "@/app/components/home/IntelligenceHome";
 import HomeFaqSection from "@/app/components/home/HomeFaq";
+import TrustedBySection from "@/app/components/home/TrustedByAuthorityHome";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <GrowthMapSection data={homeData.growth_map_section} />
       <TrustAuthHome data={homeData.trust_authority_section} />
       <IntelligenceSection data={homeData.intelligence_section} />
+      <TrustedBySection data={homeData.trusted_by_section} />
       <HomeFaqSection data={homeData.faq_section} />
     </>
   );
