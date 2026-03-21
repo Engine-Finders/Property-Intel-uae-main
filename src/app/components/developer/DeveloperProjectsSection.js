@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { MapPin, Calendar, Clock, Home, ChevronLeft, ChevronRight, ExternalLink, Download, FileText } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const slideImages = ["/projects/villa-render-1.jpg", "/projects/villa-render-2.jpg", "/projects/villa-render-3.jpg"];
 
@@ -75,6 +76,8 @@ const DeveloperProjectsSection = ({ data }) => {
   const renderCard = (project, idx) => {
     const sc = statusColors[project.status_color] || statusColors.gold;
     const isExpanded = expandedSources === idx;
+    const nameHref = project.link || project.sources?.[0]?.url || "#";
+    const isExternal = /^https?:\/\//i.test(nameHref);
 
     return (
       <div
@@ -113,7 +116,17 @@ const DeveloperProjectsSection = ({ data }) => {
             <MapPin size={12} color="#B68A35" />
             <span className="text-[10px] font-medium" style={{ color: t.textMuted }}>{project.location}</span>
           </div>
-          <h3 className="text-base font-bold" style={{ color: t.text }}>{project.name}</h3>
+          <h3 className="text-base font-bold">
+            <Link
+              href={nameHref}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="hover:underline"
+              style={{ color: t.text }}
+            >
+              {project.name}
+            </Link>
+          </h3>
 
           {/* Data Grid */}
           <div className="mt-3 grid grid-cols-2 gap-2">

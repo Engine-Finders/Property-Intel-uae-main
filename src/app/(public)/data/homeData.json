@@ -769,5 +769,41 @@
       "secondary_cta": "Get a Free Investment Consultation",
       "tertiary_link": "Read More User Success Stories →"
     }
+  },
+  "top_developers_section": {
+    "title": "Top Real Estate Developers in Dubai",
+    "subtitle": "Explore verified profiles of Dubai's leading property developers — from master-planned communities to luxury high-rises.",
+    "developers": [
+      { "name": "Binghatti", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Binghatti" },
+      { "name": "Emaar", "link": "/developer", "icon_src": "Emaar-logo.jpg", "icon_alt": "Emaar" },
+      { "name": "Meraas", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Meraas" },
+      { "name": "Dubai Properties", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Dubai Properties" },
+      { "name": "DAMAC", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "DAMAC" },
+      { "name": "Nakheel", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Nakheel" },
+      { "name": "Dubai Holding", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Dubai Holding" },
+      { "name": "Select Group", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Select Group" },
+      { "name": "Azizi", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Azizi" },
+      { "name": "Sobha", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Sobha" },
+      { "name": "Majid Al Futtaim", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Majid Al Futtaim" },
+      { "name": "MAG", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "MAG" },
+      { "name": "Danube", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Danube" },
+      { "name": "Mazaya", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Mazaya" },
+      { "name": "Vincitore Development", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Vincitore Development" },
+      { "name": "Jumeirah Golf Estates", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Jumeirah Golf Estates" },
+      { "name": "Nshama", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Nshama" },
+      { "name": "Enshaa", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Enshaa" },
+      { "name": "Fakhruddin Properties", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Fakhruddin Properties" },
+      { "name": "National Bonds", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "National Bonds" },
+      { "name": "Al Madar", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Al Madar" },
+      { "name": "Asam Investments", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Asam Investments" },
+      { "name": "Star Giga", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Star Giga" },
+      { "name": "Eta Star", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Eta Star" },
+      { "name": "Falak Properties", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Falak Properties" },
+      { "name": "Victory Heights Development", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Victory Heights Development" },
+      { "name": "Ws Atkins & Partners", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Ws Atkins & Partners" },
+      { "name": "Arabtec", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Arabtec" },
+      { "name": "Diamond Developers", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Diamond Developers" },
+      { "name": "Triplanet Range", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Triplanet Range" }
+    ]
   }
 }

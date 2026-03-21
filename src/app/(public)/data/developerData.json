@@ -80,6 +80,7 @@
         {
           "id": "emaar-creek-bay",
           "name": "Creek Bay",
+          "link": "https://properties.emaar.com/en/properties/creek-bay-at-dubai-creek-harbour/",
           "location": "Dubai Creek Harbour",
           "status": "Just Launched",
           "status_color": "gold",
@@ -99,6 +100,7 @@
         {
           "id": "emaar-mareva-the-oasis",
           "name": "Mareva at The Oasis",
+          "link": "https://properties.emaar.com/en/properties/mareva-at-the-oasis/",
           "location": "The Oasis, Dubailand",
           "status": "Selling Fast",
           "status_color": "green",
@@ -118,6 +120,7 @@
         {
           "id": "emaar-mirage-the-oasis",
           "name": "Mirage at The Oasis",
+          "link": "https://properties.emaar.com/en/properties/mirage-at-the-oasis/",
           "location": "The Oasis, Dubailand",
           "status": "Selling Fast",
           "status_color": "green",
@@ -136,7 +139,8 @@
         },
         {
           "id": "emaar-lavita-the-oasis",
-          "name": "Lavita at The Oasis",
+          "name": "Serro at The Heights",
+          "link": "/project",
           "location": "The Oasis, Dubailand",
           "status": "Limited Units",
           "status_color": "red",
@@ -156,6 +160,7 @@
         {
           "id": "emaar-elora-the-valley",
           "name": "Elora at The Valley",
+          "link": "https://properties.emaar.com/en/properties/elora/",
           "location": "The Valley, Dubailand",
           "status": "Selling Fast",
           "status_color": "green",
@@ -175,6 +180,7 @@
         {
           "id": "emaar-lyvia-by-palace",
           "name": "Lyvia by Palace",
+          "link": "https://properties.emaar.com/en/properties/palace-residences/",
           "location": "Dubai Creek Harbour",
           "status": "Just Launched",
           "status_color": "gold",
@@ -194,6 +200,7 @@
         {
           "id": "emaar-creek-haven",
           "name": "Creek Haven",
+          "link": "https://properties.emaar.com/en/properties/creek-haven-at-dubai-creek-harbour/",
           "location": "Dubai Creek Harbour",
           "status": "Launching Soon",
           "status_color": "blue",
@@ -213,6 +220,7 @@
         {
           "id": "emaar-address-residences-the-bay",
           "name": "Address Residences The Bay",
+          "link": "https://properties.emaar.com/en/properties/address-residences-the-bay/",
           "location": "Dubai Harbour",
           "status": "Sold Out",
           "status_color": "gray",
@@ -232,6 +240,7 @@
         {
           "id": "emaar-park-gate-2",
           "name": "Park Gate 2",
+          "link": "https://properties.emaar.com/en/properties/park-gate-2-at-dubai-hills-estate/",
           "location": "Dubai Hills Estate",
           "status": "Selling Fast",
           "status_color": "green",
@@ -251,6 +260,7 @@
         {
           "id": "emaar-grand-polo-club-resort",
           "name": "Grand Polo Club & Resort",
+          "link": "https://properties.emaar.com/en/our-communities/grand-polo-club-and-resort/",
           "location": "Dubai Investment Park (DIP)",
           "status": "Launching Soon",
           "status_color": "blue",
@@ -270,6 +280,7 @@
         {
           "id": "emaar-dubai-creek-tower",
           "name": "Dubai Creek Tower",
+          "link": "https://gulfnews.com/business/property/emaar-to-launch-tender-for-dubai-creek-tower-within-three-months-1.500408173",
           "location": "Dubai Creek Harbour",
           "status": "Launching Soon",
           "status_color": "blue",
@@ -289,6 +300,7 @@
         {
           "id": "emaar-fior-2",
           "name": "Fior 2",
+          "link": "https://www.propertyfinder.ae/en/new-projects/emaar-properties/fior-2",
           "location": "Rashid Yachts & Marina, Mina Rashid",
           "status": "Just Launched",
           "status_color": "gold",
