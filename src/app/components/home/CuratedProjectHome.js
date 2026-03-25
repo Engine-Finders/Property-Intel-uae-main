@@ -48,7 +48,7 @@ const CuratedProjectsSection = ({ data }) => {
         </div>
 
         {/* ── Filter Pills ── */}
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="mt-8 flex flex-nowrap gap-2 overflow-x-auto pb-2 scrollbar-theme md:flex-wrap md:overflow-visible">
           {data.filters.map((filter, i) => {
             const isGolden = filter.toLowerCase().includes("golden visa");
             const isActive = activeFilter === i;
@@ -56,7 +56,7 @@ const CuratedProjectsSection = ({ data }) => {
               <button
                 key={i}
                 onClick={() => setActiveFilter(i)}
-                className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200"
+                className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap"
                 style={{
                   background: isActive
                     ? isGolden ? "rgba(182,138,53,0.15)" : t.cardBg

@@ -16,6 +16,10 @@ const TypeAheadDropdown = ({
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
+  const placeholderClass = t.isDark
+    ? "placeholder:text-[#6b7a99]"
+    : "placeholder:text-[#64748b]";
+
   useEffect(() => {
     const handler = (e) => {
       if (ref.current && !ref.current.contains(e.target)) setOpen(false);
@@ -42,7 +46,7 @@ const TypeAheadDropdown = ({
         }}
         onFocus={() => setOpen(true)}
         placeholder={placeholder}
-        className="w-full px-4 py-3 text-sm bg-transparent outline-none"
+        className={`w-full px-4 py-3 text-sm bg-transparent outline-none ${placeholderClass}`}
         style={{ color: t.text }}
       />
       {open && filtered.length > 0 && (
@@ -116,7 +120,7 @@ const HomeHeroSection = ({ data }) => {
       <div className="relative z-10">
         <div className="flex flex-col lg:flex-row">
           {/* Left Content */}
-          <div className="w-full lg:w-[50%] flex flex-col justify-center px-5 py-12 lg:px-16 lg:py-20 relative z-10">
+          <div className="w-full lg:w-[50%] flex flex-col justify-center px-5 py-12 lg:px-16 lg:py-20 relative z-[30]">
             {/* Trust Badges */}
             <div className="flex flex-wrap items-center gap-2 mb-6">
               {hero.trust_badges.map((badge, i) => (
@@ -137,11 +141,11 @@ const HomeHeroSection = ({ data }) => {
               <span
                 className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium"
                 style={{
-                  color: t.textMuted,
+                color: "#afafaf",
                   background: t.isDark
                     ? "rgba(255,255,255,0.06)"
                     : "rgba(0,0,0,0.04)",
-                  border: `1px solid ${t.cardBorder}`,
+                border: "1px solid rgba(182,138,53,0.55)",
                 }}
               >
                 Last Data Update: {hero.last_update}
@@ -179,29 +183,31 @@ const HomeHeroSection = ({ data }) => {
             </p>
 
             {/* Search Bar */}
-            <div
-              className="mt-6 rounded-xl overflow-visible relative"
-              style={{
-                background: t.cardBg,
-                border: `1px solid ${t.cardBorder}`,
-              }}
-            >
-              <div className="flex flex-col sm:flex-row">
+            <div className="mt-6">
+              {/* Mobile/desktop: each field is its own box (no shared combined input background). */}
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-4">
                 {/* Project Name - simple search */}
                 <div
-                  className="flex items-center px-4 py-3 sm:w-[160px]"
-                  style={{ borderRight: `1px solid ${t.cardBorder}` }}
+                  className="rounded-xl"
+                  style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
                 >
                   <input
                     type="text"
                     placeholder="Project Name"
-                    className="w-full text-sm bg-transparent outline-none"
+                    className={`w-full px-4 py-3 text-sm bg-transparent outline-none ${
+                      t.isDark
+                        ? "placeholder:text-[#6b7a99]"
+                        : "placeholder:text-[#64748b]"
+                    }`}
                     style={{ color: t.text }}
                   />
                 </div>
 
                 {/* Developer - type-ahead */}
-                <div style={{ borderRight: `1px solid ${t.cardBorder}` }}>
+                <div
+                  className="rounded-xl"
+                  style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
+                >
                   <TypeAheadDropdown
                     placeholder="Developer"
                     options={hero.developer_options}
@@ -213,7 +219,10 @@ const HomeHeroSection = ({ data }) => {
                 </div>
 
                 {/* Location - type-ahead */}
-                <div className="flex-1 flex items-center">
+                <div
+                  className="flex-1 rounded-xl"
+                  style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
+                >
                   <TypeAheadDropdown
                     placeholder="Location (e.g., Al Yalayis)"
                     options={hero.location_options}
@@ -222,13 +231,16 @@ const HomeHeroSection = ({ data }) => {
                     onSelect={(val) => setLocationQuery(val)}
                     t={t}
                   />
-                  <button
-                    className="px-5 py-3 text-sm font-semibold text-white flex items-center gap-2 whitespace-nowrap rounded-r-xl"
-                    style={{ background: GOLD }}
-                  >
-                    Search
-                  </button>
                 </div>
+
+                {/* Search button (always on its own box; on mobile it's next line after location) */}
+                <button
+                  type="button"
+                  className="rounded-xl px-6 py-3 text-sm font-semibold text-white flex items-center justify-center whitespace-nowrap transition-opacity hover:opacity-95"
+                  style={{ background: GOLD, border: `1px solid rgba(0,0,0,0.05)` }}
+                >
+                  Search
+                </button>
               </div>
             </div>
 
@@ -257,7 +269,10 @@ const HomeHeroSection = ({ data }) => {
           </div>
 
           {/* Right: Video */}
-          <div className="hidden lg:block w-[55%] relative -ml-[5%]" style={{ contain: "layout style paint" }}>
+          <div
+            className="hidden lg:block w-[55%] relative lg:-ml-[0%] xl:-ml-[5%] z-0"
+            style={{ contain: "layout style paint" }}
+          >
             {/* <video autoPlay muted loop playsInline className="w-full h-full object-cover" style={{ minHeight: "100%" }}>
               <source src="home.webm" type="video/mp4" />
             </video> */}

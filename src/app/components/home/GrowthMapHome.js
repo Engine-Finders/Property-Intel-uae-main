@@ -14,12 +14,13 @@ const GrowthMapSection = ({ data }) => {
         {/* Header row: H2 left, badge right */}
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
           <h2
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold"
+            className="order-2 text-2xl sm:text-3xl lg:text-4xl font-bold sm:order-1"
             style={{ color: t.text, lineHeight: 1.2 }}
           >
             {data.h2}
           </h2>
           <span
+            className="order-1 self-end sm:order-2 sm:self-auto"
             style={{
               background: "rgba(182,138,53,0.08)",
               border: "1px solid rgba(182,138,53,0.25)",
@@ -41,7 +42,7 @@ const GrowthMapSection = ({ data }) => {
 
         {/* H3 */}
         <p
-          className="text-sm sm:text-base text-center max-w-3xl mx-auto mb-6"
+          className="text-sm sm:text-base text-left sm:text-center max-w-3xl mx-auto mb-6"
           style={{ color: t.textMuted, lineHeight: 1.7 }}
         >
           {data.h3}
@@ -71,7 +72,7 @@ const GrowthMapSection = ({ data }) => {
         {/* Footer */}
         <div className="text-center">
           <p
-            className="text-xs sm:text-sm max-w-3xl mx-auto mb-8"
+            className="text-xs sm:text-sm text-left max-w-3xl mx-auto mb-8"
             style={{ color: t.textMuted, lineHeight: 1.7 }}
           >
             {data.footer.attribution}
@@ -98,7 +99,7 @@ const GrowthMapSection = ({ data }) => {
           </div>
 
           {/* Disclaimer */}
-          <p className="text-xs sm:text-sm max-w-2xl mx-auto" style={{ color: t.textMuted, opacity: 0.85, lineHeight: 1.6 }}>
+          <p className="text-xs sm:text-sm text-left max-w-2xl mx-auto" style={{ color: t.textMuted, opacity: 0.85, lineHeight: 1.6 }}>
             {data.footer.disclaimer.replace("{{date}}", data.last_updated)}
           </p>
         </div>

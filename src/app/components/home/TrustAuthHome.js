@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Image from "next/image";
 
 
 const GOLD = "#B68A35";
@@ -41,6 +42,59 @@ const SupportIcon = () => (
 
 const iconMap = { database: DatabaseIcon, shield: ShieldIcon, home: HomeIcon, support: SupportIcon };
 
+const SectionHeader = ({ heading, subheading, lastUpdated }) => (
+  <div className="relative rounded-2xl overflow-hidden mb-10 lg:mb-14 h-80 lg:h-72">
+    <Image
+      src="/developer/finance-section.webp"
+      alt=""
+      fill
+      className="object-cover"
+      priority
+    />
+    <div
+      className="absolute inset-0"
+      style={{
+        background:
+          "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.15) 100%)",
+      }}
+    />
+
+    {lastUpdated && (
+      <span
+        style={{
+          background: "rgba(182,138,53,0.08)",
+          border: `1px solid ${GOLD_BORDER}`,
+          color: GOLD,
+          fontSize: 11,
+          fontWeight: 600,
+          padding: "4px 14px",
+          borderRadius: 20,
+          letterSpacing: 0.5,
+          textTransform: "uppercase",
+          whiteSpace: "nowrap",
+          display: "inline-block",
+          width: "fit-content",
+          position: "absolute",
+          top: 12,
+          right: 12,
+          zIndex: 2,
+        }}
+      >
+        Last Updated: {lastUpdated}
+      </span>
+    )}
+
+    <div className="relative z-10 max-w-3xl mx-auto text-center pt-8 lg:pt-10 px-6">
+      <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight text-white">
+        {heading}
+      </h2>
+      <p className="text-sm lg:text-base leading-relaxed text-white/80">
+        {subheading}
+      </p>
+    </div>
+  </div>
+);
+
 /* ── Main Section ── */
 const TrustAuthoritySection = ({ data }) => {
   const { t } = useTheme();
@@ -51,55 +105,12 @@ const TrustAuthoritySection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-6 sm:py-10 lg:py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* ── Header: Text left, Image+Badge right ── */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mb-10 lg:mb-14 items-center">
-          {/* Left: H2 + H3 */}
-          <div className="flex-1 lg:pr-4">
-            <h2
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4"
-              style={{ color: t.text, lineHeight: 1.15 }}
-            >
-              {data.h2}
-            </h2>
-            <p
-              className="text-sm sm:text-base"
-              style={{ color: t.textMuted, lineHeight: 1.7 }}
-            >
-              {data.h3}
-            </p>
-          </div>
-          {/* Right: Image with date badge */}
-          <div className="w-full lg:w-[380px] flex-shrink-0 relative">
-            <span
-              style={{
-                background: "rgba(182,138,53,0.08)",
-                border: `1px solid ${GOLD_BORDER}`,
-                color: GOLD,
-                fontSize: 11,
-                fontWeight: 600,
-                padding: "4px 14px",
-                borderRadius: 20,
-                letterSpacing: 0.5,
-                textTransform: "uppercase",
-                whiteSpace: "nowrap",
-                display: "inline-block",
-                width: "fit-content",
-                position: "absolute",
-                top: 12,
-                right: 12,
-                zIndex: 2,
-              }}
-            >
-              Last Updated: {data.last_updated}
-            </span>
-            <img
-              src="/projects/villa-render-1.jpg"
-              alt="Dubai skyline - expert guide to buying property in Dubai"
-              className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-xl"
-              loading="lazy"
-            />
-          </div>
-        </div>
+        {/* ── Header: Image background + text overlay (like FinancialHealthSection) ── */}
+        <SectionHeader
+          heading={data.h2}
+          subheading={data.h3}
+          lastUpdated={data.last_updated}
+        />
 
         {/* ── Row 1: Four Pillars ── */}
         <div className="mb-10 lg:mb-14">
@@ -118,8 +129,8 @@ const TrustAuthoritySection = ({ data }) => {
                   key={i}
                   className="rounded-xl p-5 flex flex-col"
                   style={{
-                    background: t.surface || "#fff",
-                    border: `1px solid ${t.border || "#e5e7eb"}`,
+                    background: t.cardBg,
+                    border: `1px solid ${t.cardBorder}`,
                   }}
                 >
                   <div
@@ -169,44 +180,104 @@ const TrustAuthoritySection = ({ data }) => {
             {data.process_title} — <span style={{ color: GOLD }}>{data.process_subtitle}</span>
           </h3>
 
-          {/* Steps grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 sm:gap-4">
+          {/* Desktop timeline */}
+          <div className="hidden sm:block relative">
+            <div
+              className="absolute left-0 right-0 top-6 h-[1.5px]"
+              style={{ background: "rgba(182,138,53,0.35)" }}
+            />
+            <div className="grid grid-cols-4 gap-4 relative">
+              {data.steps.map((step, i) => (
+                <div key={i} className="flex flex-col items-center text-center">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center text-base font-bold mb-3 z-10"
+                    style={{ background: GOLD, color: "#fff" }}
+                  >
+                    {step.number}
+                  </div>
+                  <h4 className="font-bold text-sm mb-1.5 leading-snug" style={{ color: t.text }}>
+                    {step.title}
+                  </h4>
+                  <p className="text-xs mb-2" style={{ color: t.textMuted, lineHeight: 1.5 }}>
+                    {step.summary}
+                  </p>
+                  <button
+                    onClick={() => toggleStep(i)}
+                    className="text-xs font-semibold transition-colors"
+                    style={{ color: GOLD }}
+                  >
+                    {expandedStep === i ? "Hide Details ▲" : "View Details ▼"}
+                  </button>
+                  {expandedStep === i && (
+                    <div
+                      className="mt-3 p-3 rounded-lg text-left text-xs w-full"
+                      style={{
+                        background: t.cardBg,
+                        border: `1px solid ${GOLD_BORDER}`,
+                        color: t.textMuted,
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      <p className="mb-2"><strong style={{ color: t.text }}>Action:</strong> {step.action}</p>
+                      <p className="mb-2"><strong style={{ color: t.text }}>Why It Matters:</strong> {step.why}</p>
+                      <p style={{ color: GOLD, fontWeight: 600 }}>📄 {step.source}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile timeline */}
+          <div className="sm:hidden relative pl-8 space-y-6">
+            <div
+              className="absolute left-0 top-2 bottom-2 w-[2px]"
+              style={{ background: "rgba(182,138,53,0.35)" }}
+            />
             {data.steps.map((step, i) => (
-              <div key={i} className="flex flex-col items-center text-center">
+              <div key={i} className="relative">
                 <div
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-sm sm:text-base font-bold mb-3"
+                  className="absolute -left-[20px] top-0 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold z-10"
                   style={{ background: GOLD, color: "#fff" }}
                 >
                   {step.number}
                 </div>
-                <h4 className="font-bold text-xs sm:text-sm mb-1.5" style={{ color: t.text }}>
-                  {step.title}
-                </h4>
-                <p className="text-[11px] sm:text-xs mb-2" style={{ color: t.textMuted, lineHeight: 1.5 }}>
-                  {step.summary}
-                </p>
-                <button
-                  onClick={() => toggleStep(i)}
-                  className="text-[11px] sm:text-xs font-semibold transition-colors"
-                  style={{ color: GOLD }}
-                >
-                  {expandedStep === i ? "Hide Details ▲" : "View Details ▼"}
-                </button>
-                {expandedStep === i && (
-                  <div
-                    className="mt-3 p-3 rounded-lg text-left text-xs w-full"
-                    style={{
-                      background: t.surface || "#fff",
-                      border: `1px solid ${GOLD_BORDER}`,
-                      color: t.textMuted,
-                      lineHeight: 1.7,
-                    }}
+                {/* Small marker dot on line for each step */}
+                <span
+                  className="absolute -left-[35px] top-[14px] w-2 h-2 rounded-full"
+                  style={{ background: "rgba(182,138,53,0.75)" }}
+                />
+
+                <div className="pl-[26px]">
+                  <h4 className="font-bold text-sm mb-1 leading-snug" style={{ color: t.text }}>
+                    {step.title}
+                  </h4>
+                  <p className="text-xs mb-2" style={{ color: t.textMuted, lineHeight: 1.5 }}>
+                    {step.summary}
+                  </p>
+                  <button
+                    onClick={() => toggleStep(i)}
+                    className="text-xs font-semibold transition-colors"
+                    style={{ color: GOLD }}
                   >
-                    <p className="mb-2"><strong style={{ color: t.text }}>Action:</strong> {step.action}</p>
-                    <p className="mb-2"><strong style={{ color: t.text }}>Why It Matters:</strong> {step.why}</p>
-                    <p style={{ color: GOLD, fontWeight: 600 }}>📄 {step.source}</p>
-                  </div>
-                )}
+                    {expandedStep === i ? "Hide Details ▲" : "View Details ▼"}
+                  </button>
+                  {expandedStep === i && (
+                    <div
+                      className="mt-3 p-3 rounded-lg text-left text-xs"
+                      style={{
+                        background: t.cardBg,
+                        border: `1px solid ${GOLD_BORDER}`,
+                        color: t.textMuted,
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      <p className="mb-2"><strong style={{ color: t.text }}>Action:</strong> {step.action}</p>
+                      <p className="mb-2"><strong style={{ color: t.text }}>Why It Matters:</strong> {step.why}</p>
+                      <p style={{ color: GOLD, fontWeight: 600 }}>📄 {step.source}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

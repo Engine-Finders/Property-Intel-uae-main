@@ -80,6 +80,58 @@ const HorizontalBarChart = ({ data, t }) => {
   );
 };
 
+/* ── Improved Horizontal Bar Chart (Desktop) ── */
+const ImprovedHorizontalBarChart = ({ data, t }) => {
+  const maxVal = Math.max(...data.map((d) => d.value));
+  const trackBg = t.isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.06)"; // light grey track
+  const subtleGold = `rgba(182,138,53,${t.isDark ? 0.35 : 0.25})`;
+
+  return (
+    <div className="space-y-4">
+      {data.map((item, i) => {
+        const pct = maxVal > 0 ? (item.value / maxVal) * 100 : 0;
+        return (
+          <div key={i} className="flex items-center gap-4">
+            {/* Area name (left) */}
+            <div
+              className="text-xs font-medium truncate"
+              style={{ color: t.textSecondary, width: 150 }}
+              title={item.area}
+            >
+              {item.area}
+            </div>
+
+            {/* Track + thin gold bar (middle) */}
+            <div className="flex-1 min-w-0">
+              <div
+                className="relative w-full h-4 rounded-full overflow-hidden"
+                style={{ background: trackBg }}
+              >
+                {/* gold bar on top representing value */}
+                <div
+                  className="absolute left-0 top-0 h-full rounded-full transition-all duration-700"
+                  style={{
+                    width: `${pct}%`,
+                    background: `linear-gradient(90deg, ${GOLD}, ${GOLD}cc)`,
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Value (right aligned end of bar container) */}
+            <div
+              className="text-[11px] font-semibold whitespace-nowrap text-right"
+              style={{ color: t.isDark ? "#ffffff" : "#111827", width: 90 }}
+            >
+              {item.display}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 /* ── Trend Icon ── */
 const TrendIcon = ({ direction }) => {
   if (direction === "up") return <TrendingUp size={13} color={GREEN} />;
@@ -131,7 +183,7 @@ const MarketPulseSection = ({ data }) => {
               {data.h2}
             </h2>
             <span
-              className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide shrink-0"
+              className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide shrink-0 self-start"
               style={{
                 background: t.isDark ? "rgba(182,138,53,0.12)" : "rgba(182,138,53,0.08)",
                 color: GOLD,
@@ -147,7 +199,7 @@ const MarketPulseSection = ({ data }) => {
         </div>
 
         {/* ── Metric Tiles ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {metrics.map((m, i) => (
             <div
               key={i}
@@ -264,7 +316,32 @@ const MarketPulseSection = ({ data }) => {
               <p className="text-sm leading-relaxed mb-5" style={{ color: t.textSecondary }}>
                 {currentTab.intro}
               </p>
-              <div className="overflow-x-auto rounded-lg" style={{ border: `1px solid ${t.cardBorder}` }}>
+              {/* Mobile: cards instead of table */}
+              <div className="lg:hidden space-y-3">
+                {getSortedTable(currentTab.table_data || []).map((row, i) => (
+                  <div
+                    key={i}
+                    className="rounded-lg p-4"
+                    style={{
+                      background: t.isDark ? "rgba(255,255,255,0.03)" : "#ffffff",
+                      border: `1px solid ${t.cardBorder}`,
+                    }}
+                  >
+                    <div className="text-xs font-medium" style={{ color: t.textSecondary }}>
+                      {row.area}
+                    </div>
+                    <div className="mt-1 text-[14px] font-bold" style={{ color: GOLD }}>
+                      {row.price}
+                    </div>
+                    <p className="mt-3 text-xs leading-relaxed" style={{ color: t.textSecondary }}>
+                      {row.insight}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop: keep current table */}
+              <div className="hidden lg:block overflow-x-auto rounded-lg" style={{ border: `1px solid ${t.cardBorder}` }}>
                 <table className="w-full text-sm">
                   <thead>
                     <tr style={{ background: t.isDark ? "rgba(255,255,255,0.05)" : "#f8fafc" }}>
@@ -316,7 +393,13 @@ const MarketPulseSection = ({ data }) => {
               <p className="text-sm leading-relaxed mb-5" style={{ color: t.textSecondary }}>
                 {currentTab.intro}
               </p>
-              <HorizontalBarChart data={currentTab.bar_data || []} t={t} />
+              {/* Keep current mobile, improve on desktop */}
+              <div className="lg:hidden">
+                <HorizontalBarChart data={currentTab.bar_data || []} t={t} />
+              </div>
+              <div className="hidden lg:block">
+                <ImprovedHorizontalBarChart data={currentTab.bar_data || []} t={t} />
+              </div>
               <div
                 className="mt-6 p-4 rounded-lg"
                 style={{

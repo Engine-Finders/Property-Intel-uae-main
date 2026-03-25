@@ -34,7 +34,7 @@ const TrustIndexSection = ({ data }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* ── Header ── */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3 items-start">
           <h2
             className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight"
             style={{ color: t.text }}
@@ -42,7 +42,7 @@ const TrustIndexSection = ({ data }) => {
             {data.h2}
           </h2>
           <span
-            className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
+            className="shrink-0 self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
             style={{
               background: "rgba(182,138,53,0.10)",
               color: GOLD,
@@ -122,7 +122,7 @@ const TrustIndexSection = ({ data }) => {
                     <td className="px-4 py-3.5 whitespace-nowrap" style={{ color: t.textSecondary }}>{dev.delivery}</td>
                     <td className="px-4 py-3.5 font-semibold whitespace-nowrap" style={{ color: t.text }}>{dev.service_charges}</td>
                     <td className="px-4 py-3.5" style={{ color: t.textSecondary }}>{dev.projects}</td>
-                    <td className="px-4 py-3.5 text-xs" style={{ color: "#c0c7d6" }}>{dev.positioning}</td>
+                    <td className="px-4 py-3.5 text-xs" style={{ color: "#7d89a3" }}>{dev.positioning}</td>
                   </tr>
                 ))}
               </tbody>
@@ -144,8 +144,13 @@ const TrustIndexSection = ({ data }) => {
                   onClick={() => setExpandedRow(isOpen ? null : i)}
                   className="w-full flex items-center justify-between gap-3 px-4 py-3.5 text-left"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-sm font-semibold truncate" style={{ color: t.text }}>{dev.name}</span>
+                  <span
+                    className="flex-1 text-sm font-semibold truncate"
+                    style={{ color: t.text }}
+                  >
+                    {dev.name}
+                  </span>
+                  <div className="flex-shrink-0 w-[110px] flex justify-center">
                     <GradeBadge grade={dev.grade} />
                   </div>
                   {isOpen
