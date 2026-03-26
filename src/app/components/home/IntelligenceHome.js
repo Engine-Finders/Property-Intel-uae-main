@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Image from "next/image";
 
 const GOLD = "#B68A35";
 const GOLD_LIGHT = "#D4A84B";
@@ -16,6 +17,16 @@ const categoryColors = {
   "Market Analysis": { bg: "rgba(40,108,255,0.10)", text: TECH_BLUE },
   "Investor Protection": { bg: "rgba(34,197,94,0.10)", text: "#16a34a" },
   "Exit Strategy": { bg: "rgba(239,68,68,0.10)", text: "#dc2626" },
+};
+
+const categoryIconMap = {
+  "Legal Guide": "/home/Legal%20Guide%20icon.svg",
+  "Investment Strategy": "/home/Investment%20Strategy.svg",
+  "Residency & Visa": "/home/Residency%20%26%20Visa.svg",
+  "Financial Planning": "/home/Financial%20Planning%20icon.svg",
+  "Legal Protection": "/home/Legal%20Protection%20icon.svg",
+  "Market Analysis": "/home/Market%20Analysis.svg",
+  "Exit Strategy": "/home/Exit%20Strategy%20icon.svg",
 };
 
 const IntelligenceSection = ({ data }) => {
@@ -59,7 +70,7 @@ const IntelligenceSection = ({ data }) => {
   const sectionBg = isDark ? t.bg : "#F8FAFC";
 
   return (
-    <section style={{ background: sectionBg }} className="py-16 md:py-24">
+    <section style={{ background: sectionBg }} className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-10 md:mb-14 max-w-4xl mx-auto">
@@ -172,9 +183,17 @@ const IntelligenceSection = ({ data }) => {
                     style={{ borderBottom: `1px solid ${cardBorder}` }}
                   >
                     <span
-                      className="text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider"
+                      className="text-[10px] font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider inline-flex items-center gap-2"
                       style={{ background: catColor.bg, color: catColor.text }}
                     >
+                      {categoryIconMap[card.category] ? (
+                        <Image
+                          src={categoryIconMap[card.category]}
+                          alt={card.category}
+                          width={18}
+                          height={18}
+                        />
+                      ) : null}
                       {card.category}
                     </span>
                     <span className="text-[10px] font-medium" style={{ color: subtextColor }}>

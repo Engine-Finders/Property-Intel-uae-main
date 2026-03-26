@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Image from "next/image";
 import { Shield, ArrowRight, AlertTriangle, TrendingUp, Award, ChevronDown, ChevronUp } from "lucide-react";
 
 const GOLD = "#B68A35";
@@ -8,9 +9,9 @@ const SILVER = "#9CA3AF";
 const BRONZE = "#CD7F32";
 
 const gradeConfig = {
-  Gold: { color: GOLD, emoji: "🥇", bg: "rgba(182,138,53,0.10)", border: "rgba(182,138,53,0.25)" },
-  Silver: { color: SILVER, emoji: "🥈", bg: "rgba(156,163,175,0.10)", border: "rgba(156,163,175,0.25)" },
-  Bronze: { color: BRONZE, emoji: "🥉", bg: "rgba(205,127,50,0.10)", border: "rgba(205,127,50,0.25)" },
+  Gold: { color: GOLD, icon: "/home/Gold.svg", bg: "rgba(182,138,53,0.10)", border: "rgba(182,138,53,0.25)" },
+  Silver: { color: SILVER, icon: "/home/Silver.svg", bg: "rgba(156,163,175,0.10)", border: "rgba(156,163,175,0.25)" },
+  Bronze: { color: BRONZE, icon: "/home/Bronze.svg", bg: "rgba(205,127,50,0.10)", border: "rgba(205,127,50,0.25)" },
 };
 
 const TrustIndexSection = ({ data }) => {
@@ -21,16 +22,17 @@ const TrustIndexSection = ({ data }) => {
     const cfg = gradeConfig[grade] || gradeConfig.Bronze;
     return (
       <span
-        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold whitespace-nowrap"
+        className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap"
         style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}
       >
-        {cfg.emoji} {grade}
+        <Image src={cfg.icon} alt={`${grade} badge`} width={22} height={22} />
+        {grade}
       </span>
     );
   };
 
   return (
-    <section style={{ background: t.bgAlt }} className="py-16 lg:py-24">
+    <section style={{ background: t.bgAlt }} className="py-6 lg:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* ── Header ── */}

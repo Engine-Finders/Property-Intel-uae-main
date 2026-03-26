@@ -8,7 +8,7 @@ const GrowthMapSection = ({ data }) => {
   const { t } = useTheme();
 
   return (
-    <section style={{ background: t.bg }} className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+    <section style={{ background: t.bg }} className="py-6 sm:py-8 lg:py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
 
         {/* Header row: H2 left, badge right */}

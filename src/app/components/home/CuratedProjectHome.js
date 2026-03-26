@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTheme } from "../context/ThemeContext";
-import { CheckCircle, ArrowRight, Shield } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const GOLD = "#B68A35";
 const BLUE = "#286CFF";
@@ -12,7 +12,7 @@ const CuratedProjectsSection = ({ data }) => {
   const [activeFilter, setActiveFilter] = useState(0);
 
   return (
-    <section style={{ background: t.bg }} className="py-16 lg:py-24">
+    <section style={{ background: t.bg }} className="py-6 lg:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* ── Header ── */}
@@ -41,7 +41,14 @@ const CuratedProjectsSection = ({ data }) => {
                 border: "1px solid rgba(182,138,53,0.25)",
               }}
             >
-              {i === 0 && <Shield size={12} />}
+              {i === 0 && (
+                <Image
+                  src="/home/RERA%20Verified.svg"
+                  alt="RERA Verified"
+                  width={16}
+                  height={16}
+                />
+              )}
               {badge}
             </span>
           ))}
@@ -102,13 +109,13 @@ const CuratedProjectsSection = ({ data }) => {
                 )}
                 {project.rera_verified && (
                   <span
-                    className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider z-10"
+                    className="absolute top-3 right-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider z-10"
                     style={{
                       background: "#22c55e",
                       color: "#ffffff",
                     }}
                   >
-                    <CheckCircle size={10} className="shrink-0" />
+                    <Image src="/home/RERA%20Verified.svg" alt="RERA Verified" width={16} height={16} />
                     RERA Verified
                   </span>
                 )}

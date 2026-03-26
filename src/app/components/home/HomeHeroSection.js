@@ -247,7 +247,7 @@ const HomeHeroSection = ({ data }) => {
             {/* Golden Visa Toggle */}
             <button
               onClick={() => setGoldenVisa(!goldenVisa)}
-              className="mt-3 flex items-center gap-2 text-sm font-medium self-start"
+              className="mt-3 flex items-center gap-2 text-sm font-medium justify-center md:justify-start"
               style={{ color: goldenVisa ? GOLD : t.textMuted }}
             >
               {goldenVisa ? <CheckSquare size={16} /> : <Square size={16} />}
@@ -256,7 +256,7 @@ const HomeHeroSection = ({ data }) => {
 
             {/* Secondary CTA */}
             <button
-              className="mt-4 self-start flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold transition-colors"
+              className="mt-4 md:self-start self-center flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold transition-colors"
               style={{
                 color: GOLD,
                 border: `1.5px solid ${GOLD}`,

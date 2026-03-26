@@ -56,7 +56,7 @@ const HomeFaqSection = ({ data }) => {
   const toggle = (i) => setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
-    <section id="home-faq" className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
+    <section id="home-faq" className="py-6 lg:py-8 px-4 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">

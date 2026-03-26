@@ -24,7 +24,7 @@ const TopDevelopersSection = ({ data }) => {
   const visible = showAll ? data.developers : data.developers.slice(0, INITIAL_COUNT);
 
   return (
-    <section style={{ background: sectionBg }} className="py-16 md:py-24">
+    <section style={{ background: sectionBg }} className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}

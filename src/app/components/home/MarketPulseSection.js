@@ -173,7 +173,7 @@ const MarketPulseSection = ({ data }) => {
   const footerText = (footer.attribution || "").replace("{{date}}", data.last_updated);
 
   return (
-    <section className="py-12 lg:py-20" style={{ background: t.bg }}>
+    <section className="py-6 lg:py-8" style={{ background: t.bg }}>
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
         {/* ── Header ── */}

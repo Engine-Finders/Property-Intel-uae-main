@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Image from "next/image";
 
 
 const GOLD = "#B68A35";
@@ -24,6 +25,15 @@ const StarRating = ({ count }) => (
     ))}
   </div>
 );
+
+const getBadgeIconSrc = (text = "") => {
+  const normalized = text.toLowerCase();
+  if (normalized.includes("dld")) return "/home/DLD%20Data%20Verified%20icon.svg";
+  if (normalized.includes("analytics")) return "/home/Market%20Analysis.svg";
+  if (normalized.includes("rera")) return "/home/RERA%20Verified.svg";
+  if (normalized.includes("research users")) return "/home/User%20icon.svg";
+  return null;
+};
 
 const TrustedBySection = ({ data }) => {
   const { t } = useTheme();
@@ -65,7 +75,7 @@ const TrustedBySection = ({ data }) => {
   const sectionBg = isDark ? t.bg : "#FBF9F6";
 
   return (
-    <section style={{ background: sectionBg }} className="py-16 md:py-24">
+    <section style={{ background: sectionBg }} className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
@@ -74,12 +84,18 @@ const TrustedBySection = ({ data }) => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3" style={{ color: t.text }}>
               Trusted by <span style={{ color: GOLD }}>Global Investors</span> & Industry Partners
             </h2>
+            <span
+              className="inline-flex lg:hidden text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap self-start mb-3"
+              style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
+            >
+              Last Updated: {data.last_updated}
+            </span>
             <p className="text-sm md:text-base leading-relaxed" style={{ color: bodyColor }}>
               {data.h3}
             </p>
           </div>
           <span
-            className="text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap self-start"
+            className="hidden lg:inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap self-start"
             style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
           >
             Last Updated: {data.last_updated}
@@ -104,14 +120,23 @@ const TrustedBySection = ({ data }) => {
           {data.badges.map((badge, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 text-xs font-medium px-3.5 py-2 rounded-full"
+              className="flex items-center gap-2.5 text-xs font-medium px-4 py-2 rounded-full"
               style={{
                 background: isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
                 border: `1px solid ${GOLD_BORDER}`,
                 color: t.text,
               }}
             >
-              <span>{badge.icon}</span>
+              {getBadgeIconSrc(badge.text) ? (
+                <Image
+                  src={getBadgeIconSrc(badge.text)}
+                  alt={badge.text}
+                  width={22}
+                  height={22}
+                />
+              ) : (
+                <span>{badge.icon}</span>
+              )}
               <span>{badge.text}</span>
             </div>
           ))}
