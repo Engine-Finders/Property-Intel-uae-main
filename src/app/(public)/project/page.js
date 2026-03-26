@@ -14,6 +14,14 @@ import ExpertTipsSection from "@/app/components/single-project/ExpertTipsSection
 
 const data = projectData.project;
 
+export const metadata = {
+  title: projectData.seo.meta_title,
+  description: projectData.seo.meta_description,
+  alternates: {
+    canonical: projectData.seo.canonical,
+  },
+};
+
 export default function Project() {
   return (
     <>

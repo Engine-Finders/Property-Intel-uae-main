@@ -10,6 +10,14 @@ import HomeFaqSection from "@/app/components/home/HomeFaq";
 import TrustedBySection from "@/app/components/home/TrustedByAuthorityHome";
 import DevelopersSectionHome from "@/app/components/home/DevelopersSectionHome";
 
+export const metadata = {
+  title: homeData.seo.meta_title,
+  description: homeData.seo.meta_description,
+  alternates: {
+    canonical: homeData.seo.canonical,
+  },
+};
+
 export default function Home() {
   return (
     <>

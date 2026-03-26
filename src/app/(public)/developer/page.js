@@ -14,6 +14,14 @@ import DeveloperFaqSection from "@/app/components/developer/DeveloperFaqSection"
 
 const data = developerData.developer;
 
+export const metadata = {
+  title: developerData.seo.meta_title,
+  description: developerData.seo.meta_description,
+  alternates: {
+    canonical: developerData.seo.canonical,
+  },
+};
+
 export default function Developer() {
   return (
     <>
