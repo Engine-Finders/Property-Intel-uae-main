@@ -121,8 +121,8 @@ const HomeHeroSection = ({ data }) => {
         <div className="flex flex-col lg:flex-row">
           {/* Left Content */}
           <div className="w-full lg:w-[50%] flex flex-col justify-center px-5 py-12 lg:px-16 lg:py-20 relative z-[30]">
-            {/* Trust Badges */}
-            <div className="flex flex-wrap items-center gap-2 mb-6">
+            {/* Trust Badges (desktop) */}
+            <div className="hidden lg:flex flex-wrap items-center gap-2 mb-6">
               {hero.trust_badges.map((badge, i) => (
                 <span
                   key={i}
@@ -132,7 +132,7 @@ const HomeHeroSection = ({ data }) => {
                       ? "rgba(182,138,53,0.12)"
                       : "rgba(182,138,53,0.08)",
                     color: GOLD,
-                    border: `1px solid rgba(182,138,53,0.25)`,
+                    border: `1px solid ${GOLD}`,
                   }}
                 >
                   {badge}
@@ -141,11 +141,42 @@ const HomeHeroSection = ({ data }) => {
               <span
                 className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium"
                 style={{
-                color: "#afafaf",
+                  color: GOLD,
                   background: t.isDark
                     ? "rgba(255,255,255,0.06)"
                     : "rgba(0,0,0,0.04)",
-                border: "1px solid rgba(182,138,53,0.55)",
+                  border: `1px solid ${GOLD}`,
+                }}
+              >
+                Last Data Update: {hero.last_update}
+              </span>
+            </div>
+
+            {/* Trust Badges (mobile) */}
+            <div className="flex lg:hidden flex-wrap items-center gap-2 mb-6">
+              {hero.trust_badges.map((badge, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide"
+                  style={{
+                    background: t.isDark
+                      ? "rgba(255,255,255,0.08)"
+                      : "rgba(0,0,0,0.05)",
+                    color: "#e3d5d5",
+                    border: "1px solid #e3d5d5",
+                  }}
+                >
+                  {badge}
+                </span>
+              ))}
+              <span
+                className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium"
+                style={{
+                  color: "#e3d5d5",
+                  background: t.isDark
+                    ? "rgba(255,255,255,0.08)"
+                    : "rgba(0,0,0,0.05)",
+                  border: "1px solid #e3d5d5",
                 }}
               >
                 Last Data Update: {hero.last_update}

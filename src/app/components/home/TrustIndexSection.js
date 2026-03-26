@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import Image from "next/image";
-import { Shield, ArrowRight, AlertTriangle, TrendingUp, Award, ChevronDown, ChevronUp } from "lucide-react";
+import { Shield, ArrowRight, AlertTriangle, TrendingUp, ChevronDown, ChevronUp } from "lucide-react";
 
 const GOLD = "#B68A35";
 const SILVER = "#9CA3AF";
@@ -14,6 +14,18 @@ const gradeConfig = {
   Bronze: { color: BRONZE, icon: "/home/Bronze.svg", bg: "rgba(205,127,50,0.10)", border: "rgba(205,127,50,0.25)" },
 };
 
+const developerLogoMap = {
+  "Emaar Properties": "/developer-logos/EMAAR.webp",
+  "Sobha Realty": "/developer-logos/SOBHA.webp",
+  "Aldar Properties": "/developer-logos/ALDAAR.webp",
+  "Nakheel": "/developer-logos/NAKHEEL%20.webp",
+  "Meraas": "/developer-logos/MERAAS.webp",
+  "DAMAC Properties": "/developer-logos/DAMAC%20.webp",
+  "Azizi Developments": "/developer-logos/AZIZI.webp",
+  "Danube Properties": "/developer-logos/DANUBE%20.webp",
+  "Binghatti": "/developer-logos/BINGHATTI%20.webp",
+};
+
 const TrustIndexSection = ({ data }) => {
   const { t } = useTheme();
   const [expandedRow, setExpandedRow] = useState(null);
@@ -22,7 +34,7 @@ const TrustIndexSection = ({ data }) => {
     const cfg = gradeConfig[grade] || gradeConfig.Bronze;
     return (
       <span
-        className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap"
+        className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap"
         style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.border}` }}
       >
         <Image src={cfg.icon} alt={`${grade} badge`} width={22} height={22} />
@@ -115,10 +127,20 @@ const TrustIndexSection = ({ data }) => {
                     onMouseEnter={(e) => e.currentTarget.style.background = "rgba(182,138,53,0.04)"}
                     onMouseLeave={(e) => e.currentTarget.style.background = i % 2 === 0 ? t.cardBg : "transparent"}
                   >
-                    <td className="px-4 py-3.5 font-semibold whitespace-nowrap" style={{ color: t.text }}>
-                      {dev.link ? (
-                        <a href={dev.link} className="hover:underline" style={{ color: GOLD }}>{dev.name}</a>
-                      ) : dev.name}
+                    <td className="px-4 py-3.5 font-semibold whitespace-nowrap text-center" style={{ color: t.text }}>
+                      {developerLogoMap[dev.name] ? (
+                        <a href={dev.link || "#"} className="inline-flex items-center justify-center w-full">
+                          <Image
+                            src={developerLogoMap[dev.name]}
+                            alt={dev.name}
+                            width={150}
+                            height={44}
+                            className="h-11 w-auto object-contain mx-auto"
+                          />
+                        </a>
+                      ) : (
+                        dev.name
+                      )}
                     </td>
                     <td className="px-4 py-3.5"><GradeBadge grade={dev.grade} /></td>
                     <td className="px-4 py-3.5 whitespace-nowrap" style={{ color: t.textSecondary }}>{dev.delivery}</td>
@@ -146,11 +168,23 @@ const TrustIndexSection = ({ data }) => {
                   onClick={() => setExpandedRow(isOpen ? null : i)}
                   className="w-full flex items-center justify-between gap-3 px-4 py-3.5 text-left"
                 >
-                  <span
-                    className="flex-1 text-sm font-semibold truncate"
-                    style={{ color: t.text }}
-                  >
-                    {dev.name}
+                  <span className="flex-1 min-w-0 flex justify-start">
+                    {developerLogoMap[dev.name] ? (
+                      <Image
+                        src={developerLogoMap[dev.name]}
+                        alt={dev.name}
+                        width={150}
+                        height={44}
+                        className="h-11 w-auto object-contain"
+                      />
+                    ) : (
+                      <span
+                        className="text-sm font-semibold truncate"
+                        style={{ color: t.text }}
+                      >
+                        {dev.name}
+                      </span>
+                    )}
                   </span>
                   <div className="flex-shrink-0 w-[110px] flex justify-center">
                     <GradeBadge grade={dev.grade} />
@@ -227,7 +261,7 @@ const TrustIndexSection = ({ data }) => {
           style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
         >
           <h4 className="text-sm font-bold mb-2 flex items-center gap-2" style={{ color: t.text }}>
-            <Award size={14} style={{ color: GOLD }} />
+            <Image src="/home/Transparency%20%26%20Methodology%20icon.svg" alt="Methodology icon" width={24} height={24} />
             Methodology & Attribution
           </h4>
           <p className="text-xs sm:text-sm leading-relaxed" style={{ color: t.textSecondary }}>

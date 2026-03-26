@@ -70,7 +70,7 @@ const SectionHeader = ({ heading, subheading, lastUpdated }) => (
       </span>
     )}
 
-    <div className="relative z-10 max-w-3xl mx-auto text-center pt-8 lg:pt-10 px-6">
+    <div className="relative z-10 max-w-3xl mx-auto text-center pt-12 sm:pt-10 lg:pt-10 px-6">
       <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight text-white">
         {heading}
       </h2>

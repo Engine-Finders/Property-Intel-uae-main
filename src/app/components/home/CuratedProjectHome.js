@@ -225,9 +225,15 @@ const CuratedProjectsSection = ({ data }) => {
           }}
         >
           <h4
-            className="text-sm font-bold mb-2"
+            className="text-sm font-bold mb-2 inline-flex items-center gap-2"
             style={{ color: t.text }}
           >
+            <Image
+              src="/home/Transparency%20%26%20Methodology%20icon.svg"
+              alt="Transparency & Methodology"
+              width={24}
+              height={24}
+            />
             Transparency & Methodology
           </h4>
           <p
