@@ -11,6 +11,7 @@ import ComparisonSection from "@/app/components/single-project/ComparisonSection
 import ReviewsSection from "@/app/components/single-project/ReviewSection";
 import FaqSection from "@/app/components/single-project/FaqSection";
 import ExpertTipsSection from "@/app/components/single-project/ExpertTipsSection";
+import VerdictSection from "@/app/components/single-project/VerdictSection";
 
 const data = projectData.project;
 
@@ -26,6 +27,7 @@ export default function Project() {
   return (
     <>
       <HeroSection data={data} />
+      <VerdictSection data={data.verdict_section} />
       <UnitMixSection data={data.unit_mix_section} />
       <DeveloperSection data={data.developer_section} />
       <TargetBuyerSection data={data.target_buyer_section} />
