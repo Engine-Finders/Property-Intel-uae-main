@@ -84,6 +84,21 @@
         "availability": "upcoming"
       }
     ],
+    "page_section_order": [
+      { "key": "hero_section", "label": "section 1 : Hero Section" },
+      { "key": "verdict_section", "label": "section 2 : Verdict Section" },
+      { "key": "unit_mix_section", "label": "section 3 : Unit Mix Section" },
+      { "key": "developer_section", "label": "section 4 : Developer Section" },
+      { "key": "target_buyer_section", "label": "section 5 : Target Buyer Section" },
+      { "key": "location_section", "label": "section 6 : Location Section" },
+      { "key": "financing_section", "label": "section 7 : Financing Section" },
+      { "key": "risks_section", "label": "section 8 : Risks Section" },
+      { "key": "construction_section", "label": "section 9 : Construction Section" },
+      { "key": "comparison_section", "label": "section 10 : Comparison Section" },
+      { "key": "reviews_section", "label": "section 11 : Reviews Section" },
+      { "key": "expert_tips_section", "label": "section 12 : Expert Tips Section" },
+      { "key": "faq_section", "label": "section 13 : FAQ Section" }
+    ],
     "hero_section": {
       "subtitle": "Off-Plan Villas in Al Yalayis, Dubai",
       "status_badges": [
@@ -139,6 +154,41 @@
           "content": "10–15 minutes to Dubai Investment Park (DIP) and Jebel Ali Industrial Area, two of Dubai's largest employment zones, supporting rental demand from professionals seeking short commutes."
         }
       ]
+    },
+    "verdict_section": {
+      "h2_worth": "At a Glance - Is Serro at The Heights Worth It?",
+      "worth_points": [
+        { "icon": "check", "text": "Strong long-term growth potential in an emerging corridor" },
+        { "icon": "check", "text": "Early-phase pricing with upside as the community develops" },
+        { "icon": "warn", "text": "Not ideal for investors seeking immediate rental returns" }
+      ],
+      "best_for": "Long-term investors and early buyers looking to enter before peak pricing.",
+      "h2_process": "How We Help You Make the Right Call",
+      "steps": [
+        { "number": "1", "title": "1. We Give You the Real Numbers", "subtitle": "Actual transaction data, market trends, and risks you won't find elsewhere." },
+        { "number": "2", "title": "2. We Show What Others Don't", "subtitle": "Honest pros and cons, developer track records, and hidden costs that get glossed over." },
+        { "number": "3", "title": "3. We Connect You When You're Ready", "subtitle": "Vetted, licensed experts - no pressure, no spam. Just straight answers when you want them." }
+      ],
+      "h3_consider": "Should You Consider Serro at The Heights?",
+      "good_fit": [
+        "You're investing for long-term capital growth",
+        "You want early access to a developing location",
+        "You're comfortable with off-plan timelines"
+      ],
+      "not_ideal": [
+        "You're targeting immediate rental income",
+        "You prefer ready or near-handover properties",
+        "You need quick resale or liquidity"
+      ],
+      "our_take": "Serro at The Heights is best suited for buyers who prioritise long-term appreciation over short-term returns, particularly in areas still undergoing expansion.",
+      "standout": [
+        { "icon": "📍", "title": "Location Advantage", "text": "Positioned in a growth-focused district with ongoing infrastructure and connectivity improvements." },
+        { "icon": "🏗", "title": "Developer Strength", "text": "Backed by a developer with a consistent track record in delivering mid-to-large scale communities." },
+        { "icon": "💰", "title": "Pricing Edge", "text": "Early launch pricing offers a potential entry point before wider market appreciation." }
+      ],
+      "h3_cta": "Want a Straight Answer on This Project?",
+      "cta_subtitle": "Speak to a specialist who understands Serro at The Heights — not someone trying to sell everything.",
+      "cta_buttons": ["Get Expert Opinion", "WhatsApp Now", "Request Callback"]
     },
     "unit_mix_section": {
       "heading": "Unit Mix, Sizes & Price Trends — Serro at The Heights",
@@ -901,44 +951,7 @@
         }
       ]
     },
-    "verdict_section": {
-      "h2_worth": "Is Serro at The Heights Worth It?",
-      "worth_points": [
-        { "icon": "check", "text": "Strong long-term growth potential in an emerging corridor" },
-        { "icon": "check", "text": "Early-phase pricing with upside as the community develops" },
-        { "icon": "warn", "text": "Not ideal for investors seeking immediate rental returns" }
-      ],
-      "best_for": "Long-term investors and early buyers looking to enter before peak pricing",
-      "h2_process": "How We Help You Make the Right Call",
-      "steps": [
-        { "number": "1", "title": "We Analyse & Explain The Numbers", "subtitle": "Real Trends, Demand & Risks" },
-        { "number": "2", "title": "We Highlight What Others Don't", "subtitle": "Insights Beyond Brochure or Hype" },
-        { "number": "3", "title": "We Connect You When You're Ready", "subtitle": "Vetted Experts - No Pressure" }
-      ],
-      "h3_consider": "Should You Consider Serro at The Heights?",
-      "good_fit": [
-        "You're investing for long-term capital growth",
-        "You want early access to a developing location",
-        "You're comfortable with off-plan timelines"
-      ],
-      "not_ideal": [
-        "You're targeting immediate rental income",
-        "You prefer ready or near-handover properties",
-        "You need quick resale or liquidity"
-      ],
-      "our_take": "Serro at The Heights is best suited for buyers who prioritise long-term appreciation over short-term returns, particularly in areas still undergoing expansion.",
-      "standout": [
-        { "icon": "📍", "title": "Location Advantage", "text": "Positioned in a growth-focused district with ongoing infrastructure and connectivity improvements." },
-        { "icon": "🏗", "title": "Developer Strength", "text": "Backed by a developer with a consistent track record in delivering mid-to-large scale communities." },
-        { "icon": "💰", "title": "Pricing Edge", "text": "Early launch pricing offers a potential entry point before wider market appreciation." }
-      ],
-      "h3_cta": "Want a Straight Answer on This Project?",
-      "cta_subtitle": "Speak to a specialist who understands Serro at The Heights — not someone trying to sell everything.",
-      "cta_buttons": ["Get Expert Opinion", "WhatsApp Now", "Request Callback"]
-    },
     "seo": {
-      "meta_title": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai",
-      "meta_description": "Serro by Emaar offers 3–5 bedroom villas starting from AED 6M in The Heights, Dubai. 80/20 payment plan. Handover Q1 2030.",
       "h1": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai"
     }
   }

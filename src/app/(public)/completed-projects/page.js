@@ -5,6 +5,8 @@ import TrackRecordSection from "@/app/components/completed-projects/TrackRecordS
 import CompletedMarketValue from "@/app/components/completed-projects/CompletedMarketValue";
 import CompletedLocationSec from "@/app/components/completed-projects/CompletedLocationSec";
 import CompletedFinancialReality from "@/app/components/completed-projects/CompletedFinancialReality";
+import ResaleInvestment from "@/app/components/completed-projects/ResaleInvestment";
+import CompletedFaqSection from "@/app/components/completed-projects/CompletedFaqSection";
 
 
 const data = completedProjectsData;
@@ -26,6 +28,8 @@ export default function Developer() {
       <CompletedReviewsSection data={data.reviews_section}/>
       <CompletedLocationSec data={data.location_section}/>
       <CompletedFinancialReality data={data.financial_section}/>
+      <ResaleInvestment data={data.resale_investment_section} />
+      <CompletedFaqSection data={data.faq_section} />
     </>
   );
 }

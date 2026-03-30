@@ -1,6 +1,6 @@
 "use client";
 import { useTheme } from "../context/ThemeContext";
-import { BarChart3, Search, Handshake, MapPin, Building2, BadgeDollarSign } from "lucide-react";
+import { BarChart3, Search, Handshake } from "lucide-react";
 
 const GOLD = "#B68A35";
 const GREEN = "#2E7D32";
@@ -8,8 +8,6 @@ const RED = "#C62828";
 const BLUE = "#1565C0";
 
 const STEP_COLORS = [GREEN, GOLD, BLUE];
-const STANDOUT_ICONS = [MapPin, Building2, BadgeDollarSign];
-const STANDOUT_COLORS = [GREEN, GOLD, BLUE];
 
 const VerdictSection = ({ data }) => {
   const { t } = useTheme();
@@ -18,60 +16,46 @@ const VerdictSection = ({ data }) => {
     <section className="px-4 sm:px-6 lg:px-8 py-10 sm:py-14" style={{ background: t.bg }}>
       <div className="max-w-3xl mx-auto space-y-10">
 
-        {/* Worth It? */}
+        {/* At a Glance — Worth It? */}
         <div className="rounded-xl p-5 sm:p-7" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.isDark ? "#2a2d33" : "#e2e8f0"}` }}>
-          <h2 className="text-lg sm:text-xl font-bold mb-5 text-center" style={{ color: t.text }}>{data.h2_worth}</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-5 text-center" style={{ color: t.text }}>{data.h2_worth}</h2>
           <div className="space-y-3 mb-5">
-            {data.worth_points.map((p, i) => (
+            {data.worth_points.map((point, i) => (
               <div key={i} className="flex items-start gap-2.5">
-                <span className="shrink-0 mt-0.5 text-sm">
-                  {p.icon === "check" ? <span style={{ color: GREEN }}>✔</span> : <span style={{ color: GOLD }}>⚠</span>}
+                <span className="shrink-0 mt-0.5 text-sm" style={{ color: point.icon === "check" ? GREEN : GOLD }}>
+                  {point.icon === "check" ? "✔" : "⚠"}
                 </span>
-                <span className="text-xs sm:text-sm leading-relaxed" style={{ color: t.textSecondary }}>{p.text}</span>
+                <span className="text-sm sm:text-base leading-relaxed" style={{ color: t.textSecondary }}>
+                  {point.text}
+                </span>
               </div>
             ))}
           </div>
           <div className="rounded-lg px-4 py-2.5 text-center" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "rgba(182,138,53,0.08)", border: `1px solid ${GOLD}30` }}>
-            <span className="text-xs font-bold" style={{ color: GOLD }}>Best For: </span>
-            <span className="text-xs" style={{ color: t.textSecondary }}>{data.best_for}</span>
-          </div>
-        </div>
-
-        {/* How We Help */}
-        <div>
-          <h2 className="text-lg sm:text-xl font-bold mb-6 text-center" style={{ color: t.text }}>{data.h2_process}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {data.steps.map((step, i) => {
-              const Icon = [BarChart3, Search, Handshake][i];
-              const clr = STEP_COLORS[i];
-              return (
-                <div key={i} className="text-center p-5 rounded-xl" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.isDark ? "#2a2d33" : "#e2e8f0"}` }}>
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: `${clr}15` }}>
-                    <Icon size={28} color={clr} strokeWidth={1.8} />
-                  </div>
-                  <p className="text-xs font-bold mb-1" style={{ color: clr }}>{step.title}</p>
-                  <p className="text-[11px] leading-relaxed" style={{ color: t.textMuted }}>{step.subtitle}</p>
-                </div>
-              );
-            })}
+            <span className="text-sm font-bold" style={{ color: GOLD }}>Best For: </span>
+            <span className="text-sm" style={{ color: t.textSecondary }}>
+              {data.best_for}
+            </span>
           </div>
         </div>
 
         {/* Should You Consider */}
         <div className="rounded-xl p-5 sm:p-7" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.isDark ? "#2a2d33" : "#e2e8f0"}` }}>
-          <h3 className="text-base sm:text-lg font-bold mb-5 text-center" style={{ color: t.text }}>{data.h3_consider}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <h3 className="text-lg sm:text-xl font-bold mb-5 text-center" style={{ color: t.text }}>{data.h3_consider}</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Good Fit */}
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-sm">✅</span>
-                <span className="text-xs font-bold" style={{ color: GREEN }}>Good Fit If:</span>
+                <span className="text-sm font-bold" style={{ color: GREEN }}>Good Fit:</span>
               </div>
               <div className="space-y-2.5">
                 {data.good_fit.map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <span className="shrink-0 mt-0.5" style={{ color: GREEN }}>●</span>
-                    <span className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{item}</span>
+                    <span className="text-xs sm:text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -80,42 +64,36 @@ const VerdictSection = ({ data }) => {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-sm">❌</span>
-                <span className="text-xs font-bold" style={{ color: RED }}>Not Ideal If:</span>
+                <span className="text-sm font-bold" style={{ color: RED }}>Not Ideal If:</span>
               </div>
               <div className="space-y-2.5">
                 {data.not_ideal.map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <span className="shrink-0 mt-0.5" style={{ color: RED }}>●</span>
-                    <span className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{item}</span>
+                    <span className="text-xs sm:text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
-            {/* Our Take */}
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-sm">⚖</span>
-                <span className="text-xs font-bold" style={{ color: BLUE }}>Our Take:</span>
-              </div>
-              <p className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{data.our_take}</p>
-            </div>
           </div>
         </div>
 
-        {/* Why This Project Stands Out - separate from the box */}
+        {/* How We Help */}
         <div>
-          <h3 className="text-base sm:text-lg font-bold mb-5 text-center" style={{ color: t.text }}>Why This Project Stands Out</h3>
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 text-center" style={{ color: t.text }}>{data.h2_process}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {data.standout.map((item, i) => {
-              const Icon = STANDOUT_ICONS[i];
-              const clr = STANDOUT_COLORS[i];
+            {(data.steps || []).map((item, i) => {
+              const Icon = [BarChart3, Search, Handshake][i];
+              const clr = STEP_COLORS[i];
               return (
                 <div key={i} className="text-center p-5 rounded-xl" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.isDark ? "#2a2d33" : "#e2e8f0"}` }}>
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: `${clr}15` }}>
-                    <Icon size={24} color={clr} strokeWidth={1.8} />
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: `${clr}15` }}>
+                    <Icon size={28} color={clr} strokeWidth={1.8} />
                   </div>
-                  <p className="text-xs font-bold mb-1" style={{ color: clr }}>{item.title}</p>
-                  <p className="text-[11px] leading-relaxed" style={{ color: t.textMuted }}>{item.text}</p>
+                  <p className="text-sm font-bold mb-1" style={{ color: clr }}>{item.title}</p>
+                  <p className="text-xs sm:text-sm leading-relaxed" style={{ color: t.textMuted }}>{item.subtitle}</p>
                 </div>
               );
             })}
@@ -124,8 +102,8 @@ const VerdictSection = ({ data }) => {
 
         {/* CTA */}
         <div className="text-center">
-          <h3 className="text-base sm:text-lg font-bold mb-2" style={{ color: t.text }}>{data.h3_cta}</h3>
-          <p className="text-xs mb-5 max-w-lg mx-auto" style={{ color: t.textSecondary }}>{data.cta_subtitle}</p>
+          <h3 className="text-lg sm:text-xl font-bold mb-2" style={{ color: t.text }}>{data.h3_cta}</h3>
+          <p className="text-sm mb-5 max-w-lg mx-auto" style={{ color: t.textSecondary }}>{data.cta_subtitle}</p>
           <div className="flex flex-wrap justify-center gap-3">
             {data.cta_buttons.map((btn, i) => (
               <button
