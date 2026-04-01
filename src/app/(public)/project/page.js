@@ -13,7 +13,7 @@ import FaqSection from "@/app/components/single-project/FaqSection";
 import ExpertTipsSection from "@/app/components/single-project/ExpertTipsSection";
 import VerdictSection from "@/app/components/single-project/VerdictSection";
 
-const data = projectData.project;
+const data = projectData;
 
 export const metadata = {
   title: projectData.seo.meta_title,

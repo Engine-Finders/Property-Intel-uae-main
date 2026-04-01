@@ -84,21 +84,6 @@
         "availability": "upcoming"
       }
     ],
-    "page_section_order": [
-      { "key": "hero_section", "label": "section 1 : Hero Section" },
-      { "key": "verdict_section", "label": "section 2 : Verdict Section" },
-      { "key": "unit_mix_section", "label": "section 3 : Unit Mix Section" },
-      { "key": "developer_section", "label": "section 4 : Developer Section" },
-      { "key": "target_buyer_section", "label": "section 5 : Target Buyer Section" },
-      { "key": "location_section", "label": "section 6 : Location Section" },
-      { "key": "financing_section", "label": "section 7 : Financing Section" },
-      { "key": "risks_section", "label": "section 8 : Risks Section" },
-      { "key": "construction_section", "label": "section 9 : Construction Section" },
-      { "key": "comparison_section", "label": "section 10 : Comparison Section" },
-      { "key": "reviews_section", "label": "section 11 : Reviews Section" },
-      { "key": "expert_tips_section", "label": "section 12 : Expert Tips Section" },
-      { "key": "faq_section", "label": "section 13 : FAQ Section" }
-    ],  
 
 
 "hero_section": {

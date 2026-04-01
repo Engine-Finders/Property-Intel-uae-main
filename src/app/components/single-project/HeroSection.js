@@ -4,51 +4,62 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useTheme } from "../context/ThemeContext";
 
-const slides = ["/projects/villa-render-1.jpg", "/projects/villa-render-2.jpg", "/projects/villa-render-3.jpg"];
-
-
 const HeroSection = ({ data }) => {
   const { t } = useTheme();
   const hero = data.hero_section;
+  const meta = hero?.project_meta || {};
+  const slides = (meta.images && meta.images.length ? meta.images : []).slice(0, 8);
+  const slideLabels = meta.slide_labels || [];
   const [currentSlide, setCurrentSlide] = useState(0);
   const [openAccordion, setOpenAccordion] = useState(null);
   const [showInfra, setShowInfra] = useState(false);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide((prev) => (prev + 1) % Math.max(1, slides.length));
   }, []);
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => (prev - 1 + Math.max(1, slides.length)) % Math.max(1, slides.length));
   }, []);
 
   useEffect(() => {
+    if (!slides.length) return;
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
-  }, [nextSlide]);
+  }, [nextSlide, slides.length]);
 
   return (
     <section style={{ background: t.bg }} className="min-h-screen">
       <div className="flex flex-col lg:flex-row">
         {/* Left: Image Slider */}
         <div className="relative w-full lg:w-[55%] h-[40vh] lg:h-[75vh] overflow-hidden">
-          {slides.map((src, i) => (
-            <Image
-              width={1200}
-              height={800}
-              key={i}
-              src={src}
-              alt={data.slide_labels[i]}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
-              loading={i === 0 ? "eager" : "lazy"}
-            />
-          ))}
+          {slides.length ? (
+            slides.map((src, i) => (
+              <Image
+                width={1200}
+                height={800}
+                key={i}
+                src={src}
+                alt={slideLabels[i] || meta.name || "Project image"}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+            ))
+          ) : (
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #2a2d33, #141518)" }} />
+          )}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3">
             <button onClick={prevSlide} aria-label="Previous slide" className="w-9 h-9 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-colors" style={{ background: "rgba(35,37,40,0.6)" }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
             {slides.map((_, i) => (
-              <button key={i} onClick={() => setCurrentSlide(i)} aria-label={`Go to slide ${i + 1}`} className="rounded-full transition-all" style={{ width: i === currentSlide ? 24 : 10, height: 10, background: i === currentSlide ? "#B68A35" : "rgba(255,255,255,0.4)" }} />
+              <button
+                key={i}
+                onClick={() => setCurrentSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className="rounded-full transition-all"
+                style={{ width: i === currentSlide ? 24 : 10, height: 10, background: i === currentSlide ? "#B68A35" : "rgba(255,255,255,0.4)" }}
+              />
             ))}
             <button onClick={nextSlide} aria-label="Next slide" className="w-9 h-9 rounded-full backdrop-blur-sm flex items-center justify-center text-white transition-colors" style={{ background: "rgba(35,37,40,0.6)" }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -59,7 +70,9 @@ const HeroSection = ({ data }) => {
 
         {/* Right: Data Card */}
         <div className="w-full lg:w-[45%] flex flex-col justify-center px-6 py-10 lg:px-12 lg:py-16">
-          <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight leading-tight" style={{ color: t.text }}>{data.name}</h1>
+          <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight leading-tight" style={{ color: t.text }}>
+            {hero?.h1 || meta.name}
+          </h1>
           <h2 className="mt-2 text-sm lg:text-base font-medium tracking-wide uppercase" style={{ color: "#B68A35" }}>{hero.subtitle}</h2>
 
           <div className="mt-6 flex flex-wrap gap-2">

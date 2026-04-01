@@ -4,102 +4,91 @@
     "meta_description": "Independent review of Serro at The Heights by Emaar: pricing, unit mix, payment plan, handover timeline, risks, and ROI insights for Dubai property investors.",
     "canonical": "https://propertyintel.ae/project"
   },
-  "project": {
-    "id": "serro-001",
-    "slug": "serro-at-the-heights",
-    "name": "Serro at The Heights",
-    "status": "off-plan",
-    "construction_status": "active",
-    "launch_date": "2026-04-01",
-    "handover_date": "2030-03-31",
-    "area": {
-      "name": "Al Yalayis",
-      "emirate": "Dubai"
-    },
-    "developer": {
-      "name": "Emaar Properties",
-      "slug": "emaar-properties",
-      "founded_year": 1997,
-      "units_delivered": 118000,
-      "on_time_rating": 98,
-      "rera_registered": true,
-      "logo_url": "/images/developers/emaar.png",
-      "description": "Emaar Properties is one of the UAE's largest developers, known for delivering large-scale master communities including Downtown Dubai and Dubai Hills Estate."
-    },
-    "location": {
-      "lat": 24.8895,
-      "lng": 55.2686,
-      "address": "The Heights, Al Yalayis, Dubai"
-    },
-    "pricing": {
-      "price_from": 6000000,
-      "price_to": 9000000,
-      "price_per_sqft_from": 1732,
-      "currency": "AED"
-    },
-    "payment_plan": {
-      "type": "80/20",
-      "booking_percent": 10,
-      "construction_percent": 70,
-      "handover_percent": 20
-    },
-    "metrics": {
-      "total_units": 383,
-      "master_community_units": 11400,
-      "master_community_area_sqft": 81000000,
-      "yield_estimate": "5-6%"
-    },
-    "images": [
-      "/images/projects/serro/hero-1.jpg",
-      "/images/projects/serro/hero-2.jpg",
-      "/images/projects/serro/hero-3.jpg"
-    ],
-    "slide_labels": ["Villa Exterior", "Master Community", "Interior Living"],
-    "units": [
-      {
-        "type_name": "3-Bedroom Type A",
-        "bedrooms": 3,
-        "size_sqft_min": 3402,
-        "size_sqft_max": 3463,
-        "price": 6000000,
-        "price_per_sqft": 1732,
-        "availability": "available"
-      },
-      {
-        "type_name": "4-Bedroom Type A",
-        "bedrooms": 4,
-        "size_sqft_min": 4302,
-        "size_sqft_max": 4312,
-        "price": 7800000,
-        "price_per_sqft": 1800,
-        "availability": "limited"
-      },
-      {
-        "type_name": "5-Bedroom",
-        "bedrooms": 5,
-        "size_sqft_min": 5822,
-        "size_sqft_max": 5884,
-        "price": 9500000,
-        "price_per_sqft": 1950,
-        "availability": "upcoming"
-      }
-    ],
-    "page_section_order": [
-      { "key": "hero_section", "label": "section 1 : Hero Section" },
-      { "key": "verdict_section", "label": "section 2 : Verdict Section" },
-      { "key": "unit_mix_section", "label": "section 3 : Unit Mix Section" },
-      { "key": "developer_section", "label": "section 4 : Developer Section" },
-      { "key": "target_buyer_section", "label": "section 5 : Target Buyer Section" },
-      { "key": "location_section", "label": "section 6 : Location Section" },
-      { "key": "financing_section", "label": "section 7 : Financing Section" },
-      { "key": "risks_section", "label": "section 8 : Risks Section" },
-      { "key": "construction_section", "label": "section 9 : Construction Section" },
-      { "key": "comparison_section", "label": "section 10 : Comparison Section" },
-      { "key": "reviews_section", "label": "section 11 : Reviews Section" },
-      { "key": "expert_tips_section", "label": "section 12 : Expert Tips Section" },
-      { "key": "faq_section", "label": "section 13 : FAQ Section" }
-    ],
     "hero_section": {
+      "h1": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai",
+      "project_meta": {
+        "id": "serro-001",
+        "slug": "serro-at-the-heights",
+        "name": "Serro at The Heights",
+        "status": "off-plan",
+        "construction_status": "active",
+        "launch_date": "2026-04-01",
+        "handover_date": "2030-03-31",
+        "area": {
+          "name": "Al Yalayis",
+          "emirate": "Dubai"
+        },
+        "developer": {
+          "name": "Emaar Properties",
+          "slug": "emaar-properties",
+          "founded_year": 1997,
+          "units_delivered": 118000,
+          "on_time_rating": 98,
+          "rera_registered": true,
+          "logo_url": "/images/developers/emaar.png",
+          "description": "Emaar Properties is one of the UAE's largest developers, known for delivering large-scale master communities including Downtown Dubai and Dubai Hills Estate."
+        },
+        "location": {
+          "lat": 24.8895,
+          "lng": 55.2686,
+          "address": "The Heights, Al Yalayis, Dubai"
+        },
+        "pricing": {
+          "price_from": 6000000,
+          "price_to": 9000000,
+          "price_per_sqft_from": 1732,
+          "currency": "AED"
+        },
+        "payment_plan": {
+          "type": "80/20",
+          "booking_percent": 10,
+          "construction_percent": 70,
+          "handover_percent": 20
+        },
+        "metrics": {
+          "total_units": 383,
+          "master_community_units": 11400,
+          "master_community_area_sqft": 81000000,
+          "yield_estimate": "5-6%"
+        },
+        "images": [
+          "/projects/villa-render-1.jpg",
+          "/projects/villa-render-2.jpg",
+          "/projects/villa-render-3.jpg"
+        ],
+       
+
+        "slide_labels": ["Villa Exterior", "Master Community", "Interior Living"],
+        "units": [
+          {
+            "type_name": "3-Bedroom Type A",
+            "bedrooms": 3,
+            "size_sqft_min": 3402,
+            "size_sqft_max": 3463,
+            "price": 6000000,
+            "price_per_sqft": 1732,
+            "availability": "available"
+          },
+          {
+            "type_name": "4-Bedroom Type A",
+            "bedrooms": 4,
+            "size_sqft_min": 4302,
+            "size_sqft_max": 4312,
+            "price": 7800000,
+            "price_per_sqft": 1800,
+            "availability": "limited"
+          },
+          {
+            "type_name": "5-Bedroom",
+            "bedrooms": 5,
+            "size_sqft_min": 5822,
+            "size_sqft_max": 5884,
+            "price": 9500000,
+            "price_per_sqft": 1950,
+            "availability": "upcoming"
+          }
+        ]
+      },
       "subtitle": "Off-Plan Villas in Al Yalayis, Dubai",
       "status_badges": [
         { "label": "Off-Plan", "color": "gold" },
@@ -950,9 +939,6 @@
           "list": ["Enhanced accountability for construction quality", "Clearer recourse if defects emerge post-handover", "Government oversight of contractor performance", "Penalties (up to AED 200,000) for violations"]
         }
       ]
-    },
-    "seo": {
-      "h1": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai"
     }
-  }
+
 }
