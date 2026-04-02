@@ -17,8 +17,8 @@ const TypeAheadDropdown = ({
   const ref = useRef(null);
 
   const placeholderClass = t.isDark
-    ? "placeholder:text-[#B68A35] lg:placeholder:text-[#6b7a99]"
-    : "placeholder:text-[#B68A35] lg:placeholder:text-[#64748b]";
+    ? "placeholder:text-[#6b7a99]"
+    : "placeholder:text-[#64748b]";
 
   useEffect(() => {
     const handler = (e) => {
@@ -92,7 +92,6 @@ const HomeHeroSection = ({ data }) => {
   const [goldenVisa, setGoldenVisa] = useState(false);
   const [developerQuery, setDeveloperQuery] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
-  const trustSignals = hero.trust_signals || [];
 
   return (
     <section className="relative overflow-hidden" style={{ background: t.bg }}>
@@ -122,6 +121,68 @@ const HomeHeroSection = ({ data }) => {
         <div className="flex flex-col lg:flex-row">
           {/* Left Content */}
           <div className="w-full lg:w-[50%] flex flex-col justify-center px-5 py-12 lg:px-16 lg:py-20 relative z-[30]">
+            {/* Trust Badges (desktop) */}
+            <div className="hidden lg:flex flex-wrap items-center gap-2 mb-6">
+              {hero.trust_badges.map((badge, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide"
+                  style={{
+                    background: t.isDark
+                      ? "rgba(182,138,53,0.12)"
+                      : "rgba(182,138,53,0.08)",
+                    color: GOLD,
+                    border: `1px solid ${GOLD}`,
+                  }}
+                >
+                  {badge}
+                </span>
+              ))}
+              <span
+                className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium"
+                style={{
+                  color: GOLD,
+                  background: t.isDark
+                    ? "rgba(255,255,255,0.06)"
+                    : "rgba(0,0,0,0.04)",
+                  border: `1px solid ${GOLD}`,
+                }}
+              >
+                Last Data Update: {hero.last_update}
+              </span>
+            </div>
+
+            {/* Trust Badges (mobile) */}
+            <div className="flex lg:hidden flex-wrap items-center gap-2 mb-6">
+              {hero.trust_badges.map((badge, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide"
+                  style={{
+                    background: t.isDark
+                      ? "rgba(255,255,255,0.08)"
+                      : "rgba(0,0,0,0.05)",
+                    color: "#e3d5d5",
+                    border: "1px solid #e3d5d5",
+                  }}
+                >
+                  {badge}
+                </span>
+              ))}
+              <span
+                className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-medium"
+                style={{
+                  color: "#e3d5d5",
+                  background: t.isDark
+                    ? "rgba(255,255,255,0.08)"
+                    : "rgba(0,0,0,0.05)",
+                  border: "1px solid #e3d5d5",
+                }}
+              >
+                Last Data Update: {hero.last_update}
+              </span>
+            </div>
+
             <h1
               className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.8rem] font-bold leading-[1.1] tracking-tight lg:text-inherit text-white"
               style={{ color: undefined }}
@@ -131,6 +192,26 @@ const HomeHeroSection = ({ data }) => {
               </span>
               <span className="lg:hidden">{hero.h1}</span>
             </h1>
+
+            <p
+              className="mt-4 text-sm lg:text-base leading-relaxed max-w-xl lg:text-inherit text-white/80"
+              style={{ color: undefined }}
+            >
+              <span
+                className="hidden lg:inline"
+                style={{ color: t.textSecondary }}
+              >
+                {hero.h2}
+              </span>
+              <span className="lg:hidden">{hero.h2}</span>
+            </p>
+
+            <p
+              className="mt-3 text-xs lg:text-sm font-medium tracking-wide"
+              style={{ color: GOLD }}
+            >
+              {hero.social_proof}
+            </p>
 
             {/* Search Bar */}
             <div className="mt-6">
@@ -146,8 +227,8 @@ const HomeHeroSection = ({ data }) => {
                     placeholder="Project Name"
                     className={`w-full px-4 py-3 text-sm bg-transparent outline-none ${
                       t.isDark
-                        ? "placeholder:text-[#B68A35] lg:placeholder:text-[#6b7a99]"
-                        : "placeholder:text-[#B68A35] lg:placeholder:text-[#64748b]"
+                        ? "placeholder:text-[#6b7a99]"
+                        : "placeholder:text-[#64748b]"
                     }`}
                     style={{ color: t.text }}
                   />
@@ -194,13 +275,6 @@ const HomeHeroSection = ({ data }) => {
               </div>
             </div>
 
-            <p
-              className="mt-5 text-sm lg:text-base leading-relaxed max-w-xl"
-              style={{ color: t.textSecondary }}
-            >
-              {hero.hero_description}
-            </p>
-
             {/* Golden Visa Toggle */}
             <button
               onClick={() => setGoldenVisa(!goldenVisa)}
@@ -220,28 +294,9 @@ const HomeHeroSection = ({ data }) => {
                 background: "transparent",
               }}
             >
-              {hero.consultation_cta}
+              {hero.secondary_cta}
               <ArrowRight size={16} />
             </button>
-
-            {/* Trust signals */}
-            <div className="mt-6 grid grid-cols-2 lg:grid-cols-3 gap-2.5">
-              {trustSignals.map((item, i) => (
-                <div
-                  key={i}
-                  className="px-3 py-2 text-xs sm:text-[13px] font-semibold rounded-none"
-                  style={{
-                    color: GOLD,
-                    border: `1px solid rgba(182,138,53,0.45)`,
-                    background: t.isDark
-                      ? "rgba(182,138,53,0.12)"
-                      : "rgba(182,138,53,0.08)",
-                  }}
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right: Video */}

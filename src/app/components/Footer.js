@@ -11,7 +11,7 @@ const footerLinks = {
   ],
   resources: [
     { label: "Market Reports", href: "#" },
-    { label: "Investment Guide", href: "#" },
+    { label: "Site-Map", href: "/site-map" },
     { label: "Blog", href: "#" },
     { label: "FAQ", href: "#" },
   ],

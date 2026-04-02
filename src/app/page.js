@@ -9,6 +9,7 @@ import IntelligenceSection from "@/app/components/home/IntelligenceHome";
 import HomeFaqSection from "@/app/components/home/HomeFaq";
 import TrustedBySection from "@/app/components/home/TrustedByAuthorityHome";
 import DevelopersSectionHome from "@/app/components/home/DevelopersSectionHome";
+import HowWeHelpHome from "./components/home/HowWeHelpHome";
 
 export const metadata = {
   title: homeData.seo.meta_title,
@@ -21,9 +22,10 @@ export default function Home() {
   return (
     <>
       <HomeHeroSection data={homeData.hero_section} />
+      <HowWeHelpHome data={homeData.how_we_help_section} />
+      <CuratedProjectsSection data={homeData.curated_section} />
       <DevelopersSectionHome data={homeData.top_developers_section} />
       <MarketPulseSection data={homeData.market_pulse_section} />
-      <CuratedProjectsSection data={homeData.curated_section} />
       <TrustIndexSection data={homeData.trust_index_section} />
       <GrowthMapSection data={homeData.growth_map_section} />
       <TrustAuthHome data={homeData.trust_authority_section} />

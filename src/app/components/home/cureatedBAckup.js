@@ -1,42 +1,15 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useTheme } from "../context/ThemeContext";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const GOLD = "#B68A35";
 const BLUE = "#286CFF";
 
 const CuratedProjectsSection = ({ data }) => {
   const { t } = useTheme();
-  const [activeTab, setActiveTab] = useState(0);
-  const [slideIndex, setSlideIndex] = useState(0);
-
-  const tabs = data.tabs || [];
-  const activeTabId = tabs[activeTab]?.id;
-  const filteredProjects = useMemo(() => {
-    if (!activeTabId) return data.projects || [];
-    return (data.projects || []).filter((project) => project.tab_id === activeTabId);
-  }, [data.projects, activeTabId]);
-
-  const [visibleCount, setVisibleCount] = useState(1);
-  useEffect(() => {
-    const updateVisible = () => {
-      setVisibleCount(window.innerWidth >= 1024 ? 3 : 1);
-    };
-    updateVisible();
-    window.addEventListener("resize", updateVisible);
-    return () => window.removeEventListener("resize", updateVisible);
-  }, []);
-
-  useEffect(() => {
-    setSlideIndex((prev) => Math.min(prev, Math.max(0, filteredProjects.length - visibleCount)));
-  }, [filteredProjects.length, visibleCount]);
-
-  const maxIndex = Math.max(0, filteredProjects.length - visibleCount);
-
-  const handlePrev = () => setSlideIndex((prev) => Math.max(0, prev - 1));
-  const handleNext = () => setSlideIndex((prev) => Math.min(maxIndex, prev + 1));
+  const [activeFilter, setActiveFilter] = useState(0);
 
   return (
     <section style={{ background: t.bg }} className="py-6 lg:py-8">
@@ -81,69 +54,41 @@ const CuratedProjectsSection = ({ data }) => {
           ))}
         </div>
 
-        {/* ── Tabs ── */}
+        {/* ── Filter Pills ── */}
         <div className="mt-8 flex flex-nowrap gap-2 overflow-x-auto pb-2 scrollbar-theme md:flex-wrap md:overflow-visible">
-          {tabs.map((tab, i) => {
-            const isActive = activeTab === i;
+          {data.filters.map((filter, i) => {
+            const isGolden = filter.toLowerCase().includes("golden visa");
+            const isActive = activeFilter === i;
             return (
               <button
                 key={i}
-                onClick={() => {
-                  setActiveTab(i);
-                  setSlideIndex(0);
-                }}
+                onClick={() => setActiveFilter(i)}
                 className="px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap"
                 style={{
                   background: isActive
-                    ? "rgba(182,138,53,0.15)"
+                    ? isGolden ? "rgba(182,138,53,0.15)" : t.cardBg
                     : "transparent",
                   color: isActive ? GOLD : t.textMuted,
                   border: `1px solid ${isActive ? "rgba(182,138,53,0.4)" : t.cardBorder}`,
                 }}
               >
-                {tab.label}
+                {isGolden && "🏅 "}{filter}
               </button>
             );
           })}
         </div>
 
-        {/* ── Project Cards Slider ── */}
-        <div className="mt-10">
-          <div className="flex items-center justify-end gap-2 mb-4">
-            <button
-              onClick={handlePrev}
-              disabled={slideIndex === 0}
-              className="w-9 h-9 rounded-full inline-flex items-center justify-center disabled:opacity-40"
-              style={{ border: `1px solid ${t.cardBorder}`, color: t.text }}
-              aria-label="Previous projects"
-            >
-              <ArrowLeft size={16} />
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={slideIndex >= maxIndex}
-              className="w-9 h-9 rounded-full inline-flex items-center justify-center disabled:opacity-40"
-              style={{ border: `1px solid ${t.cardBorder}`, color: t.text }}
-              aria-label="Next projects"
-            >
-              <ArrowRight size={16} />
-            </button>
-          </div>
-
-          <div className="overflow-hidden">
+        {/* ── Project Cards Grid ── */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.projects.map((project) => (
             <div
-              className="flex gap-6 transition-transform duration-300"
-              style={{ transform: `translateX(-${slideIndex * (100 / visibleCount)}%)` }}
+              key={project.id}
+              className="rounded-2xl overflow-hidden flex flex-col transition-all duration-300"
+              style={{
+                background: t.cardBg,
+                border: `1px solid ${t.cardBorder}`,
+              }}
             >
-              {filteredProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="rounded-2xl overflow-hidden flex flex-col transition-all duration-300 shrink-0 basis-full lg:basis-[31.5%]"
-                  style={{
-                    background: t.cardBg,
-                    border: `1px solid ${t.cardBorder}`,
-                  }}
-                >
               {/* Card Image */}
               <div className="relative h-48 sm:h-52 overflow-hidden">
                 {project.image ? (
@@ -225,7 +170,7 @@ const CuratedProjectsSection = ({ data }) => {
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-wider" style={{ color: t.textMuted }}>Plan</p>
-                    <p className="text-sm font-bold" style={{ color: t.text }}>{project.plan || "N/A"}</p>
+                    <p className="text-sm font-bold" style={{ color: t.text }}>{project.plan}</p>
                   </div>
                 </div>
 
@@ -246,24 +191,12 @@ const CuratedProjectsSection = ({ data }) => {
                   ))}
                 </div>
 
-                {/* Why + Best fit */}
+                {/* Description */}
                 <p
                   className="mt-3 text-xs sm:text-sm leading-relaxed flex-1"
                   style={{ color: t.textSecondary }}
                 >
-                  <span className="font-semibold" style={{ color: t.text }}>
-                    Why this is here:
-                  </span>{" "}
-                  {project.why_this_is_here}
-                </p>
-                <p
-                  className="mt-2 text-xs sm:text-sm leading-relaxed flex-1"
-                  style={{ color: t.textSecondary }}
-                >
-                  <span className="font-semibold" style={{ color: t.text }}>
-                    Best for:
-                  </span>{" "}
-                  {project.best_for}
+                  {project.description}
                 </p>
 
                 {/* CTA */}
@@ -279,10 +212,8 @@ const CuratedProjectsSection = ({ data }) => {
                   <ArrowRight size={14} />
                 </button>
               </div>
-                </div>
-              ))}
             </div>
-          </div>
+          ))}
         </div>
 
         {/* ── Footer ── */}
@@ -293,18 +224,31 @@ const CuratedProjectsSection = ({ data }) => {
             border: `1px solid ${t.cardBorder}`,
           }}
         >
+          <h4
+            className="text-sm font-bold mb-2 inline-flex items-center gap-2"
+            style={{ color: t.text }}
+          >
+            <Image
+              src="/home/Transparency%20%26%20Methodology%20icon.svg"
+              alt="Transparency & Methodology"
+              width={24}
+              height={24}
+            />
+            Transparency & Methodology
+          </h4>
           <p
-            className="text-sm sm:text-base leading-relaxed"
+            className="text-xs sm:text-sm leading-relaxed"
             style={{ color: t.textSecondary }}
           >
-            We don&apos;t show everything - only what stands out.
+            {data.footer.note}
           </p>
-          <p
-            className="mt-3 text-sm sm:text-base leading-relaxed"
-            style={{ color: t.textSecondary }}
+          <button
+            className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors"
+            style={{ color: GOLD }}
           >
-            Each project is selected based on location strength, pricing, demand, and long-term potential - so you can focus on what actually matters instead of sorting through hundreds of listings.
-          </p>
+            {data.footer.secondary_link_text}
+            <ArrowRight size={14} />
+          </button>
         </div>
       </div>
     </section>

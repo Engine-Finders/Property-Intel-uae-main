@@ -1,0 +1,815 @@
+{
+    "seo": {
+      "meta_title": "Dubai Property Market Insights, Projects & Developer Data | PropertyIntel",
+      "meta_description": "Explore verified Dubai real estate data, off-plan projects, top developer insights, and market analytics. Compare ROI, pricing, and handover trends",
+      "canonical": "https://propertyintel.ae/"
+    },
+    "hero_section": {
+      "trust_badges": [
+        "RERA-Registered Platform",
+        "Data Sourced from DXBinteract.com"
+      ],
+      "last_update": "March 2026",
+      "h1": "Verified Dubai Real Estate Data & Off Plan Projects in UAE",
+      "h2": "Data-driven insights to help you buy property in Dubai with confidence. Access exclusive Golden Visa properties and verified listings backed by real market data.",
+      "social_proof": "Trusted by 5,000+ Monthly Investors | 200+ Verified Developers | Updated Weekly",
+      "search_placeholder": "Search for new projects in Dubai... (e.g., \"Dubai Creek Harbour,\" \"Emaar,\" \"JVC\")",
+      "golden_visa_toggle": "Show Golden Visa Eligible Only (AED 2M+)",
+      "secondary_cta": "Get a Free Investment Consultation",
+      "project_options": [
+        "All Projects",
+        "Off-Plan",
+        "Ready to Move",
+        "Under Construction"
+      ],
+      "developer_options": [
+        "All Developers",
+        "Emaar",
+        "DAMAC",
+        "Sobha",
+        "Nakheel",
+        "Meraas",
+        "Dubai Properties"
+      ],
+      "location_options": [
+        "All Locations",
+        "Dubai Marina",
+        "Downtown Dubai",
+        "Business Bay",
+        "JVC (Jumeirah Village Circle)",
+        "Dubai Hills Estate",
+        "Dubai Creek Harbour",
+        "Palm Jumeirah",
+        "Al Yalayis",
+        "MBR City",
+        "Dubailand",
+        "Dubai South",
+        "Jumeirah Lake Towers"
+      ]
+    },
+    "market_pulse_section": {
+      "last_updated": "March 13, 2026",
+      "h2": "Dubai Property Market Analytics & Deep Dive",
+      "h3": "We go beyond surface-level stats to analyze raw DLD data — giving you a 360-degree view of the Dubai real estate market, where it stands today and where it's heading. The clarity you need to buy property in Dubai with confidence.",
+      "metrics": [
+        {
+          "label": "Total Active Off-Plan Projects",
+          "value": "242+",
+          "sub_value": "Vetted Developments",
+          "trend": "↑ 5.2% MoM",
+          "trend_direction": "up",
+          "context": "Verified off plan projects in UAE"
+        },
+        {
+          "label": "Avg. Price/Sq. Ft (City-Wide)",
+          "value": "AED 1,924",
+          "sub_value": "",
+          "trend": "↑ 1.8% YoY",
+          "trend_direction": "up",
+          "context": "Dubai property valuation baseline"
+        },
+        {
+          "label": "Total Jan 2026 Sales Volume",
+          "value": "15,756",
+          "sub_value": "Transactions",
+          "trend": "↑ 12% YoY",
+          "trend_direction": "up",
+          "context": "Market liquidity indicator"
+        },
+        {
+          "label": "Total Jan 2026 Sales Value",
+          "value": "AED 55.18",
+          "sub_value": "Billion",
+          "trend": "↑ 43.9% YoY",
+          "trend_direction": "up",
+          "context": "Total capital deployed"
+        },
+        {
+          "label": "Market Growth (Value YoY)",
+          "value": "+43.9%",
+          "sub_value": "",
+          "trend": "↔ Stable",
+          "trend_direction": "stable",
+          "context": "Dubai property market health"
+        },
+        {
+          "label": "Avg. Gross Rental Yield",
+          "value": "6.9%",
+          "sub_value": "",
+          "trend": "↑ 0.4% YoY",
+          "trend_direction": "up",
+          "context": "ROI for property in Dubai for sale"
+        }
+      ],
+      "tabs": [
+        {
+          "id": "money-flow",
+          "title": "Where is the Money Flowing?",
+          "sub_title": "Off-Plan vs. Ready",
+          "chart_type": "donut",
+          "chart_data": [
+            { "label": "Off-Plan", "value": 71, "color": "#B68A35" },
+            { "label": "Ready", "value": 29, "color": "#3B4A6B" }
+          ],
+          "content": "January 2026 confirmed a market powered by future growth. The off-plan segment continues to dominate, accounting for over 71% of all sales activity. This isn't speculation; it's confidence in Dubai new construction pipelines. However, the ready market is showing remarkable strength in value, with a 49% year-on-year increase, signaling sustained appetite for immediate income-generating assets for investors looking to buy property off plan in dubai or ready units.",
+          "source": "Dubai Land Department (DLD) / DXBinteract.com"
+        },
+        {
+          "id": "price-sqft",
+          "title": "Price Per Square Foot",
+          "sub_title": "The Micro-Climate Report",
+          "chart_type": "table",
+          "intro": "A city-wide average of AED 1,924/sq.ft hides massive variation. Here is the real picture across key investor communities. The actual numbers behind property in dubai for sale:",
+          "table_data": [
+            { "area": "Downtown Dubai", "price": "AED 2,980/sq.ft", "insight": "Global benchmark; pricing power & prestige." },
+            { "area": "Dubai Marina", "price": "AED 2,061/sq.ft", "insight": "Established lifestyle; strong rental liquidity." },
+            { "area": "Dubai Hills Estate", "price": "AED 2,442 - 2,876/sq.ft", "insight": "Balanced luxury; family demand drives stability." },
+            { "area": "JVC", "price": "AED 1,448/sq.ft", "insight": "Yield-driven mid-market; high transaction volume." },
+            { "area": "Dubai South", "price": "AED 1,250 - 1,450/sq.ft", "insight": "Future growth corridor; infrastructure-led appreciation." },
+            { "area": "Arjan", "price": "AED 1,551/sq.ft", "insight": "Emerging hub; affordability with upside." }
+          ],
+          "source": "Engel & Völkers / Property Monitor Data"
+        },
+        {
+          "id": "top-areas",
+          "title": "Top Performing Areas",
+          "sub_title": "By Transaction Value",
+          "chart_type": "bar",
+          "intro": "JVC leads in transaction volume and ROI. Meanwhile, value is concentrating in established and emerging prime nodes. This data is critical for identifying the best real estate investment in dubai:",
+          "bar_data": [
+            { "area": "Al Rowaiyah 1", "value": 6.31, "display": "AED 6.31 Billion" },
+            { "area": "Meydan 2 (Me'aisem 2)", "value": 6.04, "display": "AED 6.04 Billion" },
+            { "area": "Al Yalayis 1", "value": 4.6, "display": "AED 4.6 Billion" },
+            { "area": "Business Bay", "value": 3.51, "display": "AED 3.51 Billion" },
+            { "area": "Palm Jebel Ali", "value": 1.7, "display": "> AED 1.7 Billion" }
+          ],
+          "insight": "Al Yalayis's emergence as a top-3 value generator signals a major shift of capital toward the southern logistics corridor.",
+          "source": "Dubai Land Department (DLD) / DXBinteract.com"
+        }
+      ],
+      "footer": {
+        "attribution": "Data aggregated from the Dubai Land Department (DLD), DXBinteract.com, and verified partner portals. We believe in radical transparency—all numbers are current as of {{date}} and can be independently verified. This dubai property market analysis is updated monthly to ensure accuracy for all investors.",
+        "primary_cta": "Download Full January 2026 Market Report (PDF)",
+        "secondary_link_text": "View DXBinteract.com Historical Data",
+        "secondary_link_url": "https://dxbinteract.com"
+      }
+    },
+    "curated_section": {
+      "last_updated": "March 2026",
+      "h2": "Curated: Best Real Estate Investment in Dubai",
+      "h3": "We analyze every launch to bring you the projects with the strongest fundamentals. These are not just listings; they are data-backed off plan projects in uae and property in dubai for sale verified against DLD records.",
+      "trust_badges": ["RERA Verified Selections", "Updated: March 2026"],
+      "filters": [
+        "BY ROI POTENTIAL",
+        "BY DEVELOPER",
+        "PAYMENT PLAN PROPERTY DUBAI",
+        "BY HANDOVER DATE",
+        "HIGH CAPITAL GROWTH",
+        "Golden Visa Properties (AED 2M+)"
+      ],
+      "projects": [
+        {
+          "id": "sobha-hartland-ii",
+          "title": "The S at Sobha Hartland II",
+          "developer": "Sobha Realty",
+          "image_alt": "Luxury off plan property in dubai at Sobha Hartland II featuring panoramic views.",
+          "price": "AED 6.8M",
+          "yield": "Est. 5-7%",
+          "handover": "Q4 2028",
+          "plan": "60/40",
+          "tags": ["Golden Visa Properties", "Ultra-Luxury", "MBR City"],
+          "description": "A 71-storey architectural landmark offering just two expansive residences per floor. This is a play for scarcity and long-term capital appreciation for those looking to buy property in Dubai in a prime district.",
+          "cta": "View Investment Analysis",
+          "rera_verified": true
+        },
+        {
+          "id": "five-jvc",
+          "title": "FIVE at Jumeirah Village Circle",
+          "developer": "Five Holdings",
+          "image_alt": "Modern off plan apartments for sale in dubai at FIVE JVC with high rental yield potential.",
+          "price": "AED 1.7M",
+          "yield": "Est. 8-9%",
+          "handover": "Q2 2027",
+          "plan": "50/50",
+          "tags": ["High ROI", "Branded Residence", "Prime JVC"],
+          "description": "A landmark 60-storey tower in the heart of JVC, offering luxury amenities. This targets the high-volume search for off plan apartments for sale in dubai with strong rental yield potential.",
+          "cta": "View Investment Analysis",
+          "rera_verified": true
+        },
+        {
+          "id": "bay-villas-dubai-islands",
+          "title": "Bay Villas Phase 2, Dubai Islands",
+          "developer": "Nakheel",
+          "image_alt": "Waterfront new projects in dubai at Dubai Islands by Nakheel.",
+          "price": "AED 4.7M",
+          "yield": "Est. 6-8%",
+          "handover": "Q1 2028",
+          "plan": "70/30",
+          "tags": ["Waterfront", "Capital Growth", "Dubai Property"],
+          "description": "Early-phase launch on Dubai's new coastal destination. Proximity to DXB and future growth corridors makes this a prime candidate for those seeking best real estate investment in dubai with a long-term view.",
+          "cta": "View Investment Analysis",
+          "rera_verified": true
+        }
+      ],
+      "footer": {
+        "note": "The projects featured above represent a balanced portfolio of opportunities based on current market data from March 2026. We manually review and update these selections monthly to ensure accuracy. All projects are RERA approved and escrow verified.",
+        "secondary_link_text": "View All Off Plan Projects in UAE"
+      }
+    },
+    "trust_index_section": {
+      "last_updated": "March 2026",
+      "h2": "Verified Property Developers in UAE: The Trust Index",
+      "h3": "We independently audit over 200 UAE developers. With thousands of units scheduled for delivery, empirical data separates the reliable institutions from the speculative risks. We grade the builders so you can maximize returns on dubai real estate projects.",
+      "trust_statement": "Our platform only lists RERA approved projects from the top 10 real estate developers in Dubai. Our proprietary grading system is based on on-time delivery history, financial transparency, and post-handover service charge competitiveness.",
+      "leaderboard_title": "The Leaderboard",
+      "leaderboard_subtitle": "Dynamic matrix ranking developers based on hard operational data.",
+      "columns": [
+        "Developer Institution",
+        "PropertyIntel Grade",
+        "Project Delivery Reliability",
+        "Avg. Service Charges (AED/sq.ft)",
+        "Signature 2026 Projects",
+        "Market Positioning"
+      ],
+      "developers": [
+        {
+          "name": "Emaar Properties",
+          "grade": "Gold",
+          "delivery": "Tier 1 (85%+ Consistently)",
+          "service_charges": "15 – 22",
+          "projects": "The Oasis, Emaar South",
+          "positioning": "Apex market leader; unmatched multi-cycle consistency.",
+          "link": "/developer"
+        },
+        {
+          "name": "Sobha Realty",
+          "grade": "Gold",
+          "delivery": "Tier 1 (85%+ Consistently)",
+          "service_charges": "14 – 18",
+          "projects": "Sobha Hartland II, Seahaven",
+          "positioning": "Vertically integrated; exceptional craftsmanship.",
+          "link": null
+        },
+        {
+          "name": "Aldar Properties",
+          "grade": "Gold",
+          "delivery": "Tier 1 (90%+ Consistently)",
+          "service_charges": "15 – 20",
+          "projects": "Saadiyat Lagoons, Yas Riva",
+          "positioning": "Sovereign-backed stability; flawless delivery record.",
+          "link": null
+        },
+        {
+          "name": "Nakheel",
+          "grade": "Gold",
+          "delivery": "Tier 1 (75%+ Consistently)",
+          "service_charges": "12 – 25",
+          "projects": "Palm Jebel Ali, Dubai Islands",
+          "positioning": "Government-backed; master developer of iconic waterfronts.",
+          "link": null
+        },
+        {
+          "name": "Meraas",
+          "grade": "Silver",
+          "delivery": "Tier 1 (80%+ Consistently)",
+          "service_charges": "18 – 26",
+          "projects": "Nad Al Sheba Gardens, Ghaf Woods",
+          "positioning": "Lifestyle-oriented districts; strong placemaking vision.",
+          "link": null
+        },
+        {
+          "name": "DAMAC Properties",
+          "grade": "Silver",
+          "delivery": "Tier 2 (70%+ Market Avg)",
+          "service_charges": "18 – 25+",
+          "projects": "DAMAC Hills 2, Cavalli Tower",
+          "positioning": "Branded luxury focus; large-scale developer.",
+          "link": null
+        },
+        {
+          "name": "Azizi Developments",
+          "grade": "Bronze",
+          "delivery": "Tier 2 (70%+ Market Avg)",
+          "service_charges": "10 – 16",
+          "projects": "Azizi Venice, Riviera",
+          "positioning": "Volume-driven; wide geographic footprint.",
+          "link": null
+        },
+        {
+          "name": "Danube Properties",
+          "grade": "Silver",
+          "delivery": "Tier 2 (85%+ Early/On-Time)",
+          "service_charges": "10 – 16",
+          "projects": "Dreamz, Elitz",
+          "positioning": "Mid-market leader; multiple 2025 projects delivered early.",
+          "link": null
+        },
+        {
+          "name": "Binghatti",
+          "grade": "Bronze",
+          "delivery": "Tier 2 (70%+ Market Avg)",
+          "service_charges": "10 – 15",
+          "projects": "Binghatti Galaxy, Orchid",
+          "positioning": "High-volume residential; distinctive architecture.",
+          "link": null
+        }
+      ],
+      "insights": [
+        {
+          "headline": "The Delivery Reality",
+          "sub_headline": "Navigating Off Plan Projects in Dubai Risks",
+          "content": "Of the approximately 45,000 units scheduled for 2026 completion, independent market intelligence suggests only an estimated 48% will be delivered on time. This means nearly 22,800 units face potential delays. Our Trust Index isolates institutions capable of executing at scale from those hindered by supply chain bottlenecks.",
+          "source": "PropertyIntel Analysis based on DLD Transaction Data"
+        },
+        {
+          "headline": "Service Charge Transparency",
+          "sub_headline": "Impact on Net Yield",
+          "content": "Annual service charges directly impact your net yield. RERA approved projects from Gold-rated developers consistently demonstrate competitive, transparent fee structures verified through DLD's Mollak system. Bronze-rated developers may offer lower entry prices but often carry higher execution risk.",
+          "source": "DLD Mollak System Data"
+        }
+      ],
+      "footer": {
+        "attribution": "Developer grades are based on analysis of DLD transaction data, escrow account compliance, and verified project completion records. Updated quarterly. We verify all entities against the Dubai Land Department registry to ensure they are RERA approved projects.",
+        "primary_cta": "View Full Developer Audit: Emaar Properties",
+        "primary_cta_link": "/developer",
+        "secondary_cta": "View All 200+ Developer Pages",
+        "disclaimer": "Grades are proprietary to PropertyIntel.ae and based on publicly available data as of {{date}}."
+      }
+    },
+    "growth_map_section": {
+      "last_updated": "March 2026",
+      "h2": "Map the Future: Dubai Upcoming Projects & Growth Corridors",
+      "h3": "Urban economics dictates that property valuations follow state-sponsored infrastructure. Here are the best areas to invest in dubai for the next decade of wealth.",
+      "trust_statement": "Our growth vectors are based on verified government infrastructure announcements from the RTA and Dubai Economy & Tourism. We track new developments in dubai against actual construction milestones, not just marketing hype.",
+      "map_placeholder_text": "Interactive Growth Map Coming Soon",
+      "footer": {
+        "attribution": "Growth corridors identified based on Dubai 2040 Urban Master Plan and RTA Transport Master Plan 2030. We update this map quarterly to reflect dubai property market forecast changes and infrastructure completion status.",
+        "primary_cta": "Explore Area Investment Guides",
+        "secondary_cta": "View Dubai Property Market Data",
+        "disclaimer": "Infrastructure timelines are subject to government approval. Past performance does not guarantee future results. Data verified as of {{date}}."
+      }
+    },
+    "trust_authority_section": {
+      "last_updated": "March 2026",
+      "h2": "Your Expert Guide to the Buying Property in Dubai Process",
+      "h3": "We don't just list off plan property investment opportunities; we guide you through every regulatory and financial step with verified, RERA-compliant expertise. Knowledge is the only real hedge against risk in Dubai real estate.",
+      "pillars_title": "The Four Pillars of Secure Investment",
+      "pillars": [
+        {
+          "icon": "database",
+          "headline": "Cross-Referenced with Official Sources",
+          "content": "Every price, payment plan, and handover date for off plan projects in UAE is validated against Dubai Land Department (DLD) records and official developer portals. We leverage DXBinteract.com's 20-year historical dataset to verify original launch prices against current market values—ensuring you never buy property in Dubai based on marketing hype alone.",
+          "trust_signals": ["DLD Data Verified", "DXBinteract Partner"],
+          "keyword_tag": "dubai property market"
+        },
+        {
+          "icon": "shield",
+          "headline": "Secure Your Ownership with Confidence",
+          "content": "Understand critical investor protections like Oqood registration, which must occur within 90 days of signing your off-plan Sale and Purchase Agreement (SPA). We guide you through escrow account real estate dubai verification, ensuring your funds are released only against verified construction milestones—protecting your capital at every stage.",
+          "trust_signals": ["RERA Compliance Guide", "Escrow Verification Process"],
+          "keyword_tag": "rera approved"
+        },
+        {
+          "icon": "home",
+          "headline": "Navigate Freehold & Golden Visa Eligibility",
+          "content": "We demystify the process to buy freehold property in Dubai as a foreigner, clearly outlining your rights in designated freehold areas. Our Golden Visa Eligible filter helps you identify golden visa properties (AED 2M+) that can secure your family's 10-year UAE residency—turning complex regulations into actionable investment criteria.",
+          "trust_signals": ["Designated Area Maps", "Visa Eligibility Calculator"],
+          "keyword_tag": "buy freehold property in dubai"
+        },
+        {
+          "icon": "support",
+          "headline": "Dedicated Support From Search to Handover",
+          "content": "From your first search for best real estate investment in Dubai to post-handover support, our team connects you with vetted legal advisors and RERA approved mortgage partners. We help you navigate every step—from oqood registration process to dubai properties service charges—ensuring your investment journey is as seamless as it is secure.",
+          "trust_signals": ["Vetted Partner Network", "Post-Handover Support"],
+          "keyword_tag": "best real estate investment in dubai"
+        }
+      ],
+      "process_title": "The Path to Ownership",
+      "process_subtitle": "A Transparent 4-Step Process",
+      "steps": [
+        {
+          "number": 1,
+          "title": "Verify Eligibility & Developer Credentials",
+          "action": "Confirm the property lies within a designated freehold area and the developer is RERA-registered with a valid escrow account.",
+          "why": "Foreign ownership is only permitted in specific zones under Regulation No. (3) of 2006. Verification prevents legal complications and protects your investment.",
+          "source": "Dubai Land Department Freehold Map",
+          "summary": "Freehold Area • RERA • Escrow Verified"
+        },
+        {
+          "number": 2,
+          "title": "Secure with SPA & Oqood Registration",
+          "action": "Sign the Sale and Purchase Agreement (SPA) and ensure your developer registers the sale on the Oqood system within 90 days.",
+          "why": "Oqood registration legally secures your interim ownership rights during construction. Without it, your contract lacks official DLD recognition.",
+          "source": "RERA Oqood Guidelines",
+          "summary": "90 Days DLD Registration"
+        },
+        {
+          "number": 3,
+          "title": "Register Title & Pay DLD Fees",
+          "action": "Complete the transfer at the DLD, paying the 4% transfer fee plus administrative costs (approx. AED 4,000 + VAT for properties over AED 500k) to receive your title deed.",
+          "why": "The title deed is your legal proof of ownership. Understanding total transaction costs (typically 7-10% above purchase price) prevents budget surprises.",
+          "source": "DLD Fee Schedule",
+          "summary": "4% Transfer + Admin Fees"
+        },
+        {
+          "number": 4,
+          "title": "Maintain & Understand Ongoing Obligations",
+          "action": "Budget for annual dubai properties service charges (set by RERA's Mollak system) and understand your obligations under Dubai's jointly-owned property law.",
+          "why": "Service charges directly impact your net yield. Persistent non-payment can lead to legal enforcement, including potential court-ordered sale of the unit.",
+          "source": "RERA Mollak System",
+          "summary": "Service Charges • RERA Mollak"
+        }
+      ],
+      "footer": {
+        "attribution": "All regulatory guidance is based on current Dubai Land Department (DLD) and Real Estate Regulatory Agency (RERA) guidelines, updated monthly. We verify every process step against official government sources to ensure accuracy for investors seeking buying property in dubai process clarity.",
+        "primary_cta": "Get a Free Investment Consultation",
+        "secondary_cta": "Download Full Buyer's Checklist (PDF)",
+        "disclaimer": "This information is for educational purposes only and does not constitute legal or financial advice. Consult qualified professionals before making investment decisions. Last updated: {{date}}."
+      }
+    },
+    "intelligence_section": {
+      "last_updated": "March 2026",
+      "h2": "Dubai Real Estate News Today & Investment Intelligence",
+      "h3": "Stay ahead with expert analysis on regulatory changes, market trends, and investment strategies. We translate complex dubai property market data into actionable intelligence for every investor—from first-time buyers to portfolio managers seeking the best real estate investment in dubai.",
+      "trust_statement": "All content is verified against official Dubai Land Department (DLD), RERA, and UAE government sources. Updated regularly to reflect current dubai property market forecast and regulatory developments.",
+      "cards": [
+        {
+          "category": "Legal Guide",
+          "reading_time": "5 min",
+          "headline": "How to Buy Freehold Property in Dubai as a Foreign Investor",
+          "summary": "Non-UAE nationals can acquire freehold ownership rights only in designated areas determined by Regulation No. (3) of 2006. This guide covers eligible zones including Palm Jumeirah, Downtown Dubai, Dubai Marina, JVC, and Arabian Ranches—plus the difference between freehold, usufruct, and long-term leasehold rights.",
+          "key_takeaway": "Always confirm the specific plot lies within a Designated Area through official DLD maps or a RERA-registered broker.",
+          "cta": "Read Full Ownership Guide"
+        },
+        {
+          "category": "Investment Strategy",
+          "reading_time": "7 min",
+          "headline": "Complete Guide to Off Plan Projects in UAE for 2026",
+          "summary": "Off plan property purchases represent over 71% of Dubai's 2026 sales volume. This guide explains advantages (lower entry prices, flexible payment plans, capital appreciation) versus risks (completion delays, market fluctuations). Learn how to verify developer credentials, understand escrow protections, and evaluate projects.",
+          "key_takeaway": "Only invest in projects with verified escrow accounts and RERA-registered developers with proven delivery history.",
+          "cta": "Read Full Off-Plan Guide"
+        },
+        {
+          "category": "Residency & Visa",
+          "reading_time": "6 min",
+          "headline": "Golden Visa Properties: Secure 10-Year UAE Residency Through Real Estate",
+          "summary": "The UAE Golden Visa offers 10-year renewable residency to investors who purchase property worth at least AED 2,000,000. This can be achieved through a single or multiple properties. Benefits include no minimum stay, family sponsorship, and zero local taxes on rental income.",
+          "key_takeaway": "If you sell the qualifying property, residency status may be affected unless another qualifying investment is maintained.",
+          "cta": "Read Full Visa Guide"
+        },
+        {
+          "category": "Financial Planning",
+          "reading_time": "5 min",
+          "headline": "Understanding Dubai Properties Service Charges & Mollak System",
+          "summary": "RERA's Mollak system governs annual service charges covering maintenance, security, and community facilities. Charges vary: Emaar (AED 15-22/sq.ft), Sobha (AED 14-18/sq.ft), affordable developments (AED 10-16/sq.ft). For 1,000 sq.ft, expect AED 10,000-22,000 annually.",
+          "key_takeaway": "Always verify a community's historical service charge per square foot before purchasing to accurately forecast your ROI.",
+          "cta": "Read Full Service Charge Analysis"
+        },
+        {
+          "category": "Legal Protection",
+          "reading_time": "6 min",
+          "headline": "Oqood Registration Process: Protecting Your Off-Plan Investment",
+          "summary": "Oqood is Dubai's interim real estate register where off plan property sales must be registered within 90 days of signing the SPA. This provisional registration legally secures ownership rights during construction before a final title deed is issued. DLD charges approximately AED 1,000.",
+          "key_takeaway": "Verify Oqood registration status before making any payment beyond the initial booking fee.",
+          "cta": "Read Full Oqood Guide"
+        },
+        {
+          "category": "Market Analysis",
+          "reading_time": "8 min",
+          "headline": "Best Areas to Invest in Dubai for 2026: ROI & Capital Growth",
+          "summary": "For rental yield (7-9%): JVC, Dubai South, and Arjan lead. For capital appreciation: Dubai Creek Harbour, Dubai South, and Dubai Islands show strong potential. For stability: Dubai Marina, Downtown Dubai, and Palm Jumeirah offer established infrastructure and proven demand.",
+          "key_takeaway": "Villas and townhouses are forecast to outperform apartments in 2026, with projected price growth of 17.7% versus 7.4%.",
+          "cta": "Read Full Area Analysis"
+        },
+        {
+          "category": "Investor Protection",
+          "reading_time": "5 min",
+          "headline": "Escrow Account Real Estate Dubai: How Your Funds Are Protected",
+          "summary": "All buyer payments for off plan projects must be deposited in project-specific escrow accounts. Funds are released only against verified construction milestones, monitored by RERA. In cases of formal cancellation, amounts must be returned within 60 days.",
+          "key_takeaway": "Always verify the project's escrow account number and bank before transferring any funds.",
+          "cta": "Read Full Escrow Guide"
+        },
+        {
+          "category": "Exit Strategy",
+          "reading_time": "6 min",
+          "headline": "Selling Off Plan Property Before Completion: Rules & Procedures",
+          "summary": "Selling off plan property before handover is permitted, subject to developer consent and a transfer fee (often 2-4%). The property must be registered under Oqood, and outstanding payments must be settled or negotiated. This provides an exit strategy if market conditions change.",
+          "key_takeaway": "Review your SPA's resale clause before purchasing, as developer policies on pre-handover sales vary.",
+          "cta": "Read Full Resale Guide"
+        },
+        {
+          "category": "Financial Planning",
+          "reading_time": "5 min",
+          "headline": "Total Dubai Land Department Fees When Buying Property",
+          "summary": "Principal fees include: DLD Transfer Fee (4%), Title Deed Issuance (AED 250-580), Trustee Office Fee (AED 4,000 + VAT), agency commission (2% + VAT), and developer NOC fees (AED 500-5,000). Budget 7-10% above purchase price for all transaction expenses.",
+          "key_takeaway": "The 4% DLD transfer fee is legally split 2% buyer/2% seller, but commonly paid in full by the buyer in practice.",
+          "cta": "Read Full Fee Breakdown"
+        },
+        {
+          "category": "Financial Planning",
+          "reading_time": "6 min",
+          "headline": "Payment Plan Property Dubai: Structures & Off Plan Mortgage Options",
+          "summary": "Common structures include 50/50, 60/40, and 80/20 plans. Emaar typically offers 10/90 or 20/80 where the final portion is due on handover. Off plan mortgage options require higher down payments (25-50%) compared to ready properties.",
+          "key_takeaway": "Post-handover payment plans are less common among top-tier developers—verify the full schedule before committing.",
+          "cta": "Read Full Payment Plan Guide"
+        }
+      ],
+      "footer": {
+        "primary_cta": "Visit Our Complete Research Hub",
+        "secondary_cta": "Subscribe to Weekly Market Intelligence Newsletter",
+        "attribution": "All articles are reviewed monthly against current DLD, RERA, and UAE government regulations. This content is for educational purposes only and does not constitute legal or financial advice."
+      }
+    },
+    "faq_section": {
+      "badge": "Last Updated: March 2026",
+      "title": "Your Questions About Buying Property in Dubai, Answered",
+      "subtitle": "We've compiled the most common questions from global investors, with answers grounded in current Dubai Land Department regulations and verified dubai property market data. All information is reviewed monthly against official DLD and RERA sources.",
+      "items": [
+        {
+          "question": "Who can buy property in Dubai as a foreigner?",
+          "answer": [
+            "Non-UAE nationals—including expatriate residents and non-resident foreigners—are permitted to acquire freehold properties in Dubai, usufruct, or long-term leasehold (up to 99 years) rights only in designated areas determined by the Ruler of Dubai under Regulation No. (3) of 2006.",
+            "These designated freehold areas include Palm Jumeirah, Downtown Dubai, Dubai Marina, Emirates Hills, Jumeirah Village Circle, Arabian Ranches, Dubai Hills Estate, and Business Bay. There is no age limit prescribed by DLD for property ownership; minors can be registered as owners through guardians.",
+            "Before signing any contract, always confirm through official DLD maps or a RERA approved broker that the specific plot or unit lies within a Designated Area. This verification step is critical for ensuring your freehold property investment is legally protected."
+          ],
+          "source": "Dubai Land Department - Foreign Ownership Guidelines"
+        },
+        {
+          "question": "What's the difference between off plan property and ready property in Dubai?",
+          "answer": [
+            "Off plan properties are purchased directly from a developer before construction is complete, typically at launch prices with flexible payment plan structures tied to construction milestones. Ready properties are fully constructed and available for immediate occupancy or rental income.",
+            "For 2026, market analysts forecast capital gains of around 10% overall for Dubai real estate, with villa price growth projected at 17.7% compared to 7.4% for apartments. Off plan projects can appreciate faster in growth corridors tied to new infrastructure like Dubai South or areas along the new Blue Line metro route, but carry risks of construction delays.",
+            "Ready properties in established communities offer more predictable returns and immediate rental income, though appreciation may be steadier. Investors should weigh these factors against their timeline and risk tolerance."
+          ],
+          "source": "ValuStrat Price Index / DLD Transaction Data"
+        },
+        {
+          "question": "What are the total Dubai Land Department fees and transaction costs when buying property?",
+          "answer": [
+            "When registering property with the Dubai Land Department, the principal government fees include:"
+          ],
+          "list": [
+            "DLD Transfer Fee: 4% of the purchase price (legally split 2% buyer/2% seller, but commonly paid in full by the buyer)",
+            "Title Deed Issuance Fee: AED 250–580",
+            "Registration/Trustee Office Fee: AED 4,000 + VAT (for properties over AED 500,000); AED 2,000 + VAT (under AED 500,000)",
+            "Knowledge & Innovation Fees: AED 30–40 total",
+            "Map Fees: AED 225–250 depending on property type",
+            "Agency commission: typically 2% + VAT",
+            "Developer NOC fees: AED 500–5,000",
+            "Mortgage registration fee: 0.25% of loan amount plus valuation fees AED 2,500–3,500"
+          ],
+          "source": "Dubai Land Department - Fee Schedule"
+        },
+        {
+          "question": "Are there payment plan options available for off plan projects in UAE?",
+          "answer": [
+            "Yes. Most property developers in UAE offer structured payment plan options for off plan property purchases, allowing investors to spread payments over the construction period rather than paying the full amount upfront.",
+            "Common structures include 50/50 plans (50% during construction, 50% on handover), 60/40 plans, and even 80/20 plans with low initial deposits. For example, Emaar typically offers 10/90 or 20/80 plans where the final 20–25% is due upon handover.",
+            "These payment plan structures make off plan property investment accessible with lower initial capital, though buyers should understand that post-handover payment plans are less common among top-tier developers. Always verify the full payment schedule before committing."
+          ],
+          "source": "Major Developer Payment Plan Guidelines"
+        },
+        {
+          "question": "What is the Oqood registration process and why is it important?",
+          "answer": [
+            "Oqood is Dubai's interim real estate register where off plan property sales must be registered within 90 days of signing the Sale and Purchase Agreement (SPA). This provisional registration, handled by developers through the Real Estate Developers Portal, legally secures your ownership rights during the construction phase before a final title deed is issued.",
+            "The DLD charges a provisional sale registration fee of approximately AED 1,000 for registration. Without Oqood registration completion, your contract is not officially recognized by DLD, potentially compromising your legal protections.",
+            "Always verify your Oqood registration status before making any payment beyond the initial booking fee—this is a critical step in the buying process for off plan property purchases."
+          ],
+          "source": "Dubai Land Department - Oqood System"
+        },
+        {
+          "question": "Can off plan property generate rental income immediately?",
+          "answer": [
+            "No. Off plan properties cannot generate rental income until construction is complete and the property is formally handed over, which typically takes 2–5 years depending on the project scale.",
+            "Investors seeking immediate returns should consider ready properties in established rental markets like Dubai Marina, JVC, or Downtown Dubai. However, off plan buyers benefit from locking in today's prices while paying in installments, potentially capturing capital appreciation over the construction period.",
+            "For investors focused on immediate cash flow, ready properties may be more suitable. For those prioritizing long-term capital growth, off plan projects in growth corridors like Dubai South or Dubai Creek Harbour offer strong potential."
+          ],
+          "source": "DLD Project Completion Data"
+        },
+        {
+          "question": "What is the Golden Visa and how does it work for property investors?",
+          "answer": [
+            "The UAE Golden Visa offers 10-year renewable residency to investors who purchase property worth at least AED 2,000,000 (approximately £402,000). This threshold can be achieved through a single property or multiple consolidated properties, including off plan property investment assets, provided the equity investment is verified through DLD.",
+            "Benefits include no minimum stay requirement, the ability to sponsor family members, and zero local taxes on rental income or capital gains. Residency can be processed in as little as two weeks in some cases.",
+            "Importantly, if you sell the qualifying property, your residency status may be affected unless you maintain another qualifying investment."
+          ],
+          "source": "UAE Government - Golden Visa Official Portal"
+        },
+        {
+          "question": "What are Dubai properties service charges and how much should I budget?",
+          "answer": [
+            "Dubai properties service charges are annual fees paid by owners to cover maintenance of common areas, security, amenities, and community facilities in jointly owned properties. These charges are regulated by RERA through the Mollak system and vary significantly by community and property type."
+          ],
+          "list": [
+            "Emaar communities: AED 15–22/sq.ft",
+            "Sobha properties: AED 14–18/sq.ft",
+            "Affordable developments: AED 10–16/sq.ft",
+            "For a 1,000 sq.ft apartment, expect AED 10,000–22,000 annually"
+          ],
+          "source": "RERA Mollak System Guidelines"
+        },
+        {
+          "question": "What happens if a developer delays my off plan project?",
+          "answer": [
+            "Dubai's regulatory framework provides investor protections through the escrow account system and RERA oversight. Funds paid by buyers are held in project-specific accounts and released to developers only upon verified construction milestones.",
+            "If a project is stalled, RERA monitors progress and contacts the developer to rectify the situation. In cases where a project is formally cancelled, the escrow account is transferred to the project liquidation department, which requires the developer to return amounts paid to investors within 60 days.",
+            "If the developer fails to comply, the matter is referred to court. Investors can track project completion percentages through DLD's official project tracking service."
+          ],
+          "source": "RERA Escrow Account Regulations"
+        },
+        {
+          "question": "Can I sell my off plan property before handover?",
+          "answer": [
+            "Yes, selling off plan property before completion is permitted in Dubai, subject to certain conditions. The developer's consent is typically required, and a transfer fee (often 2–4% of the sale price) may apply.",
+            "The property must be registered in your name under the Oqood system, and any outstanding payments to the developer must be settled by the new buyer or negotiated as part of the sale.",
+            "This flexibility provides an exit strategy if market conditions change or your investment priorities shift. Always review your SPA's resale clause before purchasing, as developer policies on pre-handover sales vary."
+          ],
+          "source": "DLD Property Transfer Regulations"
+        },
+        {
+          "question": "What are the best areas to invest in Dubai for ROI in 2026?",
+          "answer": [
+            "Based on current Dubai property market data, different areas serve different investment strategies:"
+          ],
+          "list": [
+            "For rental yield (7–9%): Jumeirah Village Circle (JVC), Dubai South, and Arjan lead with affordable entry points and strong tenant demand",
+            "For capital appreciation: Dubai Creek Harbour (Blue Line metro expansion), Dubai South (Al Maktoum Airport corridor), and waterfront communities like Dubai Islands show strong potential",
+            "For stability and liquidity: Dubai Marina, Downtown Dubai, and Palm Jumeirah offer established infrastructure and consistent demand",
+            "Villas and townhouses are forecast to outperform apartments in 2026, with projected price growth of 17.7% versus 7.4% for apartments"
+          ],
+          "source": "ValuStrat Price Index / DLD Transaction Data"
+        },
+        {
+          "question": "Is Dubai real estate a good investment in 2026?",
+          "answer": [
+            "Dubai's property market is transitioning from rapid growth toward a more stable, fundamentals-led phase. Key positive indicators include: projected GDP growth of around 5% driven by non-oil sectors, population projected to reach 4.7 million by end of 2026, contained inflation around 2%, and continued infrastructure investment.",
+            "However, the market is becoming more selective—not all properties will appreciate equally. Success in 2026 requires data-driven decisions, careful developer selection, and understanding of micro-market dynamics.",
+            "For investors seeking the best real estate investment in Dubai, thorough research is essential."
+          ],
+          "source": "Dubai Economy & Tourism / DLD Market Reports"
+        },
+        {
+          "question": "What legal protections exist for off plan property buyers?",
+          "answer": [
+            "Off plan property buyers in Dubai benefit from multiple regulatory protections:"
+          ],
+          "list": [
+            "Escrow accounts: All buyer payments must be deposited in project-specific escrow accounts, with funds released only against verified construction milestones",
+            "RERA registration: Developers must be registered with RERA and projects must be approved before sales can commence",
+            "Oqood registration: Contracts must be registered within 90 days, securing your interim ownership rights",
+            "Law No. 7 of 2025: Ensures contractors are properly vetted and certified, reducing construction quality risks",
+            "DLD oversight: Regular monitoring of project completion status and developer compliance",
+            "Disputes can be filed through the Rental Dispute Settlement Centre or Dubai Courts, with timelines of 1–3 months for rental disputes and 8–18 months for developer-related cases"
+          ],
+          "source": "RERA Off-Plan Sales Regulations / Law No. 7 of 2025"
+        },
+        {
+          "question": "How do I verify a property developer's track record in UAE?",
+          "answer": [
+            "Before committing to any off plan project, verify the developer's credentials thoroughly:"
+          ],
+          "list": [
+            "RERA registration: Confirm the developer is registered with the Real Estate Regulatory Agency and all projects are approved",
+            "Escrow account: Ensure the project has a dedicated escrow account with an approved financial institution",
+            "Project approval: Verify the specific project is approved by DLD for off plan sales",
+            "Completion history: Research the developer's track record of on-time deliveries—our Developer Trust Index provides independent grading",
+            "Service charge transparency: Review historical service charges through the Mollak system",
+            "Current project status: Confirm you're investing in active, up-to-date launches rather than stalled or outdated inventory"
+          ],
+          "source": "RERA Developer Registry / DLD Project Database"
+        },
+        {
+          "question": "What are the steps to buy property in Dubai as a foreigner?",
+          "answer": [
+            "The typical buying process for foreign investors follows these steps:"
+          ],
+          "list": [
+            "Verify freehold status: Confirm the property lies within a Designated Area for foreign ownership",
+            "Due diligence: Research developer credibility, project status, and market comparables",
+            "Reserve the unit: Pay a booking fee (typically 5–10%) to secure the property",
+            "Sign SPA: Execute the Sale and Purchase Agreement, ensuring all terms are clear",
+            "Oqood registration: Developer registers the contract with DLD within 90 days",
+            "Payment plan: Follow the agreed installment schedule tied to construction milestones",
+            "Handover: Upon completion, final payments are made and the property is transferred",
+            "Title deed registration: DLD issues the final title deed in your name upon payment of all fees"
+          ],
+          "source": "Dubai Land Department - Buyer Guidelines"
+        }
+      ],
+      "note": "All information is reviewed monthly against official DLD and RERA sources. This content is for educational purposes only and does not constitute legal or financial advice."
+    },
+    "trusted_by_section": {
+      "last_updated": "March 2026",
+      "h3": "Join thousands of investors from the UK, India, Pakistan, Europe, and beyond who rely on PropertyIntel.ae for verified dubai property market data, honest analysis, and expert guidance in one of the world's most dynamic dubai real estate markets.",
+      "trust_statement": "All testimonials are from verified users who have actively used our platform for buying property in dubai research and investment decisions.",
+      "badges": [
+        { "icon": "📊", "text": "Data Verified Against DLD Records" },
+        { "icon": "📈", "text": "Market Analytics Powered by DXBinteract.com" },
+        { "icon": "🔒", "text": "RERA-Compliant Information" },
+        { "icon": "👥", "text": "5,000+ Monthly Research Users" }
+      ],
+      "testimonials": [
+        {
+          "name": "Rajiv M.",
+          "location": "London, United Kingdom",
+          "profile": "Portfolio Investor (3 Properties)",
+          "image": "testimonial-rajiv.jpg",
+          "rating": 5,
+          "headline": "Transformed Speculative Investing into Logic-Based Asset Allocation",
+          "testimonial": "The data on PropertyIntel.ae gave me the confidence to deploy capital into a market I didn't know intimately. Being able to verify original launch prices against current values, and understanding the true cost of dubai properties service charges before committing, felt like having a local institutional partner. The golden visa properties filter saved me weeks of research. It transformed what could have been speculative investing into a logic-based asset allocation decision.",
+          "outcome": "Purchased AED 2.4M property in Dubai Hills Estate (Q1 2026)",
+          "badges": ["Verified User", "Investment Completed"]
+        },
+        {
+          "name": "Mukesh S.",
+          "location": "Mumbai, India",
+          "profile": "First-Time International Investor",
+          "image": "testimonial-mukesh.jpg",
+          "rating": 5,
+          "headline": "Made Buying Property in Dubai Process Understandable for First-Time Investors",
+          "testimonial": "As a first-time international investor, I was overwhelmed by the buying property in dubai process. PropertyIntel.ae broke down every step—from understanding freehold properties in dubai to oqood registration process. The developer trust index helped me avoid risky projects. Their off plan projects in uae database is the most comprehensive I found. I closed my first off plan property purchase with complete confidence.",
+          "outcome": "Purchased AED 1.8M off-plan apartment in JVC (Q2 2026)",
+          "badges": ["Verified User", "First-Time Buyer"]
+        },
+        {
+          "name": "Sarfaraz K.",
+          "location": "Karachi, Pakistan",
+          "profile": "Portfolio Investor (5 Properties)",
+          "image": "testimonial-sarfaraz.jpg",
+          "rating": 5,
+          "headline": "Best Resource for Best Real Estate Investment in Dubai Research",
+          "testimonial": "I've used multiple platforms for dubai real estate research, but PropertyIntel.ae stands out for accuracy. The dubai property market analytics are updated monthly, and the best areas to invest in dubai reports helped me identify high-yield corridors before prices surged. The payment plan property dubai comparisons saved me over AED 150,000 in financing costs across my portfolio.",
+          "outcome": "Built AED 8.5M portfolio across Dubai South & Arjan (2025-2026)",
+          "badges": ["Verified User", "Portfolio Investor"]
+        },
+        {
+          "name": "Karl W.",
+          "location": "Frankfurt, Germany",
+          "profile": "High-Net-Worth Individual",
+          "image": "testimonial-karl.jpg",
+          "rating": 5,
+          "headline": "Institutional-Grade Dubai Property Market Analysis for Private Investors",
+          "testimonial": "Coming from a regulated European market, I needed transparency. PropertyIntel.ae provides institutional-grade dubai property market analysis with sources cited from DLD and RERA. The property developers in uae trust index helped me select only Gold-rated developers. The dubai property market forecast reports aligned perfectly with actual performance. This is the platform I recommend to my investment circle.",
+          "outcome": "Purchased AED 3.1M villa in Palm Jebel Ali (Q1 2026)",
+          "badges": ["Verified User", "HNW Investor"]
+        },
+        {
+          "name": "Yevgeny P.",
+          "location": "Moscow, Russia (Now Dubai Resident)",
+          "profile": "Relocation Investor",
+          "image": "testimonial-yevgeny.jpg",
+          "rating": 5,
+          "headline": "Secured Golden Visa Properties and Residency in 3 Weeks",
+          "testimonial": "My priority was residency, not just investment. PropertyIntel.ae's golden visa properties filter showed only AED 2M+ eligible units. The buy freehold property in dubai guide explained foreign ownership rights clearly. Their team connected me with vetted legal advisors for oqood registration process. I received my Golden Visa in 3 weeks. Now I use their dubai real estate news today section to track my asset performance.",
+          "outcome": "Purchased AED 3.1M property, Obtained UAE Golden Visa (2025)",
+          "badges": ["Verified User", "Golden Visa Obtained"]
+        }
+      ],
+      "context_primary": "Join thousands of investors from the UK, India, Pakistan, Europe, and beyond who rely on PropertyIntel.ae for verified data, honest analysis, and expert guidance in one of the world's most dynamic dubai real estate markets.",
+      "context_secondary": "All testimonials are from verified users who have actively used our platform for investment research. We update this section monthly to reflect current user experiences and dubai property market conditions.",
+      "data_sources": "DLD, RERA, DXBinteract.com, Official Developer Portals",
+      "footer": {
+        "primary_cta": "Start Your Investment Research",
+        "secondary_cta": "Get a Free Investment Consultation",
+        "tertiary_link": "Read More User Success Stories →"
+      }
+    },
+    "top_developers_section": {
+      "title": "Top Real Estate Developers in Dubai",
+      "subtitle": "Explore verified profiles of Dubai's leading property developers — from master-planned communities to luxury high-rises.",
+      "developers": [
+        { "name": "Binghatti", "link": "/developer", "icon_src": "/developer-logos/BINGHATTI .webp", "icon_alt": "Binghatti" },
+        { "name": "Emaar", "link": "/developer", "icon_src": "/developer-logos/EMAAR.webp", "icon_alt": "Emaar" },
+        { "name": "Meraas", "link": "/developer", "icon_src": "/developer-logos/MERAAS.webp", "icon_alt": "Meraas" },
+        { "name": "Dubai Properties", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Dubai Properties" },
+        { "name": "DAMAC", "link": "/developer", "icon_src": "/developer-logos/DAMAC .webp", "icon_alt": "DAMAC" },
+        { "name": "Nakheel", "link": "/developer", "icon_src": "/developer-logos/NAKHEEL .webp", "icon_alt": "Nakheel" },
+        { "name": "Dubai Holding", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Dubai Holding" },
+        { "name": "Select Group", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Select Group" },
+        { "name": "Azizi", "link": "/developer", "icon_src": "/developer-logos/AZIZI.webp", "icon_alt": "Azizi" },
+        { "name": "Sobha", "link": "/developer", "icon_src": "/developer-logos/SOBHA.webp", "icon_alt": "Sobha" },
+        { "name": "Majid Al Futtaim", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Majid Al Futtaim" },
+        { "name": "MAG", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "MAG" },
+        { "name": "Danube", "link": "/developer", "icon_src": "/developer-logos/DANUBE .webp", "icon_alt": "Danube" },
+        { "name": "Mazaya", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Mazaya" },
+        { "name": "Vincitore Development", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Vincitore Development" },
+        { "name": "Jumeirah Golf Estates", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Jumeirah Golf Estates" },
+        { "name": "Nshama", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Nshama" },
+        { "name": "Enshaa", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Enshaa" },
+        { "name": "Fakhruddin Properties", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Fakhruddin Properties" },
+        { "name": "National Bonds", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "National Bonds" },
+        { "name": "Al Madar", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Al Madar" },
+        { "name": "Asam Investments", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Asam Investments" },
+        { "name": "Star Giga", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Star Giga" },
+        { "name": "Eta Star", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Eta Star" },
+        { "name": "Falak Properties", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Falak Properties" },
+        { "name": "Victory Heights Development", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Victory Heights Development" },
+        { "name": "Ws Atkins & Partners", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Ws Atkins & Partners" },
+        { "name": "Arabtec", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Arabtec" },
+        { "name": "Diamond Developers", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Diamond Developers" },
+        { "name": "Triplanet Range", "link": "/developer", "icon_src": "/file.svg", "icon_alt": "Triplanet Range" }
+      ]
+    }
+  }
+  
