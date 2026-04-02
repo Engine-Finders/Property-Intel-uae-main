@@ -1,7 +1,27 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
-import { CheckSquare, Square, ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  Calendar,
+  Database,
+  RefreshCw,
+  ShieldCheck,
+  Square,
+  CheckSquare,
+  Users,
+} from "lucide-react";
+
+/** Dummy icons per badge (same order as hero.trust_signals); swap later if needed */
+const TRUST_BADGE_ICONS = [
+  ShieldCheck,
+  Database,
+  Calendar,
+  Users,
+  Building2,
+  RefreshCw,
+];
 
 const GOLD = "#B68A35";
 
@@ -93,6 +113,8 @@ const HomeHeroSection = ({ data }) => {
   const [developerQuery, setDeveloperQuery] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
   const trustSignals = hero.trust_signals || [];
+  /** Barely visible table-style borders (mobile only; cleared at lg) */
+  const mobileBadgeBorder = t.isDark ? "rgba(255,255,255,0.09)" : "rgba(15,23,42,0.08)";
 
   return (
     <section className="relative overflow-hidden" style={{ background: t.bg }}>
@@ -118,12 +140,51 @@ const HomeHeroSection = ({ data }) => {
         </div>
       </div>
 
-      <div className="relative z-10">
-        <div className="flex flex-col lg:flex-row">
-          {/* Left Content */}
-          <div className="w-full lg:w-[50%] flex flex-col justify-center px-5 py-12 lg:px-16 lg:py-20 relative z-[30]">
+      <div className="relative z-10 lg:min-h-0">
+        {/* Desktop: video overlays the right side of the hero (absolute, on top of section bg) */}
+        <div
+          className="hidden lg:block absolute inset-y-0 right-0 z-[5] w-[55%] xl:w-[52%] pointer-events-none"
+          style={{ contain: "layout style paint" }}
+        >
+          <link rel="preload" as="image" href="hero-bg.webp" />
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ minHeight: "100%", willChange: "transform" }}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="hero-bg.webp"
+            aria-hidden="true"
+          >
+            <source src="home.webm" type="video/webm" />
+          </video>
+          <div className="hero-fallback-image absolute inset-0" aria-hidden="true" />
+          <div
+            className="absolute inset-y-0 left-0 w-40"
+            style={{
+              background: `linear-gradient(to right, ${t.bg}, transparent)`,
+            }}
+          />
+          <div
+            className="absolute inset-x-0 bottom-0 h-24"
+            style={{
+              background: `linear-gradient(to top, ${t.bg}, transparent)`,
+            }}
+          />
+          <div
+            className="absolute inset-x-0 top-0 h-16"
+            style={{
+              background: `linear-gradient(to bottom, ${t.bg}, transparent)`,
+            }}
+          />
+        </div>
+
+        {/* Left column: in flow above the absolute video (z-index) */}
+        <div className="w-full lg:max-w-[50%] lg:pr-6 flex flex-col justify-center px-5 py-12 lg:px-16 lg:py-20 relative z-[25] mt-[50px] md:mt-0">
             <h1
-              className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.8rem] font-bold leading-[1.1] tracking-tight lg:text-inherit text-white"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.8rem] font-bold leading-[1.1] tracking-tight text-center lg:text-left lg:text-inherit text-white"
               style={{ color: undefined }}
             >
               <span className="hidden lg:inline" style={{ color: t.text }}>
@@ -195,7 +256,7 @@ const HomeHeroSection = ({ data }) => {
             </div>
 
             <p
-              className="mt-5 text-sm lg:text-base leading-relaxed max-w-xl"
+              className="mt-5 text-sm lg:text-base leading-relaxed max-w-xl text-center lg:text-left mx-auto lg:mx-0"
               style={{ color: t.textSecondary }}
             >
               {hero.hero_description}
@@ -224,71 +285,41 @@ const HomeHeroSection = ({ data }) => {
               <ArrowRight size={16} />
             </button>
 
-            {/* Trust signals */}
-            <div className="mt-6 grid grid-cols-2 lg:grid-cols-3 gap-2.5">
-              {trustSignals.map((item, i) => (
-                <div
-                  key={i}
-                  className="px-3 py-2 text-xs sm:text-[13px] font-semibold rounded-none"
-                  style={{
-                    color: GOLD,
-                    border: `1px solid rgba(182,138,53,0.45)`,
-                    background: t.isDark
-                      ? "rgba(182,138,53,0.12)"
-                      : "rgba(182,138,53,0.08)",
-                  }}
-                >
-                  {item}
+            {/* Trust badges: directly under CTA; single row on lg, 3×2 on small screens; mobile = table grid */}
+            {trustSignals.length > 0 && (
+              <div
+                className="mt-5 w-full max-lg:border max-lg:border-solid max-lg:rounded-none lg:border-0"
+                style={{ borderColor: mobileBadgeBorder }}
+              >
+                <div className="grid grid-cols-3 lg:grid-cols-6 gap-0 lg:gap-x-2 lg:gap-y-0">
+                  {trustSignals.map((label, i) => {
+                    const Icon = TRUST_BADGE_ICONS[i] || ShieldCheck;
+                    return (
+                      <div
+                        key={i}
+                        className="flex flex-col items-center justify-center text-center px-1 py-2.5 sm:px-1.5 max-lg:rounded-none max-lg:border-solid max-lg:[&:not(:nth-child(3n))]:border-r max-lg:[&:nth-child(-n+3)]:border-b lg:border-0"
+                        style={{ borderColor: mobileBadgeBorder }}
+                      >
+                        <Icon
+                          className="shrink-0 mb-1.5 opacity-90"
+                          size={18}
+                          strokeWidth={1.75}
+                          style={{ color: GOLD }}
+                          aria-hidden
+                        />
+                        <span
+                          className="text-[9px] sm:text-[10px] lg:text-[11px] font-semibold uppercase tracking-wide leading-tight"
+                          style={{ color: t.textMuted }}
+                        >
+                          {label}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
-
-          {/* Right: Video */}
-          <div
-            className="hidden lg:block w-[55%] relative lg:-ml-[0%] xl:-ml-[5%] z-0"
-            style={{ contain: "layout style paint" }}
-          >
-            {/* <video autoPlay muted loop playsInline className="w-full h-full object-cover" style={{ minHeight: "100%" }}>
-              <source src="home.webm" type="video/mp4" />
-            </video> */}
-            <link rel="preload" as="image" href="hero-bg.webp" />
-
-            <video
-              className="w-full h-full object-cover"
-              style={{ minHeight: "100%", willChange: "transform" }}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="hero-bg.webp"
-              aria-hidden="true"
-            >
-              <source src="home.webm" type="video/webm" />
-            </video>
-
-            <div className="hero-fallback-image" aria-hidden="true"></div>
-            <div
-              className="absolute inset-y-0 left-0 w-40"
-              style={{
-                background: `linear-gradient(to right, ${t.bg}, transparent)`,
-              }}
-            />
-            <div
-              className="absolute inset-x-0 bottom-0 h-24"
-              style={{
-                background: `linear-gradient(to top, ${t.bg}, transparent)`,
-              }}
-            />
-            <div
-              className="absolute inset-x-0 top-0 h-16"
-              style={{
-                background: `linear-gradient(to bottom, ${t.bg}, transparent)`,
-              }}
-            />
-          </div>
-        </div>
       </div>
     </section>
   );

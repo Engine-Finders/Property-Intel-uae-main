@@ -39,7 +39,10 @@ const CuratedProjectsSection = ({ data }) => {
   const handleNext = () => setSlideIndex((prev) => Math.min(maxIndex, prev + 1));
 
   return (
-    <section style={{ background: t.bg }} className="py-6 lg:py-8">
+    <section
+      className="py-6 lg:py-8"
+      style={{ background: t.isDark ? "#1a1c1f" : t.bg }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* ── Header ── */}

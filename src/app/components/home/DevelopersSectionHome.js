@@ -18,21 +18,13 @@ const TopDevelopersSection = ({ data }) => {
   const cardBorder = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)";
   const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
   const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
-  const sectionBg = isDark ? "#1a1c1f" : "#eef2f6";
+  const sectionBg = isDark ? t.bg : "#FBF9F6";
   const placeholderBg = isDark ? "rgba(182,138,53,0.12)" : "rgba(182,138,53,0.08)";
 
   const visible = showAll ? data.developers : data.developers.slice(0, INITIAL_COUNT);
 
   return (
-    <section
-      className="py-6 md:py-8"
-      style={{
-        background: sectionBg,
-        boxShadow: isDark
-          ? "inset 0 1px 0 0 rgba(182,138,53,0.14)"
-          : "inset 0 1px 0 0 rgba(182,138,53,0.2)",
-      }}
-    >
+    <section style={{ background: sectionBg }} className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
