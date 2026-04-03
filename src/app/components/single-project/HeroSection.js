@@ -7,7 +7,7 @@ import { useTheme } from "../context/ThemeContext";
 const HeroSection = ({ data }) => {
   const { t } = useTheme();
   const hero = data.hero_section;
-  const meta = hero?.project_meta || {};
+  const meta = data.project_meta || {};
   const slides = (meta.images && meta.images.length ? meta.images : []).slice(0, 8);
   const slideLabels = meta.slide_labels || [];
   const [currentSlide, setCurrentSlide] = useState(0);

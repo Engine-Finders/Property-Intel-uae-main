@@ -4,105 +4,59 @@
     "meta_description": "Independent review of Serro at The Heights by Emaar: pricing, unit mix, payment plan, handover timeline, risks, and ROI insights for Dubai property investors.",
     "canonical": "https://propertyintel.ae/project"
   },
-    "hero_section": {
-      "h1": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai",
-      "project_meta": {
-        "id": "serro-001",
-        "slug": "serro-at-the-heights",
-        "name": "Serro at The Heights",
-        "status": "off-plan",
-        "construction_status": "active",
-        "launch_date": "2026-04-01",
-        "handover_date": "2030-03-31",
-        "area": {
-          "name": "Al Yalayis",
-          "emirate": "Dubai"
-        },
-        "developer": {
-          "name": "Emaar Properties",
-          "slug": "emaar-properties",
-          "founded_year": 1997,
-          "units_delivered": 118000,
-          "on_time_rating": 98,
-          "rera_registered": true,
-          "logo_url": "/images/developers/emaar.png",
-          "description": "Emaar Properties is one of the UAE's largest developers, known for delivering large-scale master communities including Downtown Dubai and Dubai Hills Estate."
-        },
-        "location": {
-          "lat": 24.8895,
-          "lng": 55.2686,
-          "address": "The Heights, Al Yalayis, Dubai"
-        },
-        "pricing": {
-          "price_from": 6000000,
-          "price_to": 9000000,
-          "price_per_sqft_from": 1732,
-          "currency": "AED"
-        },
-        "payment_plan": {
-          "type": "80/20",
-          "booking_percent": 10,
-          "construction_percent": 70,
-          "handover_percent": 20
-        },
-        "metrics": {
-          "total_units": 383,
-          "master_community_units": 11400,
-          "master_community_area_sqft": 81000000,
-          "yield_estimate": "5-6%"
-        },
-        "images": [
-          "/projects/villa-render-1.jpg",
-          "/projects/villa-render-2.jpg",
-          "/projects/villa-render-3.jpg"
-        ],
-       
 
-        "slide_labels": ["Villa Exterior", "Master Community", "Interior Living"],
-        "units": [
-          {
-            "type_name": "3-Bedroom Type A",
-            "bedrooms": 3,
-            "size_sqft_min": 3402,
-            "size_sqft_max": 3463,
-            "price": 6000000,
-            "price_per_sqft": 1732,
-            "availability": "available"
-          },
-          {
-            "type_name": "4-Bedroom Type A",
-            "bedrooms": 4,
-            "size_sqft_min": 4302,
-            "size_sqft_max": 4312,
-            "price": 7800000,
-            "price_per_sqft": 1800,
-            "availability": "limited"
-          },
-          {
-            "type_name": "5-Bedroom",
-            "bedrooms": 5,
-            "size_sqft_min": 5822,
-            "size_sqft_max": 5884,
-            "price": 9500000,
-            "price_per_sqft": 1950,
-            "availability": "upcoming"
-          }
-        ]
-      },
-      "subtitle": "Off-Plan Villas in Al Yalayis, Dubai",
-      "status_badges": [
-        { "label": "Off-Plan", "color": "gold" },
-        { "label": "Active Construction", "color": "emerald" }
-      ],
-      "data_grid": {
-        "starting_price": "AED 6.0M",
-        "price_per_sqft": "AED 1,732",
-        "yield_forecast": "5–6%",
-        "handover": "Q1 2030"
-      },
-      "cta_primary": "Get Availability & Floor Plans",
-      "cta_secondary": "Speak to an Expert",
-      "overview_paragraphs": [
+
+
+  "project_meta": {
+    "id": "serro-001",
+    "slug": "serro-at-the-heights",
+    "name": "Serro at The Heights",
+    "status": "off-plan",
+    "construction_status": "active",
+    "launch_date": "2026-04-01",
+    "handover_date": "2030-03-31",
+    "area": {
+      "name": "Al Yalayis",
+      "emirate": "Dubai"
+    },
+    "developer": {
+      "name": "Emaar Properties",
+      "slug": "emaar-properties",
+      "founded_year": 1997,
+      "units_delivered": 118000,
+      "on_time_rating": 98,
+      "rera_registered": true,
+      "logo_url": "/images/developers/emaar.png",
+      "description": "Emaar Properties is one of the UAE's largest developers, known for delivering large-scale master communities including Downtown Dubai and Dubai Hills Estate."
+    },
+    "location": {
+      "lat": 24.8895,
+      "lng": 55.2686,
+      "address": "The Heights, Al Yalayis, Dubai"
+    },
+    "images": [
+      "/projects/villa-render-1.jpg",
+      "/projects/villa-render-2.jpg",
+      "/projects/villa-render-3.jpg"
+    ],
+    "slide_labels": ["Villa Exterior", "Master Community", "Interior Living"]
+  },
+  "hero_section": {
+    "h1": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai",
+    "subtitle": "Off-Plan Villas in Al Yalayis, Dubai",
+    "status_badges": [
+      { "label": "Off-Plan", "color": "gold" },
+      { "label": "Active Construction", "color": "emerald" }
+    ],
+    "data_grid": {
+      "starting_price": "AED 6.0M",
+      "price_per_sqft": "AED 1,732",
+      "yield_forecast": "5–6%",
+      "handover": "Q1 2030"
+    },
+    "cta_primary": "Get Availability & Floor Plans",
+    "cta_secondary": "Speak to an Expert",
+    "overview_paragraphs": [
         "Serro at The Heights is a villa-only residential release by <strong>Emaar Properties</strong>, forming part of the expansive <strong>AED 55 billion</strong> The Heights Country Club & Wellness master community in Al Yalayis, Dubai. Positioned near the intersection of Emirates Road (E611) and Al Yalayis Street (E77), this development introduces <strong>383 three- to five-bedroom villas</strong> across two adjoining clusters (Serro and Serro 2), designed around a wellness-led lifestyle with 38 kilometres of cycling and jogging tracks, a dedicated Wellness Lake, and meditation gardens.",
         "The broader master community spans <strong>7.5 million square metres</strong> (81 million sq.ft) and will ultimately comprise over 11,400 residential units across 21 clusters, positioning The Heights as one of Emaar's largest wellness-focused developments since Dubai Hills Estate. Unlike mixed-use projects, Serro maintains a strict residential focus, prioritising low-density living with approximately 25% of the total land dedicated to open green space and 1.36 million sqm of landscaped public realm."
       ],
