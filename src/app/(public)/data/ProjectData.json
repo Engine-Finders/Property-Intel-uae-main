@@ -42,7 +42,7 @@
     "slide_labels": ["Villa Exterior", "Master Community", "Interior Living"]
   },
   "hero_section": {
-    "h1": "Serro at The Heights – Off-Plan Villas in Al Yalayis, Dubai",
+    "h1": "Serro at The Heights",
     "subtitle": "Off-Plan Villas in Al Yalayis, Dubai",
     "status_badges": [
       { "label": "Off-Plan", "color": "gold" },
@@ -61,16 +61,82 @@
         "The broader master community spans <strong>7.5 million square metres</strong> (81 million sq.ft) and will ultimately comprise over 11,400 residential units across 21 clusters, positioning The Heights as one of Emaar's largest wellness-focused developments since Dubai Hills Estate. Unlike mixed-use projects, Serro maintains a strict residential focus, prioritising low-density living with approximately 25% of the total land dedicated to open green space and 1.36 million sqm of landscaped public realm."
       ],
       "data_led_hook": "Launched in Q1 2026 at an entry price of <strong>AED 6,000,000</strong> for a 3-bedroom Type A villa (3,463 sqft), the project sits at approximately <strong class=\"text-gold\">AED 1,732/sqft</strong>—positioning it below comparable Emaar villa communities such as Dubai Hills Estate (averaging AED 2,100+/sqft) but above entry-level Dubai South offerings. With handover scheduled for Q1–Q2 2030, this four-year construction timeline reflects the scale of master infrastructure development required for a 7.5 million sqm community rather than isolated villa construction.",
-      "key_facts": [
-        { "label": "Developer", "value": "Emaar Properties", "sub": "118,000+ units delivered globally" },
-        { "label": "Project Status", "value": "Off-Plan", "sub": "Booking opens April 2026" },
-        { "label": "Handover", "value": "Q1 2030 / Q2 2030", "sub": "4-year construction timeline" },
-        { "label": "Total Units", "value": "383 Villas", "sub": "200 Serro + 173 Serro 2" },
-        { "label": "Master Community", "value": "11,400+ Units", "sub": "21 clusters · 7.5M sqm" },
-        { "label": "Unit Types", "value": "3 to 5 Bed", "sub": "346 × 3BR · 347 × 4BR · 60 × 5BR" },
-        { "label": "Starting Price", "value": "AED 6,000,000", "sub": "3-bedroom Type A" },
-        { "label": "Payment Plan", "value": "80/20", "sub": "10% booking · 70% construction · 20% handover" }
-      ],
+      "key_facts_section": {
+        "title_prefix": "Key Facts at a",
+        "title_accent": "Glance",
+        "developer_summary": {
+          "name": "Emaar Properties",
+          "logo": "/images/developers/emaar.png",
+          "founded_label": "Founded 1997",
+          "highlights": [
+            "118,000+ units delivered globally",
+            "AED 13.51b profit 2024"
+          ]
+        },
+        "project_status": {
+          "label": "Project Status",
+          "badge": "Off-plan",
+          "note": "Booking opens April 2026"
+        },
+        "handover": {
+          "label": "Handover Date",
+          "value": "Q1 2030 (Serro)",
+          "note": "Q2 2030 (Serro 2) · 4-year timeline"
+        },
+        "total_units": {
+          "label": "Total Units (Project)",
+          "value": "383 villas",
+          "note": "200 in Serro · 173 in Serro 2"
+        },
+        "master_community": {
+          "label": "Master Community",
+          "value": "11,400+ units · 21 clusters",
+          "note": "7.5M sqm (81M sq.ft)"
+        },
+        "unit_types_and_prices": {
+          "label": "Unit Types & Prices",
+          "summary": "753 total units",
+          "items": [
+            {
+              "type": "3-Bedroom",
+              "count": "346 units",
+              "price": "AED 6,000,000"
+            },
+            {
+              "type": "4-Bedroom",
+              "count": "347 units",
+              "price": "AED 6,000,000+"
+            },
+            {
+              "type": "5-Bedroom",
+              "count": "60 units",
+              "price": "AED 9,000,000+",
+              "note": "Estimated"
+            }
+          ]
+        },
+        "payment_plan": {
+          "label": "Payment Plan",
+          "summary": "80 / 20",
+          "milestones": [
+            {
+              "percent": 10,
+              "title": "Booking",
+              "note": "On reservation"
+            },
+            {
+              "percent": 70,
+              "title": "Construction",
+              "note": "8 milestone installments"
+            },
+            {
+              "percent": 20,
+              "title": "Handover",
+              "note": "Q1-Q2 2030"
+            }
+          ]
+        }
+      },
       "infrastructure_items": [
         {
           "title": "Al Maktoum International Airport (DWC) Expansion",

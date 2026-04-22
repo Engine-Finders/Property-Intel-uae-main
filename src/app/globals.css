@@ -41,3 +41,19 @@ body {
   background: #2a2d33;
   border-radius: 7px;
 }
+
+/* Hero overview: thin gold thumb (primary brand) */
+.scrollbar-gold {
+  scrollbar-width: thin;
+  scrollbar-color: #b68a35 transparent;
+}
+.scrollbar-gold::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-gold::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-gold::-webkit-scrollbar-thumb {
+  background: #b68a35;
+  border-radius: 999px;
+}
