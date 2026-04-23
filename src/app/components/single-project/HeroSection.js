@@ -59,6 +59,113 @@ const renderStatIcon = (type, color) => {
   );
 };
 
+const AccordionChevron = ({ open, color = "#C7A248", size = 18 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={color}
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+    aria-hidden="true"
+  >
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
+const AccordionIconBadge = ({
+  icon,
+  alt,
+  iconSrc,
+  t,
+  filled = false,
+  sizeClass = "h-9 w-9",
+  imageSize = 16,
+}) => (
+  <div
+    className={`flex shrink-0 items-center justify-center rounded-full ${sizeClass}`}
+    style={{
+      background: filled ? GOLD : t.isDark ? "rgba(182,138,53,0.12)" : "transparent",
+      border: filled ? "none" : `1px solid ${t.isDark ? "rgba(217,176,95,0.3)" : "rgba(182,138,53,0.35)"}`,
+      color: filled ? "#fff" : GOLD,
+      boxShadow: filled
+        ? `inset 0 0 0 1px ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.12)"}`
+        : "none",
+    }}
+  >
+    {iconSrc ? (
+      <Image src={iconSrc} alt={alt || ""} width={imageSize} height={imageSize} className="object-contain" />
+    ) : (
+      icon || <span className="block h-4 w-4 rounded-full" aria-hidden="true" />
+    )}
+  </div>
+);
+
+const SecondaryAccordionButton = ({ open, onClick, title, icon, t }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="w-full flex items-center justify-between p-5 rounded-xl text-left transition-colors"
+    style={{
+      background: t.isDark ? "rgba(255,255,255,0.04)" : "#FBF9F4",
+      border: `1px solid ${t.isDark ? "rgba(217,176,95,0.22)" : "rgba(182,138,53,0.18)"}`,
+      boxShadow: t.isDark ? "0 8px 24px rgba(0,0,0,0.22)" : "0 6px 20px rgba(17,24,39,0.04)",
+    }}
+  >
+    <div className="flex items-center gap-3">
+      <AccordionIconBadge filled icon={icon} t={t} />
+      <span className="text-lg font-semibold" style={{ color: t.text }}>
+        {title}
+      </span>
+    </div>
+    <AccordionChevron open={open} size={20} color={t.isDark ? "#D9B05F" : "#C7A248"} />
+  </button>
+);
+
+const TertiaryAccordionButton = ({
+  open,
+  onClick,
+  title,
+  eyebrow = "WHY THIS MATTERS",
+  icon,
+  iconSrc,
+  t,
+}) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="w-full flex items-center justify-between p-4 text-left transition-colors"
+    style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#FFFFFF" }}
+  >
+    <div className="flex min-w-0 items-center gap-3 pr-4">
+      <AccordionIconBadge
+        icon={icon}
+        iconSrc={iconSrc}
+        alt={title}
+        t={t}
+        sizeClass="h-8 w-8"
+        imageSize={14}
+      />
+      <div className="min-w-0">
+        <p className="truncate text-sm font-medium leading-snug" style={{ color: t.text }}>
+          {title}
+        </p>
+        <p
+          className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em]"
+          style={{ color: GOLD }}
+        >
+          {eyebrow}
+        </p>
+      </div>
+    </div>
+    <AccordionChevron open={open} size={16} color={t.isDark ? "#D9B05F" : "#C7A248"} />
+  </button>
+);
+
 const HeroSection = ({ data }) => {
   const { t } = useTheme();
   const hero = data.hero_section;
@@ -576,24 +683,42 @@ const HeroSection = ({ data }) => {
 
         {/* Infrastructure Accordion */}
         <div className="mt-16">
-          <button onClick={() => setShowInfra(!showInfra)} className="w-full flex items-center justify-between p-5 rounded-xl transition-colors group" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-            <div className="flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B68A35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span className="text-lg font-semibold" style={{ color: t.text }}>Future Infrastructure & Economic Development</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={t.textMuted} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`transition-transform duration-300 ${showInfra ? "rotate-180" : ""}`}><path d="m6 9 6 6 6-6" /></svg>
-          </button>
+          <SecondaryAccordionButton
+            open={showInfra}
+            onClick={() => setShowInfra(!showInfra)}
+            title="Future Infrastructure & Economic Development"
+            t={t}
+            icon={(
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            )}
+          />
 
           <div className={`overflow-hidden transition-all duration-500 ${showInfra ? "max-h-[2000px] opacity-100 mt-4" : "max-h-0 opacity-0"}`}>
             <div className="space-y-3">
               {hero.infrastructure_items.map((item, i) => (
-                <div key={i} className="rounded-xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-                  <button onClick={() => setOpenAccordion(openAccordion === i ? null : i)} className="w-full flex items-center justify-between p-4 text-left transition-colors">
-                    <span className="text-sm font-medium pr-4" style={{ color: t.text }}>{item.title}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.textMuted} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`shrink-0 transition-transform duration-300 ${openAccordion === i ? "rotate-180" : ""}`}><path d="m6 9 6 6 6-6" /></svg>
-                  </button>
+                <div
+                  key={i}
+                  className="rounded-xl overflow-hidden"
+                  style={{
+                    background: t.isDark ? "rgba(255,255,255,0.04)" : "#FFFFFF",
+                    border: `1px solid ${t.isDark ? "rgba(217,176,95,0.16)" : "rgba(182,138,53,0.14)"}`,
+                    boxShadow: t.isDark ? "0 10px 24px rgba(0,0,0,0.18)" : "0 4px 18px rgba(17,24,39,0.03)",
+                  }}
+                >
+                  <TertiaryAccordionButton
+                    open={openAccordion === i}
+                    onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
+                    title={item.title}
+                    t={t}
+                  />
                   <div className={`overflow-hidden transition-all duration-300 ${openAccordion === i ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-                    <p className="px-4 pb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{item.content}</p>
+                    <div className="px-4 pb-4 pt-0">
+                      <div style={{ borderTop: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }} />
+                      <p className="pt-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{item.content}</p>
+                    </div>
                   </div>
                 </div>
               ))}

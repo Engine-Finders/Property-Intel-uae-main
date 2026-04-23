@@ -165,6 +165,26 @@
       ]
     },
     "verdict_section": {
+      "mobile_badge": "Investment Verdict",
+      "mobile_title": "Is Serro at The Heights",
+      "mobile_title_accent": "Worth It?",
+      "mobile_tabs": {
+        "verdict": "Verdict",
+        "good_fit": "Good fit?",
+        "approach": "Our approach"
+      },
+      "mobile_verdict_summary": {
+        "title": "Best for long-term investors",
+        "subtitle": "Enter before peak pricing with patience for the 4-year off-plan timeline."
+      },
+      "mobile_good_fit_heading": "Good fit",
+      "mobile_not_ideal_heading": "Not ideal if",
+      "mobile_bottom_line_label": "Bottom Line",
+      "mobile_cta_badge": "Ready to go deeper?",
+      "mobile_cta_title": "Get your personalised investment analysis",
+      "mobile_cta_subtitle": "Cash-flow projections, risk summary, and recommendations for your timeline.",
+      "mobile_cta_button": "Speak to an expert",
+      "mobile_cta_note": "Payment plan - ROI analysis - No pressure",
       "h2_worth": "At a Glance - Is Serro at The Heights Worth It?",
       "worth_points": [
         { "icon": "check", "text": "Strong long-term growth potential in an emerging corridor" },
@@ -201,6 +221,8 @@
     },
     "unit_mix_section": {
       "heading": "Unit Mix, Sizes & Price Trends — Serro at The Heights",
+      "subtitle": "Official brochure data with independent market context.",
+      "mobile_unit_prompt": "All unit types • Scroll →",
       "units": [
         { "type_name": "3-Bedroom (Type A)", "units_count": 200, "cluster": "Serro", "area_sqft": "3,402 – 3,463", "price": "AED 6,000,000", "price_per_sqft": "~1,732", "availability": "available" },
         { "type_name": "3-Bedroom (Serro 2)", "units_count": 173, "cluster": "Serro 2", "area_sqft": "3,403", "price": "AED 6,200,000 (est.)", "price_per_sqft": "~1,822", "availability": "limited" },
@@ -236,8 +258,14 @@
           "Scarcity of villa inventory in the Dubai South growth corridor",
           "Emaar's track record of pricing discipline across phases"
         ],
+        "mobile_driver_bars": [
+          { "label": "Infrastructure delivery", "subtext": "2027-29", "strength": "High", "value": 86 },
+          { "label": "Villa scarcity", "strength": "High", "value": 82 },
+          { "label": "Emaar phase discipline", "strength": "Med", "value": 58 }
+        ],
         "caveat": "However, the 4-year construction timeline introduces holding cost considerations. Investors should model <strong>7–9% annual opportunity cost</strong> of capital against projected appreciation."
       },
+      "floor_plan_intro": "Serro villas follow a consistent architectural language across all three typologies:",
       "floor_plans": [
         {
           "bedrooms": "3",
@@ -261,10 +289,33 @@
         "Neutral material palette (beige stone, warm timber accents) designed for longevity",
         "All villas include covered carports (494–739 sqft depending on typology)"
       ],
+      "distinguishing_feature_cards": [
+        {
+          "title": "Aesthetic",
+          "text": "Mediterranean-contemporary aesthetic with whitewashed finishes, curved architectural elements, and terracotta accents."
+        },
+        {
+          "title": "Glazing",
+          "text": "Floor-to-ceiling glazing maximising natural light and garden connectivity."
+        },
+        {
+          "title": "Materials",
+          "text": "Neutral material palette (beige stone, warm timber accents) designed for longevity."
+        },
+        {
+          "title": "Carport",
+          "text": "All villas include covered carports (494 - 739 sqft depending on typology)."
+        }
+      ],
+      "insider_tip_title": "What portals don't tell you",
       "insider_tip": "The 3-bedroom Type A (3,463 sqft) and Type C (3,340 sqft) differ primarily in ground floor layout — Type C sacrifices some living area for a larger private garden. Buyers prioritising outdoor space should target Type C, despite the marginally smaller footprint."
     },
     "developer_section": {
       "heading": "Developer Deep Dive — Emaar Properties",
+      "overview_highlight": {
+        "title": "FY 2024: AED 35.5B revenue • AED 13.51B net profit.",
+        "text": "Portfolio includes Burj Khalifa, Dubai Mall, Dubai Marina, Dubai Hills Estate, Arabian Ranches, Emaar South."
+      },
       "stats": [
         { "label": "Years Active", "value": "27", "progress": 90 },
         { "label": "Units Delivered", "value": "118K+", "progress": 95 },
@@ -319,7 +370,13 @@
         { "phase": "During Construction", "steps": ["Track milestone progress against payment schedule (payments are construction-linked — ensure they match actual progress)", "Request broker site visit updates for verified on-ground intelligence"] },
         { "phase": "Pre-Handover", "steps": ["Engage independent snagging inspector before taking possession", "Document all defects with photographic evidence within warranty period"] }
       ],
-      "transparency_statement": "Emaar's track record is among the <strong>strongest in Dubai's development landscape</strong>. However, \"strongest\" does not mean \"perfect.\" The company has delivered delayed projects and units with finish defects — as have all volume developers operating at this scale. The critical distinction is that Emaar's financial position and institutional structure mean these issues are <strong>resolved eventually</strong>, and projects do complete. Buyers should enter with eyes open to the timeline and quality variability inherent in large-scale, long-duration master communities."
+      "transparency_statement": "Emaar's track record is among the <strong>strongest in Dubai's development landscape</strong>. However, \"strongest\" does not mean \"perfect.\" The company has delivered delayed projects and units with finish defects — as have all volume developers operating at this scale. The critical distinction is that Emaar's financial position and institutional structure mean these issues are <strong>resolved eventually</strong>, and projects do complete. Buyers should enter with eyes open to the timeline and quality variability inherent in large-scale, long-duration master communities.",
+      "report_cta": {
+        "title": "Want a verified, project-specific developer report on Serro?",
+        "subtitle": "Our analysis pulls live RERA escrow status, on-ground broker site visits, and payment-milestone matching tailored to your unit.",
+        "button_text": "Request Verified Report",
+        "href": "#"
+      }
     },
     "target_buyer_section": {
       "rental_benchmarking": [
