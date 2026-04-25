@@ -109,18 +109,152 @@ function getSeverityColor(text) {
   return "#F59E0B";
 }
 
-/* ── Tab Button ── */
-const TabBtn = ({ label, active, onClick, t }) => (
+const RiskIcon = ({ name, size = 24, color = "#B68A35" }) => {
+  const props = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  if (name === "clock") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l4 2" />
+      </svg>
+    );
+  }
+
+  if (name === "chart") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M4 19V5" />
+        <path d="M4 19h16" />
+        <path d="m7 14 3-3 3 2 5-7" />
+      </svg>
+    );
+  }
+
+  if (name === "document") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M6 3h8l4 4v14H6z" />
+        <path d="M14 3v5h5" />
+        <path d="M9 13h6" />
+        <path d="M9 17h4" />
+      </svg>
+    );
+  }
+
+  if (name === "crane") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M4 20h16" />
+        <path d="M7 20V8" />
+        <path d="M7 8h11" />
+        <path d="M11 8v12" />
+        <path d="M18 8v5" />
+        <path d="m18 13-2 2" />
+      </svg>
+    );
+  }
+
+  if (name === "pin") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M12 21s6-5.3 6-11a6 6 0 1 0-12 0c0 5.7 6 11 6 11Z" />
+        <circle cx="12" cy="10" r="2" />
+      </svg>
+    );
+  }
+
+  if (name === "shield") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6z" />
+        <path d="m9 12 2 2 4-5" />
+      </svg>
+    );
+  }
+
+  if (name === "train") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="6" y="3" width="12" height="14" rx="2" />
+        <path d="M8 7h8" />
+        <path d="M9 11h.01" />
+        <path d="M15 11h.01" />
+        <path d="m8 21 2-3" />
+        <path d="m16 21-2-3" />
+      </svg>
+    );
+  }
+
+  if (name === "retail") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M5 9h14l-1 11H6z" />
+        <path d="M8 9V7a4 4 0 0 1 8 0v2" />
+        <path d="M4 9h16" />
+      </svg>
+    );
+  }
+
+  if (name === "school") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="m3 10 9-5 9 5-9 5z" />
+        <path d="M7 12v5c3 2 7 2 10 0v-5" />
+      </svg>
+    );
+  }
+
+  if (name === "notes") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M6 3h12v18H6z" />
+        <path d="M9 7h6" />
+        <path d="M9 11h6" />
+        <path d="M9 15h4" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+      <circle cx="12" cy="12" r="9" />
+    </svg>
+  );
+};
+
+/* ── Risk Selector Card ── */
+const RiskOptionCard = ({ label, icon, active, onClick, t }) => (
   <button
     onClick={onClick}
-    className="px-4 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap"
+    className="min-h-[150px] rounded-xl p-4 text-center transition-all duration-200"
     style={{
-      background: active ? "#B68A35" : "transparent",
-      color: active ? "#fff" : t.textMuted,
-      border: active ? "none" : `1px solid ${t.cardBorder}`,
+      background: active ? (t.isDark ? "rgba(182,138,53,0.16)" : "#fffaf0") : t.cardBg,
+      border: `1px solid ${active ? "rgba(182,138,53,0.55)" : t.cardBorder}`,
+      boxShadow: active && !t.isDark ? "0 12px 28px rgba(113,85,32,0.12)" : "none",
     }}
   >
-    {label}
+    <span
+      className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full text-3xl"
+      style={{
+        background: t.isDark ? "rgba(182,138,53,0.12)" : "#f7f0df",
+        color: "#B68A35",
+      }}
+    >
+      <RiskIcon name={icon} size={30} />
+    </span>
+    <span className="block text-[1rem] font-semibold leading-5" style={{ color: t.text }}>
+      {label}
+    </span>
   </button>
 );
 
@@ -154,17 +288,127 @@ const BulletList = ({ items, t, icon = "→" }) => (
   </ul>
 );
 
+const HandoverDelaySlider = ({ headers, rows, activeIndex, onChange, t }) => {
+  const row = rows[activeIndex] || rows[0] || [];
+  const prev = () => onChange((activeIndex - 1 + rows.length) % rows.length);
+  const next = () => onChange((activeIndex + 1) % rows.length);
+
+  return (
+    <div>
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={prev}
+          className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg sm:flex"
+          style={{ border: `1px solid ${t.cardBorder}`, color: "#B68A35" }}
+          aria-label="Previous delay example"
+        >
+          ‹
+        </button>
+
+        <div className="flex-1 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+          <p className="mb-3 text-sm font-semibold" style={{ color: t.text }}>
+            {row[0]}
+          </p>
+          <div className="divide-y" style={{ borderColor: t.cardBorder }}>
+            {headers.slice(1).map((header, index) => (
+              <div key={header} className="grid grid-cols-[1fr_1.25fr] gap-3 py-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-5 w-5 items-center justify-center rounded text-[11px]" style={{ background: "rgba(182,138,53,0.1)", color: "#B68A35" }}>
+                    {index + 1}
+                  </span>
+                  <span className="text-xs" style={{ color: t.textMuted }}>{header}</span>
+                </div>
+                <span className="text-xs font-semibold text-right" style={{ color: index === 2 ? t.textSecondary : "#B68A35" }}>
+                  {row[index + 1]}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={next}
+          className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg sm:flex"
+          style={{ border: `1px solid ${t.cardBorder}`, color: "#B68A35" }}
+          aria-label="Next delay example"
+        >
+          ›
+        </button>
+      </div>
+
+      <div className="mt-3 flex items-center justify-center gap-2">
+        {rows.map((item, index) => (
+          <button
+            key={item[0]}
+            type="button"
+            onClick={() => onChange(index)}
+            className="h-2.5 w-2.5 rounded-full"
+            style={{ background: index === activeIndex ? "#B68A35" : t.cardBorder }}
+            aria-label={`Show ${item[0]}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ResearchNotesAccordion = ({ notes, t }) => {
+  const [open, setOpen] = useState(false);
+  if (!notes) return null;
+
+  return (
+    <div className="mb-8 overflow-hidden rounded-2xl" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+      <button
+        type="button"
+        onClick={() => setOpen((current) => !current)}
+        className="flex w-full items-center gap-3 px-4 py-4 text-left"
+        style={{ color: t.text }}
+      >
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ background: "rgba(182,138,53,0.18)", color: "#B68A35" }}>
+          <RiskIcon name="notes" size={20} />
+        </span>
+        <span className="flex-1 text-lg font-semibold">Research Notes</span>
+        <span className={`transition-transform ${open ? "rotate-180" : ""}`} style={{ color: "#B68A35" }}>⌄</span>
+      </button>
+
+      <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-[1400px] opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className="space-y-4 border-t p-4" style={{ borderColor: t.cardBorder }}>
+          <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+            <div className="mb-3 flex items-center gap-2">
+              <RiskIcon name="document" size={18} />
+              <p className="text-sm font-semibold" style={{ color: "#B68A35" }}>Sources consulted</p>
+            </div>
+            <BulletList items={notes.sources_consulted || []} t={t} icon="•" />
+          </div>
+
+          <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+            <div className="mb-3 flex items-center gap-2">
+              <RiskIcon name="shield" size={18} />
+              <p className="text-sm font-semibold" style={{ color: "#B68A35" }}>Data verification notes</p>
+            </div>
+            <BulletList items={notes.data_verification_notes || []} t={t} icon="•" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /* ── Main Component ── */
 const RisksSection = ({ data }) => {
   const { t } = useTheme();
-  const [activeTab, setActiveTab] = useState("delays");
+  const [activeTab, setActiveTab] = useState("handover");
+  const [activeDelayIndex, setActiveDelayIndex] = useState(0);
 
   const tabs = [
-    { key: "delays", label: "Delays" },
-    { key: "oversupply", label: "Oversupply" },
-    { key: "costs", label: "Hidden Costs" },
-    { key: "quality", label: "Quality" },
-    { key: "location", label: "Location" },
+    { key: "handover", label: "Handover Delay History — Emaar’s Record in Growth Corridors", icon: "clock" },
+    { key: "oversupply", label: "Sub-Market Oversupply Risk", icon: "chart" },
+    { key: "costs", label: "Hidden Costs — Beyond the Purchase Price", icon: "document" },
+    { key: "quality", label: "Construction Quality Concerns — Learning from Past Projects", icon: "crane" },
+    { key: "location", label: "Location Downsides — The Reality of Emerging Communities", icon: "pin" },
+    { key: "summary", label: "Summary — Risk vs. Reward", icon: "shield" },
   ];
 
   const radar = data.risk_radar || [];
@@ -176,7 +420,7 @@ const RisksSection = ({ data }) => {
   const summary = data.risk_summary || {};
 
   return (
-    <section id="risks" style={{ background: t.bg }} className="py-6 lg:py-10 px-4 sm:px-6 lg:px-8">
+    <section id="risks" style={{ background: t.bg }} className="py-6 lg:py-10 px-2 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-10">
@@ -205,166 +449,181 @@ const RisksSection = ({ data }) => {
           ))}
         </div>
 
-        {/* Handover Delay Table — always visible */}
-        <div
-          className="rounded-xl p-5 lg:p-7 mb-8"
-          style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
-        >
-          <h3 className="text-sm font-bold mb-2" style={{ color: t.text }}>{delay.title}</h3>
-          <p className="text-xs leading-relaxed mb-4" style={{ color: t.textSecondary }}>{delay.intro}</p>
-          <div className="block lg:hidden">
-            <MobileCards headers={delay.table?.headers || []} rows={delay.table?.rows || []} t={t} />
-          </div>
-          <div className="hidden lg:block">
-            <DesktopTable headers={delay.table?.headers || []} rows={delay.table?.rows || []} t={t} />
-          </div>
-        </div>
-
-        {/* Tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-hide">
+        {/* Risk cards */}
+        <div className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-3">
           {tabs.map((tab) => (
-            <TabBtn key={tab.key} label={tab.label} active={activeTab === tab.key} onClick={() => setActiveTab(tab.key)} t={t} />
+            <RiskOptionCard
+              key={tab.key}
+              label={tab.label}
+              icon={tab.icon}
+              active={activeTab === tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              t={t}
+            />
           ))}
         </div>
 
-        {/* Tab Content */}
+        {/* Selected risk content */}
         <div
-          className="rounded-xl p-5 lg:p-7 mb-8"
+          className="rounded-2xl p-5 lg:p-7 mb-8"
           style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
         >
-          {/* Delays Tab */}
-          {activeTab === "delays" && (
+          {activeTab === "handover" && (
             <div>
-              <h3 className="text-sm font-bold mb-3" style={{ color: t.text }}>The 4-Year Timeline Risk</h3>
-              <p className="text-xs leading-relaxed mb-3" style={{ color: t.textSecondary }}>{delay.timeline_risk?.text}</p>
-              <BulletList items={delay.timeline_risk?.factors || []} t={t} />
-              <WarningBox t={t}>{delay.application_to_serro}</WarningBox>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: t.text }}>{delay.title}</h3>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: t.textSecondary }}>{delay.intro}</p>
+              <HandoverDelaySlider
+                headers={delay.table?.headers || []}
+                rows={delay.table?.rows || []}
+                activeIndex={activeDelayIndex}
+                onChange={setActiveDelayIndex}
+                t={t}
+              />
+              <div className="mt-5 max-h-[260px] overflow-y-auto rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                <p className="text-xs font-semibold mb-1" style={{ color: "#B68A35" }}>Application to Serro:</p>
+                <p className="text-xs leading-relaxed mb-4" style={{ color: t.textSecondary }}>{delay.application_to_serro}</p>
+                <p className="text-xs font-semibold mb-1" style={{ color: "#B68A35" }}>{delay.timeline_risk?.title}</p>
+                <p className="text-xs leading-relaxed" style={{ color: t.textSecondary }}>{delay.timeline_risk?.text}</p>
+                <BulletList items={delay.timeline_risk?.factors || []} t={t} icon="•" />
+              </div>
             </div>
           )}
 
-          {/* Oversupply Tab */}
           {activeTab === "oversupply" && (
             <div>
-              <h3 className="text-sm font-bold mb-3" style={{ color: t.text }}>{oversupply.title}</h3>
-              <p className="text-xs leading-relaxed mb-4" style={{ color: t.textSecondary }}>{oversupply.intro}</p>
-
-              <div className="rounded-lg p-4 mb-4" style={{ background: t.isDark ? "rgba(245,158,11,0.08)" : "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
-                <p className="text-xs font-semibold mb-1" style={{ color: "#F59E0B" }}>Where Supply Concentrates</p>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: t.text }}>{oversupply.title}</h3>
+              <div className="mb-4 grid grid-cols-[1fr_auto] gap-3 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                <div>
+                  <p className="text-5xl font-semibold leading-none" style={{ color: "#B68A35" }}>40,000+</p>
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{oversupply.intro}</p>
+                </div>
+                <div className="border-l pl-4 text-center" style={{ borderColor: t.cardBorder }}>
+                  <p className="text-2xl font-semibold" style={{ color: "#B68A35" }}>2026</p>
+                  <p className="text-xs" style={{ color: t.textMuted }}>handover year</p>
+                </div>
+              </div>
+              <div className="mb-4 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#B68A35" }}>Where Supply Concentrates</p>
+                <div className="mb-3 flex flex-wrap gap-2">
+                  {["JVC", "MBR City", "Dubai South", "Dubailand", "Business Bay"].map((area) => (
+                    <span key={area} className="rounded-full px-3 py-1 text-[11px]" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#f7f0df", color: t.textSecondary }}>{area}</span>
+                  ))}
+                </div>
                 <p className="text-xs leading-relaxed" style={{ color: t.textSecondary }}>{oversupply.supply_concentration}</p>
               </div>
-
-              <div className="rounded-lg p-4 mb-4" style={{ background: t.isDark ? "rgba(34,197,94,0.08)" : "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.25)" }}>
-                <p className="text-xs font-semibold mb-1" style={{ color: "#22C55E" }}>Villa Market Differentiation</p>
-                <p className="text-xs leading-relaxed" style={{ color: t.textSecondary }}>{oversupply.villa_differentiation}</p>
+              <div className="mb-4 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#B68A35" }}>Villa Market Differentiation</p>
+                <p className="text-xs leading-relaxed mb-3" style={{ color: t.textSecondary }}>{oversupply.villa_differentiation}</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Villa supply constrained", "Family demand strong", "Dubai South villa supply growing", "2029-2031 rental window at risk"].map((tag) => (
+                    <span key={tag} className="rounded px-2 py-1 text-[11px]" style={{ background: "rgba(34,197,94,0.08)", color: "#2f7d45" }}>{tag}</span>
+                  ))}
+                </div>
               </div>
-
               <WarningBox t={t}>{oversupply.serro_assessment}</WarningBox>
             </div>
           )}
 
-          {/* Hidden Costs Tab */}
           {activeTab === "costs" && (
             <div>
-              <h3 className="text-sm font-bold mb-3" style={{ color: t.text }}>{hidden.title}</h3>
-              <p className="text-xs leading-relaxed mb-4" style={{ color: t.textSecondary }}>{hidden.intro}</p>
-
+              <h3 className="text-lg font-semibold mb-3" style={{ color: t.text }}>{hidden.title}</h3>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: t.textSecondary }}>{hidden.intro}</p>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#B68A35" }}>Post-Handover Cost Considerations</p>
               <div className="space-y-3">
                 {(hidden.post_handover_costs || []).map((cost, i) => (
-                  <div
-                    key={i}
-                    className="rounded-lg p-4"
-                    style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.cardBorder}` }}
-                  >
-                    <p className="text-xs font-bold mb-1" style={{ color: "#F59E0B" }}>{cost.item}</p>
-                    <p className="text-xs leading-relaxed" style={{ color: t.textSecondary }}>{cost.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Quality Tab */}
-          {activeTab === "quality" && (
-            <div>
-              <h3 className="text-sm font-bold mb-3" style={{ color: t.text }}>{quality.title}</h3>
-              <p className="text-xs leading-relaxed mb-4" style={{ color: t.textSecondary }}>{quality.intro}</p>
-
-              <div className="block lg:hidden">
-                <MobileCards headers={quality.table?.headers || []} rows={quality.table?.rows || []} t={t} />
-              </div>
-              <div className="hidden lg:block">
-                <DesktopTable headers={quality.table?.headers || []} rows={quality.table?.rows || []} t={t} />
-              </div>
-
-              <div className="rounded-lg p-4 mt-4" style={{ background: t.isDark ? "rgba(34,197,94,0.08)" : "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.25)" }}>
-                <p className="text-xs font-semibold mb-1" style={{ color: "#22C55E" }}>✅ Mitigation Strategy</p>
-                <p className="text-xs leading-relaxed" style={{ color: t.textSecondary }}>{quality.mitigation}</p>
-              </div>
-            </div>
-          )}
-
-          {/* Location Tab */}
-          {activeTab === "location" && (
-            <div>
-              <h3 className="text-sm font-bold mb-3" style={{ color: t.text }}>{location.title}</h3>
-
-              <p className="text-xs font-semibold mb-3" style={{ color: t.text }}>Current Limitations</p>
-              <div className="space-y-3 mb-5">
-                {(location.current_limitations || []).map((lim, i) => (
-                  <div
-                    key={i}
-                    className="rounded-lg p-4 flex gap-3 items-start"
-                    style={{ background: t.isDark ? "rgba(239,68,68,0.06)" : "rgba(239,68,68,0.04)", border: "1px solid rgba(239,68,68,0.15)" }}
-                  >
-                    <span className="text-xs mt-0.5" style={{ color: "#EF4444" }}>✕</span>
+                  <div key={cost.item} className="flex gap-4 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white" style={{ background: "#B68A35" }}>{i + 1}</span>
                     <div>
-                      <p className="text-xs font-bold mb-0.5" style={{ color: t.text }}>{lim.issue}</p>
-                      <p className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{lim.detail}</p>
+                      <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{cost.item}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{cost.detail}</p>
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
+          )}
 
-              <p className="text-xs font-semibold mb-2" style={{ color: t.text }}>Construction Phase Disruption</p>
-              <p className="text-xs leading-relaxed mb-2" style={{ color: t.textSecondary }}>{location.construction_disruption?.text}</p>
-              <BulletList items={location.construction_disruption?.items || []} t={t} icon="•" />
+          {activeTab === "quality" && (
+            <div>
+              <h3 className="text-lg font-semibold mb-3" style={{ color: t.text }}>{quality.title}</h3>
+              <p className="text-sm leading-relaxed mb-4" style={{ color: t.textSecondary }}>{quality.intro}</p>
+              <div className="space-y-3">
+                {(quality.table?.rows || []).map((row) => (
+                  <div key={row[0]} className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                    <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{row[0]}</p>
+                    <p className="text-sm leading-relaxed mb-2" style={{ color: t.textSecondary }}>{row[1]}</p>
+                    <p className="text-xs italic" style={{ color: "#B68A35" }}>Relevance: {row[2]}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 rounded-xl border-l-2 p-4" style={{ borderColor: "#B68A35", background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#B68A35" }}>Mitigation Strategy</p>
+                <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{quality.mitigation}</p>
+              </div>
+            </div>
+          )}
 
-              <div className="rounded-lg p-4 mt-5" style={{ background: t.isDark ? "rgba(59,130,246,0.08)" : "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.25)" }}>
-                <p className="text-xs font-semibold mb-1" style={{ color: "#3B82F6" }}>🌊 Flood Risk Assessment</p>
-                <p className="text-xs leading-relaxed" style={{ color: t.textSecondary }}>{location.flood_risk}</p>
+          {activeTab === "location" && (
+            <div>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: t.text }}>{location.title}</h3>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#B68A35" }}>Current Limitations</p>
+              <div className="space-y-4 mb-5">
+                {(location.current_limitations || []).map((lim) => (
+                  <div key={lim.issue} className="flex gap-3 border-b pb-4" style={{ borderColor: t.cardBorder }}>
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                      <RiskIcon
+                        name={
+                          lim.issue.toLowerCase().includes("metro")
+                            ? "train"
+                            : lim.issue.toLowerCase().includes("retail")
+                              ? "retail"
+                              : "school"
+                        }
+                        size={18}
+                      />
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{lim.issue}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{lim.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-xl p-4 mb-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#B68A35" }}>Construction Phase Disruption</p>
+                <p className="text-sm leading-relaxed mb-2" style={{ color: t.textSecondary }}>{location.construction_disruption?.text}</p>
+                <BulletList items={location.construction_disruption?.items || []} t={t} icon="•" />
+              </div>
+              <div className="rounded-xl border-l-2 p-4" style={{ borderColor: "#B68A35", background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#B68A35" }}>Flood Risk Assessment</p>
+                <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{location.flood_risk}</p>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "summary" && (
+            <div>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: t.text }}>{summary.title}</h3>
+              <div className="space-y-3 mb-5">
+                {(summary.rows || []).map((row) => (
+                  <div key={row[0]} className="grid grid-cols-[1fr_1.2fr] gap-3 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                    <div>
+                      <p className="text-sm font-semibold" style={{ color: t.text }}>{row[0]}</p>
+                      <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold" style={{ background: `${getSeverityColor(row[1])}18`, color: getSeverityColor(row[1]) }}>{row[1]}</span>
+                    </div>
+                    <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{row[2]}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-xl p-4" style={{ background: "linear-gradient(135deg, rgba(182,138,53,0.1), rgba(182,138,53,0.03))", border: "1px solid rgba(182,138,53,0.25)" }}>
+                <p className="text-xs font-semibold mb-2" style={{ color: "#B68A35" }}>Final Perspective</p>
+                <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{data.final_perspective}</p>
               </div>
             </div>
           )}
         </div>
 
-        {/* Risk vs Reward Summary — always visible */}
-        <div
-          className="rounded-xl p-5 lg:p-7 mb-8"
-          style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
-        >
-          <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#B68A3520", color: "#B68A35" }}>⚖️</span>
-            {summary.title}
-          </h3>
-          <div className="block lg:hidden">
-            <MobileCards headers={summary.headers || []} rows={summary.rows || []} t={t} highlightCol={1} />
-          </div>
-          <div className="hidden lg:block">
-            <DesktopTable headers={summary.headers || []} rows={summary.rows || []} t={t} highlightCol={1} />
-          </div>
-        </div>
-
-        {/* Final Perspective */}
-        <div
-          className="rounded-xl p-5 lg:p-7"
-          style={{
-            background: "linear-gradient(135deg, rgba(182,138,53,0.1), rgba(182,138,53,0.03))",
-            border: "1px solid rgba(182,138,53,0.25)",
-          }}
-        >
-          <p className="text-xs font-semibold mb-2" style={{ color: "#B68A35" }}>Final Perspective</p>
-          <p className="text-xs leading-relaxed" style={{ color: t.textSecondary }}>{data.final_perspective}</p>
-        </div>
+        <ResearchNotesAccordion notes={data.research_notes} t={t} />
 
         {/* CTA — after Final Perspective */}
         {data.cta && (

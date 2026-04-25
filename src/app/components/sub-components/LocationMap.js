@@ -23,8 +23,8 @@ const LocationMap = () => {
       <iframe
         src={buildMapUrl()}
         width="100%"
-        height="400"
         style={{ border: 0, display: "block" }}
+        className="h-[240px] sm:h-[300px] lg:h-[400px]"
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"

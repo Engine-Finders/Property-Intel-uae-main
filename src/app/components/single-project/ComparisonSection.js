@@ -2,59 +2,21 @@
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 
+const GOLD = "#B68A35";
+
 /* ── Expandable Card wrapper ── */
 const Expandable = ({ title, icon, open, onToggle, children, t }) => (
   <div className="rounded-xl overflow-hidden mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-    <button onClick={onToggle} className="w-full flex items-center justify-between p-5 lg:p-7 text-left">
-      <h3 className="text-sm font-bold flex items-center gap-2" style={{ color: t.text }}>
+    <button onClick={onToggle} className="w-full flex items-center justify-between p-4 lg:p-5 text-left">
+      <h3 className="text-sm sm:text-base font-semibold flex items-center gap-3" style={{ color: t.text }}>
         {icon && (
-          <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#B68A3520", color: "#B68A35" }}>{icon}</span>
+        <span className="w-9 h-9 rounded-lg flex items-center justify-center text-base" style={{ background: GOLD, color: "#fff" }}>{icon}</span>
         )}
         {title}
       </h3>
-      <span className="text-xs transition-transform duration-300" style={{ color: t.textMuted, transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>▼</span>
+      <span className="text-lg transition-transform duration-300" style={{ color: GOLD, transform: open ? "rotate(180deg)" : "rotate(0deg)" }}>⌄</span>
     </button>
-    {open && <div className="px-5 lg:px-7 pb-5 lg:pb-7">{children}</div>}
-  </div>
-);
-
-/* ── Mobile card view for wide tables ── */
-const MobileCards = ({ headers, rows, t }) => (
-  <div className="space-y-3">
-    {rows.map((row, i) => (
-      <div key={i} className="rounded-lg p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.cardBorder}` }}>
-        {headers.map((h, j) => (
-          <div key={j} className={`flex justify-between py-1.5 ${j < headers.length - 1 ? "border-b" : ""}`} style={{ borderColor: t.cardBorder }}>
-            <span className="text-[11px] font-medium" style={{ color: t.textMuted }}>{h}</span>
-            <span className="text-[11px] font-semibold text-right max-w-[55%]" style={{ color: t.text }}>{row[j]}</span>
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
-);
-
-/* ── Desktop scrollable table ── */
-const DesktopTable = ({ headers, rows, t }) => (
-  <div className="overflow-x-auto rounded-lg" style={{ border: `1px solid ${t.cardBorder}` }}>
-    <table className="w-full text-xs">
-      <thead>
-        <tr style={{ background: t.isDark ? "rgba(255,255,255,0.06)" : "#f1f5f9" }}>
-          {headers.map((h, i) => (
-            <th key={i} className="text-left px-4 py-3 font-semibold whitespace-nowrap" style={{ color: t.textMuted, borderBottom: `1px solid ${t.cardBorder}` }}>{h}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, i) => (
-          <tr key={i} style={{ borderBottom: i < rows.length - 1 ? `1px solid ${t.cardBorder}` : "none" }}>
-            {row.map((cell, j) => (
-              <td key={j} className="px-4 py-3" style={{ color: j === 0 ? t.text : t.textSecondary, fontWeight: j === 0 ? 600 : 400 }}>{cell}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    {open && <div className="border-t px-4 lg:px-5 py-5" style={{ borderColor: t.cardBorder }}>{children}</div>}
   </div>
 );
 
@@ -67,10 +29,98 @@ const WinnerCard = ({ item, t }) => {
     <div className="rounded-lg p-4 mb-3" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.cardBorder}`, borderLeft: `3px solid ${accentColor}` }}>
       <div className="flex items-center gap-2 mb-1.5">
         <span className="text-sm">{item.emoji}</span>
-        <span className="text-xs font-bold" style={{ color: t.text }}>{item.category}</span>
-        <span className="ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: accentColor + "15", color: accentColor }}>{item.winner}</span>
+        <span className="text-sm font-semibold" style={{ color: t.text }}>{item.category}</span>
+        <span className="ml-auto text-xs font-semibold px-2 py-0.5 rounded-full" style={{ background: accentColor + "15", color: accentColor }}>{item.winner}</span>
       </div>
-      <p className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{item.rationale}</p>
+      <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{item.rationale}</p>
+    </div>
+  );
+};
+
+const getProjectValue = (rows, feature, projectIndex) => {
+  const row = rows.find((r) => r[0] === feature);
+  return row ? row[projectIndex + 1] : "";
+};
+
+const StatLine = ({ label, value, max = 6000000, color, t }) => {
+  const raw = String(value);
+  const parsed = Number(raw.replace(/[^0-9.]/g, "")) || 0;
+  const number = raw.toLowerCase().includes("m") ? parsed * 1000000 : parsed;
+  const width = Math.max(18, Math.min(100, (number / max) * 100));
+
+  return (
+    <div className="border-b py-4 last:border-b-0" style={{ borderColor: t.cardBorder }}>
+      <div className="grid grid-cols-[1fr_1.2fr_auto] items-center gap-3">
+        <div>
+          <p className="text-sm font-semibold" style={{ color: t.text }}>{label}</p>
+          <p className="text-xs" style={{ color: t.textMuted }}>{label === "Serro" ? "The Heights" : label === "Emaar South" ? "Golf Place" : "Phase VI"}</p>
+        </div>
+        <div className="h-2 rounded-full" style={{ background: t.isDark ? "rgba(255,255,255,0.08)" : "#ebe7df" }}>
+          <div className="h-full rounded-full" style={{ width: `${width}%`, background: color }} />
+        </div>
+        <p className="text-sm font-semibold whitespace-nowrap" style={{ color }}>{value}</p>
+      </div>
+    </div>
+  );
+};
+
+const CompetitorDetail = ({ comp, activeIndex, t }) => {
+  const rows = comp.rows || [];
+  const projects = [
+    { short: "Serro at The Heights", brand: "Emaar Properties", badge: "Premium pick", color: GOLD },
+    { short: "Emaar South — Golf Place", brand: "Emaar Properties", badge: "Emaar Properties", color: GOLD },
+    { short: "Dubai South Residential", brand: "Various (Dubai South Development)", badge: "Dubai South Development", color: "#286CFF" },
+  ];
+  const project = projects[activeIndex] || projects[0];
+
+  const details = [
+    ["Unit Types", getProjectValue(rows, "Unit Types", activeIndex)],
+    ["Size Range", getProjectValue(rows, "Size Range", activeIndex)],
+    ["Starting Price", getProjectValue(rows, "Starting Price", activeIndex)],
+    ["Price / sqft", getProjectValue(rows, "Price per sq.ft", activeIndex)],
+    ["Handover", getProjectValue(rows, "Handover", activeIndex)],
+    ["Payment Plan", getProjectValue(rows, "Payment Plan", activeIndex)],
+  ];
+
+  const extras = [
+    ["Target Buyer", getProjectValue(rows, "Target Buyer", activeIndex), "👤"],
+    ["Amenities", getProjectValue(rows, "Amenities", activeIndex), "♧"],
+    ["Risk Factor", getProjectValue(rows, "Risk Factor", activeIndex), "ⓘ"],
+  ];
+
+  return (
+    <div className="rounded-xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+      <div className="p-4">
+        <span className="inline-flex rounded-full px-3 py-1 text-xs font-semibold mb-4" style={{ background: t.isDark ? "rgba(182,138,53,0.15)" : "#faf4e7", color: GOLD }}>
+          {project.badge}
+        </span>
+        <h3 className="text-lg font-semibold mb-1" style={{ color: t.text }}>{project.short}</h3>
+        <p className="text-sm mb-2" style={{ color: t.textSecondary }}>{project.brand}</p>
+        <p className="text-sm" style={{ color: t.textMuted }}>⌖ {getProjectValue(rows, "Location", activeIndex)}</p>
+      </div>
+
+      <div className="grid grid-cols-2 border-t" style={{ borderColor: t.cardBorder }}>
+        {details.map(([label, value], index) => (
+          <div key={label} className="border-b border-r p-4 even:border-r-0" style={{ borderColor: t.cardBorder }}>
+            <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: GOLD }}>{label}</p>
+            <p className="text-sm font-semibold leading-6" style={{ color: index === 2 && activeIndex === 2 ? "#286CFF" : t.text }}>{value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        {extras.map(([label, value, icon]) => (
+          <div key={label} className="flex gap-3 border-t p-4" style={{ borderColor: t.cardBorder }}>
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#fbf4e8", color: GOLD }}>
+              {icon}
+            </span>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: GOLD }}>{label}</p>
+              <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -78,59 +128,100 @@ const WinnerCard = ({ item, t }) => {
 /* ── Main Component ── */
 const ComparisonSection = ({ data }) => {
   const { t } = useTheme();
-  const [openPanel, setOpenPanel] = useState(null);
+  const [openPanel, setOpenPanel] = useState("verdict");
+  const [activeProject, setActiveProject] = useState(0);
   const toggle = (key) => setOpenPanel((prev) => (prev === key ? null : key));
 
   const comp = data.competitor_table || {};
   const winners = data.winner_table || {};
   const verdict = data.verdict || {};
+  const projectTabs = ["Serro\nThe Heights", "Emaar South\nGolf Place", "Dubai South\nPhase VI"];
 
   return (
-    <section id="comparison" className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8" style={{ background: t.bg }}>
+    <section id="comparison" className="py-8 lg:py-12 px-2 sm:px-6 lg:px-8" style={{ background: t.bg }}>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4" style={{ background: "#B68A3520", color: "#B68A35" }}>
             {data.badge}
           </span>
-          <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: t.text }}>{data.title}</h2>
-          <p className="text-xs leading-relaxed max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: t.text }}>
+            <span className="block">How Serro at The Heights</span>
+            <span className="block" style={{ color: GOLD }}>Stacks Up Against Competitors</span>
+          </h2>
+          <p className="text-sm leading-6 max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
         </div>
 
-        {/* Competitor Comparison Table — expandable */}
-        <Expandable title="Direct Competitor Analysis" icon="⚔️" open={openPanel === "comp"} onToggle={() => toggle("comp")} t={t}>
-          <div className="block lg:hidden">
-            <MobileCards headers={comp.headers || []} rows={comp.rows || []} t={t} />
+        <div className="mb-8 rounded-xl p-4" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+          <h3 className="mb-4 text-lg font-semibold" style={{ color: t.text }}>Starting price at a glance</h3>
+          <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: GOLD }}>Entry Price — 3 Bedroom</p>
+            <StatLine label="Serro" value="AED 6.0M" color={GOLD} t={t} />
+            <StatLine label="Emaar South" value="AED 3.8M" color="#9eba6e" t={t} />
+            <StatLine label="Dubai South" value="AED 1.47M" color="#6f9fca" t={t} />
+            <p className="mt-3 text-sm leading-6" style={{ color: t.textMuted }}>
+              Price per sqft: Serro ~AED 1,732 · Emaar South ~AED 1,550–1,700 · Dubai South ~AED 700–900
+            </p>
           </div>
-          <div className="hidden lg:block">
-            <DesktopTable headers={comp.headers || []} rows={comp.rows || []} t={t} />
+        </div>
+
+        <div className="mb-6">
+          <h3 className="mb-4 text-lg font-semibold" style={{ color: t.text }}>Direct Competitor Analysis</h3>
+          <div className="mb-4 grid grid-cols-3 overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+            {projectTabs.map((tab, index) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveProject(index)}
+                className="min-h-[58px] whitespace-pre-line border-r px-2 py-3 text-xs sm:text-sm font-medium last:border-r-0"
+                style={{
+                  borderColor: t.cardBorder,
+                  background: activeProject === index ? GOLD : t.cardBg,
+                  color: activeProject === index ? "#fff" : t.text,
+                }}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
-          {comp.source && <p className="text-[10px] mt-3 italic" style={{ color: t.textMuted }}>Sources: {comp.source}</p>}
-        </Expandable>
+          <CompetitorDetail comp={comp} activeIndex={activeProject} t={t} />
+          {comp.source && (
+            <p className="mt-3 rounded-lg px-3 py-2 text-sm leading-6" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#fbf7ef", color: t.textMuted }}>
+              ⓘ Sources: {comp.source}
+            </p>
+          )}
+        </div>
 
         {/* Winner Summary — expandable */}
-        <Expandable title={winners.title || "Who Wins"} icon="🏆" open={openPanel === "winners"} onToggle={() => toggle("winners")} t={t}>
+        <Expandable title={`Summary - ${winners.title || "Who Wins on Value, Trust, and Lifestyle"}`} icon="▧" open={openPanel === "winners"} onToggle={() => toggle("winners")} t={t}>
           {(winners.rows || []).map((item, i) => (
             <WinnerCard key={i} item={item} t={t} />
           ))}
         </Expandable>
 
-        {/* Strategic Verdict — always visible */}
-        <div className="rounded-xl p-5 lg:p-7" style={{ background: "linear-gradient(135deg, rgba(182,138,53,0.1), rgba(182,138,53,0.03))", border: "1px solid rgba(182,138,53,0.25)" }}>
-          <h3 className="text-sm font-bold mb-3 flex items-center gap-2" style={{ color: "#B68A35" }}>
-            <span>⚡</span> {verdict.title}
-          </h3>
-          <p className="text-xs leading-relaxed mb-4" style={{ color: t.textSecondary }}>{verdict.intro}</p>
-          <ul className="space-y-2 mb-4">
-            {(verdict.points || []).map((p, i) => (
-              <li key={i} className="flex gap-2 items-start text-xs leading-relaxed" style={{ color: t.textSecondary }}>
-                <span className="shrink-0 mt-0.5" style={{ color: "#B68A35" }}>→</span>
-                <span>{p}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-xs leading-relaxed italic" style={{ color: t.textMuted }}>{verdict.closing}</p>
-        </div>
+        <Expandable title={verdict.title || "Strategic Verdict"} icon="◎" open={openPanel === "verdict"} onToggle={() => toggle("verdict")} t={t}>
+          <p className="text-sm leading-6 mb-5" style={{ color: t.textSecondary }}>{verdict.intro}</p>
+          <div className="divide-y mb-5" style={{ borderColor: t.cardBorder }}>
+            {(verdict.points || []).map((p, i) => {
+              const [title, desc] = String(p).split(" — ");
+              return (
+                <div key={i} className="flex gap-4 py-5 first:pt-0">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold" style={{ background: "#fbf3e3", color: GOLD }}>
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p className="font-semibold mb-1" style={{ color: t.text }}>{title}</p>
+                    {desc && <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{desc}</p>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="border-l-2 p-4" style={{ borderColor: GOLD, background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] mb-2" style={{ color: GOLD }}>Bottom Line</p>
+            <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{verdict.closing}</p>
+          </div>
+        </Expandable>
 
         {/* CTA — after Strategic Verdict */}
         {data.cta && (

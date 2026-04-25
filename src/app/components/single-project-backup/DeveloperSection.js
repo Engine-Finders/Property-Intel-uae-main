@@ -219,7 +219,7 @@ const DeveloperSection = ({ data }) => {
 
   return (
     <section style={{ background: t.bgAlt }} className="py-6 lg:py-10">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="mb-10 space-y-6 lg:mb-12">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>

@@ -1,657 +1,625 @@
 "use client";
-import { useState } from "react";
+
+import { useMemo, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+
+const ACCENT = "#b68a35";
+
+const ChevronIcon = ({ open, color }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={color}
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+  >
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
+const ProfileIcon = ({ icon, color = ACCENT, size = 18 }) => {
+  const props = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  if (icon === "yield") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M5 19 19 5" />
+        <path d="M8 5h11v11" />
+        <path d="M5 14c1.5-3 4.5-5 8-5" />
+      </svg>
+    );
+  }
+
+  if (icon === "flip") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M4 7h10" />
+        <path d="m10 3 4 4-4 4" />
+        <path d="M20 17H10" />
+        <path d="m14 13-4 4 4 4" />
+      </svg>
+    );
+  }
+
+  if (icon === "family") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M16 19v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1" />
+        <circle cx="10" cy="8" r="3" />
+        <path d="M22 19v-1a3 3 0 0 0-2-2.82" />
+        <path d="M16 4.18a3 3 0 0 1 0 5.64" />
+      </svg>
+    );
+  }
+
+  if (icon === "visa") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M12 21s7-4 7-10V5l-7-2-7 2v6c0 6 7 10 7 10Z" />
+      </svg>
+    );
+  }
+
+  if (icon === "school") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="m3 8 9-5 9 5-9 5-9-5Z" />
+        <path d="M6 10.5V15c0 1.5 3 3 6 3s6-1.5 6-3v-4.5" />
+      </svg>
+    );
+  }
+
+  if (icon === "health") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="4" y="4" width="16" height="16" rx="3" />
+        <path d="M12 8v8" />
+        <path d="M8 12h8" />
+      </svg>
+    );
+  }
+
+  if (icon === "retail") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M5 9h14l-1 10H6L5 9Z" />
+        <path d="M8 9V7a4 4 0 1 1 8 0v2" />
+      </svg>
+    );
+  }
+
+  if (icon === "rail") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="6" y="3" width="12" height="14" rx="2" />
+        <path d="M8 7h8" />
+        <path d="M9 11h.01" />
+        <path d="M15 11h.01" />
+        <path d="m8 21 2-3" />
+        <path d="m16 21-2-3" />
+      </svg>
+    );
+  }
+
+  if (icon === "airport") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="m2 19 20-7" />
+        <path d="m2 12 20-7" />
+        <path d="m10 14 4 6" />
+        <path d="m11 9 4 6" />
+      </svg>
+    );
+  }
+
+  if (icon === "price") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="m20 12-8 8-8-8 8-8 8 8Z" />
+        <path d="M12 8h.01" />
+      </svg>
+    );
+  }
+
+  if (icon === "calendar") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="3" y="5" width="18" height="16" rx="2" />
+        <path d="M16 3v4" />
+        <path d="M8 3v4" />
+        <path d="M3 10h18" />
+      </svg>
+    );
+  }
+
+  if (icon === "clock") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </svg>
+    );
+  }
+
+  return null;
+};
+
+const HtmlText = ({ as: Tag = "p", html, className = "", style = {} }) => (
+  <Tag className={className} style={style} dangerouslySetInnerHTML={{ __html: html }} />
+);
+
+const VerdictPill = ({ label, tone }) => {
+  const styles = {
+    buy: {
+      color: "#3f7d44",
+      background: "#eaf7e8",
+      border: "#cbe7c5",
+    },
+    consider: {
+      color: "#b4831b",
+      background: "#fff7dc",
+      border: "#f0db9e",
+    },
+    opportunity: {
+      color: "#b4831b",
+      background: "#fff7dc",
+      border: "#f0db9e",
+    },
+  };
+
+  const current = styles[tone] || styles.consider;
+
+  return (
+    <span
+      className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em]"
+      style={{
+        color: current.color,
+        background: current.background,
+        border: `1px solid ${current.border}`,
+      }}
+    >
+      {label}
+    </span>
+  );
+};
+
+const DataTable = ({ table, t }) => (
+  <div className="overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+    <div className="overflow-x-auto">
+      <table className="min-w-full text-left text-[12px] sm:text-[13px]">
+        <thead style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#faf5eb" }}>
+          <tr>
+            {table.columns.map((column) => (
+              <th
+                key={column}
+                className="px-3 py-3 font-medium"
+                style={{ color: t.textMuted, whiteSpace: "nowrap" }}
+              >
+                {column}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((row, index) => (
+            <tr
+              key={`${row.values[0]}-${index}`}
+              style={{
+                borderTop: `1px solid ${t.cardBorder}`,
+                background: row.highlight ? (t.isDark ? "rgba(182,138,53,0.12)" : "#fff8e6") : "transparent",
+              }}
+            >
+              {row.values.map((value, cellIndex) => (
+                <td
+                  key={`${value}-${cellIndex}`}
+                  className="px-3 py-3 align-top"
+                  style={{
+                    color: row.highlight && cellIndex > 0 ? ACCENT : cellIndex === 0 ? t.text : t.textSecondary,
+                    fontWeight: row.highlight || cellIndex === 0 ? 600 : 400,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
 
 const TargetBuyerSection = ({ data }) => {
   const { t } = useTheme();
-  const [activeTab, setActiveTab] = useState("overview");
-  const [openAccordions, setOpenAccordions] = useState({});
+  const profiles = data?.profiles || [];
+  const defaultProfile = profiles[0]?.id || null;
+  const [activeProfile, setActiveProfile] = useState(defaultProfile);
+  const [isPanelOpen, setIsPanelOpen] = useState(true);
 
-  const toggleAccordion = (key) => {
-    setOpenAccordions((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
+  const currentProfile = useMemo(
+    () => profiles.find((profile) => profile.id === activeProfile) || profiles[0],
+    [activeProfile, profiles]
+  );
 
-  const tabs = [
-    { id: "overview", label: "Who Should Buy?" },
-    { id: "investment", label: "Investment Case" },
-    { id: "enduser", label: "End-User & Visa" },
-    { id: "matrix", label: "Verdict Matrix" },
-  ];
+  const lightCardBg = t.isDark ? t.cardBg : "#fffdfa";
+  const lightMutedBg = t.isDark ? t.bgAlt : "#fbf6ed";
+  const shadow = t.isDark ? "none" : "0 12px 30px rgba(112, 88, 29, 0.08)";
 
-  const trafficCards = [
-    {
-      color: "#16a34a",
-      colorLight: "#dcfce7",
-      colorMid: "#22c55e",
-      label: "GO",
-      title: "For Families & Visa Seekers",
-      desc: "AED 6M meets Golden Visa threshold. Wellness lifestyle, future schools & healthcare, proximity to DWC employment corridor. Buy with confidence.",
-      icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-      ),
-    },
-    {
-      color: "#ca8a04",
-      colorLight: "#fef9c3",
-      colorMid: "#eab308",
-      label: "CAUTION",
-      title: "For Yield Investors",
-      desc: "4–5% gross yields below apartment alternatives. But villa scarcity premium and infrastructure maturation support long-term appreciation for 5+ year holders.",
-      icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 7v5l3 3" />
-          <path d="M9 16h6" />
-        </svg>
-      ),
-    },
-    {
-      color: "#dc2626",
-      colorLight: "#fee2e2",
-      colorMid: "#ef4444",
-      label: "STOP",
-      title: "For Short-Term Flippers",
-      desc: "Not a traditional quick flip — but launch-phase resale, distressed acquisition, and handover exit strategies viable for experienced investors.",
-      icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 6v6l4 2" />
-          <line x1="4" y1="4" x2="20" y2="20" strokeWidth="2" />
-        </svg>
-      ),
-    },
-  ];
-
-  const rentalData = data.rental_benchmarking;
-  const flipStrategies = data.flip_strategies;
-  const infraTimeline = data.infrastructure_timeline;
-  const matrix = data.recommendation_matrix;
+  if (!currentProfile) return null;
 
   return (
-    <section style={{ background: t.bg }} className="py-6 lg:py-10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="text-center mb-10 lg:mb-14">
-          <span
-            style={{
-              background: "linear-gradient(135deg, #b8860b, #d4a843)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            className="text-sm font-semibold tracking-widest uppercase"
+    <section style={{ background: t.bg }} className="py-8 lg:py-12">
+      <div className="mx-auto max-w-6xl px-2 sm:px-6">
+        <div className="mb-8 max-w-3xl">
+          <p
+            className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em]"
+            style={{ color: ACCENT }}
           >
-            Target Buyer & Investment Rationale
-          </span>
+            {data.section_label}
+          </p>
           <h2
+            className="max-w-2xl text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] sm:text-[2.45rem]"
             style={{ color: t.text }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-3 leading-tight"
           >
-            Who Should Buy at Serro?{" "}
-            <span style={{ color: "#b8860b" }}>Investor, End-User, or Both?</span>
+            {data.heading}
           </h2>
+          <p
+            className="mt-4 max-w-xl text-sm leading-7 sm:text-[15px]"
+            style={{ color: t.textSecondary }}
+          >
+            {data.intro}
+          </p>
         </div>
 
-        {/* Traffic Light Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
-          {trafficCards.map((card, i) => (
-            <div
-              key={i}
-              style={{
-                background: t.isDark
-                  ? `linear-gradient(160deg, ${t.cardBg}, ${t.bgAlt})`
-                  : `linear-gradient(160deg, #ffffff, ${card.colorLight}40)`,
-                border: `2px solid ${card.color}40`,
-                borderTop: `4px solid ${card.color}`,
-              }}
-              className="rounded-xl p-6 relative overflow-hidden"
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  width: 80,
-                  height: 80,
-                  background: `radial-gradient(circle at top right, ${card.color}15, transparent 70%)`,
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {profiles.map((profile) => {
+            const isActive = profile.id === currentProfile.id;
+
+            return (
+              <button
+                key={profile.id}
+                type="button"
+                onClick={() => {
+                  setActiveProfile(profile.id);
+                  setIsPanelOpen(true);
                 }}
-              />
-              <div className="flex items-center gap-3 mb-4">
-                <div
-                  style={{
-                    background: `${card.color}20`,
-                    color: card.color,
-                    border: `1px solid ${card.color}40`,
-                  }}
-                  className="w-14 h-14 rounded-xl flex items-center justify-center"
-                >
-                  {card.icon}
-                </div>
-                <div>
-                  <span
-                    style={{
-                      color: card.color,
-                      fontSize: 11,
-                      fontWeight: 800,
-                      letterSpacing: "0.15em",
-                    }}
+                className="rounded-2xl p-4 text-left transition-all duration-300"
+                style={{
+                  background: isActive
+                    ? (
+                        t.isDark
+                          ? "linear-gradient(180deg, rgba(182,138,53,0.16), rgba(255,255,255,0.03))"
+                          : "linear-gradient(180deg, #fffaf0, #fffdf9)"
+                      )
+                    : lightCardBg,
+                  border: `1px solid ${isActive ? "rgba(182,138,53,0.55)" : t.cardBorder}`,
+                  boxShadow: isActive ? shadow : "none",
+                }}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
                   >
-                    {card.label}
-                  </span>
-                  <h3 style={{ color: t.text }} className="text-lg font-bold leading-tight">
-                    {card.title}
+                    <ProfileIcon icon={profile.icon} />
+                  </div>
+                  <h3
+                    className="text-[15px] font-semibold leading-5 sm:text-base"
+                    style={{ color: t.text }}
+                  >
+                    {profile.card_title}
                   </h3>
                 </div>
-              </div>
-              <p style={{ color: t.textSecondary, fontSize: 14, lineHeight: 1.7 }}>
-                {card.desc}
-              </p>
-            </div>
-          ))}
+                <p
+                  className="mt-3 min-h-[40px] text-xs leading-5 sm:text-[13px]"
+                  style={{ color: t.textSecondary }}
+                >
+                  {profile.card_subtitle}
+                </p>
+                <div
+                  className="mt-4 h-[3px] rounded-full transition-all duration-300"
+                  style={{
+                    width: isActive ? 74 : 34,
+                    background: isActive ? ACCENT : "transparent",
+                  }}
+                />
+              </button>
+            );
+          })}
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                background:
-                  activeTab === tab.id
-                    ? "linear-gradient(135deg, #b8860b, #d4a843)"
-                    : t.cardBg,
-                color: activeTab === tab.id ? "#ffffff" : t.textSecondary,
-                border: `1px solid ${activeTab === tab.id ? "#b8860b" : t.cardBorder}`,
-              }}
-              className="px-4 py-2 rounded-lg text-sm font-semibold transition-all"
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab Content */}
         <div
+          className="mt-5 overflow-hidden rounded-[28px]"
           style={{
-            background: t.cardBg,
+            background: lightCardBg,
             border: `1px solid ${t.cardBorder}`,
+            boxShadow: shadow,
           }}
-          className="rounded-xl p-5 sm:p-8"
         >
-          {/* OVERVIEW TAB */}
-          {activeTab === "overview" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-4">
-                The Investment Case — Yield Seekers & Capital Growth
-              </h3>
-              <p
-                style={{ color: t.textSecondary, lineHeight: 1.8 }}
-                className="text-sm sm:text-base mb-6"
-              >
-                For yield-focused investors, Serro presents a measured opportunity. The Dubai South
-                corridor recorded <strong style={{ color: t.text }}>14.2% capital appreciation in 2024</strong>,
-                with average prices now at AED 917/sq.ft across the district. While Serro&apos;s launch
-                pricing at approximately <strong style={{ color: "#b8860b" }}>AED 1,732/sq.ft</strong> sits
-                above this district average, it reflects the premium attached to Emaar&apos;s
-                master-planning and wellness infrastructure.
-              </p>
+          <button
+            type="button"
+            onClick={() => setIsPanelOpen((prev) => !prev)}
+            className="flex w-full items-start gap-3 px-5 py-5 text-left sm:px-6"
+          >
+            <div
+              className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+              style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+            >
+              <ProfileIcon icon={currentProfile.icon} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xl leading-tight sm:text-[1.7rem]" style={{ color: t.text }}>
+                <span className="font-medium">{currentProfile.panel_title} </span>
+                <span className="font-medium" style={{ color: ACCENT }}>
+                  {currentProfile.panel_accent}
+                </span>
+              </div>
+              {currentProfile.panel_subtitle && (
+                <p
+                  className="mt-2 text-sm leading-6"
+                  style={{ color: t.textMuted }}
+                >
+                  {currentProfile.panel_subtitle}
+                </p>
+              )}
+            </div>
+            <ChevronIcon open={isPanelOpen} color={t.textSecondary} />
+          </button>
 
-              {/* Rental Benchmarking Table */}
-              <h4 style={{ color: t.text }} className="text-lg font-bold mb-4">
-                Rental Benchmarking — Per Sq.Ft (Mature Comparables)
-              </h4>
+          {isPanelOpen && (
+            <div
+              className="border-t px-5 pb-5 pt-5 sm:px-6 sm:pb-6"
+              style={{ borderColor: t.cardBorder }}
+            >
+              {currentProfile.intro_html && (
+                <HtmlText
+                  html={currentProfile.intro_html}
+                  className="text-sm leading-8 sm:text-[15px]"
+                  style={{ color: t.textSecondary }}
+                />
+              )}
 
-              {/* Mobile Cards */}
-              <div className="block lg:hidden space-y-3 mb-6">
-                {rentalData.map((row, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      background: row.highlight
-                        ? `linear-gradient(135deg, ${t.bgAlt}, #b8860b10)`
-                        : t.bgAlt,
-                      border: `1px solid ${row.highlight ? "#b8860b40" : t.cardBorder}`,
-                    }}
-                    className="rounded-lg p-4"
+              {currentProfile.table && (
+                <div className="mt-5">
+                  <p
+                    className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em]"
+                    style={{ color: ACCENT }}
                   >
-                    <div className="flex justify-between items-start mb-2">
-                      <span style={{ color: t.text }} className="font-bold text-sm">
-                        {row.community}
-                      </span>
-                      {row.highlight && (
-                        <span
+                    {currentProfile.table.title}
+                  </p>
+                  <DataTable table={currentProfile.table} t={t} />
+                </div>
+              )}
+
+              {currentProfile.analysis_html && (
+                <div
+                  className="mt-5 rounded-2xl px-4 py-4"
+                  style={{
+                    background: t.isDark ? "rgba(255,255,255,0.03)" : lightMutedBg,
+                    border: `1px solid ${t.cardBorder}`,
+                  }}
+                >
+                  <HtmlText
+                    html={currentProfile.analysis_html}
+                    className="text-sm leading-8 sm:text-[15px]"
+                    style={{ color: t.textSecondary }}
+                  />
+                </div>
+              )}
+
+              {currentProfile.link_text && (
+                <div className="mt-4 inline-flex items-center gap-1 text-sm" style={{ color: ACCENT }}>
+                  <span>{currentProfile.link_text}</span>
+                  <ChevronIcon open={false} color={ACCENT} />
+                </div>
+              )}
+
+              {currentProfile.strategies?.length > 0 && (
+                <div className="mt-5 space-y-3">
+                  {currentProfile.strategies.map((strategy) => (
+                    <div
+                      key={strategy.number}
+                      className="rounded-2xl px-4 py-4"
+                      style={{
+                        background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                        border: `1px solid ${t.cardBorder}`,
+                      }}
+                    >
+                      <div className="flex gap-3">
+                        <div
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-base font-medium"
                           style={{
-                            background: "#b8860b20",
-                            color: "#b8860b",
-                            fontSize: 10,
-                            padding: "2px 8px",
-                            borderRadius: 6,
-                            fontWeight: 700,
+                            color: ACCENT,
+                            background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1",
                           }}
                         >
-                          THIS PROJECT
-                        </span>
-                      )}
-                    </div>
-                    <div className="grid grid-cols-3 gap-2 mt-2">
-                      <div>
-                        <span style={{ color: t.textMuted, fontSize: 11 }}>Annual Rent</span>
-                        <p style={{ color: t.text, fontSize: 13, fontWeight: 600 }}>{row.annual_rent}</p>
-                      </div>
-                      <div>
-                        <span style={{ color: t.textMuted, fontSize: 11 }}>Size</span>
-                        <p style={{ color: t.text, fontSize: 13, fontWeight: 600 }}>{row.size}</p>
-                      </div>
-                      <div>
-                        <span style={{ color: t.textMuted, fontSize: 11 }}>Rent/sqft</span>
-                        <p style={{ color: "#b8860b", fontSize: 13, fontWeight: 700 }}>{row.rent_per_sqft}</p>
+                          {strategy.number}
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="text-[15px] font-semibold leading-5" style={{ color: t.text }}>
+                            {strategy.title}
+                          </h4>
+                          <p className="mt-1 text-xs" style={{ color: ACCENT }}>
+                            {strategy.timing}
+                          </p>
+                          <p className="mt-3 text-sm leading-7" style={{ color: t.textSecondary }}>
+                            {strategy.content}
+                          </p>
+                        </div>
                       </div>
                     </div>
+                  ))}
+                </div>
+              )}
+
+              {currentProfile.verdict && (
+                <div
+                  className="mt-4 rounded-2xl px-4 py-4"
+                  style={{
+                    background: t.isDark ? "rgba(182,138,53,0.08)" : "#fdf7e8",
+                    border: "1px solid rgba(182,138,53,0.2)",
+                  }}
+                >
+                  <div className="flex items-start gap-3">
+                    <div
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                      style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf0d5" }}
+                    >
+                      <ProfileIcon icon={currentProfile.verdict.icon || currentProfile.icon} size={16} />
+                    </div>
+                    <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+                      <span className="font-semibold" style={{ color: ACCENT }}>
+                        {currentProfile.verdict.label}:
+                      </span>{" "}
+                      {currentProfile.verdict.text}
+                    </p>
                   </div>
-                ))}
-              </div>
+                </div>
+              )}
 
-              {/* Desktop Table */}
-              <div className="hidden lg:block mb-6 overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr style={{ borderBottom: `2px solid ${t.cardBorder}` }}>
-                      {["Community", "Annual Rent (3BR)", "Size (sq.ft)", "Rent per sq.ft"].map(
-                        (h) => (
-                          <th
-                            key={h}
-                            style={{ color: t.text, padding: "10px 12px" }}
-                            className="text-left font-bold"
-                          >
-                            {h}
-                          </th>
-                        )
-                      )}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {rentalData.map((row, i) => (
-                      <tr
-                        key={i}
-                        style={{
-                          borderBottom: `1px solid ${t.cardBorder}`,
-                          background: row.highlight ? "#b8860b08" : "transparent",
-                        }}
-                      >
-                        <td style={{ color: t.text, padding: "10px 12px", fontWeight: row.highlight ? 700 : 500 }}>
-                          {row.community}
-                          {row.highlight && (
-                            <span style={{ color: "#b8860b", fontSize: 10, marginLeft: 8, fontWeight: 700 }}>
-                              ★ THIS PROJECT
-                            </span>
-                          )}
-                        </td>
-                        <td style={{ color: t.textSecondary, padding: "10px 12px" }}>{row.annual_rent}</td>
-                        <td style={{ color: t.textSecondary, padding: "10px 12px" }}>{row.size}</td>
-                        <td style={{ color: "#b8860b", padding: "10px 12px", fontWeight: 700 }}>{row.rent_per_sqft}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <div
-                style={{
-                  background: t.isDark ? "#b8860b10" : "#fef3c7",
-                  border: "1px solid #b8860b30",
-                  borderLeft: "4px solid #b8860b",
-                }}
-                className="rounded-lg p-4 text-sm"
-              >
-                <p style={{ color: t.textSecondary, lineHeight: 1.7 }}>
-                  Applying a mid-range projection of <strong style={{ color: t.text }}>AED 270,000</strong> against
-                  a AED 6,000,000 purchase price suggests a gross yield of approximately{" "}
-                  <strong style={{ color: "#b8860b" }}>4.5%</strong> — consistent with Dubai South&apos;s 5.5–7.5%
-                  villa yields but below the 8%+ achievable in higher-density apartment districts.
-                </p>
-              </div>
-
-              {data.cta && (
-                <div className="mt-6 flex flex-col items-start gap-2">
-                  <a
-                    href={data.cta.href || "#"}
-                    className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
-                    style={{ background: "#B68A35" }}
+              {currentProfile.infrastructure?.length > 0 && (
+                <div className="mt-5 space-y-3">
+                  <p
+                    className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+                    style={{ color: ACCENT }}
                   >
-                    {data.cta.button_text}
-                  </a>
-                  {data.cta.subtext && (
-                    <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
-                  )}
+                    {currentProfile.infrastructure_title}
+                  </p>
+                  {currentProfile.infrastructure.map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex items-start gap-3 rounded-2xl px-4 py-4"
+                      style={{
+                        background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                        border: `1px solid ${t.cardBorder}`,
+                      }}
+                    >
+                      <div
+                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+                      >
+                        <ProfileIcon icon={item.icon} size={16} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <h4 className="text-[15px] font-semibold" style={{ color: t.text }}>
+                            {item.title}
+                          </h4>
+                          <span className="text-xs font-medium" style={{ color: ACCENT }}>
+                            {item.timeline}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-sm leading-6" style={{ color: t.textMuted }}>
+                          {item.details}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {currentProfile.notes?.length > 0 && (
+                <div className="mt-5 space-y-3">
+                  {currentProfile.notes.map((note) => (
+                    <div key={note.label}>
+                      <HtmlText
+                        html={`<strong>${note.label}:</strong> ${note.text}`}
+                        className="text-sm leading-7"
+                        style={{ color: t.textSecondary }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {currentProfile.stats?.length > 0 && (
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  {currentProfile.stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-2xl px-4 py-4"
+                      style={{
+                        background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                        border: `1px solid ${t.cardBorder}`,
+                      }}
+                    >
+                      <div
+                        className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl"
+                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+                      >
+                        <ProfileIcon icon={stat.icon} size={15} />
+                      </div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: t.textMuted }}>
+                        {stat.label}
+                      </p>
+                      <p className="mt-2 text-sm font-semibold leading-6 sm:text-base" style={{ color: t.text }}>
+                        {stat.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {currentProfile.paragraphs?.length > 0 && (
+                <div className="mt-5 space-y-4">
+                  {currentProfile.paragraphs.map((paragraph, index) => (
+                    <HtmlText
+                      key={index}
+                      html={paragraph}
+                      className="text-sm leading-8 sm:text-[15px]"
+                      style={{ color: t.textSecondary }}
+                    />
+                  ))}
                 </div>
               )}
             </div>
           )}
+        </div>
 
-          {/* INVESTMENT / FLIPPER TAB */}
-          {activeTab === "investment" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-4">
-                The Flipper&apos;s Perspective — Short-Term Strategies
-              </h3>
-              <p style={{ color: t.textSecondary, lineHeight: 1.8 }} className="text-sm sm:text-base mb-6">
-                Contrary to the &quot;Avoid&quot; label, Serro offers multiple entry points for sophisticated
-                short-term investors who understand off-plan mechanics.
-              </p>
+        <div className="mt-8">
+          <h3 className="text-[1.7rem] font-medium tracking-[-0.02em]" style={{ color: t.text }}>
+            <span style={{ color: ACCENT }}>{data.matrix_title_prefix}</span>{" "}
+            <span>{data.matrix_title_suffix}</span>
+          </h3>
 
-              <div className="space-y-4 mb-6">
-                {flipStrategies.map((strategy, i) => (
-                  <div
-                    key={i}
-                    onClick={() => toggleAccordion(`flip-${i}`)}
-                    style={{
-                      background: t.bgAlt,
-                      border: `1px solid ${t.cardBorder}`,
-                      cursor: "pointer",
-                    }}
-                    className="rounded-lg overflow-hidden"
-                  >
-                    <div className="p-4 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <span
-                          style={{
-                            background: "linear-gradient(135deg, #b8860b, #d4a843)",
-                            color: "#fff",
-                            width: 32,
-                            height: 32,
-                            borderRadius: 8,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: 14,
-                            fontWeight: 800,
-                          }}
-                        >
-                          {i + 1}
-                        </span>
-                        <div>
-                          <h4 style={{ color: t.text }} className="font-bold text-sm">
-                            {strategy.title}
-                          </h4>
-                          <span style={{ color: t.textMuted, fontSize: 12 }}>{strategy.timing}</span>
-                        </div>
-                      </div>
-                      <span
-                        style={{
-                          color: "#b8860b",
-                          fontSize: 14,
-                          fontWeight: 700,
-                        }}
-                      >
-                        {strategy.target}
-                      </span>
-                    </div>
-                    {openAccordions[`flip-${i}`] && (
-                      <div
-                        style={{
-                          borderTop: `1px solid ${t.cardBorder}`,
-                          padding: "12px 16px",
-                        }}
-                      >
-                        <p style={{ color: t.textSecondary, fontSize: 13, lineHeight: 1.7 }}>
-                          {strategy.content}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
+          <div className="mt-4 space-y-4">
+            {data.matrix.map((item) => (
               <div
+                key={item.profile}
+                className="rounded-[24px] px-4 py-4 sm:px-5"
                 style={{
-                  background: t.isDark ? "#dc262610" : "#fee2e2",
-                  border: "1px solid #dc262630",
-                  borderLeft: "4px solid #dc2626",
+                  background: lightCardBg,
+                  border: `1px solid ${t.cardBorder}`,
+                  boxShadow: shadow,
                 }}
-                className="rounded-lg p-4 text-sm"
               >
-                <p style={{ color: t.text, fontWeight: 700, marginBottom: 4 }}>Flipper Verdict</p>
-                <p style={{ color: t.textSecondary, lineHeight: 1.7 }}>
-                  Requires structured capital and strategic timing, but 4-year timeline creates
-                  arbitrage opportunities unavailable in shorter projects.
+                <div className="flex items-start justify-between gap-3">
+                  <h4 className="pr-2 text-[1.05rem] font-medium leading-6" style={{ color: t.text }}>
+                    {item.profile}
+                  </h4>
+                  <VerdictPill label={item.verdict_label} tone={item.verdict_tone} />
+                </div>
+                <p className="mt-3 text-sm leading-7 sm:text-[15px]" style={{ color: t.textSecondary }}>
+                  {item.rationale}
                 </p>
               </div>
-            </div>
-          )}
-
-          {/* END-USER & VISA TAB */}
-          {activeTab === "enduser" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-4">
-                The End-User Perspective — Families & Wellness Buyers
-              </h3>
-              <p style={{ color: t.textSecondary, lineHeight: 1.8 }} className="text-sm sm:text-base mb-6">
-                For families, Serro&apos;s value lies in lifestyle calculus. The Heights dedicates{" "}
-                <strong style={{ color: t.text }}>25% of land to open space</strong>, with 38km of
-                cycling tracks, wellness lakes, and meditation gardens — amenities typically found in
-                communities priced 20–30% higher.
-              </p>
-
-              {/* Infrastructure Timeline */}
-              <h4 style={{ color: t.text }} className="text-lg font-bold mb-4">
-                Future Infrastructure (Handover Alignment)
-              </h4>
-
-              {/* Mobile Cards */}
-              <div className="block lg:hidden space-y-3 mb-6">
-                {infraTimeline.map((item, i) => (
-                  <div
-                    key={i}
-                    style={{ background: t.bgAlt, border: `1px solid ${t.cardBorder}` }}
-                    className="rounded-lg p-4"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <span style={{ color: t.text, fontWeight: 700, fontSize: 14 }}>
-                        {item.facility}
-                      </span>
-                      <span
-                        style={{
-                          background: "#b8860b20",
-                          color: "#b8860b",
-                          fontSize: 11,
-                          padding: "2px 8px",
-                          borderRadius: 6,
-                          fontWeight: 700,
-                        }}
-                      >
-                        {item.timeline}
-                      </span>
-                    </div>
-                    <p style={{ color: t.textMuted, fontSize: 12 }}>{item.details}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Desktop Table */}
-              <div className="hidden lg:block mb-6 overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr style={{ borderBottom: `2px solid ${t.cardBorder}` }}>
-                      {["Facility", "Timeline", "Details"].map((h) => (
-                        <th
-                          key={h}
-                          style={{ color: t.text, padding: "10px 12px" }}
-                          className="text-left font-bold"
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {infraTimeline.map((item, i) => (
-                      <tr key={i} style={{ borderBottom: `1px solid ${t.cardBorder}` }}>
-                        <td style={{ color: t.text, padding: "10px 12px", fontWeight: 600 }}>
-                          {item.facility}
-                        </td>
-                        <td style={{ color: "#b8860b", padding: "10px 12px", fontWeight: 600 }}>
-                          {item.timeline}
-                        </td>
-                        <td style={{ color: t.textSecondary, padding: "10px 12px" }}>
-                          {item.details}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Connectivity Note */}
-              <div
-                style={{ background: t.bgAlt, border: `1px solid ${t.cardBorder}` }}
-                className="rounded-lg p-4 mb-6"
-              >
-                <p style={{ color: t.textSecondary, fontSize: 13, lineHeight: 1.7 }}>
-                  <strong style={{ color: t.text }}>Connectivity:</strong> Existing schools (South
-                  View, Jebel Ali) within 15–20 min until community school opens. Direct road access
-                  to Emirates Road; future Metro extension planned post-2030.
-                </p>
-              </div>
-
-              {/* Lifestyle Positioning */}
-              <div
-                style={{ background: t.bgAlt, border: `1px solid ${t.cardBorder}` }}
-                className="rounded-lg p-4 mb-8"
-              >
-                <p style={{ color: t.textSecondary, fontSize: 13, lineHeight: 1.7 }}>
-                  <strong style={{ color: t.text }}>Lifestyle Positioning:</strong> Premium wellness
-                  community in Dubai South corridor — above entry-level (AED 2.6M villas) but below
-                  ultra-luxury AED 10M+ segment. Appeals to aviation professionals, DIFC commuters,
-                  and health-focused families.
-                </p>
-              </div>
-
-              {/* Golden Visa */}
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-4">
-                The Residency/Visa Buyer — Golden Visa Eligibility
-              </h3>
-              <div
-                style={{
-                  background: t.isDark ? "#16a34a10" : "#dcfce7",
-                  border: "1px solid #16a34a30",
-                  borderLeft: "4px solid #16a34a",
-                }}
-                className="rounded-lg p-5"
-              >
-                <p style={{ color: t.textSecondary, fontSize: 14, lineHeight: 1.8 }}>
-                  The <strong style={{ color: t.text }}>AED 6,000,000</strong> entry price positions
-                  Serro comfortably above the AED 2,000,000 Golden Visa threshold. Key advantage:
-                  Only <strong style={{ color: "#16a34a" }}>10% booking (AED 600,000)</strong>{" "}
-                  required initially — well below the 20% down payment typically associated with visa
-                  eligibility, with remaining 70% spread over 4 years. Emaar&apos;s transparent handover
-                  process supports clean title deed registration on completion.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* VERDICT MATRIX TAB */}
-          {activeTab === "matrix" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-6">
-                Clear Recommendation Matrix
-              </h3>
-
-              {/* Mobile Cards */}
-              <div className="block lg:hidden space-y-4">
-                {matrix.map((row, i) => {
-                  const verdictColor =
-                    row.verdict === "✅ Buy"
-                      ? "#16a34a"
-                      : row.verdict === "⚠️ Consider" || row.verdict === "⚠️ Opportunity"
-                      ? "#ca8a04"
-                      : "#dc2626";
-                  return (
-                    <div
-                      key={i}
-                      style={{
-                        background: t.bgAlt,
-                        border: `1px solid ${t.cardBorder}`,
-                        borderLeft: `4px solid ${verdictColor}`,
-                      }}
-                      className="rounded-lg p-4"
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <span style={{ color: t.text, fontWeight: 700, fontSize: 14 }}>
-                          {row.profile}
-                        </span>
-                        <span
-                          style={{
-                            color: verdictColor,
-                            fontWeight: 800,
-                            fontSize: 13,
-                          }}
-                        >
-                          {row.verdict}
-                        </span>
-                      </div>
-                      <p style={{ color: t.textSecondary, fontSize: 13, lineHeight: 1.6 }}>
-                        {row.rationale}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Desktop Table */}
-              <div className="hidden lg:block overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr style={{ borderBottom: `2px solid ${t.cardBorder}` }}>
-                      {["Profile", "Verdict", "Rationale"].map((h) => (
-                        <th
-                          key={h}
-                          style={{ color: t.text, padding: "12px 14px" }}
-                          className="text-left font-bold"
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {matrix.map((row, i) => {
-                      const verdictColor =
-                        row.verdict === "✅ Buy"
-                          ? "#16a34a"
-                          : row.verdict === "⚠️ Consider" || row.verdict === "⚠️ Opportunity"
-                          ? "#ca8a04"
-                          : "#dc2626";
-                      return (
-                        <tr key={i} style={{ borderBottom: `1px solid ${t.cardBorder}` }}>
-                          <td style={{ color: t.text, padding: "12px 14px", fontWeight: 600 }}>
-                            {row.profile}
-                          </td>
-                          <td
-                            style={{
-                              color: verdictColor,
-                              padding: "12px 14px",
-                              fontWeight: 800,
-                            }}
-                          >
-                            {row.verdict}
-                          </td>
-                          <td style={{ color: t.textSecondary, padding: "12px 14px", lineHeight: 1.6 }}>
-                            {row.rationale}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       </div>
     </section>

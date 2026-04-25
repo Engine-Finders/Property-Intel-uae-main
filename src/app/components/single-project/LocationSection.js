@@ -1,28 +1,609 @@
 "use client";
+
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import LocationMap from "../sub-components/LocationMap";
 
+const GOLD = "#b68a35";
+
+const ChevronIcon = ({ open, color = GOLD }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={color}
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+  >
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
+const SectionIcon = ({ name, color = "#ffffff", size = 20 }) => {
+  const props = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  if (name === "walkability") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M13 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+        <path d="m6 12 3-2 2-3 2 1 1 3 3 3" />
+        <path d="M8 18v-3l2-2" />
+        <path d="m14 14-2 3" />
+        <path d="M3 10h2" />
+        <path d="M2 14h3" />
+      </svg>
+    );
+  }
+
+  if (name === "drive") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </svg>
+    );
+  }
+
+  if (name === "infrastructure") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="5" y="3" width="14" height="14" rx="2" />
+        <path d="M8 7h8" />
+        <path d="M8 11h8" />
+        <path d="M8 21h8" />
+        <path d="m9 17-2 4" />
+        <path d="m15 17 2 4" />
+      </svg>
+    );
+  }
+
+  if (name === "neighbourhood") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="8" cy="8" r="2.5" />
+        <circle cx="16" cy="8" r="2.5" />
+        <path d="M3.5 18a4.5 4.5 0 0 1 9 0" />
+        <path d="M11.5 18a4.5 4.5 0 0 1 9 0" />
+      </svg>
+    );
+  }
+
+  if (name === "walk") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M9 5a1.75 1.75 0 1 0 0-3.5A1.75 1.75 0 0 0 9 5Z" />
+        <path d="m6 12 2-2 2-2 2 1" />
+        <path d="m11 9 1 4 3 3" />
+        <path d="M7 18v-3l2-2" />
+        <path d="m12 17-1 4" />
+      </svg>
+    );
+  }
+
+  if (name === "pin") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11Z" />
+        <circle cx="12" cy="10" r="2" />
+      </svg>
+    );
+  }
+
+  if (name === "cart") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="9" cy="19" r="1" />
+        <circle cx="17" cy="19" r="1" />
+        <path d="M3 4h2l2.4 10h9.8L20 7H7.3" />
+      </svg>
+    );
+  }
+
+  if (name === "info") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 10v6" />
+        <path d="M12 7h.01" />
+      </svg>
+    );
+  }
+
+  if (name === "airport") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="m2 19 20-7" />
+        <path d="m2 12 20-7" />
+        <path d="m10 14 4 6" />
+        <path d="m11 9 4 6" />
+      </svg>
+    );
+  }
+
+  if (name === "expo") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M12 2v20" />
+        <path d="M5 6h14" />
+        <path d="M5 18h14" />
+        <path d="M7 6c1.5 2 1.5 10 0 12" />
+        <path d="M17 6c-1.5 2-1.5 10 0 12" />
+      </svg>
+    );
+  }
+
+  if (name === "marina") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M6 20V8l4-3 4 3V4l4-2v18" />
+        <path d="M4 20h16" />
+      </svg>
+    );
+  }
+
+  if (name === "mall") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M6 8h12l-1 12H7L6 8Z" />
+        <path d="M9 8V6a3 3 0 1 1 6 0v2" />
+      </svg>
+    );
+  }
+
+  if (name === "port") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M4 18h16" />
+        <path d="M7 18V7h10v11" />
+        <path d="M9 7V4h6v3" />
+      </svg>
+    );
+  }
+
+  if (name === "hospital") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="4" y="3" width="16" height="18" rx="2" />
+        <path d="M12 7v8" />
+        <path d="M8 11h8" />
+      </svg>
+    );
+  }
+
+  if (name === "road") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M8 3h8" />
+        <path d="m10 3-3 18" />
+        <path d="m14 3 3 18" />
+        <path d="M12 7h.01" />
+        <path d="M12 12h.01" />
+        <path d="M12 17h.01" />
+      </svg>
+    );
+  }
+
+  if (name === "train") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="6" y="3" width="12" height="14" rx="2" />
+        <path d="M8 7h8" />
+        <path d="M9 11h.01" />
+        <path d="M15 11h.01" />
+        <path d="m8 21 2-3" />
+        <path d="m16 21-2-3" />
+      </svg>
+    );
+  }
+
+  if (name === "home") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="m3 10 9-7 9 7" />
+        <path d="M5 9.5V20h14V9.5" />
+      </svg>
+    );
+  }
+
+  if (name === "wellness") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M12 21c4-3 6-6 6-9a3 3 0 0 0-6-1 3 3 0 0 0-6 1c0 3 2 6 6 9Z" />
+      </svg>
+    );
+  }
+
+  if (name === "family") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="9" cy="8" r="2.5" />
+        <circle cx="16" cy="9" r="2" />
+        <path d="M4.5 19a4.5 4.5 0 0 1 9 0" />
+        <path d="M13 19a3.5 3.5 0 0 1 7 0" />
+      </svg>
+    );
+  }
+
+  if (name === "construction") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M12 3 5 20h14L12 3Z" />
+        <path d="M12 9v4" />
+        <path d="M12 17h.01" />
+      </svg>
+    );
+  }
+
+  return null;
+};
+
+const SectionBadgeIcon = ({ icon, active, t }) => (
+  <div
+    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+    style={{
+      background: active ? GOLD : t.isDark ? "rgba(182,138,53,0.16)" : "#c89b3c",
+      boxShadow: active && !t.isDark ? "0 10px 18px rgba(182,138,53,0.22)" : "none",
+    }}
+  >
+    <SectionIcon name={icon} color="#ffffff" size={20} />
+  </div>
+);
+
+const DetailIcon = ({ icon, t, highlight = false }) => (
+  <div
+    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+    style={{
+      background: highlight
+        ? t.isDark
+          ? "rgba(182,138,53,0.18)"
+          : "#fbf3e1"
+        : t.isDark
+          ? "rgba(255,255,255,0.05)"
+          : "#f9f5ed",
+      color: GOLD,
+    }}
+  >
+    <SectionIcon name={icon} color={GOLD} size={16} />
+  </div>
+);
+
+const HtmlText = ({ html, className = "", style = {} }) => (
+  <p className={className} style={style} dangerouslySetInnerHTML={{ __html: html }} />
+);
+
+const infrastructureScrollStyles = `
+  .infrastructure-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #b68a35 transparent;
+  }
+
+  .infrastructure-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .infrastructure-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .infrastructure-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #cda24f 0%, #b68a35 100%);
+    border-radius: 999px;
+  }
+`;
+
 const LocationSection = ({ data }) => {
   const { t } = useTheme();
-  const [activeTab, setActiveTab] = useState("walkability");
+  const [openSection, setOpenSection] = useState("walkability");
+  const [driveMode, setDriveMode] = useState("off_peak");
 
-  const tabs = [
-    { id: "walkability", label: "Walk Score" },
-    { id: "drivetime", label: "Drive Times" },
-    { id: "infrastructure", label: "Future Infra" },
-    { id: "vibe", label: "Neighbourhood" },
+  const timelineEvents = data.timeline;
+  const lightCard = t.isDark ? t.cardBg : "#fffdfa";
+  const softBg = t.isDark ? "rgba(255,255,255,0.03)" : "#fbf7ef";
+  const shadow = t.isDark ? "none" : "0 14px 34px rgba(110, 84, 26, 0.08)";
+
+  const accordionItems = [
+    {
+      id: "walkability",
+      icon: "walkability",
+      title: data.walkability_title || "Walkability & Pedestrian Experience",
+      subtitle: data.walkability_subtitle || "Walk score & daily convenience",
+    },
+    {
+      id: "drive",
+      icon: "drive",
+      title: data.drive_title || "Drive Times",
+      subtitle: data.drive_subtitle || "Off-peak vs. peak hour analysis",
+    },
+    {
+      id: "infrastructure",
+      icon: "infrastructure",
+      title: data.infrastructure_title || "Future Infrastructure",
+      subtitle: data.infrastructure_subtitle || "RTA, Metro, Airport — upcoming catalysts",
+    },
+    {
+      id: "neighbourhood",
+      icon: "neighbourhood",
+      title: data.neighbourhood_title || "Neighbourhood Character",
+      subtitle: data.neighbourhood_subtitle || "Emerging wellness enclave",
+    },
   ];
 
-  const driveTimeData = data.drive_times;
-  const infraItems = data.infrastructure_developments;
-  const vibePoints = data.neighbourhood_vibe;
-  const timelineEvents = data.timeline;
+  const renderWalkability = () => (
+    <div className="pt-4">
+      <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+        {data.walkability_intro}
+      </p>
+
+      <div className="mt-4 space-y-3">
+        {data.walkability.map((item) => (
+          <div
+            key={item.title}
+            className="rounded-2xl p-4"
+            style={{ background: softBg, border: `1px solid ${t.cardBorder}` }}
+          >
+            <div className="flex items-start gap-3">
+              <DetailIcon icon={item.icon} t={t} />
+              <div>
+                <h4 className="text-sm font-semibold" style={{ color: t.text }}>
+                  {item.title}
+                </h4>
+                <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>
+                  {item.content}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {data.walkability_note && (
+        <div
+          className="mt-3 rounded-2xl p-4"
+          style={{
+            background: t.isDark ? "rgba(182,138,53,0.08)" : "#faf6ef",
+            border: `1px solid ${t.cardBorder}`,
+          }}
+        >
+          <div className="flex items-start gap-3">
+            <DetailIcon icon="info" t={t} highlight />
+            <p className="text-sm leading-6" style={{ color: t.textSecondary }}>
+              {data.walkability_note}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  const renderDriveTimes = () => (
+    <div className="pt-4">
+      <div className="mb-4 flex gap-2">
+        {[
+          { id: "off_peak", label: "Off-Peak" },
+          { id: "peak", label: "Peak Hour" },
+        ].map((option) => {
+          const active = driveMode === option.id;
+
+          return (
+            <button
+              key={option.id}
+              type="button"
+              onClick={() => setDriveMode(option.id)}
+              className="rounded-full px-4 py-2 text-xs font-medium transition-all"
+              style={{
+                background: active ? (t.isDark ? "rgba(182,138,53,0.18)" : "#fbf3e1") : "transparent",
+                color: active ? GOLD : t.textMuted,
+                border: `1px solid ${active ? "rgba(182,138,53,0.32)" : t.cardBorder}`,
+              }}
+            >
+              {option.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        className="overflow-hidden rounded-2xl"
+        style={{ background: softBg, border: `1px solid ${t.cardBorder}` }}
+      >
+        <div
+          className="grid grid-cols-[1fr_auto] gap-3 border-b px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em]"
+          style={{ color: t.textMuted, borderColor: t.cardBorder }}
+        >
+          <span>Destination</span>
+          <span>{driveMode === "off_peak" ? "Drive Time (60 min)" : "Peak Hour"}</span>
+        </div>
+
+        <div className="divide-y" style={{ borderColor: t.cardBorder }}>
+          {data.drive_times.map((row) => (
+            <div
+              key={row.destination}
+              className="grid grid-cols-[1fr_auto] gap-3 px-4 py-3"
+              style={{ borderTop: `1px solid ${t.cardBorder}` }}
+            >
+              <div className="min-w-0">
+                <div className="flex items-start gap-2">
+                  <DetailIcon icon={row.icon} t={t} />
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium leading-5" style={{ color: t.text }}>
+                      {row.destination}
+                    </p>
+                    {row.notes && (
+                      <p className="mt-1 text-xs leading-5" style={{ color: t.textMuted }}>
+                        {row.notes}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="pt-1 text-right text-sm font-semibold" style={{ color: GOLD }}>
+                {driveMode === "off_peak" ? row.off_peak : row.peak}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {data.drive_source_note && (
+        <p className="mt-3 text-xs leading-5" style={{ color: t.textMuted }}>
+          {data.drive_source_note}
+        </p>
+      )}
+    </div>
+  );
+
+  const renderInfrastructure = () => (
+    <div className="pt-4">
+      <style jsx>{infrastructureScrollStyles}</style>
+      <div className="grid gap-4 lg:grid-cols-2">
+      {data.infrastructure_developments.map((item) => (
+        <div
+          key={item.title}
+          className="overflow-hidden rounded-[26px] p-4 sm:p-5"
+          style={{
+            background: t.isDark ? "linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02))" : "#fffdfa",
+            border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "#eadfcb"}`,
+            boxShadow: t.isDark ? "none" : "0 18px 38px rgba(110, 84, 26, 0.08)",
+          }}
+        >
+          <div className="flex min-h-0 items-start gap-3">
+            <div
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+              style={{
+                background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1",
+                border: `1px solid ${t.isDark ? "rgba(182,138,53,0.2)" : "#f0dfb8"}`,
+              }}
+            >
+              <SectionIcon name={item.icon} color={GOLD} size={17} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <h4 className="max-w-[16rem] text-base font-semibold leading-6" style={{ color: t.text }}>
+                  {item.title}
+                </h4>
+                <div className="flex shrink-0 flex-wrap gap-2 sm:max-w-[9rem] sm:justify-end">
+                  {item.tag && (
+                    <span
+                      className="rounded-full px-3 py-1 text-[11px] font-medium leading-none"
+                      style={{
+                        color: "#9a5fd0",
+                        background: t.isDark ? "rgba(154,95,208,0.18)" : "#f6ebff",
+                      }}
+                    >
+                      {item.tag}
+                    </span>
+                  )}
+                  {item.impact && (
+                    <span
+                      className="rounded-full px-3 py-1 text-[11px] font-medium leading-none"
+                      style={{
+                        color: GOLD,
+                        background: t.isDark ? "rgba(182,138,53,0.18)" : "#fbf3e1",
+                      }}
+                    >
+                      {item.impact}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div
+                className="infrastructure-scroll mt-3 overflow-y-scroll pr-2"
+                style={{
+                  height: 112,
+                  scrollbarGutter: "stable",
+                  overscrollBehavior: "contain",
+                }}
+              >
+                <div className="space-y-2.5">
+                  {item.bullets.map((bullet, index) => (
+                    <div key={index} className="flex items-start gap-2">
+                      <span
+                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ background: GOLD }}
+                      />
+                      <HtmlText
+                        html={bullet}
+                        className="text-sm leading-6"
+                        style={{ color: t.textSecondary }}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {item.relevance && (
+                  <p className="mt-3 border-t pt-3 text-sm leading-6" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
+                    <span className="font-semibold" style={{ color: GOLD }}>
+                      Direct Relevance to The Heights:
+                    </span>{" "}
+                    {item.relevance}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+      </div>
+    </div>
+  );
+
+  const renderNeighbourhood = () => (
+    <div className="pt-4">
+      <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+        {data.neighbourhood_intro}
+      </p>
+
+      <div className="mt-4 space-y-3">
+        {data.neighbourhood_vibe.map((item) => (
+          <div
+            key={item.title}
+            className="rounded-2xl p-4"
+            style={{
+              background: item.highlight ? (t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0") : softBg,
+              border: `1px solid ${item.highlight ? "rgba(182,138,53,0.4)" : t.cardBorder}`,
+            }}
+          >
+            <div className="flex items-start gap-3">
+              <DetailIcon icon={item.icon} t={t} highlight={item.highlight} />
+              <div>
+                <h4 className="text-base font-semibold" style={{ color: t.text }}>
+                  {item.title}
+                </h4>
+                <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>
+                  {item.content}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderAccordionBody = (id) => {
+    if (id === "walkability") return renderWalkability();
+    if (id === "drive") return renderDriveTimes();
+    if (id === "infrastructure") return renderInfrastructure();
+    return renderNeighbourhood();
+  };
 
   return (
     <section style={{ background: t.bg }} className="py-6 lg:py-10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
+      <div className="max-w-6xl mx-auto px-2 sm:px-6">
         <div className="text-center mb-10 lg:mb-14">
           <span
             style={{
@@ -43,20 +624,16 @@ const LocationSection = ({ data }) => {
           </h2>
         </div>
 
-        {/* Interactive Map */}
         <div className="mb-12">
           <LocationMap />
         </div>
 
-        {/* Infrastructure Timeline */}
         <div className="mb-12">
           <h3 style={{ color: t.text }} className="text-lg font-bold mb-6 text-center">
             Infrastructure Timeline — Key Milestones
           </h3>
 
-          {/* Desktop horizontal timeline */}
           <div className="hidden md:block relative">
-            {/* Timeline line */}
             <div
               style={{
                 position: "absolute",
@@ -71,7 +648,6 @@ const LocationSection = ({ data }) => {
             <div className="flex justify-between px-4">
               {timelineEvents.map((evt, i) => (
                 <div key={i} className="flex flex-col items-center relative" style={{ flex: 1 }}>
-                  {/* Dot */}
                   <div
                     style={{
                       width: 20,
@@ -84,17 +660,7 @@ const LocationSection = ({ data }) => {
                       marginBottom: 12,
                     }}
                   />
-                  {/* Year */}
-                  <span
-                    style={{
-                      color: "#b8860b",
-                      fontSize: 18,
-                      fontWeight: 800,
-                    }}
-                  >
-                    {evt.year}
-                  </span>
-                  {/* Label */}
+                  <span style={{ color: "#b8860b", fontSize: 18, fontWeight: 800 }}>{evt.year}</span>
                   <span
                     style={{
                       color: t.text,
@@ -122,9 +688,7 @@ const LocationSection = ({ data }) => {
             </div>
           </div>
 
-          {/* Mobile vertical timeline */}
           <div className="md:hidden relative pl-8">
-            {/* Vertical line */}
             <div
               style={{
                 position: "absolute",
@@ -139,7 +703,6 @@ const LocationSection = ({ data }) => {
             <div className="space-y-6">
               {timelineEvents.map((evt, i) => (
                 <div key={i} className="relative flex items-start gap-4">
-                  {/* Dot */}
                   <div
                     style={{
                       position: "absolute",
@@ -154,9 +717,7 @@ const LocationSection = ({ data }) => {
                     }}
                   />
                   <div>
-                    <span style={{ color: "#b8860b", fontSize: 16, fontWeight: 800 }}>
-                      {evt.year}
-                    </span>
+                    <span style={{ color: "#b8860b", fontSize: 16, fontWeight: 800 }}>{evt.year}</span>
                     <span style={{ color: t.text, fontSize: 14, fontWeight: 700, marginLeft: 8 }}>
                       {evt.title}
                     </span>
@@ -168,307 +729,48 @@ const LocationSection = ({ data }) => {
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                background:
-                  activeTab === tab.id
-                    ? "linear-gradient(135deg, #b8860b, #d4a843)"
-                    : t.cardBg,
-                color: activeTab === tab.id ? "#ffffff" : t.textSecondary,
-                border: `1px solid ${activeTab === tab.id ? "#b8860b" : t.cardBorder}`,
-              }}
-              className="px-4 py-2 rounded-lg text-sm font-semibold transition-all"
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <div className="space-y-4">
+          {accordionItems.map((item) => {
+            const isOpen = openSection === item.id;
 
-        {/* CTA — gray area below tabs, before content */}
-        {data.cta && (
-          <div
-            className="py-4 px-5 mb-6 rounded-xl"
-            style={{ background: t.bgAlt, border: `1px solid ${t.cardBorder}` }}
-          >
-            <div className="flex flex-col items-start gap-2">
-              <a
-                href={data.cta.href || "#"}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors hover:opacity-90"
-                style={{ color: "#B68A35" }}
-              >
-                {data.cta.button_text}
-                <span aria-hidden>→</span>
-              </a>
-              {data.cta.subtext && (
-                <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Tab Content */}
-        <div
-          style={{
-            background: t.cardBg,
-            border: `1px solid ${t.cardBorder}`,
-          }}
-          className="rounded-xl p-5 sm:p-8"
-        >
-          {/* WALKABILITY TAB */}
-          {activeTab === "walkability" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-4">
-                Walk Score & Pedestrian Experience
-              </h3>
-              <p style={{ color: t.textSecondary, lineHeight: 1.8 }} className="text-sm sm:text-base mb-6">
-                Serro at The Heights is positioned within a low-density, family-oriented master
-                community. The pedestrian experience is deliberately designed around{" "}
-                <strong style={{ color: t.text }}>wellness rather than urban convenience</strong>.
-              </p>
-
-              <div className="space-y-4">
-                {data.walkability.map((item, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      background: t.bgAlt,
-                      borderTop: `1px solid ${t.cardBorder}`,
-                      borderRight: `1px solid ${t.cardBorder}`,
-                      borderBottom: `1px solid ${t.cardBorder}`,
-                      borderLeft: `4px solid ${item.color}`,
-                    }}
-                    className="rounded-lg p-4"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="text-xl">{item.icon}</span>
-                      <div>
-                        <h4 style={{ color: t.text }} className="font-bold text-sm mb-1">
-                          {item.title}
-                        </h4>
-                        <p style={{ color: t.textSecondary, fontSize: 13, lineHeight: 1.7 }}>
-                          {item.content}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* DRIVE TIME TAB */}
-          {activeTab === "drivetime" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-2">
-                Drive Time Analysis — Peak vs. Off-Peak
-              </h3>
-              <p style={{ color: t.textMuted, fontSize: 13 }} className="mb-6">
-                Using Google Maps estimates validated against RTA infrastructure updates
-              </p>
-
-              {/* Mobile Cards */}
-              <div className="block lg:hidden space-y-3 mb-6">
-                {driveTimeData.map((row, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      background: t.bgAlt,
-                      border: `1px solid ${t.cardBorder}`,
-                    }}
-                    className="rounded-lg p-4"
-                  >
-                    <span style={{ color: t.text }} className="font-bold text-sm block mb-2">
-                      {row.destination}
-                    </span>
-                    <div className="grid grid-cols-2 gap-3 mb-2">
-                      <div>
-                        <span style={{ color: t.textMuted, fontSize: 11 }}>Off-Peak</span>
-                        <p style={{ color: "#16a34a", fontSize: 14, fontWeight: 700 }}>
-                          {row.off_peak}
-                        </p>
-                      </div>
-                      <div>
-                        <span style={{ color: t.textMuted, fontSize: 11 }}>Peak</span>
-                        <p style={{ color: "#dc2626", fontSize: 14, fontWeight: 700 }}>
-                          {row.peak}
-                        </p>
-                      </div>
-                    </div>
-                    {row.notes && (
-                      <p style={{ color: t.textMuted, fontSize: 11, fontStyle: "italic" }}>
-                        {row.notes}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Desktop Table */}
-              <div className="hidden lg:block mb-6 overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr style={{ borderBottom: `2px solid ${t.cardBorder}` }}>
-                      {["Destination", "Off-Peak", "Peak", "Notes"].map((h) => (
-                        <th
-                          key={h}
-                          style={{ color: t.text, padding: "10px 12px" }}
-                          className="text-left font-bold"
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {driveTimeData.map((row, i) => (
-                      <tr
-                        key={i}
-                        style={{ borderBottom: `1px solid ${t.cardBorder}` }}
-                      >
-                        <td style={{ color: t.text, padding: "10px 12px", fontWeight: 600 }}>
-                          {row.destination}
-                        </td>
-                        <td style={{ color: "#16a34a", padding: "10px 12px", fontWeight: 600 }}>
-                          {row.off_peak}
-                        </td>
-                        <td style={{ color: "#dc2626", padding: "10px 12px", fontWeight: 600 }}>
-                          {row.peak}
-                        </td>
-                        <td style={{ color: t.textMuted, padding: "10px 12px", fontSize: 12 }}>
-                          {row.notes}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Future Value Note */}
+            return (
               <div
+                key={item.id}
+                className="overflow-hidden rounded-[24px]"
                 style={{
-                  background: t.isDark ? "#2563eb10" : "#eff6ff",
-                  border: "1px solid #2563eb30",
-                  borderLeft: "4px solid #2563eb",
+                  background: lightCard,
+                  border: `1px solid ${isOpen ? "rgba(182,138,53,0.32)" : t.cardBorder}`,
+                  boxShadow: shadow,
                 }}
-                className="rounded-lg p-4 text-sm"
               >
-                <p style={{ color: t.text, fontWeight: 700, marginBottom: 4 }}>
-                  📈 Future Value — Metro Blue Line
-                </p>
-                <p style={{ color: t.textSecondary, lineHeight: 1.7 }}>
-                  The AED 20.5 billion Dubai Metro Blue Line contract has been awarded, connecting
-                  Dubai Creek Harbour to Dubai South via 14 new stations. While completion is
-                  post-2030, historical data from the Red and Green lines shows{" "}
-                  <strong style={{ color: t.text }}>15–25% property value appreciation</strong> within
-                  a 2km radius of new stations in the 3 years following opening. This positions Serro
-                  for meaningful long-term upside.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* INFRASTRUCTURE TAB */}
-          {activeTab === "infrastructure" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-6">
-                Future Infrastructure — RTA Expansions & Masterplan Developments
-              </h3>
-
-              <div className="space-y-6">
-                {infraItems.map((item, i) => (
-                  <div key={i}>
-                    <h4 style={{ color: t.text }} className="font-bold text-base mb-2">
+                <button
+                  type="button"
+                  onClick={() => setOpenSection((prev) => (prev === item.id ? "" : item.id))}
+                  className="flex w-full items-center gap-4 px-4 py-4 text-left sm:px-5"
+                >
+                  <SectionBadgeIcon icon={item.icon} active={isOpen} t={t} />
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-[1.05rem] font-semibold leading-6 sm:text-[1.2rem]" style={{ color: t.text }}>
                       {item.title}
-                    </h4>
-                    {item.paragraphs.map((p, j) => (
-                      <p
-                        key={j}
-                        style={{ color: t.textSecondary, lineHeight: 1.8 }}
-                        className="text-sm sm:text-base mb-3"
-                        dangerouslySetInnerHTML={{ __html: p }}
-                      />
-                    ))}
-                    {item.relevance && (
-                      <div
-                        style={{
-                          background: t.isDark ? "#b8860b10" : "#fef3c7",
-                          border: "1px solid #b8860b30",
-                          borderLeft: "4px solid #b8860b",
-                        }}
-                        className="rounded-lg p-4 text-sm mt-2"
-                      >
-                        <p style={{ color: t.text, fontWeight: 700, marginBottom: 4 }}>
-                          Direct Relevance to The Heights
-                        </p>
-                        <p style={{ color: t.textSecondary, lineHeight: 1.7 }}>{item.relevance}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* NEIGHBOURHOOD VIBE TAB */}
-          {activeTab === "vibe" && (
-            <div>
-              <h3 style={{ color: t.text }} className="text-xl font-bold mb-4">
-                Neighbourhood Vibe — Emerging Wellness Enclave
-              </h3>
-              <p style={{ color: t.textSecondary, lineHeight: 1.8 }} className="text-sm sm:text-base mb-6">
-                The Heights is positioned as an emerging, wellness-focused residential district.
-                Unlike the buzzing energy of Dubai Marina or the urban intensity of Downtown, The
-                Heights offers:
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {vibePoints.map((point, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      background: t.bgAlt,
-                      border: `1px solid ${t.cardBorder}`,
-                    }}
-                    className="rounded-xl p-5"
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-2xl">{point.icon}</span>
-                      <h4 style={{ color: t.text }} className="font-bold text-sm">
-                        {point.title}
-                      </h4>
-                    </div>
-                    <p style={{ color: t.textSecondary, fontSize: 13, lineHeight: 1.7 }}>
-                      {point.content}
+                    </h3>
+                    <p className="mt-1 text-sm leading-5" style={{ color: t.textMuted }}>
+                      {item.subtitle}
                     </p>
                   </div>
-                ))}
-              </div>
+                  <ChevronIcon open={isOpen} />
+                </button>
 
-              {/* Construction Warning */}
-              <div
-                style={{
-                  background: t.isDark ? "#ca8a0410" : "#fef9c3",
-                  border: "1px solid #ca8a0430",
-                  borderLeft: "4px solid #ca8a04",
-                }}
-                className="rounded-lg p-4 text-sm"
-              >
-                <p style={{ color: t.text, fontWeight: 700, marginBottom: 4 }}>
-                  ⚠️ Construction Phase Reality
-                </p>
-                <p style={{ color: t.textSecondary, lineHeight: 1.7 }}>
-                  2026–2030 will see active development; early residents should expect a live
-                  building site environment for 12–24 months post-first handovers. This is standard
-                  for new master communities and typically resolves as phases complete sequentially.
-                </p>
+                {isOpen && (
+                  <div
+                    className="border-t px-4 pb-4 sm:px-5 sm:pb-5"
+                    style={{ borderColor: t.cardBorder }}
+                  >
+                    {renderAccordionBody(item.id)}
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            );
+          })}
         </div>
       </div>
     </section>

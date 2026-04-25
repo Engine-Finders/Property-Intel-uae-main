@@ -25,11 +25,11 @@ const TimelineDot = ({ milestone, isLast, t }) => {
 
       {/* Content */}
       <div className="pb-6 -mt-0.5">
-        <span className="text-[10px] font-bold tracking-wider" style={{ color: isActive ? "#B68A35" : t.textMuted }}>
+        <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: isActive ? "#B68A35" : t.textMuted }}>
           {milestone.year} {milestone.quarter}
         </span>
-        <p className="text-xs font-bold mt-1" style={{ color: t.text }}>{milestone.label}</p>
-        <p className="text-[11px] leading-relaxed mt-0.5" style={{ color: t.textSecondary }}>{milestone.detail}</p>
+        <p className="text-sm font-semibold mt-1" style={{ color: t.text }}>{milestone.label}</p>
+        <p className="text-sm leading-6 mt-0.5" style={{ color: t.textSecondary }}>{milestone.detail}</p>
       </div>
     </div>
   );
@@ -49,8 +49,8 @@ const ProgressBar = ({ label, percent, t }) => {
   return (
     <div ref={ref} className="mb-3">
       <div className="flex justify-between mb-1">
-        <span className="text-[11px] font-semibold" style={{ color: t.text }}>{label}</span>
-        <span className="text-[10px] font-bold" style={{ color: "#B68A35" }}>{percent}%</span>
+        <span className="text-sm font-semibold" style={{ color: t.text }}>{label}</span>
+        <span className="text-sm font-semibold" style={{ color: "#B68A35" }}>{percent}%</span>
       </div>
       <div className="h-2 rounded-full overflow-hidden" style={{ background: t.isDark ? "#2a2d33" : "#e2e8f0" }}>
         <div className="h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${w}%`, background: "linear-gradient(90deg, #B68A35, #D4A843)" }} />
@@ -59,72 +59,190 @@ const ProgressBar = ({ label, percent, t }) => {
   );
 };
 
-/* ── Responsive table helpers ── */
-const MobileCards = ({ headers, rows, t }) => (
-  <div className="space-y-3">
-    {rows.map((row, i) => (
-      <div key={i} className="rounded-lg p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.cardBorder}` }}>
-        {headers.map((h, j) => (
-          <div key={j} className={`flex justify-between py-1.5 ${j < headers.length - 1 ? "border-b" : ""}`} style={{ borderColor: t.cardBorder }}>
-            <span className="text-[11px] font-medium" style={{ color: t.textMuted }}>{h}</span>
-            <span className="text-[11px] font-semibold text-right max-w-[55%]" style={{ color: t.text }}>{row[j]}</span>
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
+const GOLD = "#B68A35";
+
+const ConstructionIcon = ({ name, size = 22, color = GOLD }) => {
+  const props = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  if (name === "calendar") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="4" y="5" width="16" height="15" rx="2" />
+        <path d="M8 3v4" />
+        <path d="M16 3v4" />
+        <path d="M4 10h16" />
+      </svg>
+    );
+  }
+
+  if (name === "duration") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M4 19V5" />
+        <path d="M4 19h16" />
+        <path d="M8 15v-4" />
+        <path d="M12 15V8" />
+        <path d="M16 15v-9" />
+      </svg>
+    );
+  }
+
+  if (name === "timeline") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="5" y="4" width="14" height="16" rx="2" />
+        <path d="M8 8h8" />
+        <path d="M8 12h8" />
+        <path d="M8 16h5" />
+      </svg>
+    );
+  }
+
+  if (name === "intel") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <circle cx="12" cy="12" r="8" />
+        <path d="M12 8v4" />
+        <path d="M12 16h.01" />
+      </svg>
+    );
+  }
+
+  if (name === "camera") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M4 8h4l2-2h4l2 2h4v11H4z" />
+        <circle cx="12" cy="13.5" r="3" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+      <circle cx="12" cy="12" r="9" />
+    </svg>
+  );
+};
+
+const IconBadge = ({ icon, t }) => (
+  <span
+    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+    style={{ background: t.isDark ? "rgba(182,138,53,0.18)" : "#b68a35", color: "#fff" }}
+  >
+    <ConstructionIcon name={icon} size={19} color="#fff" />
+  </span>
 );
 
-const DesktopTable = ({ headers, rows, t }) => (
-  <div className="overflow-x-auto rounded-lg" style={{ border: `1px solid ${t.cardBorder}` }}>
-    <table className="w-full text-xs">
-      <thead>
-        <tr style={{ background: t.isDark ? "rgba(255,255,255,0.06)" : "#f1f5f9" }}>
-          {headers.map((h, i) => (
-            <th key={i} className="text-left px-4 py-3 font-semibold" style={{ color: t.textMuted, borderBottom: `1px solid ${t.cardBorder}` }}>{h}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, i) => (
-          <tr key={i} style={{ borderBottom: i < rows.length - 1 ? `1px solid ${t.cardBorder}` : "none" }}>
-            {row.map((cell, j) => (
-              <td key={j} className="px-4 py-3" style={{ color: j === 0 ? t.text : t.textSecondary, fontWeight: j === 0 ? 600 : 400 }}>{cell}</td>
+const ConstructionTable = ({ headers, rows, t }) => (
+  <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[520px] border-separate border-spacing-0 text-[13px] sm:text-sm">
+        <thead>
+          <tr style={{ background: t.isDark ? "rgba(255,255,255,0.05)" : "#fbf7ef" }}>
+            {headers.map((h, i) => (
+              <th
+                key={h}
+                className="border-r px-4 py-3.5 text-left font-semibold last:border-r-0"
+                style={{ color: i === 0 ? t.text : GOLD, borderColor: t.cardBorder }}
+              >
+                {h}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i}>
+              {row.map((cell, j) => (
+                <td
+                  key={j}
+                  className="border-r border-t px-4 py-3.5 align-middle leading-6 last:border-r-0"
+                  style={{
+                    borderColor: t.cardBorder,
+                    color: j === 0 ? t.text : t.textSecondary,
+                    fontWeight: j === 0 ? 600 : 400,
+                    textAlign: j === 0 ? "left" : "center",
+                  }}
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   </div>
 );
 
-/* ── Photo placeholder grid ── */
-const PhotoGrid = ({ photos, t }) => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    {photos.map((photo) => (
-      <div key={photo.id} className="rounded-xl overflow-hidden" style={{ border: `1px solid ${t.cardBorder}` }}>
-        <div
-          className="aspect-video flex items-center justify-center"
-          style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f1f5f9" }}
-        >
-          <div className="text-center px-6">
-            <span className="text-3xl block mb-2">📷</span>
-            <span className="text-[10px] font-semibold" style={{ color: t.textMuted }}>Image {photo.id}</span>
+const MiniAccordion = ({ title, icon, open, onToggle, children, t }) => (
+  <div className="overflow-hidden rounded-xl" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+    <button type="button" onClick={onToggle} className="flex w-full items-center gap-3 px-4 py-4 text-left">
+      <IconBadge icon={icon} t={t} />
+      <h3 className="flex-1 text-base font-semibold leading-6" style={{ color: t.text }}>{title}</h3>
+      <span className={`transition-transform ${open ? "rotate-180" : ""}`} style={{ color: GOLD }}>⌄</span>
+    </button>
+    <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-[1800px] opacity-100" : "max-h-0 opacity-0"}`}>
+      <div className="border-t p-4" style={{ borderColor: t.cardBorder }}>
+        {children}
+      </div>
+    </div>
+  </div>
+);
+
+const PhotoAccordionList = ({ photos, openPhoto, onToggle, t }) => (
+  <div className="space-y-4">
+    {photos.map((photo, index) => {
+      const open = openPhoto === photo.id;
+      const labels = ["Aerial", "Ground Level", "Infrastructure", "Wellness Lake"];
+
+      return (
+        <div key={photo.id} className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+          <div className="relative h-44" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#eeeae2" }}>
+            <span className="absolute right-3 top-3 rounded-full px-3 py-1 text-[11px] font-medium" style={{ background: "#fffdfa", color: GOLD }}>
+              {labels[index] || `Update ${photo.id}`}
+            </span>
+            <span className="absolute bottom-4 left-4 rounded-full px-4 py-2 text-sm font-semibold" style={{ background: "rgba(255,255,255,0.82)", color: t.text }}>
+              {photo.title || ["Site Clearance & Earthworks", "Foundation Piling — 3BR Clusters", "Infrastructure Corridors & Utility Trenching", "Wellness Lake Basin"][index] || `Construction Update ${photo.id}`}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => onToggle(open ? null : photo.id)}
+            className="flex w-full items-center gap-2 px-4 py-3 text-left"
+            style={{ color: t.text }}
+          >
+            <ConstructionIcon name="camera" size={16} />
+            <span className="flex-1 text-sm font-medium">View Caption</span>
+            <span className={`transition-transform ${open ? "rotate-180" : ""}`}>⌄</span>
+          </button>
+          <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
+            <p className="border-t px-4 py-4 text-sm leading-6" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
+              {photo.caption}
+            </p>
           </div>
         </div>
-        <div className="p-3">
-          <p className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{photo.caption}</p>
-        </div>
-      </div>
-    ))}
+      );
+    })}
   </div>
 );
 
 /* ── Main Component ── */
 const ConstructionSection = ({ data }) => {
   const { t } = useTheme();
-  const [showPair, setShowPair] = useState(false);
+  const [openMilestones, setOpenMilestones] = useState(true);
+  const [openIntel, setOpenIntel] = useState(true);
   const [showPhotos, setShowPhotos] = useState(false);
+  const [openPhoto, setOpenPhoto] = useState(null);
 
   const tbl = data.timeline_table || {};
   const dur = data.duration_analysis || {};
@@ -142,7 +260,7 @@ const ConstructionSection = ({ data }) => {
   ];
 
   return (
-    <section id="construction" className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
+    <section id="construction" className="py-8 lg:py-12 px-2 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -157,146 +275,109 @@ const ConstructionSection = ({ data }) => {
         </div>
 
         {/* Timeline Table — always visible */}
-        <div className="rounded-xl p-5 lg:p-7 mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-          <h3 className="text-sm font-bold mb-4 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#B68A3520", color: "#B68A35" }}>📅</span>
+        <div className="mb-6">
+          <h3 className="mb-4 text-lg font-semibold" style={{ color: t.text }}>
             Official Timeline vs. Market Reality
           </h3>
-          <div className="block lg:hidden">
-            <MobileCards headers={tbl.headers || []} rows={tbl.rows || []} t={t} />
-          </div>
-          <div className="hidden lg:block">
-            <DesktopTable headers={tbl.headers || []} rows={tbl.rows || []} t={t} />
-          </div>
+          <ConstructionTable headers={tbl.headers || []} rows={tbl.rows || []} t={t} />
           {tbl.source && (
-            <p className="text-[10px] mt-3 italic" style={{ color: t.textMuted }}>Source: {tbl.source}</p>
+            <p className="text-xs sm:text-sm mt-3 italic" style={{ color: t.textMuted }}>
+              <span style={{ color: GOLD }}>Source:</span> {tbl.source}
+            </p>
           )}
         </div>
 
         {/* Construction Progress Bars — always visible */}
         <div className="rounded-xl p-5 lg:p-7 mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-          <h3 className="text-sm font-bold mb-5 flex items-center gap-2" style={{ color: t.text }}>
+          <h3 className="text-base font-semibold mb-5 flex items-center gap-2" style={{ color: t.text }}>
             <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#B68A3520", color: "#B68A35" }}>🏗️</span>
             Estimated Construction Progress (Feb 2026)
           </h3>
           {progressItems.map((p, i) => (
             <ProgressBar key={i} label={p.label} percent={p.percent} t={t} />
           ))}
-          <p className="text-[10px] mt-2 italic" style={{ color: t.textMuted }}>Estimates based on market intelligence. Verify via Dubai REST app.</p>
+          <p className="text-xs mt-2 italic" style={{ color: t.textMuted }}>Estimates based on market intelligence. Verify via Dubai REST app.</p>
         </div>
 
-        {/* Two-column layout on desktop: Duration Analysis + Milestone Timeline */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          {/* Duration Analysis — expandable */}
-          <div className="rounded-xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-            <button onClick={() => setShowPair(!showPair)} className="w-full flex items-center justify-between p-5 lg:p-7 text-left">
-              <h3 className="text-sm font-bold" style={{ color: t.text }}>{dur.title}</h3>
-              <span className="text-xs transition-transform duration-300" style={{ color: t.textMuted, transform: showPair ? "rotate(180deg)" : "rotate(0deg)" }}>▼</span>
-            </button>
-            {showPair && (
-              <div className="px-5 lg:px-7 pb-5 lg:pb-7">
-                <p className="text-xs leading-relaxed mb-4" style={{ color: t.textSecondary }}>{dur.intro}</p>
-                <div className="space-y-4">
-                  {(dur.factors || []).map((f, i) => (
-                    <div key={i} className="flex gap-3 items-start">
-                      <span className="w-6 h-6 rounded-md flex items-center justify-center shrink-0 text-[10px] font-bold mt-0.5" style={{ background: "#B68A3515", color: "#B68A35" }}>{i + 1}</span>
-                      <div>
-                        <p className="text-xs font-bold mb-0.5" style={{ color: t.text }}>{f.label}</p>
-                        <p className="text-[11px] leading-relaxed" style={{ color: t.textSecondary }}>{f.detail}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {data.cta && (
-                  <div className="mt-6 flex flex-col items-start gap-2">
-                    <a
-                      href={data.cta.href || "#"}
-                      className="px-5 py-3 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
-                      style={{ background: "#B68A35" }}
-                    >
-                      {data.cta.button_text}
-                    </a>
-                    {data.cta.subtext && (
-                      <p className="text-xs leading-relaxed max-w-md" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          {/* Milestone Timeline — expandable */}
-          <div className="rounded-xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-            <button onClick={() => setShowPair(!showPair)} className="w-full flex items-center justify-between p-5 lg:p-7 text-left">
-              <h3 className="text-sm font-bold flex items-center gap-2" style={{ color: t.text }}>
-                <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#B68A3520", color: "#B68A35" }}>🔶</span>
-                Key Milestones
-              </h3>
-              <span className="text-xs transition-transform duration-300" style={{ color: t.textMuted, transform: showPair ? "rotate(180deg)" : "rotate(0deg)" }}>▼</span>
-            </button>
-            {showPair && (
-              <div className="px-5 lg:px-7 pb-5 lg:pb-7">
-                {milestones.map((m, i) => (
-                  <TimelineDot key={i} milestone={m} isLast={i === milestones.length - 1} t={t} />
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* On-Ground Intelligence */}
-        <div className="rounded-xl p-5 lg:p-7 mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-          <h3 className="text-sm font-bold mb-3 flex items-center gap-2" style={{ color: t.text }}>
-            <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#3B82F620", color: "#3B82F6" }}>🔍</span>
-            {ground.title}
+        {/* Duration Analysis */}
+        <div className="mb-6 rounded-xl p-5 lg:p-7" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+          <h3 className="mb-4 flex items-center gap-3 text-lg font-semibold" style={{ color: t.text }}>
+            <ConstructionIcon name="duration" size={24} />
+            {dur.title}
           </h3>
-          <div
-            className="rounded-lg p-4 mb-4"
-            style={{
-              background: t.isDark ? "rgba(182,138,53,0.06)" : "rgba(182,138,53,0.04)",
-              borderLeft: "3px solid #B68A35",
-            }}
-          >
-            <p className="text-xs leading-relaxed italic" style={{ color: t.textSecondary }}>"{ground.quote}"</p>
-          </div>
-          <div
-            className="rounded-lg p-4"
-            style={{
-              background: t.isDark ? "rgba(245,158,11,0.08)" : "rgba(245,158,11,0.06)",
-              border: "1px solid rgba(245,158,11,0.25)",
-            }}
-          >
-            <div className="flex gap-2 items-start">
-              <span className="text-sm mt-0.5">⚠️</span>
-              <p className="text-xs leading-relaxed" style={{ color: t.isDark ? "#fcd34d" : "#92400e" }}>
-                <strong>Verification Note:</strong> {ground.verification}
-              </p>
-            </div>
+          <p className="mb-6 text-sm leading-7" style={{ color: t.textSecondary }}>{dur.intro}</p>
+          <div className="space-y-5">
+            {(dur.factors || []).map((f, i) => (
+              <div key={f.label} className="border-b pb-5 last:border-b-0 last:pb-0" style={{ borderColor: t.cardBorder }}>
+                <div className="flex gap-4">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-sm font-semibold text-white" style={{ background: GOLD }}>
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p className="mb-1.5 text-base font-semibold" style={{ color: t.text }}>{f.label}</p>
+                    <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{f.detail}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Photo Section — toggled */}
-        <div className="rounded-xl overflow-hidden" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
-          <button
-            onClick={() => setShowPhotos(!showPhotos)}
-            className="w-full flex items-center justify-between p-5 lg:p-7 text-left"
+        <div className="mb-6 space-y-4">
+          <MiniAccordion
+            title="Project Milestone Timeline"
+            icon="calendar"
+            open={openMilestones}
+            onToggle={() => setOpenMilestones((current) => !current)}
+            t={t}
           >
-            <h3 className="text-sm font-bold flex items-center gap-2" style={{ color: t.text }}>
-              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#B68A3520", color: "#B68A35" }}>📸</span>
-              Construction Photos & Site Updates
-            </h3>
-            <span
-              className="text-xs transition-transform duration-300"
-              style={{ color: t.textMuted, transform: showPhotos ? "rotate(180deg)" : "rotate(0deg)" }}
+            {milestones.map((m, i) => (
+              <TimelineDot key={i} milestone={m} isLast={i === milestones.length - 1} t={t} />
+            ))}
+          </MiniAccordion>
+
+          <MiniAccordion
+            title={ground.title}
+            icon="intel"
+            open={openIntel}
+            onToggle={() => setOpenIntel((current) => !current)}
+            t={t}
+          >
+            <div
+              className="rounded-lg p-4 mb-4"
+              style={{
+                background: t.isDark ? "rgba(182,138,53,0.06)" : "rgba(182,138,53,0.04)",
+                borderLeft: "3px solid #B68A35",
+              }}
             >
-              ▼
-            </span>
-          </button>
-          {showPhotos && (
-            <div className="px-5 lg:px-7 pb-5 lg:pb-7">
-              <PhotoGrid photos={photos} t={t} />
+              <span className="block text-4xl leading-none" style={{ color: GOLD }}>“</span>
+              <p className="text-sm leading-7 italic" style={{ color: t.textSecondary }}>{ground.quote}</p>
             </div>
-          )}
+            <div
+              className="rounded-lg p-4"
+              style={{
+                background: t.isDark ? "rgba(245,158,11,0.08)" : "rgba(245,158,11,0.06)",
+                border: "1px solid rgba(245,158,11,0.25)",
+              }}
+            >
+              <div className="flex gap-2 items-start">
+                <ConstructionIcon name="intel" size={18} color="#B68A35" />
+                <p className="text-sm leading-6" style={{ color: t.isDark ? "#fcd34d" : "#92400e" }}>
+                  <strong>Verification Note:</strong> {ground.verification}
+                </p>
+              </div>
+            </div>
+          </MiniAccordion>
+
+          <MiniAccordion
+            title="Construction Photos & Site Updates"
+            icon="camera"
+            open={showPhotos}
+            onToggle={() => setShowPhotos((current) => !current)}
+            t={t}
+          >
+            <PhotoAccordionList photos={photos} openPhoto={openPhoto} onToggle={setOpenPhoto} t={t} />
+          </MiniAccordion>
         </div>
       </div>
     </section>
