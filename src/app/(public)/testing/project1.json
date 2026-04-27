@@ -1552,10 +1552,29 @@
   "reviews_section": {
   "badge": "Resident Reviews",
   "title": "What Residents & Early Owners Are Saying",
+  "title_highlight": "Saying",
   "subtitle": "Dubai Properties Communities",
+  "intro": "Patterns drawn from 142 verified reviews across comparable Dubai Properties townhouse communities.",
+  "stats": [
+  { "icon": "reviews", "value": "142", "label": "Verified Reviews" },
+  { "icon": "communities", "value": "3", "label": "Communities" },
+  { "icon": "period", "value": "12 mo", "label": "Q1'25 - Q1'26" }
+  ],
+  "methodology_title": "Methodology",
+  "methodology_eyebrow": "How We Aggregated",
   "methodology": "Since Villanova La Rosa is a new launch with no completed units as of April 2026, we analyzed 142 verified resident reviews across three comparable Dubai Properties townhouse communities (Villanova Phase 1-3, Mudon, and Reem) to identify patterns relevant to future Villanova La Rosa owners. Sources included Google Reviews, Property Finder community ratings, and Dubai property forums (Q1 2025–Q1 2026).",
+  "methodology_communities": [
+  { "title": "Villanova Phase 1-3", "description": "Established Dubai Properties townhouse benchmark" },
+  { "title": "Mudon", "description": "Comparable family-oriented community" },
+  { "title": "Reem", "description": "Closest townhouse lifestyle analogue" }
+  ],
+  "methodology_sources_title": "Sources",
+  "methodology_sources": "Sources included Google Reviews, Property Finder community ratings, and Dubai property forums (Q1 2025 - Q1 2026).",
   "sentiment": {
   "title": "Sentiment Breakdown",
+  "eyebrow": "72% Positive",
+  "intro": "Distribution of sentiment across 142 verified resident reviews.",
+  "source_label": "Source",
   "items": [
   {
   "label": "Positive",
@@ -1579,6 +1598,9 @@
   "source": "Aggregated resident reviews, January 2025–April 2026"
   },
   "quotes": {
+  "title": "Representative Quotes",
+  "eyebrow": "Paraphrased - Anonymous",
+  "intro": "Attributed anonymously, paraphrased for clarity while preserving sentiment.",
   "positive": [
   {
   "text": "We moved into Villanova two years ago and love the community feel. The parks are clean, safe for kids, and the neighbors are friendly. Management is quick to respond to maintenance requests.",
@@ -1610,6 +1632,11 @@
   }
   ]
   },
+  "quote_groups": [
+  { "key": "positive", "label": "Positive", "color": "#3AA76D" },
+  { "key": "mixed", "label": "Mixed", "color": "#E5A936" },
+  { "key": "constructive", "label": "Constructive", "color": "#6F764B" }
+  ],
   "pattern_analysis": {
   "title": "Pattern Analysis Relevant to Villanova La Rosa Buyers",
   "headers": [
@@ -1637,12 +1664,15 @@
   },
   "future_reviews": {
   "title": "What Villanova La Rosa-Specific Reviews Will Eventually Reveal",
+  "eyebrow": "Forward Look",
+  "intro": "As Villanova La Rosa matures, we anticipate resident feedback will centre on:",
   "items": [
   "Build quality consistency — How do the finishes in La Rosa compare to earlier Villanova phases?",
   "Community integration — Does the new cluster blend seamlessly with existing infrastructure and vibe?",
   "Long-term maintenance — How well do the external facades and landscaping hold up in the first 3-5 years?"
   ]
   },
+  "transparency_title": "Transparency Note",
   "transparency_note": "We will update this section with Villanova La Rosa-specific reviews as they become available. No reviews have been omitted or selectively filtered.",
   "cta": {
   "button_text": "Read Honest Resident Feedback",

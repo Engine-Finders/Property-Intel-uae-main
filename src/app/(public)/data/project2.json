@@ -884,10 +884,29 @@
  "reviews_section": {
     "badge": "Resident Reviews",
     "title": "What Residents & Early Owners Are Saying",
+    "title_highlight": "Saying",
     "subtitle": "Dubai Properties Communities",
+    "intro": "Patterns drawn from verified reviews across comparable Dubai Properties townhouse communities.",
+    "stats": [
+      { "icon": "reviews", "value": "Verified", "label": "Resident Reviews" },
+      { "icon": "communities", "value": "3", "label": "Communities" },
+      { "icon": "period", "value": "12 mo", "label": "Q1 {{year}} - Q1 {{year}}" }
+    ],
+    "methodology_title": "Methodology",
+    "methodology_eyebrow": "How We Aggregated",
     "methodology": "Since Villanova La Rosa is a new launch with no completed units as of {{current_date}}, we analyzed verified resident reviews across comparable Dubai Properties Townhouse Phase communities in Villanova and Dubai's southern growth corridor to identify patterns relevant to future Villanova La Rosa owners. Sources included Google Reviews, Property Finder community feedback, and Dubai property forums (Q1 {{year}}–Q1 {{year}}).",
+    "methodology_communities": [
+      { "title": "Villanova", "description": "Established Dubai Properties townhouse community benchmark" },
+      { "title": "Mudon / Reem Corridor", "description": "Comparable family-oriented townhouse communities" },
+      { "title": "Southern Growth Corridor", "description": "Closest location and lifestyle analogue" }
+    ],
+    "methodology_sources_title": "Sources",
+    "methodology_sources": "Sources included Google Reviews, Property Finder community feedback, and Dubai property forums (Q1 {{year}} - Q1 {{year}}).",
     "sentiment": {
       "title": "Sentiment Breakdown",
+      "eyebrow": "72% Positive",
+      "intro": "Distribution of sentiment across verified resident reviews.",
+      "source_label": "Source",
       "items": [
         { "label": "Positive", "percent": 72, "color": "#22C55E", "themes": "\"Community planning quality,\" \"handover process transparency,\" \"landscaping standards,\" \"after-sales responsiveness during warranty\"" },
         { "label": "Mixed", "percent": 18, "color": "#F59E0B", "themes": "\"Service charge adjustments post-handover,\" \"snagging resolution timelines during peak periods,\" \"amenity activation sequencing\"" },
@@ -896,6 +915,9 @@
       "source": "Aggregated resident reviews, {{year}}–{{year}}"
     },
     "quotes": {
+      "title": "Representative Quotes",
+      "eyebrow": "Paraphrased - Anonymous",
+      "intro": "Attributed anonymously, paraphrased for clarity while preserving sentiment.",
       "positive": [
         { "text": "\"We moved into our Townhouse Phase unit in Villanova last year. The handover process was well-organized, and the build quality met our expectations for a Dubai Properties community.\"", "source": "Property Finder Community, {{year}}" },
         { "text": "\"Dubai Properties' customer service team was responsive during our warranty period. Snagging items were addressed within the agreed timeline.\"", "source": "Google Review, {{year}}" }
@@ -909,6 +931,11 @@
         { "text": "\"Clarify parking allocations and visitor access protocols during the SPA review to avoid post-handover adjustments.\"", "source": "Google Review, {{year}}" }
       ]
     },
+    "quote_groups": [
+      { "key": "positive", "label": "Positive", "color": "#3AA76D" },
+      { "key": "mixed", "label": "Mixed", "color": "#E5A936" },
+      { "key": "constructive", "label": "Constructive", "color": "#6F764B" }
+    ],
     "pattern_analysis": {
       "title": "Pattern Analysis Relevant to Villanova La Rosa Buyers",
       "headers": ["Theme", "Implication for Villanova La Rosa"],
@@ -921,12 +948,15 @@
     },
     "future_reviews": {
       "title": "What Villanova La Rosa-Specific Reviews Will Eventually Reveal",
+      "eyebrow": "Forward Look",
+      "intro": "As Villanova La Rosa matures, we anticipate resident feedback will centre on:",
       "items": [
         "Community amenity utilization — Do planned parks, trails, and lifestyle facilities meet resident expectations for Townhouse Phase living?",
         "Master community activation — Are retail zones, schools, and connectivity delivered per Villanova master plan timelines?",
         "Long-term finish durability — How do materials and systems perform under Dubai's climate conditions over 3–5 years of occupancy?"
       ]
     },
+    "transparency_title": "Transparency Note",
     "transparency_note": "We will update this section with Villanova La Rosa-specific reviews as they become available. No reviews have been omitted or selectively filtered.",
     "cta": {
       "button_text": "Read Honest Resident Feedback",

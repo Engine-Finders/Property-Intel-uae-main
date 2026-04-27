@@ -1545,10 +1545,29 @@
 "reviews_section": {
 "badge": "Resident Reviews",
 "title": "What Residents & Early Owners Are Saying",
+"title_highlight": "Saying",
 "subtitle": "Emaar Communities",
+"intro": "Patterns drawn from 215 verified reviews across comparable Emaar townhouse communities.",
+"stats": [
+{ "icon": "reviews", "value": "215", "label": "Verified Reviews" },
+{ "icon": "communities", "value": "3", "label": "Communities" },
+{ "icon": "period", "value": "12 mo", "label": "Q1'25 - Q1'26" }
+],
+"methodology_title": "Methodology",
+"methodology_eyebrow": "How We Aggregated",
 "methodology": "Since Sun is a new launch with no completed units as of April 2026, we analyzed 215 verified resident reviews across three comparable Emaar townhouse communities (Arabian Ranches 3, Dubai Hills Estate, and The Valley) to identify patterns relevant to future Sun owners. Sources included Google Reviews, Trustpilot, and Dubai property forums (Q1 2025–Q1 2026).",
+"methodology_communities": [
+{ "title": "Arabian Ranches 3", "description": "Established Emaar townhouse benchmark" },
+{ "title": "Dubai Hills Estate", "description": "Mature premium community analogue" },
+{ "title": "The Valley", "description": "Comparable family-oriented townhouse community" }
+],
+"methodology_sources_title": "Sources",
+"methodology_sources": "Sources included Google Reviews, Trustpilot, and Dubai property forums (Q1 2025 - Q1 2026).",
 "sentiment": {
 "title": "Sentiment Breakdown",
+"eyebrow": "72% Positive",
+"intro": "Distribution of sentiment across 215 verified resident reviews.",
+"source_label": "Source",
 "items": [
 {
 "label": "Positive",
@@ -1572,6 +1591,9 @@
 "source": "Aggregated resident reviews, January 2025–April 2026"
 },
 "quotes": {
+"title": "Representative Quotes",
+"eyebrow": "Paraphrased - Anonymous",
+"intro": "Attributed anonymously, paraphrased for clarity while preserving sentiment.",
 "positive": [
 {
 "text": "We moved into our 3-bedroom townhouse in Arabian Ranches 3 last year. The finish quality is consistent with Emaar's high standards, and the community team is very proactive with maintenance requests.",
@@ -1603,6 +1625,11 @@
 }
 ]
 },
+"quote_groups": [
+{ "key": "positive", "label": "Positive", "color": "#3AA76D" },
+{ "key": "mixed", "label": "Mixed", "color": "#E5A936" },
+{ "key": "constructive", "label": "Constructive", "color": "#6F764B" }
+],
 "pattern_analysis": {
 "title": "Pattern Analysis Relevant to Sun Buyers",
 "headers": [
@@ -1630,12 +1657,15 @@
 },
 "future_reviews": {
 "title": "What Sun-Specific Reviews Will Eventually Reveal",
+"eyebrow": "Forward Look",
+"intro": "As Sun matures, we anticipate resident feedback will centre on:",
 "items": [
 "Community integration — How seamlessly does Sun connect with the wider Arabian Ranches amenities and lifestyle?",
 "Long-term durability — How do the modern townhouse finishes hold up against Dubai's climate over 5+ years?",
 "Management efficiency — Does the community management maintain high standards as the population density increases?"
 ]
 },
+"transparency_title": "Transparency Note",
 "transparency_note": "We will update this section with Sun-specific reviews as they become available. No reviews have been omitted or selectively filtered.",
 "cta": {
 "button_text": "Read Honest Resident Feedback",

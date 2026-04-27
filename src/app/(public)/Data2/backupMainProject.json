@@ -754,10 +754,29 @@
     "reviews_section": {
       "badge": "Resident Reviews",
       "title": "What Residents & Early Owners Are Saying",
+      "title_highlight": "Saying",
       "subtitle": "Emaar Communities",
+      "intro": "Patterns drawn from 187 verified reviews across comparable Emaar villa communities.",
+      "stats": [
+        { "icon": "reviews", "value": "187", "label": "Verified Reviews" },
+        { "icon": "communities", "value": "3", "label": "Communities" },
+        { "icon": "period", "value": "12 mo", "label": "Q1'25 - Q1'26" }
+      ],
+      "methodology_title": "Methodology",
+      "methodology_eyebrow": "How We Aggregated",
       "methodology": "Since Serro at The Heights is a new launch with no completed units as of February 2026, we analyzed 187 verified resident reviews across three comparable Emaar villa communities (Dubai Hills Estate, Arabian Ranches III, and Emaar South) to identify patterns relevant to future Serro owners. Sources included Google Reviews, Trustpilot, and Dubai property forums (Q1 2025–Q1 2026).",
+      "methodology_communities": [
+        { "title": "Dubai Hills Estate", "description": "Established premium villa benchmark" },
+        { "title": "Arabian Ranches III", "description": "Mature family-oriented community" },
+        { "title": "Emaar South", "description": "Closest growth-corridor analogue" }
+      ],
+      "methodology_sources_title": "Sources",
+      "methodology_sources": "Sources included Google Reviews, Trustpilot, and Dubai property forums (Q1 2025 - Q1 2026).",
       "sentiment": {
         "title": "Sentiment Breakdown",
+        "eyebrow": "68% Positive",
+        "intro": "Distribution of sentiment across 187 verified resident reviews.",
+        "source_label": "Source",
         "items": [
           { "label": "Positive", "percent": 68, "color": "#22C55E", "themes": "\"Finishes exceeded expectations,\" \"community feel,\" \"responsive after-sales during warranty,\" \"landscaping maturity at handover\"" },
           { "label": "Mixed", "percent": 22, "color": "#F59E0B", "themes": "\"Service charges higher than initial estimates,\" \"snagging resolution took 4–6 weeks,\" \"AC efficiency varies by orientation\"" },
@@ -766,6 +785,9 @@
         "source": "Aggregated resident reviews, January 2025–January 2026"
       },
       "quotes": {
+        "title": "Representative Quotes",
+        "eyebrow": "Paraphrased - Anonymous",
+        "intro": "Attributed anonymously, paraphrased for clarity while preserving sentiment.",
         "positive": [
           { "text": "We took handover of our 4-bedroom in Dubai Hills 18 months ago. The build quality is solid — better than we expected. Community management responds within 48 hours for maintenance requests.", "source": "Google Review, October 2025" },
           { "text": "Emaar's after-sales team actually answers calls. They fixed our snagging list within the 12-month warranty period without pushback.", "source": "Dubai Forum, November 2025" }
@@ -779,6 +801,11 @@
           { "text": "The gym in our community is excellent quality but absolutely packed 5–7pm. They need to expand or enforce time limits.", "source": "Google Review, November 2025" }
         ]
       },
+      "quote_groups": [
+        { "key": "positive", "label": "Positive", "color": "#3AA76D" },
+        { "key": "mixed", "label": "Mixed", "color": "#E5A936" },
+        { "key": "constructive", "label": "Constructive", "color": "#6F764B" }
+      ],
       "pattern_analysis": {
         "title": "Pattern Analysis Relevant to Serro Buyers",
         "headers": ["Theme", "Implication for Serro"],
@@ -791,12 +818,15 @@
       },
       "future_reviews": {
         "title": "What Serro-Specific Reviews Will Eventually Reveal",
+        "eyebrow": "Forward Look",
+        "intro": "As The Heights matures, we anticipate resident feedback will centre on:",
         "items": [
           "Wellness infrastructure actual usage — Does the 38km track network justify the wellness premium?",
           "Community activation — Do retail zones attract quality tenants? Are schools delivered on schedule?",
           "Long-term maintenance quality — How do the Mediterranean finishes age in Dubai's climate?"
         ]
       },
+      "transparency_title": "Transparency Note",
       "transparency_note": "We will update this section with Serro-specific reviews as they become available. No reviews have been omitted or selectively filtered."
     },
     "expert_tips_section": {
