@@ -168,6 +168,7 @@ const FinancingSection = ({ data }) => {
     service: true,
     comparison: false,
   });
+  const [activeDesktopTab, setActiveDesktopTab] = useState("financing");
   const [activeComparisonIndex, setActiveComparisonIndex] = useState(0);
 
   const toggle = (key) => setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -212,6 +213,14 @@ const FinancingSection = ({ data }) => {
     { title: "Construction", sub: "70% self-funded payments", meta: "2026-2030", icon: "🕒" },
     { title: "Handover", sub: "Mortgage available", meta: "Q1-Q2 2030", icon: "📅" },
   ];
+  const desktopTabs = [
+    { id: "financing", title: "1. Financing Realities", subtitle: "Off-Plan vs. Completed", icon: "🏛️" },
+    { id: "ltv", title: "2. LTV Caps", subtitle: "Handover Financing", icon: "%" },
+    { id: "cash", title: "3. Cash Required", subtitle: "At Purchase", icon: "$" },
+    { id: "roi", title: "4. ROI Projections", subtitle: "Rental Yield Analysis", icon: "📈" },
+    { id: "service", title: "5. Service Charges", subtitle: "What Owners Pay", icon: "💼" },
+    { id: "comparison", title: "6. Compare", subtitle: "Emaar vs. Competitors", icon: "⚖️" },
+  ];
 
   return (
     <section style={{ background: t.bg }} className="py-6 lg:py-10">
@@ -233,7 +242,7 @@ const FinancingSection = ({ data }) => {
         }
       `}</style>
       <div className="mx-auto max-w-7xl px-3 sm:px-6">
-        <div className="mb-10">
+        <div className="mb-10 lg:hidden">
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
             Financing & Yield Analysis
           </p>
@@ -242,7 +251,285 @@ const FinancingSection = ({ data }) => {
           </h2>
         </div>
 
-        <div className="space-y-3">
+        <div className="hidden lg:block">
+          <div
+            className="relative mb-0 overflow-hidden rounded-t-[28px] border"
+            style={{
+              borderColor: t.cardBorder,
+              background: t.isDark ? t.cardBg : "#fffdfa",
+              minHeight: 285,
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/projects/villa-render-2.jpg')" }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: t.isDark
+                  ? "linear-gradient(90deg, #25282d 0%, #25282d 44%, rgba(37,40,45,0.92) 56%, rgba(37,40,45,0.52) 72%, rgba(37,40,45,0.12) 88%, transparent 100%)"
+                  : "linear-gradient(90deg, #fffdfa 0%, #fffdfa 42%, rgba(255,253,250,0.5) 64%, transparent 84%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-[560px] px-8 py-12">
+              <h2 className="text-[3.1rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
+                Mortgage Options,
+                <span className="block" style={{ color: GOLD }}>
+                  ROI Projections &amp; Service Charges
+                </span>
+              </h2>
+              <p className="mt-5 text-base leading-7" style={{ color: t.textSecondary }}>
+                A complete financial overview to help Serro buyers plan with confidence — from financing realities to rental potential and true ownership costs.
+              </p>
+              <span className="mt-5 block h-px w-20" style={{ background: GOLD }} />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-6 overflow-hidden rounded-t-none rounded-b-[0px] border-x border-b" style={{ borderColor: t.cardBorder, background: t.isDark ? "rgba(255,255,255,0.025)" : "#fffdfa" }}>
+            {desktopTabs.map((tab) => {
+              const active = activeDesktopTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveDesktopTab(tab.id)}
+                  className="relative flex items-center gap-3 border-r px-5 py-5 text-left last:border-r-0"
+                  style={{
+                    borderColor: t.cardBorder,
+                    color: active ? t.text : t.textSecondary,
+                    background: active ? (t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0") : "transparent",
+                  }}
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-lg" style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}>
+                    {tab.icon}
+                  </span>
+                  <span>
+                    <span className="block text-sm font-semibold">{tab.title}</span>
+                    <span className="mt-1 block text-[11px]" style={{ color: t.textMuted }}>{tab.subtitle}</span>
+                  </span>
+                  {active && <span className="absolute inset-x-0 bottom-0 h-[3px]" style={{ background: GOLD }} />}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="rounded-b-[28px] border-x border-b p-8" style={{ borderColor: t.cardBorder, background: t.isDark ? t.cardBg : "#fffdfa", boxShadow: t.isDark ? "none" : "0 16px 40px rgba(113, 85, 32, 0.08)" }}>
+            {activeDesktopTab === "financing" && (
+              <div>
+                <h3 className="mb-6 text-2xl font-semibold" style={{ color: t.text }}>
+                  <span style={{ color: GOLD }}>H3:</span> Financing Realities - Off-Plan vs. Completed Properties
+                </h3>
+                <div className="mb-8 rounded-xl p-5" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#f6f2ea", border: `1px solid ${t.cardBorder}` }}>
+                  <div className="flex items-start gap-4">
+                    <span className="text-2xl" style={{ color: GOLD }}>⚠️</span>
+                    <p className="text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: `<strong>Critical:</strong> ${data.financing_intro}` }} />
+                  </div>
+                </div>
+                <div className="grid grid-cols-[1fr_1fr] gap-10">
+                  <div>
+                    <h4 className="mb-8 text-lg font-semibold" style={{ color: GOLD }}>Construction Payment Journey</h4>
+                    <div className="grid grid-cols-3 gap-4">
+                      {journeySteps.map((step, idx) => (
+                        <div key={step.title} className="relative text-center">
+                          {idx < journeySteps.length - 1 && (
+                            <span className="absolute left-[62%] top-[24px] h-[2px] w-[76%]" style={{ background: "linear-gradient(90deg, #d8c29b 0%, #ead7b7 100%)" }} />
+                          )}
+                          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full text-xl" style={{ background: t.isDark ? "rgba(255,255,255,0.06)" : "#f5f1e8", border: `1px solid ${t.cardBorder}` }}>
+                            {step.icon}
+                          </div>
+                          <p className="text-sm font-semibold" style={{ color: t.text }}>{step.title}</p>
+                          <p className="mt-1 text-xs leading-5" style={{ color: t.textMuted }}>{step.sub}</p>
+                          <p className="mt-3 inline-flex rounded-md px-3 py-1 text-xs font-semibold" style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.12)" : "#fbf3e1" }}>{step.meta}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="border-l pl-10" style={{ borderColor: t.cardBorder }}>
+                    <h4 className="mb-5 text-lg font-semibold" style={{ color: GOLD }}>What this means for Serro buyers:</h4>
+                    <BulletList items={data.what_this_means} t={t} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeDesktopTab === "ltv" && (
+              <div className="grid grid-cols-[1.45fr_0.9fr] gap-10">
+                <div>
+                  <h3 className="mb-4 text-2xl font-semibold" style={{ color: t.text }}><span style={{ color: GOLD }}>H3:</span> Loan-to-Value (LTV) Caps for Handover Financing</h3>
+                  <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }}>Based on Central Bank of UAE regulations, these are the maximum LTV ratios available when the property is complete.</p>
+                  <DesktopTable headers={["Buyer Profile", "Property Value", "Maximum LTV", "Minimum Down Payment"]} rows={ltvRows} t={t} />
+                  <div className="mt-5 rounded-xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}>
+                    <p className="text-sm leading-7" style={{ color: t.textSecondary }}><strong style={{ color: GOLD }}>Note:</strong> {data.ltv_note}</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="mb-5 text-lg font-semibold" style={{ color: GOLD }}>Current Mortgage Rate Context<br /><span className="text-sm">(February 2026)</span></h4>
+                  <div className="space-y-4">
+                    {[
+                      ["Fixed Rates (1-5 years)", "Bank-dependent, based on profile", data.mortgage_rates.fixed, "🔒"],
+                      ["Variable Rates (EIBOR-linked)", "EIBOR + margin", data.mortgage_rates.variable, "◷"],
+                      ["Central Bank Base Rate", "As of 13 January 2026", data.mortgage_rates.base_rate, "🏦"],
+                    ].map((row) => (
+                      <div key={row[0]} className="flex items-center gap-4 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+                        <span className="flex h-11 w-11 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1", color: GOLD }}>{row[3]}</span>
+                        <span className="flex-1"><span className="block text-sm font-semibold" style={{ color: t.text }}>{row[0]}</span><span className="text-xs" style={{ color: t.textMuted }}>{row[1]}</span></span>
+                        <span className="font-semibold" style={{ color: GOLD }}>{row[2]}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeDesktopTab === "cash" && (
+              <div className="grid grid-cols-[1.45fr_0.78fr] gap-10">
+                <div>
+                  <h3 className="mb-3 text-2xl font-semibold" style={{ color: t.text }}><span style={{ color: GOLD }}>H3:</span> Total Cash Required at Purchase</h3>
+                  <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_required_intro }} />
+                  <DesktopTable headers={cashHeaders} rows={cashRows} t={t} highlightLast />
+                </div>
+                <div className="self-center rounded-2xl p-6" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#fff8ef", border: `1px solid ${t.cardBorder}` }}>
+                  <p className="mb-3 text-sm font-semibold" style={{ color: GOLD }}>Key Insight:</p>
+                  <p className="text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_insight }} />
+                </div>
+              </div>
+            )}
+
+            {activeDesktopTab === "roi" && (
+              <div className="grid grid-cols-[1.25fr_0.95fr] gap-10">
+                <div>
+                  <h3 className="mb-5 text-2xl font-semibold" style={{ color: t.text }}><span style={{ color: GOLD }}>H3:</span> ROI Estimator - Rental Yield Projections</h3>
+                  <p className="mb-3 text-sm font-semibold" style={{ color: GOLD }}>Rental Benchmarking - Per Square Foot Analysis (Mature Comparables):</p>
+                  <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }}>To evaluate Serro's income potential accurately, we compare actual rental transactions from completed communities within the same Dubai South corridor.</p>
+                  <DesktopTable headers={rentalHeaders} rows={rentalRows} t={t} />
+                  <div className="mt-5 rounded-xl p-4" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>
+                    <p className="text-xs leading-6" style={{ color: t.textMuted }}><strong>DISCLAIMER:</strong> {data.yield_disclaimer}</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="mb-3 text-sm font-semibold" style={{ color: GOLD }}>Projected Gross Yield for Serro 3-Bedroom</p>
+                  <DesktopTable headers={["Scenario", "Annual Rent", "Purchase Price", "Gross Yield"]} rows={data.yield_projections.map((row) => [row.scenario, row.rent, row.price, row.yield])} t={t} />
+                  <div className="mt-5 rounded-xl p-5" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}>
+                    <p className="mb-3 font-semibold" style={{ color: GOLD }}>Yield Context - Why 4-5%?</p>
+                    <BulletList items={data.yield_context} t={t} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeDesktopTab === "service" && (
+              <div>
+                <div className="grid grid-cols-[1.05fr_1fr_0.85fr] gap-5">
+                  <div className="rounded-2xl p-6" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+                    <h3 className="text-xl font-semibold" style={{ color: t.text }}>Service Charges - What Owners Actually Pay</h3>
+                    <p className="mt-2 text-sm" style={{ color: t.textMuted }}>Estimated Service Charge Range</p>
+                    <p className="mt-5 text-5xl font-semibold" style={{ color: GOLD }}>AED 3 - 5 <span className="text-base" style={{ color: t.textSecondary }}>per sq.ft annually</span></p>
+                    <p className="mt-5 text-sm" style={{ color: t.textSecondary }}>For a {data.service_charge_example.size} sq.ft villa:</p>
+                    <div className="mt-4 grid grid-cols-2 gap-3">
+                      <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}><p className="text-xs" style={{ color: t.textMuted }}>Annual Service Charge</p><p className="mt-1 font-semibold" style={{ color: GOLD }}>{data.service_charge_example.annual}</p></div>
+                      <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}><p className="text-xs" style={{ color: t.textMuted }}>Monthly Equivalent</p><p className="mt-1 font-semibold" style={{ color: GOLD }}>{data.service_charge_example.monthly}</p></div>
+                    </div>
+                  </div>
+                  <div className="rounded-2xl p-6" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+                    <h3 className="mb-4 text-xl font-semibold" style={{ color: t.text }}>What Service Charges Fund</h3>
+                    <div className="space-y-2">
+                      {data.service_charge_funds.map((item) => <p key={item} className="border-b pb-2 text-sm" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>✓ {item}</p>)}
+                    </div>
+                  </div>
+                  <div className="rounded-2xl p-6" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+                    <h3 className="mb-4 text-xl font-semibold" style={{ color: t.text }}>Value Assessment</h3>
+                    <p className="rounded-xl p-5 text-sm leading-7" style={{ color: t.textSecondary, background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1" }} dangerouslySetInnerHTML={{ __html: data.service_charge_assessment }} />
+                  </div>
+                </div>
+                <p className="mb-3 mt-7 text-lg font-semibold" style={{ color: t.text }}>Comparative Context - Villa Communities</p>
+                <div className="grid grid-cols-5 gap-3">
+                  {data.service_charge_comparison.map((item) => {
+                    const isSerro = item.community.toLowerCase().includes("serro");
+
+                    return (
+                      <div
+                        key={item.community}
+                        className="relative rounded-2xl p-5 text-center"
+                        style={{
+                          background: isSerro
+                            ? (t.isDark ? "rgba(182,138,53,0.16)" : "#f7ead1")
+                            : (t.isDark ? "rgba(255,255,255,0.02)" : "#fff"),
+                          border: `1px solid ${isSerro ? "rgba(182,138,53,0.35)" : t.cardBorder}`,
+                          boxShadow: isSerro && !t.isDark ? "0 14px 30px rgba(113,85,32,0.12)" : "none",
+                        }}
+                      >
+                        {isSerro && (
+                          <span
+                            className="absolute -top-3 right-4 flex h-8 w-8 items-center justify-center rounded-full text-sm"
+                            style={{ background: GOLD, color: "#fff" }}
+                          >
+                            ★
+                          </span>
+                        )}
+                        <div
+                          className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full text-lg"
+                          style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1", color: GOLD }}
+                        >
+                          {isSerro ? "✦" : "⌂"}
+                        </div>
+                        <p className="min-h-[2.5rem] text-sm font-semibold leading-5" style={{ color: t.text }}>
+                          {item.community}
+                        </p>
+                        <p className="mt-2 text-2xl font-semibold" style={{ color: GOLD }}>
+                          {item.charge}
+                        </p>
+                        <p className="text-xs" style={{ color: t.textMuted }}>
+                          AED/sq.ft annually
+                        </p>
+                        <p className="mt-3 text-xs leading-5" style={{ color: t.textSecondary }}>
+                          {item.amenity}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-5 rounded-xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}><p className="text-sm" style={{ color: t.textSecondary }}><strong style={{ color: GOLD }}>Note:</strong> {data.service_charge_note}</p></div>
+              </div>
+            )}
+
+            {activeDesktopTab === "comparison" && (
+              <div>
+                <h3 className="mb-2 text-2xl font-semibold" style={{ color: t.text }}>{data.comparison_h3}</h3>
+                <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }}>{data.comparison_intro}</p>
+                <div className="mb-5 grid grid-cols-4 gap-3">
+                  {comparisonTabs.map((label, idx) => {
+                    const active = idx === activeComparisonIndex;
+                    return <button key={label} type="button" onClick={() => setActiveComparisonIndex(idx)} className="rounded-xl px-4 py-3 text-sm font-semibold" style={{ background: active ? GOLD : "transparent", color: active ? "#fff" : t.text, border: `1px solid ${active ? GOLD : t.cardBorder}` }}>{label}</button>;
+                  })}
+                </div>
+                <div className="grid grid-cols-[1.1fr_0.9fr] gap-6">
+                  <div className="rounded-2xl p-5" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+                    <div className="mb-4 flex items-start justify-between gap-3">
+                      <div><p className="text-2xl font-semibold" style={{ color: GOLD }}>{activeProjectTitle}</p><p className="text-sm" style={{ color: t.textMuted }}>{activeProjectDeveloper}</p></div>
+                      {activeComparisonIndex === 0 && <span className="rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider" style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.18)" : "#f9f0df" }}>This Project</span>}
+                    </div>
+                    <DesktopTable headers={["Feature", "Value"]} rows={activeProjectRows} t={t} />
+                  </div>
+                  <div className="space-y-5">
+                    <div className="rounded-2xl p-5" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+                      <p className="mb-3 font-semibold" style={{ color: t.text }}>Future Infrastructure & Government Plans</p>
+                      <DesktopTable headers={infraHeaders} rows={infraRows} t={t} />
+                    </div>
+                    <div className="rounded-2xl p-5" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+                      <p className="mb-3 font-semibold" style={{ color: t.text }}>Analysis</p>
+                      <BulletList items={data.comparison_analysis} t={t} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="space-y-3 lg:hidden">
           <AccordionCard title="Financing Realities — Off-Plan vs. Completed" icon="🏛️" isOpen={openSections.financing} onToggle={() => toggle("financing")} t={t}>
             <h3 className="mb-3 text-lg font-bold" style={{ color: GOLD }}>
               H3: Financing Realities - Off-Plan vs. Completed Properties
@@ -498,9 +785,25 @@ const FinancingSection = ({ data }) => {
                 )}
               </div>
 
-              <TableWrap>
-                <DesktopTable headers={["Feature", "Value"]} rows={activeProjectRows} t={t} minTableWidth={560} />
-              </TableWrap>
+              <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+                {activeProjectRows.map(([feature, value], index) => (
+                  <div
+                    key={feature}
+                    className="grid grid-cols-[8.5rem_1fr] gap-3 px-3 py-3 text-sm"
+                    style={{
+                      borderTop: index === 0 ? "none" : `1px solid ${t.cardBorder}`,
+                      background: index % 2 !== 0 ? (t.isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)") : "transparent",
+                    }}
+                  >
+                    <span className="font-medium" style={{ color: t.text }}>
+                      {feature}
+                    </span>
+                    <span style={{ color: t.textSecondary }}>
+                      {value}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: t.text }}>

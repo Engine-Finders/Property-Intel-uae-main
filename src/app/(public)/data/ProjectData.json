@@ -245,19 +245,8 @@
           }
         ]
       },
-      "price_chart_data": [
-        { "label": "Emaar South\n(2024)", "serro": null, "district": 1450 },
-        { "label": "Serro\nLaunch", "serro": 1732, "district": 1800 },
-        { "label": "Dubai Hills\nCurrent", "serro": null, "district": 2100 },
-        { "label": "Projected\nHandover", "serro": 2050, "district": 2300 }
-      ],
       "price_evolution": {
         "intro": "DLD transaction data from comparable Emaar master communities (Dubai Hills, Arabian Ranches) shows that early phases typically appreciate <strong>15–25%</strong> by handover, driven by:",
-        "drivers": [
-          "Progressive infrastructure delivery (schools, retail completing 2027–2029)",
-          "Scarcity of villa inventory in the Dubai South growth corridor",
-          "Emaar's track record of pricing discipline across phases"
-        ],
         "mobile_driver_bars": [
           { "label": "Infrastructure delivery", "subtext": "2027-29", "strength": "High", "value": 86 },
           { "label": "Villa scarcity", "strength": "High", "value": 82 },
@@ -282,12 +271,6 @@
           "title": "5-Bedroom Configuration",
           "description": "Full three-storey layout with roof terrace access; ground floor includes staff quarters. Total built-up area approaches <strong>5,800 sqft</strong> with <strong>7,000+ sqft</strong> plots."
         }
-      ],
-      "distinguishing_features": [
-        "Mediterranean-contemporary aesthetic with whitewashed finishes, curved architectural elements, and terracotta accents",
-        "Floor-to-ceiling glazing maximising natural light and garden connectivity",
-        "Neutral material palette (beige stone, warm timber accents) designed for longevity",
-        "All villas include covered carports (494–739 sqft depending on typology)"
       ],
       "distinguishing_feature_cards": [
         {
@@ -402,8 +385,7 @@
               { "values": ["Serro (Projected)", "AED 240 - 300K", "3,463", "AED 69 - 86"], "highlight": true }
             ]
           },
-          "analysis_html": "Applying a mid-range projection of <strong>AED 270,000</strong> against a <strong>AED 6,000,000</strong> purchase price suggests a <strong>gross yield of approximately 4.5%</strong> — consistent with Dubai South's 5.5 - 7.5% villa yields but below the 8%+ achievable in higher-density apartment districts. The premium rent per sq.ft reflects wellness positioning and Emaar brand equity.",
-          "link_text": "Read full yield analysis"
+          "analysis_html": "Applying a mid-range projection of <strong>AED 270,000</strong> against a <strong>AED 6,000,000</strong> purchase price suggests a <strong>gross yield of approximately 4.5%</strong> — consistent with Dubai South's 5.5 - 7.5% villa yields but below the 8%+ achievable in higher-density apartment districts. The premium rent per sq.ft reflects wellness positioning and Emaar brand equity."
         },
         {
           "id": "short_term_flipper",
@@ -466,8 +448,7 @@
               "label": "Lifestyle Positioning",
               "text": "Premium wellness community in Dubai South corridor — above entry-level (AED 2.6M villas) but below ultra-luxury AED 10M+ segment. Appeals to aviation professionals, DIFC commuters, and health-focused families."
             }
-          ],
-          "link_text": "Show less"
+          ]
         },
         {
           "id": "residency_buyer",
@@ -881,6 +862,7 @@
       "badge": "Construction & Timeline",
       "title": "Construction Progress & Handover Outlook",
       "subtitle": "Serro at The Heights",
+      "intro": "Comprehensive analysis of construction timelines, progress updates, and what to expect.",
       "timeline_table": {
         "headers": ["Timeline Component", "Serro", "Serro 2"],
         "rows": [

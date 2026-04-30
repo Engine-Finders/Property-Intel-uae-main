@@ -57,6 +57,17 @@ const SectionIcon = ({ name, color = "#ffffff", size = 20 }) => {
     );
   }
 
+  if (name === "calendar") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <rect x="3" y="5" width="18" height="16" rx="2" />
+        <path d="M16 3v4" />
+        <path d="M8 3v4" />
+        <path d="M3 10h18" />
+      </svg>
+    );
+  }
+
   if (name === "infrastructure") {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -468,7 +479,7 @@ const LocationSection = ({ data }) => {
   const renderInfrastructure = () => (
     <div className="pt-4">
       <style jsx>{infrastructureScrollStyles}</style>
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4">
       {data.infrastructure_developments.map((item) => (
         <div
           key={item.title}
@@ -519,41 +530,40 @@ const LocationSection = ({ data }) => {
                   )}
                 </div>
               </div>
-
-              <div
-                className="infrastructure-scroll mt-3 overflow-y-scroll pr-2"
-                style={{
-                  height: 112,
-                  scrollbarGutter: "stable",
-                  overscrollBehavior: "contain",
-                }}
-              >
-                <div className="space-y-2.5">
-                  {item.bullets.map((bullet, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <span
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
-                        style={{ background: GOLD }}
-                      />
-                      <HtmlText
-                        html={bullet}
-                        className="text-sm leading-6"
-                        style={{ color: t.textSecondary }}
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                {item.relevance && (
-                  <p className="mt-3 border-t pt-3 text-sm leading-6" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
-                    <span className="font-semibold" style={{ color: GOLD }}>
-                      Direct Relevance to The Heights:
-                    </span>{" "}
-                    {item.relevance}
-                  </p>
-                )}
-              </div>
             </div>
+          </div>
+          <div
+            className="infrastructure-scroll mt-4 overflow-y-scroll pr-2"
+            style={{
+              height: 112,
+              scrollbarGutter: "stable",
+              overscrollBehavior: "contain",
+            }}
+          >
+            <div className="space-y-2.5">
+              {item.bullets.map((bullet, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                    style={{ background: GOLD }}
+                  />
+                  <HtmlText
+                    html={bullet}
+                    className="text-sm leading-6"
+                    style={{ color: t.textSecondary }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {item.relevance && (
+              <p className="mt-3 border-t pt-3 text-sm leading-6" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
+                <span className="font-semibold" style={{ color: GOLD }}>
+                  Direct Relevance to The Heights:
+                </span>{" "}
+                {item.relevance}
+              </p>
+            )}
           </div>
         </div>
       ))}
@@ -601,6 +611,60 @@ const LocationSection = ({ data }) => {
     return renderNeighbourhood();
   };
 
+  const renderVerticalTimeline = (className = "", outlined = false) => (
+    <div className={`relative pl-8 ${className}`}>
+      <div
+        style={{
+          position: "absolute",
+          left: 14,
+          top: 0,
+          bottom: 0,
+          width: outlined ? 2 : 3,
+          background: `linear-gradient(180deg, #b8860b, #d4a843)`,
+          borderRadius: 2,
+        }}
+      />
+      <div className="space-y-6">
+        {timelineEvents.map((evt, i) => (
+          <div key={i} className="relative flex items-start gap-4">
+            <div
+              style={{
+                position: "absolute",
+                left: -22,
+                top: 4,
+                width: 16,
+                height: 16,
+                borderRadius: "50%",
+                background: outlined ? (t.isDark ? t.bg : "#fffdfa") : "linear-gradient(135deg, #b8860b, #d4a843)",
+                border: outlined ? `2px solid #b8860b` : `3px solid ${t.bg}`,
+                boxShadow: outlined ? "0 0 0 3px rgba(182,138,53,0.08)" : "0 0 10px #b8860b40",
+              }}
+            />
+            <div>
+              {outlined ? (
+                <>
+                  <span style={{ color: t.text, fontSize: 16, fontWeight: 800 }}>{evt.year}</span>
+                  <p style={{ color: "#b8860b", fontSize: 14, fontWeight: 700, marginTop: 6 }}>
+                    {evt.title}
+                  </p>
+                  <p style={{ color: t.textMuted, fontSize: 12, marginTop: 4, lineHeight: 1.6 }}>{evt.detail}</p>
+                </>
+              ) : (
+                <>
+                  <span style={{ color: "#b8860b", fontSize: 16, fontWeight: 800 }}>{evt.year}</span>
+                  <span style={{ color: t.text, fontSize: 14, fontWeight: 700, marginLeft: 8 }}>
+                    {evt.title}
+                  </span>
+                  <p style={{ color: t.textMuted, fontSize: 12, marginTop: 2 }}>{evt.detail}</p>
+                </>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <section style={{ background: t.bg }} className="py-6 lg:py-10">
       <div className="max-w-6xl mx-auto px-2 sm:px-6">
@@ -624,16 +688,17 @@ const LocationSection = ({ data }) => {
           </h2>
         </div>
 
-        <div className="mb-12">
-          <LocationMap />
-        </div>
+        <div className="lg:hidden">
+          <div className="mb-12">
+            <LocationMap />
+          </div>
 
-        <div className="mb-12">
-          <h3 style={{ color: t.text }} className="text-lg font-bold mb-6 text-center">
-            Infrastructure Timeline — Key Milestones
-          </h3>
+          <div className="mb-12">
+            <h3 style={{ color: t.text }} className="text-lg font-bold mb-6 text-center">
+              Infrastructure Timeline — Key Milestones
+            </h3>
 
-          <div className="hidden md:block relative">
+            <div className="hidden md:block relative">
             <div
               style={{
                 position: "absolute",
@@ -688,89 +753,117 @@ const LocationSection = ({ data }) => {
             </div>
           </div>
 
-          <div className="md:hidden relative pl-8">
-            <div
-              style={{
-                position: "absolute",
-                left: 14,
-                top: 0,
-                bottom: 0,
-                width: 3,
-                background: `linear-gradient(180deg, #b8860b, #d4a843)`,
-                borderRadius: 2,
-              }}
-            />
-            <div className="space-y-6">
-              {timelineEvents.map((evt, i) => (
-                <div key={i} className="relative flex items-start gap-4">
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: -22,
-                      top: 4,
-                      width: 16,
-                      height: 16,
-                      borderRadius: "50%",
-                      background: "linear-gradient(135deg, #b8860b, #d4a843)",
-                      border: `3px solid ${t.bg}`,
-                      boxShadow: "0 0 10px #b8860b40",
-                    }}
-                  />
-                  <div>
-                    <span style={{ color: "#b8860b", fontSize: 16, fontWeight: 800 }}>{evt.year}</span>
-                    <span style={{ color: t.text, fontSize: 14, fontWeight: 700, marginLeft: 8 }}>
-                      {evt.title}
-                    </span>
-                    <p style={{ color: t.textMuted, fontSize: 12, marginTop: 2 }}>{evt.detail}</p>
-                  </div>
+            {renderVerticalTimeline("md:hidden")}
+          </div>
+
+          <div className="space-y-4">
+            {accordionItems.map((item) => {
+              const isOpen = openSection === item.id;
+
+              return (
+                <div
+                  key={item.id}
+                  className="overflow-hidden rounded-[24px]"
+                  style={{
+                    background: lightCard,
+                    border: `1px solid ${isOpen ? "rgba(182,138,53,0.32)" : t.cardBorder}`,
+                    boxShadow: shadow,
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenSection((prev) => (prev === item.id ? "" : item.id))}
+                    className="flex w-full items-center gap-4 px-4 py-4 text-left sm:px-5"
+                  >
+                    <SectionBadgeIcon icon={item.icon} active={isOpen} t={t} />
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-[1.05rem] font-semibold leading-6 sm:text-[1.2rem]" style={{ color: t.text }}>
+                        {item.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-5" style={{ color: t.textMuted }}>
+                        {item.subtitle}
+                      </p>
+                    </div>
+                    <ChevronIcon open={isOpen} />
+                  </button>
+
+                  {isOpen && (
+                    <div
+                      className="border-t px-4 pb-4 sm:px-5 sm:pb-5"
+                      style={{ borderColor: t.cardBorder }}
+                    >
+                      {renderAccordionBody(item.id)}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
 
-        <div className="space-y-4">
-          {accordionItems.map((item) => {
-            const isOpen = openSection === item.id;
-
-            return (
-              <div
-                key={item.id}
-                className="overflow-hidden rounded-[24px]"
-                style={{
-                  background: lightCard,
-                  border: `1px solid ${isOpen ? "rgba(182,138,53,0.32)" : t.cardBorder}`,
-                  boxShadow: shadow,
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenSection((prev) => (prev === item.id ? "" : item.id))}
-                  className="flex w-full items-center gap-4 px-4 py-4 text-left sm:px-5"
-                >
-                  <SectionBadgeIcon icon={item.icon} active={isOpen} t={t} />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-[1.05rem] font-semibold leading-6 sm:text-[1.2rem]" style={{ color: t.text }}>
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-sm leading-5" style={{ color: t.textMuted }}>
-                      {item.subtitle}
-                    </p>
-                  </div>
-                  <ChevronIcon open={isOpen} />
-                </button>
-
-                {isOpen && (
-                  <div
-                    className="border-t px-4 pb-4 sm:px-5 sm:pb-5"
-                    style={{ borderColor: t.cardBorder }}
-                  >
-                    {renderAccordionBody(item.id)}
-                  </div>
-                )}
+        <div className="hidden lg:block">
+          <div className="grid grid-cols-[1.55fr_1fr] gap-4">
+            <div className="rounded-[24px] p-4" style={{ background: lightCard, border: `1px solid ${t.cardBorder}`, boxShadow: shadow }}>
+              <div className="mb-3 flex items-center gap-2">
+                <DetailIcon icon="pin" t={t} highlight />
+                <h3 className="text-lg font-semibold" style={{ color: t.text }}>Location Overview</h3>
               </div>
-            );
-          })}
+              <LocationMap />
+            </div>
+
+            <div className="rounded-[24px] p-6" style={{ background: lightCard, border: `1px solid ${t.cardBorder}`, boxShadow: shadow }}>
+              <div className="mb-5 flex items-center gap-2">
+                <DetailIcon icon="calendar" t={t} highlight />
+                <h3 className="text-lg font-semibold" style={{ color: t.text }}>
+                  Infrastructure Timeline Key Milestones
+                </h3>
+              </div>
+              {renderVerticalTimeline("", true)}
+            </div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 items-start gap-4">
+            {[accordionItems.filter((_, index) => index % 2 === 0), accordionItems.filter((_, index) => index % 2 === 1)].map((columnItems, columnIndex) => (
+              <div key={columnIndex} className="space-y-4">
+                {columnItems.map((item) => {
+                  const isOpen = openSection === item.id;
+                  return (
+                    <div
+                      key={item.id}
+                      className="overflow-hidden rounded-[24px]"
+                      style={{
+                        background: lightCard,
+                        border: `1px solid ${isOpen ? "rgba(182,138,53,0.32)" : t.cardBorder}`,
+                        boxShadow: shadow,
+                      }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setOpenSection((prev) => (prev === item.id ? "" : item.id))}
+                        className="flex w-full items-center gap-4 px-5 py-4 text-left"
+                      >
+                        <SectionBadgeIcon icon={item.icon} active={isOpen} t={t} />
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-[1.05rem] font-semibold leading-6" style={{ color: t.text }}>
+                            {item.title}
+                          </h3>
+                          <p className="mt-1 text-sm leading-5" style={{ color: t.textMuted }}>
+                            {item.subtitle}
+                          </p>
+                        </div>
+                        <ChevronIcon open={isOpen} />
+                      </button>
+                      {isOpen && (
+                        <div className="border-t px-5 pb-5" style={{ borderColor: t.cardBorder }}>
+                          {renderAccordionBody(item.id)}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

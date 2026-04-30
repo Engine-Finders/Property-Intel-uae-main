@@ -272,10 +272,20 @@ const MobileApproach = ({ data, t }) => (
 const VerdictSection = ({ data }) => {
   const { t } = useTheme();
   const [mobileTab, setMobileTab] = useState("verdict");
+  const desktopBorder = t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)";
+  const desktopCardStyle = {
+    background: t.isDark ? "rgba(255,255,255,0.035)" : "#fffdf9",
+    border: `1px solid ${desktopBorder}`,
+    boxShadow: t.isDark ? "0 14px 34px rgba(0,0,0,0.24)" : "0 12px 34px rgba(15,23,42,0.05)",
+  };
+  const desktopSoftCardStyle = {
+    background: t.isDark ? "rgba(255,255,255,0.025)" : "#fbf7f0",
+    border: `1px solid ${desktopBorder}`,
+  };
 
   return (
     <section className="px-1 py-5 sm:px-6 sm:py-14 lg:px-8" style={{ background: t.bg }}>
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-3xl lg:max-w-7xl">
         <div className="md:hidden">
           <div
             className="rounded-[28px] p-4"
@@ -353,104 +363,167 @@ const VerdictSection = ({ data }) => {
           </div>
         </div>
 
-        <div className="hidden space-y-10 md:block">
-          <div className="rounded-xl p-5 sm:p-7" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.isDark ? "#2a2d33" : "#e2e8f0"}` }}>
-            <h2 className="mb-5 text-center text-xl font-bold sm:text-2xl" style={{ color: t.text }}>{data.h2_worth}</h2>
-            <div className="mb-5 space-y-3">
-              {data.worth_points.map((point, i) => (
-                <div key={i} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 shrink-0 text-sm" style={{ color: point.icon === "check" ? GREEN : GOLD }}>
-                    {point.icon === "check" ? "✔" : "⚠"}
-                  </span>
-                  <span className="text-sm leading-relaxed sm:text-base" style={{ color: t.textSecondary }}>
-                    {point.text}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="rounded-lg px-4 py-2.5 text-center" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "rgba(182,138,53,0.08)", border: `1px solid ${GOLD}30` }}>
-              <span className="text-sm font-bold" style={{ color: GOLD }}>Best For: </span>
-              <span className="text-sm" style={{ color: t.textSecondary }}>
-                {data.best_for}
-              </span>
-            </div>
-          </div>
-
-          <div className="rounded-xl p-5 sm:p-7" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.isDark ? "#2a2d33" : "#e2e8f0"}` }}>
-            <h3 className="mb-5 text-center text-lg font-bold sm:text-xl" style={{ color: t.text }}>{data.h3_consider}</h3>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="text-sm">✅</span>
-                  <span className="text-sm font-bold" style={{ color: GREEN }}>Good Fit:</span>
-                </div>
-                <div className="space-y-2.5">
-                  {data.good_fit.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <span className="mt-0.5 shrink-0" style={{ color: GREEN }}>●</span>
-                      <span className="text-xs leading-relaxed sm:text-sm" style={{ color: t.textSecondary }}>
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="text-sm">❌</span>
-                  <span className="text-sm font-bold" style={{ color: RED }}>Not Ideal If:</span>
-                </div>
-                <div className="space-y-2.5">
-                  {data.not_ideal.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <span className="mt-0.5 shrink-0" style={{ color: RED }}>●</span>
-                      <span className="text-xs leading-relaxed sm:text-sm" style={{ color: t.textSecondary }}>
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="mb-6 text-center text-xl font-bold sm:text-2xl" style={{ color: t.text }}>{data.h2_process}</h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              {(data.steps || []).map((item, i) => {
-                const Icon = [BarChart3, Search, Handshake][i];
-                const clr = STEP_COLORS[i];
-                return (
-                  <div key={i} className="rounded-xl p-5 text-center" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.isDark ? "#2a2d33" : "#e2e8f0"}` }}>
-                    <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full" style={{ background: `${clr}15` }}>
-                      <Icon size={28} color={clr} strokeWidth={1.8} />
-                    </div>
-                    <p className="mb-1 text-sm font-bold" style={{ color: clr }}>{item.title}</p>
-                    <p className="text-xs leading-relaxed sm:text-sm" style={{ color: t.textMuted }}>{item.subtitle}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
+        <div className="hidden md:block">
           <div className="text-center">
-            <h3 className="mb-2 text-lg font-bold sm:text-xl" style={{ color: t.text }}>{data.h3_cta}</h3>
-            <p className="mx-auto mb-5 max-w-lg text-sm" style={{ color: t.textSecondary }}>{data.cta_subtitle}</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {data.cta_buttons.map((btn, i) => (
+            <p className="text-xs font-semibold uppercase tracking-[0.36em]" style={{ color: GOLD }}>
+              {data.mobile_badge || "Investment Verdict"}
+            </p>
+            <h2 className="mt-2 text-4xl font-semibold leading-tight lg:text-5xl" style={{ color: t.text }}>
+              {data.mobile_title || data.h2_worth}
+              <span className="italic" style={{ color: GOLD }}> {data.mobile_title_accent || "Worth It?"}</span>
+            </h2>
+            <p className="mt-3 text-sm" style={{ color: t.textSecondary }}>
+              We break it down for you honestly and transparently, so you can invest with confidence.
+            </p>
+          </div>
+
+          <div className="mt-8 rounded-3xl p-3" style={desktopCardStyle}>
+            <div className="grid gap-4 lg:grid-cols-[1.35fr_0.9fr_0.9fr_1.35fr]">
+              <div className="rounded-2xl p-6" style={desktopSoftCardStyle}>
+                <div className="flex items-start gap-4">
+                  <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)"} size="h-16 w-16">
+                    <TrendGlyph />
+                  </CircleIcon>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ color: GOLD }}>
+                      Verdict
+                    </p>
+                    <h3 className="mt-1 text-2xl font-semibold leading-tight" style={{ color: t.text }}>
+                      {data.mobile_verdict_summary?.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>
+                      {data.mobile_verdict_summary?.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 space-y-4">
+                  {data.worth_points.map((point, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <CircleIcon
+                        color={point.icon === "check" ? GREEN : "#CC9A2C"}
+                        bg={point.icon === "check" ? `${GREEN}15` : "rgba(204,154,44,0.14)"}
+                        size="h-8 w-8"
+                      >
+                        {point.icon === "check" ? <CheckGlyph color={GREEN} /> : <AlertGlyph color="#CC9A2C" />}
+                      </CircleIcon>
+                      <p className="text-sm leading-6" style={{ color: t.textSecondary }}>
+                        {point.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 rounded-2xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.1)" : "rgba(182,138,53,0.07)", border: `1px solid ${GOLD}22` }}>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                    Best For
+                  </p>
+                  <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>
+                    {data.best_for}
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl p-6" style={desktopSoftCardStyle}>
+                <CircleIcon color={GREEN} bg={`${GREEN}12`} size="mx-auto h-16 w-16">
+                  <CheckGlyph color={GREEN} />
+                </CircleIcon>
+                <h3 className="mt-5 text-center text-xl font-semibold" style={{ color: GREEN }}>
+                  {data.mobile_good_fit_heading || "Good Fit"}
+                </h3>
+                <span className="mx-auto mt-3 block h-px w-12" style={{ background: GREEN }} />
+                <div className="mt-6 space-y-5">
+                  {data.good_fit.map((item, i) => (
+                    <div key={i} className="flex items-start gap-2.5">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GREEN }} />
+                      <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl p-6" style={{ ...desktopSoftCardStyle, background: t.isDark ? "rgba(217,125,116,0.06)" : "rgba(217,125,116,0.045)" }}>
+                <CircleIcon color={RED} bg={`${RED}12`} size="mx-auto h-16 w-16">
+                  <XGlyph color={RED} />
+                </CircleIcon>
+                <h3 className="mt-5 text-center text-xl font-semibold" style={{ color: RED }}>
+                  {data.mobile_not_ideal_heading || "Not Ideal If"}
+                </h3>
+                <span className="mx-auto mt-3 block h-px w-12" style={{ background: RED }} />
+                <div className="mt-6 space-y-5">
+                  {data.not_ideal.map((item, i) => (
+                    <div key={i} className="flex items-start gap-2.5">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: RED }} />
+                      <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl p-6" style={desktopSoftCardStyle}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ color: GOLD }}>
+                  How We Help You
+                </p>
+                <h3 className="mt-2 text-2xl font-semibold leading-tight" style={{ color: t.text }}>
+                  Make the Right Call
+                </h3>
+                <span className="mt-4 block h-px w-16" style={{ background: GOLD }} />
+
+                <div className="mt-6 space-y-5">
+                  {(data.steps || []).map((item, i) => {
+                    const Icon = [BarChart3, Search, Handshake][i] || BarChart3;
+                    const { lead, rest } = splitProcessTitle(item.title);
+
+                    return (
+                      <div key={i} className="flex gap-4 border-t pt-5 first:border-t-0 first:pt-0" style={{ borderColor: desktopBorder }}>
+                        <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.08)"} size="h-12 w-12">
+                          <Icon size={20} color={GOLD} strokeWidth={1.8} />
+                        </CircleIcon>
+                        <div>
+                          <p className="text-[11px] font-semibold" style={{ color: GOLD }}>
+                            {String(i + 1).padStart(2, "0")}
+                          </p>
+                          <h4 className="mt-1 text-base font-semibold leading-5" style={{ color: t.text }}>
+                            {lead}{rest ? <> <span>{rest}</span></> : null}
+                          </h4>
+                          <p className="mt-2 text-xs leading-5" style={{ color: t.textSecondary }}>
+                            {item.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 grid items-center gap-5 rounded-2xl p-5 lg:grid-cols-[72px_1fr_360px]" style={desktopSoftCardStyle}>
+              <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.08)"} size="h-14 w-14">
+                <AimGlyph />
+              </CircleIcon>
+              <div>
+                <h3 className="text-xl font-semibold" style={{ color: t.text }}>
+                  {data.mobile_cta_badge || "Ready to go deeper?"}
+                </h3>
+                <p className="mt-1 text-sm" style={{ color: t.textSecondary }}>
+                  {data.mobile_cta_subtitle || data.cta_subtitle}
+                </p>
+              </div>
+              <div>
                 <button
-                  key={i}
                   type="button"
-                  className="rounded-lg px-5 py-2.5 text-xs font-bold transition-all hover:opacity-90"
-                  style={{
-                    background: i === 0 ? BLUE : i === 1 ? GREEN : "transparent",
-                    color: i < 2 ? "#fff" : BLUE,
-                    border: i === 2 ? `1.5px solid ${BLUE}` : "none",
-                  }}
+                  className="flex w-full items-center justify-center gap-3 rounded-xl px-6 py-4 text-sm font-semibold transition-opacity hover:opacity-90"
+                  style={{ background: GOLD, color: "#fff", boxShadow: "0 12px 24px rgba(182,138,53,0.25)" }}
                 >
-                  {btn}
+                  <span>{data.mobile_cta_button || data.cta_buttons?.[0] || "Speak to an expert"}</span>
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
+                    <ArrowGlyph color="#fff" />
+                  </span>
                 </button>
-              ))}
+                <p className="mt-2 text-center text-[11px]" style={{ color: t.textMuted }}>
+                  {data.mobile_cta_note || "Payment plan - ROI analysis - No pressure"}
+                </p>
+              </div>
             </div>
           </div>
         </div>

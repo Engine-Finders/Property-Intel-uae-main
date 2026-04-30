@@ -243,6 +243,63 @@ const TipCard = ({ tip, index, t }) => (
   </div>
 );
 
+const DesktopTipRow = ({ tip, index, t }) => {
+  const icons = ["doc", "bulb", "card", "scales", "spark"];
+
+  return (
+    <div
+      className="grid grid-cols-[76px_1fr_0.78fr] gap-6 rounded-2xl p-4"
+      style={{
+        background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff",
+        border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "#ECE6DD"}`,
+      }}
+    >
+      <div className="flex h-16 w-16 items-center justify-center rounded-lg" style={{ background: `linear-gradient(180deg, ${GOLD}, #9B7324)`, color: "#fff" }}>
+        <span className="font-serif text-2xl leading-none">{String(index).padStart(2, "0")}</span>
+      </div>
+
+      <div className="flex gap-5 py-3">
+        <IconBadge icon={<Icon name={icons[index - 1] || "bulb"} size={24} />} t={t} />
+        <div>
+          <h4 className="font-serif text-xl font-medium leading-tight" style={{ color: t.text }}>{tip.title}</h4>
+          <div className="mt-3 space-y-2">
+            {tip.paragraphs.map((p, i) => (
+              <p key={i} className="text-sm leading-6" style={{ color: t.textSecondary }}>{p}</p>
+            ))}
+          </div>
+          {tip.table && (
+            <div className="mt-4 max-w-xl overflow-hidden rounded-xl" style={{ border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "#DED8CE"}` }}>
+              <div className="grid grid-cols-[1.2fr_1fr] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.12em]" style={{ background: t.isDark ? "rgba(255,255,255,0.06)" : "#F4F1EC", color: t.textMuted }}>
+                <span>Cost Component</span>
+                <span className="text-right">Amount (AED)</span>
+              </div>
+              {tip.table.rows.map((row, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-[1.2fr_1fr] gap-3 border-t px-3 py-1.5 text-xs"
+                  style={{
+                    borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "#E7E1D7",
+                    background: i === tip.table.rows.length - 1 ? (t.isDark ? "rgba(182,138,53,0.12)" : "#FBF3E4") : "transparent",
+                  }}
+                >
+                  <span style={{ color: i === tip.table.rows.length - 1 ? t.text : t.textSecondary, fontWeight: i === tip.table.rows.length - 1 ? 700 : 400 }}>{row[0]}</span>
+                  <span className="text-right font-semibold" style={{ color: i === tip.table.rows.length - 1 ? GOLD : t.text }}>{row[1]}</span>
+                </div>
+              ))}
+              {tip.table.source && <p className="px-3 py-2 text-[10px] italic" style={{ color: t.textMuted }}>Source: {tip.table.source}</p>}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="space-y-3">
+        {tip.red_flag && <Callout label="Red Flag" tone="red" t={t}>{tip.red_flag}</Callout>}
+        {tip.action && <Callout label="Action" t={t}>{tip.action}</Callout>}
+      </div>
+    </div>
+  );
+};
+
 const ScamTable = ({ headers, rows, t }) => {
   const icons = ["card", "doc", "tag", "shield", "home"];
 
@@ -335,10 +392,114 @@ const ExpertTipsSection = ({ data }) => {
   const scam = data.scam_red_flags || {};
   const regulatory = data.regulatory || {};
   const toggle = (key) => setOpenPanels((prev) => ({ ...prev, [key]: !prev[key] }));
+  const desktopTitleLead = String(data.title || "").replace(/Off[\u2010\u2011-]Plan Buyers/i, "").trim();
 
   return (
     <section id="expert-tips" className="px-2 py-8 sm:px-6 lg:px-8 lg:py-12" style={{ background: t.bg }}>
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-7xl">
+        <div className="hidden lg:block">
+          <div
+            className="relative overflow-hidden rounded-t-[28px] border"
+            style={{
+              minHeight: 300,
+              background: t.isDark ? "#25282d" : "#fffdfa",
+              borderColor: t.cardBorder,
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/projects/villa-render-2.jpg')" }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: t.isDark
+                  ? "linear-gradient(90deg, #25282d 0%, #25282d 42%, rgba(37,40,45,0.9) 56%, rgba(37,40,45,0.48) 72%, rgba(37,40,45,0.1) 88%, transparent 100%)"
+                  : "linear-gradient(90deg, #fffdfa 0%, #fffdfa 42%, rgba(255,253,250,0.5) 64%, transparent 84%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-[560px] px-8 py-12">
+              <h2 className="font-serif text-[3.1rem] font-medium leading-[1.05]" style={{ color: t.text }}>
+                {desktopTitleLead || "Insider Tips for"}
+                <span className="block italic" style={{ color: GOLD }}>Off-Plan Buyers</span>
+              </h2>
+              {data.subtitle && <p className="mt-3 text-lg font-medium" style={{ color: t.text }}>{data.subtitle}</p>}
+              <span className="mt-5 block h-px w-20" style={{ background: GOLD }} />
+              <p className="mt-5 max-w-md text-sm leading-7" style={{ color: t.textSecondary }}>
+                Expert guidance to help you buy smart, stay protected, and invest with confidence in Dubai&apos;s off-plan market.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="rounded-b-[28px] border-x border-b p-5"
+            style={{
+              background: t.isDark ? t.cardBg : "#fffdfa",
+              borderColor: t.cardBorder,
+              boxShadow: t.isDark ? "none" : "0 16px 40px rgba(113,85,32,0.08)",
+            }}
+          >
+            <div className="mb-5 flex items-center justify-center gap-5">
+              <span className="h-px flex-1" style={{ background: t.cardBorder }} />
+              <h3 className="font-serif text-2xl font-medium" style={{ color: t.text }}>{data.tips_title}</h3>
+              <span className="h-px flex-1" style={{ background: t.cardBorder }} />
+            </div>
+
+            <div className="space-y-4">
+              {(data.tips || []).map((tip, i) => (
+                <DesktopTipRow key={i} tip={tip} index={i + 1} t={t} />
+              ))}
+            </div>
+
+            <div className="mt-5 grid grid-cols-2 gap-5">
+              <div
+                className="overflow-hidden rounded-2xl"
+                style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}
+              >
+                <div className="flex items-center justify-between border-b px-5 py-4" style={{ borderColor: t.cardBorder }}>
+                  <div className="flex items-center gap-3">
+                    <IconBadge icon={<Icon name="shield" />} tone="red" t={t} />
+                    <h3 className="font-serif text-xl font-medium" style={{ color: t.text }}>{scam.title}</h3>
+                  </div>
+                  <span style={{ color: GOLD }}><ChevronIcon open /></span>
+                </div>
+                <div className="p-4">
+                  <ScamTable headers={scam.headers || []} rows={scam.rows || []} t={t} />
+                </div>
+              </div>
+
+              <div
+                className="overflow-hidden rounded-2xl"
+                style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}
+              >
+                <div className="flex items-center justify-between border-b px-5 py-4" style={{ borderColor: t.cardBorder }}>
+                  <div className="flex items-center gap-3">
+                    <IconBadge icon={<Icon name="scales" />} t={t} />
+                    <h3 className="font-serif text-xl font-medium" style={{ color: t.text }}>{regulatory.title}</h3>
+                  </div>
+                  <span style={{ color: GOLD }}><ChevronIcon open /></span>
+                </div>
+                <div className="p-4">
+                  <p className="mb-4 text-sm leading-7" style={{ color: t.textSecondary }}>{regulatory.intro}</p>
+                  <div className="space-y-3">
+                    {(regulatory.items || []).map((item, i) => (
+                      <RegulatoryCard key={i} item={item} t={t} />
+                    ))}
+                  </div>
+                  {regulatory.action && <Callout label="Action" t={t}>{regulatory.action}</Callout>}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <FinalWord finalWord={data.final_word} t={t} />
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-3xl lg:hidden">
         <div className="mb-8 text-center">
           <h2 className="mx-auto max-w-xl font-serif text-[32px] font-medium leading-tight sm:text-4xl" style={{ color: t.text }}>
             {data.title}
@@ -410,6 +571,7 @@ const ExpertTipsSection = ({ data }) => {
           )}
 
           <FinalWord finalWord={data.final_word} t={t} />
+        </div>
         </div>
       </div>
     </section>

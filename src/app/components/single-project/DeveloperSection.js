@@ -248,14 +248,14 @@ const DeveloperSection = ({ data }) => {
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl p-4 sm:p-5"
+                  className="flex items-center gap-3 rounded-2xl p-4 sm:gap-4 sm:p-5"
                   style={{
                     background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                     border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                   }}
                 >
                   <div
-                    className="mb-4 flex h-9 w-9 items-center justify-center rounded-full"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full lg:h-11 lg:w-11"
                     style={{
                       background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)",
                       color: GOLD,
@@ -263,12 +263,14 @@ const DeveloperSection = ({ data }) => {
                   >
                     <OverviewStatIcon index={i} />
                   </div>
-                  <p className="text-2xl font-semibold sm:text-3xl" style={{ color: t.text }}>
-                    {stat.value}
-                  </p>
-                  <p className="mt-2 text-sm leading-5" style={{ color: t.textSecondary }}>
-                    {stat.label}
-                  </p>
+                  <div className="min-w-0">
+                    <p className="text-xl font-semibold sm:text-3xl lg:text-2xl" style={{ color: t.text }}>
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-xs leading-5 sm:text-sm" style={{ color: t.textSecondary }}>
+                      {stat.label}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -336,7 +338,7 @@ const DeveloperSection = ({ data }) => {
           </div>
         </div>
 
-        <div className="mb-10 flex gap-2 overflow-x-auto pb-2">
+        <div className="mb-10 flex gap-2 overflow-x-auto pb-2 lg:justify-center lg:overflow-visible">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -344,7 +346,7 @@ const DeveloperSection = ({ data }) => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className="min-w-[120px] rounded-2xl px-4 py-3 text-left transition-all"
+                className="min-w-[120px] rounded-2xl px-4 py-3 text-left transition-all lg:min-w-[190px] lg:flex lg:items-center lg:gap-3"
                 style={{
                   background: isActive ? (t.isDark ? "rgba(255,255,255,0.04)" : "#fffdf9") : t.cardBg,
                   color: isActive ? GOLD : t.textMuted,
@@ -352,13 +354,19 @@ const DeveloperSection = ({ data }) => {
                   boxShadow: isActive ? (t.isDark ? "0 12px 24px rgba(0,0,0,0.18)" : "0 10px 24px rgba(15,23,42,0.04)") : "none",
                 }}
               >
-                <div className="mb-2 flex items-center gap-2">
+                <div className="mb-2 flex items-center gap-2 lg:mb-0 lg:h-8 lg:w-8 lg:shrink-0 lg:justify-center lg:rounded-full lg:border" style={isActive ? { borderColor: "rgba(182,138,53,0.22)" } : { borderColor: t.cardBorder }}>
                   <TabGlyph id={tab.id} />
-                  <span className="text-sm font-semibold">{tab.label}</span>
+                  <span className="text-sm font-semibold lg:hidden">{tab.label}</span>
                 </div>
-                <p className="text-[11px] leading-4" style={{ color: isActive ? t.text : t.textMuted }}>
+                <p className="text-[11px] leading-4 lg:hidden" style={{ color: isActive ? t.text : t.textMuted }}>
                   {tab.sublabel}
                 </p>
+                <div className="hidden lg:block">
+                  <span className="text-sm font-semibold">{tab.label}</span>
+                  <p className="text-[11px] leading-4" style={{ color: isActive ? t.text : t.textMuted }}>
+                    {tab.sublabel}
+                  </p>
+                </div>
               </button>
             );
           })}
@@ -539,54 +547,56 @@ const DeveloperSection = ({ data }) => {
           <div className="space-y-4">
             <SectionHeader iconId="buyer_guide" title="Warranty Coverage" subtitle="RERA compliance & buyer checks" t={t} />
 
-            <div className="rounded-[28px] p-5 sm:p-6" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9", border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }}>
-              <h4 className="text-lg font-semibold mb-3" style={{ color: t.text }}>RERA Compliance</h4>
-              <p className="text-sm leading-7 mb-4" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.rera_details }} />
-              <ul className="space-y-2">
-                {data.rera_indicators.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
-                    <span className="mt-0.5" style={{ color: GREEN }}>✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div className="space-y-4 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:gap-4 lg:space-y-0">
+              <div className="rounded-[28px] p-5 sm:p-6" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9", border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }}>
+                <h4 className="text-lg font-semibold mb-3" style={{ color: t.text }}>RERA Compliance</h4>
+                <p className="text-sm leading-7 mb-4" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.rera_details }} />
+                <ul className="space-y-2">
+                  {data.rera_indicators.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
+                      <span className="mt-0.5" style={{ color: GREEN }}>✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <div className="space-y-3">
-              {verificationSteps.map((group, i) => {
-                const key = `verify_${i}`;
-                return (
-                  <StyledAccordion
-                    key={i}
-                    title={group.phase}
-                    icon={
-                      <span
-                        className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold"
-                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
-                      >
-                        {i + 1}
-                      </span>
-                    }
-                    isOpen={!!openAccordions[key]}
-                    onToggle={() => toggleAccordion(key)}
-                    t={t}
-                  >
-                    <ul className="space-y-2">
-                      {group.steps.map((step, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
-                          <span style={{ color: GOLD }}>→</span>
-                          <span>{step}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </StyledAccordion>
-                );
-              })}
+              <div className="space-y-3">
+                {verificationSteps.map((group, i) => {
+                  const key = `verify_${i}`;
+                  return (
+                    <StyledAccordion
+                      key={i}
+                      title={group.phase}
+                      icon={
+                        <span
+                          className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold"
+                          style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                        >
+                          {i + 1}
+                        </span>
+                      }
+                      isOpen={!!openAccordions[key]}
+                      onToggle={() => toggleAccordion(key)}
+                      t={t}
+                    >
+                      <ul className="space-y-2">
+                        {group.steps.map((step, j) => (
+                          <li key={j} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
+                            <span style={{ color: GOLD }}>→</span>
+                            <span>{step}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </StyledAccordion>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}
 
-        <div className="mt-8 space-y-4">
+        <div className="mt-8 space-y-4 lg:hidden">
           <StyledAccordion
             title="Transparency Statement"
             icon={<TabGlyph id="buyer_guide" />}
@@ -631,6 +641,68 @@ const DeveloperSection = ({ data }) => {
                 <a
                   href={data.report_cta.href || "#"}
                   className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+                  style={{ background: t.isDark ? "#1f1a17" : "#1f1a17", color: "#fff" }}
+                >
+                  {data.report_cta.button_text}
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-8 hidden grid-cols-[1.35fr_0.85fr] gap-4 lg:grid">
+          <div
+            className="rounded-[28px] p-6"
+            style={{
+              background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
+              border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
+            }}
+          >
+            <div className="mb-4 flex items-center gap-3">
+              <div
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+              >
+                <TabGlyph id="buyer_guide" />
+              </div>
+              <h3 className="text-xl font-semibold" style={{ color: t.text }}>
+                Transparency Statement
+              </h3>
+            </div>
+            <p className="text-sm leading-8" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
+          </div>
+
+          {data.report_cta && (
+            <div
+              className="rounded-[28px] p-6"
+              style={{
+                background: t.isDark ? "linear-gradient(135deg, rgba(182,138,53,0.12), rgba(255,255,255,0.04))" : "linear-gradient(135deg, #F6E8CC, #FFF9F0)",
+                border: `1px solid ${t.isDark ? "rgba(217,176,95,0.16)" : "rgba(182,138,53,0.16)"}`,
+              }}
+            >
+              <div className="flex h-full flex-col justify-between gap-6">
+                <div className="flex items-start gap-4">
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: GOLD, color: "#fff" }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Z" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold leading-tight" style={{ color: t.text }}>
+                      {data.report_cta.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-7" style={{ color: t.textSecondary }}>
+                      {data.report_cta.subtitle}
+                    </p>
+                  </div>
+                </div>
+                <a
+                  href={data.report_cta.href || "#"}
+                  className="inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
                   style={{ background: t.isDark ? "#1f1a17" : "#1f1a17", color: "#fff" }}
                 >
                   {data.report_cta.button_text}

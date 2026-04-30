@@ -374,7 +374,7 @@ const ResearchNotesAccordion = ({ notes, t }) => {
       </button>
 
       <div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-[1400px] opacity-100" : "max-h-0 opacity-0"}`}>
-        <div className="space-y-4 border-t p-4" style={{ borderColor: t.cardBorder }}>
+        <div className="grid gap-4 border-t p-4 lg:grid-cols-2" style={{ borderColor: t.cardBorder }}>
           <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
             <div className="mb-3 flex items-center gap-2">
               <RiskIcon name="document" size={18} />
@@ -421,7 +421,264 @@ const RisksSection = ({ data }) => {
 
   return (
     <section id="risks" style={{ background: t.bg }} className="py-6 lg:py-10 px-2 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
+        <div className="hidden lg:block">
+          <div
+            className="relative mb-0 overflow-hidden rounded-t-[28px] border"
+            style={{
+              borderColor: t.cardBorder,
+              background: t.isDark ? "#25282d" : "#fffdfa",
+              minHeight: 260,
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/projects/villa-render-2.jpg')" }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: t.isDark
+                  ? "linear-gradient(90deg, #25282d 0%, #25282d 42%, rgba(37,40,45,0.9) 56%, rgba(37,40,45,0.48) 72%, rgba(37,40,45,0.1) 88%, transparent 100%)"
+                  : "linear-gradient(90deg, #fffdfa 0%, #fffdfa 42%, rgba(255,253,250,0.5) 64%, transparent 84%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-[590px] px-8 py-12">
+              <h2 className="text-[3rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
+                What Buyers Often Overlook —
+                <span className="block italic" style={{ color: "#B68A35" }}>
+                  Honest Risk Assessment
+                </span>
+              </h2>
+              <span className="mt-5 block h-px w-20" style={{ background: "#B68A35" }} />
+            </div>
+          </div>
+
+          <div
+            className="grid grid-cols-[240px_1fr] gap-5 rounded-b-[28px] border-x border-b p-5"
+            style={{ borderColor: t.cardBorder, background: t.isDark ? t.cardBg : "#fffdfa" }}
+          >
+            <div className="overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+              {tabs.map((tab) => {
+                const active = activeTab === tab.key;
+                const parts = tab.label.split("—").map((part) => part.trim());
+
+                return (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    onClick={() => setActiveTab(tab.key)}
+                    className="relative flex w-full items-center gap-3 border-b px-4 py-4 text-left last:border-b-0"
+                    style={{
+                      borderColor: t.cardBorder,
+                      background: active ? "#B68A35" : "transparent",
+                      color: active ? "#fff" : t.text,
+                    }}
+                  >
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                      style={{ background: active ? "rgba(255,255,255,0.16)" : "rgba(182,138,53,0.12)", color: active ? "#fff" : "#B68A35" }}
+                    >
+                      <RiskIcon name={tab.icon} size={20} color="currentColor" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-semibold leading-5">{parts[0]}</span>
+                      {parts[1] && <span className="mt-0.5 block text-xs leading-4 opacity-90">{parts[1]}</span>}
+                    </span>
+                    <span>›</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="space-y-4">
+              <div
+                className="rounded-2xl p-2"
+                style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}
+              >
+                {activeTab === "handover" && (
+                  <div>
+                    <div className="mb-5 flex items-start gap-4">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                        <RiskIcon name="clock" size={24} />
+                      </span>
+                      <div>
+                        <h3 className="text-2xl font-semibold" style={{ color: t.text }}>{delay.title}</h3>
+                        <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>{delay.intro}</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-[1.1fr_0.9fr] gap-3">
+                      <DesktopTable headers={delay.table?.headers || []} rows={delay.table?.rows || []} t={t} highlightCol={3} />
+                      <div className="space-y-4">
+                        <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                          <p className="text-sm font-semibold" style={{ color: "#B68A35" }}>Application to Serro:</p>
+                          <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>{delay.application_to_serro}</p>
+                        </div>
+                        <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                          <p className="text-sm font-semibold" style={{ color: "#B68A35" }}>{delay.timeline_risk?.title}</p>
+                          <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>{delay.timeline_risk?.text}</p>
+                          <BulletList items={delay.timeline_risk?.factors || []} t={t} icon="•" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "oversupply" && (
+                  <div>
+                    <div className="mb-6 grid grid-cols-[1fr_280px] gap-6">
+                      <div className="flex items-start gap-4">
+                        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                          <RiskIcon name="chart" size={24} />
+                        </span>
+                        <div>
+                          <h3 className="text-2xl font-semibold" style={{ color: t.text }}>{oversupply.title}</h3>
+                          <p className="mt-3 text-sm leading-7" style={{ color: t.textSecondary }}>{oversupply.intro}</p>
+                        </div>
+                      </div>
+                      <div className="rounded-2xl p-5" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdfa" }}>
+                        <p className="text-4xl font-semibold" style={{ color: "#B68A35" }}>40,000+</p>
+                        <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>homes could be handed over in 2026, following a similarly strong delivery year in 2025.</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                        <p className="mb-3 text-sm font-semibold" style={{ color: "#B68A35" }}>Where Supply Concentrates:</p>
+                        {["JVC", "MBR City", "Dubai South", "Dubailand Communities", "Business Bay Extensions"].map((area) => (
+                          <p key={area} className="mb-2 rounded px-3 py-2 text-sm last:mb-0" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#faf7f0", color: t.text }}>{area}</p>
+                        ))}
+                      </div>
+                      <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                        <p className="mb-3 text-sm font-semibold" style={{ color: "#B68A35" }}>Villa Market Differentiation:</p>
+                        <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{oversupply.villa_differentiation}</p>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                          <p className="mb-3 text-sm font-semibold" style={{ color: "#B68A35" }}>Risk Assessment for Serro:</p>
+                          <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{oversupply.serro_assessment}</p>
+                        </div>
+                        <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}>
+                          <p className="text-sm" style={{ color: t.textSecondary }}><strong style={{ color: "#B68A35" }}>Potential Impact Window</strong><br />2029 - 2031</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "costs" && (
+                  <div>
+                    <div className="mb-7 flex items-start gap-4">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                        <RiskIcon name="document" size={24} />
+                      </span>
+                      <div>
+                        <h3 className="text-2xl font-semibold" style={{ color: t.text }}>{hidden.title}</h3>
+                        <p className="mt-3 text-sm leading-7" style={{ color: t.textSecondary }}>{hidden.intro}</p>
+                      </div>
+                    </div>
+                    <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em]" style={{ color: "#B68A35" }}>Post-Handover Cost Considerations</p>
+                    <div className="grid grid-cols-4 gap-5">
+                      {(hidden.post_handover_costs || []).map((cost, i) => (
+                        <div key={cost.item} className="relative rounded-2xl p-6 text-center" style={{ border: `1px solid ${t.cardBorder}` }}>
+                          <span className="absolute left-4 top-4 flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold text-white" style={{ background: "#B68A35" }}>{i + 1}</span>
+                          <RiskIcon name={i === 0 ? "chart" : i === 1 ? "document" : i === 2 ? "clock" : "shield"} size={34} />
+                          <p className="mt-5 text-base font-semibold" style={{ color: t.text }}>{cost.item}</p>
+                          <p className="mt-4 text-sm leading-7" style={{ color: t.textSecondary }}>{cost.detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "quality" && (
+                  <div>
+                    <div className="mb-5 flex items-start gap-4">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                        <RiskIcon name="crane" size={24} />
+                      </span>
+                      <div>
+                        <h3 className="text-2xl font-semibold" style={{ color: t.text }}>{quality.title}</h3>
+                        <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>{quality.intro}</p>
+                      </div>
+                    </div>
+                    <DesktopTable headers={quality.table?.headers || []} rows={quality.table?.rows || []} t={t} />
+                    <div className="mt-5 rounded-xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}>
+                      <p className="text-sm leading-7" style={{ color: t.textSecondary }}><strong style={{ color: "#B68A35" }}>Mitigation Strategy:</strong> {quality.mitigation}</p>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "location" && (
+                  <div>
+                    <div className="mb-6 flex items-start gap-4">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                        <RiskIcon name="pin" size={24} />
+                      </span>
+                      <h3 className="text-2xl font-semibold" style={{ color: t.text }}>{location.title}</h3>
+                    </div>
+                    <div className="grid grid-cols-3 gap-5">
+                      <div>
+                        <p className="mb-4 text-sm font-semibold" style={{ color: "#B68A35" }}>Current Limitations:</p>
+                        {(location.current_limitations || []).map((lim) => (
+                          <div key={lim.issue} className="mb-4 flex gap-3">
+                            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                              <RiskIcon name={lim.issue.toLowerCase().includes("metro") ? "train" : lim.issue.toLowerCase().includes("retail") ? "retail" : "school"} size={18} />
+                            </span>
+                            <div>
+                              <p className="text-sm font-semibold" style={{ color: t.text }}>{lim.issue}</p>
+                              <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{lim.detail}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div>
+                        <p className="mb-4 text-sm font-semibold" style={{ color: "#B68A35" }}>Construction Phase Disruption:</p>
+                        <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{location.construction_disruption?.text}</p>
+                        <div className="mt-4 space-y-3">
+                          {(location.construction_disruption?.items || []).map((item) => (
+                            <p key={item} className="rounded-xl px-4 py-3 text-sm" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#faf7f0", color: t.textSecondary }}>{item}</p>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="rounded-2xl p-6" style={{ border: `1px solid ${t.cardBorder}` }}>
+                        <p className="mb-5 text-sm font-semibold" style={{ color: "#B68A35" }}>Flood Risk Assessment:</p>
+                        <div className="mb-6 flex justify-center">
+                          <span className="flex h-24 w-24 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                            <RiskIcon name="shield" size={42} />
+                          </span>
+                        </div>
+                        <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{location.flood_risk}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "summary" && (
+                  <div>
+                    <div className="mb-5 flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                          <RiskIcon name="shield" size={24} />
+                        </span>
+                        <h3 className="text-2xl font-semibold" style={{ color: t.text }}>{summary.title}</h3>
+                      </div>
+                    </div>
+                    <DesktopTable headers={summary.headers || []} rows={summary.rows || []} t={t} highlightCol={1} />
+                    <div className="mt-5 rounded-xl p-5" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}>
+                      <p className="text-sm leading-7" style={{ color: t.textSecondary }}><strong style={{ color: "#B68A35" }}>Final Perspective:</strong> {data.final_perspective}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <ResearchNotesAccordion notes={data.research_notes} t={t} />
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:hidden">
         {/* Header */}
         <div className="mb-10">
           <span
@@ -640,6 +897,7 @@ const RisksSection = ({ data }) => {
             )}
           </div>
         )}
+        </div>
       </div>
     </section>
   );

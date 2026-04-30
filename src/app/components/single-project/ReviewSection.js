@@ -374,6 +374,42 @@ const FutureCard = ({ item, t }) => {
   );
 };
 
+const DesktopTabButton = ({ tab, active, onClick, t }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="flex min-h-[76px] items-center gap-4 border-r px-5 py-4 text-left transition-all last:border-r-0"
+    style={{
+      background: active ? GOLD : t.isDark ? "rgba(255,255,255,0.025)" : "#fff",
+      borderColor: t.cardBorder,
+      color: active ? "#fff" : t.text,
+    }}
+  >
+    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ background: active ? "rgba(255,255,255,0.16)" : t.isDark ? "rgba(182,138,53,0.12)" : "#FBF3E4", color: active ? "#fff" : GOLD }}>
+      <Icon name={tab.icon} size={20} />
+    </span>
+    <span>
+      <span className="block font-serif text-base font-medium leading-tight">{tab.label}</span>
+      <span className="mt-1 block text-xs" style={{ color: active ? "rgba(255,255,255,0.82)" : t.textMuted }}>
+        {tab.caption}
+      </span>
+    </span>
+  </button>
+);
+
+const DesktopTransparencyNote = ({ data, t }) => (
+  data.transparency_note ? (
+    <div className="mt-5 flex items-center gap-4 rounded-2xl px-6 py-4" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0", border: `1px solid ${t.cardBorder}` }}>
+      <IconBadge t={t} className="h-11 w-11">
+        <Icon name="spark" size={20} />
+      </IconBadge>
+      <p className="text-sm leading-6" style={{ color: t.textSecondary }}>
+        <strong style={{ color: t.text }}>{data.transparency_title}:</strong> {data.transparency_note}
+      </p>
+    </div>
+  ) : null
+);
+
 /* ── Main Component ── */
 const ReviewsSection = ({ data }) => {
   const { t } = useTheme();
@@ -384,6 +420,7 @@ const ReviewsSection = ({ data }) => {
     patterns: true,
     future: true,
   });
+  const [activeDesktopTab, setActiveDesktopTab] = useState("methodology");
 
   const sentiment = data.sentiment || {};
   const quotes = data.quotes || {};
@@ -395,6 +432,13 @@ const ReviewsSection = ({ data }) => {
   const reviewStats = data.stats || [];
   const methodologyCommunities = data.methodology_communities || [];
   const quoteGroups = data.quote_groups || [];
+  const desktopTabs = [
+    { key: "methodology", label: data.methodology_title || "Methodology", caption: data.methodology_eyebrow || "How we aggregated", icon: "clipboard" },
+    { key: "sentiment", label: sentiment.title || "Sentiment Breakdown", caption: "What residents feel", icon: "chart" },
+    { key: "quotes", label: quotes.title || "Representative Quotes", caption: "Voices from residents", icon: "quote" },
+    { key: "patterns", label: pattern.title || "Pattern Analysis", caption: "Key insights for Serro buyers", icon: "search" },
+    { key: "future", label: "Future Serro Reviews", caption: "What we will track", icon: "megaphone" },
+  ];
 
   const toggleAccordion = (key) => {
     setOpenAccordions((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -402,7 +446,217 @@ const ReviewsSection = ({ data }) => {
 
   return (
     <section id="reviews" className="px-2 py-8 sm:px-6 lg:px-8 lg:py-12" style={{ background: t.bgAlt }}>
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-7xl">
+        <div className="hidden lg:block">
+          <div
+            className="relative overflow-hidden rounded-t-[28px] border"
+            style={{
+              minHeight: 300,
+              background: t.isDark ? "#25282d" : "#fffdfa",
+              borderColor: t.cardBorder,
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/projects/villa-render-2.jpg')" }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: t.isDark
+                  ? "linear-gradient(90deg, #25282d 0%, #25282d 42%, rgba(37,40,45,0.9) 56%, rgba(37,40,45,0.48) 72%, rgba(37,40,45,0.1) 88%, transparent 100%)"
+                  : "linear-gradient(90deg, #fffdfa 0%, #fffdfa 42%, rgba(255,253,250,0.5) 64%, transparent 84%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-[620px] px-8 py-12">
+              <h2 className="font-serif text-[3rem] font-medium leading-[1.08]" style={{ color: t.text }}>
+                {headerHighlight && titleParts.length > 1 ? (
+                  <>
+                    {titleParts[0]}
+                    <span className="italic" style={{ color: GOLD }}>
+                      {headerHighlight}
+                    </span>
+                    {titleParts.slice(1).join(headerHighlight)}
+                  </>
+                ) : (
+                  headerTitle
+                )}
+              </h2>
+              {data.intro && (
+                <p className="mt-5 max-w-md text-sm leading-7" style={{ color: t.textSecondary }}>
+                  {data.intro}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div
+            className="rounded-b-[28px] border-x border-b p-5"
+            style={{
+              background: t.isDark ? t.cardBg : "#fffdfa",
+              borderColor: t.cardBorder,
+              boxShadow: t.isDark ? "none" : "0 16px 40px rgba(113,85,32,0.08)",
+            }}
+          >
+            {reviewStats.length > 0 && (
+              <div className="-mt-12 mb-6 grid grid-cols-3 gap-5 px-4">
+                {reviewStats.map((stat, index) => (
+                  <div
+                    key={`${stat.label}-${index}`}
+                    className="relative z-10 flex items-center justify-center gap-6 rounded-2xl px-8 py-5"
+                    style={{ background: t.isDark ? "#2b2e34" : "#fff", border: `1px solid ${t.cardBorder}`, boxShadow: t.isDark ? "0 14px 30px rgba(0,0,0,0.22)" : "0 14px 32px rgba(15,23,42,0.08)" }}
+                  >
+                    <IconBadge t={t} className="h-12 w-12">
+                      <Icon name={iconMap[stat.icon] || stat.icon || "review"} size={24} />
+                    </IconBadge>
+                    <div>
+                      <p className="font-serif text-4xl leading-none" style={{ color: t.text }}>{stat.value}</p>
+                      <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.16em]" style={{ color: GOLD }}>{stat.label}</p>
+                      {stat.detail && <p className="mt-1 text-xs" style={{ color: t.textMuted }}>{stat.detail}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="grid grid-cols-5 overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+              {desktopTabs.map((tab) => (
+                <DesktopTabButton
+                  key={tab.key}
+                  tab={tab}
+                  active={activeDesktopTab === tab.key}
+                  onClick={() => setActiveDesktopTab(tab.key)}
+                  t={t}
+                />
+              ))}
+            </div>
+
+            <div className="mt-5 rounded-2xl p-6" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+              {activeDesktopTab === "methodology" && (
+                <div className="grid grid-cols-3 gap-6">
+                  <div className="border-r pr-6" style={{ borderColor: t.cardBorder }}>
+                    <h3 className="font-serif text-xl font-medium" style={{ color: t.text }}>How We Aggregated</h3>
+                    <span className="mt-4 inline-flex rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em]" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#FBF3E4", color: GOLD }}>
+                      {data.methodology_eyebrow}
+                    </span>
+                    <p className="mt-5 text-sm leading-7" style={{ color: t.textSecondary }}>{data.methodology}</p>
+                  </div>
+                  <div className="border-r px-6" style={{ borderColor: t.cardBorder }}>
+                    <h3 className="font-serif text-xl font-medium" style={{ color: t.text }}>Comparable Communities Analyzed</h3>
+                    <div className="mt-5 divide-y" style={{ borderColor: t.cardBorder }}>
+                      {methodologyCommunities.map((community, index) => (
+                        <div key={community.title || community.name} className="flex gap-4 py-4 first:pt-0 last:pb-0">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#F8EFD9", color: GOLD }}>
+                            {index + 1}
+                          </span>
+                          <div>
+                            <p className="font-serif text-base font-medium" style={{ color: t.text }}>{community.title || community.name}</p>
+                            <p className="mt-1 text-xs" style={{ color: t.textMuted }}>{community.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="pl-2">
+                    <h3 className="font-serif text-xl font-medium" style={{ color: t.text }}>Sources Included</h3>
+                    <div className="mt-5 space-y-3">
+                      {["Google Reviews", "Trustpilot", "Dubai Property Forums"].map((source, index) => (
+                        <div key={source} className="flex items-center gap-4 rounded-xl px-4 py-3" style={{ background: t.isDark ? "rgba(255,255,255,0.035)" : "#FFFEFC", border: `1px solid ${t.cardBorder}` }}>
+                          <span className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#FBF3E4", color: index === 0 ? "#4285F4" : index === 1 ? "#00B67A" : GOLD }}>
+                            <Icon name={index === 2 ? "review" : "spark"} size={17} />
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold" style={{ color: t.text }}>{source}</p>
+                            <p className="text-xs" style={{ color: t.textMuted }}>Q1 2025 - Q1 2026</p>
+                          </div>
+                          <span style={{ color: t.textMuted }}>↗</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeDesktopTab === "sentiment" && (
+                <div>
+                  <span className="inline-flex rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em]" style={{ background: "rgba(34,197,94,0.1)", color: "#22C55E" }}>
+                    {sentiment.eyebrow}
+                  </span>
+                  {sentiment.intro && <p className="mt-4 text-sm leading-6" style={{ color: t.textSecondary }}>{sentiment.intro}</p>}
+                  <div className="mt-6 grid grid-cols-3 gap-5">
+                    {(sentiment.items || []).map((item, i) => (
+                      <SentimentBar key={i} item={item} t={t} />
+                    ))}
+                  </div>
+                  <div className="mt-5 border-l-2 px-4 py-3" style={{ borderColor: GOLD, background: t.isDark ? "rgba(182,138,53,0.08)" : "#FBF8F1" }}>
+                    <p className="text-sm leading-6" style={{ color: t.textMuted }}>
+                      <strong style={{ color: GOLD }}>{sentiment.source_label}:</strong> {sentiment.source}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {activeDesktopTab === "quotes" && (
+                <div>
+                  {quotes.intro && <p className="mb-6 text-sm leading-6" style={{ color: t.textSecondary }}>{quotes.intro}</p>}
+                  <div className="grid grid-cols-3 gap-5">
+                    {quoteGroups.map((group) => (
+                      <QuoteGroup key={group.key} label={group.label} quotes={quotes[group.key]} color={group.color} t={t} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeDesktopTab === "patterns" && (
+                <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+                  <div className="grid grid-cols-[0.8fr_1.6fr] border-b px-6 py-4 text-xs font-bold uppercase tracking-[0.16em]" style={{ borderColor: t.cardBorder, color: GOLD }}>
+                    {(pattern.headers || ["Theme", "Implication for Serro"]).map((header) => <span key={header}>{header}</span>)}
+                  </div>
+                  {(pattern.rows || []).map((row, i) => (
+                    <div key={i} className="grid grid-cols-[0.8fr_1.6fr] items-center border-b last:border-b-0" style={{ borderColor: t.cardBorder }}>
+                      <div className="flex items-center gap-4 border-r px-6 py-5" style={{ borderColor: t.cardBorder }}>
+                        <IconBadge t={t} className="h-10 w-10">
+                          <Icon name={["clock", "wallet", "sun", "home"][i] || "search"} size={18} />
+                        </IconBadge>
+                        <p className="font-serif text-lg font-medium leading-6" style={{ color: t.text }}>{row[0]}</p>
+                      </div>
+                      <p className="px-6 py-5 text-sm leading-7" style={{ color: t.textSecondary }}>{row[1]}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {activeDesktopTab === "future" && (
+                <div>
+                  <h3 className="font-serif text-2xl font-medium" style={{ color: t.text }}>{future.title}</h3>
+                  {future.intro && <p className="mt-3 text-sm leading-6" style={{ color: t.textSecondary }}>{future.intro}</p>}
+                  <div className="mt-6 overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+                    {(future.items || []).map((item, i) => {
+                      const [title, description] = String(item).split(" — ");
+                      return (
+                        <div key={item} className="flex items-center gap-5 border-b px-6 py-5 last:border-b-0" style={{ borderColor: t.cardBorder }}>
+                          <IconBadge t={t} className="h-12 w-12">
+                            <Icon name={["spark", "wallet", "home"][i] || "spark"} size={20} />
+                          </IconBadge>
+                          <div>
+                            <p className="font-serif text-lg font-medium" style={{ color: t.text }}>{title}</p>
+                            {description && <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{description}</p>}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <DesktopTransparencyNote data={data} t={t} />
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-3xl lg:hidden">
         {/* Header */}
         <div className="mb-8 text-center">
           <h2 className="mx-auto max-w-xl font-serif text-[28px] font-medium leading-tight sm:text-4xl" style={{ color: t.text }}>
@@ -569,6 +823,7 @@ const ReviewsSection = ({ data }) => {
               </div>
             )}
           </AccordionCard>
+        </div>
         </div>
       </div>
     </section>

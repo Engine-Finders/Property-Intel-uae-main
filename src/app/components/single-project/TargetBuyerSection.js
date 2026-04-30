@@ -265,7 +265,7 @@ const TargetBuyerSection = ({ data }) => {
   return (
     <section style={{ background: t.bg }} className="py-8 lg:py-12">
       <div className="mx-auto max-w-6xl px-2 sm:px-6">
-        <div className="mb-8 max-w-3xl">
+        <div className="mb-8 max-w-3xl lg:mx-auto lg:text-center">
           <p
             className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em]"
             style={{ color: ACCENT }}
@@ -273,20 +273,20 @@ const TargetBuyerSection = ({ data }) => {
             {data.section_label}
           </p>
           <h2
-            className="max-w-2xl text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] sm:text-[2.45rem]"
+            className="max-w-2xl text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] sm:text-[2.45rem] lg:mx-auto lg:max-w-4xl lg:text-[3rem]"
             style={{ color: t.text }}
           >
             {data.heading}
           </h2>
           <p
-            className="mt-4 max-w-xl text-sm leading-7 sm:text-[15px]"
+            className="mt-4 max-w-xl text-sm leading-7 sm:text-[15px] lg:mx-auto"
             style={{ color: t.textSecondary }}
           >
             {data.intro}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
           {profiles.map((profile) => {
             const isActive = profile.id === currentProfile.id;
 
@@ -298,7 +298,7 @@ const TargetBuyerSection = ({ data }) => {
                   setActiveProfile(profile.id);
                   setIsPanelOpen(true);
                 }}
-                className="rounded-2xl p-4 text-left transition-all duration-300"
+                className="rounded-2xl p-4 text-left transition-all duration-300 lg:relative lg:flex lg:min-h-[104px] lg:items-center lg:gap-4 lg:p-5"
                 style={{
                   background: isActive
                     ? (
@@ -313,7 +313,7 @@ const TargetBuyerSection = ({ data }) => {
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full lg:h-14 lg:w-14"
                     style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
                   >
                     <ProfileIcon icon={profile.icon} />
@@ -326,13 +326,13 @@ const TargetBuyerSection = ({ data }) => {
                   </h3>
                 </div>
                 <p
-                  className="mt-3 min-h-[40px] text-xs leading-5 sm:text-[13px]"
+                  className="mt-3 min-h-[40px] text-xs leading-5 sm:text-[13px] lg:mt-1 lg:min-h-0"
                   style={{ color: t.textSecondary }}
                 >
                   {profile.card_subtitle}
                 </p>
                 <div
-                  className="mt-4 h-[3px] rounded-full transition-all duration-300"
+                  className="mt-4 h-[3px] rounded-full transition-all duration-300 lg:absolute lg:bottom-0 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2"
                   style={{
                     width: isActive ? 74 : 34,
                     background: isActive ? ACCENT : "transparent",
@@ -386,6 +386,7 @@ const TargetBuyerSection = ({ data }) => {
               className="border-t px-5 pb-5 pt-5 sm:px-6 sm:pb-6"
               style={{ borderColor: t.cardBorder }}
             >
+              <div className="lg:hidden">
               {currentProfile.intro_html && (
                 <HtmlText
                   html={currentProfile.intro_html}
@@ -419,13 +420,6 @@ const TargetBuyerSection = ({ data }) => {
                     className="text-sm leading-8 sm:text-[15px]"
                     style={{ color: t.textSecondary }}
                   />
-                </div>
-              )}
-
-              {currentProfile.link_text && (
-                <div className="mt-4 inline-flex items-center gap-1 text-sm" style={{ color: ACCENT }}>
-                  <span>{currentProfile.link_text}</span>
-                  <ChevronIcon open={false} color={ACCENT} />
                 </div>
               )}
 
@@ -587,17 +581,209 @@ const TargetBuyerSection = ({ data }) => {
                   ))}
                 </div>
               )}
+              </div>
+
+              <div className="hidden lg:block">
+                {(currentProfile.table || currentProfile.analysis_html) && (
+                  <div className="grid grid-cols-[0.85fr_1.15fr] gap-8">
+                    <div>
+                      {currentProfile.intro_html && (
+                        <HtmlText
+                          html={currentProfile.intro_html}
+                          className="text-[15px] leading-8"
+                          style={{ color: t.textSecondary }}
+                        />
+                      )}
+                      {currentProfile.analysis_html && (
+                        <div
+                          className="mt-6 rounded-2xl px-5 py-4"
+                          style={{
+                            background: t.isDark ? "rgba(255,255,255,0.03)" : lightMutedBg,
+                            border: `1px solid ${t.cardBorder}`,
+                          }}
+                        >
+                          <HtmlText
+                            html={currentProfile.analysis_html}
+                            className="text-sm leading-7"
+                            style={{ color: t.textSecondary }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                    {currentProfile.table && (
+                      <div>
+                        <p
+                          className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em]"
+                          style={{ color: ACCENT }}
+                        >
+                          {currentProfile.table.title}
+                        </p>
+                        <DataTable table={currentProfile.table} t={t} />
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {currentProfile.strategies?.length > 0 && (
+                  <div>
+                    <div className="grid grid-cols-[0.78fr_1.22fr] gap-8">
+                      <div>
+                        {currentProfile.intro_html && (
+                          <HtmlText
+                            html={currentProfile.intro_html}
+                            className="text-[15px] leading-8"
+                            style={{ color: t.textSecondary }}
+                          />
+                        )}
+                      </div>
+                      <div className="space-y-3">
+                        {currentProfile.strategies.map((strategy) => (
+                          <div
+                            key={strategy.number}
+                            className="rounded-2xl px-5 py-4"
+                            style={{
+                              background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                              border: `1px solid ${t.cardBorder}`,
+                            }}
+                          >
+                            <div className="grid grid-cols-[64px_1fr] gap-4">
+                              <div className="text-3xl font-medium" style={{ color: ACCENT }}>
+                                {strategy.number}
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-3">
+                                  <h4 className="text-lg font-semibold leading-5" style={{ color: t.text }}>
+                                    {strategy.title}
+                                  </h4>
+                                  <span className="rounded-full px-2 py-0.5 text-[11px]" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1", color: ACCENT }}>
+                                    {strategy.timing}
+                                  </span>
+                                </div>
+                                <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>
+                                  {strategy.content}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    {currentProfile.verdict && (
+                      <div
+                        className="mt-4 rounded-2xl px-5 py-4"
+                        style={{
+                          background: t.isDark ? "rgba(182,138,53,0.08)" : "#fdf7e8",
+                          border: "1px solid rgba(182,138,53,0.2)",
+                        }}
+                      >
+                        <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+                          <span className="font-semibold" style={{ color: ACCENT }}>
+                            {currentProfile.verdict.label}:
+                          </span>{" "}
+                          {currentProfile.verdict.text}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {currentProfile.infrastructure?.length > 0 && (
+                  <div className="grid grid-cols-[0.75fr_1fr_0.78fr] gap-6">
+                    <div>
+                      {currentProfile.intro_html && (
+                        <HtmlText
+                          html={currentProfile.intro_html}
+                          className="text-[15px] leading-8"
+                          style={{ color: t.textSecondary }}
+                        />
+                      )}
+                    </div>
+                    <div>
+                      <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em]" style={{ color: ACCENT }}>
+                        {currentProfile.infrastructure_title}
+                      </p>
+                      <DataTable
+                        t={t}
+                        table={{
+                          columns: ["Facility", "Timeline", "Details"],
+                          rows: currentProfile.infrastructure.map((item) => ({
+                            values: [item.title, item.timeline, item.details],
+                          })),
+                        }}
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      {currentProfile.notes?.map((note) => (
+                        <div
+                          key={note.label}
+                          className="rounded-2xl p-5"
+                          style={{
+                            background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                            border: `1px solid ${t.cardBorder}`,
+                          }}
+                        >
+                          <HtmlText
+                            html={`<strong>${note.label}:</strong> ${note.text}`}
+                            className="text-sm leading-7"
+                            style={{ color: t.textSecondary }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {currentProfile.stats?.length > 0 && (
+                  <div className="grid grid-cols-[0.78fr_1.22fr] gap-8">
+                    <div>
+                      {currentProfile.paragraphs?.map((paragraph, index) => (
+                        <HtmlText
+                          key={index}
+                          html={paragraph}
+                          className="mb-4 text-[15px] leading-8 last:mb-0"
+                          style={{ color: t.textSecondary }}
+                        />
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      {currentProfile.stats.map((stat) => (
+                        <div
+                          key={stat.label}
+                          className="rounded-2xl px-6 py-6"
+                          style={{
+                            background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                            border: `1px solid ${t.cardBorder}`,
+                          }}
+                        >
+                          <div
+                            className="mb-4 flex h-12 w-12 items-center justify-center rounded-full"
+                            style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+                          >
+                            <ProfileIcon icon={stat.icon} size={18} />
+                          </div>
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: t.textMuted }}>
+                            {stat.label}
+                          </p>
+                          <p className="mt-2 text-xl font-semibold leading-6" style={{ color: t.text }}>
+                            {stat.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
 
         <div className="mt-8">
-          <h3 className="text-[1.7rem] font-medium tracking-[-0.02em]" style={{ color: t.text }}>
+          <h3 className="text-[1.7rem] font-medium tracking-[-0.02em] lg:text-2xl" style={{ color: t.text }}>
             <span style={{ color: ACCENT }}>{data.matrix_title_prefix}</span>{" "}
             <span>{data.matrix_title_suffix}</span>
           </h3>
 
-          <div className="mt-4 space-y-4">
+          <div className="mt-4 space-y-4 lg:hidden">
             {data.matrix.map((item) => (
               <div
                 key={item.profile}
@@ -619,6 +805,35 @@ const TargetBuyerSection = ({ data }) => {
                 </p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-4 hidden overflow-hidden rounded-[24px] lg:block" style={{ border: `1px solid ${t.cardBorder}`, background: lightCardBg, boxShadow: shadow }}>
+            <table className="w-full text-left text-sm">
+              <thead style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#faf5eb" }}>
+                <tr>
+                  {["Profile", "Verdict", "Rationale"].map((column) => (
+                    <th key={column} className="px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: t.textMuted }}>
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {data.matrix.map((item) => (
+                  <tr key={item.profile} style={{ borderTop: `1px solid ${t.cardBorder}` }}>
+                    <td className="px-5 py-4 font-medium" style={{ color: t.text }}>
+                      {item.profile}
+                    </td>
+                    <td className="px-5 py-4">
+                      <VerdictPill label={item.verdict_label} tone={item.verdict_tone} />
+                    </td>
+                    <td className="px-5 py-4 leading-6" style={{ color: t.textSecondary }}>
+                      {item.rationale}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

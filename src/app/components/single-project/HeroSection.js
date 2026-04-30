@@ -185,7 +185,7 @@ const HeroSection = ({ data }) => {
     },
   ].filter((item) => item.label);
   const snapshotCardClass =
-    "rounded-2xl p-6 lg:p-8 border max-lg:min-h-[18rem] max-lg:max-h-[18rem] max-lg:overflow-hidden max-lg:flex max-lg:flex-col lg:max-h-none";
+    "rounded-2xl p-6 lg:p-8 border flex flex-col overflow-hidden max-lg:min-h-[18rem] max-lg:max-h-[18rem] lg:h-[24rem]";
   const snapshotCardStyle = {
     border: "1px solid rgba(182,138,53,0.2)",
     background: t.isDark ? "rgba(182,138,53,0.05)" : t.cardBg,
@@ -228,6 +228,16 @@ const HeroSection = ({ data }) => {
     background: t.isDark ? "#25282d" : "#fffefb",
     border: `1px solid ${keyFactsBorder}`,
     boxShadow: t.isDark ? "0 14px 34px rgba(0,0,0,0.28)" : "0 10px 28px rgba(0,0,0,0.06)",
+  };
+  const desktopFactsCardStyle = {
+    borderColor: keyFactsBorder,
+    background: t.isDark ? "#25282d" : "#fffefb",
+    boxShadow: t.isDark ? "0 14px 34px rgba(0,0,0,0.28)" : "0 10px 30px rgba(15,23,42,0.06)",
+  };
+  const desktopFactsIconStyle = {
+    border: `1px solid ${keyFactsBorder}`,
+    color: GOLD,
+    background: t.isDark ? "rgba(182,138,53,0.1)" : "#fffaf0",
   };
   const keyFactsPillStyle = {
     background: t.isDark ? "rgba(182,138,53,0.1)" : "rgba(182,138,53,0.08)",
@@ -282,24 +292,88 @@ const HeroSection = ({ data }) => {
               ))}
             </div>
 
-            <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
-              <span className="block text-[#0a0a0a]" style={{ textShadow: HERO_TEXT_HALO }}>
-                {line1}
-              </span>
-              {line2 && (
-                <span className="mt-0.5 block" style={{ color: GOLD, textShadow: HERO_TEXT_HALO }}>
-                  {line2}
-                </span>
-              )}
-            </h1>
-            <h2
-              className="mt-3 text-lg sm:text-xl lg:text-2xl font-medium"
-              style={{ color: SUBTITLE_GREY, textShadow: HERO_TEXT_HALO }}
-            >
-              {hero.subtitle}
-            </h2>
+            <div className="relative mt-6 w-fit max-w-full">
+              <div
+                className="pointer-events-none absolute -inset-x-5 -inset-y-5 rounded-[34px] bg-white/70 blur-2xl sm:-inset-x-10 sm:-inset-y-6 sm:rounded-[42px]"
+                aria-hidden="true"
+              />
+              <div className="relative">
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
+                  <span className="block text-[#0a0a0a]" style={{ textShadow: HERO_TEXT_HALO }}>
+                    {line1}
+                  </span>
+                  {line2 && (
+                    <span className="mt-0.5 block" style={{ color: GOLD, textShadow: HERO_TEXT_HALO }}>
+                      {line2}
+                    </span>
+                  )}
+                </h1>
+                <h2
+                  className="mt-3 text-lg sm:text-xl lg:text-2xl font-medium"
+                  style={{ color: SUBTITLE_GREY, textShadow: HERO_TEXT_HALO }}
+                >
+                  {hero.subtitle}
+                </h2>
+              </div>
+            </div>
 
-            <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+            <div className="mt-8 hidden max-w-[1080px] overflow-hidden rounded-[30px] border border-white/45 bg-white/55 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl lg:block">
+              <div className="grid grid-cols-4 divide-x divide-white/45">
+                {statCards.map((item) => (
+                  <div key={item.key} className="min-w-0 px-6 py-3">
+                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#B68A35]">
+                      {renderStatIcon(item.key, "currentColor")}
+                    </div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9b835e]">
+                      {item.label}
+                    </p>
+                    <p className={`mt-2 text-2xl font-semibold tracking-tight text-[#161616] ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}>
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/45 pt-5">
+                {(() => {
+                  const primary = hero.cta_primary;
+                  const text = typeof primary === "string" ? primary : primary?.button_text;
+                  const href = typeof primary === "object" && primary?.href;
+                  const className = "w-full rounded-xl px-6 py-4 text-sm font-semibold transition-colors focus:outline-none inline-flex items-center justify-center gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] " + (href ? "hover:opacity-90" : "");
+                  const style = { background: GOLD, color: "#ffffff" };
+                  const content = (
+                    <>
+                      {text}
+                      <span aria-hidden>→</span>
+                    </>
+                  );
+                  return href ? (
+                    <a href={href} className={className} style={style}>{content}</a>
+                  ) : (
+                    <button type="button" className={className} style={style}>{content}</button>
+                  );
+                })()}
+                {(() => {
+                  const secondary = hero.cta_secondary;
+                  const text = typeof secondary === "string" ? secondary : secondary?.button_text;
+                  const href = typeof secondary === "object" && secondary?.href;
+                  const className = "w-full rounded-xl border border-white/65 bg-white/70 px-6 py-4 text-sm font-semibold text-[#2d2d2d] transition-colors focus:outline-none inline-flex items-center justify-center gap-3 shadow-[0_8px_20px_rgba(15,23,42,0.08)] backdrop-blur-xl " + (href ? "hover:bg-white/80" : "");
+                  const content = (
+                    <>
+                      {text}
+                      <span aria-hidden>→</span>
+                    </>
+                  );
+                  return href ? (
+                    <a href={href} className={className}>{content}</a>
+                  ) : (
+                    <button type="button" className={className}>{content}</button>
+                  );
+                })()}
+              </div>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-3 lg:hidden">
               {statCards.map((item) => (
                 <div
                   key={item.key}
@@ -331,7 +405,7 @@ const HeroSection = ({ data }) => {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 lg:hidden">
             <div className="flex-1 flex flex-col gap-1.5">
               {(() => {
                 const primary = hero.cta_primary;
@@ -378,18 +452,96 @@ const HeroSection = ({ data }) => {
 
       {/* Project Overview + Investor’s Snapshot: mobile = equal height; overview scrolls inside */}
       <div className="max-w-7xl mx-auto px-2 py-6 lg:py-10">
-        <div className={snapshotCardClass} style={snapshotCardStyle}>
-          <div
-            className="text-base lg:text-lg leading-relaxed max-lg:min-h-0 max-lg:flex-1 max-lg:overflow-y-auto max-lg:pr-1.5 scrollbar-gold"
-            style={{ color: t.textSecondary }}
-          >
-            {hero.overview_paragraphs.map((paragraph, i) => (
+        <div className="grid gap-4 lg:grid-cols-2 lg:items-stretch">
+          <div className={snapshotCardClass} style={snapshotCardStyle}>
+            <h3
+              className="shrink-0 text-lg lg:text-2xl font-semibold mb-4 flex items-center gap-3"
+              style={{ color: t.text }}
+            >
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+                style={{ border: `1px solid rgba(182,138,53,0.35)`, color: GOLD }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M3 21h18" />
+                  <path d="M5 21V7l8-4v18" />
+                  <path d="M19 21V11l-6-3" />
+                  <path d="M9 9h.01" />
+                  <path d="M9 13h.01" />
+                  <path d="M9 17h.01" />
+                </svg>
+              </span>
+              <span>
+                Project Overview
+                <span className="mt-2 block h-px w-14" style={{ background: GOLD }} />
+              </span>
+            </h3>
+            <div
+              className="min-h-0 flex-1 overflow-y-auto pr-1.5 text-base lg:text-sm leading-relaxed lg:leading-7 scrollbar-gold"
+              style={{ color: t.textSecondary }}
+            >
+              {hero.overview_paragraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className={i > 0 ? "mt-6" : ""}
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className={snapshotCardClass} style={snapshotCardStyle}>
+            <h3
+              className="shrink-0 text-lg lg:text-2xl font-semibold mb-4 flex items-center gap-3"
+              style={{ color: t.text }}
+            >
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+                style={{ border: `1px solid rgba(182,138,53,0.35)`, color: GOLD }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <line x1="4" y1="20" x2="4" y2="10" />
+                  <line x1="10" y1="20" x2="10" y2="5" />
+                  <line x1="16" y1="20" x2="16" y2="12" />
+                  <path d="M2 20h20" />
+                </svg>
+              </span>
+              <span>
+                Investor Snapshot
+                <span className="mt-2 block h-px w-14" style={{ background: GOLD }} />
+              </span>
+            </h3>
+            <div
+              className="min-h-0 flex-1 overflow-y-auto pr-1.5 text-base lg:text-sm leading-relaxed lg:leading-7 scrollbar-gold"
+              style={{ color: t.textSecondary, scrollbarWidth: "thin" }}
+            >
               <p
-                key={i}
-                className={i > 0 ? "mt-6" : ""}
-                dangerouslySetInnerHTML={{ __html: paragraph }}
+                className="m-0"
+                dangerouslySetInnerHTML={{ __html: hero.data_led_hook }}
               />
-            ))}
+            </div>
           </div>
         </div>
 
@@ -406,44 +558,195 @@ const HeroSection = ({ data }) => {
           </div>
         )}
 
-        <div className="mt-10 max-lg:mt-4">
-          <div className={snapshotCardClass} style={snapshotCardStyle}>
-            <h3
-              className="shrink-0 text-lg lg:text-xl font-bold mb-4 flex items-center gap-2.5"
-              style={{ color: "#B68A35" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#B68A35"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-              >
-                <line x1="4" y1="20" x2="4" y2="10" />
-                <line x1="10" y1="20" x2="10" y2="5" />
-                <line x1="16" y1="20" x2="16" y2="12" />
-                <path d="M2 20h20" />
-              </svg>
-              Investor&rsquo;s Snapshot
-            </h3>
-            <div
-              className="max-lg:min-h-0 max-lg:flex-1 max-lg:overflow-y-auto lg:overflow-visible text-base lg:text-lg leading-relaxed"
-              style={{ color: t.textSecondary, scrollbarWidth: "thin" }}
-            >
-              <p
-                className="m-0"
-                dangerouslySetInnerHTML={{ __html: hero.data_led_hook }}
-              />
+        <div className="mt-16 hidden lg:block">
+          <h3 className="text-center text-[2rem] font-semibold tracking-tight" style={{ color: t.text }}>
+            <span>{keyFactsSection.title_prefix || "Key Facts at a"} </span>
+            <span style={{ color: GOLD }}>{keyFactsSection.title_accent || "Glance"}</span>
+          </h3>
+
+          <div className="mt-5 grid grid-cols-3 gap-3">
+            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M3 21h18" />
+                    <path d="M5 21V7l8-4v18" />
+                    <path d="M19 21V11l-6-3" />
+                    <path d="M9 10h.01" />
+                    <path d="M9 14h.01" />
+                    <path d="M9 18h.01" />
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <p className="text-base font-medium" style={{ color: t.text }}>Developer</p>
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{developerSummary.name || meta.developer?.name}</p>
+                  {(developerSummary.founded_label || meta.developer?.founded_year) && (
+                    <p className="text-xs" style={{ color: keyFactsMutedColor }}>
+                      {developerSummary.founded_label || `Founded ${meta.developer?.founded_year}`}
+                    </p>
+                  )}
+                </div>
+              </div>
+              {(developerSummary.highlights || []).length > 0 && (
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {developerSummary.highlights.map((item, i) => (
+                    <span key={`${item}-${i}`} className="rounded-full px-3 py-1 text-[11px]" style={keyFactsPillStyle}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M12 3 4 7v6c0 5 3.5 7.5 8 8 4.5-.5 8-3 8-8V7l-8-4Z" />
+                    <path d="m9 12 2 2 4-5" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-base font-medium" style={{ color: t.text }}>{keyFactsSection.project_status?.label || "Project Status"}</p>
+                  {keyFactsSection.project_status?.badge && (
+                    <span className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium" style={keyFactsPillStyle}>
+                      <span className="h-1.5 w-1.5 rounded-full" style={{ background: GOLD }} />
+                      {keyFactsSection.project_status.badge}
+                    </span>
+                  )}
+                  {keyFactsSection.project_status?.note && (
+                    <p className="mt-4 text-sm leading-relaxed" style={{ color: keyFactsMutedColor }}>{keyFactsSection.project_status.note}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <rect width="18" height="18" x="3" y="4" rx="2" />
+                    <path d="M16 2v4" />
+                    <path d="M8 2v4" />
+                    <path d="M3 10h18" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-base font-medium" style={{ color: t.text }}>{keyFactsSection.handover?.label || "Handover Date"}</p>
+                  <p className="mt-4 text-xl font-semibold" style={{ color: t.text }}>{keyFactsSection.handover?.value}</p>
+                  {keyFactsSection.handover?.note && (
+                    <p className="mt-2 text-sm" style={{ color: keyFactsMutedColor }}>{keyFactsSection.handover.note}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M3 11 12 4l9 7" />
+                    <path d="M5 10v10h14V10" />
+                    <path d="M9 20v-6h6v6" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-base font-medium" style={{ color: t.text }}>{keyFactsSection.total_units?.label || "Total Units (Project)"}</p>
+                  <p className="mt-4 text-xl font-semibold" style={{ color: t.text }}>{keyFactsSection.total_units?.value}</p>
+                  {keyFactsSection.total_units?.note && (
+                    <p className="mt-2 text-sm" style={{ color: keyFactsMutedColor }}>{keyFactsSection.total_units.note}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <circle cx="12" cy="7" r="3" />
+                    <path d="M5 21a7 7 0 0 1 14 0" />
+                    <path d="M19 8h2" />
+                    <path d="M3 8h2" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-base font-medium" style={{ color: t.text }}>{keyFactsSection.master_community?.label || "Master Community"}</p>
+                  <p className="mt-4 text-xl font-semibold leading-snug" style={{ color: t.text }}>{keyFactsSection.master_community?.value}</p>
+                  {keyFactsSection.master_community?.note && (
+                    <p className="mt-2 text-sm" style={{ color: keyFactsMutedColor }}>{keyFactsSection.master_community.note}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M3 21h18" />
+                    <path d="M6 21v-8h5v8" />
+                    <path d="M13 21V9h5v12" />
+                    <path d="M8 9h.01" />
+                  </svg>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-base font-medium" style={{ color: t.text }}>{unitTypesAndPrices.label || "Unit Types & Prices"}</p>
+                  <div className="mt-4 space-y-2">
+                    {(unitTypesAndPrices.items || []).slice(0, 3).map((item, i) => (
+                      <div key={`${item.type}-${i}`} className="grid grid-cols-[1fr_auto] gap-3 text-xs">
+                        <div className="min-w-0">
+                          <span className="font-medium" style={{ color: t.text }}>{item.type}</span>
+                          {item.count && <span style={{ color: keyFactsMutedColor }}> {item.count}</span>}
+                        </div>
+                        <span className="whitespace-nowrap" style={{ color: t.text }}>{item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {unitTypesAndPrices.summary && (
+                    <p className="mt-3 text-xs text-right" style={{ color: keyFactsMutedColor }}>{unitTypesAndPrices.summary}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-3 rounded-2xl border p-6" style={desktopFactsCardStyle}>
+            <div className="grid grid-cols-[220px_1fr] items-center gap-8">
+              <div>
+                <p className="text-2xl font-semibold leading-tight" style={{ color: t.text }}>{paymentPlan.label || "Payment Plan"}</p>
+                {paymentPlan.summary && <p className="mt-1 text-2xl font-semibold" style={{ color: GOLD }}>({paymentPlan.summary})</p>}
+              </div>
+              <div>
+                <div className="h-3 overflow-hidden rounded-full" style={{ background: "rgba(182,138,53,0.16)" }}>
+                  <div className="flex h-full">
+                    {(paymentPlan.milestones || []).map((item, i) => (
+                      <div
+                        key={`${item.title}-${i}`}
+                        className="h-full"
+                        style={{
+                          width: `${item.percent || 0}%`,
+                          background: i === 0 ? "#b68a35" : i === 1 ? "#d9b05f" : "#ead5a8",
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 grid grid-cols-3 divide-x" style={{ borderColor: keyFactsDivider }}>
+                  {(paymentPlan.milestones || []).map((item, i) => (
+                    <div key={`${item.title}-${i}`} className="px-6 text-center first:pl-0 last:pr-0">
+                      <p className="text-2xl font-semibold" style={{ color: GOLD }}>{item.percent}%</p>
+                      <p className="mt-1 text-sm font-medium" style={{ color: t.text }}>{item.title}</p>
+                      {item.note && <p className="mt-1 text-xs" style={{ color: keyFactsMutedColor }}>{item.note}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-16 lg:hidden">
           <h3 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] font-semibold tracking-tight" style={{ color: t.text }}>
             <span>{keyFactsSection.title_prefix || "Key Facts at a"} </span>
             <span style={{ color: GOLD }}>{keyFactsSection.title_accent || "Glance"}</span>
@@ -682,7 +985,62 @@ const HeroSection = ({ data }) => {
         </div>
 
         {/* Infrastructure Accordion */}
-        <div className="mt-16">
+        <div className="mt-16 hidden grid-cols-[0.95fr_1.65fr] gap-5 lg:grid">
+          <div className="relative overflow-hidden rounded-[28px] border p-8" style={desktopFactsCardStyle}>
+            <h3 className="text-3xl font-semibold leading-tight" style={{ color: t.text }}>
+              Future Infrastructure
+              <span className="block" style={{ color: GOLD }}>&amp; Economic Development</span>
+            </h3>
+            <span className="mt-5 block h-px w-20" style={{ background: GOLD }} />
+            <p className="mt-6 text-sm leading-7" style={{ color: t.textSecondary }}>
+              Strategic infrastructure, connectivity, and long-term growth drivers that may support demand around the project.
+            </p>
+            <div className="pointer-events-none absolute -bottom-12 -left-10 h-40 w-72 rounded-full border border-[#ead9b7] opacity-50" />
+            <div
+              className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 opacity-60"
+              style={{
+                background: t.isDark
+                  ? "linear-gradient(to top, rgba(182,138,53,0.1), transparent)"
+                  : "linear-gradient(to top, #fff7e8, transparent)",
+              }}
+            />
+          </div>
+
+          <div className="space-y-2">
+            {hero.infrastructure_items.map((item, i) => {
+              const isOpen = openAccordion === i || (openAccordion === null && i === 0);
+
+              return (
+                <div
+                  key={i}
+                  className="overflow-hidden rounded-2xl border"
+                  style={desktopFactsCardStyle}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenAccordion(openAccordion === i ? null : i)}
+                    className="flex w-full items-center justify-between gap-5 px-5 py-4 text-left"
+                  >
+                    <div className="flex min-w-0 items-center gap-4">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={desktopFactsIconStyle}>
+                        {i + 1}
+                      </span>
+                      <span className="text-base font-medium" style={{ color: t.text }}>{item.title}</span>
+                    </div>
+                    <AccordionChevron open={isOpen} size={18} color={GOLD} />
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-44 opacity-100" : "max-h-0 opacity-0"}`}>
+                    <div className="px-20 pb-5">
+                      <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{item.content}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-16 lg:hidden">
           <SecondaryAccordionButton
             open={showInfra}
             onClick={() => setShowInfra(!showInfra)}

@@ -125,6 +125,150 @@ const CompetitorDetail = ({ comp, activeIndex, t }) => {
   );
 };
 
+const getCompetitorProjects = (comp) => {
+  const rows = comp.rows || [];
+  const names = (comp.headers || []).slice(1);
+  const meta = [
+    { icon: "♧", badge: "Premium pick", color: GOLD },
+    { icon: "⚑", badge: "", color: "#2f7d45" },
+    { icon: "▥", badge: "", color: "#286CFF" },
+  ];
+
+  return names.map((name, index) => ({
+    name,
+    developer: getProjectValue(rows, "Developer", index),
+    location: getProjectValue(rows, "Location", index),
+    unitTypes: getProjectValue(rows, "Unit Types", index),
+    sizeRange: getProjectValue(rows, "Size Range", index),
+    startingPrice: getProjectValue(rows, "Starting Price", index),
+    priceSqft: getProjectValue(rows, "Price per sq.ft", index),
+    handover: getProjectValue(rows, "Handover", index),
+    paymentPlan: getProjectValue(rows, "Payment Plan", index),
+    targetBuyer: getProjectValue(rows, "Target Buyer", index),
+    amenities: getProjectValue(rows, "Amenities", index),
+    riskFactor: getProjectValue(rows, "Risk Factor", index),
+    ...meta[index],
+  }));
+};
+
+const DesktopCompetitorCard = ({ project, t }) => {
+  const detailCells = [
+    ["Unit Types", project.unitTypes],
+    ["Size Range", project.sizeRange],
+    ["Starting Price", project.startingPrice],
+    ["Price / sqft", project.priceSqft],
+    ["Handover", project.handover],
+    ["Payment Plan", project.paymentPlan],
+  ];
+  const footers = [
+    ["Target Buyer", project.targetBuyer, "♙"],
+    ["Amenities", project.amenities, "♧"],
+    ["Risk Factor", project.riskFactor, "ⓘ"],
+  ];
+
+  return (
+    <article
+      className="relative overflow-hidden rounded-2xl"
+      style={{
+        background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff",
+        border: `1px solid ${t.cardBorder}`,
+      }}
+    >
+      {project.badge && (
+        <span className="absolute left-5 top-3 rounded-full px-3 py-1 text-[11px] font-semibold" style={{ background: "#fbf3e1", color: GOLD }}>
+          {project.badge}
+        </span>
+      )}
+      <div className="flex gap-4 px-5 pb-5 pt-9">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl" style={{ color: project.color, background: t.isDark ? "rgba(255,255,255,0.04)" : "#fbf7ef" }}>
+          {project.icon}
+        </span>
+        <div>
+          <h3 className="text-lg font-semibold leading-6" style={{ color: project.color }}>{project.name}</h3>
+          <p className="mt-1 text-sm" style={{ color: t.textSecondary }}>{project.developer}</p>
+          <p className="mt-1 text-xs" style={{ color: t.textMuted }}>⌖ {project.location}</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 border-y" style={{ borderColor: t.cardBorder }}>
+        {detailCells.map(([label, value], index) => (
+          <div key={label} className="min-h-[86px] border-b border-r p-4 even:border-r-0 [&:nth-last-child(-n+2)]:border-b-0" style={{ borderColor: t.cardBorder }}>
+            <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: project.color }}>{label}</p>
+            <p className="text-sm font-semibold leading-5" style={{ color: t.text }}>{value}</p>
+          </div>
+        ))}
+      </div>
+      <div>
+        {footers.map(([label, value, icon]) => (
+          <div key={label} className="flex gap-3 border-b p-4 last:border-b-0" style={{ borderColor: t.cardBorder }}>
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#fbf4e8", color: project.color }}>
+              {icon}
+            </span>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: project.color }}>{label}</p>
+              <p className="mt-1 text-xs leading-5" style={{ color: t.textSecondary }}>{value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+};
+
+const DesktopWinnerPanel = ({ winners, t }) => (
+  <div className="overflow-hidden rounded-2xl" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+    <div className="grid grid-cols-[1fr_1fr_2.15fr] border-b px-6 py-3 text-xs font-semibold" style={{ borderColor: t.cardBorder, color: t.text }}>
+      <span>Category</span>
+      <span>Winner</span>
+      <span>Rationale</span>
+    </div>
+    {(winners.rows || []).map((item, index) => {
+      const isSerro = item.winner.toLowerCase().includes("serro");
+      const accent = isSerro ? GOLD : "#286CFF";
+      return (
+        <div key={item.category} className="grid grid-cols-[1fr_1fr_2.15fr] items-center border-b px-6 py-4 last:border-b-0" style={{ borderColor: t.cardBorder }}>
+          <div className="flex items-center gap-4">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full text-lg" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#fbf4e8" }}>
+              {item.emoji}
+            </span>
+            <span className="text-sm font-medium" style={{ color: t.text }}>{item.category}</span>
+          </div>
+          <span className="w-fit rounded-lg px-3 py-1 text-sm font-semibold" style={{ background: accent + "12", color: accent }}>
+            {item.winner}
+          </span>
+          <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{item.rationale}</p>
+        </div>
+      );
+    })}
+  </div>
+);
+
+const DesktopVerdictPanel = ({ verdict, t }) => (
+  <div className="overflow-hidden rounded-2xl" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+    <div className="grid grid-cols-[0.9fr_2fr]">
+      <div className="border-r p-6" style={{ borderColor: t.cardBorder }}>
+        <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{verdict.intro}</p>
+      </div>
+      <div className="grid grid-cols-3">
+        {(verdict.points || []).map((point, index) => {
+          const [title, desc] = String(point).split(" — ");
+          return (
+            <div key={point} className="border-r p-6 last:border-r-0" style={{ borderColor: t.cardBorder }}>
+              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-full text-lg" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#fbf4e8", color: GOLD }}>
+                {index + 1}
+              </span>
+              <p className="text-base font-semibold leading-6" style={{ color: t.text }}>{title}</p>
+              {desc && <p className="mt-3 text-sm leading-6" style={{ color: t.textSecondary }}>{desc}</p>}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+    <div className="border-t p-5" style={{ borderColor: t.cardBorder, background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
+      <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{verdict.closing}</p>
+    </div>
+  </div>
+);
+
 /* ── Main Component ── */
 const ComparisonSection = ({ data }) => {
   const { t } = useTheme();
@@ -136,10 +280,101 @@ const ComparisonSection = ({ data }) => {
   const winners = data.winner_table || {};
   const verdict = data.verdict || {};
   const projectTabs = ["Serro\nThe Heights", "Emaar South\nGolf Place", "Dubai South\nPhase VI"];
+  const desktopProjects = getCompetitorProjects(comp);
 
   return (
     <section id="comparison" className="py-8 lg:py-12 px-2 sm:px-6 lg:px-8" style={{ background: t.bg }}>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
+        <div className="hidden lg:block">
+          <div
+            className="relative overflow-hidden rounded-t-[28px] border"
+            style={{
+              minHeight: 300,
+              background: t.isDark ? "#25282d" : "#fffdfa",
+              borderColor: t.cardBorder,
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/projects/villa-render-2.jpg')" }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: t.isDark
+                  ? "linear-gradient(90deg, #25282d 0%, #25282d 42%, rgba(37,40,45,0.9) 56%, rgba(37,40,45,0.48) 72%, rgba(37,40,45,0.1) 88%, transparent 100%)"
+                  : "linear-gradient(90deg, #fffdfa 0%, #fffdfa 42%, rgba(255,253,250,0.5) 64%, transparent 84%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-[590px] px-8 py-12">
+              <h2 className="text-[2.8rem] font-semibold leading-[1.08]" style={{ color: t.text }}>
+                <span className="block">How Serro at The Heights</span>
+                <span className="block" style={{ color: GOLD }}>Stacks Up Against Competitors</span>
+              </h2>
+              <span className="mt-5 block h-px w-20" style={{ background: GOLD }} />
+            </div>
+          </div>
+
+          <div
+            className="rounded-b-[28px] border-x border-b p-5"
+            style={{
+              background: t.isDark ? t.cardBg : "#fffdfa",
+              borderColor: t.cardBorder,
+              boxShadow: t.isDark ? "none" : "0 16px 40px rgba(113,85,32,0.08)",
+            }}
+          >
+            <div className="mb-5">
+              <h3 className="text-2xl font-semibold" style={{ color: t.text }}>Direct Competitor Analysis</h3>
+              <p className="mt-2 max-w-3xl text-sm leading-6" style={{ color: t.textSecondary }}>{data.intro}</p>
+            </div>
+            <div className="grid grid-cols-3 gap-5">
+              {desktopProjects.map((project) => (
+                <DesktopCompetitorCard key={project.name} project={project} t={t} />
+              ))}
+            </div>
+            {comp.source && (
+              <p className="mt-4 rounded-lg px-4 py-3 text-sm leading-6" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#fbf7ef", color: t.textMuted }}>
+                ⓘ Sources: {comp.source}
+              </p>
+            )}
+
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              {[
+                { key: "winners", title: `Summary - ${winners.title || "Who Wins on Value, Trust, and Lifestyle"}`, icon: "♕" },
+                { key: "verdict", title: verdict.title || "Strategic Verdict", icon: "◎" },
+              ].map((panel) => {
+                const active = openPanel === panel.key;
+                return (
+                  <button
+                    key={panel.key}
+                    type="button"
+                    onClick={() => setOpenPanel(panel.key)}
+                    className="flex items-center justify-between rounded-2xl p-5 text-left transition-all"
+                    style={{
+                      background: active ? (t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1") : (t.isDark ? "rgba(255,255,255,0.025)" : "#fff"),
+                      border: `1px solid ${active ? "rgba(182,138,53,0.4)" : t.cardBorder}`,
+                    }}
+                  >
+                    <span className="flex items-center gap-4">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full text-lg" style={{ background: GOLD, color: "#fff" }}>{panel.icon}</span>
+                      <span className="text-lg font-semibold" style={{ color: t.text }}>{panel.title}</span>
+                    </span>
+                    <span style={{ color: GOLD }}>{active ? "⌄" : "›"}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-4">
+              {openPanel === "winners" && <DesktopWinnerPanel winners={winners} t={t} />}
+              {openPanel === "verdict" && <DesktopVerdictPanel verdict={verdict} t={t} />}
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
           <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4" style={{ background: "#B68A3520", color: "#B68A35" }}>
@@ -238,6 +473,7 @@ const ComparisonSection = ({ data }) => {
             )}
           </div>
         )}
+        </div>
       </div>
     </section>
   );

@@ -236,6 +236,59 @@ const PhotoAccordionList = ({ photos, openPhoto, onToggle, t }) => (
   </div>
 );
 
+const DesktopPhotoCards = ({ photos, t }) => {
+  const labels = ["Aerial", "Ground Level", "Infrastructure", "Future Amenity"];
+  const titles = [
+    "Aerial view of Serro construction plots showing initial site clearance and earthworks, with The Heights master community boundaries visible in the distance.",
+    "Foundation piling underway for Serro's 3-bedroom villa clusters. The Mediterranean-inspired architecture is not yet visible at this early stage.",
+    "Infrastructure corridor development showing utility trenching and road base preparation.",
+    "View towards the future Wellness Lake location, currently a cleared basin awaiting excavation and waterproofing.",
+  ];
+
+  return (
+    <div className="grid grid-cols-4 gap-4">
+      {photos.map((photo, index) => {
+        const image = photo.image || photo.src;
+
+        return (
+          <article
+            key={photo.id}
+            className="overflow-hidden rounded-xl"
+            style={{
+              background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff",
+              border: `1px solid ${t.cardBorder}`,
+            }}
+          >
+            <div
+              className="relative h-32 bg-cover bg-center"
+              style={{
+                backgroundImage: image
+                  ? `url('${image}')`
+                  : t.isDark
+                    ? "linear-gradient(135deg, rgba(182,138,53,0.26), rgba(255,255,255,0.04))"
+                    : "linear-gradient(135deg, #d8c3a0, #f7ead3)",
+              }}
+            >
+              <span
+                className="absolute right-3 top-3 rounded-full px-3 py-1 text-[10px] font-semibold"
+                style={{ background: "rgba(255,255,255,0.9)", color: t.isDark ? "#5b4218" : t.text }}
+              >
+                {labels[index] || `Update ${photo.id}`}
+              </span>
+            </div>
+            <div className="flex gap-2 px-4 py-4">
+              <ConstructionIcon name="camera" size={14} color={GOLD} />
+              <p className="text-xs leading-5" style={{ color: t.textSecondary }}>
+                {photo.title || titles[index] || photo.caption}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  );
+};
+
 /* ── Main Component ── */
 const ConstructionSection = ({ data }) => {
   const { t } = useTheme();
@@ -243,6 +296,7 @@ const ConstructionSection = ({ data }) => {
   const [openIntel, setOpenIntel] = useState(true);
   const [showPhotos, setShowPhotos] = useState(false);
   const [openPhoto, setOpenPhoto] = useState(null);
+  const [activeDesktopPanel, setActiveDesktopPanel] = useState("milestones");
 
   const tbl = data.timeline_table || {};
   const dur = data.duration_analysis || {};
@@ -258,10 +312,198 @@ const ConstructionSection = ({ data }) => {
     { label: "Vertical Construction", percent: 0 },
     { label: "Amenities & Landscaping", percent: 0 },
   ];
+  const desktopPanels = [
+    {
+      id: "milestones",
+      title: "Project Key Milestones",
+      subtitle: "Detailed timeline of project milestones from launch to handover.",
+      icon: "calendar",
+    },
+    {
+      id: "intel",
+      title: ground.title,
+      subtitle: "Broker insights and market intelligence from site visits and industry sources.",
+      icon: "intel",
+    },
+    {
+      id: "photos",
+      title: "Construction Photos & Site Updates",
+      subtitle: "Latest on-ground photos and updates from the construction site.",
+      icon: "camera",
+    },
+  ];
 
   return (
     <section id="construction" className="py-8 lg:py-12 px-2 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
+        <div className="hidden lg:block">
+          <div
+            className="relative overflow-hidden rounded-t-[28px] border"
+            style={{
+              minHeight: 300,
+              background: t.isDark ? "#25282d" : "#fffdfa",
+              borderColor: t.cardBorder,
+            }}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/projects/villa-render-2.jpg')" }}
+              aria-hidden="true"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: t.isDark
+                  ? "linear-gradient(90deg, #25282d 0%, #25282d 42%, rgba(37,40,45,0.9) 56%, rgba(37,40,45,0.48) 72%, rgba(37,40,45,0.1) 88%, transparent 100%)"
+                  : "linear-gradient(90deg, #fffdfa 0%, #fffdfa 42%, rgba(255,253,250,0.5) 64%, transparent 84%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-[560px] px-8 py-12">
+              <h2 className="text-[3rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
+                Construction Progress &amp;
+                <span className="block italic" style={{ color: GOLD }}>
+                  Handover Outlook
+                </span>
+              </h2>
+              <p className="mt-5 max-w-md text-sm leading-7" style={{ color: t.textSecondary }}>
+                {data.intro}
+              </p>
+              <span className="mt-5 block h-px w-20" style={{ background: GOLD }} />
+            </div>
+          </div>
+
+          <div
+            className="rounded-b-[28px] border-x border-b p-5"
+            style={{
+              background: t.isDark ? t.cardBg : "#fffdfa",
+              borderColor: t.cardBorder,
+              boxShadow: t.isDark ? "none" : "0 16px 40px rgba(113,85,32,0.08)",
+            }}
+          >
+            <div className="grid grid-cols-2 gap-5">
+              <div className="rounded-2xl p-3" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+                <h3 className="mb-4 flex items-center gap-3 text-lg font-semibold" style={{ color: t.text }}>
+                  <ConstructionIcon name="calendar" size={22} />
+                  Official Timeline vs. Market Reality
+                </h3>
+                <ConstructionTable headers={tbl.headers || []} rows={tbl.rows || []} t={t} />
+                {tbl.source && (
+                  <p className="mt-3 text-xs italic" style={{ color: t.textMuted }}>
+                    <span style={{ color: GOLD }}>Source:</span> {tbl.source}
+                  </p>
+                )}
+              </div>
+
+              <div className="rounded-2xl p-5" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+                <h3 className="mb-5 flex items-center gap-3 text-lg font-semibold" style={{ color: t.text }}>
+                  <ConstructionIcon name="duration" size={22} />
+                  Estimated Construction Progress (Feb 2026)
+                </h3>
+                {progressItems.map((p, i) => (
+                  <ProgressBar key={i} label={p.label} percent={p.percent} t={t} />
+                ))}
+                <p className="mt-4 rounded-lg px-4 py-3 text-xs" style={{ color: t.textMuted, background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1" }}>
+                  Progress percentages reflect market estimates based on site intelligence as of February 2026.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl p-6" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+              <h3 className="mb-3 flex items-center gap-3 text-xl font-semibold" style={{ color: t.text }}>
+                <ConstructionIcon name="duration" size={24} />
+                {dur.title}
+              </h3>
+              <p className="max-w-4xl text-sm leading-7" style={{ color: t.textSecondary }}>{dur.intro}</p>
+              <div className="mt-6 grid grid-cols-3 gap-6">
+                {(dur.factors || []).map((f, i) => (
+                  <div key={f.label} className="border-r pr-6 last:border-r-0" style={{ borderColor: t.cardBorder }}>
+                    <div className="mb-4 flex items-center gap-4">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white" style={{ background: GOLD }}>
+                        {i + 1}
+                      </span>
+                      <p className="text-base font-semibold" style={{ color: t.text }}>{f.label}</p>
+                    </div>
+                    <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{f.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 grid grid-cols-3 gap-4">
+              {desktopPanels.map((panel) => {
+                const active = activeDesktopPanel === panel.id;
+                return (
+                  <button
+                    key={panel.id}
+                    type="button"
+                    onClick={() => setActiveDesktopPanel(panel.id)}
+                    className="flex items-center gap-4 rounded-2xl p-5 text-left transition-all"
+                    style={{
+                      background: active ? (t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1") : (t.isDark ? "rgba(255,255,255,0.025)" : "#fff"),
+                      border: `1px solid ${active ? "rgba(182,138,53,0.4)" : t.cardBorder}`,
+                    }}
+                  >
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style={{ background: GOLD, color: "#fff" }}>
+                      <ConstructionIcon name={panel.icon} size={20} color="#fff" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-base font-semibold" style={{ color: t.text }}>{panel.title}</span>
+                      <span className="mt-1 block text-xs leading-5" style={{ color: t.textMuted }}>{panel.subtitle}</span>
+                    </span>
+                    <span style={{ color: GOLD }}>{active ? "⌄" : "›"}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="mt-4 rounded-2xl p-5" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+              {activeDesktopPanel === "milestones" && (
+                <div className="overflow-x-auto pb-2">
+                  <div className="grid min-w-[980px] grid-cols-5 gap-0">
+                    {milestones.map((m, i) => {
+                      const isActive = m.status === "active";
+                      return (
+                        <div key={`${m.year}-${m.label}`} className="relative border-r px-4 last:border-r-0" style={{ borderColor: t.cardBorder }}>
+                          <div className="absolute left-4 right-0 top-4 h-px" style={{ background: t.cardBorder }} />
+                          <span className="relative z-10 mb-4 block h-3 w-3 rounded-full" style={{ background: isActive ? "#3f8f3f" : "#d7c8ac" }} />
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: isActive ? "#3f8f3f" : GOLD }}>
+                            {m.year} — {m.quarter}
+                          </p>
+                          <p className="mt-2 text-sm font-semibold" style={{ color: t.text }}>{m.label}</p>
+                          <p className="mt-2 text-xs leading-5" style={{ color: t.textSecondary }}>{m.detail}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {activeDesktopPanel === "intel" && (
+                <div className="grid grid-cols-[1fr_0.8fr] gap-5">
+                  <div className="rounded-xl p-5" style={{ background: t.isDark ? "rgba(182,138,53,0.06)" : "rgba(182,138,53,0.04)", borderLeft: "3px solid #B68A35" }}>
+                    <span className="block text-4xl leading-none" style={{ color: GOLD }}>“</span>
+                    <p className="text-sm leading-7 italic" style={{ color: t.textSecondary }}>{ground.quote}</p>
+                  </div>
+                  <div className="rounded-xl p-5" style={{ background: t.isDark ? "rgba(245,158,11,0.08)" : "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.25)" }}>
+                    <div className="flex gap-3">
+                      <ConstructionIcon name="intel" size={20} color="#B68A35" />
+                      <p className="text-sm leading-7" style={{ color: t.isDark ? "#fcd34d" : "#92400e" }}>
+                        <strong>Verification Note:</strong> {ground.verification}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeDesktopPanel === "photos" && (
+                <DesktopPhotoCards photos={photos} t={t} />
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
           <span
@@ -271,7 +513,9 @@ const ConstructionSection = ({ data }) => {
             {data.badge}
           </span>
           <h2 className="text-2xl lg:text-3xl font-bold mb-1" style={{ color: t.text }}>{data.title}</h2>
-          <p className="text-sm" style={{ color: t.textMuted }}>{data.subtitle}</p>
+          {data.intro && (
+            <p className="mt-3 text-sm leading-6" style={{ color: t.textSecondary }}>{data.intro}</p>
+          )}
         </div>
 
         {/* Timeline Table — always visible */}
@@ -378,6 +622,7 @@ const ConstructionSection = ({ data }) => {
           >
             <PhotoAccordionList photos={photos} openPhoto={openPhoto} onToggle={setOpenPhoto} t={t} />
           </MiniAccordion>
+        </div>
         </div>
       </div>
     </section>
