@@ -505,25 +505,6 @@ const UnitMixSection = ({ data }) => {
                   </div>
                 ))}
               </div>
-              <div
-                className="rounded-[22px] p-4"
-                style={{
-                  background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
-                  border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
-                }}
-              >
-                <div className="flex gap-3">
-                  <div className="shrink-0 pt-0.5">
-                    <InfoIcon />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                      Investor Note
-                    </p>
-                    <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.caveat }} />
-                  </div>
-                </div>
-              </div>
             </div>
           </MobileAccordion>
 
@@ -843,25 +824,6 @@ const UnitMixSection = ({ data }) => {
                         </div>
                       </div>
                     ))}
-                  </div>
-                  <div
-                    className="rounded-[22px] p-4"
-                    style={{
-                      background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
-                      border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
-                    }}
-                  >
-                    <div className="flex gap-3">
-                      <div className="shrink-0 pt-0.5">
-                        <InfoIcon />
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                          Investor Note
-                        </p>
-                        <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.caveat }} />
-                      </div>
-                    </div>
                   </div>
                 </div>
               </MobileAccordion>

@@ -295,10 +295,7 @@ const VerdictSection = ({ data }) => {
               boxShadow: t.isDark ? "0 16px 36px rgba(0,0,0,0.26)" : "0 16px 36px rgba(15,23,42,0.06)",
             }}
           >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-              {data.mobile_badge || "Investment Verdict"}
-            </p>
-            <h2 className="mt-2 text-[33px] font-semibold leading-[1.04]" style={{ color: t.text }}>
+            <h2 className="text-[33px] font-semibold leading-[1.04]" style={{ color: t.text }}>
               {data.mobile_title}
               <span className="block italic" style={{ color: GOLD }}>
                 {data.mobile_title_accent}
@@ -365,10 +362,7 @@ const VerdictSection = ({ data }) => {
 
         <div className="hidden md:block">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.36em]" style={{ color: GOLD }}>
-              {data.mobile_badge || "Investment Verdict"}
-            </p>
-            <h2 className="mt-2 text-4xl font-semibold leading-tight lg:text-5xl" style={{ color: t.text }}>
+            <h2 className="text-4xl font-semibold leading-tight lg:text-5xl" style={{ color: t.text }}>
               {data.mobile_title || data.h2_worth}
               <span className="italic" style={{ color: GOLD }}> {data.mobile_title_accent || "Worth It?"}</span>
             </h2>
