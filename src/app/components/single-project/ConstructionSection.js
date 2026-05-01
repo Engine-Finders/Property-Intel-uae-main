@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
 
 /* ── Progress dot on the vertical timeline ── */
 const TimelineDot = ({ milestone, isLast, t }) => {
@@ -201,18 +202,17 @@ const MiniAccordion = ({ title, icon, open, onToggle, children, t }) => (
 
 const PhotoAccordionList = ({ photos, openPhoto, onToggle, t }) => (
   <div className="space-y-4">
-    {photos.map((photo, index) => {
+    {photos.map((photo) => {
       const open = openPhoto === photo.id;
-      const labels = ["Aerial", "Ground Level", "Infrastructure", "Wellness Lake"];
 
       return (
         <div key={photo.id} className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
           <div className="relative h-44" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#eeeae2" }}>
             <span className="absolute right-3 top-3 rounded-full px-3 py-1 text-[11px] font-medium" style={{ background: "#fffdfa", color: GOLD }}>
-              {labels[index] || `Update ${photo.id}`}
+              {photo.label}
             </span>
             <span className="absolute bottom-4 left-4 rounded-full px-4 py-2 text-sm font-semibold" style={{ background: "rgba(255,255,255,0.82)", color: t.text }}>
-              {photo.title || ["Site Clearance & Earthworks", "Foundation Piling — 3BR Clusters", "Infrastructure Corridors & Utility Trenching", "Wellness Lake Basin"][index] || `Construction Update ${photo.id}`}
+              {photo.title}
             </span>
           </div>
           <button
@@ -237,14 +237,6 @@ const PhotoAccordionList = ({ photos, openPhoto, onToggle, t }) => (
 );
 
 const DesktopPhotoCards = ({ photos, t }) => {
-  const labels = ["Aerial", "Ground Level", "Infrastructure", "Future Amenity"];
-  const titles = [
-    "Aerial view of Serro construction plots showing initial site clearance and earthworks, with The Heights master community boundaries visible in the distance.",
-    "Foundation piling underway for Serro's 3-bedroom villa clusters. The Mediterranean-inspired architecture is not yet visible at this early stage.",
-    "Infrastructure corridor development showing utility trenching and road base preparation.",
-    "View towards the future Wellness Lake location, currently a cleared basin awaiting excavation and waterproofing.",
-  ];
-
   return (
     <div className="grid grid-cols-4 gap-4">
       {photos.map((photo, index) => {
@@ -273,13 +265,13 @@ const DesktopPhotoCards = ({ photos, t }) => {
                 className="absolute right-3 top-3 rounded-full px-3 py-1 text-[10px] font-semibold"
                 style={{ background: "rgba(255,255,255,0.9)", color: t.isDark ? "#5b4218" : t.text }}
               >
-                {labels[index] || `Update ${photo.id}`}
+                {photo.label}
               </span>
             </div>
             <div className="flex gap-2 px-4 py-4">
               <ConstructionIcon name="camera" size={14} color={GOLD} />
               <p className="text-xs leading-5" style={{ color: t.textSecondary }}>
-                {photo.title || titles[index] || photo.caption}
+                {photo.title}
               </p>
             </div>
           </article>
@@ -304,34 +296,12 @@ const ConstructionSection = ({ data }) => {
   const ground = data.on_ground || {};
   const photos = data.photo_placeholders || [];
 
-  // Simulated early-stage progress
-  const progressItems = [
-    { label: "Site Preparation", percent: 15 },
-    { label: "Foundation Works", percent: 5 },
-    { label: "Infrastructure", percent: 3 },
-    { label: "Vertical Construction", percent: 0 },
-    { label: "Amenities & Landscaping", percent: 0 },
-  ];
-  const desktopPanels = [
-    {
-      id: "milestones",
-      title: "Project Key Milestones",
-      subtitle: "Detailed timeline of project milestones from launch to handover.",
-      icon: "calendar",
-    },
-    {
-      id: "intel",
-      title: ground.title,
-      subtitle: "Broker insights and market intelligence from site visits and industry sources.",
-      icon: "intel",
-    },
-    {
-      id: "photos",
-      title: "Construction Photos & Site Updates",
-      subtitle: "Latest on-ground photos and updates from the construction site.",
-      icon: "camera",
-    },
-  ];
+  const progressItems = data.progress_items;
+  const desktopPanels = data.desktop_panels.map((panel) => ({
+    ...panel,
+    icon: panel.id === "milestones" ? "calendar" : panel.id === "intel" ? "intel" : "camera",
+    title: panel.id === "intel" ? ground.title : panel.title,
+  }));
 
   return (
     <section id="construction" className="py-8 lg:py-12 px-2 sm:px-6 lg:px-8" style={{ background: t.bgAlt }}>
@@ -398,13 +368,13 @@ const ConstructionSection = ({ data }) => {
               <div className="rounded-2xl p-5" style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
                 <h3 className="mb-5 flex items-center gap-3 text-lg font-semibold" style={{ color: t.text }}>
                   <ConstructionIcon name="duration" size={22} />
-                  Estimated Construction Progress (Feb 2026)
+                  {data.progress_title}
                 </h3>
                 {progressItems.map((p, i) => (
                   <ProgressBar key={i} label={p.label} percent={p.percent} t={t} />
                 ))}
                 <p className="mt-4 rounded-lg px-4 py-3 text-xs" style={{ color: t.textMuted, background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1" }}>
-                  Progress percentages reflect market estimates based on site intelligence as of February 2026.
+                  {data.progress_note}
                 </p>
               </div>
             </div>
@@ -506,12 +476,6 @@ const ConstructionSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
-          <span
-            className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
-            style={{ background: "#B68A3520", color: "#B68A35" }}
-          >
-            {data.badge}
-          </span>
           <h2 className="text-2xl lg:text-3xl font-bold mb-1" style={{ color: t.text }}>{data.title}</h2>
           {data.intro && (
             <p className="mt-3 text-sm leading-6" style={{ color: t.textSecondary }}>{data.intro}</p>
@@ -535,12 +499,12 @@ const ConstructionSection = ({ data }) => {
         <div className="rounded-xl p-5 lg:p-7 mb-6" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
           <h3 className="text-base font-semibold mb-5 flex items-center gap-2" style={{ color: t.text }}>
             <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "#B68A3520", color: "#B68A35" }}>🏗️</span>
-            Estimated Construction Progress (Feb 2026)
+            {data.progress_title}
           </h3>
           {progressItems.map((p, i) => (
             <ProgressBar key={i} label={p.label} percent={p.percent} t={t} />
           ))}
-          <p className="text-xs mt-2 italic" style={{ color: t.textMuted }}>Estimates based on market intelligence. Verify via Dubai REST app.</p>
+          <p className="text-xs mt-2 italic" style={{ color: t.textMuted }}>{data.progress_mobile_note}</p>
         </div>
 
         {/* Duration Analysis */}
@@ -624,6 +588,7 @@ const ConstructionSection = ({ data }) => {
           </MiniAccordion>
         </div>
         </div>
+        <SectionExpertCta cta={data.section_cta} t={t} className="mt-6" />
       </div>
     </section>
   );

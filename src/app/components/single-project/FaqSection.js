@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
 
 const GOLD = "#B68A35";
 
@@ -117,21 +118,7 @@ const FaqSection = ({ data }) => {
           ))}
         </div>
 
-        {/* CTA — before Footer */}
-        {data.cta && (
-          <div className="flex flex-col items-start gap-2">
-            <a
-              href={data.cta.href || "#"}
-              className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
-              style={{ background: GOLD }}
-            >
-              {data.cta.button_text}
-            </a>
-            {data.cta.subtext && (
-              <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
-            )}
-          </div>
-        )}
+        <SectionExpertCta cta={data.section_cta || data.cta} t={t} />
       </div>
     </section>
   );

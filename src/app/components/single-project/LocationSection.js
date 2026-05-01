@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import LocationMap from "../sub-components/LocationMap";
+import SectionExpertCta from "./SectionExpertCta";
+import SectionImageHeader from "./SectionImageHeader";
 
 const GOLD = "#b68a35";
 
@@ -329,26 +331,26 @@ const LocationSection = ({ data }) => {
     {
       id: "walkability",
       icon: "walkability",
-      title: data.walkability_title || "Walkability & Pedestrian Experience",
-      subtitle: data.walkability_subtitle || "Walk score & daily convenience",
+      title: data.walkability_title,
+      subtitle: data.walkability_subtitle,
     },
     {
       id: "drive",
       icon: "drive",
-      title: data.drive_title || "Drive Times",
-      subtitle: data.drive_subtitle || "Off-peak vs. peak hour analysis",
+      title: data.drive_title,
+      subtitle: data.drive_subtitle,
     },
     {
       id: "infrastructure",
       icon: "infrastructure",
-      title: data.infrastructure_title || "Future Infrastructure",
-      subtitle: data.infrastructure_subtitle || "RTA, Metro, Airport — upcoming catalysts",
+      title: data.infrastructure_title,
+      subtitle: data.infrastructure_subtitle,
     },
     {
       id: "neighbourhood",
       icon: "neighbourhood",
-      title: data.neighbourhood_title || "Neighbourhood Character",
-      subtitle: data.neighbourhood_subtitle || "Emerging wellness enclave",
+      title: data.neighbourhood_title,
+      subtitle: data.neighbourhood_subtitle,
     },
   ];
 
@@ -667,21 +669,18 @@ const LocationSection = ({ data }) => {
 
   return (
     <section style={{ background: t.bg }} className="py-6 lg:py-10">
-      <div className="max-w-6xl mx-auto px-2 sm:px-6">
-        <div className="text-center mb-10 lg:mb-14">
-          <span
-            style={{
-              background: "linear-gradient(135deg, #b8860b, #d4a843)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            className="text-sm font-semibold tracking-widest uppercase"
-          >
-            Location & Neighbourhood Deep Dive
-          </span>
+      <div className="max-w-7xl mx-auto px-2 sm:px-6">
+        <SectionImageHeader
+          primary="Location Analysis"
+          accent="Connectivity, Amenities & Future Infrastructure"
+          subtitle={data.hero_subtitle}
+          t={t}
+          className="mb-8 hidden lg:block rounded-b-[28px]"
+        />
+        <div className="text-center mb-10 lg:hidden">
           <h2
             style={{ color: t.text }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold mt-3 leading-tight"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight"
           >
             Location Analysis —{" "}
             <span style={{ color: "#b8860b" }}>Connectivity, Amenities & Future Infrastructure</span>
@@ -865,6 +864,7 @@ const LocationSection = ({ data }) => {
             ))}
           </div>
         </div>
+        <SectionExpertCta cta={data.section_cta} t={t} className="mt-6" />
       </div>
     </section>
   );

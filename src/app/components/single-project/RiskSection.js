@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
 
 /* ── Animated Risk Bar ── */
 const RiskBar = ({ label, level, value, t }) => {
@@ -380,7 +381,9 @@ const ResearchNotesAccordion = ({ notes, t }) => {
               <RiskIcon name="document" size={18} />
               <p className="text-sm font-semibold" style={{ color: "#B68A35" }}>Sources consulted</p>
             </div>
-            <BulletList items={notes.sources_consulted || []} t={t} icon="•" />
+            <div className="max-h-44 overflow-y-auto pr-2 scrollbar-gold lg:max-h-40">
+              <BulletList items={notes.sources_consulted || []} t={t} icon="•" />
+            </div>
           </div>
 
           <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
@@ -388,7 +391,9 @@ const ResearchNotesAccordion = ({ notes, t }) => {
               <RiskIcon name="shield" size={18} />
               <p className="text-sm font-semibold" style={{ color: "#B68A35" }}>Data verification notes</p>
             </div>
-            <BulletList items={notes.data_verification_notes || []} t={t} icon="•" />
+            <div className="max-h-44 overflow-y-auto pr-2 scrollbar-gold lg:max-h-40">
+              <BulletList items={notes.data_verification_notes || []} t={t} icon="•" />
+            </div>
           </div>
         </div>
       </div>
@@ -539,14 +544,14 @@ const RisksSection = ({ data }) => {
                         </div>
                       </div>
                       <div className="rounded-2xl p-5" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdfa" }}>
-                        <p className="text-4xl font-semibold" style={{ color: "#B68A35" }}>40,000+</p>
-                        <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>homes could be handed over in 2026, following a similarly strong delivery year in 2025.</p>
+                        <p className="text-4xl font-semibold" style={{ color: "#B68A35" }}>{oversupply.stat_value}</p>
+                        <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>{oversupply.stat_description}</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-3 gap-4">
                       <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
                         <p className="mb-3 text-sm font-semibold" style={{ color: "#B68A35" }}>Where Supply Concentrates:</p>
-                        {["JVC", "MBR City", "Dubai South", "Dubailand Communities", "Business Bay Extensions"].map((area) => (
+                        {oversupply.supply_areas.map((area) => (
                           <p key={area} className="mb-2 rounded px-3 py-2 text-sm last:mb-0" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#faf7f0", color: t.text }}>{area}</p>
                         ))}
                       </div>
@@ -560,7 +565,7 @@ const RisksSection = ({ data }) => {
                           <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{oversupply.serro_assessment}</p>
                         </div>
                         <div className="rounded-xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}>
-                          <p className="text-sm" style={{ color: t.textSecondary }}><strong style={{ color: "#B68A35" }}>Potential Impact Window</strong><br />2029 - 2031</p>
+                          <p className="text-sm" style={{ color: t.textSecondary }}><strong style={{ color: "#B68A35" }}>{oversupply.impact_window_label}</strong><br />{oversupply.impact_window}</p>
                         </div>
                       </div>
                     </div>
@@ -681,12 +686,6 @@ const RisksSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-10">
-          <span
-            className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4"
-            style={{ background: "#EF444420", color: "#EF4444" }}
-          >
-            {data.title || "Risks & Red Flags"}
-          </span>
           <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: t.text }}>
             {data.subtitle}
           </h2>
@@ -751,18 +750,18 @@ const RisksSection = ({ data }) => {
               <h3 className="text-lg font-semibold mb-4" style={{ color: t.text }}>{oversupply.title}</h3>
               <div className="mb-4 grid grid-cols-[1fr_auto] gap-3 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
                 <div>
-                  <p className="text-5xl font-semibold leading-none" style={{ color: "#B68A35" }}>40,000+</p>
+                  <p className="text-5xl font-semibold leading-none" style={{ color: "#B68A35" }}>{oversupply.stat_value}</p>
                   <p className="mt-2 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{oversupply.intro}</p>
                 </div>
                 <div className="border-l pl-4 text-center" style={{ borderColor: t.cardBorder }}>
-                  <p className="text-2xl font-semibold" style={{ color: "#B68A35" }}>2026</p>
-                  <p className="text-xs" style={{ color: t.textMuted }}>handover year</p>
+                  <p className="text-2xl font-semibold" style={{ color: "#B68A35" }}>{oversupply.stat_year}</p>
+                  <p className="text-xs" style={{ color: t.textMuted }}>{oversupply.stat_year_label}</p>
                 </div>
               </div>
               <div className="mb-4 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
                 <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#B68A35" }}>Where Supply Concentrates</p>
                 <div className="mb-3 flex flex-wrap gap-2">
-                  {["JVC", "MBR City", "Dubai South", "Dubailand", "Business Bay"].map((area) => (
+                  {oversupply.mobile_supply_areas.map((area) => (
                     <span key={area} className="rounded-full px-3 py-1 text-[11px]" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#f7f0df", color: t.textSecondary }}>{area}</span>
                   ))}
                 </div>
@@ -772,7 +771,7 @@ const RisksSection = ({ data }) => {
                 <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#B68A35" }}>Villa Market Differentiation</p>
                 <p className="text-xs leading-relaxed mb-3" style={{ color: t.textSecondary }}>{oversupply.villa_differentiation}</p>
                 <div className="flex flex-wrap gap-2">
-                  {["Villa supply constrained", "Family demand strong", "Dubai South villa supply growing", "2029-2031 rental window at risk"].map((tag) => (
+                  {oversupply.market_tags.map((tag) => (
                     <span key={tag} className="rounded px-2 py-1 text-[11px]" style={{ background: "rgba(34,197,94,0.08)", color: "#2f7d45" }}>{tag}</span>
                   ))}
                 </div>
@@ -882,22 +881,8 @@ const RisksSection = ({ data }) => {
 
         <ResearchNotesAccordion notes={data.research_notes} t={t} />
 
-        {/* CTA — after Final Perspective */}
-        {data.cta && (
-          <div className="mt-6 flex flex-col items-start gap-2">
-            <a
-              href={data.cta.href || "#"}
-              className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
-              style={{ background: "#B68A35" }}
-            >
-              {data.cta.button_text}
-            </a>
-            {data.cta.subtext && (
-              <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
-            )}
-          </div>
-        )}
         </div>
+        <SectionExpertCta cta={data.section_cta || data.cta} t={t} className="mt-6" />
       </div>
     </section>
   );

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
+import SectionImageHeader from "./SectionImageHeader";
 
 const GOLD = "#B68A35";
 const GREEN = "#10b981";
@@ -98,6 +100,100 @@ const OverviewStatIcon = ({ index }) => {
     <svg key="globe" {...common}><circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15 15 0 0 1 0 18" /><path d="M12 3a15 15 0 0 0 0 18" /></svg>,
     <svg key="pie" {...common}><path d="M21 12a9 9 0 1 1-9-9" /><path d="M12 3v9h9" /></svg>,
     <svg key="coins" {...common}><path d="M12 6c4.4 0 8-1.3 8-3s-3.6-3-8-3-8 1.3-8 3 3.6 3 8 3Z" transform="translate(0 3)" /><path d="M4 9v6c0 1.7 3.6 3 8 3s8-1.3 8-3V9" /><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></svg>,
+  ];
+
+  return icons[index] || icons[0];
+};
+
+const OverviewHighlightIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 21h18" />
+    <path d="M6 17V9" />
+    <path d="M11 17V5" />
+    <path d="M16 17v-6" />
+    <path d="m4 11 5-5 4 4 6-7" />
+  </svg>
+);
+
+const AnalysisIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 3v18h18" />
+    <path d="m7 15 4-4 3 3 5-7" />
+  </svg>
+);
+
+const QualityIssueIcon = ({ type }) => {
+  const common = {
+    width: 18,
+    height: 18,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true",
+  };
+
+  if (type === "volume") {
+    return <svg {...common}><path d="M11 5 6 9H3v6h3l5 4V5Z" /><path d="M16 9a5 5 0 0 1 0 6" /></svg>;
+  }
+  if (type === "thermometer") {
+    return <svg {...common}><path d="M14 14.8V5a2 2 0 1 0-4 0v9.8a4 4 0 1 0 4 0Z" /></svg>;
+  }
+  if (type === "sprout") {
+    return <svg {...common}><path d="M12 19V9" /><path d="M12 9c0-3 2-5 5-5 0 3-2 5-5 5Z" /><path d="M12 13c0-3-2-5-5-5 0 3 2 5 5 5Z" /></svg>;
+  }
+
+  return <svg {...common}><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4" /><path d="m15 5 4 4" /></svg>;
+};
+
+const ShieldCheckIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+
+const OnSerroIcon = ({ index }) => {
+  const common = {
+    width: 18,
+    height: 18,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true",
+  };
+  const icons = [
+    <svg key="map" {...common}><path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z" /><path d="M9 3v15" /><path d="M15 6v15" /></svg>,
+    <svg key="shield" {...common}><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Z" /><path d="m9 12 2 2 4-4" /></svg>,
+    <svg key="lotus" {...common}><path d="M12 20c-4-2-6-5-6-9 3 0 5 1 6 4 1-3 3-4 6-4 0 4-2 7-6 9Z" /><path d="M12 15c-2-2-2-5 0-8 2 3 2 6 0 8Z" /></svg>,
+    <svg key="clock" {...common}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 3" /></svg>,
+    <svg key="search" {...common}><circle cx="11" cy="11" r="7" /><path d="m16 16 4 4" /></svg>,
+    <svg key="home" {...common}><path d="M3 11 12 4l9 7" /><path d="M5 10v10h14V10" /><path d="M9 20v-6h6v6" /></svg>,
   ];
 
   return icons[index] || icons[0];
@@ -203,7 +299,10 @@ const DeveloperSection = ({ data }) => {
   const tabs = [
     { id: "track_record", label: "Delivery", sublabel: "Track record" },
     { id: "quality", label: "Quality", sublabel: "Known issues" },
+    { id: "rera", label: "RERA", sublabel: "Compliance" },
     { id: "financials", label: "Financials", sublabel: "Stability" },
+    { id: "on_serro", label: "On Serro", sublabel: "Applied view" },
+    { id: "verify", label: "Verify", sublabel: "Buyer checklist" },
     { id: "buyer_guide", label: "Warranty", sublabel: "Coverage" },
   ];
 
@@ -220,11 +319,15 @@ const DeveloperSection = ({ data }) => {
   return (
     <section style={{ background: t.bgAlt }} className="py-6 lg:py-10">
       <div className="max-w-7xl mx-auto px-2 sm:px-6">
+        <SectionImageHeader
+          primary={primary}
+          accent={accent}
+          subtitleHtml={data.company_background}
+          t={t}
+          className="mb-8 hidden lg:block rounded-b-[28px]"
+        />
         <div className="mb-10 space-y-6 lg:mb-12">
-          <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
-              Developer Profile & Track Record
-            </p>
+          <div className="lg:hidden">
             <h2 className="text-[2.1rem] font-semibold leading-[1.05] lg:text-5xl" style={{ color: t.text }}>
               {primary}
               {accent && (
@@ -248,7 +351,7 @@ const DeveloperSection = ({ data }) => {
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 rounded-2xl p-4 sm:gap-4 sm:p-5"
+                  className="rounded-2xl p-4 sm:p-5"
                   style={{
                     background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                     border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
@@ -263,11 +366,11 @@ const DeveloperSection = ({ data }) => {
                   >
                     <OverviewStatIcon index={i} />
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xl font-semibold sm:text-3xl lg:text-2xl" style={{ color: t.text }}>
+                  <div className="mt-3 min-w-0">
+                    <p className="text-lg font-semibold sm:text-2xl lg:text-xl" style={{ color: t.text }}>
                       {stat.value}
                     </p>
-                    <p className="mt-1 text-xs leading-5 sm:text-sm" style={{ color: t.textSecondary }}>
+                    <p className="mt-1 text-[11px] leading-4 sm:text-xs" style={{ color: t.textSecondary }}>
                       {stat.label}
                     </p>
                   </div>
@@ -283,12 +386,19 @@ const DeveloperSection = ({ data }) => {
                   border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                 }}
               >
-                <p className="text-sm font-semibold" style={{ color: GOLD }}>
-                  {data.overview_highlight.title}
-                </p>
-                <p className="mt-1 text-sm leading-6" style={{ color: t.textMuted }}>
-                  {data.overview_highlight.text}
-                </p>
+                <div className="flex gap-3">
+                  <div className="shrink-0 pt-0.5" style={{ color: GOLD }}>
+                    <OverviewHighlightIcon />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold" style={{ color: t.text }}>
+                      {data.overview_highlight.title}
+                    </p>
+                    <p className="mt-1 text-sm leading-6" style={{ color: t.textMuted }}>
+                      {data.overview_highlight.text}
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -324,18 +434,6 @@ const DeveloperSection = ({ data }) => {
             />
           </div>
 
-          <div className="rounded-2xl p-5 flex items-center gap-4" style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.08), rgba(16,185,129,0.02))", border: "1px solid rgba(16,185,129,0.2)" }}>
-            <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "rgba(16,185,129,0.15)" }}>
-              <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
-                <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="rgba(16,185,129,0.3)" stroke="#10b981" strokeWidth="1.5" />
-                <path d="M9 12l2 2 4-4" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </div>
-            <div>
-              <p className="text-sm font-semibold" style={{ color: "#10b981" }}>RERA Registered & Escrow Compliant</p>
-              <p className="text-xs mt-0.5" style={{ color: t.textMuted }}>All active projects maintain registered escrow accounts with no public record of fund misuse penalties.</p>
-            </div>
-          </div>
         </div>
 
         <div className="mb-10 flex gap-2 overflow-x-auto pb-2 lg:justify-center lg:overflow-visible">
@@ -383,6 +481,29 @@ const DeveloperSection = ({ data }) => {
             >
               <SectionHeader iconId="track_record" title="Delivery Track Record" subtitle="Mandatory - DLD-verified completion dates" t={t} />
 
+              <div
+                className="mb-5 rounded-2xl p-4"
+                style={{
+                  background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0",
+                  border: `1px solid ${t.isDark ? "rgba(217,176,95,0.18)" : "rgba(182,138,53,0.14)"}`,
+                }}
+              >
+                <div className="flex gap-3">
+                  <div
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                  >
+                    <AnalysisIcon />
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                      Headline Claim
+                    </p>
+                    <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_intro }} />
+                  </div>
+                </div>
+              </div>
+
               <div className="lg:hidden space-y-3">
                 {deliveryTable.map((row, i) => (
                   <div key={i} className="rounded-2xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
@@ -422,88 +543,183 @@ const DeveloperSection = ({ data }) => {
             </div>
 
             <div className="rounded-2xl p-5" style={{ background: "rgba(182,138,53,0.06)", border: "1px solid rgba(182,138,53,0.15)" }}>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: GOLD }}>Analysis</p>
-              <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
+              <div className="flex gap-3">
+                <div
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                >
+                  <AnalysisIcon />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>Analysis</p>
+                  {data.delivery_analysis_claim && (
+                    <p className="mt-2 text-base font-semibold leading-snug" style={{ color: t.text }}>
+                      {data.delivery_analysis_claim}
+                    </p>
+                  )}
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
+                </div>
+              </div>
             </div>
           </div>
         )}
 
         {activeTab === "quality" && (
-          <div className="space-y-4">
-            <SectionHeader iconId="quality" title="Known Quality Issues" subtitle="Based on aggregated resident reviews and forum discussions" t={t} />
-
-            <StyledAccordion
+          <div
+            className="rounded-[28px] p-5 sm:p-6"
+            style={{
+              background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
+              border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
+            }}
+          >
+            <SectionHeader
+              iconId="quality"
               title="Known Quality Issues"
-              icon={<TabGlyph id="quality" />}
-              isOpen={!!openAccordions.qualityIssues}
-              onToggle={() => toggleAccordion("qualityIssues")}
+              subtitle={data.quality_subline}
               t={t}
-            >
-              <div className="space-y-3">
-                {qualityIssues.map((issue, i) => (
-                  <div key={i} className="rounded-2xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
-                    <div className="mb-2 flex items-center gap-3">
-                      <span className="text-base">{issue.icon}</span>
-                      <p className="text-sm font-semibold" style={{ color: t.text }}>{issue.title}</p>
-                    </div>
-                    <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{issue.content}</p>
-                  </div>
-                ))}
-              </div>
-            </StyledAccordion>
+            />
 
-            <StyledAccordion
-              title="Positive Quality Indicators"
-              icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m5 13 4 4L19 7" /></svg>}
-              isOpen={!!openAccordions.positiveIndicators}
-              onToggle={() => toggleAccordion("positiveIndicators")}
-              t={t}
-            >
+            <div className="space-y-3">
+              {qualityIssues.map((issue, i) => {
+                const key = `quality_issue_${i}`;
+                const isOpen = openAccordions[key] ?? i === 0;
+                const isLowImpact = String(issue.impact || "").toLowerCase().includes("low");
+
+                return (
+                  <div
+                    key={i}
+                    className="overflow-hidden rounded-2xl"
+                    style={{
+                      background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
+                      border: `1px solid ${t.cardBorder}`,
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenAccordions((prev) => ({
+                          ...prev,
+                          [key]: !(prev[key] ?? i === 0),
+                        }))
+                      }
+                      className="flex w-full items-center justify-between gap-3 p-4 text-left"
+                    >
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span
+                          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                          style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                        >
+                          <QualityIssueIcon type={issue.icon} />
+                        </span>
+                        <span className="text-sm font-semibold" style={{ color: t.text }}>{issue.title}</span>
+                      </div>
+                      <span className="flex shrink-0 items-center gap-3">
+                        {issue.impact && (
+                          <span
+                            className="rounded-full px-2 py-1 text-[10px] font-medium"
+                            style={{
+                              background: isLowImpact ? "rgba(16,185,129,0.1)" : "rgba(182,138,53,0.1)",
+                              color: isLowImpact ? GREEN : GOLD,
+                            }}
+                          >
+                            {issue.impact}
+                          </span>
+                        )}
+                        <ChevronIcon open={isOpen} size={16} />
+                      </span>
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
+                      <p className="px-4 pb-4 text-sm leading-7" style={{ color: t.textSecondary }}>
+                        {issue.content}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-6">
+              <div className="mb-4 flex items-center gap-3">
+                <span
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="m5 13 4 4L19 7" />
+                  </svg>
+                </span>
+                <h3 className="text-lg font-semibold" style={{ color: t.text }}>Positive Quality Indicators</h3>
+              </div>
               <ul className="space-y-3">
                 {positiveIndicators.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(16,185,129,0.14)" }}>
-                      <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke={GREEN} strokeWidth="3"><path d="M5 13l4 4L19 7" /></svg>
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 rounded-2xl p-4"
+                    style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}
+                  >
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(16,185,129,0.12)" }}>
+                      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke={GREEN} strokeWidth="3"><path d="M5 13l4 4L19 7" /></svg>
                     </span>
                     <span className="text-sm leading-6" style={{ color: t.textSecondary }}>{item}</span>
                   </li>
                 ))}
               </ul>
-            </StyledAccordion>
+            </div>
+          </div>
+        )}
 
-            <StyledAccordion
-              title="Strengths Applied to Serro"
-              icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12 4 4L19 7" /></svg>}
-              isOpen={!!openAccordions.strengths}
-              onToggle={() => toggleAccordion("strengths")}
+        {activeTab === "rera" && (
+          <div
+            className="rounded-[28px] p-5 sm:p-6"
+            style={{
+              background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
+              border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
+            }}
+          >
+            <SectionHeader
+              iconId="buyer_guide"
+              title={data.rera_tab.title}
+              subtitle={data.rera_tab.subtitle}
               t={t}
+            />
+            <p className="text-sm leading-8" style={{ color: t.textSecondary }}>
+              {data.rera_tab?.description || data.rera_details}
+            </p>
+            <div className="mt-6 overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+              {data.rera_indicators.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-3 p-4"
+                  style={i > 0 ? { borderTop: `1px solid ${t.cardBorder}` } : undefined}
+                >
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
+                    <ShieldCheckIcon />
+                  </span>
+                  <span className="text-sm leading-6" style={{ color: t.textSecondary }}>{item}</span>
+                </div>
+              ))}
+            </div>
+            <div
+              className="mt-6 rounded-2xl p-5"
+              style={{
+                background: t.isDark ? "rgba(182,138,53,0.08)" : "#fff8ed",
+                border: `1px solid ${t.isDark ? "rgba(217,176,95,0.16)" : "rgba(182,138,53,0.12)"}`,
+              }}
             >
-              <div className="space-y-3">
-                {strengths.map((item, i) => (
-                  <div key={i} className="rounded-2xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
-                    <p className="text-sm font-semibold" style={{ color: t.text }}>{item.title}</p>
-                    <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
-                  </div>
-                ))}
+              <div className="flex gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
+                  <TabGlyph id="buyer_guide" />
+                </span>
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                    {data.rera_tab.recommended_action_label}
+                  </p>
+                  <p className="mt-2 text-sm leading-7" style={{ color: t.textSecondary }}>
+                    {data.rera_tab?.recommended_action}
+                  </p>
+                </div>
               </div>
-            </StyledAccordion>
-
-            <StyledAccordion
-              title="Weaknesses to Monitor"
-              icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3 3 19h18L12 3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>}
-              isOpen={!!openAccordions.weaknesses}
-              onToggle={() => toggleAccordion("weaknesses")}
-              t={t}
-            >
-              <div className="space-y-3">
-                {weaknesses.map((item, i) => (
-                  <div key={i} className="rounded-2xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
-                    <p className="text-sm font-semibold" style={{ color: t.text }}>{item.title}</p>
-                    <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
-                  </div>
-                ))}
-              </div>
-            </StyledAccordion>
+            </div>
           </div>
         )}
 
@@ -516,7 +732,9 @@ const DeveloperSection = ({ data }) => {
             }}
           >
             <SectionHeader iconId="financials" title="Financial Stability Assessment" subtitle="Balance sheet & completion risk" t={t} />
-            <p className="mb-6 text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.financial_assessment }} />
+            <p className="mb-6 text-base leading-7" style={{ color: t.text }}>
+              {data.financial_intro}
+            </p>
 
             <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
               {financials.map((item, i) => (
@@ -540,58 +758,180 @@ const DeveloperSection = ({ data }) => {
                 </div>
               ))}
             </div>
+
+            <p className="mt-6 border-t pt-6 text-sm leading-8" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
+              {data.financial_followup}
+            </p>
+          </div>
+        )}
+
+        {activeTab === "on_serro" && (
+          <div
+            className="rounded-[28px] p-5 sm:p-6"
+            style={{
+              background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
+              border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
+            }}
+          >
+            <SectionHeader
+              iconId="quality"
+              title={data.on_serro_section.heading}
+              subtitle={data.on_serro_section.subtitle}
+              t={t}
+            />
+
+            <div className="space-y-5">
+              <div>
+                <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: GREEN }}>
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full" style={{ background: "rgba(16,185,129,0.12)" }}>
+                    <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke={GREEN} strokeWidth="3"><path d="M5 13l4 4L19 7" /></svg>
+                  </span>
+                  Strengths Applied
+                </p>
+                <div className="space-y-3">
+                  {strengths.map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex gap-3 rounded-2xl p-4"
+                      style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}
+                    >
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white" style={{ background: GOLD }}>
+                        <OnSerroIcon index={i} />
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold" style={{ color: t.text }}>{item.title}</p>
+                        <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: RED }}>
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full" style={{ background: "rgba(245,158,11,0.12)" }}>
+                    <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke={RED} strokeWidth="2.4"><path d="M12 3 3 19h18L12 3Z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+                  </span>
+                  Weaknesses to Monitor
+                </p>
+                <div className="space-y-3">
+                  {weaknesses.map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex gap-3 rounded-2xl p-4"
+                      style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}
+                    >
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white" style={{ background: GOLD }}>
+                        <OnSerroIcon index={i + strengths.length} />
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold" style={{ color: t.text }}>{item.title}</p>
+                        <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "verify" && (
+          <div
+            className="rounded-[28px] p-5 sm:p-6"
+            style={{
+              background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
+              border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
+            }}
+          >
+            <SectionHeader
+              iconId="buyer_guide"
+              title={data.verification_section.title}
+              subtitle={data.verification_section.subtitle}
+              t={t}
+            />
+
+            <div className="space-y-5">
+              {verificationSteps.map((group, groupIndex) => {
+                let previousSteps = 0;
+                for (let i = 0; i < groupIndex; i += 1) {
+                  previousSteps += verificationSteps[i]?.steps?.length || 0;
+                }
+
+                return (
+                  <div key={group.phase}>
+                    <div className="mb-3 flex items-center gap-2">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold text-white" style={{ background: GOLD }}>
+                        {groupIndex + 1}
+                      </span>
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: GOLD }}>
+                        {group.phase}
+                      </p>
+                    </div>
+                    <div className="space-y-0 overflow-hidden rounded-2xl" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+                      {group.steps.map((step, stepIndex) => {
+                        const stepNumber = previousSteps + stepIndex + 1;
+                        const title = typeof step === "string" ? step : step.title;
+                        const description = typeof step === "string" ? step : step.description;
+
+                        return (
+                          <div
+                            key={`${group.phase}-${stepIndex}`}
+                            className="flex gap-3 p-4"
+                            style={stepIndex > 0 ? { borderTop: `1px solid ${t.cardBorder}` } : undefined}
+                          >
+                            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
+                              {stepNumber}
+                            </span>
+                            <div>
+                              <p className="text-sm font-semibold" style={{ color: t.text }}>{title}</p>
+                              <p className="mt-1 text-xs leading-6" style={{ color: t.textSecondary }}>{description}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
         {activeTab === "buyer_guide" && (
           <div className="space-y-4">
-            <SectionHeader iconId="buyer_guide" title="Warranty Coverage" subtitle="RERA compliance & buyer checks" t={t} />
+            <SectionHeader iconId="buyer_guide" title="Warranty Coverage" subtitle="Buyer checks" t={t} />
 
-            <div className="space-y-4 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:gap-4 lg:space-y-0">
-              <div className="rounded-[28px] p-5 sm:p-6" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9", border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }}>
-                <h4 className="text-lg font-semibold mb-3" style={{ color: t.text }}>RERA Compliance</h4>
-                <p className="text-sm leading-7 mb-4" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.rera_details }} />
-                <ul className="space-y-2">
-                  {data.rera_indicators.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
-                      <span className="mt-0.5" style={{ color: GREEN }}>✓</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                {verificationSteps.map((group, i) => {
-                  const key = `verify_${i}`;
-                  return (
-                    <StyledAccordion
-                      key={i}
-                      title={group.phase}
-                      icon={
-                        <span
-                          className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold"
-                          style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
-                        >
-                          {i + 1}
-                        </span>
-                      }
-                      isOpen={!!openAccordions[key]}
-                      onToggle={() => toggleAccordion(key)}
-                      t={t}
-                    >
-                      <ul className="space-y-2">
-                        {group.steps.map((step, j) => (
-                          <li key={j} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
-                            <span style={{ color: GOLD }}>→</span>
-                            <span>{step}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </StyledAccordion>
-                  );
-                })}
-              </div>
+            <div className="space-y-3">
+              {verificationSteps.map((group, i) => {
+                const key = `verify_${i}`;
+                return (
+                  <StyledAccordion
+                    key={i}
+                    title={group.phase}
+                    icon={
+                      <span
+                        className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold"
+                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                      >
+                        {i + 1}
+                      </span>
+                    }
+                    isOpen={!!openAccordions[key]}
+                    onToggle={() => toggleAccordion(key)}
+                    t={t}
+                  >
+                    <ul className="space-y-2">
+                      {group.steps.map((step, j) => (
+                        <li key={j} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
+                          <span style={{ color: GOLD }}>→</span>
+                          <span>{typeof step === "string" ? step : step.title}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </StyledAccordion>
+                );
+              })}
             </div>
           </div>
         )}
@@ -608,6 +948,37 @@ const DeveloperSection = ({ data }) => {
               Transparency Statement
             </p>
             <p className="text-sm leading-8" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
+            {(data.research_notes || []).length > 0 && (
+              <div className="mt-6 border-t pt-5" style={{ borderColor: t.cardBorder }}>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
+                  Research Notes
+                </p>
+                <p className="mb-3 text-sm font-medium" style={{ color: t.text }}>Sources consulted:</p>
+                <ul className="space-y-2">
+                  {data.research_notes.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GOLD }} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {(data.data_limitations || []).length > 0 && (
+              <div className="mt-6">
+                <p className="mb-3 text-sm font-medium" style={{ color: t.text }}>Data limitations:</p>
+                <div className="space-y-2">
+                  {data.data_limitations.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 rounded-xl p-3" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px]" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
+                        {i + 1}
+                      </span>
+                      <span className="text-xs leading-6" style={{ color: t.textSecondary }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </StyledAccordion>
 
           {data.report_cta && (
@@ -650,40 +1021,97 @@ const DeveloperSection = ({ data }) => {
           )}
         </div>
 
-        <div className="mt-8 hidden grid-cols-[1.35fr_0.85fr] gap-4 lg:grid">
+        <div className="mt-8 hidden space-y-4 lg:block">
           <div
-            className="rounded-[28px] p-6"
+            className="overflow-hidden rounded-[28px]"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
-            <div className="mb-4 flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() =>
+                setOpenAccordions((prev) => ({
+                  ...prev,
+                  desktopTransparency: !(prev.desktopTransparency ?? true),
+                }))
+              }
+              className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
+              style={{ borderBottom: `1px solid ${t.cardBorder}` }}
+            >
+              <span className="flex items-center gap-3">
+                <span
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                >
+                  <TabGlyph id="buyer_guide" />
+                </span>
+                <span className="text-lg font-semibold" style={{ color: t.text }}>
+                  Transparency Statement & Research Notes
+                </span>
+              </span>
+              <ChevronIcon open={openAccordions.desktopTransparency ?? true} />
+            </button>
+
+            <div className={`overflow-hidden transition-all duration-300 ${(openAccordions.desktopTransparency ?? true) ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"}`}>
               <div
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-                style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                className="grid grid-cols-[1.25fr_1fr_1fr] gap-8 px-6 py-5"
+                style={{ borderTop: `1px solid ${t.isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)"}` }}
               >
-                <TabGlyph id="buyer_guide" />
+                <div>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
+                    Transparency Statement
+                  </p>
+                  <p className="text-xs leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
+                </div>
+
+                {(data.research_notes || []).length > 0 && (
+                  <div>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
+                      Research Notes
+                    </p>
+                    <p className="mb-2 text-xs font-medium" style={{ color: t.text }}>Sources consulted:</p>
+                    <ul className="space-y-1.5">
+                      {data.research_notes.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs leading-5" style={{ color: t.textSecondary }}>
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GOLD }} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {(data.data_limitations || []).length > 0 && (
+                  <div>
+                    <p className="mb-2 text-xs font-medium" style={{ color: t.text }}>Data limitations:</p>
+                    <ul className="space-y-1.5">
+                      {data.data_limitations.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs leading-5" style={{ color: t.textSecondary }}>
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GOLD }} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-              <h3 className="text-xl font-semibold" style={{ color: t.text }}>
-                Transparency Statement
-              </h3>
             </div>
-            <p className="text-sm leading-8" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
           </div>
 
           {data.report_cta && (
             <div
-              className="rounded-[28px] p-6"
+              className="rounded-[22px] px-5 py-4"
               style={{
                 background: t.isDark ? "linear-gradient(135deg, rgba(182,138,53,0.12), rgba(255,255,255,0.04))" : "linear-gradient(135deg, #F6E8CC, #FFF9F0)",
                 border: `1px solid ${t.isDark ? "rgba(217,176,95,0.16)" : "rgba(182,138,53,0.16)"}`,
               }}
             >
-              <div className="flex h-full flex-col justify-between gap-6">
-                <div className="flex items-start gap-4">
+              <div className="flex items-center justify-between gap-6">
+                <div className="flex min-w-0 items-center gap-4">
                   <div
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
                     style={{ background: GOLD, color: "#fff" }}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -691,26 +1119,30 @@ const DeveloperSection = ({ data }) => {
                       <path d="m9 12 2 2 4-4" />
                     </svg>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold leading-tight" style={{ color: t.text }}>
+                  <div className="min-w-0">
+                    <h3 className="text-base font-semibold leading-tight" style={{ color: t.text }}>
                       {data.report_cta.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7" style={{ color: t.textSecondary }}>
+                    <p className="mt-1 text-xs leading-5" style={{ color: t.textSecondary }}>
                       {data.report_cta.subtitle}
                     </p>
                   </div>
                 </div>
                 <a
                   href={data.report_cta.href || "#"}
-                  className="inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
-                  style={{ background: t.isDark ? "#1f1a17" : "#1f1a17", color: "#fff" }}
+                  className="inline-flex shrink-0 items-center justify-center gap-3 rounded-lg px-6 py-3 text-sm font-semibold"
+                  style={{ background: GOLD, color: "#fff" }}
                 >
                   {data.report_cta.button_text}
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20" aria-hidden="true">
+                    →
+                  </span>
                 </a>
               </div>
             </div>
           )}
         </div>
+        <SectionExpertCta cta={data.section_cta} t={t} className="mt-8" />
       </div>
     </section>
   );

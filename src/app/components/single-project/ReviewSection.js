@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
 
 const GOLD = "#B68A35";
 const CONSTRUCTIVE = "#6F764B";
@@ -399,7 +400,7 @@ const DesktopTabButton = ({ tab, active, onClick, t }) => (
 
 const DesktopTransparencyNote = ({ data, t }) => (
   data.transparency_note ? (
-    <div className="mt-5 flex items-center gap-4 rounded-2xl px-6 py-4" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0", border: `1px solid ${t.cardBorder}` }}>
+    <div className="mt-5 flex flex-col gap-4 rounded-2xl px-5 py-4 sm:flex-row sm:items-center sm:px-6" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0", border: `1px solid ${t.cardBorder}` }}>
       <IconBadge t={t} className="h-11 w-11">
         <Icon name="spark" size={20} />
       </IconBadge>
@@ -426,18 +427,19 @@ const ReviewsSection = ({ data }) => {
   const quotes = data.quotes || {};
   const pattern = data.pattern_analysis || {};
   const future = data.future_reviews || {};
-  const headerTitle = data.title || "";
-  const headerHighlight = data.title_highlight || "";
+  const headerTitle = data.title;
+  const headerHighlight = data.title_highlight;
   const titleParts = headerHighlight ? headerTitle.split(headerHighlight) : [headerTitle];
-  const reviewStats = data.stats || [];
-  const methodologyCommunities = data.methodology_communities || [];
-  const quoteGroups = data.quote_groups || [];
+  const reviewStats = data.stats;
+  const methodologyCommunities = data.methodology_communities;
+  const quoteGroups = data.quote_groups;
+  const tabCaptions = data.desktop_tab_captions;
   const desktopTabs = [
-    { key: "methodology", label: data.methodology_title || "Methodology", caption: data.methodology_eyebrow || "How we aggregated", icon: "clipboard" },
-    { key: "sentiment", label: sentiment.title || "Sentiment Breakdown", caption: "What residents feel", icon: "chart" },
-    { key: "quotes", label: quotes.title || "Representative Quotes", caption: "Voices from residents", icon: "quote" },
-    { key: "patterns", label: pattern.title || "Pattern Analysis", caption: "Key insights for Serro buyers", icon: "search" },
-    { key: "future", label: "Future Serro Reviews", caption: "What we will track", icon: "megaphone" },
+    { key: "methodology", label: data.methodology_title, caption: data.methodology_eyebrow, icon: "clipboard" },
+    { key: "sentiment", label: sentiment.title, caption: tabCaptions.sentiment, icon: "chart" },
+    { key: "quotes", label: quotes.title, caption: tabCaptions.quotes, icon: "quote" },
+    { key: "patterns", label: pattern.title, caption: tabCaptions.patterns, icon: "search" },
+    { key: "future", label: future.title, caption: tabCaptions.future, icon: "megaphone" },
   ];
 
   const toggleAccordion = (key) => {
@@ -562,14 +564,14 @@ const ReviewsSection = ({ data }) => {
                   <div className="pl-2">
                     <h3 className="font-serif text-xl font-medium" style={{ color: t.text }}>Sources Included</h3>
                     <div className="mt-5 space-y-3">
-                      {["Google Reviews", "Trustpilot", "Dubai Property Forums"].map((source, index) => (
-                        <div key={source} className="flex items-center gap-4 rounded-xl px-4 py-3" style={{ background: t.isDark ? "rgba(255,255,255,0.035)" : "#FFFEFC", border: `1px solid ${t.cardBorder}` }}>
+                      {data.methodology_source_cards.map((sourceCard, index) => (
+                        <div key={sourceCard.source} className="flex items-center gap-4 rounded-xl px-4 py-3" style={{ background: t.isDark ? "rgba(255,255,255,0.035)" : "#FFFEFC", border: `1px solid ${t.cardBorder}` }}>
                           <span className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#FBF3E4", color: index === 0 ? "#4285F4" : index === 1 ? "#00B67A" : GOLD }}>
                             <Icon name={index === 2 ? "review" : "spark"} size={17} />
                           </span>
                           <div className="min-w-0 flex-1">
-                            <p className="text-sm font-semibold" style={{ color: t.text }}>{source}</p>
-                            <p className="text-xs" style={{ color: t.textMuted }}>Q1 2025 - Q1 2026</p>
+                            <p className="text-sm font-semibold" style={{ color: t.text }}>{sourceCard.source}</p>
+                            <p className="text-xs" style={{ color: t.textMuted }}>{sourceCard.period}</p>
                           </div>
                           <span style={{ color: t.textMuted }}>↗</span>
                         </div>
@@ -612,7 +614,7 @@ const ReviewsSection = ({ data }) => {
               {activeDesktopTab === "patterns" && (
                 <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
                   <div className="grid grid-cols-[0.8fr_1.6fr] border-b px-6 py-4 text-xs font-bold uppercase tracking-[0.16em]" style={{ borderColor: t.cardBorder, color: GOLD }}>
-                    {(pattern.headers || ["Theme", "Implication for Serro"]).map((header) => <span key={header}>{header}</span>)}
+                    {pattern.headers.map((header) => <span key={header}>{header}</span>)}
                   </div>
                   {(pattern.rows || []).map((row, i) => (
                     <div key={i} className="grid grid-cols-[0.8fr_1.6fr] items-center border-b last:border-b-0" style={{ borderColor: t.cardBorder }}>
@@ -651,9 +653,8 @@ const ReviewsSection = ({ data }) => {
                 </div>
               )}
             </div>
-
-            <DesktopTransparencyNote data={data} t={t} />
           </div>
+          <DesktopTransparencyNote data={data} t={t} />
         </div>
 
         <div className="mx-auto max-w-3xl lg:hidden">
@@ -814,17 +815,11 @@ const ReviewsSection = ({ data }) => {
                 <FutureCard key={i} item={item} t={t} />
               ))}
             </div>
-            {data.transparency_note && (
-              <div className="mt-5 border-l-2 p-4" style={{ borderColor: GOLD, background: t.isDark ? "rgba(182,138,53,0.08)" : "#FBF8F1" }}>
-                <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: GOLD }}>{data.transparency_title}</p>
-                <p className="text-xs leading-6" style={{ color: t.textSecondary }}>
-                  {data.transparency_note}
-                </p>
-              </div>
-            )}
           </AccordionCard>
         </div>
+        <DesktopTransparencyNote data={data} t={t} />
         </div>
+        <SectionExpertCta cta={data.section_cta} t={t} className="mt-6" />
       </div>
     </section>
   );

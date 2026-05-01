@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
 
 const GOLD = "#B68A35";
 const GREEN = "#2E9D76";
@@ -428,7 +429,7 @@ const ExpertTipsSection = ({ data }) => {
               {data.subtitle && <p className="mt-3 text-lg font-medium" style={{ color: t.text }}>{data.subtitle}</p>}
               <span className="mt-5 block h-px w-20" style={{ background: GOLD }} />
               <p className="mt-5 max-w-md text-sm leading-7" style={{ color: t.textSecondary }}>
-                Expert guidance to help you buy smart, stay protected, and invest with confidence in Dubai&apos;s off-plan market.
+                {data.desktop_intro}
               </p>
             </div>
           </div>
@@ -496,6 +497,7 @@ const ExpertTipsSection = ({ data }) => {
             <div className="mt-5">
               <FinalWord finalWord={data.final_word} t={t} />
             </div>
+            <SectionExpertCta cta={data.section_cta} t={t} className="mt-6" />
           </div>
         </div>
 
@@ -539,7 +541,7 @@ const ExpertTipsSection = ({ data }) => {
 
           <SectionAccordion
             title={regulatory.title}
-            badge="Effective Jan 2026"
+            badge={regulatory.badge}
             badgeTone="green"
             icon={<Icon name="scales" />}
             open={openPanels.regulatory}
@@ -555,22 +557,8 @@ const ExpertTipsSection = ({ data }) => {
             {regulatory.action && <Callout label="Action" t={t}>{regulatory.action}</Callout>}
           </SectionAccordion>
 
-          {data.cta && (
-            <div className="flex flex-col items-start gap-2 pt-2">
-              <a
-                href={data.cta.href || "#"}
-                className="inline-block rounded-lg px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:opacity-90"
-                style={{ background: GOLD }}
-              >
-                {data.cta.button_text}
-              </a>
-              {data.cta.subtext && (
-                <p className="max-w-xl text-sm leading-relaxed" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
-              )}
-            </div>
-          )}
-
           <FinalWord finalWord={data.final_word} t={t} />
+          <SectionExpertCta cta={data.section_cta || data.cta} t={t} className="mt-6" />
         </div>
         </div>
       </div>

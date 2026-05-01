@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
+import SectionImageHeader from "./SectionImageHeader";
 
 const ACCENT = "#b68a35";
 
@@ -158,6 +160,59 @@ const ProfileIcon = ({ icon, color = ACCENT, size = 18 }) => {
   return null;
 };
 
+const FlipperStrategyIcon = ({ index, color = ACCENT, size = 26 }) => {
+  const props = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.6",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true",
+  };
+
+  if (index === 0) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M4 20h16" />
+        <path d="M7 20V8" />
+        <path d="M17 20V10" />
+        <path d="M7 8h11l-2 2" />
+        <path d="M7 8 12 4l6 4" />
+        <path d="M11 20v-5h3v5" />
+        <path d="M15 4v16" />
+        <path d="M15 4h5" />
+        <path d="M20 4v3" />
+      </svg>
+    );
+  }
+
+  if (index === 1) {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+        <path d="M8 12 5.6 9.6a2.2 2.2 0 0 0-3.1 0l-.5.5 5 5" />
+        <path d="m16 12 2.4-2.4a2.2 2.2 0 0 1 3.1 0l.5.5-5 5" />
+        <path d="m8 12 2-2h3l3 3a2 2 0 0 1-2.8 2.8L12 14.6" />
+        <path d="m10 16-1 1a1.4 1.4 0 0 1-2-2l1-1" />
+        <path d="m13 17 1 1a1.4 1.4 0 0 0 2-2l-1-1" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path d="M3 14.5 8 12l4 2.5" />
+      <path d="M8 12V7a4 4 0 0 1 8 0v1" />
+      <path d="M14 8h7v4h-2v2h-2v-2h-3V8Z" />
+      <circle cx="17" cy="10" r=".6" />
+      <path d="M3 18h6l4-2.5a2 2 0 0 1 2.2.2l.8.6" />
+      <path d="M3 21h8l8-4.5a2 2 0 0 0-2-3.5l-4 2.2" />
+    </svg>
+  );
+};
+
 const HtmlText = ({ as: Tag = "p", html, className = "", style = {} }) => (
   <Tag className={className} style={style} dangerouslySetInnerHTML={{ __html: html }} />
 );
@@ -264,14 +319,14 @@ const TargetBuyerSection = ({ data }) => {
 
   return (
     <section style={{ background: t.bg }} className="py-8 lg:py-12">
-      <div className="mx-auto max-w-6xl px-2 sm:px-6">
-        <div className="mb-8 max-w-3xl lg:mx-auto lg:text-center">
-          <p
-            className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em]"
-            style={{ color: ACCENT }}
-          >
-            {data.section_label}
-          </p>
+      <div className="mx-auto max-w-7xl px-2 sm:px-6">
+        <SectionImageHeader
+          title={data.heading}
+          subtitle={data.intro}
+          t={t}
+          className="mb-8 hidden lg:block rounded-b-[28px]"
+        />
+        <div className="mb-8 max-w-3xl lg:hidden">
           <h2
             className="max-w-2xl text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] sm:text-[2.45rem] lg:mx-auto lg:max-w-4xl lg:text-[3rem]"
             style={{ color: t.text }}
@@ -425,7 +480,7 @@ const TargetBuyerSection = ({ data }) => {
 
               {currentProfile.strategies?.length > 0 && (
                 <div className="mt-5 space-y-3">
-                  {currentProfile.strategies.map((strategy) => (
+                  {currentProfile.strategies.map((strategy, index) => (
                     <div
                       key={strategy.number}
                       className="rounded-2xl px-4 py-4"
@@ -442,7 +497,7 @@ const TargetBuyerSection = ({ data }) => {
                             background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1",
                           }}
                         >
-                          {strategy.number}
+                          <FlipperStrategyIcon index={index} size={25} />
                         </div>
                         <div className="min-w-0">
                           <h4 className="text-[15px] font-semibold leading-5" style={{ color: t.text }}>
@@ -637,7 +692,7 @@ const TargetBuyerSection = ({ data }) => {
                         )}
                       </div>
                       <div className="space-y-3">
-                        {currentProfile.strategies.map((strategy) => (
+                        {currentProfile.strategies.map((strategy, index) => (
                           <div
                             key={strategy.number}
                             className="rounded-2xl px-5 py-4"
@@ -647,8 +702,14 @@ const TargetBuyerSection = ({ data }) => {
                             }}
                           >
                             <div className="grid grid-cols-[64px_1fr] gap-4">
-                              <div className="text-3xl font-medium" style={{ color: ACCENT }}>
-                                {strategy.number}
+                              <div
+                                className="flex h-12 w-12 items-center justify-center rounded-xl"
+                                style={{
+                                  color: ACCENT,
+                                  background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1",
+                                }}
+                              >
+                                <FlipperStrategyIcon index={index} size={28} />
                               </div>
                               <div>
                                 <div className="flex items-center gap-3">
@@ -836,6 +897,7 @@ const TargetBuyerSection = ({ data }) => {
             </table>
           </div>
         </div>
+        <SectionExpertCta cta={data.section_cta} t={t} className="mt-8" />
       </div>
     </section>
   );

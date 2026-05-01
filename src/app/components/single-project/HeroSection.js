@@ -9,6 +9,11 @@ const GOLD = "#B68A35";
 const HERO_TEXT_HALO = "0 0 12px rgba(255,255,255,0.92), 0 0 2px rgba(255,255,255,0.98), 0 1px 0 rgba(255,255,255,0.85)";
 const SUBTITLE_GREY = "#2d2d2d";
 
+const getCtaDetails = (cta) => ({
+  text: typeof cta === "string" ? cta : cta?.button_text,
+  href: typeof cta === "object" ? cta?.href : null,
+});
+
 /** e.g. "Serro at The Heights" → "Serro at" (black) + "The Heights" (gold) */
 const splitHeroTitle = (raw) => {
   if (!raw) return { line1: "", line2: null };
@@ -56,6 +61,172 @@ const renderStatIcon = (type, color) => {
       <line x1="8" x2="8" y1="2" y2="6" />
       <line x1="3" x2="21" y1="10" y2="10" />
     </svg>
+  );
+};
+
+const PrimaryCtaIcon = ({ size = 26 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M8 2v4" />
+    <path d="M16 2v4" />
+    <rect width="18" height="18" x="3" y="4" rx="2" />
+    <path d="M3 10h18" />
+  </svg>
+);
+
+const ArrowRightIcon = ({ size = 28 }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14" />
+    <path d="m13 5 7 7-7 7" />
+  </svg>
+);
+
+const ContactIcon = ({ type }) => {
+  if (type === "whatsapp") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 21l1.4-4.4A8.7 8.7 0 1 1 7.7 20L3 21Z" />
+        <path d="M8.8 8.9c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c-.1.1-.2.3 0 .5.5 1 1.3 1.8 2.3 2.3.2.1.4.1.5-.1l.5-.6c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.3.4.5 0 .5-.2 1-.6 1.3-.5.4-1.1.5-1.8.3-3.4-.9-5.8-3.3-6.7-6.7-.2-.7-.1-1.3.2-1.8.2-.3.5-.6.8-.8Z" />
+      </svg>
+    );
+  }
+
+  if (type === "phone") {
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.7 19.7 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.7 19.7 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-10 6L2 7" />
+    </svg>
+  );
+};
+
+const ExpertBadgeIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="8" r="4" />
+    <path d="M5 21a7 7 0 0 1 14 0" />
+    <path d="M18 8h2" />
+    <path d="M4 8h2" />
+  </svg>
+);
+
+const PrimaryCtaButton = ({ cta, mobile = false }) => {
+  const { text, href } = getCtaDetails(cta);
+  const className = [
+    mobile ? "w-full px-4 py-4 text-[0.95rem]" : "w-full max-w-[640px] px-8 py-5 text-xl",
+    "rounded-[18px] font-semibold transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90",
+  ].join(" ");
+  const style = { background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)", color: "#ffffff" };
+  const content = (
+    <>
+      <span className="flex min-w-0 items-center gap-3">
+        <PrimaryCtaIcon size={mobile ? 22 : 26} />
+        <span className="whitespace-nowrap">{text}</span>
+      </span>
+      <ArrowRightIcon size={mobile ? 24 : 32} />
+    </>
+  );
+
+  return href ? (
+    <a href={href} className={className} style={style}>{content}</a>
+  ) : (
+    <button type="button" className={className} style={style}>{content}</button>
+  );
+};
+
+const ExpertContactCard = ({ cta, mobile = false }) => {
+  const fallbackText = typeof cta === "string" ? cta : "Speak to an Investment Expert";
+  const title = typeof cta === "object" ? cta?.heading || cta?.button_text || fallbackText : fallbackText;
+  const subtitle = typeof cta === "object" ? cta?.subtext : "Get expert guidance. It's free & with no obligation.";
+  const actions = typeof cta === "object" && Array.isArray(cta?.actions)
+    ? cta.actions
+    : [
+        { label: "WhatsApp", subtext: "Chat instantly", type: "whatsapp", href: "#" },
+        { label: "Call Us", subtext: "Speak directly", type: "phone", href: "#" },
+        { label: "Email Us", subtext: "We'll get back", type: "email", href: "#" },
+      ];
+
+  const cardClass = mobile
+    ? "rounded-[18px] border px-4 py-4"
+    : "px-6 py-4";
+  const cardStyle = mobile
+    ? {
+        background: "rgba(255,255,255,0.14)",
+        borderColor: "rgba(255,255,255,0.24)",
+        backdropFilter: "blur(14px)",
+        boxShadow: "0 12px 36px rgba(0,0,0,0.16)",
+      }
+    : {
+        background: "transparent",
+        borderColor: "transparent",
+        boxShadow: "none",
+      };
+  const titleColor = mobile ? "#ffffff" : "#111111";
+  const subtitleColor = mobile ? "rgba(255,255,255,0.82)" : "#5c5c5c";
+  const actionTextColor = mobile ? "#ffffff" : "#111111";
+  const actionSubtextColor = mobile ? "rgba(255,255,255,0.76)" : "#6a6a6a";
+  const dividerColor = mobile ? "rgba(255,255,255,0.18)" : "#eadfce";
+  const actionIconStyle = mobile
+    ? { borderColor: "rgba(182,138,53,0.35)", color: GOLD }
+    : { borderColor: "rgba(182,138,53,0.28)", color: "#B68A35" };
+
+  return (
+    <div className={cardClass} style={cardStyle}>
+      <div className={mobile ? "flex flex-col gap-4" : "grid grid-cols-[1.25fr_repeat(3,1fr)] items-center"}>
+        <div
+          className={mobile ? "flex items-center gap-3 border-b pb-4" : "flex items-center gap-4 pr-6"}
+          style={mobile ? { borderColor: dividerColor } : undefined}
+        >
+          <span className={mobile ? "flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]" : "flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]"} style={{ background: "linear-gradient(180deg, #C99432 0%, #AE7A22 100%)" }}>
+            <ExpertBadgeIcon />
+          </span>
+          <span className="min-w-0">
+            <span className={mobile ? "block text-lg font-semibold leading-tight" : "block text-xl font-semibold leading-tight"} style={{ color: titleColor }}>
+              {title}
+            </span>
+            <span className={mobile ? "mt-1 block text-sm leading-snug" : "mt-1 block text-sm leading-relaxed"} style={{ color: subtitleColor }}>
+              {subtitle}
+            </span>
+          </span>
+        </div>
+
+        <div className={mobile ? "grid grid-cols-3 divide-x divide-white/20" : "contents"}>
+          {actions.map((action, index) => {
+            const content = (
+              <>
+                <span className={mobile ? "mx-auto flex h-11 w-11 items-center justify-center rounded-full border" : "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border"} style={actionIconStyle}>
+                  <ContactIcon type={action.type} />
+                </span>
+                <span className={mobile ? "mt-2 block text-center" : "block min-w-0"}>
+                  <span className="block text-sm font-semibold leading-tight" style={{ color: actionTextColor }}>
+                    {action.label}
+                  </span>
+                  <span className="mt-1 block text-xs leading-tight" style={{ color: actionSubtextColor }}>
+                    {action.subtext}
+                  </span>
+                </span>
+              </>
+            );
+
+            return (
+              <a
+                key={`${action.label}-${index}`}
+                href={action.href || "#"}
+                className={mobile ? "px-2 text-center transition-opacity hover:opacity-80" : "flex items-center gap-3 border-l px-5 transition-opacity hover:opacity-80"}
+                style={mobile ? undefined : { borderColor: dividerColor }}
+              >
+                {content}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -334,42 +505,9 @@ const HeroSection = ({ data }) => {
                 ))}
               </div>
 
-              <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/45 pt-5">
-                {(() => {
-                  const primary = hero.cta_primary;
-                  const text = typeof primary === "string" ? primary : primary?.button_text;
-                  const href = typeof primary === "object" && primary?.href;
-                  const className = "w-full rounded-xl px-6 py-4 text-sm font-semibold transition-colors focus:outline-none inline-flex items-center justify-center gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] " + (href ? "hover:opacity-90" : "");
-                  const style = { background: GOLD, color: "#ffffff" };
-                  const content = (
-                    <>
-                      {text}
-                      <span aria-hidden>→</span>
-                    </>
-                  );
-                  return href ? (
-                    <a href={href} className={className} style={style}>{content}</a>
-                  ) : (
-                    <button type="button" className={className} style={style}>{content}</button>
-                  );
-                })()}
-                {(() => {
-                  const secondary = hero.cta_secondary;
-                  const text = typeof secondary === "string" ? secondary : secondary?.button_text;
-                  const href = typeof secondary === "object" && secondary?.href;
-                  const className = "w-full rounded-xl border border-white/65 bg-white/70 px-6 py-4 text-sm font-semibold text-[#2d2d2d] transition-colors focus:outline-none inline-flex items-center justify-center gap-3 shadow-[0_8px_20px_rgba(15,23,42,0.08)] backdrop-blur-xl " + (href ? "hover:bg-white/80" : "");
-                  const content = (
-                    <>
-                      {text}
-                      <span aria-hidden>→</span>
-                    </>
-                  );
-                  return href ? (
-                    <a href={href} className={className}>{content}</a>
-                  ) : (
-                    <button type="button" className={className}>{content}</button>
-                  );
-                })()}
+              <div className="mt-5 flex flex-col items-center gap-4 border-t border-white/45 pt-5">
+                <PrimaryCtaButton cta={hero.cta_primary} />
+                <ExpertContactCard cta={hero.cta_secondary} />
               </div>
             </div>
 
@@ -405,46 +543,9 @@ const HeroSection = ({ data }) => {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 lg:hidden">
-            <div className="flex-1 flex flex-col gap-1.5">
-              {(() => {
-                const primary = hero.cta_primary;
-                const text = typeof primary === "string" ? primary : primary?.button_text;
-                const href = typeof primary === "object" && primary?.href;
-                const className = "w-full px-6 py-3.5 rounded-xl font-semibold text-sm transition-colors focus:outline-none inline-flex items-center justify-center " + (href ? "hover:opacity-90" : "");
-                const style = { background: GOLD, color: "#ffffff" };
-                return href ? (
-                  <a href={href} className={className} style={style}>{text}</a>
-                ) : (
-                  <button type="button" className={className} style={style}>{text}</button>
-                );
-              })()}
-              {(typeof hero.cta_primary === "object" && hero.cta_primary?.subtext) && (
-                <p className="text-xs leading-relaxed" style={{ color: t.textMuted }}>{hero.cta_primary.subtext}</p>
-              )}
-            </div>
-            <div className="flex-1 flex flex-col gap-1.5">
-              {(() => {
-                const secondary = hero.cta_secondary;
-                const text = typeof secondary === "string" ? secondary : secondary?.button_text;
-                const href = typeof secondary === "object" && secondary?.href;
-                const className = "w-full px-6 py-3.5 rounded-xl font-semibold text-sm transition-colors focus:outline-none inline-flex items-center justify-center " + (href ? "hover:opacity-90" : "");
-                const style = {
-                  color: "#ffffff",
-                  border: "1px solid rgba(255,255,255,0.28)",
-                  background: "rgba(255,255,255,0.1)",
-                  backdropFilter: "blur(10px)",
-                };
-                return href ? (
-                  <a href={href} className={className} style={style}>{text}</a>
-                ) : (
-                  <button type="button" className={className} style={style}>{text}</button>
-                );
-              })()}
-              {(typeof hero.cta_secondary === "object" && hero.cta_secondary?.subtext) && (
-                <p className="text-xs leading-relaxed" style={{ color: t.textMuted }}>{hero.cta_secondary.subtext}</p>
-              )}
-            </div>
+            <div className="mt-8 flex flex-col gap-5 lg:hidden">
+              <PrimaryCtaButton cta={hero.cta_primary} mobile />
+              <ExpertContactCard cta={hero.cta_secondary} mobile />
             </div>
           </div>
         </div>
@@ -537,10 +638,24 @@ const HeroSection = ({ data }) => {
               className="min-h-0 flex-1 overflow-y-auto pr-1.5 text-base lg:text-sm leading-relaxed lg:leading-7 scrollbar-gold"
               style={{ color: t.textSecondary, scrollbarWidth: "thin" }}
             >
-              <p
-                className="m-0"
-                dangerouslySetInnerHTML={{ __html: hero.data_led_hook }}
-              />
+              {Array.isArray(hero.data_led_hook) ? (
+                <ul className="m-0 space-y-3">
+                  {hero.data_led_hook.map((item, i) => (
+                    <li
+                      key={i}
+                      className="flex gap-3"
+                    >
+                      <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full" style={{ background: GOLD }} />
+                      <span dangerouslySetInnerHTML={{ __html: item }} />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p
+                  className="m-0"
+                  dangerouslySetInnerHTML={{ __html: hero.data_led_hook }}
+                />
+              )}
             </div>
           </div>
         </div>

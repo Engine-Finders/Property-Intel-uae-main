@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
 
 const GOLD = "#B68A35";
 
@@ -147,6 +148,61 @@ const BulletList = ({ items, t, color = GOLD }) => (
   </div>
 );
 
+const InfoCircleIcon = ({ size = 18 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 10v6" />
+    <path d="M12 7h.01" />
+  </svg>
+);
+
+const KeyInsightBox = ({ children, t }) => (
+  <div
+    className="rounded-2xl p-5"
+    style={{
+      background: t.isDark ? "rgba(255,255,255,0.03)" : "#fff8ef",
+      border: `1px solid ${t.cardBorder}`,
+    }}
+  >
+    <div className="flex gap-3">
+      <span
+        className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+        style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+      >
+        <InfoCircleIcon size={17} />
+      </span>
+      <div>
+        <p className="mb-2 text-sm font-semibold" style={{ color: GOLD }}>Key Insight:</p>
+        <p className="text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: children }} />
+      </div>
+    </div>
+  </div>
+);
+
+const GoldDotList = ({ items, t }) => (
+  <ul className="space-y-2.5">
+    {items.map((item) => (
+      <li key={item} className="flex items-start gap-3">
+        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GOLD }} />
+        <span className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+          {item}
+        </span>
+      </li>
+    ))}
+  </ul>
+);
+
 const TableWrap = ({ children }) => (
   <div className="min-w-0">
     <div
@@ -185,34 +241,21 @@ const FinancingSection = ({ data }) => {
   const scHeaders = ["Community", "Service Charge", "Amenity Package"];
   const scRows = data.service_charge_comparison.map((r) => [r.community, `AED ${r.charge}`, r.amenity]);
 
-  const compHeaders = ["Feature", "Serro", "Emaar South", "DAMAC Hills 2", "Town Square"];
+  const compHeaders = data.comparison_columns;
   const compRows = data.project_comparison.map((r) => [r.feature, r.serro, r.emaar_south, r.damac, r.town_square]);
 
-  const infraHeaders = ["Project", "Timeline", "Proximity to Serro"];
+  const infraHeaders = data.infrastructure_columns;
   const infraRows = data.infrastructure_plans.map((r) => [r.project, r.timeline, r.proximity]);
-  const comparisonTabs = data.comparison_project_labels || [
-    "Serro at The Heights",
-    "Emaar South (Golf Place)",
-    "DAMAC Hills 2",
-    "Town Square (Nshama)",
-  ];
+  const comparisonTabs = data.comparison_project_labels;
   const activeProjectTitle = comparisonTabs[activeComparisonIndex] || comparisonTabs[0];
-  const activeProjectDeveloper = [
-    "Emaar Properties",
-    "Emaar Properties",
-    "DAMAC Properties",
-    "Nshama (Wasl)",
-  ][activeComparisonIndex];
+  const activeProjectDeveloper = data.comparison_project_developers[activeComparisonIndex];
   const activeProjectRows = data.project_comparison.map((row) => [
     row.feature,
     [row.serro, row.emaar_south, row.damac, row.town_square][activeComparisonIndex],
   ]);
 
-  const journeySteps = [
-    { title: "Booking", sub: "10% cash deposit", meta: "Day 1", icon: "💳" },
-    { title: "Construction", sub: "70% self-funded payments", meta: "2026-2030", icon: "🕒" },
-    { title: "Handover", sub: "Mortgage available", meta: "Q1-Q2 2030", icon: "📅" },
-  ];
+  const journeyIcons = ["💳", "🕒", "📅"];
+  const journeySteps = data.journey_steps.map((step, index) => ({ ...step, icon: journeyIcons[index] }));
   const desktopTabs = [
     { id: "financing", title: "1. Financing Realities", subtitle: "Off-Plan vs. Completed", icon: "🏛️" },
     { id: "ltv", title: "2. LTV Caps", subtitle: "Handover Financing", icon: "%" },
@@ -243,9 +286,6 @@ const FinancingSection = ({ data }) => {
       `}</style>
       <div className="mx-auto max-w-7xl px-3 sm:px-6">
         <div className="mb-10 lg:hidden">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
-            Financing & Yield Analysis
-          </p>
           <h2 className="text-2xl font-bold leading-tight lg:text-3xl xl:text-4xl" style={{ color: t.text }}>
             {data.heading}
           </h2>
@@ -282,7 +322,7 @@ const FinancingSection = ({ data }) => {
                 </span>
               </h2>
               <p className="mt-5 text-base leading-7" style={{ color: t.textSecondary }}>
-                A complete financial overview to help Serro buyers plan with confidence — from financing realities to rental potential and true ownership costs.
+                {data.hero_subtitle}
               </p>
               <span className="mt-5 block h-px w-20" style={{ background: GOLD }} />
             </div>
@@ -320,7 +360,7 @@ const FinancingSection = ({ data }) => {
             {activeDesktopTab === "financing" && (
               <div>
                 <h3 className="mb-6 text-2xl font-semibold" style={{ color: t.text }}>
-                  <span style={{ color: GOLD }}>H3:</span> Financing Realities - Off-Plan vs. Completed Properties
+                  <span style={{ color: GOLD }}></span> Financing Realities - Off-Plan vs. Completed Properties
                 </h3>
                 <div className="mb-8 rounded-xl p-5" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#f6f2ea", border: `1px solid ${t.cardBorder}` }}>
                   <div className="flex items-start gap-4">
@@ -366,12 +406,12 @@ const FinancingSection = ({ data }) => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="mb-5 text-lg font-semibold" style={{ color: GOLD }}>Current Mortgage Rate Context<br /><span className="text-sm">(February 2026)</span></h4>
+                  <h4 className="mb-5 text-lg font-semibold" style={{ color: GOLD }}>{data.mortgage_rates.context_title}<br /><span className="text-sm">({data.mortgage_rates.context_date})</span></h4>
                   <div className="space-y-4">
                     {[
-                      ["Fixed Rates (1-5 years)", "Bank-dependent, based on profile", data.mortgage_rates.fixed, "🔒"],
-                      ["Variable Rates (EIBOR-linked)", "EIBOR + margin", data.mortgage_rates.variable, "◷"],
-                      ["Central Bank Base Rate", "As of 13 January 2026", data.mortgage_rates.base_rate, "🏦"],
+                      [data.mortgage_rates.fixed_label, data.mortgage_rates.fixed_note, data.mortgage_rates.fixed, "🔒"],
+                      [data.mortgage_rates.variable_label, data.mortgage_rates.variable_note, data.mortgage_rates.variable, "◷"],
+                      [data.mortgage_rates.base_rate_label, data.mortgage_rates.base_rate_note, data.mortgage_rates.base_rate, "🏦"],
                     ].map((row) => (
                       <div key={row[0]} className="flex items-center gap-4 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
                         <span className="flex h-11 w-11 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1", color: GOLD }}>{row[3]}</span>
@@ -391,9 +431,8 @@ const FinancingSection = ({ data }) => {
                   <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_required_intro }} />
                   <DesktopTable headers={cashHeaders} rows={cashRows} t={t} highlightLast />
                 </div>
-                <div className="self-center rounded-2xl p-6" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#fff8ef", border: `1px solid ${t.cardBorder}` }}>
-                  <p className="mb-3 text-sm font-semibold" style={{ color: GOLD }}>Key Insight:</p>
-                  <p className="text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_insight }} />
+                <div className="self-center">
+                  <KeyInsightBox t={t}>{data.cash_insight}</KeyInsightBox>
                 </div>
               </div>
             )}
@@ -403,14 +442,14 @@ const FinancingSection = ({ data }) => {
                 <div>
                   <h3 className="mb-5 text-2xl font-semibold" style={{ color: t.text }}><span style={{ color: GOLD }}>H3:</span> ROI Estimator - Rental Yield Projections</h3>
                   <p className="mb-3 text-sm font-semibold" style={{ color: GOLD }}>Rental Benchmarking - Per Square Foot Analysis (Mature Comparables):</p>
-                  <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }}>To evaluate Serro's income potential accurately, we compare actual rental transactions from completed communities within the same Dubai South corridor.</p>
+                  <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }}>{data.roi_intro}</p>
                   <DesktopTable headers={rentalHeaders} rows={rentalRows} t={t} />
                   <div className="mt-5 rounded-xl p-4" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>
                     <p className="text-xs leading-6" style={{ color: t.textMuted }}><strong>DISCLAIMER:</strong> {data.yield_disclaimer}</p>
                   </div>
                 </div>
                 <div>
-                  <p className="mb-3 text-sm font-semibold" style={{ color: GOLD }}>Projected Gross Yield for Serro 3-Bedroom</p>
+                  <p className="mb-3 text-sm font-semibold" style={{ color: GOLD }}>{data.yield_projection_title}</p>
                   <DesktopTable headers={["Scenario", "Annual Rent", "Purchase Price", "Gross Yield"]} rows={data.yield_projections.map((row) => [row.scenario, row.rent, row.price, row.yield])} t={t} />
                   <div className="mt-5 rounded-xl p-5" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fbf3e1", border: `1px solid ${t.cardBorder}` }}>
                     <p className="mb-3 font-semibold" style={{ color: GOLD }}>Yield Context - Why 4-5%?</p>
@@ -426,7 +465,7 @@ const FinancingSection = ({ data }) => {
                   <div className="rounded-2xl p-6" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
                     <h3 className="text-xl font-semibold" style={{ color: t.text }}>Service Charges - What Owners Actually Pay</h3>
                     <p className="mt-2 text-sm" style={{ color: t.textMuted }}>Estimated Service Charge Range</p>
-                    <p className="mt-5 text-5xl font-semibold" style={{ color: GOLD }}>AED 3 - 5 <span className="text-base" style={{ color: t.textSecondary }}>per sq.ft annually</span></p>
+                    <p className="mt-5 text-5xl font-semibold" style={{ color: GOLD }}>{data.service_charge_display_range} <span className="text-base" style={{ color: t.textSecondary }}>{data.service_charge_unit_label}</span></p>
                     <p className="mt-5 text-sm" style={{ color: t.textSecondary }}>For a {data.service_charge_example.size} sq.ft villa:</p>
                     <div className="mt-4 grid grid-cols-2 gap-3">
                       <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}><p className="text-xs" style={{ color: t.textMuted }}>Annual Service Charge</p><p className="mt-1 font-semibold" style={{ color: GOLD }}>{data.service_charge_example.annual}</p></div>
@@ -435,9 +474,7 @@ const FinancingSection = ({ data }) => {
                   </div>
                   <div className="rounded-2xl p-6" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
                     <h3 className="mb-4 text-xl font-semibold" style={{ color: t.text }}>What Service Charges Fund</h3>
-                    <div className="space-y-2">
-                      {data.service_charge_funds.map((item) => <p key={item} className="border-b pb-2 text-sm" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>✓ {item}</p>)}
-                    </div>
+                    <GoldDotList items={data.service_charge_funds} t={t} />
                   </div>
                   <div className="rounded-2xl p-6" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
                     <h3 className="mb-4 text-xl font-semibold" style={{ color: t.text }}>Value Assessment</h3>
@@ -446,22 +483,22 @@ const FinancingSection = ({ data }) => {
                 </div>
                 <p className="mb-3 mt-7 text-lg font-semibold" style={{ color: t.text }}>Comparative Context - Villa Communities</p>
                 <div className="grid grid-cols-5 gap-3">
-                  {data.service_charge_comparison.map((item) => {
-                    const isSerro = item.community.toLowerCase().includes("serro");
+                  {data.service_charge_comparison.map((item, index) => {
+                    const isPrimary = index === 0;
 
                     return (
                       <div
                         key={item.community}
                         className="relative rounded-2xl p-5 text-center"
                         style={{
-                          background: isSerro
+                          background: isPrimary
                             ? (t.isDark ? "rgba(182,138,53,0.16)" : "#f7ead1")
                             : (t.isDark ? "rgba(255,255,255,0.02)" : "#fff"),
-                          border: `1px solid ${isSerro ? "rgba(182,138,53,0.35)" : t.cardBorder}`,
-                          boxShadow: isSerro && !t.isDark ? "0 14px 30px rgba(113,85,32,0.12)" : "none",
+                          border: `1px solid ${isPrimary ? "rgba(182,138,53,0.35)" : t.cardBorder}`,
+                          boxShadow: isPrimary && !t.isDark ? "0 14px 30px rgba(113,85,32,0.12)" : "none",
                         }}
                       >
-                        {isSerro && (
+                        {isPrimary && (
                           <span
                             className="absolute -top-3 right-4 flex h-8 w-8 items-center justify-center rounded-full text-sm"
                             style={{ background: GOLD, color: "#fff" }}
@@ -473,7 +510,7 @@ const FinancingSection = ({ data }) => {
                           className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full text-lg"
                           style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1", color: GOLD }}
                         >
-                          {isSerro ? "✦" : "⌂"}
+                          {isPrimary ? "✦" : "⌂"}
                         </div>
                         <p className="min-h-[2.5rem] text-sm font-semibold leading-5" style={{ color: t.text }}>
                           {item.community}
@@ -482,7 +519,7 @@ const FinancingSection = ({ data }) => {
                           {item.charge}
                         </p>
                         <p className="text-xs" style={{ color: t.textMuted }}>
-                          AED/sq.ft annually
+                          {data.service_charge_unit_label}
                         </p>
                         <p className="mt-3 text-xs leading-5" style={{ color: t.textSecondary }}>
                           {item.amenity}
@@ -531,9 +568,9 @@ const FinancingSection = ({ data }) => {
 
         <div className="space-y-3 lg:hidden">
           <AccordionCard title="Financing Realities — Off-Plan vs. Completed" icon="🏛️" isOpen={openSections.financing} onToggle={() => toggle("financing")} t={t}>
-            <h3 className="mb-3 text-lg font-bold" style={{ color: GOLD }}>
-              H3: Financing Realities - Off-Plan vs. Completed Properties
-            </h3>
+            {/* <h3 className="mb-3 text-lg font-bold" style={{ color: GOLD }}>
+              Financing Realities - Off-Plan vs. Completed Properties
+            </h3> */}
 
             <div className="mb-5 rounded-xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#f6f2ea", border: `1px solid ${t.cardBorder}` }}>
               <div className="flex items-start gap-3">
@@ -591,20 +628,20 @@ const FinancingSection = ({ data }) => {
             </div>
 
             <p className="mb-5 border-l-2 pl-3 text-xs italic leading-relaxed" style={{ color: t.textMuted, borderColor: "rgba(182,138,53,0.3)" }}>
-              {data.ltv_note}
+              <strong style={{ color: GOLD }}>Note:</strong> {data.ltv_note}
             </p>
 
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
-              Current Mortgage Rate Context (Feb 2026)
+              {data.mortgage_rates.context_title} ({data.mortgage_rates.context_date})
             </p>
             <div>
               <TableWrap>
                 <DesktopTable
                   headers={["Rate Type", "Current Value"]}
                   rows={[
-                    ["Fixed Rates (1-5yr)", data.mortgage_rates.fixed],
-                    ["Variable Rates (EIBOR-linked)", data.mortgage_rates.variable],
-                    ["Central Bank Base Rate", data.mortgage_rates.base_rate],
+                    [data.mortgage_rates.fixed_label, data.mortgage_rates.fixed],
+                    [data.mortgage_rates.variable_label, data.mortgage_rates.variable],
+                    [data.mortgage_rates.base_rate_label, data.mortgage_rates.base_rate],
                   ]}
                   t={t}
                   minTableWidth={560}
@@ -616,7 +653,7 @@ const FinancingSection = ({ data }) => {
           <AccordionCard title="Total Cash Required at Purchase" icon="$" isOpen={openSections.cash} onToggle={() => toggle("cash")} t={t}>
             <p className="mb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_required_intro }} />
             <div className="mb-4 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.14)" : "#f8f1e5", border: `1px solid ${t.cardBorder}` }}>
-              For AED 6,000,000 Purchase
+              {data.cash_purchase_label}
             </div>
 
             <div className="mb-4">
@@ -626,23 +663,17 @@ const FinancingSection = ({ data }) => {
             </div>
 
             <div>
-              <TableWrap>
-                <DesktopTable
-                  headers={["Key Insight"]}
-                  rows={[[<span key="insight" dangerouslySetInnerHTML={{ __html: data.cash_insight }} />]]}
-                  t={t}
-                />
-              </TableWrap>
+              <KeyInsightBox t={t}>{data.cash_insight}</KeyInsightBox>
             </div>
           </AccordionCard>
 
           <AccordionCard title="ROI Estimator — Rental Yield Projections" subtitle="Benchmarking · 3 scenarios · yield context" icon="📈" isOpen={openSections.roi} onToggle={() => toggle("roi")} t={t}>
             <p className="mb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>
-              To evaluate Serro's income potential accurately, we compare actual rental transactions from completed communities in the same Dubai South corridor.
+              {data.roi_intro}
             </p>
 
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
-              Projected Gross Yield — 3BR @ AED 6M purchase price
+              {data.yield_projection_mobile_title}
             </p>
             <div className="mb-5">
               <TableWrap>
@@ -691,7 +722,7 @@ const FinancingSection = ({ data }) => {
                   headers={["Estimated Range", "Annual", "Monthly"]}
                   rows={[
                     [
-                      "AED 3-5 / sq.ft / yr",
+                      data.service_charge_short_range,
                       data.service_charge_example.annual,
                       data.service_charge_example.monthly,
                     ],
@@ -705,10 +736,14 @@ const FinancingSection = ({ data }) => {
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
               What Service Charges Fund
             </p>
-            <div className="mb-6">
-              <TableWrap>
-                <DesktopTable headers={["Funded Item"]} rows={data.service_charge_funds.map((item) => [item])} t={t} />
-              </TableWrap>
+            <div
+              className="mb-6 rounded-xl p-4"
+              style={{
+                background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
+                border: `1px solid ${t.cardBorder}`,
+              }}
+            >
+              <GoldDotList items={data.service_charge_funds} t={t} />
             </div>
 
             <p className="mb-3 mt-6 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
@@ -737,11 +772,8 @@ const FinancingSection = ({ data }) => {
           </AccordionCard>
 
           <AccordionCard title="Project Comparison — Emaar vs. Competitors" icon="⚖️" isOpen={openSections.comparison} onToggle={() => toggle("comparison")} t={t} accentColor="#286CFF">
-            <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide" style={{ color: GOLD }}>
-              {data.comparison_h3 || "Project Comparison - Emaar vs. Competitor Offerings"}
-            </h3>
             <p className="mb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>
-              {data.comparison_intro || "To contextualize Serro's value proposition, we compare it against similar-tier projects in the Dubai South corridor:"}
+              {data.comparison_intro}
             </p>
 
             <div className="mb-4 grid grid-cols-2 gap-2 rounded-xl p-2 sm:grid-cols-4" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#f6efe3", border: `1px solid ${t.cardBorder}` }}>
@@ -853,24 +885,7 @@ const FinancingSection = ({ data }) => {
           </AccordionCard>
         </div>
 
-        {data.cta && (
-          <div className="mt-6 rounded-xl px-6 py-6" style={{ background: t.bgAlt, border: `1px solid ${t.cardBorder}` }}>
-            <div className="flex flex-col items-start gap-2">
-              <a
-                href={data.cta.href || "#"}
-                className="inline-block rounded-lg px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:opacity-90"
-                style={{ background: GOLD }}
-              >
-                {data.cta.button_text}
-              </a>
-              {data.cta.subtext && (
-                <p className="max-w-xl text-sm leading-relaxed" style={{ color: t.textMuted }}>
-                  {data.cta.subtext}
-                </p>
-              )}
-            </div>
-          </div>
-        )}
+        <SectionExpertCta cta={data.section_cta || data.cta} t={t} className="mt-6" />
       </div>
     </section>
   );

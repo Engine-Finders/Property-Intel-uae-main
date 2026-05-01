@@ -55,12 +55,41 @@
       "handover": "Q1 2030"
     },
     "cta_primary": "Get Availability & Floor Plans",
-    "cta_secondary": "Speak to an Expert",
+    "cta_secondary": {
+      "button_text": "Speak to an Investment Expert",
+      "heading": "Speak to an Investment Expert",
+      "subtext": "Get expert guidance. It's free & with no obligation.",
+      "actions": [
+        {
+          "label": "WhatsApp",
+          "subtext": "Chat instantly",
+          "type": "whatsapp",
+          "href": "#"
+        },
+        {
+          "label": "Call Us",
+          "subtext": "Speak directly",
+          "type": "phone",
+          "href": "#"
+        },
+        {
+          "label": "Email Us",
+          "subtext": "We'll get back",
+          "type": "email",
+          "href": "#"
+        }
+      ]
+    },
     "overview_paragraphs": [
         "Serro at The Heights is a villa-only residential release by <strong>Emaar Properties</strong>, forming part of the expansive <strong>AED 55 billion</strong> The Heights Country Club & Wellness master community in Al Yalayis, Dubai. Positioned near the intersection of Emirates Road (E611) and Al Yalayis Street (E77), this development introduces <strong>383 three- to five-bedroom villas</strong> across two adjoining clusters (Serro and Serro 2), designed around a wellness-led lifestyle with 38 kilometres of cycling and jogging tracks, a dedicated Wellness Lake, and meditation gardens.",
         "The broader master community spans <strong>7.5 million square metres</strong> (81 million sq.ft) and will ultimately comprise over 11,400 residential units across 21 clusters, positioning The Heights as one of Emaar's largest wellness-focused developments since Dubai Hills Estate. Unlike mixed-use projects, Serro maintains a strict residential focus, prioritising low-density living with approximately 25% of the total land dedicated to open green space and 1.36 million sqm of landscaped public realm."
       ],
-      "data_led_hook": "Launched in Q1 2026 at an entry price of <strong>AED 6,000,000</strong> for a 3-bedroom Type A villa (3,463 sqft), the project sits at approximately <strong class=\"text-gold\">AED 1,732/sqft</strong>—positioning it below comparable Emaar villa communities such as Dubai Hills Estate (averaging AED 2,100+/sqft) but above entry-level Dubai South offerings. With handover scheduled for Q1–Q2 2030, this four-year construction timeline reflects the scale of master infrastructure development required for a 7.5 million sqm community rather than isolated villa construction.",
+      "data_led_hook": [
+        "Launched in Q1 2026 with an entry price of <strong>AED 6,000,000</strong> for a 3-bedroom Type A villa (3,463 sqft).",
+        "Pricing stands at approximately <strong>AED 1,732/sqft</strong> — positioned below comparable Emaar villa communities like Dubai Hills Estate (AED 2,100+/sqft average), but above entry-level Dubai South offerings.",
+        "Handover is scheduled for <strong>Q1–Q2 2030</strong>, reflecting a four-year construction timeline.",
+        "The extended timeline aligns with the scale of infrastructure development required for a <strong>7.5 million sqm</strong> master community, rather than isolated villa construction."
+      ],
       "key_facts_section": {
         "title_prefix": "Key Facts at a",
         "title_accent": "Glance",
@@ -291,7 +320,31 @@
         }
       ],
       "insider_tip_title": "What portals don't tell you",
-      "insider_tip": "The 3-bedroom Type A (3,463 sqft) and Type C (3,340 sqft) differ primarily in ground floor layout — Type C sacrifices some living area for a larger private garden. Buyers prioritising outdoor space should target Type C, despite the marginally smaller footprint."
+      "insider_tip": "The 3-bedroom Type A (3,463 sqft) and Type C (3,340 sqft) differ primarily in ground floor layout — Type C sacrifices some living area for a larger private garden. Buyers prioritising outdoor space should target Type C, despite the marginally smaller footprint.",
+      "expert_cta": {
+        "heading": "Get Unit Recommendations",
+        "subtext": "Choose the right layout with expert guidance.",
+        "actions": [
+          {
+            "label": "WhatsApp",
+            "subtext": "Chat instantly",
+            "type": "whatsapp",
+            "href": "#"
+          },
+          {
+            "label": "Call Us",
+            "subtext": "Speak directly",
+            "type": "phone",
+            "href": "#"
+          },
+          {
+            "label": "Email Us",
+            "subtext": "We'll get back",
+            "type": "email",
+            "href": "#"
+          }
+        ]
+      }
     },
     "developer_section": {
       "heading": "Developer Deep Dive — Emaar Properties",
@@ -300,18 +353,20 @@
         "text": "Portfolio includes Burj Khalifa, Dubai Mall, Dubai Marina, Dubai Hills Estate, Arabian Ranches, Emaar South."
       },
       "stats": [
-        { "label": "Years Active", "value": "27", "progress": 90 },
-        { "label": "Units Delivered", "value": "118K+", "progress": 95 },
-        { "label": "On-Time Rating", "value": "98%", "progress": 98 },
-        { "label": "Global Markets", "value": "36", "progress": 72 }
+        { "label": "Units delivered globally since 1997", "value": "118,000+", "progress": 95 },
+        { "label": "Markets with active operations", "value": "36", "progress": 72 },
+        { "label": "Net asset value (FY 2024)", "value": "AED 177B", "progress": 90 },
+        { "label": "Cash reserves (Liquidity buffer)", "value": "AED 34.26B", "progress": 92 }
       ],
       "company_background": "Emaar Properties PJSC, founded in 1997 by Mohamed Alabbar, has delivered over <strong>118,000 residential units</strong> globally and maintains operations across <strong>36 markets</strong>. The company's portfolio includes iconic developments (Burj Khalifa, Dubai Mall, Dubai Marina) and master-planned communities (Dubai Hills Estate, Arabian Ranches, Emaar South). As of 2024, Emaar reported <strong>AED 177 billion</strong> in net asset value, <strong>AED 35.5 billion</strong> in revenue, and <strong>AED 13.51 billion</strong> in net profit, with <strong>AED 34.26 billion</strong> in cash reserves.",
       "institutional_context": "Emaar operates through a vertically integrated model encompassing construction, facilities management, retail, and hospitality. This structure provides greater control over delivery timelines compared to developers who outsource construction. However, it also concentrates project risk within the same corporate structure — financial stress affects both developer and contractor simultaneously.",
       "financial_highlights": [
-        { "value": "AED 34.26B", "label": "Cash & Deposits" },
-        { "value": "<0.5", "label": "Debt-to-Equity Ratio" },
-        { "value": "AED 13.51B", "label": "Net Profit (2024)" }
+        { "value": "AED 34.26B", "label": "Cash and bank deposits" },
+        { "value": "< 0.5", "label": "Debt-to-equity ratio (industry healthy)" },
+        { "value": "Active", "label": "Continued project launches despite market conditions" }
       ],
+      "financial_intro": "Emaar's 2024 financial position is robust:",
+      "financial_followup": "This financial strength reduces — but does not eliminate — project completion risk. Large developers with strong balance sheets can absorb cost overruns and supply chain disruptions that would force smaller developers into delays or cancellation.",
       "financial_assessment": "Emaar's 2024 financial position is robust: <strong>AED 34.26 billion</strong> in cash and bank deposits, debt-to-equity ratio below 0.5 (industry healthy benchmark), and continued project launches despite market conditions. This financial strength reduces — but does not eliminate — project completion risk. Large developers with strong balance sheets can absorb cost overruns and supply chain disruptions that would force smaller developers into delays or cancellation.",
       "delivery_intro": "Emaar publicly cites a <strong>98% on-time delivery rate</strong>. However, a more granular examination of DLD project completion data reveals nuance:",
       "delivery_track_record": [
@@ -320,27 +375,40 @@
         { "project": "Creek Gate (Dubai Creek)", "original": "2024", "actual": "2025 (est.)", "delay": "~14 months", "notes": "Industry-wide supply chain cited" },
         { "project": "The Valley – Phase 1", "original": "2024", "actual": "2024", "delay": "On time", "notes": "Smaller-scale community" }
       ],
-      "delivery_analysis": "Emaar's delivery record is <strong>strongest in established, infrastructure-ready locations</strong>. Delays cluster in new growth corridors (Dubai South, Dubai Creek) where master infrastructure — roads, utilities, community facilities — is being built concurrently with residential phases.",
+      "delivery_analysis_claim": "Emaar's delivery record is strongest in established, infrastructure-ready locations.",
+      "delivery_analysis": "Delays cluster in new growth corridors (Dubai South, Dubai Creek) where master infrastructure — roads, utilities, community facilities — is being built concurrently with residential phases.",
+      "quality_subline": "Based on aggregated resident reviews and forum discussions (Property Finder, Trustpilot, Reddit r/dubai):",
       "known_quality_issues": [
-        { "icon": "🔧", "title": "Snagging Responsiveness", "content": "Common complaint pattern involves delays in post-handover defect rectification, particularly during peak handover periods when multiple phases complete simultaneously. Residents report 2–4 week wait times for initial snagging inspections." },
-        { "icon": "🔇", "title": "Acoustic Insulation", "content": "Multiple reviews across Dubai Hills and Arabian Ranches phases note inadequate sound insulation between floors and from external sources (AC units, neighbour activity). This appears to be a design specification issue rather than isolated construction defect." },
-        { "icon": "❄️", "title": "AC Efficiency", "content": "Several forum threads cite higher-than-expected cooling costs in south-facing villas, attributed to glazing specifications not optimised for solar gain in certain orientations." },
-        { "icon": "🌱", "title": "Landscaping Maturity", "content": "Early handovers in new communities often receive immature landscaping, with mature gardens taking 2–3 years to establish — a common issue across all developers, not Emaar-specific." }
+        { "icon": "tool", "title": "Snagging Responsiveness", "impact": "Moderate", "content": "Common complaint pattern involves delays in post-handover defect rectification, particularly during peak handover periods when multiple phases complete simultaneously. Residents report 2–4 week wait times for initial snagging inspections." },
+        { "icon": "volume", "title": "Acoustic Insulation", "impact": "Moderate", "content": "Multiple reviews across Dubai Hills and Arabian Ranches phases note inadequate sound insulation between floors and from external sources (AC units, neighbour activity). This appears to be a design specification issue rather than isolated construction defect." },
+        { "icon": "thermometer", "title": "AC Efficiency", "impact": "Low Impact", "content": "Several forum threads cite higher-than-expected cooling costs in south-facing villas, attributed to glazing specifications not optimised for solar gain in certain orientations." },
+        { "icon": "sprout", "title": "Landscaping Maturity", "impact": "Low Impact", "content": "Early handovers in new communities often receive immature landscaping, with mature gardens taking 2–3 years to establish — a common issue across all developers, not Emaar-specific." }
       ],
       "positive_quality_indicators": [
         "Emaar maintains ISO 9001:2008 certification for quality management",
         "Post-handover maintenance teams remain accessible; response quality varies by community management",
         "Structural defects are rare; issues typically relate to finishes, fittings, and systems commissioning"
       ],
+      "rera_tab": {
+        "title": "RERA Trustee Rating",
+        "subtitle": "Regulatory standing & escrow compliance",
+        "description": "Emaar holds an active RERA registration and maintains escrow compliance across all off-plan projects. While RERA does not publish a public \"developer rating\" comparable to consumer platforms, the following indicators are verifiable via DLD/RERA channels:",
+        "recommended_action_label": "Recommended buyer action",
+        "recommended_action": "Use the Dubai REST app to verify escrow account status and milestone reporting for Serro specifically before committing funds."
+      },
+      "on_serro_section": {
+        "heading": "How This Reflects on Serro",
+        "subtitle": "Strengths applied · Weaknesses to monitor"
+      },
       "strengths_applied": [
         { "title": "Master Planning Expertise", "content": "The Heights' 7.5 million sqm scale, 25% green space allocation, and integrated wellness infrastructure reflect Emaar's capability in delivering comprehensive communities." },
         { "title": "Financial Backing", "content": "AED 34B+ cash reserves ensure construction can proceed regardless of sales velocity — critical for a 4-year timeline." },
         { "title": "Amenity Delivery", "content": "Track record suggests the Wellness Centre, lakes, and tracks will materialise as marketed, unlike developers who delay amenities to later phases." }
       ],
       "weaknesses_to_monitor": [
-        { "title": "Timeline Risk", "content": "4-year construction (2026–2030) exceeds Emaar's typical 2.5–3 year villa delivery. This extended timeline may reflect phased infrastructure delivery, staged construction across 383 units, and potential supply chain constraints in the Dubai South corridor." },
-        { "title": "Quality Consistency Risk", "content": "Early phases in new master communities sometimes experience more snagging issues than later phases, as contractors ramp up and quality control processes stabilise. Serro, as among the first residential releases in The Heights, carries this 'pioneer phase' risk." },
-        { "title": "Community Maturity at Handover", "content": "Q1–Q2 2030 handovers will occur while surrounding infrastructure (schools, retail, some amenities) may still be under construction. Early residents should expect a live building site environment for 12–24 months post-handover." }
+        { "title": "Timeline Risk", "content": "4-year construction (2026–2030) exceeds Emaar's typical 2.5–3 year villa delivery. This extended timeline may reflect phased infrastructure delivery (schools, retail not completing until 2027–2029), staged construction across 383 units, and potential supply chain or labour constraints in Dubai South corridor. Buyers should track milestone progress via Dubai REST app and broker site visits." },
+        { "title": "Quality Consistency Risk", "content": "Early phases in new master communities sometimes experience more snagging issues than later phases, as contractors ramp up and quality control processes stabilise. Serro, as among the first residential releases in The Heights (alongside Salva), carries this \"pioneer phase\" risk." },
+        { "title": "Community Maturity at Handover", "content": "Q1–Q2 2030 handovers will occur while surrounding infrastructure (schools, retail, some amenities) may still be under construction. Early residents should expect a live building site environment for 12–24 months post-handover — a pattern observed in Emaar South's early phases." }
       ],
       "rera_details": "Emaar holds an active RERA registration and maintains escrow compliance across all off-plan projects. While RERA does not publish a public \"developer rating\" comparable to consumer platforms, the following indicators are verifiable via DLD/RERA channels:",
       "rera_indicators": [
@@ -348,17 +416,77 @@
         "No pattern of fund misuse penalties in public records",
         "Consistent project registration and milestone reporting via Dubai REST app"
       ],
+      "verification_section": {
+        "title": "Verification Framework for Buyers",
+        "subtitle": "A 3-stage due diligence checklist"
+      },
       "verification_framework": [
-        { "phase": "Before Purchasing", "steps": ["Confirm RERA registration and escrow account via Dubai REST app", "Review Oqood registration process and timeline", "Visit Emaar's Dubai Hills or Arabian Ranches completed phases to assess finish quality firsthand"] },
-        { "phase": "During Construction", "steps": ["Track milestone progress against payment schedule (payments are construction-linked — ensure they match actual progress)", "Request broker site visit updates for verified on-ground intelligence"] },
-        { "phase": "Pre-Handover", "steps": ["Engage independent snagging inspector before taking possession", "Document all defects with photographic evidence within warranty period"] }
+        {
+          "phase": "Before Purchasing",
+          "steps": [
+            {
+              "title": "Confirm RERA registration and escrow account",
+              "description": "Confirm RERA registration and escrow account via the Dubai REST app."
+            },
+            {
+              "title": "Review Oqood registration process",
+              "description": "Review Oqood registration process and timeline."
+            },
+            {
+              "title": "Visit Emaar's Dubai Hills or Arabian Ranches",
+              "description": "Visit Emaar's Dubai Hills or Arabian Ranches completed phases to assess finish quality firsthand."
+            }
+          ]
+        },
+        {
+          "phase": "During Construction",
+          "steps": [
+            {
+              "title": "Track milestone progress against payment schedule",
+              "description": "Track milestone progress against payment schedule (payments are construction-linked — ensure they match actual progress)."
+            },
+            {
+              "title": "Request broker site visit updates",
+              "description": "Request broker site visit updates (our service provides verified on-ground intelligence)."
+            }
+          ]
+        },
+        {
+          "phase": "Pre-Handover",
+          "steps": [
+            {
+              "title": "Engage independent snagging inspector",
+              "description": "Engage an independent snagging inspector before taking possession."
+            },
+            {
+              "title": "Document all defects",
+              "description": "Document all defects with photographic evidence within warranty period."
+            }
+          ]
+        }
       ],
       "transparency_statement": "Emaar's track record is among the <strong>strongest in Dubai's development landscape</strong>. However, \"strongest\" does not mean \"perfect.\" The company has delivered delayed projects and units with finish defects — as have all volume developers operating at this scale. The critical distinction is that Emaar's financial position and institutional structure mean these issues are <strong>resolved eventually</strong>, and projects do complete. Buyers should enter with eyes open to the timeline and quality variability inherent in large-scale, long-duration master communities.",
+      "research_notes": [
+        "Official Emaar project pages and brochures",
+        "DLD/RERA regulatory guidance and verification frameworks",
+        "Aggregated resident reviews across Property Finder, Trustpilot, and Reddit",
+        "Market comparables from Dubai South and DAMAC Hills 2",
+        "Industry benchmarks for developer evaluation"
+      ],
+      "data_limitations": [
+        "4- and 5-bedroom pricing not released as of February 2026; estimates based on comparable Emaar villa products.",
+        "Specific RERA complaint index data requires DLD portal verification at time of purchase.",
+        "On-ground construction status as of February 2026 not independently verified (placeholder for broker-sourced updates)."
+      ],
       "report_cta": {
         "title": "Want a verified, project-specific developer report on Serro?",
         "subtitle": "Our analysis pulls live RERA escrow status, on-ground broker site visits, and payment-milestone matching tailored to your unit.",
         "button_text": "Request Verified Report",
         "href": "#"
+      },
+      "section_cta": {
+        "heading": "Verify Emaar Track Record",
+        "subtext": "Review delivery history and handover data."
       }
     },
     "target_buyer_section": {
@@ -503,7 +631,11 @@
           "verdict_tone": "consider",
           "rationale": "4 - 5% yields below apartment alternatives, but villa scarcity premium and infrastructure maturation (airport, rail) support 3 - 5 year post-handover appreciation."
         }
-      ]
+      ],
+      "section_cta": {
+        "heading": "Find Your Buyer Profile",
+        "subtext": "See ROI based on your budget and timeline."
+      }
     },
     "location_section": {
       "timeline": [
@@ -578,11 +710,22 @@
         { "icon": "family", "title": "Family focus", "content": "School catchments, children's play areas, community safety." },
         { "icon": "construction", "title": "Construction phase", "content": "2026 - 2030 will see active development; early residents should expect a live building site environment for 12 - 24 months post-first handovers.", "highlight": true }
       ],
-      "map_description": "Map showing Serro at The Heights positioned within The Heights Country Club & Wellness master community, located near the intersection of Expo Road and Al Yalayis Street (E77). The community sits approximately 8 kilometres north of Al Maktoum International Airport, 12 kilometres east of Expo City Dubai, and 25 kilometres southwest of Downtown Dubai. Emirates Road (E611) provides the primary north - south arterial connection, with the recently upgraded Al Qudra Road corridor improving east - west connectivity to Arabian Ranches and Studio City."
+      "map_description": "Map showing Serro at The Heights positioned within The Heights Country Club & Wellness master community, located near the intersection of Expo Road and Al Yalayis Street (E77). The community sits approximately 8 kilometres north of Al Maktoum International Airport, 12 kilometres east of Expo City Dubai, and 25 kilometres southwest of Downtown Dubai. Emirates Road (E611) provides the primary north - south arterial connection, with the recently upgraded Al Qudra Road corridor improving east - west connectivity to Arabian Ranches and Studio City.",
+      "hero_subtitle": "Understand commute times, planned infrastructure, neighbourhood character, and what daily life at The Heights will feel like.",
+      "section_cta": {
+        "heading": "Book Location Consultation",
+        "subtext": "Understand commute, access, and neighbourhood feel."
+      }
     },
     "financing_section": {
       "heading": "Mortgage Options, ROI Projections & Service Charges",
+      "hero_subtitle": "A complete financial overview to help Serro buyers plan with confidence — from financing realities to rental potential and true ownership costs.",
       "financing_intro": "A critical distinction for Serro buyers: <strong>mortgage financing is not available during the construction phase</strong> for off-plan properties in the UAE. Banks typically only consider mortgage applications once a project reaches substantial completion (often 50–60% construction progress) or at handover.",
+      "journey_steps": [
+        { "title": "Booking", "sub": "10% cash deposit", "meta": "Day 1" },
+        { "title": "Construction", "sub": "70% self-funded payments", "meta": "2026-2030" },
+        { "title": "Handover", "sub": "Mortgage available", "meta": "Q1-Q2 2030" }
+      ],
       "what_this_means": [
         "All construction-phase payments (70% under the 80/20 plan) must be <strong>self-funded from cash reserves</strong>",
         "Mortgage financing becomes relevant only at or near <strong>handover (Q1–Q2 2030)</strong>",
@@ -596,10 +739,19 @@
       ],
       "ltv_note": "These LTV caps apply at handover, not during construction. Final approval depends on bank policy, income profile, and property valuation at the time of application.",
       "mortgage_rates": {
+        "context_title": "Current Mortgage Rate Context",
+        "context_date": "February 2026",
         "fixed": "4.2% – 5.2% (bank-dependent, based on profile)",
+        "fixed_label": "Fixed Rates (1-5 years)",
+        "fixed_note": "Bank-dependent, based on profile",
         "variable": "EIBOR + 2.5% – 3.5%",
-        "base_rate": "3.650% (as of 13 January 2026)"
+        "variable_label": "Variable Rates (EIBOR-linked)",
+        "variable_note": "EIBOR + margin",
+        "base_rate": "3.650% (as of 13 January 2026)",
+        "base_rate_label": "Central Bank Base Rate",
+        "base_rate_note": "As of 13 January 2026"
       },
+      "cash_purchase_label": "For AED 6,000,000 Purchase",
       "cash_required_intro": "Buyers often budget only for the down payment and overlook transaction fees. For a <strong>AED 6,000,000</strong> Serro purchase:",
       "cash_table": [
         { "component": "Booking Fee (Day 1)", "calc": "10% of purchase price", "amount": "600,000" },
@@ -617,6 +769,9 @@
         { "community": "DAMAC Hills 2", "project": "Albizia/Avencia", "rent": "AED 112–133k", "size": "~1,900–2,200", "per_sqft": "AED 56–60" },
         { "community": "Serro (Projected)", "project": "3BR Type A", "rent": "AED 240–300K", "size": "3,463", "per_sqft": "AED 69–86" }
       ],
+      "roi_intro": "To evaluate Serro's income potential accurately, we compare actual rental transactions from completed communities within the same Dubai South corridor.",
+      "yield_projection_title": "Projected Gross Yield for Serro 3-Bedroom",
+      "yield_projection_mobile_title": "Projected Gross Yield — 3BR @ AED 6M purchase price",
       "yield_projections": [
         { "scenario": "Conservative", "rent": "AED 240,000", "price": "AED 6,000,000", "yield": "4.0%" },
         { "scenario": "Moderate", "rent": "AED 270,000", "price": "AED 6,000,000", "yield": "4.5%" },
@@ -630,6 +785,9 @@
       ],
       "yield_disclaimer": "Yields are estimates based on comparable market data. Past performance does not guarantee future returns. Actual rental income depends on market conditions at handover, property condition, and tenancy duration. Investors should conduct independent due diligence and consult with licensed financial advisors.",
       "service_charge_range": "AED 3–5 per sq.ft annually",
+      "service_charge_short_range": "AED 3-5 / sq.ft / yr",
+      "service_charge_display_range": "AED 3 - 5",
+      "service_charge_unit_label": "per sq.ft annually",
       "service_charge_example": {
         "size": "3,463",
         "annual": "AED 10,389 – 17,315",
@@ -661,6 +819,14 @@
         "DAMAC Hills 2",
         "Town Square (Nshama)"
       ],
+      "comparison_project_developers": [
+        "Emaar Properties",
+        "Emaar Properties",
+        "DAMAC Properties",
+        "Nshama (Wasl)"
+      ],
+      "comparison_columns": ["Feature", "Serro", "Emaar South", "DAMAC Hills 2", "Town Square"],
+      "infrastructure_columns": ["Project", "Timeline", "Proximity to Serro"],
       "project_comparison": [
         {
           "feature": "Developer",
@@ -745,7 +911,11 @@
         "Emaar South provides comparable developer quality at lower price points, with earlier handovers (2027–2028)",
         "Serro commands a premium for wellness infrastructure, larger unit sizes, and proximity to future airport expansion",
         "The 4-year timeline aligns with maturation of Dubai South infrastructure (airport, rail, retail)"
-      ]
+      ],
+      "section_cta": {
+        "heading": "Speak to Mortgage Specialist",
+        "subtext": "Plan LTV, cash needs, and financing options."
+      }
     },
     "risks_section": {
       "title": "RISKS, DOWNSIDES & RED FLAGS",
@@ -782,8 +952,17 @@
       "oversupply": {
         "title": "Sub-Market Oversupply Risk",
         "intro": "Dubai is entering a major handover phase. Market pipelines suggest more than 40,000 homes could be handed over in 2026, following a similarly strong delivery year in 2025.",
+        "stat_value": "40,000+",
+        "stat_description": "homes could be handed over in 2026, following a similarly strong delivery year in 2025.",
+        "stat_year": "2026",
+        "stat_year_label": "handover year",
         "supply_concentration": "Most upcoming handovers are concentrated in areas such as JVC, MBR City, Dubai South, Dubailand communities, and Business Bay extensions.",
+        "supply_areas": ["JVC", "MBR City", "Dubai South", "Dubailand Communities", "Business Bay Extensions"],
+        "mobile_supply_areas": ["JVC", "MBR City", "Dubai South", "Dubailand", "Business Bay"],
         "villa_differentiation": "Crucially, this supply pressure is apartment-heavy. Villa communities tell a different story. Established areas like Dubai Hills Estate, Arabian Ranches, and Jumeirah Park have limited land and far fewer new phases. Demand from families remains strong, and supply remains constrained.",
+        "market_tags": ["Villa supply constrained", "Family demand strong", "Dubai South villa supply growing", "2029-2031 rental window at risk"],
+        "impact_window_label": "Potential Impact Window",
+        "impact_window": "2029 - 2031",
         "serro_assessment": "As a villa-only development in an emerging corridor, Serro faces lower oversupply risk than apartment projects. However, the Dubai South sub-market is seeing significant new villa supply (South Bay, Emaar South phases), which could pressure rental rates in the 2029–2031 window."
       },
       "hidden_costs": {
@@ -840,6 +1019,10 @@
         ]
       },
       "final_perspective": "Serro at The Heights is a long-term play on Dubai South's maturation. Buyers who enter with eyes open to the timeline, costs, and temporary inconveniences — and who hold for 5–10 years — position themselves to benefit from one of Dubai's most infrastructure-backed growth corridors. Those seeking immediate rental coverage or short-term flips should look elsewhere.",
+      "section_cta": {
+        "heading": "Get Risk Assessment",
+        "subtext": "Review contract, snagging, and handover risks."
+      },
       "research_notes": {
         "sources_consulted": [
           "Official Emaar project documentation and broker portals",
@@ -863,6 +1046,21 @@
       "title": "Construction Progress & Handover Outlook",
       "subtitle": "Serro at The Heights",
       "intro": "Comprehensive analysis of construction timelines, progress updates, and what to expect.",
+      "progress_title": "Estimated Construction Progress (Feb 2026)",
+      "progress_items": [
+        { "label": "Site Preparation", "percent": 15 },
+        { "label": "Foundation Works", "percent": 5 },
+        { "label": "Infrastructure", "percent": 3 },
+        { "label": "Vertical Construction", "percent": 0 },
+        { "label": "Amenities & Landscaping", "percent": 0 }
+      ],
+      "progress_note": "Progress percentages reflect market estimates based on site intelligence as of February 2026.",
+      "progress_mobile_note": "Estimates based on market intelligence. Verify via Dubai REST app.",
+      "desktop_panels": [
+        { "id": "milestones", "title": "Project Key Milestones", "subtitle": "Detailed timeline of project milestones from launch to handover." },
+        { "id": "intel", "title": "On-Ground Intelligence (February 2026)", "subtitle": "Broker insights and market intelligence from site visits and industry sources." },
+        { "id": "photos", "title": "Construction Photos & Site Updates", "subtitle": "Latest on-ground photos and updates from the construction site." }
+      ],
       "timeline_table": {
         "headers": ["Timeline Component", "Serro", "Serro 2"],
         "rows": [
@@ -906,25 +1104,51 @@
       "photo_placeholders": [
         {
           "id": 1,
+          "label": "Aerial",
+          "title": "Aerial view of Serro construction plots showing initial site clearance and earthworks, with The Heights master community boundaries visible in the distance.",
           "caption": "Aerial view of Serro construction plots showing initial site clearance and earthworks, with The Heights master community boundaries visible in the distance. Emirates Road (E611) runs along the eastern edge, providing connectivity to Dubai South and Expo City."
         },
         {
           "id": 2,
+          "label": "Ground Level",
+          "title": "Foundation piling underway for Serro's 3-bedroom villa clusters. The Mediterranean-inspired architecture is not yet visible at this early stage.",
           "caption": "Foundation piling underway for Serro's 3-bedroom villa clusters. The Mediterranean-inspired architectural language is not yet visible at this early stage, but plot layouts follow the masterplan's wellness-oriented grid."
         },
         {
           "id": 3,
+          "label": "Infrastructure",
+          "title": "Infrastructure corridor development showing utility trenching and road base preparation.",
           "caption": "Infrastructure corridor development showing utility trenching and road base preparation. These works are essential for the 38km cycling and jogging network that will eventually connect all Serro clusters."
         },
         {
           "id": 4,
+          "label": "Future Amenity",
+          "title": "View towards the future Wellness Lake location, currently a cleared basin awaiting excavation and waterproofing.",
           "caption": "View towards the future Wellness Lake location, currently a cleared basin awaiting excavation and waterproofing. This central amenity is scheduled for completion ahead of first villa handovers."
         }
-      ]
+      ],
+      "section_cta": {
+        "heading": "Track Serro Progress",
+        "subtext": "Get site updates, photos, and milestone reports."
+      }
     },
     "comparison_section": {
       "badge": "Competitor Analysis",
       "title": "How Serro at The Heights Stacks Up Against Competitors",
+      "mobile_project_tabs": ["Serro\nThe Heights", "Emaar South\nGolf Place", "Dubai South\nPhase VI"],
+      "project_meta": [
+        { "short": "Serro at The Heights", "brand": "Emaar Properties", "badge": "Premium pick", "sublabel": "The Heights" },
+        { "short": "Emaar South — Golf Place", "brand": "Emaar Properties", "badge": "Emaar Properties", "sublabel": "Golf Place" },
+        { "short": "Dubai South Residential", "brand": "Various (Dubai South Development)", "badge": "Dubai South Development", "sublabel": "Phase VI" }
+      ],
+      "mobile_price_glance": {
+        "rows": [
+          { "label": "Serro", "value": "AED 6.0M", "color": "#B68A35" },
+          { "label": "Emaar South", "value": "AED 3.8M", "color": "#9eba6e" },
+          { "label": "Dubai South", "value": "AED 1.47M", "color": "#6f9fca" }
+        ],
+        "summary": "Price per sqft: Serro ~AED 1,732 · Emaar South ~AED 1,550–1,700 · Dubai South ~AED 700–900"
+      },
       "intro": "The following comparison examines Serro against two relevant alternatives: another Emaar project in the Dubai South corridor and a competitor development targeting similar buyer profiles.",
       "competitor_table": {
         "headers": ["Feature", "Serro at The Heights (Emaar)", "Emaar South (Golf Place)", "Dubai South Residential (Phase VI)"],
@@ -947,10 +1171,10 @@
         "title": "Who Wins on Value, Trust, and Lifestyle",
         "rows": [
           { "emoji": "🏆", "category": "Value", "winner": "Dubai South Residential", "rationale": "At AED 1.47M entry, significantly lower capital commitment; higher potential yields (6–8%) but lower capital appreciation trajectory" },
-          { "emoji": "🏆", "category": "Trust", "winner": "Serro / Emaar South (Tie)", "rationale": "Emaar's track record and escrow compliance provide institutional certainty; both projects benefit from developer accountability under Law No. 7 of 2025" },
-          { "emoji": "🏆", "category": "Lifestyle", "winner": "Serro", "rationale": "Unmatched wellness infrastructure (lake, 38km tracks, meditation gardens) positions Serro as Dubai's first dedicated wellness community" },
+          { "emoji": "🏆", "category": "Trust", "winner": "Serro / Emaar South (Tie)", "rationale": "Emaar's track record and escrow compliance provide institutional certainty; both projects benefit from developer accountability under Law No. 7 of 2025", "highlight": true },
+          { "emoji": "🏆", "category": "Lifestyle", "winner": "Serro", "rationale": "Unmatched wellness infrastructure (lake, 38km tracks, meditation gardens) positions Serro as Dubai's first dedicated wellness community", "highlight": true },
           { "emoji": "🏆", "category": "Timeline Certainty", "winner": "Dubai South Residential", "rationale": "2026–2027 handovers provide faster entry to rental market and capital realisation" },
-          { "emoji": "🏆", "category": "Capital Growth", "winner": "Serro", "rationale": "Premium positioning in emerging wellness corridor; Emaar's pricing discipline suggests 15–25% appreciation by handover based on historical patterns" }
+          { "emoji": "🏆", "category": "Capital Growth", "winner": "Serro", "rationale": "Premium positioning in emerging wellness corridor; Emaar's pricing discipline suggests 15–25% appreciation by handover based on historical patterns", "highlight": true }
         ]
       },
       "verdict": {
@@ -962,6 +1186,10 @@
           "Long-term infrastructure alignment with Al Maktoum Airport expansion and Dubai 2040 growth corridor"
         ],
         "closing": "For investors prioritizing immediate yield and lower entry, Dubai South's Phase VI offerings present a compelling alternative. For buyers seeking generational family assets with wellness infrastructure and Emaar's institutional backing, Serro justifies its premium positioning."
+      },
+      "section_cta": {
+        "heading": "Compare Serro Projects",
+        "subtext": "See how Serro compares with your shortlist."
       }
     },
     "reviews_section": {
@@ -985,6 +1213,17 @@
       ],
       "methodology_sources_title": "Sources",
       "methodology_sources": "Sources included Google Reviews, Trustpilot, and Dubai property forums (Q1 2025 - Q1 2026).",
+      "methodology_source_cards": [
+        { "source": "Google Reviews", "period": "Q1 2025 - Q1 2026" },
+        { "source": "Trustpilot", "period": "Q1 2025 - Q1 2026" },
+        { "source": "Dubai Property Forums", "period": "Q1 2025 - Q1 2026" }
+      ],
+      "desktop_tab_captions": {
+        "sentiment": "What residents feel",
+        "quotes": "Voices from residents",
+        "patterns": "Key insights for Serro buyers",
+        "future": "What we will track"
+      },
       "sentiment": {
         "title": "Sentiment Breakdown",
         "eyebrow": "68% Positive",
@@ -1040,12 +1279,17 @@
         ]
       },
       "transparency_title": "Transparency Note",
-      "transparency_note": "We will update this section with Serro-specific reviews as they become available. No reviews have been omitted or selectively filtered."
+      "transparency_note": "We will update this section with Serro-specific reviews as they become available. No reviews have been omitted or selectively filtered.",
+      "section_cta": {
+        "heading": "Read Resident Feedback",
+        "subtext": "Access verified owner and resident insights."
+      }
     },
     "expert_tips_section": {
       "badge": "Expert Tips & Scam Avoidance",
       "title": "Insider Tips for Off‑Plan Buyers",
       "subtitle": "Specific to Serro at The Heights",
+      "desktop_intro": "Expert guidance to help you buy smart, stay protected, and invest with confidence in Dubai's off-plan market.",
       "tips_title": "Five Actionable Tips for Serro Buyers",
       "tips": [
         {
@@ -1094,8 +1338,7 @@
           "paragraphs": [
             "No legitimate developer or broker can guarantee rental returns. Market fluctuations, handover timing, and property-specific factors render such promises unenforceable and often indicate a misrepresentation risk."
           ],
-          "red_flag": "\"Guaranteed 8% ROI for 5 years\" claims should be treated as marketing gimmicks. Legitimate projections are presented as estimates with clear disclaimers.",
-          "action": "Request written disclaimers on any yield projections. Compare against RERA rental index data for the area."
+          "red_flag": "\"Guaranteed 8% ROI for 5 years\" claims should be treated as marketing gimmicks. Legitimate projections are presented as estimates with clear disclaimers."
         }
       ],
       "scam_red_flags": {
@@ -1111,6 +1354,7 @@
       },
       "regulatory": {
         "title": "Key Regulatory Protections — Law No. 7 of 2025",
+        "badge": "Effective Jan 2026",
         "intro": "Effective January 2026, Dubai's new Contracting Law introduces enhanced protections for off-plan buyers:",
         "items": [
           { "label": "Mandatory contractor registration and classification", "desc": "Prevents unqualified entities from undertaking large-scale projects" },
@@ -1123,6 +1367,10 @@
       "final_word": {
         "title": "Final Word — Due Diligence Is Your Best Protection",
         "text": "The off-plan market rewards informed buyers. Serro at The Heights, backed by Emaar's institutional strength and Dubai's evolving regulatory framework, represents a relatively secure entry point. However, \"secure\" does not mean \"risk-free.\" Verify every claim, understand every cost, and never rely on verbal assurances."
+      },
+      "section_cta": {
+        "heading": "Verify Project Compliance",
+        "subtext": "Check RERA and escrow details before payment."
       }
     },
     "faq_section": {
@@ -1192,7 +1440,11 @@
           "answer": ["Effective January 2026, Law No. 7 introduces mandatory contractor registration, subcontractor oversight, and 10-year document retention requirements. For Serro buyers, this means:"],
           "list": ["Enhanced accountability for construction quality", "Clearer recourse if defects emerge post-handover", "Government oversight of contractor performance", "Penalties (up to AED 200,000) for violations"]
         }
-      ]
+      ],
+      "section_cta": {
+        "heading": "Ask a Specific Question",
+        "subtext": "Speak with an expert for a direct answer."
+      }
     }
 
 }

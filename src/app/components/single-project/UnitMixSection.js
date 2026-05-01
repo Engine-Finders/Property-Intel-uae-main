@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionImageHeader from "./SectionImageHeader";
 
 const GOLD = "#B68A35";
 
@@ -117,6 +118,100 @@ const InfoIcon = ({ color = GOLD, size = 18 }) => (
   </svg>
 );
 
+const ContactIcon = ({ type }) => {
+  if (type === "whatsapp") {
+    return (
+      <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 21l1.4-4.4A8.7 8.7 0 1 1 7.7 20L3 21Z" />
+        <path d="M8.8 8.9c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .5.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c-.1.1-.2.3 0 .5.5 1 1.3 1.8 2.3 2.3.2.1.4.1.5-.1l.5-.6c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.3.4.5 0 .5-.2 1-.6 1.3-.5.4-1.1.5-1.8.3-3.4-.9-5.8-3.3-6.7-6.7-.2-.7-.1-1.3.2-1.8.2-.3.5-.6.8-.8Z" />
+      </svg>
+    );
+  }
+
+  if (type === "phone") {
+    return (
+      <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.7 19.7 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.7 19.7 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-10 6L2 7" />
+    </svg>
+  );
+};
+
+const ExpertBadgeIcon = () => (
+  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.55" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="8" r="4" />
+    <path d="M5 21a7 7 0 0 1 14 0" />
+    <path d="M18 8h2" />
+    <path d="M4 8h2" />
+  </svg>
+);
+
+const ExpertContactCard = ({ cta, mobile = false, t }) => {
+  if (!cta) return null;
+
+  const actions = Array.isArray(cta.actions) ? cta.actions : [];
+  const cardClass = mobile
+    ? "rounded-[22px] border px-5 py-6"
+    : "rounded-[22px] border px-6 py-4";
+
+  return (
+    <div
+      className={cardClass}
+      style={{
+        background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
+        borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)",
+        boxShadow: t.isDark ? "0 12px 30px rgba(0,0,0,0.22)" : "0 12px 30px rgba(15,23,42,0.04)",
+      }}
+    >
+      <div className={mobile ? "flex flex-col gap-5" : "grid grid-cols-[1.3fr_repeat(3,1fr)] items-center"}>
+        <div className={mobile ? "flex items-center justify-center gap-4 border-b pb-5 text-center" : "flex items-center gap-4 pr-6"}>
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]" style={{ background: "linear-gradient(180deg, #C99432 0%, #AE7A22 100%)" }}>
+            <ExpertBadgeIcon />
+          </span>
+          <span className={mobile ? "text-left" : ""}>
+            <span className={mobile ? "block text-xl font-semibold leading-tight" : "block text-xl font-semibold leading-tight"} style={{ color: t.text }}>
+              {cta.heading}
+            </span>
+            <span className={mobile ? "mt-2 block text-sm leading-snug" : "mt-1 block text-sm leading-relaxed"} style={{ color: t.textSecondary }}>
+              {cta.subtext}
+            </span>
+          </span>
+        </div>
+
+        <div className={mobile ? "grid grid-cols-3 divide-x" : "contents"} style={mobile ? { borderColor: t.cardBorder } : undefined}>
+          {actions.map((action, index) => (
+            <a
+              key={`${action.label}-${index}`}
+              href={action.href || "#"}
+              className={mobile ? "px-2 text-center transition-opacity hover:opacity-80" : "flex items-center gap-3 border-l px-5 transition-opacity hover:opacity-80"}
+              style={mobile ? undefined : { borderColor: t.cardBorder }}
+            >
+              <span className={mobile ? "mx-auto flex h-12 w-12 items-center justify-center rounded-full border" : "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border"} style={{ borderColor: "rgba(182,138,53,0.28)", color: GOLD }}>
+                <ContactIcon type={action.type} />
+              </span>
+              <span className={mobile ? "mt-3 block text-center" : "block min-w-0"}>
+                <span className={mobile ? "block text-sm font-semibold leading-tight" : "block text-sm font-semibold leading-tight"} style={{ color: t.text }}>
+                  {action.label}
+                </span>
+                <span className={mobile ? "mt-1 block text-xs leading-tight" : "mt-1 block text-xs leading-tight"} style={{ color: t.textSecondary }}>
+                  {action.subtext}
+                </span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const FeatureGlyph = ({ index }) => {
   const glyphs = [
     <svg key="aesthetic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3 3 6 6 3-6 3-3 6-3-6-6-3 6-3 3-6Z" /></svg>,
@@ -208,7 +303,6 @@ const UnitMixSection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-6 lg:py-10">
       <div className="max-w-7xl mx-auto px-3">
         <div className="mb-10 lg:hidden">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>Unit Types & Price Evolution</p>
           <div>
             <h2 className="text-[2.2rem] font-semibold leading-[1.06]" style={{ color: t.text }}>
               {primary}
@@ -369,25 +463,6 @@ const UnitMixSection = ({ data }) => {
                   <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
                 </div>
               ))}
-              <div
-                className="rounded-[22px] p-4"
-                style={{
-                  background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
-                  border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
-                }}
-              >
-                <div className="flex gap-3">
-                  <div className="shrink-0 pt-0.5">
-                    <InfoIcon />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                      Investor Note
-                    </p>
-                    <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.caveat }} />
-                  </div>
-                </div>
-              </div>
             </div>
           </MobileAccordion>
 
@@ -542,24 +617,17 @@ const UnitMixSection = ({ data }) => {
               </div>
             </div>
           </div>
+          <ExpertContactCard cta={data.expert_cta} mobile t={t} />
         </div>
 
         <div className="hidden lg:block">
-          <div className="mb-7 text-center">
-            <h2 className="text-[3rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
-              {primary}
-              {accent && (
-                <span className="mt-1 block italic" style={{ color: GOLD }}>
-                  {accent}
-                </span>
-              )}
-            </h2>
-            {data.subtitle && (
-              <p className="mt-3 text-base" style={{ color: t.textSecondary }}>
-                {data.subtitle}
-              </p>
-            )}
-          </div>
+          <SectionImageHeader
+            primary={primary}
+            accent={accent}
+            subtitle={data.subtitle}
+            t={t}
+            className="mb-7 rounded-b-[28px]"
+          />
 
           <div className="mx-auto mb-7 flex max-w-xl gap-1 rounded-xl p-1" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f7f3eb", border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }}>
             {bedroomTabs.map((tab) => (
@@ -695,25 +763,6 @@ const UnitMixSection = ({ data }) => {
                       <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
                     </div>
                   ))}
-                  <div
-                    className="rounded-[22px] p-4"
-                    style={{
-                      background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
-                      border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
-                    }}
-                  >
-                    <div className="flex gap-3">
-                      <div className="shrink-0 pt-0.5">
-                        <InfoIcon />
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                          Investor Note
-                        </p>
-                        <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.caveat }} />
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </MobileAccordion>
 
@@ -871,6 +920,9 @@ const UnitMixSection = ({ data }) => {
                 <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
               </div>
             </div>
+          </div>
+          <div className="mt-5">
+            <ExpertContactCard cta={data.expert_cta} t={t} />
           </div>
         </div>
       </div>

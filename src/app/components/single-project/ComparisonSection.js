@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import SectionExpertCta from "./SectionExpertCta";
 
 const GOLD = "#B68A35";
 
@@ -21,18 +22,44 @@ const Expandable = ({ title, icon, open, onToggle, children, t }) => (
 );
 
 /* ── Winner row card ── */
-const WinnerCard = ({ item, t }) => {
-  const isSerro = item.winner.toLowerCase().includes("serro");
-  const accentColor = isSerro ? "#B68A35" : "#3B82F6";
+const GoldStarIcon = ({ size = 16 }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="m12 3 2.75 5.57 6.15.9-4.45 4.34 1.05 6.12L12 17.04 6.5 19.93l1.05-6.12L3.1 9.47l6.15-.9L12 3Z" />
+  </svg>
+);
 
+const WinnerCard = ({ item, t }) => {
   return (
-    <div className="rounded-lg p-4 mb-3" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f8fafc", border: `1px solid ${t.cardBorder}`, borderLeft: `3px solid ${accentColor}` }}>
-      <div className="flex items-center gap-2 mb-1.5">
-        <span className="text-sm">{item.emoji}</span>
-        <span className="text-sm font-semibold" style={{ color: t.text }}>{item.category}</span>
-        <span className="ml-auto text-xs font-semibold px-2 py-0.5 rounded-full" style={{ background: accentColor + "15", color: accentColor }}>{item.winner}</span>
+    <div
+      className="border-b px-4 py-5 last:border-b-0"
+      style={{ background: t.isDark ? "rgba(255,255,255,0.025)" : "#fff", borderColor: t.cardBorder }}
+    >
+      <div className="flex items-start gap-4">
+        <span
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+          style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1", color: GOLD }}
+        >
+          <GoldStarIcon />
+        </span>
+        <div className="min-w-0">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em]" style={{ color: GOLD }}>
+            {item.category}
+          </p>
+          <p className="mt-1 text-sm font-semibold leading-5" style={{ color: t.text }}>
+            {item.winner}
+          </p>
+          <p className="mt-2 text-sm leading-7" style={{ color: t.textSecondary }}>
+            {item.rationale}
+          </p>
+        </div>
       </div>
-      <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{item.rationale}</p>
     </div>
   );
 };
@@ -42,7 +69,7 @@ const getProjectValue = (rows, feature, projectIndex) => {
   return row ? row[projectIndex + 1] : "";
 };
 
-const StatLine = ({ label, value, max = 6000000, color, t }) => {
+const StatLine = ({ label, sublabel, value, max = 6000000, color, t }) => {
   const raw = String(value);
   const parsed = Number(raw.replace(/[^0-9.]/g, "")) || 0;
   const number = raw.toLowerCase().includes("m") ? parsed * 1000000 : parsed;
@@ -53,7 +80,7 @@ const StatLine = ({ label, value, max = 6000000, color, t }) => {
       <div className="grid grid-cols-[1fr_1.2fr_auto] items-center gap-3">
         <div>
           <p className="text-sm font-semibold" style={{ color: t.text }}>{label}</p>
-          <p className="text-xs" style={{ color: t.textMuted }}>{label === "Serro" ? "The Heights" : label === "Emaar South" ? "Golf Place" : "Phase VI"}</p>
+          <p className="text-xs" style={{ color: t.textMuted }}>{sublabel}</p>
         </div>
         <div className="h-2 rounded-full" style={{ background: t.isDark ? "rgba(255,255,255,0.08)" : "#ebe7df" }}>
           <div className="h-full rounded-full" style={{ width: `${width}%`, background: color }} />
@@ -64,14 +91,10 @@ const StatLine = ({ label, value, max = 6000000, color, t }) => {
   );
 };
 
-const CompetitorDetail = ({ comp, activeIndex, t }) => {
+const CompetitorDetail = ({ comp, projectMeta, activeIndex, t }) => {
   const rows = comp.rows || [];
-  const projects = [
-    { short: "Serro at The Heights", brand: "Emaar Properties", badge: "Premium pick", color: GOLD },
-    { short: "Emaar South — Golf Place", brand: "Emaar Properties", badge: "Emaar Properties", color: GOLD },
-    { short: "Dubai South Residential", brand: "Various (Dubai South Development)", badge: "Dubai South Development", color: "#286CFF" },
-  ];
-  const project = projects[activeIndex] || projects[0];
+  const colors = [GOLD, GOLD, "#286CFF"];
+  const project = { ...projectMeta[activeIndex], color: colors[activeIndex] || GOLD };
 
   const details = [
     ["Unit Types", getProjectValue(rows, "Unit Types", activeIndex)],
@@ -125,13 +148,13 @@ const CompetitorDetail = ({ comp, activeIndex, t }) => {
   );
 };
 
-const getCompetitorProjects = (comp) => {
+const getCompetitorProjects = (comp, projectMeta) => {
   const rows = comp.rows || [];
   const names = (comp.headers || []).slice(1);
   const meta = [
-    { icon: "♧", badge: "Premium pick", color: GOLD },
-    { icon: "⚑", badge: "", color: "#2f7d45" },
-    { icon: "▥", badge: "", color: "#286CFF" },
+    { icon: "♧", color: GOLD },
+    { icon: "⚑", color: "#2f7d45" },
+    { icon: "▥", color: "#286CFF" },
   ];
 
   return names.map((name, index) => ({
@@ -147,6 +170,7 @@ const getCompetitorProjects = (comp) => {
     targetBuyer: getProjectValue(rows, "Target Buyer", index),
     amenities: getProjectValue(rows, "Amenities", index),
     riskFactor: getProjectValue(rows, "Risk Factor", index),
+    badge: projectMeta[index]?.badge || "",
     ...meta[index],
   }));
 };
@@ -222,13 +246,12 @@ const DesktopWinnerPanel = ({ winners, t }) => (
       <span>Rationale</span>
     </div>
     {(winners.rows || []).map((item, index) => {
-      const isSerro = item.winner.toLowerCase().includes("serro");
-      const accent = isSerro ? GOLD : "#286CFF";
+      const accent = item.highlight ? GOLD : "#286CFF";
       return (
         <div key={item.category} className="grid grid-cols-[1fr_1fr_2.15fr] items-center border-b px-6 py-4 last:border-b-0" style={{ borderColor: t.cardBorder }}>
           <div className="flex items-center gap-4">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full text-lg" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#fbf4e8" }}>
-              {item.emoji}
+            <span className="flex h-10 w-10 items-center justify-center rounded-full text-lg" style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#fbf4e8", color: GOLD }}>
+              <GoldStarIcon />
             </span>
             <span className="text-sm font-medium" style={{ color: t.text }}>{item.category}</span>
           </div>
@@ -279,11 +302,11 @@ const ComparisonSection = ({ data }) => {
   const comp = data.competitor_table || {};
   const winners = data.winner_table || {};
   const verdict = data.verdict || {};
-  const projectTabs = ["Serro\nThe Heights", "Emaar South\nGolf Place", "Dubai South\nPhase VI"];
-  const desktopProjects = getCompetitorProjects(comp);
+  const projectTabs = data.mobile_project_tabs;
+  const desktopProjects = getCompetitorProjects(comp, data.project_meta);
 
   return (
-    <section id="comparison" className="py-8 lg:py-12 px-2 sm:px-6 lg:px-8" style={{ background: t.bg }}>
+    <section id="comparison" className="pt-8 pb-0 lg:py-12 px-2 sm:px-6 lg:px-8" style={{ background: t.bg }}>
       <div className="max-w-7xl mx-auto">
         <div className="hidden lg:block">
           <div
@@ -342,7 +365,7 @@ const ComparisonSection = ({ data }) => {
 
             <div className="mt-8 grid grid-cols-2 gap-4">
               {[
-                { key: "winners", title: `Summary - ${winners.title || "Who Wins on Value, Trust, and Lifestyle"}`, icon: "♕" },
+                { key: "winners", title: `Summary - ${winners.title || "Who Wins on Value, Trust, and Lifestyle"}`, icon: <GoldStarIcon /> },
                 { key: "verdict", title: verdict.title || "Strategic Verdict", icon: "◎" },
               ].map((panel) => {
                 const active = openPanel === panel.key;
@@ -377,9 +400,6 @@ const ComparisonSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
-          <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full mb-4" style={{ background: "#B68A3520", color: "#B68A35" }}>
-            {data.badge}
-          </span>
           <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: t.text }}>
             <span className="block">How Serro at The Heights</span>
             <span className="block" style={{ color: GOLD }}>Stacks Up Against Competitors</span>
@@ -391,11 +411,11 @@ const ComparisonSection = ({ data }) => {
           <h3 className="mb-4 text-lg font-semibold" style={{ color: t.text }}>Starting price at a glance</h3>
           <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: GOLD }}>Entry Price — 3 Bedroom</p>
-            <StatLine label="Serro" value="AED 6.0M" color={GOLD} t={t} />
-            <StatLine label="Emaar South" value="AED 3.8M" color="#9eba6e" t={t} />
-            <StatLine label="Dubai South" value="AED 1.47M" color="#6f9fca" t={t} />
+            {data.mobile_price_glance.rows.map((row, index) => (
+              <StatLine key={row.label} label={row.label} sublabel={data.project_meta[index]?.sublabel} value={row.value} color={row.color} t={t} />
+            ))}
             <p className="mt-3 text-sm leading-6" style={{ color: t.textMuted }}>
-              Price per sqft: Serro ~AED 1,732 · Emaar South ~AED 1,550–1,700 · Dubai South ~AED 700–900
+              {data.mobile_price_glance.summary}
             </p>
           </div>
         </div>
@@ -419,7 +439,7 @@ const ComparisonSection = ({ data }) => {
               </button>
             ))}
           </div>
-          <CompetitorDetail comp={comp} activeIndex={activeProject} t={t} />
+          <CompetitorDetail comp={comp} projectMeta={data.project_meta} activeIndex={activeProject} t={t} />
           {comp.source && (
             <p className="mt-3 rounded-lg px-3 py-2 text-sm leading-6" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#fbf7ef", color: t.textMuted }}>
               ⓘ Sources: {comp.source}
@@ -428,10 +448,12 @@ const ComparisonSection = ({ data }) => {
         </div>
 
         {/* Winner Summary — expandable */}
-        <Expandable title={`Summary - ${winners.title || "Who Wins on Value, Trust, and Lifestyle"}`} icon="▧" open={openPanel === "winners"} onToggle={() => toggle("winners")} t={t}>
-          {(winners.rows || []).map((item, i) => (
-            <WinnerCard key={i} item={item} t={t} />
-          ))}
+        <Expandable title={`Summary - ${winners.title || "Who Wins on Value, Trust, and Lifestyle"}`} icon={<GoldStarIcon />} open={openPanel === "winners"} onToggle={() => toggle("winners")} t={t}>
+          <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+            {(winners.rows || []).map((item, i) => (
+              <WinnerCard key={i} item={item} t={t} />
+            ))}
+          </div>
         </Expandable>
 
         <Expandable title={verdict.title || "Strategic Verdict"} icon="◎" open={openPanel === "verdict"} onToggle={() => toggle("verdict")} t={t}>
@@ -458,22 +480,8 @@ const ComparisonSection = ({ data }) => {
           </div>
         </Expandable>
 
-        {/* CTA — after Strategic Verdict */}
-        {data.cta && (
-          <div className="mt-6 flex flex-col items-start gap-2">
-            <a
-              href={data.cta.href || "#"}
-              className="px-6 py-3.5 rounded-lg font-semibold text-sm text-white transition-colors hover:opacity-90 inline-block"
-              style={{ background: "#B68A35" }}
-            >
-              {data.cta.button_text}
-            </a>
-            {data.cta.subtext && (
-              <p className="text-sm leading-relaxed max-w-xl" style={{ color: t.textMuted }}>{data.cta.subtext}</p>
-            )}
-          </div>
-        )}
         </div>
+        <SectionExpertCta cta={data.section_cta || data.cta} t={t} className="mt-6" />
       </div>
     </section>
   );
