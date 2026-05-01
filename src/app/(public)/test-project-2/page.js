@@ -26,7 +26,7 @@ export const metadata = {
 export default function Project() {
   return (
     <>
-      <HeroSection data={data} />
+      {/* <HeroSection data={data} />
       <VerdictSection data={data.verdict_section} />
       <UnitMixSection data={data.unit_mix_section} />
       <DeveloperSection data={data.developer_section} />
@@ -38,7 +38,7 @@ export default function Project() {
       <ComparisonSection data={data.comparison_section} />
       <ReviewsSection data={data.reviews_section} />
       <ExpertTipsSection data={data.expert_tips_section} />
-      <FaqSection data={data.faq_section} />
+      <FaqSection data={data.faq_section} /> */}
     </>
   );
 }
