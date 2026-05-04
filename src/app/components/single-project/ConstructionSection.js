@@ -204,17 +204,20 @@ const PhotoAccordionList = ({ photos, openPhoto, onToggle, t }) => (
   <div className="space-y-4">
     {photos.map((photo) => {
       const open = openPhoto === photo.id;
+      const image = photo.image || photo.src;
 
       return (
         <div key={photo.id} className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
-          <div className="relative h-44" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#eeeae2" }}>
-            <span className="absolute right-3 top-3 rounded-full px-3 py-1 text-[11px] font-medium" style={{ background: "#fffdfa", color: GOLD }}>
-              {photo.label}
-            </span>
-            <span className="absolute bottom-4 left-4 rounded-full px-4 py-2 text-sm font-semibold" style={{ background: "rgba(255,255,255,0.82)", color: t.text }}>
-              {photo.title}
-            </span>
-          </div>
+          <div
+            className="h-44 bg-cover bg-center"
+            style={{
+              backgroundImage: image
+                ? `url('${image}')`
+                : t.isDark
+                  ? "linear-gradient(135deg, rgba(182,138,53,0.26), rgba(255,255,255,0.04))"
+                  : "linear-gradient(135deg, #d8c3a0, #f7ead3)",
+            }}
+          />
           <button
             type="button"
             onClick={() => onToggle(open ? null : photo.id)}

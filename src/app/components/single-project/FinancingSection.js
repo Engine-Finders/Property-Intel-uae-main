@@ -203,6 +203,93 @@ const GoldDotList = ({ items, t }) => (
   </ul>
 );
 
+const ServiceChargeEstimateCard = ({ data, t }) => (
+  <div
+    className="mb-5 rounded-2xl p-4"
+    style={{
+      border: `1px solid ${t.cardBorder}`,
+      background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
+    }}
+  >
+    <h3 className="text-[17px] font-semibold leading-6" style={{ color: t.text }}>
+      Service Charges - What Owners Actually Pay
+    </h3>
+    <p className="mt-2 text-xs" style={{ color: t.textMuted }}>
+      Estimated Service Charge Range
+    </p>
+    <p className="mt-4 text-[2.35rem] font-semibold leading-none" style={{ color: GOLD }}>
+      {data.service_charge_display_range}
+    </p>
+    <p className="mt-1 text-xs" style={{ color: t.textSecondary }}>
+      {data.service_charge_unit_label}
+    </p>
+    <p className="mt-4 text-sm" style={{ color: t.textSecondary }}>
+      For a {data.service_charge_example.size} sq.ft villa:
+    </p>
+    <div className="mt-3 grid grid-cols-2 gap-3">
+      <div className="rounded-xl p-3" style={{ border: `1px solid ${t.cardBorder}` }}>
+        <p className="text-[11px] leading-4" style={{ color: t.textMuted }}>
+          Annual Service Charge
+        </p>
+        <p className="mt-1 text-sm font-semibold leading-5" style={{ color: GOLD }}>
+          {data.service_charge_example.annual}
+        </p>
+      </div>
+      <div className="rounded-xl p-3" style={{ border: `1px solid ${t.cardBorder}` }}>
+        <p className="text-[11px] leading-4" style={{ color: t.textMuted }}>
+          Monthly Equivalent
+        </p>
+        <p className="mt-1 text-sm font-semibold leading-5" style={{ color: GOLD }}>
+          {data.service_charge_example.monthly}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+const ServiceChargeComparisonCards = ({ items, unitLabel, t }) => (
+  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    {items.map((item, index) => {
+      const isPrimary = index === 0;
+
+      return (
+        <div
+          key={item.community}
+          className="rounded-2xl p-4"
+          style={{
+            background: isPrimary
+              ? (t.isDark ? "rgba(182,138,53,0.14)" : "#f7ead1")
+              : (t.isDark ? "rgba(255,255,255,0.02)" : "#fff"),
+            border: `1px solid ${isPrimary ? "rgba(182,138,53,0.35)" : t.cardBorder}`,
+          }}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-sm font-semibold leading-5" style={{ color: t.text }}>
+                {item.community}
+              </p>
+              <p className="mt-1 text-xs" style={{ color: t.textMuted }}>
+                {item.amenity}
+              </p>
+            </div>
+            {isPrimary && (
+              <span className="rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-wider" style={{ background: GOLD, color: "#fff" }}>
+                Subject
+              </span>
+            )}
+          </div>
+          <p className="mt-3 text-2xl font-semibold" style={{ color: GOLD }}>
+            AED {item.charge}
+          </p>
+          <p className="text-xs" style={{ color: t.textMuted }}>
+            {unitLabel}
+          </p>
+        </div>
+      );
+    })}
+  </div>
+);
+
 const TableWrap = ({ children }) => (
   <div className="min-w-0">
     <div
@@ -237,9 +324,6 @@ const FinancingSection = ({ data }) => {
 
   const rentalHeaders = ["Community", "Project", "Avg Annual Rent", "Size", "Rent/sq.ft"];
   const rentalRows = data.rental_benchmarking.map((r) => [r.community, r.project, r.rent, r.size, r.per_sqft]);
-
-  const scHeaders = ["Community", "Service Charge", "Amenity Package"];
-  const scRows = data.service_charge_comparison.map((r) => [r.community, `AED ${r.charge}`, r.amenity]);
 
   const compHeaders = data.comparison_columns;
   const compRows = data.project_comparison.map((r) => [r.feature, r.serro, r.emaar_south, r.damac, r.town_square]);
@@ -716,22 +800,7 @@ const FinancingSection = ({ data }) => {
           </AccordionCard>
 
           <AccordionCard title="Service Charges — What Owners Actually Pay" icon="🏛️" isOpen={openSections.service} onToggle={() => toggle("service")} t={t}>
-            <div className="mb-5">
-              <TableWrap>
-                <DesktopTable
-                  headers={["Estimated Range", "Annual", "Monthly"]}
-                  rows={[
-                    [
-                      data.service_charge_short_range,
-                      data.service_charge_example.annual,
-                      data.service_charge_example.monthly,
-                    ],
-                  ]}
-                  t={t}
-                  minTableWidth={620}
-                />
-              </TableWrap>
-            </div>
+            <ServiceChargeEstimateCard data={data} t={t} />
 
             <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
               What Service Charges Fund
@@ -750,9 +819,7 @@ const FinancingSection = ({ data }) => {
               Comparative Context — Villa Communities
             </p>
             <div className="mb-4">
-              <TableWrap>
-                <DesktopTable headers={scHeaders} rows={scRows} t={t} minTableWidth={860} />
-              </TableWrap>
+              <ServiceChargeComparisonCards items={data.service_charge_comparison} unitLabel={data.service_charge_unit_label} t={t} />
             </div>
 
             <div className="mb-3">

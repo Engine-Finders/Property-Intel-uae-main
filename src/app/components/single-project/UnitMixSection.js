@@ -273,6 +273,27 @@ const strengthToWidth = (strength) => {
   return "70%";
 };
 
+const PriceEvolutionNote = ({ note, t }) => {
+  if (!note) return null;
+
+  return (
+    <div
+      className="rounded-2xl p-4"
+      style={{
+        background: t.isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
+        border: `1px solid ${t.isDark ? "rgba(217,176,95,0.18)" : "rgba(182,138,53,0.14)"}`,
+      }}
+    >
+      <div className="flex gap-3">
+        <div className="shrink-0 pt-0.5">
+          <InfoIcon />
+        </div>
+        <p className="text-[13px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: note }} />
+      </div>
+    </div>
+  );
+};
+
 const UnitMixSection = ({ data }) => {
   const { t } = useTheme();
   const [mobileOpenSections, setMobileOpenSections] = useState({
@@ -295,6 +316,7 @@ const UnitMixSection = ({ data }) => {
   const selectedMobileUnits = units.filter((unit) => getBedroomKey(unit) === mobileBedroomTab);
   const selectedDesktopUnits = units.filter((unit) => getBedroomKey(unit) === desktopBedroomTab);
   const mobileDriverBars = evolution.mobile_driver_bars || [];
+  const priceEvolutionNote = evolution.investor_note || evolution.caveat;
   const toggleMobileSection = (key) => {
     setMobileOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
   };
@@ -505,6 +527,7 @@ const UnitMixSection = ({ data }) => {
                   </div>
                 ))}
               </div>
+                <PriceEvolutionNote note={priceEvolutionNote} t={t} />
             </div>
           </MobileAccordion>
 
@@ -825,6 +848,7 @@ const UnitMixSection = ({ data }) => {
                       </div>
                     ))}
                   </div>
+                    <PriceEvolutionNote note={priceEvolutionNote} t={t} />
                 </div>
               </MobileAccordion>
 

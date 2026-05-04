@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { BarChart3, Search, Handshake } from "lucide-react";
+import SectionExpertCta from "./SectionExpertCta";
 
 const GOLD = "#B68A35";
 const GREEN = "#6EAF4A";
@@ -59,19 +60,43 @@ const AimGlyph = ({ color = GOLD }) => (
   </svg>
 );
 
-const ArrowGlyph = ({ color = GOLD }) => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M5 12h14" />
-    <path d="m13 5 7 7-7 7" />
-  </svg>
-);
-
 const splitProcessTitle = (title = "") => {
   const cleaned = title.replace(/^\d+\.\s*/, "").trim();
   const parts = cleaned.split(" ");
   const lead = parts.slice(0, 3).join(" ");
   const rest = parts.slice(3).join(" ");
   return { lead, rest };
+};
+
+const getVerdictCta = (data) => {
+  if (data.section_cta || data.cta) return data.section_cta || data.cta;
+
+  const buttons = data.cta_buttons || [];
+
+  return {
+    heading: data.mobile_cta_title || data.h3_cta || "Want a Straight Answer on This Project?",
+    subtext: data.mobile_cta_subtitle || data.cta_subtitle || "Speak to a specialist for project-specific guidance.",
+    actions: [
+      {
+        label: buttons[0] || data.mobile_cta_button || "Get Expert Opinion",
+        subtext: data.mobile_cta_note || "No pressure advice",
+        type: "email",
+        href: "#",
+      },
+      {
+        label: buttons[1] || "WhatsApp Now",
+        subtext: "Chat instantly",
+        type: "whatsapp",
+        href: "#",
+      },
+      {
+        label: buttons[2] || "Request Callback",
+        subtext: "Speak directly",
+        type: "phone",
+        href: "#",
+      },
+    ],
+  };
 };
 
 const MobileTabButton = ({ active, onClick, children, t }) => (
@@ -272,6 +297,7 @@ const MobileApproach = ({ data, t }) => (
 const VerdictSection = ({ data }) => {
   const { t } = useTheme();
   const [mobileTab, setMobileTab] = useState("verdict");
+  const verdictCta = getVerdictCta(data);
   const desktopBorder = t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)";
   const desktopCardStyle = {
     background: t.isDark ? "rgba(255,255,255,0.035)" : "#fffdf9",
@@ -323,40 +349,7 @@ const VerdictSection = ({ data }) => {
               {mobileTab === "approach" && <MobileApproach data={data} t={t} />}
             </div>
 
-            <div
-              className="mt-5 rounded-2xl p-4"
-              style={{
-                background: t.isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.7)",
-                border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
-              }}
-            >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                {data.mobile_cta_badge || "Ready to go deeper?"}
-              </p>
-              <h3 className="mt-2 text-[26px] font-semibold leading-[1.08]" style={{ color: t.text }}>
-                {data.mobile_cta_title || data.h3_cta}
-              </h3>
-              <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }}>
-                {data.mobile_cta_subtitle || data.cta_subtitle}
-              </p>
-              <button
-                type="button"
-                className="mt-4 flex w-full items-center justify-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold"
-                style={{
-                  background: GOLD,
-                  color: "#fff",
-                  boxShadow: "0 10px 20px rgba(182,138,53,0.22)",
-                }}
-              >
-                <span>{data.mobile_cta_button || data.cta_buttons?.[0] || "Speak to an expert"}</span>
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
-                  <ArrowGlyph color="#fff" />
-                </span>
-              </button>
-              <p className="mt-2 text-center text-[11px]" style={{ color: t.textMuted }}>
-                {data.mobile_cta_note || "Payment plan - ROI analysis - No pressure"}
-              </p>
-            </div>
+            <SectionExpertCta cta={verdictCta} t={t} className="mt-5" />
           </div>
         </div>
 
@@ -491,34 +484,7 @@ const VerdictSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="mt-4 grid items-center gap-5 rounded-2xl p-5 lg:grid-cols-[72px_1fr_360px]" style={desktopSoftCardStyle}>
-              <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.08)"} size="h-14 w-14">
-                <AimGlyph />
-              </CircleIcon>
-              <div>
-                <h3 className="text-xl font-semibold" style={{ color: t.text }}>
-                  {data.mobile_cta_badge || "Ready to go deeper?"}
-                </h3>
-                <p className="mt-1 text-sm" style={{ color: t.textSecondary }}>
-                  {data.mobile_cta_subtitle || data.cta_subtitle}
-                </p>
-              </div>
-              <div>
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-center gap-3 rounded-xl px-6 py-4 text-sm font-semibold transition-opacity hover:opacity-90"
-                  style={{ background: GOLD, color: "#fff", boxShadow: "0 12px 24px rgba(182,138,53,0.25)" }}
-                >
-                  <span>{data.mobile_cta_button || data.cta_buttons?.[0] || "Speak to an expert"}</span>
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20">
-                    <ArrowGlyph color="#fff" />
-                  </span>
-                </button>
-                <p className="mt-2 text-center text-[11px]" style={{ color: t.textMuted }}>
-                  {data.mobile_cta_note || "Payment plan - ROI analysis - No pressure"}
-                </p>
-              </div>
-            </div>
+            <SectionExpertCta cta={verdictCta} t={t} className="mt-4" />
           </div>
         </div>
       </div>

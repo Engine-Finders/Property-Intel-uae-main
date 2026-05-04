@@ -436,7 +436,7 @@ const DeveloperSection = ({ data }) => {
 
         </div>
 
-        <div className="mb-10 flex gap-2 overflow-x-auto pb-2 lg:justify-center lg:overflow-visible">
+        <div className="mb-10 flex gap-2 overflow-x-auto pb-2 lg:grid lg:grid-cols-4 lg:gap-3 lg:overflow-visible lg:pb-0 xl:grid-cols-7">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -444,7 +444,7 @@ const DeveloperSection = ({ data }) => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className="min-w-[120px] rounded-2xl px-4 py-3 text-left transition-all lg:min-w-[190px] lg:flex lg:items-center lg:gap-3"
+                className="min-w-[120px] rounded-2xl px-4 py-3 text-left transition-all lg:flex lg:min-w-0 lg:w-full lg:items-center lg:gap-3 lg:rounded-xl"
                 style={{
                   background: isActive ? (t.isDark ? "rgba(255,255,255,0.04)" : "#fffdf9") : t.cardBg,
                   color: isActive ? GOLD : t.textMuted,
@@ -981,44 +981,6 @@ const DeveloperSection = ({ data }) => {
             )}
           </StyledAccordion>
 
-          {data.report_cta && (
-            <div
-              className="rounded-[28px] p-5 sm:p-6"
-              style={{
-                background: t.isDark ? "linear-gradient(135deg, rgba(182,138,53,0.12), rgba(255,255,255,0.04))" : "linear-gradient(135deg, #F6E8CC, #FFF9F0)",
-                border: `1px solid ${t.isDark ? "rgba(217,176,95,0.16)" : "rgba(182,138,53,0.16)"}`,
-              }}
-            >
-              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                <div className="flex items-start gap-4">
-                  <div
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: GOLD, color: "#fff" }}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Z" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold leading-tight" style={{ color: t.text }}>
-                      {data.report_cta.title}
-                    </h3>
-                    <p className="mt-2 max-w-3xl text-sm leading-7" style={{ color: t.textSecondary }}>
-                      {data.report_cta.subtitle}
-                    </p>
-                  </div>
-                </div>
-                <a
-                  href={data.report_cta.href || "#"}
-                  className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
-                  style={{ background: t.isDark ? "#1f1a17" : "#1f1a17", color: "#fff" }}
-                >
-                  {data.report_cta.button_text}
-                </a>
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="mt-8 hidden space-y-4 lg:block">
@@ -1100,47 +1062,6 @@ const DeveloperSection = ({ data }) => {
             </div>
           </div>
 
-          {data.report_cta && (
-            <div
-              className="rounded-[22px] px-5 py-4"
-              style={{
-                background: t.isDark ? "linear-gradient(135deg, rgba(182,138,53,0.12), rgba(255,255,255,0.04))" : "linear-gradient(135deg, #F6E8CC, #FFF9F0)",
-                border: `1px solid ${t.isDark ? "rgba(217,176,95,0.16)" : "rgba(182,138,53,0.16)"}`,
-              }}
-            >
-              <div className="flex items-center justify-between gap-6">
-                <div className="flex min-w-0 items-center gap-4">
-                  <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
-                    style={{ background: GOLD, color: "#fff" }}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Z" />
-                      <path d="m9 12 2 2 4-4" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="text-base font-semibold leading-tight" style={{ color: t.text }}>
-                      {data.report_cta.title}
-                    </h3>
-                    <p className="mt-1 text-xs leading-5" style={{ color: t.textSecondary }}>
-                      {data.report_cta.subtitle}
-                    </p>
-                  </div>
-                </div>
-                <a
-                  href={data.report_cta.href || "#"}
-                  className="inline-flex shrink-0 items-center justify-center gap-3 rounded-lg px-6 py-3 text-sm font-semibold"
-                  style={{ background: GOLD, color: "#fff" }}
-                >
-                  {data.report_cta.button_text}
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20" aria-hidden="true">
-                    →
-                  </span>
-                </a>
-              </div>
-            </div>
-          )}
         </div>
         <SectionExpertCta cta={data.section_cta} t={t} className="mt-8" />
       </div>
