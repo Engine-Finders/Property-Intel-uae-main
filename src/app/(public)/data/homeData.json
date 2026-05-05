@@ -5,14 +5,14 @@
     "canonical": "https://propertyintel.ae/"
   },
   "hero_section": {
-    "last_update": "March 2026",
-    "h1": "The Intelligence Hub for Dubai Real Estate & Off-Plan Projects.",
+    "last_update": "16 May 2025",
+    "h1": "Find the Right Property in Dubai - Without Sales Pressure",
     "hero_description": "We analyze every project, highlight the real pros and cons, and only connect you with trusted experts when it actually makes sense.",
     "trust_signals": [
       "RERA-Registered Platform",
       "Data Sourced from DXBinteract.com",
-      "Last Data Update: March 2026",
-      "Trusted by 5,000+ Monthly Investors",
+      "Last Data Update: 16 May 2025",
+      "500+ Monthly Investors",
       "200+ Verified Developers",
       "Updated Weekly"
     ],
@@ -52,33 +52,41 @@
   },
   "how_we_help_section": {
     "h2": "How We Help You Make the Right Decision",
-    "h3": "Real DLD transaction data. Developer audits. Expert guidance. No pressure. Just clarity.",
+    "h3": "Transparent analysis. No sales pressure. Just clarity.",
     "cards": [
       {
         "step": "01",
-        "title": "Audit Every Project",
-        "description": "We strip away the marketing. Every brochure is cross-referenced against DLD sold prices and construction milestones.",
-        "highlight": "The real pros and cons of a project before you ever book a viewing.",
-        "icon_src": ""
+        "title": "We Analyse Every Project",
+        "front_badges": ["No Sales Bias", "Real Pros & Cons"],
+        "back": [
+          "Every project is reviewed beyond marketing brochures - from pricing trends and location growth to developer track record.",
+          "We highlight what works, what doesn’t, and where the real opportunity is."
+        ],
+        "icon": "analyse"
       },
       {
         "step": "02",
-        "title": "Match to Your Reality",
-        "description": "No guessing. We filter 200+ developers based on on-time delivery rates and Mollak service charge data.",
-        "highlight": "The right projects that actually hit your goal—whether it's 8% ROI or a Golden Visa.",
-        "icon_src": ""
+        "title": "We Match You to What Fits",
+        "front_badges": ["Based on goals", "ROI", "Family", "Visa"],
+        "back": [
+          "Whether you’re buying your first home, investing for rental income, or planning long-term growth - we filter projects based on your actual goals, not what someone wants to sell you."
+        ],
+        "icon": "match"
       },
       {
         "step": "03",
-        "title": "Connect on Your Terms",
-        "description": "We act as your firewall. We only introduce you to vetted, RERA-approved specialists when the data says the move makes sense.",
-        "highlight": "No sales pressure. No spam. Expert guidance exactly when you are ready to move.",
-        "icon_src": ""
+        "title": "We Connect You",
+        "front_badges": ["2-3 Vetted Brokers", "No Spam"],
+        "back": [
+          "When you’re ready, we connect you with 2–3 vetted specialists suited to your needs.",
+          "No spam. No pressure. Your details are never sold - just real experts when you need them."
+        ],
+        "icon": "connect"
       }
     ]
   },
   "market_pulse_section": {
-    "last_updated": "March 13, 2026",
+    "last_updated": "12 Feb 2026",
     "h2": "Dubai Property Market Analytics & Deep Dive",
     "h3": "We go beyond surface-level stats to analyze raw DLD data — giving you a 360-degree view of the Dubai real estate market, where it stands today and where it's heading. The clarity you need to buy property in Dubai with confidence.",
     "metrics": [
@@ -200,11 +208,11 @@
       },
       {
         "id": "long_term_growth",
-        "label": "I’m Investing for Long-Term Growth"
+        "label": "I’m Looking for High ROI"
       },
       {
         "id": "golden_visa",
-        "label": "I Want UAE Golden Visa Eligibility"
+        "label": "I’m an End User Looking to Live"
       }
     ],
     "projects": [

@@ -8,22 +8,26 @@ import {
   Database,
   RefreshCw,
   ShieldCheck,
-  Square,
-  CheckSquare,
+  Info,
+  Lock,
+  MapPin,
+  Search,
+  User,
   Users,
 } from "lucide-react";
 
-/** Dummy icons per badge (same order as hero.trust_signals); swap later if needed */
-const TRUST_BADGE_ICONS = [
-  ShieldCheck,
-  Database,
-  Calendar,
-  Users,
-  Building2,
-  RefreshCw,
-];
+const TRUST_BADGE_ICONS = [ShieldCheck, Database, Calendar];
+const METRIC_BADGE_ICONS = [Users, Building2, RefreshCw];
 
 const GOLD = "#B68A35";
+
+const splitMetricLabel = (label) => {
+  const parts = label.split(" ");
+  return {
+    value: parts[0] || label,
+    label: parts.slice(1).join(" "),
+  };
+};
 
 const TypeAheadDropdown = ({
   placeholder,
@@ -113,24 +117,72 @@ const HomeHeroSection = ({ data }) => {
   const [developerQuery, setDeveloperQuery] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
   const trustSignals = hero.trust_signals || [];
-  /** Barely visible table-style borders (mobile only; cleared at lg) */
-  const mobileBadgeBorder = t.isDark ? "rgba(255,255,255,0.09)" : "rgba(15,23,42,0.08)";
+  const topTrustSignals = trustSignals.slice(0, 3);
+  const metricSignals = trustSignals.slice(3, 6);
+  const [titleBeforeDubai, ...titleAfterDubaiParts] = hero.h1.split("Dubai");
+  const titleAfterDubai = titleAfterDubaiParts.join("Dubai");
+  const hasDubaiHighlight = titleAfterDubaiParts.length > 0;
+  const cardBackground = t.isDark
+    ? "rgba(24, 27, 32, 0.88)"
+    : "rgba(255, 255, 255, 0.86)";
+  const softBorder = t.isDark
+    ? "rgba(255,255,255,0.10)"
+    : "rgba(182,138,53,0.12)";
+  const videoWash = t.isDark ? "rgba(0,0,0,0.16)" : "rgba(255,255,255,0.20)";
+  const centerFade = t.isDark ? "rgba(7,10,16,0.72)" : "rgba(255,255,255,0.72)";
+  const mobileTextFade = t.isDark
+    ? "radial-gradient(circle at 18% 36%, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.46) 42%, transparent 74%)"
+    : "radial-gradient(circle at 18% 36%, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.66) 44%, transparent 76%)";
+  const heroCopyFade = t.isDark
+    ? "linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.42) 56%, transparent 100%)"
+    : "linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.68) 56%, transparent 100%)";
 
   return (
-    <section className="relative overflow-hidden" style={{ background: t.bg }}>
-      {/* Mobile: Video behind headings area only */}
-      <div className="block lg:hidden absolute inset-0 z-0">
-        <div className="absolute inset-0 bottom-auto" style={{ height: "55%" }}>
+    <section
+      className="relative overflow-hidden"
+      style={{
+        background: t.bg,
+      }}
+    >
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-x-0 top-0 h-[54%] lg:inset-y-0 lg:left-auto lg:h-auto lg:w-[52%] xl:w-[50%]">
+          <link rel="preload" as="image" href="hero-bg.webp" />
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            preload="metadata"
+            poster="hero-bg.webp"
+            className="h-full w-full object-cover"
+            aria-hidden="true"
           >
-            <source src="home.webm" type="video/mp4" />
+            <source src="home.webm" type="video/webm" />
           </video>
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="hero-fallback-image absolute inset-0" aria-hidden="true" />
+          <div className="absolute inset-0" style={{ background: videoWash }} />
+          <div
+            className="absolute inset-x-0 top-0 h-[420px] lg:hidden"
+            style={{ background: mobileTextFade }}
+          />
+          <div
+            className="absolute inset-y-0 left-0 hidden w-[45%] lg:block"
+            style={{
+              background: `linear-gradient(to right, ${t.bg} 0%, ${t.bg} 30%, transparent 100%)`,
+            }}
+          />
+          <div
+            className="absolute inset-y-0 left-[-18%] hidden w-[44%] lg:block"
+            style={{
+              background: `linear-gradient(to right, ${t.bg} 0%, ${centerFade} 52%, transparent 100%)`,
+            }}
+          />
+          <div
+            className="absolute inset-x-0 top-0 h-24"
+            style={{
+              background: `linear-gradient(to bottom, ${t.bg}, transparent)`,
+            }}
+          />
           <div
             className="absolute inset-x-0 bottom-0 h-32"
             style={{
@@ -140,186 +192,251 @@ const HomeHeroSection = ({ data }) => {
         </div>
       </div>
 
-      <div className="relative z-10 lg:min-h-0">
-        {/* Desktop: video overlays the right side of the hero (absolute, on top of section bg) */}
-        <div
-          className="hidden lg:block absolute inset-y-0 right-0 z-[5] w-[55%] xl:w-[52%] pointer-events-none"
-          style={{ contain: "layout style paint" }}
-        >
-          <link rel="preload" as="image" href="hero-bg.webp" />
-          <video
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ minHeight: "100%", willChange: "transform" }}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="hero-bg.webp"
-            aria-hidden="true"
-          >
-            <source src="home.webm" type="video/webm" />
-          </video>
-          <div className="hero-fallback-image absolute inset-0" aria-hidden="true" />
-          <div
-            className="absolute inset-y-0 left-0 w-40"
-            style={{
-              background: `linear-gradient(to right, ${t.bg}, transparent)`,
-            }}
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 h-24"
-            style={{
-              background: `linear-gradient(to top, ${t.bg}, transparent)`,
-            }}
-          />
-          <div
-            className="absolute inset-x-0 top-0 h-16"
-            style={{
-              background: `linear-gradient(to bottom, ${t.bg}, transparent)`,
-            }}
-          />
-        </div>
-
-        {/* Left column: in flow above the absolute video (z-index) */}
-        <div className="w-full lg:max-w-[50%] lg:pr-6 flex flex-col justify-center px-5 py-12 lg:px-16 lg:py-20 relative z-[25] mt-[50px] md:mt-0">
-            <h1
-              className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.8rem] font-bold leading-[1.1] tracking-tight text-center lg:text-left lg:text-inherit text-white"
-              style={{ color: undefined }}
+      <div className="relative z-10 mx-auto flex min-h-[850px] w-full max-w-[1440px] flex-col px-3 pb-5 pt-6 sm:px-6 lg:min-h-[700px] lg:px-10 lg:py-7 xl:px-14">
+        <div className="w-full lg:max-w-[820px]">
+          {topTrustSignals.length > 0 && (
+            <div
+              className="mb-16 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap lg:mb-12 lg:inline-flex lg:overflow-hidden lg:rounded-full "
+              
             >
-              <span className="hidden lg:inline" style={{ color: t.text }}>
-                {hero.h1}
-              </span>
-              <span className="lg:hidden">{hero.h1}</span>
+              {topTrustSignals.map((label, i) => {
+                const Icon = TRUST_BADGE_ICONS[i] || ShieldCheck;
+                return (
+                  <div
+                    key={label}
+                    className="inline-flex items-center gap-2 rounded-full border px-3 py-2 text-[11px] font-medium backdrop-blur-md lg:border-0 lg:px-4 lg:py-2.5 lg:text-sm"
+                    style={{
+                      color: t.text,
+                      borderColor: softBorder,
+                      background: t.isDark
+                        ? "rgba(15,23,42,0.48)"
+                        : "rgba(255,255,255,0.66)",
+                    }}
+                  >
+                    <Icon size={17} strokeWidth={1.8} style={{ color: GOLD }} />
+                    <span>{label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          <div className="relative max-w-[660px]">
+            <div
+              className="pointer-events-none absolute -inset-x-4 -inset-y-5 z-0 rounded-[2rem] blur-2xl lg:hidden"
+              style={{ background: heroCopyFade }}
+              aria-hidden="true"
+            />
+            <h1
+              className="relative z-10 max-w-[620px] font-serif text-[2.35rem] font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.55rem] xl:text-[3.8rem]"
+              style={{ color: t.isDark ? t.text : "#242424" }}
+            >
+              {hasDubaiHighlight ? (
+                <>
+                  {titleBeforeDubai}
+                  <span style={{ color: GOLD }}>Dubai</span>
+                  {titleAfterDubai}
+                </>
+              ) : (
+                hero.h1
+              )}
             </h1>
 
-            {/* Search Bar */}
-            <div className="mt-6">
-              {/* Mobile/desktop: each field is its own box (no shared combined input background). */}
-              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-4">
-                {/* Project Name - simple search */}
-                <div
-                  className="rounded-xl"
-                  style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
-                >
-                  <input
-                    type="text"
-                    placeholder="Project Name"
-                    className={`w-full px-4 py-3 text-sm bg-transparent outline-none ${
-                      t.isDark
-                        ? "placeholder:text-[#B68A35] lg:placeholder:text-[#6b7a99]"
-                        : "placeholder:text-[#B68A35] lg:placeholder:text-[#64748b]"
-                    }`}
-                    style={{ color: t.text }}
-                  />
-                </div>
-
-                {/* Developer - type-ahead */}
-                <div
-                  className="rounded-xl"
-                  style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
-                >
-                  <TypeAheadDropdown
-                    placeholder="Developer"
-                    options={hero.developer_options}
-                    value={developerQuery}
-                    onChange={setDeveloperQuery}
-                    onSelect={(val) => setDeveloperQuery(val)}
-                    t={t}
-                  />
-                </div>
-
-                {/* Location - type-ahead */}
-                <div
-                  className="flex-1 rounded-xl"
-                  style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}
-                >
-                  <TypeAheadDropdown
-                    placeholder="Location (e.g., Al Yalayis)"
-                    options={hero.location_options}
-                    value={locationQuery}
-                    onChange={setLocationQuery}
-                    onSelect={(val) => setLocationQuery(val)}
-                    t={t}
-                  />
-                </div>
-
-                {/* Search button (always on its own box; on mobile it's next line after location) */}
-                <button
-                  type="button"
-                  className="rounded-xl px-6 py-3 text-sm font-semibold text-white flex items-center justify-center whitespace-nowrap transition-opacity hover:opacity-95"
-                  style={{ background: GOLD, border: `1px solid rgba(0,0,0,0.05)` }}
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-
             <p
-              className="mt-5 text-sm lg:text-base leading-relaxed max-w-xl text-center lg:text-left mx-auto lg:mx-0"
-              style={{ color: t.textSecondary }}
+              className="relative z-10 mt-5 max-w-[510px] text-sm leading-7 sm:text-base lg:text-lg"
+              style={{ color: t.isDark ? t.textSecondary : "#5f6673" }}
             >
               {hero.hero_description}
             </p>
+          </div>
 
-            {/* Golden Visa Toggle */}
-            <button
-              onClick={() => setGoldenVisa(!goldenVisa)}
-              className="mt-3 flex items-center gap-2 text-sm font-medium justify-center md:justify-start"
-              style={{ color: goldenVisa ? GOLD : t.textMuted }}
+          {metricSignals.length > 0 && (
+            <div
+              className="mt-8 grid grid-cols-3 overflow-hidden rounded-2xl border shadow-xl backdrop-blur-xl lg:max-w-[760px]"
+              style={{
+                background: cardBackground,
+                borderColor: softBorder,
+                boxShadow: t.isDark
+                  ? "0 24px 60px rgba(0,0,0,0.28)"
+                  : "0 24px 65px rgba(15,23,42,0.10)",
+              }}
             >
-              {goldenVisa ? <CheckSquare size={16} /> : <Square size={16} />}
-              {hero.golden_visa_toggle}
-            </button>
+              {metricSignals.map((label, i) => {
+                const Icon = METRIC_BADGE_ICONS[i] || ShieldCheck;
+                const metric = splitMetricLabel(label);
+                return (
+                  <div
+                    key={label}
+                    className="flex min-h-[70px] items-center justify-center gap-2 border-r px-2 text-center last:border-r-0 sm:gap-4 sm:px-5 lg:min-h-[88px]"
+                    style={{ borderColor: softBorder }}
+                  >
+                    <Icon
+                      size={26}
+                      strokeWidth={1.8}
+                      className="hidden shrink-0 sm:block"
+                      style={{ color: GOLD }}
+                    />
+                    <div className="text-left">
+                      <div
+                        className="text-base font-bold leading-none sm:text-xl"
+                        style={{ color: GOLD }}
+                      >
+                        {metric.value}
+                      </div>
+                      <div
+                        className="mt-1 text-[10px] font-medium sm:text-xs"
+                        style={{ color: t.text }}
+                      >
+                        {metric.label}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
-            {/* Secondary CTA */}
+          <div
+            className="mt-4 rounded-2xl border p-3 shadow-xl backdrop-blur-xl lg:max-w-[1050px] lg:p-5"
+            style={{
+              background: cardBackground,
+              borderColor: softBorder,
+              boxShadow: t.isDark
+                ? "0 24px 60px rgba(0,0,0,0.30)"
+                : "0 26px 70px rgba(15,23,42,0.11)",
+            }}
+          >
+            <div className="grid gap-3 lg:grid-cols-[1fr_1fr_1.1fr]">
+              <label
+                className="flex min-h-[56px] items-center gap-3 rounded-xl border px-4"
+                style={{ background: t.cardBg, borderColor: t.cardBorder }}
+              >
+                <Building2 size={18} style={{ color: GOLD }} />
+                <input
+                  type="text"
+                  placeholder="Project Name"
+                  className={`w-full bg-transparent text-sm outline-none ${
+                    t.isDark
+                      ? "placeholder:text-[#9aa3b2]"
+                      : "placeholder:text-[#64748b]"
+                  }`}
+                  style={{ color: t.text }}
+                />
+              </label>
+
+              <div
+                className="flex min-h-[56px] items-center gap-3 rounded-xl border px-4"
+                style={{ background: t.cardBg, borderColor: t.cardBorder }}
+              >
+                <User size={18} style={{ color: GOLD }} />
+                <TypeAheadDropdown
+                  placeholder="Developer"
+                  options={hero.developer_options}
+                  value={developerQuery}
+                  onChange={setDeveloperQuery}
+                  onSelect={(val) => setDeveloperQuery(val)}
+                  t={t}
+                />
+              </div>
+
+              <div
+                className="flex min-h-[56px] items-center gap-3 rounded-xl border px-4"
+                style={{ background: t.cardBg, borderColor: t.cardBorder }}
+              >
+                <MapPin size={18} style={{ color: GOLD }} />
+                <TypeAheadDropdown
+                  placeholder="Location (e.g. Dubai Marina, JVC, Downtown Dubai)"
+                  options={hero.location_options}
+                  value={locationQuery}
+                  onChange={setLocationQuery}
+                  onSelect={(val) => setLocationQuery(val)}
+                  t={t}
+                />
+              </div>
+            </div>
+
+            <div className="mt-3 grid gap-3 lg:grid-cols-[1fr_1.35fr] lg:items-center">
+              <button
+                onClick={() => setGoldenVisa(!goldenVisa)}
+                className="flex min-h-[48px] items-center gap-3 rounded-xl px-1 text-left text-xs font-medium sm:text-sm"
+                style={{ color: t.text }}
+                type="button"
+              >
+                <span
+                  className="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full p-1 transition-colors"
+                  style={{
+                    background: goldenVisa ? GOLD : "rgba(182,138,53,0.84)",
+                  }}
+                >
+                  <span
+                    className={`h-5 w-5 rounded-full bg-white shadow transition-transform ${
+                      goldenVisa ? "translate-x-5" : "translate-x-0"
+                    }`}
+                  />
+                </span>
+                <span>{hero.golden_visa_toggle}</span>
+                <Info size={16} style={{ color: t.textMuted }} />
+              </button>
+
+              <button
+                type="button"
+                className="flex min-h-[56px] items-center justify-center gap-3 rounded-xl px-6 text-sm font-bold text-white transition-opacity hover:opacity-95"
+                style={{ background: GOLD }}
+              >
+                <Search size={20} />
+                Search Projects
+              </button>
+            </div>
+          </div>
+
+          <div
+            className="mt-4 grid gap-3 rounded-2xl border p-3 shadow-xl backdrop-blur-xl sm:grid-cols-[1fr_auto] sm:items-center sm:p-4 lg:max-w-[1050px]"
+            style={{
+              background: cardBackground,
+              borderColor: softBorder,
+              boxShadow: t.isDark
+                ? "0 24px 60px rgba(0,0,0,0.26)"
+                : "0 24px 65px rgba(15,23,42,0.09)",
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full"
+                style={{
+                  background: t.isDark
+                    ? "rgba(182,138,53,0.12)"
+                    : "rgba(182,138,53,0.08)",
+                  color: GOLD,
+                }}
+              >
+                <Users size={30} strokeWidth={1.7} />
+              </div>
+              <p className="text-sm font-medium leading-6" style={{ color: t.text }}>
+                Get expert guidance from our property investment specialists.
+              </p>
+            </div>
             <button
-              className="mt-4 md:self-start self-center flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold transition-colors"
+              className="flex min-h-[58px] items-center justify-center gap-3 rounded-xl px-5 text-sm font-bold transition-colors"
               style={{
                 color: GOLD,
-                border: `1.5px solid ${GOLD}`,
+                border: `1px solid ${GOLD}`,
                 background: "transparent",
               }}
+              type="button"
             >
               {hero.consultation_cta}
               <ArrowRight size={16} />
             </button>
-
-            {/* Trust badges: directly under CTA; single row on lg, 3×2 on small screens; mobile = table grid */}
-            {trustSignals.length > 0 && (
-              <div
-                className="mt-5 w-full max-lg:border max-lg:border-solid max-lg:rounded-none lg:border-0"
-                style={{ borderColor: mobileBadgeBorder }}
-              >
-                <div className="grid grid-cols-3 lg:grid-cols-6 gap-0 lg:gap-x-2 lg:gap-y-0">
-                  {trustSignals.map((label, i) => {
-                    const Icon = TRUST_BADGE_ICONS[i] || ShieldCheck;
-                    return (
-                      <div
-                        key={i}
-                        className="flex flex-col items-center justify-center text-center px-1 py-2.5 sm:px-1.5 max-lg:rounded-none max-lg:border-solid max-lg:[&:not(:nth-child(3n))]:border-r max-lg:[&:nth-child(-n+3)]:border-b lg:border-0"
-                        style={{ borderColor: mobileBadgeBorder }}
-                      >
-                        <Icon
-                          className="shrink-0 mb-1.5 opacity-90"
-                          size={18}
-                          strokeWidth={1.75}
-                          style={{ color: GOLD }}
-                          aria-hidden
-                        />
-                        <span
-                          className="text-[9px] sm:text-[10px] lg:text-[11px] font-semibold uppercase tracking-wide leading-tight"
-                          style={{ color: t.textMuted }}
-                        >
-                          {label}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
           </div>
+
+          <div
+            className="mt-4 flex items-center justify-center gap-2 text-xs lg:max-w-[1050px]"
+            style={{ color: t.textMuted }}
+          >
+            <Lock size={14} />
+            Secure. Transparent. Data-Driven.
+          </div>
+        </div>
       </div>
     </section>
   );
