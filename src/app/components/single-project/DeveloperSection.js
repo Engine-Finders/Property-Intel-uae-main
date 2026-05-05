@@ -303,7 +303,6 @@ const DeveloperSection = ({ data }) => {
     { id: "financials", label: "Financials", sublabel: "Stability" },
     { id: "on_serro", label: "On Serro", sublabel: "Applied view" },
     { id: "verify", label: "Verify", sublabel: "Buyer checklist" },
-    { id: "buyer_guide", label: "Warranty", sublabel: "Coverage" },
   ];
 
   const stats = data.stats || [];
@@ -436,7 +435,7 @@ const DeveloperSection = ({ data }) => {
 
         </div>
 
-        <div className="mb-10 flex gap-2 overflow-x-auto pb-2 lg:grid lg:grid-cols-4 lg:gap-3 lg:overflow-visible lg:pb-0 xl:grid-cols-7">
+        <div className="mb-10 flex gap-2 overflow-x-auto pb-2 lg:grid lg:grid-cols-4 lg:gap-3 lg:overflow-visible lg:pb-0 xl:grid-cols-6">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -892,44 +891,6 @@ const DeveloperSection = ({ data }) => {
                       })}
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "buyer_guide" && (
-          <div className="space-y-4">
-            <SectionHeader iconId="buyer_guide" title="Warranty Coverage" subtitle="Buyer checks" t={t} />
-
-            <div className="space-y-3">
-              {verificationSteps.map((group, i) => {
-                const key = `verify_${i}`;
-                return (
-                  <StyledAccordion
-                    key={i}
-                    title={group.phase}
-                    icon={
-                      <span
-                        className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold"
-                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
-                      >
-                        {i + 1}
-                      </span>
-                    }
-                    isOpen={!!openAccordions[key]}
-                    onToggle={() => toggleAccordion(key)}
-                    t={t}
-                  >
-                    <ul className="space-y-2">
-                      {group.steps.map((step, j) => (
-                        <li key={j} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
-                          <span style={{ color: GOLD }}>→</span>
-                          <span>{typeof step === "string" ? step : step.title}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </StyledAccordion>
                 );
               })}
             </div>
