@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 import Image from "next/image";
+import SectionImageHeader from "../home-page-common/SectionImageHeader";
+import SectionExpertCta from "../home-page-common/cta-common";
 
 const GOLD = "#B68A35";
 const GOLD_LIGHT = "#D4A84B";
@@ -68,12 +70,40 @@ const IntelligenceSection = ({ data }) => {
   const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
   const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
   const sectionBg = isDark ? t.bg : "#F8FAFC";
+  const ctaConfig = {
+    heading: data.footer?.primary_cta || "Visit Our Complete Research Hub",
+    subtext: data.footer?.secondary_cta || "Subscribe to Weekly Market Intelligence Newsletter",
+  };
+  const ctaAttribution = `All articles are reviewed monthly against current DLD, RERA, and UAE government regulations. Last updated: ${data.last_updated}. This content is for educational purposes only and does not constitute legal or financial advice.`;
 
   return (
     <section style={{ background: sectionBg }} className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="text-center mb-10 md:mb-14 max-w-4xl mx-auto">
+        {/* Desktop Header */}
+        <div className="mb-10 hidden md:mb-14 lg:block">
+          <SectionImageHeader
+            title={data.h2}
+            subtitle={data.h3}
+            t={t}
+            imageSrc="/developer/finance-section.webp"
+            className="rounded-[28px] border"
+            contentClassName="max-w-3xl"
+          />
+          <div
+            className="mt-4 inline-flex items-start gap-2 text-sm px-4 py-2.5 rounded-lg text-left"
+            style={{
+              background: isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
+              color: bodyColor,
+              border: `1px solid ${GOLD_BORDER}`,
+            }}
+          >
+            <span style={{ color: GOLD }} className="mt-0.5 flex-shrink-0">✓</span>
+            <span>{data.trust_statement}</span>
+          </div>
+        </div>
+
+        {/* Mobile Header */}
+        <div className="text-center mb-10 md:mb-14 max-w-4xl mx-auto lg:hidden">
           <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
             <h2
               className="text-2xl sm:text-3xl md:text-4xl font-bold"
@@ -262,34 +292,17 @@ const IntelligenceSection = ({ data }) => {
           </div>
         </div>
 
-        {/* Footer CTAs */}
-        <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <button
-            className="px-6 py-3 rounded-lg font-semibold text-sm text-white transition-transform hover:scale-[1.02] w-full sm:w-auto"
-            style={{
-              background: `linear-gradient(135deg, ${GOLD}, ${GOLD_LIGHT})`,
-            }}
-          >
-            {data.footer.primary_cta}
-          </button>
-          <button
-            className="px-6 py-3 rounded-lg font-semibold text-sm transition-transform hover:scale-[1.02] w-full sm:w-auto"
-            style={{
-              border: `1.5px solid ${GOLD}`,
-              color: GOLD,
-              background: "transparent",
-            }}
-          >
-            {data.footer.secondary_cta}
-          </button>
+        {/* Footer CTA */}
+        <div className="mt-10 md:mt-14">
+          <SectionExpertCta cta={ctaConfig} t={t} />
         </div>
 
         {/* Attribution */}
         <p
-          className="text-center text-[10px] mt-5 max-w-2xl mx-auto"
+          className="text-center text-[10px] mt-5 max-w-4xl mx-auto"
           style={{ color: subtextColor }}
         >
-          {data.footer.attribution}
+          {ctaAttribution}
         </p>
       </div>
 

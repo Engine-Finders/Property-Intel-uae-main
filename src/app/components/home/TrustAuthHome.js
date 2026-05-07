@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import Image from "next/image";
+import SectionImageHeader from "../home-page-common/SectionImageHeader";
 
 
 const GOLD = "#B68A35";
@@ -28,59 +29,6 @@ const getTrustSignalIconSrc = (signal = "") => {
   return null;
 };
 
-const SectionHeader = ({ heading, subheading, lastUpdated }) => (
-  <div className="relative rounded-2xl overflow-hidden mb-10 lg:mb-14 h-80 lg:h-72">
-    <Image
-      src="/developer/finance-section.webp"
-      alt=""
-      fill
-      className="object-cover"
-      priority
-    />
-    <div
-      className="absolute inset-0"
-      style={{
-        background:
-          "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.15) 100%)",
-      }}
-    />
-
-    {lastUpdated && (
-      <span
-        style={{
-          background: "rgba(182,138,53,0.08)",
-          border: `1px solid ${GOLD_BORDER}`,
-          color: GOLD,
-          fontSize: 11,
-          fontWeight: 600,
-          padding: "4px 14px",
-          borderRadius: 20,
-          letterSpacing: 0.5,
-          textTransform: "uppercase",
-          whiteSpace: "nowrap",
-          display: "inline-block",
-          width: "fit-content",
-          position: "absolute",
-          top: 12,
-          right: 12,
-          zIndex: 2,
-        }}
-      >
-        Last Updated: {lastUpdated}
-      </span>
-    )}
-
-    <div className="relative z-10 max-w-3xl mx-auto text-center pt-12 sm:pt-10 lg:pt-10 px-6">
-      <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight text-white">
-        {heading}
-      </h2>
-      <p className="text-sm lg:text-base leading-relaxed text-white/80">
-        {subheading}
-      </p>
-    </div>
-  </div>
-);
-
 /* ── Main Section ── */
 const TrustAuthoritySection = ({ data }) => {
   const { t } = useTheme();
@@ -91,11 +39,14 @@ const TrustAuthoritySection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* ── Header: Image background + text overlay (like FinancialHealthSection) ── */}
-        <SectionHeader
-          heading={data.h2}
-          subheading={data.h3}
-          lastUpdated={data.last_updated}
+        {/* ── Header ── */}
+        <SectionImageHeader
+          title={data.h2}
+          subtitle={data.h3}
+          t={t}
+          imageSrc="/developer/finance-section.webp"
+          className="mb-10 lg:mb-14 rounded-[28px] border"
+          contentClassName="max-w-3xl"
         />
 
         {/* ── Row 1: Four Pillars ── */}
@@ -104,7 +55,7 @@ const TrustAuthoritySection = ({ data }) => {
             className="text-lg sm:text-xl lg:text-2xl font-bold text-center mb-2"
             style={{ color: t.text }}
           >
-            The <span style={{ color: GOLD }}>Four Pillars</span> of Secure Investment
+            {data.pillars_title}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mt-6">
@@ -113,24 +64,28 @@ const TrustAuthoritySection = ({ data }) => {
               return (
                 <div
                   key={i}
-                  className="rounded-xl p-5 flex flex-col items-center text-center"
+                  className="rounded-2xl p-4 sm:p-5"
                   style={{
                     background: t.cardBg,
                     border: `1px solid ${t.cardBorder}`,
                   }}
                 >
-                  <div
-                    className="w-18 h-18 rounded-full flex items-center justify-center mb-4"
-                    style={{ background: GOLD_BG }}
-                  >
-                    <Image src={iconSrc} alt={pillar.headline} width={50} height={50} />
+                  <div className="flex items-start gap-3 sm:gap-3.5">
+                    <div
+                      className="h-11 w-11 sm:h-12 sm:w-12 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ background: GOLD_BG }}
+                    >
+                      <Image src={iconSrc} alt={pillar.headline} width={26} height={26} />
+                    </div>
+                    <h4 className="font-bold text-[19px] sm:text-[20px] leading-tight" style={{ color: t.text }}>
+                      {pillar.headline}
+                    </h4>
                   </div>
-                  <h4 className="font-bold text-sm sm:text-base mb-2" style={{ color: t.text }}>
-                    {pillar.headline}
-                  </h4>
-                  <p className="text-xs sm:text-sm mb-4 flex-1" style={{ color: t.textMuted, lineHeight: 1.7 }}>
+
+                  <p className="mt-3 text-[13px] sm:text-sm mb-4" style={{ color: t.textMuted, lineHeight: 1.75 }}>
                     {pillar.content}
                   </p>
+
                   <div className="flex flex-wrap gap-2 mb-2">
                     {pillar.trust_signals.map((sig, j) => (
                       <span
@@ -149,7 +104,7 @@ const TrustAuthoritySection = ({ data }) => {
                       </span>
                     ))}
                   </div>
-                  <span className="text-xs italic" style={{ color: t.textMuted, opacity: 0.6 }}>
+                  <span className="text-xs italic" style={{ color: t.textMuted, opacity: 0.65 }}>
                     {pillar.keyword_tag}
                   </span>
                 </div>
@@ -272,40 +227,41 @@ const TrustAuthoritySection = ({ data }) => {
             ))}
           </div>
 
-          {/* Footer row: CTA + Download + Attribution */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-6 sm:mt-8 pt-5 sm:pt-6" style={{ borderTop: `1px solid ${GOLD_BORDER}` }}>
+        </div>
+
+        {/* ── CTA + Footer Disclaimer ── */}
+        <div className="mt-4">
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-[1fr_auto_auto] lg:items-center">
+            <p
+              className="text-xs sm:text-sm rounded-xl px-4 py-3 text-left"
+              style={{
+                color: t.textSecondary,
+                background: t.isDark ? "rgba(255,255,255,0.04)" : "#f7f7f5",
+                border: `1px solid ${t.cardBorder}`,
+              }}
+            >
+              {data.footer.attribution}
+            </p>
             <button
-              className="w-full sm:w-auto px-5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-opacity hover:opacity-90 flex-shrink-0"
+              className="w-full lg:w-[280px] px-5 py-3.5 rounded-xl text-sm sm:text-base font-semibold transition-opacity hover:opacity-90"
               style={{ background: GOLD, color: "#fff" }}
             >
               {data.footer.primary_cta}
             </button>
             <button
-              className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold flex-shrink-0 transition-opacity hover:opacity-80"
-              style={{ color: t.text }}
+              className="w-full lg:w-[320px] flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl text-sm sm:text-base font-semibold transition-opacity hover:opacity-90"
+              style={{ color: t.text, border: `1px solid ${GOLD_BORDER}`, background: "transparent" }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
               {data.footer.secondary_cta}
             </button>
-            <p className="text-[11px] sm:text-xs sm:ml-auto text-center sm:text-right" style={{ color: t.textMuted, opacity: 0.8, lineHeight: 1.5 }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block mr-1" style={{ verticalAlign: "-2px" }}>
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-              All guidance verified by DLD &amp; RERA Guidelines • Updated Monthly
-            </p>
           </div>
-        </div>
 
-        {/* ── Footer Disclaimer ── */}
-        <div className="text-center">
-          <p className="text-xs sm:text-sm max-w-2xl mx-auto" style={{ color: t.textMuted, opacity: 0.85, lineHeight: 1.6 }}>
-            {data.footer.attribution}
-          </p>
-          <p className="text-xs sm:text-sm max-w-2xl mx-auto mt-2" style={{ color: t.textMuted, opacity: 0.75, lineHeight: 1.6 }}>
+          <p className="text-xs sm:text-sm max-w-2xl mx-auto mt-4 text-center" style={{ color: t.textMuted, opacity: 0.75, lineHeight: 1.6 }}>
             {data.footer.disclaimer.replace("{{date}}", data.last_updated)}
           </p>
         </div>

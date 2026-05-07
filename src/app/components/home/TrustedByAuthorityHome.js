@@ -2,10 +2,11 @@
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 import Image from "next/image";
-
+import { ShieldCheck } from "lucide-react";
+import SectionImageHeader from "../home-page-common/SectionImageHeader";
+import SectionExpertCta from "../home-page-common/cta-common";
 
 const GOLD = "#B68A35";
-const GOLD_LIGHT = "#D4A84B";
 const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
 // const avatarMap = {
@@ -33,6 +34,15 @@ const getBadgeIconSrc = (text = "") => {
   if (normalized.includes("rera")) return "/home/RERA%20Verified.svg";
   if (normalized.includes("research users")) return "/home/User%20icon.svg";
   return null;
+};
+
+const badgeLines = (text = "") => {
+  const lower = text.toLowerCase();
+  if (lower.includes("dld")) return { line1: "Data Verified", line2: "Against DLD Records" };
+  if (lower.includes("dxbinteract")) return { line1: "Market Analytics", line2: "Powered by DXBinteract.com" };
+  if (lower.includes("rera")) return { line1: "RERA-Compliant", line2: "Information" };
+  if (lower.includes("research users")) return { line1: "5,000+ Monthly", line2: "Research Users" };
+  return { line1: text, line2: "" };
 };
 
 const TrustedBySection = ({ data }) => {
@@ -73,73 +83,169 @@ const TrustedBySection = ({ data }) => {
   const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
   const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
   const sectionBg = isDark ? t.bg : "#FBF9F6";
+  const validationBg = isDark ? "rgba(255,255,255,0.04)" : "#fbf8f1";
+  const badgeStripBg = isDark ? "rgba(255,255,255,0.03)" : "#faf7f2";
+
+  const ctaConfig = {
+    heading: data.footer?.primary_cta ?? "Start Your Investment Research",
+    subtext: data.footer?.secondary_cta ?? "Get a Free Investment Consultation",
+  };
+
+  const sectionTitle = data.h2 ?? "Trusted by";
+  const sectionAccent = data.h2_accent ?? "Global Investors & Industry Partners";
 
   return (
     <section style={{ background: sectionBg }} className="py-6 md:py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
-          <div className="max-w-3xl">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3" style={{ color: t.text }}>
-              Trusted by <span style={{ color: GOLD }}>Global Investors</span> & Industry Partners
-            </h2>
+        {/* Desktop header */}
+        <div className="mb-6 hidden lg:block">
+          <SectionImageHeader
+            title={sectionTitle}
+            accent={sectionAccent}
+            subtitle={data.h3}
+            t={t}
+            imageSrc="/developer/finance-section.webp"
+            className="rounded-[28px] border"
+            contentClassName="max-w-3xl"
+          />
+          <div className="mt-4 flex justify-end">
             <span
-              className="inline-flex lg:hidden text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap self-start mb-3"
+              className="text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
               style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
             >
               Last Updated: {data.last_updated}
             </span>
-            <p className="text-sm md:text-base leading-relaxed" style={{ color: bodyColor }}>
-              {data.h3}
-            </p>
           </div>
+        </div>
+
+        {/* Mobile header */}
+        <div className="mb-6 lg:hidden">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: t.text }}>
+            {sectionTitle}{" "}
+            <span style={{ color: GOLD }}>{sectionAccent}</span>
+          </h2>
           <span
-            className="hidden lg:inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap self-start"
+            className="inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap mb-3"
             style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
           >
             Last Updated: {data.last_updated}
           </span>
+          <p className="text-sm md:text-base leading-relaxed" style={{ color: bodyColor }}>
+            {data.h3}
+          </p>
         </div>
 
-        {/* Trust statement */}
+        {/* Trust statement + shield */}
         <div
-          className="inline-flex items-start gap-2 text-xs md:text-sm px-4 py-2.5 rounded-lg mb-8"
+          className="flex items-start gap-3 text-xs md:text-sm px-4 py-3 md:px-5 md:py-4 rounded-xl mb-6 md:mb-8"
           style={{
-            background: isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
+            background: validationBg,
             border: `1px solid ${GOLD_BORDER}`,
             color: bodyColor,
           }}
         >
-          <span style={{ color: GOLD }} className="mt-0.5 flex-shrink-0">✓</span>
+          <ShieldCheck size={26} className="shrink-0 mt-0.5" style={{ color: GOLD }} strokeWidth={1.65} aria-hidden />
           <span>{data.trust_statement}</span>
         </div>
 
-        {/* Trust badges row */}
-        <div className="flex flex-wrap gap-3 mb-10">
-          {data.badges.map((badge, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-2.5 text-xs font-medium px-4 py-2 rounded-full"
-              style={{
-                background: isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
-                border: `1px solid ${GOLD_BORDER}`,
-                color: t.text,
-              }}
-            >
-              {getBadgeIconSrc(badge.text) ? (
-                <Image
-                  src={getBadgeIconSrc(badge.text)}
-                  alt={badge.text}
-                  width={22}
-                  height={22}
-                />
-              ) : (
-                <span>{badge.icon}</span>
-              )}
-              <span>{badge.text}</span>
-            </div>
-          ))}
+        {/* Trust badges — desktop: single row with dividers */}
+        <div
+          className="mb-10 hidden overflow-hidden rounded-xl border md:flex"
+          style={{
+            background: badgeStripBg,
+            borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)",
+          }}
+        >
+          {data.badges.map((badge, i) => {
+            const { line1, line2 } = badgeLines(badge.text);
+            const iconSrc = getBadgeIconSrc(badge.text);
+            return (
+              <div
+                key={i}
+                className="flex min-w-0 flex-1 items-center gap-3 px-4 py-4 lg:px-5 lg:py-5"
+                style={{
+                  borderRight:
+                    i < data.badges.length - 1
+                      ? `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)"}`
+                      : undefined,
+                }}
+              >
+                <span
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full"
+                  style={{ background: isDark ? "rgba(182,138,53,0.12)" : "rgba(182,138,53,0.14)" }}
+                >
+                  {iconSrc ? (
+                    <Image src={iconSrc} alt="" width={24} height={24} />
+                  ) : (
+                    <span className="text-lg">{badge.icon}</span>
+                  )}
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-bold leading-tight" style={{ color: t.text }}>
+                    {line1}
+                  </p>
+                  {line2 ? (
+                    <p className="mt-1 text-xs leading-snug" style={{ color: subtextColor }}>
+                      {line2}
+                    </p>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Trust badges — mobile: 2×2 grid */}
+        <div className="mb-10 md:hidden">
+          <p
+            className="mb-4 text-center text-[11px] font-bold uppercase tracking-[0.2em]"
+            style={{ color: GOLD }}
+          >
+            Data sources &amp; trust signals
+          </p>
+          <div
+            className="grid grid-cols-2 overflow-hidden rounded-xl border"
+            style={{
+              background: badgeStripBg,
+              borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)",
+            }}
+          >
+            {data.badges.map((badge, i) => {
+              const { line1, line2 } = badgeLines(badge.text);
+              const iconSrc = getBadgeIconSrc(badge.text);
+              const divider = isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)";
+              return (
+                <div
+                  key={i}
+                  className="flex flex-col items-center px-3 py-5 text-center"
+                  style={{
+                    borderRight: i % 2 === 0 ? `1px solid ${divider}` : undefined,
+                    borderBottom: i < 2 ? `1px solid ${divider}` : undefined,
+                  }}
+                >
+                  <span
+                    className="mb-3 flex h-12 w-12 items-center justify-center rounded-full"
+                    style={{ background: isDark ? "rgba(182,138,53,0.12)" : "rgba(182,138,53,0.14)" }}
+                  >
+                    {iconSrc ? (
+                      <Image src={iconSrc} alt="" width={24} height={24} />
+                    ) : (
+                      <span className="text-lg">{badge.icon}</span>
+                    )}
+                  </span>
+                  <p className="text-xs font-bold leading-tight" style={{ color: t.text }}>
+                    {line1}
+                  </p>
+                  {line2 ? (
+                    <p className="mt-1 text-[11px] leading-snug" style={{ color: subtextColor }}>
+                      {line2}
+                    </p>
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Testimonial slider */}
@@ -201,7 +307,7 @@ const TrustedBySection = ({ data }) => {
                   {/* Avatar + Identity */}
                   <div className="px-5 pt-5 pb-4 flex items-center gap-3" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                     <img
-                      src="s"
+                      src={`/${item.image}`}
                       alt={item.name}
                       className="w-14 h-14 rounded-full object-cover flex-shrink-0"
                       style={{ border: `2px solid ${GOLD_BORDER}` }}
@@ -293,20 +399,8 @@ const TrustedBySection = ({ data }) => {
           </p>
         </div>
 
-        {/* CTAs */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <button
-            className="px-6 py-3 rounded-lg font-semibold text-sm text-white transition-transform hover:scale-[1.02] w-full sm:w-auto"
-            style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD_LIGHT})` }}
-          >
-            {data.footer.primary_cta}
-          </button>
-          <button
-            className="px-6 py-3 rounded-lg font-semibold text-sm transition-transform hover:scale-[1.02] w-full sm:w-auto"
-            style={{ border: `1.5px solid ${GOLD}`, color: GOLD, background: "transparent" }}
-          >
-            {data.footer.secondary_cta}
-          </button>
+        <div className="mt-8">
+          <SectionExpertCta cta={ctaConfig} t={t} />
         </div>
       </div>
 

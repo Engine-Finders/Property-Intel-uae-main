@@ -476,11 +476,29 @@
   },
   "trust_index_section": {
     "last_updated": "March 2026",
+    "last_updated_label": "Updated:",
+    "header_image": "/developer/finance-section.webp",
     "h2": "Verified Property Developers in UAE: The Trust Index",
+    "h2_accent": "The Trust Index",
     "h3": "We independently audit over 200 UAE developers. With thousands of units scheduled for delivery, empirical data separates the reliable institutions from the speculative risks. We grade the builders so you can maximize returns on dubai real estate projects.",
+    "h3_highlights": [
+      "200 UAE developers"
+    ],
     "trust_statement": "Our platform only lists RERA approved projects from the top 10 real estate developers in Dubai. Our proprietary grading system is based on on-time delivery history, financial transparency, and post-handover service charge competitiveness.",
+    "trust_statement_highlights": [
+      "RERA approved projects"
+    ],
     "leaderboard_title": "The Leaderboard",
+    "leaderboard_title_accent": "Leaderboard",
     "leaderboard_subtitle": "Dynamic matrix ranking developers based on hard operational data.",
+    "default_expanded_index": 1,
+    "service_charge_unit": "AED/sq.ft",
+    "mobile_labels": {
+      "delivery": "Project Delivery Reliability",
+      "service_charges": "Avg. Service Charges",
+      "projects": "Signature 2026 Projects",
+      "positioning": "Market Positioning"
+    },
     "columns": [
       "Developer Institution",
       "PropertyIntel Grade",
@@ -492,101 +510,152 @@
     "developers": [
       {
         "name": "Emaar Properties",
+        "mobile_summary": "85%+ Consistently",
         "grade": "Gold",
         "delivery": "Tier 1 (85%+ Consistently)",
         "service_charges": "15 – 22",
         "projects": "The Oasis, Emaar South",
         "positioning": "Apex market leader; unmatched multi-cycle consistency.",
+        "logo": "/developer-logos/EMAAR.webp",
         "link": "/developer"
       },
       {
         "name": "Sobha Realty",
+        "mobile_summary": "85%+ Consistently",
         "grade": "Gold",
         "delivery": "Tier 1 (85%+ Consistently)",
         "service_charges": "14 – 18",
         "projects": "Sobha Hartland II, Seahaven",
         "positioning": "Vertically integrated; exceptional craftsmanship.",
+        "logo": "/developer-logos/SOBHA.webp",
         "link": null
       },
       {
         "name": "Aldar Properties",
+        "mobile_summary": "90%+ Consistently",
         "grade": "Gold",
         "delivery": "Tier 1 (90%+ Consistently)",
         "service_charges": "15 – 20",
         "projects": "Saadiyat Lagoons, Yas Riva",
         "positioning": "Sovereign-backed stability; flawless delivery record.",
+        "logo": "/developer-logos/ALDAAR.webp",
         "link": null
       },
       {
         "name": "Nakheel",
+        "mobile_summary": "75%+ Consistently",
         "grade": "Gold",
         "delivery": "Tier 1 (75%+ Consistently)",
         "service_charges": "12 – 25",
         "projects": "Palm Jebel Ali, Dubai Islands",
         "positioning": "Government-backed; master developer of iconic waterfronts.",
+        "logo": "/developer-logos/NAKHEEL%20.webp",
         "link": null
       },
       {
         "name": "Meraas",
+        "mobile_summary": "80%+ Consistently",
         "grade": "Silver",
         "delivery": "Tier 1 (80%+ Consistently)",
         "service_charges": "18 – 26",
         "projects": "Nad Al Sheba Gardens, Ghaf Woods",
         "positioning": "Lifestyle-oriented districts; strong placemaking vision.",
+        "logo": "/developer-logos/MERAAS.webp",
         "link": null
       },
       {
         "name": "DAMAC Properties",
+        "mobile_summary": "70%+ Market Avg",
         "grade": "Silver",
         "delivery": "Tier 2 (70%+ Market Avg)",
         "service_charges": "18 – 25+",
         "projects": "DAMAC Hills 2, Cavalli Tower",
         "positioning": "Branded luxury focus; large-scale developer.",
+        "logo": "/developer-logos/DAMAC%20.webp",
         "link": null
       },
       {
         "name": "Azizi Developments",
+        "mobile_summary": "70%+ Market Avg",
         "grade": "Bronze",
         "delivery": "Tier 2 (70%+ Market Avg)",
         "service_charges": "10 – 16",
         "projects": "Azizi Venice, Riviera",
         "positioning": "Volume-driven; wide geographic footprint.",
+        "logo": "/developer-logos/AZIZI.webp",
         "link": null
       },
       {
         "name": "Danube Properties",
+        "mobile_summary": "85%+ Early/On-Time",
         "grade": "Silver",
         "delivery": "Tier 2 (85%+ Early/On-Time)",
         "service_charges": "10 – 16",
         "projects": "Dreamz, Elitz",
         "positioning": "Mid-market leader; multiple 2025 projects delivered early.",
+        "logo": "/developer-logos/DANUBE%20.webp",
         "link": null
       },
       {
         "name": "Binghatti",
+        "mobile_summary": "70%+ Market Avg",
         "grade": "Bronze",
         "delivery": "Tier 2 (70%+ Market Avg)",
         "service_charges": "10 – 15",
         "projects": "Binghatti Galaxy, Orchid",
         "positioning": "High-volume residential; distinctive architecture.",
+        "logo": "/developer-logos/BINGHATTI%20.webp",
         "link": null
       }
     ],
+    "insights_title": "Key Insights for Investors",
+    "insights_title_accent": "Investors",
+    "source_label": "Source:",
     "insights": [
       {
         "headline": "The Delivery Reality",
-        "sub_headline": "Navigating Off Plan Projects in Dubai Risks",
+        "sub_headline": "Navigating Off-Plan Project Risks",
+        "metric_label": "On-Time Delivery",
+        "metric_value": "48%",
+        "metric_percent": 48,
+        "delayed_units_label": "Delayed Units: ~22,800",
+        "total_units_label": "Of ~45,000 total",
+        "content_highlights": [
+          "45,000",
+          "48%",
+          "22,800 units"
+        ],
         "content": "Of the approximately 45,000 units scheduled for 2026 completion, independent market intelligence suggests only an estimated 48% will be delivered on time. This means nearly 22,800 units face potential delays. Our Trust Index isolates institutions capable of executing at scale from those hindered by supply chain bottlenecks.",
         "source": "PropertyIntel Analysis based on DLD Transaction Data"
       },
       {
         "headline": "Service Charge Transparency",
         "sub_headline": "Impact on Net Yield",
+        "display_title_accent": "Net Yield",
+        "grade_cards": [
+          {
+            "grade": "Gold",
+            "summary": "Transparent, competitive"
+          },
+          {
+            "grade": "Silver",
+            "summary": "Moderate exposure"
+          },
+          {
+            "grade": "Bronze",
+            "summary": "Higher execution risk"
+          }
+        ],
+        "content_highlights": [
+          "Gold-rated developers",
+          "Bronze-rated developers"
+        ],
         "content": "Annual service charges directly impact your net yield. RERA approved projects from Gold-rated developers consistently demonstrate competitive, transparent fee structures verified through DLD's Mollak system. Bronze-rated developers may offer lower entry prices but often carry higher execution risk.",
         "source": "DLD Mollak System Data"
       }
     ],
     "footer": {
+      "title": "Methodology & Attribution",
       "attribution": "Developer grades are based on analysis of DLD transaction data, escrow account compliance, and verified project completion records. Updated quarterly. We verify all entities against the Dubai Land Department registry to ensure they are RERA approved projects.",
       "primary_cta": "View Full Developer Audit: Emaar Properties",
       "primary_cta_link": "/developer",
@@ -595,15 +664,87 @@
     }
   },
   "growth_map_section": {
-    "last_updated": "March 2026",
+    "last_updated": "May 1, 2026",
+    "last_updated_label": "Last Updated:",
     "h2": "Map the Future: Dubai Upcoming Projects & Growth Corridors",
-    "h3": "Urban economics dictates that property valuations follow state-sponsored infrastructure. Here are the best areas to invest in dubai for the next decade of wealth.",
+    "h2_accent": "Dubai Upcoming Projects & Growth Corridors",
+    "h2_mobile": {
+      "line1": "Map the Future: Dubai",
+      "line2": "Upcoming Projects & Growth Corridors"
+    },
+    "h3": "Urban economics dictates that property valuations follow state-sponsored infrastructure. Here is where the next decade of wealth will be generated for those seeking the best areas to invest in dubai.",
     "trust_statement": "Our growth vectors are based on verified government infrastructure announcements from the RTA and Dubai Economy & Tourism. We track new developments in dubai against actual construction milestones, not just marketing hype.",
-    "map_placeholder_text": "Interactive Growth Map Coming Soon",
+    "map": {
+      "active_zones_label": "Active Zones",
+      "corridors_label": "3 Corridors",
+      "center": {
+        "lat": 25.2048,
+        "lng": 55.2708,
+        "zoom": 10
+      }
+    },
+    "zones": [
+      {
+        "tab_title": "DWC South",
+        "tab_subtitle": "The Aviation & Logistics Hub",
+        "icon": "plane",
+        "headline": "The $35 Billion Aerotropolis",
+        "content": "The expansion of Al Maktoum International Airport (DWC) is creating a vast economic zone. The influx of aviation and logistics professionals is driving gross rental yields in Dubai South to between 7% and 9%, with serviced apartments near the airport showing up to 12–15% ROI potential. This is an active execution zone for new construction projects in dubai, not a speculative frontier.",
+        "content_highlights": ["7%", "9%", "12–15%", "12-15%"],
+        "hero_image": "/developer/finance-section.webp",
+        "stat_cards": [
+          { "value": "7% – 9%", "label": "Gross Rental Yield", "icon": null },
+          { "value": "Up to 12–15% ROI", "label": "on serviced apartments", "icon": null }
+        ],
+        "key_stat": "5 Runways Planned by 2030",
+        "key_stat_source": "Source: Dubai Airports",
+        "keyword_tag": "off plan projects in dubai",
+        "cta_label": "Explore Dubai South Projects",
+        "cta_link": "/project"
+      },
+      {
+        "tab_title": "Blue Line",
+        "tab_subtitle": "The Mass Transit Corridor",
+        "icon": "train",
+        "headline": "The 30km Value Connector",
+        "content": "The RTA's Blue Line expansion will connect major eastern districts, including Dubai Creek Harbour, Dubai Silicon Oasis, and International City. Historically, properties within a 15-minute walk of a metro station experience price increases of 20-30%. Communities along this route are currently in a \"pre-metro pricing\" phase—your window for timeline arbitrage when looking for upcoming residential projects in dubai.",
+        "content_highlights": ["20-30%", "20–30%"],
+        "hero_image": "/developer/community-section.webp",
+        "stat_cards": [
+          { "value": "30km", "label": "Total Route Length", "icon": "train" },
+          { "value": "9", "label": "New Stations", "icon": "map_pin" }
+        ],
+        "key_stat": "30 Kilometers | 9 New Stations",
+        "key_stat_source": "Source: RTA",
+        "keyword_tag": "new projects in dubai",
+        "cta_label": "Explore Metro Line Projects",
+        "cta_link": "/project"
+      },
+      {
+        "tab_title": "Waterfront",
+        "tab_subtitle": "The Luxury Scarcity Zones",
+        "icon": "waves",
+        "headline": "Coastal Capital Appreciation",
+        "content": "As established areas like Dubai Marina and Palm Jumeirah reach maximum density, capital is flowing into mega-developments like Palm Jebel Ali and Dubai Islands. These ultra-luxury zones offer premium capital gains potential, driven by the sheer scarcity of available coastal land. Ideal for investors looking for best real estate investment in dubai with a long-term view.",
+        "content_highlights": ["best real estate investment in dubai"],
+        "hero_image": "/developer/governament-section.webp",
+        "stat_cards": [
+          { "value": "5x", "label": "Increase in Coastal Land Value (Historical Trend)", "icon": "chart" }
+        ],
+        "key_stat": "5x Increase in Coastal Land Value (Historical Trend)",
+        "key_stat_source": "",
+        "keyword_tag": "buy property in dubai",
+        "cta_label": "Explore Waterfront Projects",
+        "cta_link": "/project"
+      }
+    ],
     "footer": {
+      "title": "Methodology & Attribution",
       "attribution": "Growth corridors identified based on Dubai 2040 Urban Master Plan and RTA Transport Master Plan 2030. We update this map quarterly to reflect dubai property market forecast changes and infrastructure completion status.",
       "primary_cta": "Explore Area Investment Guides",
+      "primary_cta_link": "/project",
       "secondary_cta": "View Dubai Property Market Data",
+      "secondary_cta_link": "/project",
       "disclaimer": "Infrastructure timelines are subject to government approval. Past performance does not guarantee future results. Data verified as of {{date}}."
     }
   },
@@ -959,6 +1100,8 @@
   },
   "trusted_by_section": {
     "last_updated": "March 2026",
+    "h2": "Trusted by",
+    "h2_accent": "Global Investors & Industry Partners",
     "h3": "Join thousands of investors from the UK, India, Pakistan, Europe, and beyond who rely on PropertyIntel.ae for verified dubai property market data, honest analysis, and expert guidance in one of the world's most dynamic dubai real estate markets.",
     "trust_statement": "All testimonials are from verified users who have actively used our platform for buying property in dubai research and investment decisions.",
     "badges": [
