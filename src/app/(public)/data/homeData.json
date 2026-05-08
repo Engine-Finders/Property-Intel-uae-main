@@ -18,7 +18,9 @@
     ],
     "search_placeholder": "Search for new projects in Dubai... (e.g., \"Dubai Creek Harbour,\" \"Emaar,\" \"JVC\")",
     "golden_visa_toggle": "Show Golden Visa Eligible Only (AED 2M+)",
-    "consultation_cta": "Get a Free Investment Consultation",
+    "expert_cta": {
+      "heading": "Get a Free Investment Consultation"
+    },
     "project_options": [
       "All Projects",
       "Off-Plan",
@@ -67,7 +69,7 @@
       {
         "step": "02",
         "title": "We Match You to What Fits",
-        "front_badges": ["Based on goals", "ROI", "Family", "Visa"],
+        "front_badges": ["ROI", "Family", "Visa"],
         "back": [
           "Whether you’re buying your first home, investing for rental income, or planning long-term growth - we filter projects based on your actual goals, not what someone wants to sell you."
         ],
@@ -86,7 +88,7 @@
     ]
   },
   "market_pulse_section": {
-    "last_updated": "12 Feb 2026",
+    "last_updated": "March 2026",
     "h2": "Dubai Property Market Analytics & Deep Dive",
     "h3": "We go beyond surface-level stats to analyze raw DLD data — giving you a 360-degree view of the Dubai real estate market, where it stands today and where it's heading. The clarity you need to buy property in Dubai with confidence.",
     "metrics": [
@@ -1167,9 +1169,6 @@
         "badges": ["Verified User", "Golden Visa Obtained"]
       }
     ],
-    "context_primary": "Join thousands of investors from the UK, India, Pakistan, Europe, and beyond who rely on PropertyIntel.ae for verified data, honest analysis, and expert guidance in one of the world's most dynamic dubai real estate markets.",
-    "context_secondary": "All testimonials are from verified users who have actively used our platform for investment research. We update this section monthly to reflect current user experiences and dubai property market conditions.",
-    "data_sources": "DLD, RERA, DXBinteract.com, Official Developer Portals",
     "footer": {
       "primary_cta": "Start Your Investment Research",
       "secondary_cta": "Get a Free Investment Consultation",

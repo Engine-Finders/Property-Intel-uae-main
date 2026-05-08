@@ -58,6 +58,7 @@ const HowBadge = ({ label, iconIndex, t }) => {
 const HowCard = ({ card, index, t, isOpen, onToggle }) => {
   const Icon = CARD_ICONS[card.icon] || FileSearch;
   const back = card.back || [];
+  const frontBadges = card.front_badges || [];
 
   return (
     <button
@@ -112,9 +113,26 @@ const HowCard = ({ card, index, t, isOpen, onToggle }) => {
       </div>
 
       <div className="mt-5 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap lg:grid lg:grid-cols-2">
-        {(card.front_badges || []).map((label, badgeIndex) => (
-          <HowBadge key={label} label={label} iconIndex={index + badgeIndex} t={t} />
-        ))}
+        {frontBadges.map((label, badgeIndex) => {
+          const loneInRow =
+            frontBadges.length % 2 === 1 && badgeIndex === frontBadges.length - 1;
+          const badgeProps = {
+            label,
+            iconIndex: index + badgeIndex,
+            t,
+          };
+          if (loneInRow) {
+            return (
+              <div
+                key={`${card.step}-badge-${badgeIndex}`}
+                className="col-span-2 flex w-full shrink-0 justify-center sm:basis-full lg:col-span-2"
+              >
+                <HowBadge {...badgeProps} />
+              </div>
+            );
+          }
+          return <HowBadge key={`${card.step}-badge-${badgeIndex}`} {...badgeProps} />;
+        })}
       </div>
 
       <div

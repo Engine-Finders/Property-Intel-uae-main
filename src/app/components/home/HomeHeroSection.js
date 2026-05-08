@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 import {
-  ArrowRight,
   Building2,
   Calendar,
   Database,
@@ -15,6 +14,7 @@ import {
   User,
   Users,
 } from "lucide-react";
+import SectionExpertCta from "../home-page-common/cta-common";
 
 const TRUST_BADGE_ICONS = [ShieldCheck, Database, Calendar];
 const METRIC_BADGE_ICONS = [Users, Building2, RefreshCw];
@@ -390,43 +390,9 @@ const HomeHeroSection = ({ data }) => {
           </div>
 
           <div
-            className="mt-4 grid gap-3 rounded-2xl border p-3 shadow-xl backdrop-blur-xl sm:grid-cols-[1fr_auto] sm:items-center sm:p-4 lg:max-w-[1050px]"
-            style={{
-              background: cardBackground,
-              borderColor: softBorder,
-              boxShadow: t.isDark
-                ? "0 24px 60px rgba(0,0,0,0.26)"
-                : "0 24px 65px rgba(15,23,42,0.09)",
-            }}
+            className="mt-4 lg:max-w-[1050px] [&_span.text-left>span:first-of-type]:!text-[1rem] [&_span.text-left>span:first-of-type]:!leading-snug sm:[&_span.text-left>span:first-of-type]:!text-[1.0625rem] [&_span.text-left>span:last-of-type]:!mt-1 [&_span.text-left>span:last-of-type]:!text-xs [&_span.text-left>span:last-of-type]:!leading-snug [&_span.text-left>span:last-of-type]:lg:!mt-0.5 [&_span.text-left>span:last-of-type]:lg:!leading-normal"
           >
-            <div className="flex items-center gap-3">
-              <div
-                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full"
-                style={{
-                  background: t.isDark
-                    ? "rgba(182,138,53,0.12)"
-                    : "rgba(182,138,53,0.08)",
-                  color: GOLD,
-                }}
-              >
-                <Users size={30} strokeWidth={1.7} />
-              </div>
-              <p className="text-sm font-medium leading-6" style={{ color: t.text }}>
-                Get expert guidance from our property investment specialists.
-              </p>
-            </div>
-            <button
-              className="flex min-h-[58px] items-center justify-center gap-3 rounded-xl px-5 text-sm font-bold transition-colors"
-              style={{
-                color: GOLD,
-                border: `1px solid ${GOLD}`,
-                background: "transparent",
-              }}
-              type="button"
-            >
-              {hero.consultation_cta}
-              <ArrowRight size={16} />
-            </button>
+            <SectionExpertCta cta={hero.expert_cta} t={t} />
           </div>
 
           <div

@@ -390,15 +390,6 @@ const TrustedBySection = ({ data }) => {
           </div>
         </div>
 
-        {/* Context statement */}
-        <div className="mt-8 text-center max-w-3xl mx-auto">
-          <p className="text-xs leading-relaxed mb-1" style={{ color: bodyColor }}>{data.context_primary}</p>
-          <p className="text-[10px] leading-relaxed" style={{ color: subtextColor }}>{data.context_secondary}</p>
-          <p className="text-[10px] mt-2 font-medium" style={{ color: subtextColor }}>
-            📊 Data Sources: {data.data_sources}
-          </p>
-        </div>
-
         <div className="mt-8">
           <SectionExpertCta cta={ctaConfig} t={t} />
         </div>

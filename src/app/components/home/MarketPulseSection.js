@@ -5,7 +5,6 @@ import {
   ArrowUp,
   BarChart3,
   Building2,
-  CalendarDays,
   Coins,
   Download,
   ExternalLink,
@@ -138,15 +137,25 @@ const MarketPulseSection = ({ data }) => {
   return (
     <section className="py-8 lg:py-10" style={{ background: t.bg }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionImageHeader
-          title={titleWithAccent(data.h2)}
-          subtitle={data.h3}
-          t={t}
-          imageSrc="/projects/villa-render-2.jpg"
-          minHeight={270}
-          className="mb-7 hidden rounded-b-[28px] lg:block"
-          contentClassName="py-9"
-        />
+        <div className="mb-7 hidden lg:block">
+          <div className="mb-4 flex justify-end">
+            <span
+              className="text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
+              style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
+            >
+              Updated: {data.last_updated}
+            </span>
+          </div>
+          <SectionImageHeader
+            title={titleWithAccent(data.h2)}
+            subtitle={data.h3}
+            t={t}
+            imageSrc="/projects/villa-render-2.jpg"
+            minHeight={270}
+            className="rounded-b-[28px]"
+            contentClassName="py-9"
+          />
+        </div>
 
         <div
           className="relative mb-7 overflow-hidden rounded-[24px] border p-5 lg:hidden"
@@ -156,15 +165,10 @@ const MarketPulseSection = ({ data }) => {
           }}
         >
           <span
-            className="mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold"
-            style={{
-              color: GOLD,
-              background: t.isDark ? "rgba(182,138,53,0.12)" : "rgba(182,138,53,0.08)",
-              border: "1px solid rgba(182,138,53,0.18)",
-            }}
+            className="mb-5 inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
+            style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
           >
-            <CalendarDays size={15} />
-            Last Updated: {data.last_updated}
+            Updated: {data.last_updated}
           </span>
           <h2 className="font-serif text-[2.2rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
             {titleWithAccent(data.h2)}

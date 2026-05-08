@@ -152,28 +152,27 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
       ];
 
   const cardClass = mobile
-    ? "rounded-[18px] border px-4 py-4"
+    ? "rounded-[30px] border px-5 py-5"
     : "px-6 py-4";
   const cardStyle = mobile
     ? {
-        background: "rgba(255,255,255,0.14)",
-        borderColor: "rgba(255,255,255,0.24)",
-        backdropFilter: "blur(14px)",
-        boxShadow: "0 12px 36px rgba(0,0,0,0.16)",
+        background: "rgba(255,255,255,0.55)",
+        borderColor: "rgba(255,255,255,0.45)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        boxShadow: "0 24px 70px rgba(15,23,42,0.14)",
       }
     : {
         background: "transparent",
         borderColor: "transparent",
         boxShadow: "none",
       };
-  const titleColor = mobile ? "#ffffff" : "#111111";
-  const subtitleColor = mobile ? "rgba(255,255,255,0.82)" : "#5c5c5c";
-  const actionTextColor = mobile ? "#ffffff" : "#111111";
-  const actionSubtextColor = mobile ? "rgba(255,255,255,0.76)" : "#6a6a6a";
-  const dividerColor = mobile ? "rgba(255,255,255,0.18)" : "#eadfce";
-  const actionIconStyle = mobile
-    ? { borderColor: "rgba(182,138,53,0.35)", color: GOLD }
-    : { borderColor: "rgba(182,138,53,0.28)", color: "#B68A35" };
+  const titleColor = "#111111";
+  const subtitleColor = "#5c5c5c";
+  const actionTextColor = "#111111";
+  const actionSubtextColor = "#6a6a6a";
+  const dividerColor = "#eadfce";
+  const actionIconStyle = { borderColor: "rgba(182,138,53,0.28)", color: "#B68A35" };
 
   return (
     <div className={cardClass} style={cardStyle}>
@@ -182,24 +181,24 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
           className={mobile ? "flex items-center gap-3 border-b pb-4" : "flex items-center gap-4 pr-6"}
           style={mobile ? { borderColor: dividerColor } : undefined}
         >
-          <span className={mobile ? "flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]" : "flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]"} style={{ background: "linear-gradient(180deg, #C99432 0%, #AE7A22 100%)" }}>
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]" style={{ background: "linear-gradient(180deg, #C99432 0%, #AE7A22 100%)" }}>
             <ExpertBadgeIcon />
           </span>
           <span className="min-w-0">
-            <span className={mobile ? "block text-lg font-semibold leading-tight" : "block text-xl font-semibold leading-tight"} style={{ color: titleColor }}>
+            <span className="block text-xl font-semibold leading-tight" style={{ color: titleColor }}>
               {title}
             </span>
-            <span className={mobile ? "mt-1 block text-sm leading-snug" : "mt-1 block text-sm leading-relaxed"} style={{ color: subtitleColor }}>
+            <span className="mt-1 block text-sm leading-relaxed" style={{ color: subtitleColor }}>
               {subtitle}
             </span>
           </span>
         </div>
 
-        <div className={mobile ? "grid grid-cols-3 divide-x divide-white/20" : "contents"}>
+        <div className={mobile ? "grid grid-cols-3 divide-x divide-[#eadfce]" : "contents"}>
           {actions.map((action, index) => {
             const content = (
               <>
-                <span className={mobile ? "mx-auto flex h-11 w-11 items-center justify-center rounded-full border" : "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border"} style={actionIconStyle}>
+                <span className={mobile ? "mx-auto flex h-12 w-12 items-center justify-center rounded-full border" : "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border"} style={actionIconStyle}>
                   <ContactIcon type={action.type} />
                 </span>
                 <span className={mobile ? "mt-2 block text-center" : "block min-w-0"}>
@@ -343,7 +342,7 @@ const HeroSection = ({ data }) => {
   const meta = data.project_meta || {};
   const [openAccordion, setOpenAccordion] = useState(null);
   const [showInfra, setShowInfra] = useState(false);
-  const heroImage = meta.images?.[1] || meta.images?.[0];
+  const heroImage = meta.images?.[0] || meta.images?.[2];
   const { line1, line2 } = splitHeroTitle(hero?.h1 || meta.name);
   const chipItems = [
     {
@@ -368,29 +367,26 @@ const HeroSection = ({ data }) => {
       key: "starting_price",
       label: "Starting Price",
       value: hero.data_grid.starting_price,
-      color: GOLD,
     },
     {
       key: "price_per_sqft",
       label: "Price / Sqft",
       value: hero.data_grid.price_per_sqft,
-      color: "#ffffff",
     },
     {
       key: "yield_forecast",
       label: "Yield Forecast",
       value: hero.data_grid.yield_forecast,
-      color: "#4ade80",
     },
     {
       key: "handover",
       label: "Handover",
       value: hero.data_grid.handover,
-      color: "#ffffff",
     },
   ];
   const keyFactsSection = hero.key_facts_section || {};
   const developerSummary = keyFactsSection.developer_summary || {};
+  const developerHighlights = developerSummary.highlights || [];
   const unitTypesAndPrices = keyFactsSection.unit_types_and_prices || {};
   const paymentPlan = keyFactsSection.payment_plan || {};
   const keyFactsBorder = "rgba(182,138,53,0.18)";
@@ -515,30 +511,19 @@ const HeroSection = ({ data }) => {
               {statCards.map((item) => (
                 <div
                   key={item.key}
-                  className="rounded-2xl p-3 sm:p-4 lg:p-4 min-w-0"
-                  style={{
-                    background: "rgba(255,255,255,0.14)",
-                    border: "1px solid rgba(255,255,255,0.24)",
-                    backdropFilter: "blur(14px)",
-                    boxShadow: "0 12px 36px rgba(0,0,0,0.16)",
-                  }}
+                  className="min-w-0 rounded-2xl border border-white/45 bg-white/55 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl sm:p-4"
                 >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      <p className="text-[10px] sm:text-xs font-medium text-white/88 leading-tight">
-                        {item.label}
-                      </p>
-                      <p
-                        className={`mt-1.5 font-semibold tracking-tight text-lg sm:text-xl lg:text-2xl ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
-                        style={{ color: item.color }}
-                      >
-                        {item.value}
-                      </p>
-                    </div>
-                    <div className="mt-0.5 text-white/90">
-                      {renderStatIcon(item.key, "rgba(255,255,255,0.9)")}
-                    </div>
+                  <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#B68A35] sm:mb-3 sm:h-9 sm:w-9">
+                    {renderStatIcon(item.key, "currentColor")}
                   </div>
+                  <p className="text-[10px] font-semibold uppercase leading-tight tracking-[0.18em] text-[#9b835e] sm:text-[11px]">
+                    {item.label}
+                  </p>
+                  <p
+                    className={`mt-1.5 text-lg font-semibold tracking-tight text-[#161616] sm:mt-2 sm:text-xl ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
+                  >
+                    {item.value}
+                  </p>
                 </div>
               ))}
             </div>
@@ -861,56 +846,67 @@ const HeroSection = ({ data }) => {
           </div>
         </div>
 
-        <div className="mt-16 lg:hidden">
+        <div className="mt-8 lg:hidden">
           <h3 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] font-semibold tracking-tight" style={{ color: t.text }}>
             <span>{keyFactsSection.title_prefix || "Key Facts at a"} </span>
             <span style={{ color: GOLD }}>{keyFactsSection.title_accent || "Glance"}</span>
           </h3>
 
           <div className="mt-6 overflow-hidden rounded-[28px]" style={keyFactsPanelStyle}>
-            <div className="px-5 py-5 sm:px-6 sm:py-6 lg:px-8 flex items-start gap-4 sm:gap-5">
-              <div
-                className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-xl overflow-hidden shrink-0"
-                style={{ border: `1px solid ${keyFactsBorder}`, background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffaf0" }}
-              >
-                {developerSummary.logo || meta.developer?.logo_url ? (
-                  <Image
-                    src={developerSummary.logo || meta.developer?.logo_url}
-                    alt={`${developerSummary.name || meta.developer?.name || "Developer"} logo`}
-                    fill
-                    className="object-contain p-2"
-                  />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center text-sm font-semibold" style={{ color: GOLD }}>
-                    {(developerSummary.name || meta.developer?.name || "D").charAt(0)}
-                  </div>
-                )}
-              </div>
+            <div className="px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
+              <div className="flex items-start gap-4 sm:gap-5">
+                <div
+                  className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl sm:h-14 sm:w-14"
+                  style={{ border: `1px solid ${keyFactsBorder}`, background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffaf0" }}
+                >
+                  {developerSummary.logo || meta.developer?.logo_url ? (
+                    <Image
+                      src={developerSummary.logo || meta.developer?.logo_url}
+                      alt={`${developerSummary.name || meta.developer?.name || "Developer"} logo`}
+                      fill
+                      className="object-contain p-2"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center text-sm font-semibold" style={{ color: GOLD }}>
+                      {(developerSummary.name || meta.developer?.name || "D").charAt(0)}
+                    </div>
+                  )}
+                </div>
 
-              <div className="min-w-0 flex-1">
-                <p className="text-xl sm:text-2xl font-semibold tracking-tight" style={{ color: t.text }}>
-                  {developerSummary.name || meta.developer?.name}
-                </p>
-                {(developerSummary.founded_label || (meta.developer?.founded_year ? `Founded ${meta.developer.founded_year}` : null)) && (
-                  <p className="mt-1 text-sm sm:text-base" style={{ color: keyFactsMutedColor }}>
-                    {developerSummary.founded_label || `Founded ${meta.developer?.founded_year}`}
+                <div className="min-w-0 flex-1">
+                  <p className="font-serif text-xl font-semibold leading-tight tracking-tight sm:text-2xl" style={{ color: t.text }}>
+                    {developerSummary.name || meta.developer?.name}
                   </p>
-                )}
-
-                {(developerSummary.highlights || []).length > 0 && (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {developerSummary.highlights.map((item, i) => (
-                      <span
-                        key={`${item}-${i}`}
-                        className="inline-flex rounded-full px-3 py-1 text-[11px] sm:text-xs font-medium"
-                        style={keyFactsPillStyle}
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                  {(developerSummary.founded_label || (meta.developer?.founded_year ? `Founded ${meta.developer.founded_year}` : null)) && (
+                    <p className="mt-1 text-sm leading-snug sm:text-base" style={{ color: keyFactsMutedColor }}>
+                      {developerSummary.founded_label || `Founded ${meta.developer?.founded_year}`}
+                    </p>
+                  )}
+                </div>
               </div>
+
+              {developerHighlights.length > 0 && (
+                <div
+                  className={`mt-4 flex gap-2 pb-0.5 sm:mt-3 sm:flex-wrap sm:overflow-visible sm:gap-2 ${
+                    developerHighlights.length <= 2
+                      ? "max-sm:flex-nowrap max-sm:w-full"
+                      : "flex-nowrap overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  }`}
+                  style={{ WebkitOverflowScrolling: "touch" }}
+                >
+                  {developerHighlights.map((item, i) => (
+                    <span
+                      key={`${item}-${i}`}
+                      className={`inline-flex min-h-[2.125rem] items-center justify-center rounded-full border px-2.5 py-1 text-center text-[10px] font-medium leading-tight sm:w-auto sm:px-3 sm:text-xs ${
+                        developerHighlights.length <= 2 ? "max-sm:min-w-0 max-sm:flex-1 max-sm:basis-0" : "shrink-0 max-sm:max-w-[min(100%,16rem)]"
+                      }`}
+                      style={keyFactsPillStyle}
+                    >
+                      <span className="line-clamp-2 break-words">{item}</span>
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div style={{ borderTop: `1px solid ${keyFactsDivider}` }}>
@@ -921,7 +917,7 @@ const HeroSection = ({ data }) => {
                 <div className="shrink-0 text-right">
                   {keyFactsSection.project_status?.badge && (
                     <span
-                      className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium"
+                      className="inline-flex max-w-[11rem] items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium sm:max-w-none sm:gap-2 sm:px-3 sm:text-sm"
                       style={keyFactsPillStyle}
                     >
                       <span className="inline-block h-2 w-2 rounded-full" style={{ background: GOLD }} />
@@ -942,12 +938,12 @@ const HeroSection = ({ data }) => {
                 <p className="text-sm sm:text-base" style={{ color: keyFactsLabelColor }}>
                   {keyFactsSection.handover?.label || "Handover Date"}
                 </p>
-                <div className="shrink-0 text-right">
-                  <p className="text-xl sm:text-[1.75rem] font-semibold tracking-tight" style={{ color: t.text }}>
+                <div className="max-w-[55%] shrink-0 text-right sm:max-w-none">
+                  <p className="text-sm font-semibold leading-snug sm:text-[1.75rem] sm:tracking-tight" style={{ color: t.text }}>
                     {keyFactsSection.handover?.value}
                   </p>
                   {keyFactsSection.handover?.note && (
-                    <p className="mt-1 text-xs sm:text-sm" style={{ color: keyFactsMutedColor }}>
+                    <p className="mt-1 text-xs leading-relaxed sm:text-sm" style={{ color: keyFactsMutedColor }}>
                       {keyFactsSection.handover.note}
                     </p>
                   )}
@@ -960,12 +956,12 @@ const HeroSection = ({ data }) => {
                 <p className="text-sm sm:text-base" style={{ color: keyFactsLabelColor }}>
                   {keyFactsSection.total_units?.label || "Total Units (Project)"}
                 </p>
-                <div className="shrink-0 text-right">
-                  <p className="text-xl sm:text-[1.75rem] font-semibold tracking-tight" style={{ color: t.text }}>
+                <div className="max-w-[55%] shrink-0 text-right sm:max-w-none">
+                  <p className="text-sm font-semibold leading-snug sm:text-[1.75rem] sm:tracking-tight" style={{ color: t.text }}>
                     {keyFactsSection.total_units?.value}
                   </p>
                   {keyFactsSection.total_units?.note && (
-                    <p className="mt-1 text-xs sm:text-sm" style={{ color: keyFactsMutedColor }}>
+                    <p className="mt-1 text-xs leading-relaxed sm:text-sm" style={{ color: keyFactsMutedColor }}>
                       {keyFactsSection.total_units.note}
                     </p>
                   )}
@@ -978,8 +974,8 @@ const HeroSection = ({ data }) => {
                 <p className="text-sm sm:text-base" style={{ color: keyFactsLabelColor }}>
                   {keyFactsSection.master_community?.label || "Master Community"}
                 </p>
-                <div className="shrink-0 text-right">
-                  <p className="text-xl sm:text-[1.75rem] font-semibold tracking-tight" style={{ color: t.text }}>
+                <div className="max-w-[58%] shrink-0 text-right sm:max-w-none">
+                  <p className="text-sm font-semibold leading-snug sm:text-[1.75rem] sm:tracking-tight" style={{ color: t.text }}>
                     {keyFactsSection.master_community?.value}
                   </p>
                   {keyFactsSection.master_community?.note && (
@@ -1011,20 +1007,20 @@ const HeroSection = ({ data }) => {
                       className={`grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 ${i > 0 ? "pt-3" : ""}`}
                       style={i > 0 ? { borderTop: `1px solid ${keyFactsDivider}` } : undefined}
                     >
-                      <div className="min-w-0 flex items-center gap-2">
-                        <span className="mt-0.5 inline-block h-2 w-2 rounded-full shrink-0" style={{ background: GOLD }} />
-                        <p className="min-w-0 text-base sm:text-lg font-medium" style={{ color: t.text }}>
+                      <div className="min-w-0 flex flex-wrap items-baseline gap-x-1 gap-y-0.5 sm:flex-nowrap sm:gap-2">
+                        <span className="mt-0.5 inline-block h-2 w-2 shrink-0 rounded-full sm:mt-0.5" style={{ background: GOLD }} />
+                        <p className="min-w-0 text-sm font-medium leading-snug sm:text-lg" style={{ color: t.text }}>
                           {item.type}
                         </p>
                         {item.count && (
-                          <span className="text-xs sm:text-sm whitespace-nowrap" style={{ color: keyFactsMutedColor }}>
+                          <span className="text-xs leading-snug sm:text-sm sm:whitespace-nowrap" style={{ color: keyFactsMutedColor }}>
                             {item.count}
                           </span>
                         )}
                       </div>
 
                       <div className="text-right">
-                        <p className="text-base sm:text-lg font-medium whitespace-nowrap" style={{ color: t.text }}>
+                        <p className="text-sm font-medium tabular-nums leading-snug whitespace-nowrap sm:text-lg" style={{ color: t.text }}>
                           {item.price}
                         </p>
                         {item.note && (
@@ -1046,8 +1042,8 @@ const HeroSection = ({ data }) => {
                     {paymentPlan.label || "Payment Plan"}
                   </p>
                   {paymentPlan.summary && (
-                    <span className="inline-flex w-fit rounded-full px-3 py-1 text-sm font-medium sm:ml-auto" style={keyFactsPillStyle}>
-                      {paymentPlan.summary}
+                    <span className="inline-flex w-fit max-w-full rounded-full px-2.5 py-1 text-xs font-medium sm:ml-auto sm:px-3 sm:text-sm" style={keyFactsPillStyle}>
+                      <span className="truncate">{paymentPlan.summary}</span>
                     </span>
                   )}
                 </div>
@@ -1080,10 +1076,10 @@ const HeroSection = ({ data }) => {
                       className={`pt-4 ${i > 0 ? "pl-4 sm:pl-6" : "pr-4 sm:pr-6"}`}
                       style={i > 0 ? { borderLeft: `1px solid ${keyFactsDivider}` } : undefined}
                     >
-                      <p className="text-2xl sm:text-[1.75rem] font-semibold tracking-tight" style={{ color: GOLD }}>
+                      <p className="text-base font-semibold tabular-nums sm:text-2xl sm:tracking-tight" style={{ color: GOLD }}>
                         {item.percent}%
                       </p>
-                      <p className="mt-1 text-sm sm:text-base font-medium" style={{ color: t.text }}>
+                      <p className="mt-1 max-sm:text-[11px] max-sm:leading-snug text-sm font-medium sm:text-base" style={{ color: t.text }}>
                         {item.title}
                       </p>
                       {item.note && (
