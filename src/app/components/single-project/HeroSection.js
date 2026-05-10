@@ -5,9 +5,9 @@ import Image from "next/image";
 import { useTheme } from "../context/ThemeContext";
 
 const GOLD = "#B68A35";
-/** Soft white halo so title/subtitle read on very dark or very light hero images */
-const HERO_TEXT_HALO = "0 0 12px rgba(255,255,255,0.92), 0 0 2px rgba(255,255,255,0.98), 0 1px 0 rgba(255,255,255,0.85)";
 const SUBTITLE_GREY = "#2d2d2d";
+
+const HERO_STAT_UI_SERIF = 'ui-serif, Georgia, Cambria, "Times New Roman", serif';
 
 const getCtaDetails = (cta) => ({
   text: typeof cta === "string" ? cta : cta?.button_text,
@@ -118,17 +118,17 @@ const ExpertBadgeIcon = () => (
 const PrimaryCtaButton = ({ cta, mobile = false }) => {
   const { text, href } = getCtaDetails(cta);
   const className = [
-    mobile ? "w-full px-4 py-4 text-[0.95rem]" : "w-full max-w-[640px] px-8 py-5 text-xl",
-    "rounded-[18px] font-semibold transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90",
+    mobile ? "w-full px-4 py-4 text-[0.95rem]" : "w-full px-8 py-5 text-xl",
+    "rounded-[8px] font-semibold transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90 text-left",
   ].join(" ");
   const style = { background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)", color: "#ffffff" };
   const content = (
     <>
-      <span className="flex min-w-0 items-center gap-3">
+      <span className="flex min-w-0 flex-1 items-center gap-3">
         <PrimaryCtaIcon size={mobile ? 22 : 26} />
-        <span className="whitespace-nowrap">{text}</span>
+        <span className="min-w-0 text-left">{text}</span>
       </span>
-      <ArrowRightIcon size={mobile ? 24 : 32} />
+      <ArrowRightIcon className="shrink-0" size={mobile ? 24 : 32} />
     </>
   );
 
@@ -152,7 +152,7 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
       ];
 
   const cardClass = mobile
-    ? "rounded-[30px] border px-5 py-5"
+    ? "rounded-[10px] border px-5 py-5"
     : "px-6 py-4";
   const cardStyle = mobile
     ? {
@@ -229,6 +229,42 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
   );
 };
 
+/** Matches `/project` accordion primary headers (patterned gold bar). */
+const PATTERNED_GOLD_ACCORDION_BG = {
+  backgroundColor: "#b98a16",
+  backgroundImage: `
+      linear-gradient(135deg, rgba(255,255,255,0.06) 25%, transparent 25%),
+      linear-gradient(225deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+      linear-gradient(45deg, rgba(0,0,0,0.06) 25%, transparent 25%),
+      linear-gradient(315deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+      linear-gradient(90deg, #b68412 0%, #c99822 35%, #b68412 100%)
+    `,
+  backgroundSize: "44px 44px, 44px 44px, 44px 44px, 44px 44px, 100% 100%",
+  backgroundPosition: "0 0, 22px 0, 0 22px, 22px 22px, 0 0",
+};
+
+const GoldAccordionSectionIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" />
+    <path d="M7.5 8.5h9" />
+    <path d="M7.5 12h6.5" />
+    <path d="M7.5 15.5h5" />
+    <circle cx="17.2" cy="16.8" r="2.2" />
+    <path d="m18.8 18.4 1.7 1.7" />
+  </svg>
+);
+
 const AccordionChevron = ({ open, color = "#C7A248", size = 18 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -275,24 +311,27 @@ const AccordionIconBadge = ({
   </div>
 );
 
-const SecondaryAccordionButton = ({ open, onClick, title, icon, t }) => (
+const SecondaryAccordionButton = ({ open, onClick, title, icon, t, hideLeadingIcon }) => (
   <button
     type="button"
     onClick={onClick}
-    className="w-full flex items-center justify-between p-5 rounded-xl text-left transition-colors"
-    style={{
-      background: t.isDark ? "rgba(255,255,255,0.04)" : "#FBF9F4",
-      border: `1px solid ${t.isDark ? "rgba(217,176,95,0.22)" : "rgba(182,138,53,0.18)"}`,
-      boxShadow: t.isDark ? "0 8px 24px rgba(0,0,0,0.22)" : "0 6px 20px rgba(17,24,39,0.04)",
-    }}
+    className="flex w-full items-center gap-4 px-5 py-4 text-left text-white sm:px-6 sm:py-5"
+    style={PATTERNED_GOLD_ACCORDION_BG}
+    aria-expanded={open}
   >
-    <div className="flex items-center gap-3">
-      <AccordionIconBadge filled icon={icon} t={t} />
-      <span className="text-lg font-semibold" style={{ color: t.text }}>
-        {title}
-      </span>
-    </div>
-    <AccordionChevron open={open} size={20} color={t.isDark ? "#D9B05F" : "#C7A248"} />
+    {!hideLeadingIcon && (
+      <div
+        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-white"
+        style={{
+          border: `1px solid ${t.isDark ? "rgba(255,255,255,0.24)" : "rgba(255,255,255,0.35)"}`,
+          background: t.isDark ? "rgba(0,0,0,0.14)" : "rgba(255,255,255,0.1)",
+        }}
+      >
+        {icon ?? <GoldAccordionSectionIcon />}
+      </div>
+    )}
+    <span className="flex-1 text-lg font-medium leading-snug sm:text-[1.65rem]">{title}</span>
+    <AccordionChevron open={open} size={22} color="#ffffff" />
   </button>
 );
 
@@ -321,7 +360,7 @@ const TertiaryAccordionButton = ({
         imageSize={14}
       />
       <div className="min-w-0">
-        <p className="truncate text-sm font-medium leading-snug" style={{ color: t.text }}>
+        <p className="truncate text-sm font-[560] leading-snug" style={{ color: t.text }}>
           {title}
         </p>
         <p
@@ -411,6 +450,12 @@ const HeroSection = ({ data }) => {
     border: `1px solid ${keyFactsBorder}`,
     color: t.isDark ? "#e7d2a2" : "#a47b27",
   };
+  /** Developer highlight + project status badges: blend with card, gold outline */
+  const keyFactsStatBadgeStyle = {
+    background: "transparent",
+    border: `1px solid ${GOLD}`,
+    color: t.isDark ? "#e7d2a2" : "#a47b27",
+  };
   const keyFactsLabelColor = t.isDark ? "rgba(255,255,255,0.76)" : "#57534e";
   const keyFactsMutedColor = t.isDark ? "rgba(255,255,255,0.58)" : "#8b8477";
 
@@ -436,13 +481,13 @@ const HeroSection = ({ data }) => {
           }}
         />
 
-        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-6 lg:px-12 py-8 lg:py-14 flex items-end">
+        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-3 lg:px-12 py-8 lg:py-14 flex items-end">
           <div className="w-full max-w-[640px] lg:max-w-none">
             <div className="flex flex-wrap gap-3">
               {chipItems.map((item, i) => (
                 <span
                   key={`${item.label}-${i}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em]"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-[0.1em]"
                   style={{
                     background: item.variant === "gold" ? "rgba(182,138,53,0.92)" : "rgba(255,255,255,0.72)",
                     color: item.variant === "gold" ? "#ffffff" : "#4b5563",
@@ -465,26 +510,21 @@ const HeroSection = ({ data }) => {
                 aria-hidden="true"
               />
               <div className="relative">
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05]">
-                  <span className="block text-[#0a0a0a]" style={{ textShadow: HERO_TEXT_HALO }}>
-                    {line1}
-                  </span>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-[575] tracking-tight leading-[1.05]">
+                  <span className="block text-[#0a0a0a]">{line1}</span>
                   {line2 && (
-                    <span className="mt-0.5 block" style={{ color: GOLD, textShadow: HERO_TEXT_HALO }}>
+                    <span className="mt-0.5 block" style={{ color: GOLD }}>
                       {line2}
                     </span>
                   )}
                 </h1>
-                <h2
-                  className="mt-3 text-lg sm:text-xl lg:text-2xl font-medium"
-                  style={{ color: SUBTITLE_GREY, textShadow: HERO_TEXT_HALO }}
-                >
+                <h2 className="mt-3 text-lg sm:text-xl lg:text-2xl font-medium" style={{ color: SUBTITLE_GREY }}>
                   {hero.subtitle}
                 </h2>
               </div>
             </div>
 
-            <div className="mt-8 hidden max-w-[1080px] overflow-hidden rounded-[30px] border border-white/45 bg-white/55 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl lg:block">
+            <div className="mt-8 hidden max-w-[1080px] overflow-hidden rounded-[18px] border border-white/45 bg-white/55 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl lg:block">
               <div className="grid grid-cols-4 divide-x divide-white/45">
                 {statCards.map((item) => (
                   <div key={item.key} className="min-w-0 px-6 py-3">
@@ -494,16 +534,21 @@ const HeroSection = ({ data }) => {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9b835e]">
                       {item.label}
                     </p>
-                    <p className={`mt-2 text-2xl font-semibold tracking-tight text-[#161616] ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}>
+                    <p
+                      className={`mt-2 text-2xl font-semibold tracking-tight text-[#161616] ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
+                      style={{ fontFamily: HERO_STAT_UI_SERIF }}
+                    >
                       {item.value}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-5 flex flex-col items-center gap-4 border-t border-white/45 pt-5">
+              <div className="mt-5 flex w-full flex-col gap-4 border-t border-white/45 pt-5">
                 <PrimaryCtaButton cta={hero.cta_primary} />
-                <ExpertContactCard cta={hero.cta_secondary} />
+                <div className="flex w-full justify-center">
+                  <ExpertContactCard cta={hero.cta_secondary} />
+                </div>
               </div>
             </div>
 
@@ -511,7 +556,7 @@ const HeroSection = ({ data }) => {
               {statCards.map((item) => (
                 <div
                   key={item.key}
-                  className="min-w-0 rounded-2xl border border-white/45 bg-white/55 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl sm:p-4"
+                  className="min-w-0 rounded-xl border border-white/45 bg-white/55 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl sm:p-4"
                 >
                   <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#B68A35] sm:mb-3 sm:h-9 sm:w-9">
                     {renderStatIcon(item.key, "currentColor")}
@@ -521,6 +566,7 @@ const HeroSection = ({ data }) => {
                   </p>
                   <p
                     className={`mt-1.5 text-lg font-semibold tracking-tight text-[#161616] sm:mt-2 sm:text-xl ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
+                    style={{ fontFamily: HERO_STAT_UI_SERIF }}
                   >
                     {item.value}
                   </p>
@@ -690,7 +736,7 @@ const HeroSection = ({ data }) => {
               {(developerSummary.highlights || []).length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {developerSummary.highlights.map((item, i) => (
-                    <span key={`${item}-${i}`} className="rounded-full px-3 py-1 text-[11px]" style={keyFactsPillStyle}>
+                    <span key={`${item}-${i}`} className="rounded-full px-3 py-1 text-[11px]" style={keyFactsStatBadgeStyle}>
                       {item}
                     </span>
                   ))}
@@ -709,7 +755,7 @@ const HeroSection = ({ data }) => {
                 <div>
                   <p className="text-base font-medium" style={{ color: t.text }}>{keyFactsSection.project_status?.label || "Project Status"}</p>
                   {keyFactsSection.project_status?.badge && (
-                    <span className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium" style={keyFactsPillStyle}>
+                    <span className="mt-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium" style={keyFactsStatBadgeStyle}>
                       <span className="h-1.5 w-1.5 rounded-full" style={{ background: GOLD }} />
                       {keyFactsSection.project_status.badge}
                     </span>
@@ -852,7 +898,7 @@ const HeroSection = ({ data }) => {
             <span style={{ color: GOLD }}>{keyFactsSection.title_accent || "Glance"}</span>
           </h3>
 
-          <div className="mt-6 overflow-hidden rounded-[28px]" style={keyFactsPanelStyle}>
+          <div className="mt-6 overflow-hidden rounded-[14px]" style={keyFactsPanelStyle}>
             <div className="px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
               <div className="flex items-start gap-4 sm:gap-5">
                 <div
@@ -897,10 +943,10 @@ const HeroSection = ({ data }) => {
                   {developerHighlights.map((item, i) => (
                     <span
                       key={`${item}-${i}`}
-                      className={`inline-flex min-h-[2.125rem] items-center justify-center rounded-full border px-2.5 py-1 text-center text-[10px] font-medium leading-tight sm:w-auto sm:px-3 sm:text-xs ${
+                      className={`inline-flex min-h-[2.125rem] items-center justify-center rounded-full px-2.5 py-1 text-center text-[10px] font-medium leading-tight sm:w-auto sm:px-3 sm:text-xs ${
                         developerHighlights.length <= 2 ? "max-sm:min-w-0 max-sm:flex-1 max-sm:basis-0" : "shrink-0 max-sm:max-w-[min(100%,16rem)]"
                       }`}
-                      style={keyFactsPillStyle}
+                      style={keyFactsStatBadgeStyle}
                     >
                       <span className="line-clamp-2 break-words">{item}</span>
                     </span>
@@ -918,7 +964,7 @@ const HeroSection = ({ data }) => {
                   {keyFactsSection.project_status?.badge && (
                     <span
                       className="inline-flex max-w-[11rem] items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium sm:max-w-none sm:gap-2 sm:px-3 sm:text-sm"
-                      style={keyFactsPillStyle}
+                      style={keyFactsStatBadgeStyle}
                     >
                       <span className="inline-block h-2 w-2 rounded-full" style={{ background: GOLD }} />
                       {keyFactsSection.project_status.badge}
@@ -989,12 +1035,12 @@ const HeroSection = ({ data }) => {
 
             <div style={{ borderTop: `1px solid ${keyFactsDivider}` }}>
               <div className="px-5 py-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <p className="text-sm sm:text-base" style={{ color: keyFactsLabelColor }}>
+                <div className="flex flex-row items-start justify-between gap-3 sm:gap-6">
+                  <p className="min-w-0 text-sm sm:text-base" style={{ color: keyFactsLabelColor }}>
                     {unitTypesAndPrices.label || "Unit Types & Prices"}
                   </p>
                   {unitTypesAndPrices.summary && (
-                    <p className="text-xs sm:text-sm sm:text-right" style={{ color: keyFactsMutedColor }}>
+                    <p className="shrink-0 pl-3 text-right text-xs sm:text-sm" style={{ color: keyFactsMutedColor }}>
                       {unitTypesAndPrices.summary}
                     </p>
                   )}
@@ -1037,13 +1083,16 @@ const HeroSection = ({ data }) => {
 
             <div style={{ borderTop: `1px solid ${keyFactsDivider}` }}>
               <div className="px-5 py-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <p className="text-sm sm:text-base" style={{ color: keyFactsLabelColor }}>
+                <div className="flex flex-row items-center justify-between gap-3 sm:gap-6">
+                  <p className="min-w-0 text-sm sm:text-base" style={{ color: keyFactsLabelColor }}>
                     {paymentPlan.label || "Payment Plan"}
                   </p>
                   {paymentPlan.summary && (
-                    <span className="inline-flex w-fit max-w-full rounded-full px-2.5 py-1 text-xs font-medium sm:ml-auto sm:px-3 sm:text-sm" style={keyFactsPillStyle}>
-                      <span className="truncate">{paymentPlan.summary}</span>
+                    <span
+                      className="inline-flex shrink-0 max-w-[min(100%,12.5rem)] items-center justify-center rounded-full px-2.5 py-1 text-xs font-medium sm:max-w-none sm:px-3 sm:text-sm"
+                      style={keyFactsPillStyle}
+                    >
+                      <span className="text-center leading-snug">{paymentPlan.summary}</span>
                     </span>
                   )}
                 </div>
@@ -1073,7 +1122,7 @@ const HeroSection = ({ data }) => {
                   {(paymentPlan.milestones || []).map((item, i) => (
                     <div
                       key={`${item.title}-${i}`}
-                      className={`pt-4 ${i > 0 ? "pl-4 sm:pl-6" : "pr-4 sm:pr-6"}`}
+                      className={`flex flex-col items-center text-center pt-4 ${i > 0 ? "max-sm:px-2 pl-3 sm:pl-6" : "max-sm:px-2 sm:pr-6"}`}
                       style={i > 0 ? { borderLeft: `1px solid ${keyFactsDivider}` } : undefined}
                     >
                       <p className="text-base font-semibold tabular-nums sm:text-2xl sm:tracking-tight" style={{ color: GOLD }}>
@@ -1083,7 +1132,7 @@ const HeroSection = ({ data }) => {
                         {item.title}
                       </p>
                       {item.note && (
-                        <p className="mt-1 text-xs sm:text-sm leading-relaxed" style={{ color: keyFactsMutedColor }}>
+                        <p className="mt-1 text-xs leading-relaxed sm:text-sm" style={{ color: keyFactsMutedColor }}>
                           {item.note}
                         </p>
                       )}
@@ -1097,7 +1146,7 @@ const HeroSection = ({ data }) => {
 
         {/* Infrastructure Accordion */}
         <div className="mt-16 hidden grid-cols-[0.95fr_1.65fr] gap-5 lg:grid">
-          <div className="relative overflow-hidden rounded-[28px] border p-8" style={desktopFactsCardStyle}>
+          <div className="relative overflow-hidden rounded-[14px] border p-8" style={desktopFactsCardStyle}>
             <h3 className="text-3xl font-semibold leading-tight" style={{ color: t.text }}>
               Future Infrastructure
               <span className="block" style={{ color: GOLD }}>&amp; Economic Development</span>
@@ -1136,13 +1185,13 @@ const HeroSection = ({ data }) => {
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={desktopFactsIconStyle}>
                         {i + 1}
                       </span>
-                      <span className="text-base font-medium" style={{ color: t.text }}>{item.title}</span>
+                      <span className="text-base font-[560]" style={{ color: t.text }}>{item.title}</span>
                     </div>
                     <AccordionChevron open={isOpen} size={18} color={GOLD} />
                   </button>
                   <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-44 opacity-100" : "max-h-0 opacity-0"}`}>
                     <div className="px-20 pb-5">
-                      <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{item.content}</p>
+                      <p className="text-[13px] leading-[1.65]" style={{ color: t.textSecondary }}>{item.content}</p>
                     </div>
                   </div>
                 </div>
@@ -1152,21 +1201,22 @@ const HeroSection = ({ data }) => {
         </div>
 
         <div className="mt-16 lg:hidden">
-          <SecondaryAccordionButton
-            open={showInfra}
-            onClick={() => setShowInfra(!showInfra)}
-            title="Future Infrastructure & Economic Development"
-            t={t}
-            icon={(
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            )}
-          />
+          <div
+            className="overflow-hidden md:rounded-2xl"
+            style={{
+              boxShadow: t.isDark ? "0 14px 30px rgba(0,0,0,0.28)" : "0 10px 25px rgba(0,0,0,0.08)",
+            }}
+          >
+            <SecondaryAccordionButton
+              open={showInfra}
+              onClick={() => setShowInfra(!showInfra)}
+              title="Future Infrastructure & Economic Development"
+              t={t}
+              hideLeadingIcon
+            />
 
-          <div className={`overflow-hidden transition-all duration-500 ${showInfra ? "max-h-[2000px] opacity-100 mt-4" : "max-h-0 opacity-0"}`}>
-            <div className="space-y-3">
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${showInfra ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"}`}>
+              <div className="space-y-3 pt-4 pb-4">
               {hero.infrastructure_items.map((item, i) => (
                 <div
                   key={i}
@@ -1186,11 +1236,12 @@ const HeroSection = ({ data }) => {
                   <div className={`overflow-hidden transition-all duration-300 ${openAccordion === i ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                     <div className="px-4 pb-4 pt-0">
                       <div style={{ borderTop: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }} />
-                      <p className="pt-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{item.content}</p>
+                      <p className="pt-4 text-[13px] leading-relaxed" style={{ color: t.textSecondary }}>{item.content}</p>
                     </div>
                   </div>
                 </div>
               ))}
+              </div>
             </div>
           </div>
         </div>
