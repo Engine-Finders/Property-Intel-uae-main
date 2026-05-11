@@ -6,6 +6,8 @@ import SectionExpertCta from "./SectionExpertCta";
 import SectionImageHeader from "./SectionImageHeader";
 
 const ACCENT = "#b68a35";
+const sectionH2Class = "text-[32px] font-semibold leading-none";
+const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.75] tracking-[-0.01em]";
 
 const ChevronIcon = ({ open, color }) => (
   <svg
@@ -253,7 +255,7 @@ const VerdictPill = ({ label, tone }) => {
 };
 
 const DataTable = ({ table, t }) => (
-  <div className="overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+  <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
     <div className="overflow-x-auto">
       <table className="min-w-full text-left text-[12px] sm:text-[13px]">
         <thead style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#faf5eb" }}>
@@ -318,30 +320,27 @@ const TargetBuyerSection = ({ data }) => {
   if (!currentProfile) return null;
 
   return (
-    <section style={{ background: t.bg }} className="py-8 lg:py-12">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6">
+    <section style={{ background: t.bg }} className="py-5 lg:py-8">
+      <div className="mx-auto max-w-7xl px-2 sm:px-5">
         <SectionImageHeader
           title={data.heading}
           subtitle={data.intro}
           t={t}
-          className="mb-8 hidden lg:block rounded-b-[28px]"
+          className="mb-5 hidden lg:block rounded-b-xl"
         />
-        <div className="mb-8 max-w-3xl lg:hidden">
-          <h2
-            className="max-w-2xl text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] sm:text-[2.45rem] lg:mx-auto lg:max-w-4xl lg:text-[3rem]"
-            style={{ color: t.text }}
-          >
+        <div className="mb-6 max-w-3xl lg:hidden">
+          <h2 className={sectionH2Class} style={{ color: t.text }}>
             {data.heading}
           </h2>
           <p
-            className="mt-4 max-w-xl text-sm leading-7 sm:text-[15px] lg:mx-auto"
+            className={`mt-3 max-w-xl ${sectionIntroAfterH2Class}`}
             style={{ color: t.textSecondary }}
           >
             {data.intro}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
           {profiles.map((profile) => {
             const isActive = profile.id === currentProfile.id;
 
@@ -353,7 +352,7 @@ const TargetBuyerSection = ({ data }) => {
                   setActiveProfile(profile.id);
                   setIsPanelOpen(true);
                 }}
-                className="rounded-2xl p-4 text-left transition-all duration-300 lg:relative lg:flex lg:min-h-[104px] lg:items-center lg:gap-4 lg:p-5"
+                className="rounded-xl p-3 text-left transition-all duration-300 lg:relative lg:flex lg:min-h-[96px] lg:items-center lg:gap-3 lg:p-4"
                 style={{
                   background: isActive
                     ? (
@@ -366,22 +365,22 @@ const TargetBuyerSection = ({ data }) => {
                   boxShadow: isActive ? shadow : "none",
                 }}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full lg:h-14 lg:w-14"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full lg:h-12 lg:w-12"
                     style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
                   >
                     <ProfileIcon icon={profile.icon} />
                   </div>
                   <h3
-                    className="text-[15px] font-semibold leading-5 sm:text-base"
+                    className="text-[14px] font-semibold leading-tight sm:text-[15px]"
                     style={{ color: t.text }}
                   >
                     {profile.card_title}
                   </h3>
                 </div>
                 <p
-                  className="mt-3 min-h-[40px] text-xs leading-5 sm:text-[13px] lg:mt-1 lg:min-h-0"
+                  className={`mt-2 min-h-[36px] ${sectionIntroAfterH2Class} lg:mt-1 lg:min-h-0`}
                   style={{ color: t.textSecondary }}
                 >
                   {profile.card_subtitle}
@@ -399,7 +398,7 @@ const TargetBuyerSection = ({ data }) => {
         </div>
 
         <div
-          className="mt-5 overflow-hidden rounded-[28px]"
+          className="mt-4 overflow-hidden rounded-xl"
           style={{
             background: lightCardBg,
             border: `1px solid ${t.cardBorder}`,
@@ -409,16 +408,16 @@ const TargetBuyerSection = ({ data }) => {
           <button
             type="button"
             onClick={() => setIsPanelOpen((prev) => !prev)}
-            className="flex w-full items-start gap-3 px-5 py-5 text-left sm:px-6"
+            className="flex w-full items-start gap-2.5 px-4 py-4 text-left sm:px-5"
           >
             <div
-              className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+              className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10"
               style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
             >
               <ProfileIcon icon={currentProfile.icon} />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-xl leading-tight sm:text-[1.7rem]" style={{ color: t.text }}>
+              <div className="text-lg leading-tight sm:text-xl" style={{ color: t.text }}>
                 <span className="font-medium">{currentProfile.panel_title} </span>
                 <span className="font-medium" style={{ color: ACCENT }}>
                   {currentProfile.panel_accent}
@@ -426,7 +425,7 @@ const TargetBuyerSection = ({ data }) => {
               </div>
               {currentProfile.panel_subtitle && (
                 <p
-                  className="mt-2 text-sm leading-6"
+                  className={`mt-1.5 ${sectionIntroAfterH2Class}`}
                   style={{ color: t.textMuted }}
                 >
                   {currentProfile.panel_subtitle}
@@ -438,220 +437,224 @@ const TargetBuyerSection = ({ data }) => {
 
           {isPanelOpen && (
             <div
-              className="border-t px-5 pb-5 pt-5 sm:px-6 sm:pb-6"
+              className="border-t px-4 pb-4 pt-4 sm:px-5 sm:pb-5"
               style={{ borderColor: t.cardBorder }}
             >
               <div className="lg:hidden">
-              {currentProfile.intro_html && (
-                <HtmlText
-                  html={currentProfile.intro_html}
-                  className="text-sm leading-8 sm:text-[15px]"
-                  style={{ color: t.textSecondary }}
-                />
-              )}
-
-              {currentProfile.table && (
-                <div className="mt-5">
-                  <p
-                    className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em]"
-                    style={{ color: ACCENT }}
-                  >
-                    {currentProfile.table.title}
-                  </p>
-                  <DataTable table={currentProfile.table} t={t} />
-                </div>
-              )}
-
-              {currentProfile.analysis_html && (
-                <div
-                  className="mt-5 rounded-2xl px-4 py-4"
-                  style={{
-                    background: t.isDark ? "rgba(255,255,255,0.03)" : lightMutedBg,
-                    border: `1px solid ${t.cardBorder}`,
-                  }}
-                >
+                {currentProfile.intro_html && (
                   <HtmlText
-                    html={currentProfile.analysis_html}
-                    className="text-sm leading-8 sm:text-[15px]"
+                    html={currentProfile.intro_html}
+                    className={sectionIntroAfterH2Class}
                     style={{ color: t.textSecondary }}
                   />
-                </div>
-              )}
+                )}
 
-              {currentProfile.strategies?.length > 0 && (
-                <div className="mt-5 space-y-3">
-                  {currentProfile.strategies.map((strategy, index) => (
-                    <div
-                      key={strategy.number}
-                      className="rounded-2xl px-4 py-4"
-                      style={{
-                        background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
-                        border: `1px solid ${t.cardBorder}`,
-                      }}
+                {currentProfile.table && (
+                  <div className="mt-4">
+                    <p
+                      className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.18em]"
+                      style={{ color: ACCENT }}
                     >
-                      <div className="flex gap-3">
-                        <div
-                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-base font-medium"
-                          style={{
-                            color: ACCENT,
-                            background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1",
-                          }}
-                        >
-                          <FlipperStrategyIcon index={index} size={25} />
-                        </div>
-                        <div className="min-w-0">
-                          <h4 className="text-[15px] font-semibold leading-5" style={{ color: t.text }}>
-                            {strategy.title}
-                          </h4>
-                          <p className="mt-1 text-xs" style={{ color: ACCENT }}>
-                            {strategy.timing}
-                          </p>
-                          <p className="mt-3 text-sm leading-7" style={{ color: t.textSecondary }}>
-                            {strategy.content}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {currentProfile.verdict && (
-                <div
-                  className="mt-4 rounded-2xl px-4 py-4"
-                  style={{
-                    background: t.isDark ? "rgba(182,138,53,0.08)" : "#fdf7e8",
-                    border: "1px solid rgba(182,138,53,0.2)",
-                  }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
-                      style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf0d5" }}
-                    >
-                      <ProfileIcon icon={currentProfile.verdict.icon || currentProfile.icon} size={16} />
-                    </div>
-                    <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
-                      <span className="font-semibold" style={{ color: ACCENT }}>
-                        {currentProfile.verdict.label}:
-                      </span>{" "}
-                      {currentProfile.verdict.text}
+                      {currentProfile.table.title}
                     </p>
+                    <DataTable table={currentProfile.table} t={t} />
                   </div>
-                </div>
-              )}
+                )}
 
-              {currentProfile.infrastructure?.length > 0 && (
-                <div className="mt-5 space-y-3">
-                  <p
-                    className="text-[11px] font-semibold uppercase tracking-[0.18em]"
-                    style={{ color: ACCENT }}
+                {currentProfile.analysis_html && (
+                  <div
+                    className="mt-4 rounded-xl px-3 py-3"
+                    style={{
+                      background: t.isDark ? "rgba(255,255,255,0.03)" : lightMutedBg,
+                      border: `1px solid ${t.cardBorder}`,
+                    }}
                   >
-                    {currentProfile.infrastructure_title}
-                  </p>
-                  {currentProfile.infrastructure.map((item) => (
-                    <div
-                      key={item.title}
-                      className="flex items-start gap-3 rounded-2xl px-4 py-4"
-                      style={{
-                        background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
-                        border: `1px solid ${t.cardBorder}`,
-                      }}
-                    >
-                      <div
-                        className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
-                      >
-                        <ProfileIcon icon={item.icon} size={16} />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <h4 className="text-[15px] font-semibold" style={{ color: t.text }}>
-                            {item.title}
-                          </h4>
-                          <span className="text-xs font-medium" style={{ color: ACCENT }}>
-                            {item.timeline}
-                          </span>
-                        </div>
-                        <p className="mt-1 text-sm leading-6" style={{ color: t.textMuted }}>
-                          {item.details}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {currentProfile.notes?.length > 0 && (
-                <div className="mt-5 space-y-3">
-                  {currentProfile.notes.map((note) => (
-                    <div key={note.label}>
-                      <HtmlText
-                        html={`<strong>${note.label}:</strong> ${note.text}`}
-                        className="text-sm leading-7"
-                        style={{ color: t.textSecondary }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {currentProfile.stats?.length > 0 && (
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {currentProfile.stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="rounded-2xl px-4 py-4"
-                      style={{
-                        background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
-                        border: `1px solid ${t.cardBorder}`,
-                      }}
-                    >
-                      <div
-                        className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl"
-                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
-                      >
-                        <ProfileIcon icon={stat.icon} size={15} />
-                      </div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: t.textMuted }}>
-                        {stat.label}
-                      </p>
-                      <p className="mt-2 text-sm font-semibold leading-6 sm:text-base" style={{ color: t.text }}>
-                        {stat.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {currentProfile.paragraphs?.length > 0 && (
-                <div className="mt-5 space-y-4">
-                  {currentProfile.paragraphs.map((paragraph, index) => (
                     <HtmlText
-                      key={index}
-                      html={paragraph}
-                      className="text-sm leading-8 sm:text-[15px]"
+                      html={currentProfile.analysis_html}
+                      className={sectionIntroAfterH2Class}
                       style={{ color: t.textSecondary }}
                     />
-                  ))}
-                </div>
-              )}
+                  </div>
+                )}
+
+                {currentProfile.strategies?.length > 0 && (
+                  <div className="mt-4 space-y-2.5">
+                    {currentProfile.strategies.map((strategy, index) => (
+                      <div
+                        key={strategy.number}
+                        className="rounded-xl px-3 py-3"
+                        style={{
+                          background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                          border: `1px solid ${t.cardBorder}`,
+                        }}
+                      >
+                        <div className="flex gap-2.5">
+                          <div
+                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-base font-medium"
+                            style={{
+                              color: ACCENT,
+                              background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1",
+                            }}
+                          >
+                            <FlipperStrategyIcon index={index} size={22} />
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="text-[15px] font-semibold leading-tight" style={{ color: t.text }}>
+                              {strategy.title}
+                            </h4>
+                            <p className="mt-0.5 text-xs" style={{ color: ACCENT }}>
+                              {strategy.timing}
+                            </p>
+                            <p className={`mt-2 ${sectionIntroAfterH2Class}`} style={{ color: t.textSecondary }}>
+                              {strategy.content}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {currentProfile.verdict && (
+                  <div
+                    className="mt-3 rounded-xl px-3 py-3"
+                    style={{
+                      background: t.isDark ? "rgba(182,138,53,0.08)" : "#fdf7e8",
+                      border: "1px solid rgba(182,138,53,0.2)",
+                    }}
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <div
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf0d5" }}
+                      >
+                        <ProfileIcon icon={currentProfile.verdict.icon || currentProfile.icon} size={15} />
+                      </div>
+                      <p className={sectionIntroAfterH2Class} style={{ color: t.textSecondary }}>
+                        <span className="font-semibold" style={{ color: ACCENT }}>
+                          {currentProfile.verdict.label}:
+                        </span>{" "}
+                        {currentProfile.verdict.text}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {currentProfile.infrastructure?.length > 0 && (
+                  <div className="mt-4 space-y-2.5">
+                    <p
+                      className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+                      style={{ color: ACCENT }}
+                    >
+                      {currentProfile.infrastructure_title}
+                    </p>
+                    {currentProfile.infrastructure.map((item) => (
+                      <div
+                        key={item.title}
+                        className="flex items-start gap-2.5 rounded-xl px-3 py-3"
+                        style={{
+                          background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                          border: `1px solid ${t.cardBorder}`,
+                        }}
+                      >
+                        <div
+                          className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg"
+                          style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+                        >
+                          <ProfileIcon icon={item.icon} size={15} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center justify-between gap-2">
+                            <h4 className="text-[14px] font-semibold leading-tight" style={{ color: t.text }}>
+                              {item.title}
+                            </h4>
+                            <span className="text-xs font-medium" style={{ color: ACCENT }}>
+                              {item.timeline}
+                            </span>
+                          </div>
+                          <p className={`mt-1 ${sectionIntroAfterH2Class}`} style={{ color: t.textMuted }}>
+                            {item.details}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {currentProfile.notes?.length > 0 && (
+                  <div className="mt-4 space-y-2.5">
+                    {currentProfile.notes.map((note) => (
+                      <div key={note.label}>
+                        <HtmlText
+                          html={`<strong>${note.label}:</strong> ${note.text}`}
+                          className={sectionIntroAfterH2Class}
+                          style={{ color: t.textSecondary }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {currentProfile.stats?.length > 0 && (
+                  <div className="mt-4 grid grid-cols-2 gap-2.5">
+                    {currentProfile.stats.map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="rounded-xl px-3 py-3"
+                        style={{
+                          background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
+                          border: `1px solid ${t.cardBorder}`,
+                        }}
+                      >
+                        <div className="flex items-start gap-2">
+                          <div
+                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
+                            style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+                          >
+                            <ProfileIcon icon={stat.icon} size={14} />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold leading-tight sm:text-base" style={{ color: t.text }}>
+                              {stat.value}
+                            </p>
+                          </div>
+                        </div>
+                        <p className="mt-2 w-full text-[10px] font-normal leading-snug sm:text-xs" style={{ color: t.textMuted }}>
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {currentProfile.paragraphs?.length > 0 && (
+                  <div className="mt-4 space-y-3">
+                    {currentProfile.paragraphs.map((paragraph, index) => (
+                      <HtmlText
+                        key={index}
+                        html={paragraph}
+                        className={sectionIntroAfterH2Class}
+                        style={{ color: t.textSecondary }}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="hidden lg:block">
                 {(currentProfile.table || currentProfile.analysis_html) && (
-                  <div className="grid grid-cols-[0.85fr_1.15fr] gap-8">
+                  <div className="grid grid-cols-[0.85fr_1.15fr] gap-6">
                     <div>
                       {currentProfile.intro_html && (
                         <HtmlText
                           html={currentProfile.intro_html}
-                          className="text-[15px] leading-8"
+                          className={`${sectionIntroAfterH2Class} lg:text-[15px]`}
                           style={{ color: t.textSecondary }}
                         />
                       )}
                       {currentProfile.analysis_html && (
                         <div
-                          className="mt-6 rounded-2xl px-5 py-4"
+                          className="mt-4 rounded-xl px-4 py-3"
                           style={{
                             background: t.isDark ? "rgba(255,255,255,0.03)" : lightMutedBg,
                             border: `1px solid ${t.cardBorder}`,
@@ -659,7 +662,7 @@ const TargetBuyerSection = ({ data }) => {
                         >
                           <HtmlText
                             html={currentProfile.analysis_html}
-                            className="text-sm leading-7"
+                            className={`${sectionIntroAfterH2Class} lg:text-[15px]`}
                             style={{ color: t.textSecondary }}
                           />
                         </div>
@@ -668,7 +671,7 @@ const TargetBuyerSection = ({ data }) => {
                     {currentProfile.table && (
                       <div>
                         <p
-                          className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em]"
+                          className="mb-2.5 text-[12px] font-semibold uppercase tracking-[0.18em]"
                           style={{ color: ACCENT }}
                         >
                           {currentProfile.table.title}
@@ -681,46 +684,46 @@ const TargetBuyerSection = ({ data }) => {
 
                 {currentProfile.strategies?.length > 0 && (
                   <div>
-                    <div className="grid grid-cols-[0.78fr_1.22fr] gap-8">
+                    <div className="grid grid-cols-[0.78fr_1.22fr] gap-6">
                       <div>
                         {currentProfile.intro_html && (
                           <HtmlText
                             html={currentProfile.intro_html}
-                            className="text-[15px] leading-8"
+                            className={`${sectionIntroAfterH2Class} lg:text-[15px]`}
                             style={{ color: t.textSecondary }}
                           />
                         )}
                       </div>
-                      <div className="space-y-3">
+                      <div className="space-y-2.5">
                         {currentProfile.strategies.map((strategy, index) => (
                           <div
                             key={strategy.number}
-                            className="rounded-2xl px-5 py-4"
+                            className="rounded-xl px-4 py-3"
                             style={{
                               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
                               border: `1px solid ${t.cardBorder}`,
                             }}
                           >
-                            <div className="grid grid-cols-[64px_1fr] gap-4">
+                            <div className="grid grid-cols-[56px_1fr] gap-3">
                               <div
-                                className="flex h-12 w-12 items-center justify-center rounded-xl"
+                                className="flex h-11 w-11 items-center justify-center rounded-lg"
                                 style={{
                                   color: ACCENT,
                                   background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1",
                                 }}
                               >
-                                <FlipperStrategyIcon index={index} size={28} />
+                                <FlipperStrategyIcon index={index} size={26} />
                               </div>
                               <div>
-                                <div className="flex items-center gap-3">
-                                  <h4 className="text-lg font-semibold leading-5" style={{ color: t.text }}>
+                                <div className="flex items-center gap-2.5">
+                                  <h4 className="text-base font-semibold leading-tight" style={{ color: t.text }}>
                                     {strategy.title}
                                   </h4>
                                   <span className="rounded-full px-2 py-0.5 text-[11px]" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1", color: ACCENT }}>
                                     {strategy.timing}
                                   </span>
                                 </div>
-                                <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>
+                                <p className={`mt-1.5 ${sectionIntroAfterH2Class} lg:text-[15px]`} style={{ color: t.textSecondary }}>
                                   {strategy.content}
                                 </p>
                               </div>
@@ -731,13 +734,13 @@ const TargetBuyerSection = ({ data }) => {
                     </div>
                     {currentProfile.verdict && (
                       <div
-                        className="mt-4 rounded-2xl px-5 py-4"
+                        className="mt-3 rounded-xl px-4 py-3"
                         style={{
                           background: t.isDark ? "rgba(182,138,53,0.08)" : "#fdf7e8",
                           border: "1px solid rgba(182,138,53,0.2)",
                         }}
                       >
-                        <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+                        <p className={`${sectionIntroAfterH2Class} lg:text-[15px]`} style={{ color: t.textSecondary }}>
                           <span className="font-semibold" style={{ color: ACCENT }}>
                             {currentProfile.verdict.label}:
                           </span>{" "}
@@ -749,18 +752,18 @@ const TargetBuyerSection = ({ data }) => {
                 )}
 
                 {currentProfile.infrastructure?.length > 0 && (
-                  <div className="grid grid-cols-[0.75fr_1fr_0.78fr] gap-6">
+                  <div className="grid grid-cols-[0.75fr_1fr_0.78fr] gap-5">
                     <div>
                       {currentProfile.intro_html && (
                         <HtmlText
                           html={currentProfile.intro_html}
-                          className="text-[15px] leading-8"
+                          className={`${sectionIntroAfterH2Class} lg:text-[15px]`}
                           style={{ color: t.textSecondary }}
                         />
                       )}
                     </div>
                     <div>
-                      <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.18em]" style={{ color: ACCENT }}>
+                      <p className="mb-2.5 text-[12px] font-semibold uppercase tracking-[0.18em]" style={{ color: ACCENT }}>
                         {currentProfile.infrastructure_title}
                       </p>
                       <DataTable
@@ -773,11 +776,11 @@ const TargetBuyerSection = ({ data }) => {
                         }}
                       />
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-2.5">
                       {currentProfile.notes?.map((note) => (
                         <div
                           key={note.label}
-                          className="rounded-2xl p-5"
+                          className="rounded-xl p-4"
                           style={{
                             background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
                             border: `1px solid ${t.cardBorder}`,
@@ -785,7 +788,7 @@ const TargetBuyerSection = ({ data }) => {
                         >
                           <HtmlText
                             html={`<strong>${note.label}:</strong> ${note.text}`}
-                            className="text-sm leading-7"
+                            className={`${sectionIntroAfterH2Class} lg:text-[15px]`}
                             style={{ color: t.textSecondary }}
                           />
                         </div>
@@ -795,38 +798,42 @@ const TargetBuyerSection = ({ data }) => {
                 )}
 
                 {currentProfile.stats?.length > 0 && (
-                  <div className="grid grid-cols-[0.78fr_1.22fr] gap-8">
+                  <div className="grid grid-cols-[0.78fr_1.22fr] gap-6">
                     <div>
                       {currentProfile.paragraphs?.map((paragraph, index) => (
                         <HtmlText
                           key={index}
                           html={paragraph}
-                          className="mb-4 text-[15px] leading-8 last:mb-0"
+                          className={`mb-3 last:mb-0 ${sectionIntroAfterH2Class} lg:text-[15px]`}
                           style={{ color: t.textSecondary }}
                         />
                       ))}
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3">
                       {currentProfile.stats.map((stat) => (
                         <div
                           key={stat.label}
-                          className="rounded-2xl px-6 py-6"
+                          className="rounded-xl px-4 py-4"
                           style={{
                             background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdfa",
                             border: `1px solid ${t.cardBorder}`,
                           }}
                         >
-                          <div
-                            className="mb-4 flex h-12 w-12 items-center justify-center rounded-full"
-                            style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
-                          >
-                            <ProfileIcon icon={stat.icon} size={18} />
+                          <div className="flex items-start gap-2.5">
+                            <div
+                              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                              style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+                            >
+                              <ProfileIcon icon={stat.icon} size={17} />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-lg font-semibold leading-tight" style={{ color: t.text }}>
+                                {stat.value}
+                              </p>
+                            </div>
                           </div>
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: t.textMuted }}>
+                          <p className="mt-2 w-full text-[11px] font-normal leading-snug" style={{ color: t.textMuted }}>
                             {stat.label}
-                          </p>
-                          <p className="mt-2 text-xl font-semibold leading-6" style={{ color: t.text }}>
-                            {stat.value}
                           </p>
                         </div>
                       ))}
@@ -838,17 +845,17 @@ const TargetBuyerSection = ({ data }) => {
           )}
         </div>
 
-        <div className="mt-8">
-          <h3 className="text-[1.7rem] font-medium tracking-[-0.02em] lg:text-2xl" style={{ color: t.text }}>
+        <div className="mt-6">
+          <h3 className="text-xl font-medium tracking-[-0.02em] lg:text-xl" style={{ color: t.text }}>
             <span style={{ color: ACCENT }}>{data.matrix_title_prefix}</span>{" "}
             <span>{data.matrix_title_suffix}</span>
           </h3>
 
-          <div className="mt-4 space-y-4 lg:hidden">
+          <div className="mt-3 space-y-2.5 lg:hidden">
             {data.matrix.map((item) => (
               <div
                 key={item.profile}
-                className="rounded-[24px] px-4 py-4 sm:px-5"
+                className="rounded-xl px-3 py-3 sm:px-4"
                 style={{
                   background: lightCardBg,
                   border: `1px solid ${t.cardBorder}`,
@@ -861,14 +868,14 @@ const TargetBuyerSection = ({ data }) => {
                   </h4>
                   <VerdictPill label={item.verdict_label} tone={item.verdict_tone} />
                 </div>
-                <p className="mt-3 text-sm leading-7 sm:text-[15px]" style={{ color: t.textSecondary }}>
+                <p className={`mt-2 ${sectionIntroAfterH2Class}`} style={{ color: t.textSecondary }}>
                   {item.rationale}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-4 hidden overflow-hidden rounded-[24px] lg:block" style={{ border: `1px solid ${t.cardBorder}`, background: lightCardBg, boxShadow: shadow }}>
+          <div className="mt-3 hidden overflow-hidden rounded-xl lg:block" style={{ border: `1px solid ${t.cardBorder}`, background: lightCardBg, boxShadow: shadow }}>
             <table className="w-full text-left text-sm">
               <thead style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#faf5eb" }}>
                 <tr>
@@ -897,7 +904,7 @@ const TargetBuyerSection = ({ data }) => {
             </table>
           </div>
         </div>
-        <SectionExpertCta cta={data.section_cta} t={t} className="mt-8" />
+        <SectionExpertCta cta={data.section_cta} t={t} className="mt-6" />
       </div>
     </section>
   );

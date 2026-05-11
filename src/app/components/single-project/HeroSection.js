@@ -118,7 +118,7 @@ const ExpertBadgeIcon = () => (
 const PrimaryCtaButton = ({ cta, mobile = false }) => {
   const { text, href } = getCtaDetails(cta);
   const className = [
-    mobile ? "w-full px-4 py-4 text-[0.95rem]" : "w-full px-8 py-5 text-xl",
+    mobile ? "w-full px-[12px] py-[12px] text-[0.95rem]" : "w-full px-7 py-4 text-lg",
     "rounded-[8px] font-semibold transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90 text-left",
   ].join(" ");
   const style = { background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)", color: "#ffffff" };
@@ -152,8 +152,8 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
       ];
 
   const cardClass = mobile
-    ? "rounded-[10px] border px-5 py-5"
-    : "px-6 py-4";
+    ? "rounded-[10px] border px-[12px] py-[12px]"
+    : "px-5 py-3";
   const cardStyle = mobile
     ? {
         background: "rgba(255,255,255,0.55)",
@@ -178,7 +178,7 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
     <div className={cardClass} style={cardStyle}>
       <div className={mobile ? "flex flex-col gap-4" : "grid grid-cols-[1.25fr_repeat(3,1fr)] items-center"}>
         <div
-          className={mobile ? "flex items-center gap-3 border-b pb-4" : "flex items-center gap-4 pr-6"}
+          className={mobile ? "flex items-center gap-3 border-b pb-4" : "flex items-center gap-3.5 pr-5"}
           style={mobile ? { borderColor: dividerColor } : undefined}
         >
           <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]" style={{ background: "linear-gradient(180deg, #C99432 0%, #AE7A22 100%)" }}>
@@ -216,7 +216,7 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
               <a
                 key={`${action.label}-${index}`}
                 href={action.href || "#"}
-                className={mobile ? "px-2 text-center transition-opacity hover:opacity-80" : "flex items-center gap-3 border-l px-5 transition-opacity hover:opacity-80"}
+                className={mobile ? "px-2 text-center transition-opacity hover:opacity-80" : "flex items-center gap-3 border-l px-4 transition-opacity hover:opacity-80"}
                 style={mobile ? undefined : { borderColor: dividerColor }}
               >
                 {content}
@@ -394,7 +394,7 @@ const HeroSection = ({ data }) => {
     },
   ].filter((item) => item.label);
   const snapshotCardClass =
-    "rounded-2xl p-6 lg:p-8 border flex flex-col overflow-hidden max-lg:min-h-[18rem] max-lg:max-h-[18rem] lg:h-[24rem]";
+    "rounded-2xl p-6 lg:p-7 border flex flex-col overflow-hidden max-lg:min-h-[18rem] max-lg:max-h-[18rem] lg:h-[24rem]";
   const snapshotCardStyle = {
     border: "1px solid rgba(182,138,53,0.2)",
     background: t.isDark ? "rgba(182,138,53,0.05)" : t.cardBg,
@@ -481,7 +481,7 @@ const HeroSection = ({ data }) => {
           }}
         />
 
-        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-3 lg:px-12 py-8 lg:py-14 flex items-end">
+        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-3 lg:px-12 py-7 lg:py-11 flex items-end">
           <div className="w-full max-w-[640px] lg:max-w-none">
             <div className="flex flex-wrap gap-3">
               {chipItems.map((item, i) => (
@@ -504,7 +504,7 @@ const HeroSection = ({ data }) => {
               ))}
             </div>
 
-            <div className="relative mt-6 w-fit max-w-full">
+            <div className="relative mt-3 w-fit max-w-full">
               <div
                 className="pointer-events-none absolute -inset-x-5 -inset-y-5 rounded-[34px] bg-white/70 blur-2xl sm:-inset-x-10 sm:-inset-y-6 sm:rounded-[42px]"
                 aria-hidden="true"
@@ -524,18 +524,20 @@ const HeroSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="mt-8 hidden max-w-[1080px] overflow-hidden rounded-[18px] border border-white/45 bg-white/55 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl lg:block">
+            <div className="mt-6 hidden max-w-[1080px] overflow-hidden rounded-[18px] border border-white/45 bg-white/55 p-4 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl lg:block">
               <div className="grid grid-cols-4 divide-x divide-white/45">
                 {statCards.map((item) => (
-                  <div key={item.key} className="min-w-0 px-6 py-3">
-                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#B68A35]">
-                      {renderStatIcon(item.key, "currentColor")}
+                  <div key={item.key} className="min-w-0 px-5 py-2.5">
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#B68A35]">
+                        {renderStatIcon(item.key, "currentColor")}
+                      </div>
+                      <p className="min-w-0 flex-1 text-[11px] font-semibold uppercase leading-tight tracking-[0.18em] text-[#9b835e]">
+                        {item.label}
+                      </p>
                     </div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9b835e]">
-                      {item.label}
-                    </p>
                     <p
-                      className={`mt-2 text-2xl font-semibold tracking-tight text-[#161616] ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
+                      className={`mt-1.5 text-2xl font-semibold tracking-tight text-[#161616] ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
                       style={{ fontFamily: HERO_STAT_UI_SERIF }}
                     >
                       {item.value}
@@ -544,7 +546,7 @@ const HeroSection = ({ data }) => {
                 ))}
               </div>
 
-              <div className="mt-5 flex w-full flex-col gap-4 border-t border-white/45 pt-5">
+              <div className="mt-4 flex w-full flex-col gap-3.5 border-t border-white/45 pt-4">
                 <PrimaryCtaButton cta={hero.cta_primary} />
                 <div className="flex w-full justify-center">
                   <ExpertContactCard cta={hero.cta_secondary} />
@@ -552,20 +554,22 @@ const HeroSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 gap-3 lg:hidden">
+            <div className="mt-4 grid grid-cols-2 gap-3 lg:hidden">
               {statCards.map((item) => (
                 <div
                   key={item.key}
                   className="min-w-0 rounded-xl border border-white/45 bg-white/55 p-3 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl sm:p-4"
                 >
-                  <div className="mb-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#B68A35] sm:mb-3 sm:h-9 sm:w-9">
-                    {renderStatIcon(item.key, "currentColor")}
+                  <div className="flex items-center gap-2 sm:gap-2.5">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#B68A35] sm:h-9 sm:w-9">
+                      {renderStatIcon(item.key, "currentColor")}
+                    </div>
+                    <p className="min-w-0 flex-1 text-[10px] font-semibold uppercase leading-tight tracking-[0.18em] text-[#9b835e] sm:text-[11px]">
+                      {item.label}
+                    </p>
                   </div>
-                  <p className="text-[10px] font-semibold uppercase leading-tight tracking-[0.18em] text-[#9b835e] sm:text-[11px]">
-                    {item.label}
-                  </p>
                   <p
-                    className={`mt-1.5 text-lg font-semibold tracking-tight text-[#161616] sm:mt-2 sm:text-xl ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
+                    className={`mt-1.5 text-lg font-semibold tracking-tight text-[#161616] sm:text-xl ${item.key === "price_per_sqft" ? "whitespace-nowrap" : ""}`}
                     style={{ fontFamily: HERO_STAT_UI_SERIF }}
                   >
                     {item.value}
@@ -574,7 +578,7 @@ const HeroSection = ({ data }) => {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col gap-5 lg:hidden">
+            <div className="mt-4 flex flex-col gap-5 lg:hidden">
               <PrimaryCtaButton cta={hero.cta_primary} mobile />
               <ExpertContactCard cta={hero.cta_secondary} mobile />
             </div>
@@ -587,7 +591,7 @@ const HeroSection = ({ data }) => {
         <div className="grid gap-4 lg:grid-cols-2 lg:items-stretch">
           <div className={snapshotCardClass} style={snapshotCardStyle}>
             <h3
-              className="shrink-0 text-lg lg:text-2xl font-semibold mb-4 flex items-center gap-3"
+              className="shrink-0 text-lg lg:text-2xl font-semibold mb-4 lg:mb-3 flex items-center gap-3"
               style={{ color: t.text }}
             >
               <span
@@ -635,7 +639,7 @@ const HeroSection = ({ data }) => {
 
           <div className={snapshotCardClass} style={snapshotCardStyle}>
             <h3
-              className="shrink-0 text-lg lg:text-2xl font-semibold mb-4 flex items-center gap-3"
+              className="shrink-0 text-lg lg:text-2xl font-semibold mb-4 lg:mb-3 flex items-center gap-3"
               style={{ color: t.text }}
             >
               <span
@@ -704,14 +708,14 @@ const HeroSection = ({ data }) => {
           </div>
         )}
 
-        <div className="mt-16 hidden lg:block">
+        <div className="mt-14 hidden lg:block">
           <h3 className="text-center text-[2rem] font-semibold tracking-tight" style={{ color: t.text }}>
             <span>{keyFactsSection.title_prefix || "Key Facts at a"} </span>
             <span style={{ color: GOLD }}>{keyFactsSection.title_accent || "Glance"}</span>
           </h3>
 
-          <div className="mt-5 grid grid-cols-3 gap-3">
-            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+          <div className="mt-4 grid grid-cols-3 gap-3">
+            <div className="rounded-2xl border p-5" style={desktopFactsCardStyle}>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -744,7 +748,7 @@ const HeroSection = ({ data }) => {
               )}
             </div>
 
-            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+            <div className="rounded-2xl border p-5" style={desktopFactsCardStyle}>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -767,7 +771,7 @@ const HeroSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+            <div className="rounded-2xl border p-5" style={desktopFactsCardStyle}>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -787,7 +791,7 @@ const HeroSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+            <div className="rounded-2xl border p-5" style={desktopFactsCardStyle}>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -806,7 +810,7 @@ const HeroSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+            <div className="rounded-2xl border p-5" style={desktopFactsCardStyle}>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -826,7 +830,7 @@ const HeroSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="rounded-2xl border p-6" style={desktopFactsCardStyle}>
+            <div className="rounded-2xl border p-5" style={desktopFactsCardStyle}>
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={desktopFactsIconStyle}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -857,7 +861,7 @@ const HeroSection = ({ data }) => {
             </div>
           </div>
 
-          <div className="mt-3 rounded-2xl border p-6" style={desktopFactsCardStyle}>
+          <div className="mt-3 rounded-2xl border p-5" style={desktopFactsCardStyle}>
             <div className="grid grid-cols-[220px_1fr] items-center gap-8">
               <div>
                 <p className="text-2xl font-semibold leading-tight" style={{ color: t.text }}>{paymentPlan.label || "Payment Plan"}</p>
@@ -892,13 +896,13 @@ const HeroSection = ({ data }) => {
           </div>
         </div>
 
-        <div className="mt-8 lg:hidden">
+        <div className="mt-4 lg:hidden">
           <h3 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] font-semibold tracking-tight" style={{ color: t.text }}>
             <span>{keyFactsSection.title_prefix || "Key Facts at a"} </span>
             <span style={{ color: GOLD }}>{keyFactsSection.title_accent || "Glance"}</span>
           </h3>
 
-          <div className="mt-6 overflow-hidden rounded-[14px]" style={keyFactsPanelStyle}>
+          <div className="mt-2 overflow-hidden rounded-[14px]" style={keyFactsPanelStyle}>
             <div className="px-5 py-5 sm:px-6 sm:py-6 lg:px-8">
               <div className="flex items-start gap-4 sm:gap-5">
                 <div
@@ -1200,7 +1204,7 @@ const HeroSection = ({ data }) => {
           </div>
         </div>
 
-        <div className="mt-16 lg:hidden">
+        <div className="mt-5 lg:hidden">
           <div
             className="overflow-hidden md:rounded-2xl"
             style={{

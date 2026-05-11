@@ -6,6 +6,8 @@ import SectionImageHeader from "./SectionImageHeader";
 
 const GOLD = "#B68A35";
 
+const sectionH2Class = "text-[32px] font-semibold leading-none";
+
 const ChevronIcon = ({ open, color = GOLD }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +41,7 @@ const SectionIconBadge = ({ icon, t }) => (
 
 const MobileAccordion = ({ title, icon, isOpen, onToggle, children, t }) => (
   <div
-    className="overflow-hidden rounded-2xl"
+    className="overflow-hidden rounded-xl"
     style={{
       background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
       border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -49,9 +51,9 @@ const MobileAccordion = ({ title, icon, isOpen, onToggle, children, t }) => (
     <button
       type="button"
       onClick={onToggle}
-      className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left"
+      className="flex w-full items-center justify-between gap-2.5 px-3 py-3 text-left"
     >
-      <div className="flex min-w-0 items-center gap-3">
+      <div className="flex min-w-0 items-center gap-2.5">
         <SectionIconBadge icon={icon} t={t} />
         <span className="text-[18px] font-semibold leading-6" style={{ color: t.text }}>
           {title}
@@ -61,10 +63,10 @@ const MobileAccordion = ({ title, icon, isOpen, onToggle, children, t }) => (
     </button>
     <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[4000px] opacity-100" : "max-h-0 opacity-0"}`}>
       <div
-        className="px-4 pb-4 pt-0"
+        className="px-3 pb-3 pt-0"
         style={{ borderTop: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}
       >
-        <div className="pt-4">{children}</div>
+        <div className="pt-3">{children}</div>
       </div>
     </div>
   </div>
@@ -278,13 +280,13 @@ const PriceEvolutionNote = ({ note, t }) => {
 
   return (
     <div
-      className="rounded-2xl p-4"
+      className="rounded-xl p-3"
       style={{
         background: t.isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
         border: `1px solid ${t.isDark ? "rgba(217,176,95,0.18)" : "rgba(182,138,53,0.14)"}`,
       }}
     >
-      <div className="flex gap-3">
+      <div className="flex gap-2.5">
         <div className="shrink-0 pt-0.5">
           <InfoIcon />
         </div>
@@ -322,11 +324,11 @@ const UnitMixSection = ({ data }) => {
   };
 
   return (
-    <section style={{ background: t.bg }} className="py-6 lg:py-10">
+    <section style={{ background: t.bg }} className="py-5 lg:py-8">
       <div className="max-w-7xl mx-auto px-3">
-        <div className="mb-10 lg:hidden">
+        <div className="mb-6 lg:hidden">
           <div>
-            <h2 className="text-[2.2rem] font-semibold leading-[1.06]" style={{ color: t.text }}>
+            <h2 className={sectionH2Class} style={{ color: t.text }}>
               {primary}
               {accent && (
                 <span className="mt-1 block italic" style={{ color: GOLD }}>
@@ -335,15 +337,15 @@ const UnitMixSection = ({ data }) => {
               )}
             </h2>
             {data.subtitle && (
-              <p className="mt-4 max-w-sm text-[15px] leading-6" style={{ color: t.textSecondary }}>
+              <p className="mt-3 max-w-sm text-[15px] leading-6" style={{ color: t.textSecondary }}>
                 {data.subtitle}
               </p>
             )}
           </div>
         </div>
 
-        <div className="space-y-4 lg:hidden">
-          <div className="space-y-4">
+        <div className="space-y-3 lg:hidden">
+          <div className="space-y-3">
             {data.mobile_unit_prompt && (
               <div className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                 <span>{data.mobile_unit_prompt.replace(/\s*•\s*scroll\s*→?/i, "").trim()}</span>
@@ -351,7 +353,7 @@ const UnitMixSection = ({ data }) => {
             )}
 
             <div
-              className="flex gap-1 rounded-2xl p-1"
+              className="flex gap-1 rounded-xl p-1"
               style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f7f3eb", border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }}
             >
               {bedroomTabs.map((tab) => (
@@ -359,7 +361,7 @@ const UnitMixSection = ({ data }) => {
                   key={tab}
                   type="button"
                   onClick={() => setMobileBedroomTab(tab)}
-                  className="flex-1 rounded-[14px] px-3 py-3 text-sm font-medium transition-colors"
+                  className="flex-1 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
                   style={{
                     background: mobileBedroomTab === tab ? GOLD : "transparent",
                     color: mobileBedroomTab === tab ? "#fff" : t.text,
@@ -371,7 +373,7 @@ const UnitMixSection = ({ data }) => {
               ))}
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {selectedMobileUnits.map((unit, index) => {
                 const selectedUnitMeta = getAvailabilityMeta(unit.availability, t);
                 const unitName = splitUnitName(unit.type_name);
@@ -379,19 +381,19 @@ const UnitMixSection = ({ data }) => {
                 return (
                   <div
                     key={`${unit.type_name}-${index}`}
-                    className="rounded-[24px] p-4"
+                    className="rounded-xl p-3"
                     style={{
                       background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                       border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
                       boxShadow: t.isDark ? "0 10px 24px rgba(0,0,0,0.18)" : "0 10px 24px rgba(15,23,42,0.04)",
                     }}
                   >
-                    <div className="mb-4 flex items-start justify-between gap-3">
+                    <div className="mb-3 flex items-start justify-between gap-2.5">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                           {unit.cluster}
                         </p>
-                        <h3 className="mt-2 text-[2rem] font-semibold leading-[1.02]" style={{ color: t.text }}>
+                        <h3 className="mt-1.5 text-[2rem] font-semibold leading-[1.02]" style={{ color: t.text }}>
                           {unitName.main}
                         </h3>
                         {unitName.sub && (
@@ -400,7 +402,7 @@ const UnitMixSection = ({ data }) => {
                           </p>
                         )}
                         <span
-                          className="mt-3 inline-flex rounded-full px-3 py-1 text-sm"
+                          className="mt-2 inline-flex rounded-full px-3 py-1 text-sm"
                           style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#F4E8CF", color: GOLD }}
                         >
                           {unit.cluster}
@@ -419,7 +421,7 @@ const UnitMixSection = ({ data }) => {
                       </span>
                     </div>
 
-                    <div className="overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}>
+                    <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}>
                       {[
                         { label: "Units Available", value: unit.units_count },
                         { label: "Built-up Area (sqft)", value: unit.area_sqft },
@@ -428,7 +430,7 @@ const UnitMixSection = ({ data }) => {
                       ].map((item, i) => (
                         <div
                           key={item.label}
-                          className="flex items-center justify-between gap-4 px-4 py-3"
+                          className="flex items-center justify-between gap-3 px-3 py-2.5"
                           style={{ borderTop: i === 0 ? "none" : `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}
                         >
                           <span className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: t.textMuted }}>
@@ -446,21 +448,21 @@ const UnitMixSection = ({ data }) => {
             </div>
 
             <div
-              className="rounded-[22px] p-4"
+              className="rounded-xl p-3"
               style={{
                 background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
                 border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
               }}
             >
-              <div className="flex gap-3">
+              <div className="flex items-start gap-2.5">
                 <div className="shrink-0 pt-0.5">
                   <InfoIcon />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                     Pricing Note
                   </p>
-                  <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+                  <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }}>
                     {data.pricing_note}
                   </p>
                 </div>
@@ -475,14 +477,14 @@ const UnitMixSection = ({ data }) => {
             onToggle={() => toggleMobileSection("pricing")}
             t={t}
           >
-            <div className="space-y-5">
+            <div className="space-y-4">
               <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
               {commentary.factors.map((factor, i) => (
                 <div key={i}>
                   <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: GOLD }}>
                     {factor.title}
                   </p>
-                  <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
+                  <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
                 </div>
               ))}
             </div>
@@ -495,9 +497,9 @@ const UnitMixSection = ({ data }) => {
             onToggle={() => toggleMobileSection("graph")}
             t={t}
           >
-            <div className="space-y-5">
+            <div className="space-y-4">
               <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.intro }} />
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {mobileDriverBars.map((driver, i) => (
                   <div key={i}>
                     <div className="mb-2 flex items-end justify-between gap-4">
@@ -538,21 +540,21 @@ const UnitMixSection = ({ data }) => {
             onToggle={() => toggleMobileSection("floorplans")}
             t={t}
           >
-            <p className="mb-4 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+            <p className="mb-3 text-[14px] leading-6" style={{ color: t.textSecondary }}>
               {data.floor_plan_intro}
             </p>
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {floorPlans.map((plan, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 rounded-xl p-3"
+                  className="flex items-start gap-2.5 rounded-lg p-2.5"
                   style={{
                     background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                     border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                   }}
                 >
                   <div
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-base font-bold"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-base font-bold"
                     style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
                   >
                     {plan.bedrooms}B
@@ -575,26 +577,28 @@ const UnitMixSection = ({ data }) => {
             onToggle={() => toggleMobileSection("features")}
             t={t}
           >
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2.5">
               {featureCards.map((feature, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl p-4"
+                  className="rounded-xl p-3"
                   style={{
                     background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                     border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                   }}
                 >
-                  <div
-                    className="mb-4 flex h-9 w-9 items-center justify-center rounded-full"
-                    style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
-                  >
-                    <FeatureGlyph index={i} />
+                  <div className="mb-2 flex items-center gap-2">
+                    <div
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                      style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                    >
+                      <FeatureGlyph index={i} />
+                    </div>
+                    <h4 className="min-w-0 flex-1 text-[15px] font-semibold leading-tight" style={{ color: t.text }}>
+                      {feature.title}
+                    </h4>
                   </div>
-                  <h4 className="text-[15px] font-semibold" style={{ color: t.text }}>
-                    {feature.title}
-                  </h4>
-                  <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }}>
+                  <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                     {feature.text}
                   </p>
                 </div>
@@ -603,21 +607,21 @@ const UnitMixSection = ({ data }) => {
           </MobileAccordion>
 
           <div
-            className="rounded-[22px] p-4"
+            className="rounded-xl p-3"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
-            <div className="flex gap-3">
+            <div className="flex items-start gap-2.5">
               <div className="shrink-0 pt-0.5">
                 <InfoIcon />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                   {data.insider_tip_title || "What portals don't tell you"}
                 </p>
-                <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
+                <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
               </div>
             </div>
           </div>
@@ -630,16 +634,16 @@ const UnitMixSection = ({ data }) => {
             accent={accent}
             subtitle={data.subtitle}
             t={t}
-            className="mb-7 rounded-b-[28px]"
+            className="mb-5 rounded-b-xl"
           />
 
-          <div className="mx-auto mb-7 flex max-w-xl gap-1 rounded-xl p-1" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f7f3eb", border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }}>
+          <div className="mx-auto mb-5 flex max-w-xl gap-1 rounded-xl p-1" style={{ background: t.isDark ? "rgba(255,255,255,0.04)" : "#f7f3eb", border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}` }}>
             {bedroomTabs.map((tab) => (
               <button
                 key={tab}
                 type="button"
                 onClick={() => setDesktopBedroomTab(tab)}
-                className="flex-1 rounded-lg px-8 py-3 text-sm font-medium transition-colors"
+                className="flex-1 rounded-lg px-6 py-2.5 text-sm font-medium transition-colors"
                 style={{
                   background: desktopBedroomTab === tab ? GOLD : "transparent",
                   color: desktopBedroomTab === tab ? "#fff" : t.text,
@@ -651,7 +655,7 @@ const UnitMixSection = ({ data }) => {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-2 gap-4">
             {selectedDesktopUnits.map((unit, index) => {
               const selectedUnitMeta = getAvailabilityMeta(unit.availability, t);
               const unitName = splitUnitName(unit.type_name);
@@ -659,19 +663,19 @@ const UnitMixSection = ({ data }) => {
               return (
                 <div
                   key={`${unit.type_name}-${index}`}
-                  className="rounded-[24px] p-6"
+                  className="rounded-xl p-5"
                   style={{
                     background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
                     border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
                     boxShadow: t.isDark ? "0 10px 24px rgba(0,0,0,0.18)" : "0 10px 24px rgba(15,23,42,0.04)",
                   }}
                 >
-                  <div className="mb-5 flex items-start justify-between gap-4">
+                  <div className="mb-4 flex items-start justify-between gap-3">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                         {unit.cluster}
                       </p>
-                      <h3 className="mt-2 text-[2rem] font-semibold leading-[1.02]" style={{ color: t.text }}>
+                      <h3 className="mt-1.5 text-[2rem] font-semibold leading-[1.02]" style={{ color: t.text }}>
                         {unitName.main}
                         {unitName.sub && (
                           <span className="ml-1 text-[1.45rem] font-normal" style={{ color: t.textSecondary }}>
@@ -680,7 +684,7 @@ const UnitMixSection = ({ data }) => {
                         )}
                       </h3>
                       <span
-                        className="mt-3 inline-flex rounded-full px-3 py-1 text-sm"
+                        className="mt-2 inline-flex rounded-full px-3 py-1 text-sm"
                         style={{ background: t.isDark ? "rgba(182,138,53,0.12)" : "#F4E8CF", color: GOLD }}
                       >
                         {unit.cluster}
@@ -699,7 +703,7 @@ const UnitMixSection = ({ data }) => {
                     </span>
                   </div>
 
-                  <div className="overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}>
+                  <div className="overflow-hidden rounded-xl" style={{ border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}>
                     {[
                       { label: "Units Available", value: unit.units_count, icon: <OverviewIcon /> },
                       { label: "Built-up Area (sqft)", value: unit.area_sqft, icon: <FloorplanIcon /> },
@@ -708,10 +712,10 @@ const UnitMixSection = ({ data }) => {
                     ].map((item, i) => (
                       <div
                         key={item.label}
-                        className="flex items-center justify-between gap-4 px-5 py-4"
+                        className="flex items-center justify-between gap-3 px-4 py-3"
                         style={{ borderTop: i === 0 ? "none" : `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}
                       >
-                        <span className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: t.textMuted }}>
+                        <span className="flex min-w-0 items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: t.textMuted }}>
                           <span className="text-[#B68A35]">{item.icon}</span>
                           {item.label}
                         </span>
@@ -727,29 +731,29 @@ const UnitMixSection = ({ data }) => {
           </div>
 
           <div
-            className="mt-5 rounded-[22px] p-5"
+            className="mt-4 rounded-xl p-4"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.02)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
-            <div className="flex gap-4">
+            <div className="flex items-start gap-3">
               <div className="shrink-0 pt-0.5">
                 <InfoIcon />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                   Pricing Note
                 </p>
-                <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+                <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }}>
                   {data.pricing_note}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="mt-5 grid grid-cols-2 items-start gap-4">
-            <div className="space-y-4">
+          <div className="mt-4 grid grid-cols-2 items-start gap-3">
+            <div className="space-y-3">
               <MobileAccordion
                 title="Pricing Commentary"
                 icon={<PricingIcon />}
@@ -757,14 +761,14 @@ const UnitMixSection = ({ data }) => {
                 onToggle={() => toggleMobileSection("pricing")}
                 t={t}
               >
-                <div className="space-y-5">
+                <div className="space-y-4">
                   <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
                   {commentary.factors.map((factor, i) => (
                     <div key={i}>
                       <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: GOLD }}>
                         {factor.title}
                       </p>
-                      <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
+                      <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
                     </div>
                   ))}
                 </div>
@@ -777,21 +781,21 @@ const UnitMixSection = ({ data }) => {
                 onToggle={() => toggleMobileSection("floorplans")}
                 t={t}
               >
-                <p className="mb-4 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+                <p className="mb-3 text-[14px] leading-6" style={{ color: t.textSecondary }}>
                   {data.floor_plan_intro}
                 </p>
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   {floorPlans.map((plan, i) => (
                     <div
                       key={i}
-                      className="flex items-start gap-3 rounded-xl p-3"
+                      className="flex items-start gap-2.5 rounded-lg p-2.5"
                       style={{
                         background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                         border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                       }}
                     >
                       <div
-                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-base font-bold"
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-base font-bold"
                         style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
                       >
                         {plan.bedrooms}B
@@ -808,7 +812,7 @@ const UnitMixSection = ({ data }) => {
               </MobileAccordion>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               <MobileAccordion
                 title="Price Evolution Expectation"
                 icon={<GraphIcon />}
@@ -816,9 +820,9 @@ const UnitMixSection = ({ data }) => {
                 onToggle={() => toggleMobileSection("graph")}
                 t={t}
               >
-                <div className="space-y-5">
+                <div className="space-y-4">
                   <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.intro }} />
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {mobileDriverBars.map((driver, i) => (
                       <div key={i}>
                         <div className="mb-2 flex items-end justify-between gap-4">
@@ -859,26 +863,28 @@ const UnitMixSection = ({ data }) => {
                 onToggle={() => toggleMobileSection("features")}
                 t={t}
               >
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5">
                   {featureCards.map((feature, i) => (
                     <div
                       key={i}
-                      className="rounded-2xl p-4"
+                      className="rounded-xl p-3"
                       style={{
                         background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                         border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                       }}
                     >
-                      <div
-                        className="mb-4 flex h-9 w-9 items-center justify-center rounded-full"
-                        style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
-                      >
-                        <FeatureGlyph index={i} />
+                      <div className="mb-2 flex items-center gap-2">
+                        <div
+                          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                          style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
+                        >
+                          <FeatureGlyph index={i} />
+                        </div>
+                        <h4 className="min-w-0 flex-1 text-[15px] font-semibold leading-tight" style={{ color: t.text }}>
+                          {feature.title}
+                        </h4>
                       </div>
-                      <h4 className="text-[15px] font-semibold" style={{ color: t.text }}>
-                        {feature.title}
-                      </h4>
-                      <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }}>
+                      <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                         {feature.text}
                       </p>
                     </div>
@@ -907,7 +913,7 @@ const UnitMixSection = ({ data }) => {
               </div>
             </div>
           </div>
-          <div className="mt-5">
+          <div className="mt-4">
             <ExpertContactCard cta={data.expert_cta} t={t} />
           </div>
         </div>

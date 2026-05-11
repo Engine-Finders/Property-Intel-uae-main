@@ -50,7 +50,7 @@ const SectionExpertCta = ({ cta, t, className = "" }) => {
 
   return (
     <div
-      className={`rounded-[22px] border px-5 py-6 lg:px-6 lg:py-4 ${className}`}
+      className={`rounded-[18px] border px-[12px] py-[12px] lg:px-5 lg:py-3 ${className}`}
       style={{
         background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
         borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)",

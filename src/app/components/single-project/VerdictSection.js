@@ -11,6 +11,8 @@ const BLUE = "#1565C0";
 
 const STEP_COLORS = [GREEN, GOLD, BLUE];
 
+const sectionH2Class = "text-[32px] font-semibold leading-none";
+
 const CircleIcon = ({ children, color, bg, size = "h-10 w-10" }) => (
   <div
     className={`flex ${size} shrink-0 items-center justify-center rounded-full`}
@@ -103,7 +105,7 @@ const MobileTabButton = ({ active, onClick, children, t }) => (
   <button
     type="button"
     onClick={onClick}
-    className="relative flex-1 pb-3 text-center text-[13px] font-medium transition-colors"
+    className="relative flex-1 pb-2.5 text-center text-[13px] font-medium transition-colors"
     style={{ color: active ? GOLD : t.textMuted }}
   >
     {children}
@@ -116,7 +118,7 @@ const MobileTabButton = ({ active, onClick, children, t }) => (
 
 const MobileBulletRow = ({ icon, text, t }) => (
   <div
-    className="flex items-start gap-3 px-3 py-3"
+    className="flex items-start gap-2.5 px-2.5 py-2.5"
     style={{ borderTop: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}
   >
     {icon}
@@ -128,14 +130,14 @@ const MobileBulletRow = ({ icon, text, t }) => (
 
 const MobileFitCard = ({ title, items, color, icon, t }) => (
   <div
-    className="rounded-2xl p-4"
+    className="rounded-xl p-2"
     style={{
       background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
       border: `1px solid ${t.isDark ? `${color}33` : `${color}26`}`,
       boxShadow: t.isDark ? "0 8px 24px rgba(0,0,0,0.18)" : "0 8px 24px rgba(15,23,42,0.04)",
     }}
   >
-    <div className="mb-3 flex items-center gap-2">
+    <div className="mb-2 flex items-center gap-2">
       <CircleIcon color={color} bg={`${color}15`} size="h-7 w-7">
         {icon}
       </CircleIcon>
@@ -143,7 +145,7 @@ const MobileFitCard = ({ title, items, color, icon, t }) => (
         {title}
       </p>
     </div>
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       {items.map((item, i) => (
         <div key={i} className="flex items-start gap-2.5">
           <span className="mt-[7px] block h-1.5 w-1.5 rounded-full" style={{ background: color }} />
@@ -166,14 +168,14 @@ const MobileApproachCard = ({ item, index, t }) => {
 
   return (
     <div
-      className="rounded-2xl p-4"
+      className="rounded-xl p-3"
       style={{
         background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
         border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
         boxShadow: t.isDark ? "0 8px 24px rgba(0,0,0,0.18)" : "0 8px 24px rgba(15,23,42,0.04)",
       }}
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3">
         <div className="flex shrink-0 flex-col items-center gap-2">
           <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)"} size="h-11 w-11">
             {iconMap[index]}
@@ -187,7 +189,7 @@ const MobileApproachCard = ({ item, index, t }) => {
             {lead}
             {rest ? <> <span>{rest}</span></> : null}
           </h4>
-          <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }}>
+          <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }}>
             {item.subtitle}
           </p>
         </div>
@@ -197,17 +199,17 @@ const MobileApproachCard = ({ item, index, t }) => {
 };
 
 const MobileVerdict = ({ data, t }) => (
-  <div className="space-y-4">
+  <div className="space-y-3">
     <div
-      className="rounded-2xl p-4"
+      className="rounded-xl p-3"
       style={{
         background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
         border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
         boxShadow: t.isDark ? "0 8px 24px rgba(0,0,0,0.18)" : "0 8px 24px rgba(15,23,42,0.04)",
       }}
     >
-      <div className="flex items-start gap-3">
-        <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)"} size="h-14 w-14">
+      <div className="flex items-start gap-2.5">
+        <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)"} size="h-12 w-12">
           <TrendGlyph />
         </CircleIcon>
         <div>
@@ -220,7 +222,7 @@ const MobileVerdict = ({ data, t }) => (
         </div>
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}>
+      <div className="mt-3 overflow-hidden rounded-xl" style={{ border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}>
         {data.worth_points.map((point, i) => (
           <MobileBulletRow
             key={i}
@@ -252,8 +254,8 @@ const MobileVerdict = ({ data, t }) => (
 );
 
 const MobileGoodFit = ({ data, t }) => (
-  <div className="space-y-4">
-    <div className="grid grid-cols-2 gap-3">
+  <div className="space-y-3">
+    <div className="grid grid-cols-2 gap-2.5">
       <MobileFitCard
         title={data.mobile_good_fit_heading || "Good fit"}
         items={data.good_fit || []}
@@ -274,7 +276,7 @@ const MobileGoodFit = ({ data, t }) => (
       <p className="text-[10px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
         {data.mobile_bottom_line_label || "Bottom Line"}
       </p>
-      <div className="mt-2 flex items-start gap-3">
+      <div className="mt-1.5 flex items-start gap-2.5">
         <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)"} size="h-8 w-8">
           <AimGlyph />
         </CircleIcon>
@@ -287,7 +289,7 @@ const MobileGoodFit = ({ data, t }) => (
 );
 
 const MobileApproach = ({ data, t }) => (
-  <div className="space-y-3">
+  <div className="space-y-2.5">
     {(data.steps || []).map((item, i) => (
       <MobileApproachCard key={i} item={item} index={i} t={t} />
     ))}
@@ -310,18 +312,18 @@ const VerdictSection = ({ data }) => {
   };
 
   return (
-    <section className="px-1 py-5 sm:px-6 sm:py-14 lg:px-8" style={{ background: t.bg }}>
+    <section className="px-1 py-2.5 sm:px-5 sm:py-10 lg:px-8 lg:py-12" style={{ background: t.bg }}>
       <div className="mx-auto max-w-3xl lg:max-w-7xl">
         <div className="md:hidden">
           <div
-            className="rounded-[28px] p-4"
+            className="rounded-xl p-3"
             style={{
               background: t.isDark ? "linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03))" : "linear-gradient(180deg, #fdfbf7, #fbf8f1)",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
               boxShadow: t.isDark ? "0 16px 36px rgba(0,0,0,0.26)" : "0 16px 36px rgba(15,23,42,0.06)",
             }}
           >
-            <h2 className="text-[33px] font-semibold leading-[1.04]" style={{ color: t.text }}>
+            <h2 className={sectionH2Class} style={{ color: t.text }}>
               {data.mobile_title}
               <span className="block italic" style={{ color: GOLD }}>
                 {data.mobile_title_accent}
@@ -329,7 +331,7 @@ const VerdictSection = ({ data }) => {
             </h2>
 
             <div
-              className="mt-5 flex items-center gap-2 border-b"
+              className="mt-4 flex items-center gap-2 border-b"
               style={{ borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)" }}
             >
               <MobileTabButton active={mobileTab === "verdict"} onClick={() => setMobileTab("verdict")} t={t}>
@@ -343,32 +345,32 @@ const VerdictSection = ({ data }) => {
               </MobileTabButton>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-3">
               {mobileTab === "verdict" && <MobileVerdict data={data} t={t} />}
               {mobileTab === "good_fit" && <MobileGoodFit data={data} t={t} />}
               {mobileTab === "approach" && <MobileApproach data={data} t={t} />}
             </div>
 
-            <SectionExpertCta cta={verdictCta} t={t} className="mt-5" />
+            <SectionExpertCta cta={verdictCta} t={t} className="mt-4" />
           </div>
         </div>
 
         <div className="hidden md:block">
           <div className="text-center">
-            <h2 className="text-4xl font-semibold leading-tight lg:text-5xl" style={{ color: t.text }}>
+            <h2 className={sectionH2Class} style={{ color: t.text }}>
               {data.mobile_title || data.h2_worth}
               <span className="italic" style={{ color: GOLD }}> {data.mobile_title_accent || "Worth It?"}</span>
             </h2>
-            <p className="mt-3 text-sm" style={{ color: t.textSecondary }}>
+            <p className="mt-2 text-sm" style={{ color: t.textSecondary }}>
               We break it down for you honestly and transparently, so you can invest with confidence.
             </p>
           </div>
 
-          <div className="mt-8 rounded-3xl p-3" style={desktopCardStyle}>
-            <div className="grid gap-4 lg:grid-cols-[1.35fr_0.9fr_0.9fr_1.35fr]">
-              <div className="rounded-2xl p-6" style={desktopSoftCardStyle}>
-                <div className="flex items-start gap-4">
-                  <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)"} size="h-16 w-16">
+          <div className="mt-6 rounded-2xl p-2.5 lg:p-3" style={desktopCardStyle}>
+            <div className="grid gap-3 lg:grid-cols-[1.35fr_0.9fr_0.9fr_1.35fr]">
+              <div className="rounded-xl p-5" style={desktopSoftCardStyle}>
+                <div className="flex items-start gap-3">
+                  <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)"} size="h-14 w-14">
                     <TrendGlyph />
                   </CircleIcon>
                   <div>
@@ -378,15 +380,15 @@ const VerdictSection = ({ data }) => {
                     <h3 className="mt-1 text-2xl font-semibold leading-tight" style={{ color: t.text }}>
                       {data.mobile_verdict_summary?.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }}>
+                    <p className="mt-1.5 text-sm leading-6" style={{ color: t.textSecondary }}>
                       {data.mobile_verdict_summary?.subtitle}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-6 space-y-4">
+                <div className="mt-5 space-y-3">
                   {data.worth_points.map((point, i) => (
-                    <div key={i} className="flex items-start gap-3">
+                    <div key={i} className="flex items-start gap-2.5">
                       <CircleIcon
                         color={point.icon === "check" ? GREEN : "#CC9A2C"}
                         bg={point.icon === "check" ? `${GREEN}15` : "rgba(204,154,44,0.14)"}
@@ -401,7 +403,7 @@ const VerdictSection = ({ data }) => {
                   ))}
                 </div>
 
-                <div className="mt-6 rounded-2xl p-4" style={{ background: t.isDark ? "rgba(182,138,53,0.1)" : "rgba(182,138,53,0.07)", border: `1px solid ${GOLD}22` }}>
+                <div className="mt-5 rounded-xl p-3" style={{ background: t.isDark ? "rgba(182,138,53,0.1)" : "rgba(182,138,53,0.07)", border: `1px solid ${GOLD}22` }}>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                     Best For
                   </p>
@@ -411,15 +413,17 @@ const VerdictSection = ({ data }) => {
                 </div>
               </div>
 
-              <div className="rounded-2xl p-6" style={desktopSoftCardStyle}>
-                <CircleIcon color={GREEN} bg={`${GREEN}12`} size="mx-auto h-16 w-16">
-                  <CheckGlyph color={GREEN} />
-                </CircleIcon>
-                <h3 className="mt-5 text-center text-xl font-semibold" style={{ color: GREEN }}>
-                  {data.mobile_good_fit_heading || "Good Fit"}
-                </h3>
-                <span className="mx-auto mt-3 block h-px w-12" style={{ background: GREEN }} />
-                <div className="mt-6 space-y-5">
+              <div className="rounded-xl p-5" style={desktopSoftCardStyle}>
+                <div className="flex items-center justify-center gap-3">
+                  <CircleIcon color={GREEN} bg={`${GREEN}12`} size="h-14 w-14">
+                    <CheckGlyph color={GREEN} />
+                  </CircleIcon>
+                  <h3 className="text-center text-xl font-semibold leading-tight" style={{ color: GREEN }}>
+                    {data.mobile_good_fit_heading || "Good Fit"}
+                  </h3>
+                </div>
+                <span className="mx-auto mt-2.5 block h-px w-12" style={{ background: GREEN }} />
+                <div className="mt-5 space-y-4">
                   {data.good_fit.map((item, i) => (
                     <div key={i} className="flex items-start gap-2.5">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GREEN }} />
@@ -429,15 +433,17 @@ const VerdictSection = ({ data }) => {
                 </div>
               </div>
 
-              <div className="rounded-2xl p-6" style={{ ...desktopSoftCardStyle, background: t.isDark ? "rgba(217,125,116,0.06)" : "rgba(217,125,116,0.045)" }}>
-                <CircleIcon color={RED} bg={`${RED}12`} size="mx-auto h-16 w-16">
-                  <XGlyph color={RED} />
-                </CircleIcon>
-                <h3 className="mt-5 text-center text-xl font-semibold" style={{ color: RED }}>
-                  {data.mobile_not_ideal_heading || "Not Ideal If"}
-                </h3>
-                <span className="mx-auto mt-3 block h-px w-12" style={{ background: RED }} />
-                <div className="mt-6 space-y-5">
+              <div className="rounded-xl p-5" style={{ ...desktopSoftCardStyle, background: t.isDark ? "rgba(217,125,116,0.06)" : "rgba(217,125,116,0.045)" }}>
+                <div className="flex items-center justify-center gap-3">
+                  <CircleIcon color={RED} bg={`${RED}12`} size="h-14 w-14">
+                    <XGlyph color={RED} />
+                  </CircleIcon>
+                  <h3 className="text-center text-xl font-semibold leading-tight" style={{ color: RED }}>
+                    {data.mobile_not_ideal_heading || "Not Ideal If"}
+                  </h3>
+                </div>
+                <span className="mx-auto mt-2.5 block h-px w-12" style={{ background: RED }} />
+                <div className="mt-5 space-y-4">
                   {data.not_ideal.map((item, i) => (
                     <div key={i} className="flex items-start gap-2.5">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: RED }} />
@@ -447,22 +453,22 @@ const VerdictSection = ({ data }) => {
                 </div>
               </div>
 
-              <div className="rounded-2xl p-6" style={desktopSoftCardStyle}>
+              <div className="rounded-xl p-5" style={desktopSoftCardStyle}>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ color: GOLD }}>
                   How We Help You
                 </p>
-                <h3 className="mt-2 text-2xl font-semibold leading-tight" style={{ color: t.text }}>
+                <h3 className="mt-1.5 text-2xl font-semibold leading-tight" style={{ color: t.text }}>
                   Make the Right Call
                 </h3>
-                <span className="mt-4 block h-px w-16" style={{ background: GOLD }} />
+                <span className="mt-3 block h-px w-16" style={{ background: GOLD }} />
 
-                <div className="mt-6 space-y-5">
+                <div className="mt-5 space-y-4">
                   {(data.steps || []).map((item, i) => {
                     const Icon = [BarChart3, Search, Handshake][i] || BarChart3;
                     const { lead, rest } = splitProcessTitle(item.title);
 
                     return (
-                      <div key={i} className="flex gap-4 border-t pt-5 first:border-t-0 first:pt-0" style={{ borderColor: desktopBorder }}>
+                      <div key={i} className="flex gap-3 border-t pt-4 first:border-t-0 first:pt-0" style={{ borderColor: desktopBorder }}>
                         <CircleIcon color={GOLD} bg={t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.08)"} size="h-12 w-12">
                           <Icon size={20} color={GOLD} strokeWidth={1.8} />
                         </CircleIcon>

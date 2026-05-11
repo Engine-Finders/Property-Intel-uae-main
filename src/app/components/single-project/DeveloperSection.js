@@ -6,6 +6,9 @@ import SectionExpertCta from "./SectionExpertCta";
 import SectionImageHeader from "./SectionImageHeader";
 
 const GOLD = "#B68A35";
+const sectionH2Class = "text-[32px] font-semibold leading-none";
+/** Body intro (mobile h2 lead-in, institutional, etc.): 14px / 400 / 1.75 / -0.01em; pair with `lg:text-[15px]` where desktop should read slightly larger. */
+const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.75] tracking-[-0.01em]";
 const GREEN = "#10b981";
 const AMBER = "#D9B05F";
 const RED = "#f59e0b";
@@ -222,9 +225,9 @@ const FinancialIcon = ({ index }) => {
 };
 
 const SectionHeader = ({ iconId, title, subtitle, t }) => (
-  <div className="mb-6 flex items-start gap-3">
+  <div className="mb-4 flex items-start gap-2.5">
     <div
-      className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+      className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10"
       style={{
         background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)",
         color: GOLD,
@@ -248,7 +251,7 @@ const SectionHeader = ({ iconId, title, subtitle, t }) => (
 
 const StyledAccordion = ({ title, icon, isOpen, onToggle, children, t }) => (
   <div
-    className="overflow-hidden rounded-2xl"
+    className="overflow-hidden rounded-xl"
     style={{
       background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
       border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -257,9 +260,9 @@ const StyledAccordion = ({ title, icon, isOpen, onToggle, children, t }) => (
     <button
       type="button"
       onClick={onToggle}
-      className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left sm:px-5"
+      className="flex w-full items-center justify-between gap-2.5 px-3 py-3 text-left sm:px-4"
     >
-      <div className="flex min-w-0 items-center gap-3">
+      <div className="flex min-w-0 items-center gap-2.5">
         <div
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
           style={{
@@ -278,10 +281,10 @@ const StyledAccordion = ({ title, icon, isOpen, onToggle, children, t }) => (
     </button>
     <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[3000px] opacity-100" : "max-h-0 opacity-0"}`}>
       <div
-        className="px-4 pb-4 pt-0 sm:px-5"
+        className="px-3 pb-3 pt-0 sm:px-4"
         style={{ borderTop: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}
       >
-        <div className="pt-4">{children}</div>
+        <div className="pt-3">{children}</div>
       </div>
     </div>
   </div>
@@ -316,18 +319,18 @@ const DeveloperSection = ({ data }) => {
   const { primary, accent } = splitHeading(data.heading);
 
   return (
-    <section style={{ background: t.bgAlt }} className="py-6 lg:py-10">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6">
+    <section style={{ background: t.bgAlt }} className="py-5 lg:py-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-5">
         <SectionImageHeader
           primary={primary}
           accent={accent}
           subtitleHtml={data.company_background}
           t={t}
-          className="mb-8 hidden lg:block rounded-b-[28px]"
+          className="mb-6 hidden lg:block rounded-b-xl"
         />
-        <div className="mb-10 space-y-6 lg:mb-12">
+        <div className="mb-7 space-y-4 lg:mb-10">
           <div className="lg:hidden">
-            <h2 className="text-[2.1rem] font-semibold leading-[1.05] lg:text-5xl" style={{ color: t.text }}>
+            <h2 className={sectionH2Class} style={{ color: t.text }}>
               {primary}
               {accent && (
                 <span className="block italic" style={{ color: GOLD }}>
@@ -335,61 +338,63 @@ const DeveloperSection = ({ data }) => {
                 </span>
               )}
             </h2>
-            <p className="mt-4 max-w-5xl text-[15px] leading-8 lg:text-base" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.company_background }} />
+            <p className={`mt-3 max-w-5xl ${sectionIntroAfterH2Class}`} style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.company_background }} />
           </div>
 
           <div
-            className="rounded-[28px] p-4 sm:p-6"
+            className="rounded-xl p-3 sm:p-5"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
               boxShadow: t.isDark ? "0 14px 32px rgba(0,0,0,0.2)" : "0 14px 32px rgba(15,23,42,0.04)",
             }}
           >
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl p-4 sm:p-5"
+                  className="rounded-xl p-3 sm:p-4"
                   style={{
                     background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                     border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                   }}
                 >
-                  <div
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full lg:h-11 lg:w-11"
-                    style={{
-                      background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)",
-                      color: GOLD,
-                    }}
-                  >
-                    <OverviewStatIcon index={i} />
+                  <div className="flex items-start gap-2.5">
+                    <div
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full lg:h-10 lg:w-10"
+                      style={{
+                        background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)",
+                        color: GOLD,
+                      }}
+                    >
+                      <OverviewStatIcon index={i} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-lg font-semibold sm:text-2xl lg:text-xl" style={{ color: t.text }}>
+                        {stat.value}
+                      </p>
+                    </div>
                   </div>
-                  <div className="mt-3 min-w-0">
-                    <p className="text-lg font-semibold sm:text-2xl lg:text-xl" style={{ color: t.text }}>
-                      {stat.value}
-                    </p>
-                    <p className="mt-1 text-[11px] leading-4 sm:text-xs" style={{ color: t.textSecondary }}>
-                      {stat.label}
-                    </p>
-                  </div>
+                  <p className="mt-2 w-full text-[11px] font-normal leading-snug sm:text-xs" style={{ color: t.textSecondary }}>
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
 
             {data.overview_highlight && (
               <div
-                className="mt-4 rounded-2xl px-4 py-3"
+                className="mt-3 rounded-xl px-3 py-2.5"
                 style={{
                   background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                   border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}`,
                 }}
               >
-                <div className="flex gap-3">
+                <div className="flex items-start gap-2.5">
                   <div className="shrink-0 pt-0.5" style={{ color: GOLD }}>
                     <OverviewHighlightIcon />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold" style={{ color: t.text }}>
                       {data.overview_highlight.title}
                     </p>
@@ -403,13 +408,13 @@ const DeveloperSection = ({ data }) => {
           </div>
 
           <div
-            className="rounded-[28px] p-5 sm:p-6"
+            className="rounded-xl p-4 sm:p-5"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
-            <div className="mb-4 flex items-center gap-3">
+            <div className="mb-3 flex items-center gap-2.5">
               <div
                 className="flex h-9 w-9 items-center justify-center rounded-full"
                 style={{
@@ -427,7 +432,7 @@ const DeveloperSection = ({ data }) => {
               </h3>
             </div>
             <p
-              className="border-l-2 pl-4 text-[15px] leading-8"
+              className={`w-full border-l-2 pl-4 ${sectionIntroAfterH2Class} lg:text-[15px]`}
               style={{ color: t.textSecondary, borderColor: "rgba(182,138,53,0.45)" }}
               dangerouslySetInnerHTML={{ __html: data.institutional_context }}
             />
@@ -435,7 +440,7 @@ const DeveloperSection = ({ data }) => {
 
         </div>
 
-        <div className="mb-10 flex gap-2 overflow-x-auto pb-2 lg:grid lg:grid-cols-4 lg:gap-3 lg:overflow-visible lg:pb-0 xl:grid-cols-6">
+        <div className="mb-7 flex gap-2 overflow-x-auto pb-2 lg:mb-8 lg:grid lg:grid-cols-4 lg:gap-2.5 lg:overflow-visible lg:pb-0 xl:grid-cols-6">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -443,7 +448,7 @@ const DeveloperSection = ({ data }) => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className="min-w-[120px] rounded-2xl px-4 py-3 text-left transition-all lg:flex lg:min-w-0 lg:w-full lg:items-center lg:gap-3 lg:rounded-xl"
+                className="min-w-[120px] rounded-xl px-3 py-2.5 text-left transition-all lg:flex lg:min-w-0 lg:w-full lg:items-center lg:gap-2.5 lg:rounded-lg"
                 style={{
                   background: isActive ? (t.isDark ? "rgba(255,255,255,0.04)" : "#fffdf9") : t.cardBg,
                   color: isActive ? GOLD : t.textMuted,
@@ -470,9 +475,9 @@ const DeveloperSection = ({ data }) => {
         </div>
 
         {activeTab === "track_record" && (
-          <div className="space-y-8">
+          <div className="space-y-5 lg:space-y-6">
             <div
-              className="rounded-[28px] p-5 sm:p-6"
+              className="rounded-xl p-4 sm:p-5"
               style={{
                 background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
                 border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -481,38 +486,38 @@ const DeveloperSection = ({ data }) => {
               <SectionHeader iconId="track_record" title="Delivery Track Record" subtitle="Mandatory - DLD-verified completion dates" t={t} />
 
               <div
-                className="mb-5 rounded-2xl p-4"
+                className="mb-4 rounded-xl p-3"
                 style={{
                   background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0",
                   border: `1px solid ${t.isDark ? "rgba(217,176,95,0.18)" : "rgba(182,138,53,0.14)"}`,
                 }}
               >
-                <div className="flex gap-3">
+                <div className="flex items-start gap-2.5">
                   <div
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
                     style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
                   >
                     <AnalysisIcon />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                       Headline Claim
                     </p>
-                    <p className="mt-2 text-sm leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_intro }} />
+                    <p className="mt-1.5 text-sm leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_intro }} />
                   </div>
                 </div>
               </div>
 
-              <div className="lg:hidden space-y-3">
+              <div className="lg:hidden space-y-2.5">
                 {deliveryTable.map((row, i) => (
-                  <div key={i} className="rounded-2xl p-4" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
-                    <p className="text-sm font-semibold mb-3" style={{ color: t.text }}>{row.project}</p>
+                  <div key={i} className="rounded-xl p-3" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+                    <p className="mb-2 text-sm font-semibold" style={{ color: t.text }}>{row.project}</p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div><span style={{ color: t.textMuted }}>Original:</span><span className="ml-1" style={{ color: t.textSecondary }}>{row.original}</span></div>
                       <div><span style={{ color: t.textMuted }}>Actual:</span><span className="ml-1" style={{ color: t.textSecondary }}>{row.actual}</span></div>
                       <div><span style={{ color: t.textMuted }}>Delay:</span><span className="ml-1 font-semibold" style={{ color: row.delay === "On time" ? GREEN : RED }}>{row.delay}</span></div>
                     </div>
-                    {row.notes && <p className="text-[11px] mt-3 italic" style={{ color: t.textMuted }}>{row.notes}</p>}
+                    {row.notes && <p className="mt-2 text-[11px] italic" style={{ color: t.textMuted }}>{row.notes}</p>}
                   </div>
                 ))}
               </div>
@@ -522,18 +527,18 @@ const DeveloperSection = ({ data }) => {
                   <thead>
                     <tr style={{ borderBottom: `1px solid ${t.cardBorder}` }}>
                       {["Project", "Original Handover", "Actual Handover", "Delay", "Notes"].map((h) => (
-                        <th key={h} className="text-left py-3 px-3 text-xs font-semibold uppercase tracking-wider" style={{ color: t.textMuted }}>{h}</th>
+                        <th key={h} className="px-2.5 py-2.5 text-left text-xs font-semibold uppercase tracking-wider" style={{ color: t.textMuted }}>{h}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {deliveryTable.map((row, i) => (
                       <tr key={i} style={{ borderBottom: `1px solid ${t.isDark ? "rgba(255,255,255,0.04)" : "#f1f5f9"}` }}>
-                        <td className="py-3 px-3 font-medium" style={{ color: t.text }}>{row.project}</td>
-                        <td className="py-3 px-3" style={{ color: t.textSecondary }}>{row.original}</td>
-                        <td className="py-3 px-3" style={{ color: t.textSecondary }}>{row.actual}</td>
-                        <td className="py-3 px-3 font-semibold" style={{ color: row.delay === "On time" ? GREEN : RED }}>{row.delay}</td>
-                        <td className="py-3 px-3 text-xs italic" style={{ color: t.textMuted }}>{row.notes}</td>
+                        <td className="px-2.5 py-2.5 font-medium" style={{ color: t.text }}>{row.project}</td>
+                        <td className="px-2.5 py-2.5" style={{ color: t.textSecondary }}>{row.original}</td>
+                        <td className="px-2.5 py-2.5" style={{ color: t.textSecondary }}>{row.actual}</td>
+                        <td className="px-2.5 py-2.5 font-semibold" style={{ color: row.delay === "On time" ? GREEN : RED }}>{row.delay}</td>
+                        <td className="px-2.5 py-2.5 text-xs italic" style={{ color: t.textMuted }}>{row.notes}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -541,22 +546,22 @@ const DeveloperSection = ({ data }) => {
               </div>
             </div>
 
-            <div className="rounded-2xl p-5" style={{ background: "rgba(182,138,53,0.06)", border: "1px solid rgba(182,138,53,0.15)" }}>
-              <div className="flex gap-3">
+            <div className="rounded-xl p-4" style={{ background: "rgba(182,138,53,0.06)", border: "1px solid rgba(182,138,53,0.15)" }}>
+              <div className="flex items-start gap-2.5">
                 <div
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
                   style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
                 >
                   <AnalysisIcon />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>Analysis</p>
                   {data.delivery_analysis_claim && (
-                    <p className="mt-2 text-base font-semibold leading-snug" style={{ color: t.text }}>
+                    <p className="mt-1.5 text-base font-semibold leading-snug" style={{ color: t.text }}>
                       {data.delivery_analysis_claim}
                     </p>
                   )}
-                  <p className="mt-2 text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
+                  <p className="mt-1.5 text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
                 </div>
               </div>
             </div>
@@ -565,7 +570,7 @@ const DeveloperSection = ({ data }) => {
 
         {activeTab === "quality" && (
           <div
-            className="rounded-[28px] p-5 sm:p-6"
+            className="rounded-xl p-4 sm:p-5"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -578,7 +583,7 @@ const DeveloperSection = ({ data }) => {
               t={t}
             />
 
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               {qualityIssues.map((issue, i) => {
                 const key = `quality_issue_${i}`;
                 const isOpen = openAccordions[key] ?? i === 0;
@@ -587,7 +592,7 @@ const DeveloperSection = ({ data }) => {
                 return (
                   <div
                     key={i}
-                    className="overflow-hidden rounded-2xl"
+                    className="overflow-hidden rounded-xl"
                     style={{
                       background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff",
                       border: `1px solid ${t.cardBorder}`,
@@ -601,9 +606,9 @@ const DeveloperSection = ({ data }) => {
                           [key]: !(prev[key] ?? i === 0),
                         }))
                       }
-                      className="flex w-full items-center justify-between gap-3 p-4 text-left"
+                      className="flex w-full items-center justify-between gap-2.5 p-3 text-left"
                     >
-                      <div className="flex min-w-0 items-center gap-3">
+                      <div className="flex min-w-0 items-center gap-2.5">
                         <span
                           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
                           style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
@@ -628,7 +633,7 @@ const DeveloperSection = ({ data }) => {
                       </span>
                     </button>
                     <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
-                      <p className="px-4 pb-4 text-sm leading-7" style={{ color: t.textSecondary }}>
+                      <p className="px-3 pb-3 text-sm leading-7" style={{ color: t.textSecondary }}>
                         {issue.content}
                       </p>
                     </div>
@@ -637,8 +642,8 @@ const DeveloperSection = ({ data }) => {
               })}
             </div>
 
-            <div className="mt-6">
-              <div className="mb-4 flex items-center gap-3">
+            <div className="mt-5">
+              <div className="mb-3 flex items-center gap-2.5">
                 <span
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
                   style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
@@ -649,11 +654,11 @@ const DeveloperSection = ({ data }) => {
                 </span>
                 <h3 className="text-lg font-semibold" style={{ color: t.text }}>Positive Quality Indicators</h3>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {positiveIndicators.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 rounded-2xl p-4"
+                    className="flex items-start gap-2.5 rounded-xl p-3"
                     style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}
                   >
                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(16,185,129,0.12)" }}>
@@ -669,7 +674,7 @@ const DeveloperSection = ({ data }) => {
 
         {activeTab === "rera" && (
           <div
-            className="rounded-[28px] p-5 sm:p-6"
+            className="rounded-xl p-4 sm:p-5"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -681,14 +686,14 @@ const DeveloperSection = ({ data }) => {
               subtitle={data.rera_tab.subtitle}
               t={t}
             />
-            <p className="text-sm leading-8" style={{ color: t.textSecondary }}>
+            <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
               {data.rera_tab?.description || data.rera_details}
             </p>
-            <div className="mt-6 overflow-hidden rounded-2xl" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
+            <div className="mt-4 overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
               {data.rera_indicators.map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-start gap-3 p-4"
+                  className="flex items-start gap-2.5 p-3"
                   style={i > 0 ? { borderTop: `1px solid ${t.cardBorder}` } : undefined}
                 >
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
@@ -699,21 +704,21 @@ const DeveloperSection = ({ data }) => {
               ))}
             </div>
             <div
-              className="mt-6 rounded-2xl p-5"
+              className="mt-4 rounded-xl p-4"
               style={{
                 background: t.isDark ? "rgba(182,138,53,0.08)" : "#fff8ed",
                 border: `1px solid ${t.isDark ? "rgba(217,176,95,0.16)" : "rgba(182,138,53,0.12)"}`,
               }}
             >
-              <div className="flex gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
+              <div className="flex items-start gap-2.5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
                   <TabGlyph id="buyer_guide" />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                     {data.rera_tab.recommended_action_label}
                   </p>
-                  <p className="mt-2 text-sm leading-7" style={{ color: t.textSecondary }}>
+                  <p className="mt-1.5 text-sm leading-7" style={{ color: t.textSecondary }}>
                     {data.rera_tab?.recommended_action}
                   </p>
                 </div>
@@ -724,41 +729,41 @@ const DeveloperSection = ({ data }) => {
 
         {activeTab === "financials" && (
           <div
-            className="rounded-[28px] p-5 sm:p-6"
+            className="rounded-xl p-4 sm:p-5"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
             <SectionHeader iconId="financials" title="Financial Stability Assessment" subtitle="Balance sheet & completion risk" t={t} />
-            <p className="mb-6 text-base leading-7" style={{ color: t.text }}>
+            <p className="mb-4 text-base leading-7" style={{ color: t.text }}>
               {data.financial_intro}
             </p>
 
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-2.5 md:grid-cols-3">
               {financials.map((item, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl overflow-hidden"
+                  className="overflow-hidden rounded-xl"
                   style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}
                 >
-                  <div className="flex items-center justify-between gap-3 p-4">
-                    <div>
-                      <p className="text-3xl font-semibold" style={{ color: GOLD }}>{item.value}</p>
-                      <p className="mt-2 text-sm leading-5" style={{ color: t.textSecondary }}>{item.label}</p>
-                    </div>
+                  <div className="flex items-center gap-3 p-3">
                     <div
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10"
                       style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
                     >
                       <FinancialIcon index={i} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-2xl font-semibold sm:text-3xl" style={{ color: GOLD }}>{item.value}</p>
+                      <p className="mt-1 text-sm leading-5" style={{ color: t.textSecondary }}>{item.label}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="mt-6 border-t pt-6 text-sm leading-8" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
+            <p className="mt-5 border-t pt-5 text-sm leading-7" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
               {data.financial_followup}
             </p>
           </div>
@@ -766,7 +771,7 @@ const DeveloperSection = ({ data }) => {
 
         {activeTab === "on_serro" && (
           <div
-            className="rounded-[28px] p-5 sm:p-6"
+            className="rounded-xl p-4 sm:p-5"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -779,7 +784,7 @@ const DeveloperSection = ({ data }) => {
               t={t}
             />
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               <div>
                 <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: GREEN }}>
                   <span className="flex h-5 w-5 items-center justify-center rounded-full" style={{ background: "rgba(16,185,129,0.12)" }}>
@@ -787,18 +792,18 @@ const DeveloperSection = ({ data }) => {
                   </span>
                   Strengths Applied
                 </p>
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   {strengths.map((item, i) => (
                     <div
                       key={i}
-                      className="flex gap-3 rounded-2xl p-4"
+                      className="flex gap-2.5 rounded-xl p-3"
                       style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white" style={{ background: GOLD }}>
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-white sm:h-11 sm:w-11" style={{ background: GOLD }}>
                         <OnSerroIcon index={i} />
                       </span>
-                      <div>
-                        <p className="text-sm font-semibold" style={{ color: t.text }}>{item.title}</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold leading-tight" style={{ color: t.text }}>{item.title}</p>
                         <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
                       </div>
                     </div>
@@ -813,18 +818,18 @@ const DeveloperSection = ({ data }) => {
                   </span>
                   Weaknesses to Monitor
                 </p>
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   {weaknesses.map((item, i) => (
                     <div
                       key={i}
-                      className="flex gap-3 rounded-2xl p-4"
+                      className="flex gap-2.5 rounded-xl p-3"
                       style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}
                     >
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-white" style={{ background: GOLD }}>
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-white sm:h-11 sm:w-11" style={{ background: GOLD }}>
                         <OnSerroIcon index={i + strengths.length} />
                       </span>
-                      <div>
-                        <p className="text-sm font-semibold" style={{ color: t.text }}>{item.title}</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold leading-tight" style={{ color: t.text }}>{item.title}</p>
                         <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
                       </div>
                     </div>
@@ -837,7 +842,7 @@ const DeveloperSection = ({ data }) => {
 
         {activeTab === "verify" && (
           <div
-            className="rounded-[28px] p-5 sm:p-6"
+            className="rounded-xl p-4 sm:p-5"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -850,7 +855,7 @@ const DeveloperSection = ({ data }) => {
               t={t}
             />
 
-            <div className="space-y-5">
+            <div className="space-y-4">
               {verificationSteps.map((group, groupIndex) => {
                 let previousSteps = 0;
                 for (let i = 0; i < groupIndex; i += 1) {
@@ -859,7 +864,7 @@ const DeveloperSection = ({ data }) => {
 
                 return (
                   <div key={group.phase}>
-                    <div className="mb-3 flex items-center gap-2">
+                    <div className="mb-2 flex items-center gap-2">
                       <span className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold text-white" style={{ background: GOLD }}>
                         {groupIndex + 1}
                       </span>
@@ -867,7 +872,7 @@ const DeveloperSection = ({ data }) => {
                         {group.phase}
                       </p>
                     </div>
-                    <div className="space-y-0 overflow-hidden rounded-2xl" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+                    <div className="space-y-0 overflow-hidden rounded-lg" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
                       {group.steps.map((step, stepIndex) => {
                         const stepNumber = previousSteps + stepIndex + 1;
                         const title = typeof step === "string" ? step : step.title;
@@ -876,10 +881,10 @@ const DeveloperSection = ({ data }) => {
                         return (
                           <div
                             key={`${group.phase}-${stepIndex}`}
-                            className="flex gap-3 p-4"
+                            className="flex gap-2.5 p-3"
                             style={stepIndex > 0 ? { borderTop: `1px solid ${t.cardBorder}` } : undefined}
                           >
-                            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
+                            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs sm:h-8 sm:w-8" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
                               {stepNumber}
                             </span>
                             <div>
@@ -897,7 +902,7 @@ const DeveloperSection = ({ data }) => {
           </div>
         )}
 
-        <div className="mt-8 space-y-4 lg:hidden">
+        <div className="mt-6 space-y-3 lg:hidden">
           <StyledAccordion
             title="Transparency Statement"
             icon={<TabGlyph id="buyer_guide" />}
@@ -905,16 +910,16 @@ const DeveloperSection = ({ data }) => {
             onToggle={() => toggleAccordion("transparency")}
             t={t}
           >
-            <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: GOLD }}>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
               Transparency Statement
             </p>
-            <p className="text-sm leading-8" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
+            <p className="text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
             {(data.research_notes || []).length > 0 && (
-              <div className="mt-6 border-t pt-5" style={{ borderColor: t.cardBorder }}>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
+              <div className="mt-4 border-t pt-4" style={{ borderColor: t.cardBorder }}>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
                   Research Notes
                 </p>
-                <p className="mb-3 text-sm font-medium" style={{ color: t.text }}>Sources consulted:</p>
+                <p className="mb-2 text-sm font-medium" style={{ color: t.text }}>Sources consulted:</p>
                 <ul className="space-y-2">
                   {data.research_notes.map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
@@ -926,11 +931,11 @@ const DeveloperSection = ({ data }) => {
               </div>
             )}
             {(data.data_limitations || []).length > 0 && (
-              <div className="mt-6">
-                <p className="mb-3 text-sm font-medium" style={{ color: t.text }}>Data limitations:</p>
+              <div className="mt-4">
+                <p className="mb-2 text-sm font-medium" style={{ color: t.text }}>Data limitations:</p>
                 <div className="space-y-2">
                   {data.data_limitations.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 rounded-xl p-3" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
+                    <div key={i} className="flex items-start gap-2.5 rounded-lg p-2.5" style={{ background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff", border: `1px solid ${t.cardBorder}` }}>
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px]" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
                         {i + 1}
                       </span>
@@ -944,9 +949,9 @@ const DeveloperSection = ({ data }) => {
 
         </div>
 
-        <div className="mt-8 hidden space-y-4 lg:block">
+        <div className="mt-6 hidden space-y-3 lg:block">
           <div
-            className="overflow-hidden rounded-[28px]"
+            className="overflow-hidden rounded-xl"
             style={{
               background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
@@ -960,17 +965,17 @@ const DeveloperSection = ({ data }) => {
                   desktopTransparency: !(prev.desktopTransparency ?? true),
                 }))
               }
-              className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left"
+              className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
               style={{ borderBottom: `1px solid ${t.cardBorder}` }}
             >
-              <span className="flex items-center gap-3">
+              <span className="flex min-w-0 items-center gap-2.5">
                 <span
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10"
                   style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
                 >
                   <TabGlyph id="buyer_guide" />
                 </span>
-                <span className="text-lg font-semibold" style={{ color: t.text }}>
+                <span className="text-base font-semibold sm:text-lg" style={{ color: t.text }}>
                   Transparency Statement & Research Notes
                 </span>
               </span>
@@ -979,7 +984,7 @@ const DeveloperSection = ({ data }) => {
 
             <div className={`overflow-hidden transition-all duration-300 ${(openAccordions.desktopTransparency ?? true) ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"}`}>
               <div
-                className="grid grid-cols-[1.25fr_1fr_1fr] gap-8 px-6 py-5"
+                className="grid grid-cols-[1.25fr_1fr_1fr] gap-5 px-4 py-4 sm:gap-6 sm:px-5 sm:py-4"
                 style={{ borderTop: `1px solid ${t.isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)"}` }}
               >
                 <div>
@@ -1024,7 +1029,7 @@ const DeveloperSection = ({ data }) => {
           </div>
 
         </div>
-        <SectionExpertCta cta={data.section_cta} t={t} className="mt-8" />
+        <SectionExpertCta cta={data.section_cta} t={t} className="mt-6" />
       </div>
     </section>
   );

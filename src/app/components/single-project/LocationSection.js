@@ -364,7 +364,7 @@ const LocationSection = ({ data }) => {
         {data.walkability.map((item) => (
           <div
             key={item.title}
-            className="rounded-2xl p-4"
+            className="rounded-xl p-4"
             style={{ background: softBg, border: `1px solid ${t.cardBorder}` }}
           >
             <div className="flex items-start gap-3">
@@ -384,7 +384,7 @@ const LocationSection = ({ data }) => {
 
       {data.walkability_note && (
         <div
-          className="mt-3 rounded-2xl p-4"
+          className="mt-3 rounded-xl p-4"
           style={{
             background: t.isDark ? "rgba(182,138,53,0.08)" : "#faf6ef",
             border: `1px solid ${t.cardBorder}`,
@@ -429,7 +429,7 @@ const LocationSection = ({ data }) => {
       </div>
 
       <div
-        className="overflow-hidden rounded-2xl"
+        className="overflow-hidden rounded-xl"
         style={{ background: softBg, border: `1px solid ${t.cardBorder}` }}
       >
         <div
@@ -485,7 +485,7 @@ const LocationSection = ({ data }) => {
       {data.infrastructure_developments.map((item) => (
         <div
           key={item.title}
-          className="overflow-hidden rounded-[26px] p-4 sm:p-5"
+          className="overflow-hidden rounded-xl p-4 sm:p-5"
           style={{
             background: t.isDark ? "linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02))" : "#fffdfa",
             border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "#eadfcb"}`,
@@ -583,7 +583,7 @@ const LocationSection = ({ data }) => {
         {data.neighbourhood_vibe.map((item) => (
           <div
             key={item.title}
-            className="rounded-2xl p-4"
+            className="rounded-xl p-4"
             style={{
               background: item.highlight ? (t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0") : softBg,
               border: `1px solid ${item.highlight ? "rgba(182,138,53,0.4)" : t.cardBorder}`,
@@ -675,7 +675,7 @@ const LocationSection = ({ data }) => {
           accent="Connectivity, Amenities & Future Infrastructure"
           subtitle={data.hero_subtitle}
           t={t}
-          className="mb-8 hidden lg:block rounded-b-[28px]"
+          className="mb-8 hidden lg:block rounded-b-xl"
         />
         <div className="text-center mb-10 lg:hidden">
           <h2
@@ -762,7 +762,7 @@ const LocationSection = ({ data }) => {
               return (
                 <div
                   key={item.id}
-                  className="overflow-hidden rounded-[24px]"
+                  className="overflow-hidden rounded-xl"
                   style={{
                     background: lightCard,
                     border: `1px solid ${isOpen ? "rgba(182,138,53,0.32)" : t.cardBorder}`,
@@ -829,7 +829,7 @@ const LocationSection = ({ data }) => {
                   return (
                     <div
                       key={item.id}
-                      className="overflow-hidden rounded-[24px]"
+                      className="overflow-hidden rounded-xl"
                       style={{
                         background: lightCard,
                         border: `1px solid ${isOpen ? "rgba(182,138,53,0.32)" : t.cardBorder}`,
