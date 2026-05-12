@@ -63,10 +63,10 @@ const SectionExpertCta = ({ cta, t, className = "" }) => {
             <ExpertBadgeIcon />
           </span>
           <span className="text-left">
-            <span className="block text-xl font-semibold leading-tight" style={{ color: t.text }}>
+            <span className="block text-[15px] font-semibold leading-tight" style={{ color: t.text }}>
               {cta.heading}
             </span>
-            <span className="mt-2 block text-sm leading-snug lg:mt-1 lg:leading-relaxed" style={{ color: t.textSecondary }}>
+            <span className="mt-2 block text-[12px] leading-snug lg:mt-1 lg:leading-relaxed" style={{ color: t.textSecondary }}>
               {cta.subtext}
             </span>
           </span>
@@ -84,7 +84,7 @@ const SectionExpertCta = ({ cta, t, className = "" }) => {
                 <ContactIcon type={action.type} />
               </span>
               <span className="mt-3 block text-center lg:mt-0 lg:min-w-0 lg:text-left">
-                <span className="block text-sm font-semibold leading-tight" style={{ color: t.text }}>
+                <span className="block text-[13px] font-semibold leading-tight" style={{ color: t.text }}>
                   {action.label}
                 </span>
                 <span className="mt-1 block text-xs leading-tight" style={{ color: t.textSecondary }}>

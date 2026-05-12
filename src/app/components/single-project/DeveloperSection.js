@@ -8,7 +8,7 @@ import SectionImageHeader from "./SectionImageHeader";
 const GOLD = "#B68A35";
 const sectionH2Class = "text-[32px] font-semibold leading-none";
 /** Body intro (mobile h2 lead-in, institutional, etc.): 14px / 400 / 1.75 / -0.01em; pair with `lg:text-[15px]` where desktop should read slightly larger. */
-const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.75] tracking-[-0.01em]";
+const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.5] tracking-[-0.01em]";
 const GREEN = "#10b981";
 const AMBER = "#D9B05F";
 const RED = "#f59e0b";
@@ -398,7 +398,7 @@ const DeveloperSection = ({ data }) => {
                     <p className="text-sm font-semibold" style={{ color: t.text }}>
                       {data.overview_highlight.title}
                     </p>
-                    <p className="mt-1 text-sm leading-6" style={{ color: t.textMuted }}>
+                    <p className="mt-1 text-[13px] leading-5" style={{ color: t.textMuted }}>
                       {data.overview_highlight.text}
                     </p>
                   </div>
@@ -432,7 +432,7 @@ const DeveloperSection = ({ data }) => {
               </h3>
             </div>
             <p
-              className={`w-full border-l-2 pl-4 ${sectionIntroAfterH2Class} lg:text-[15px]`}
+              className={`w-full border-l-2 pl-4 text-[13px] leading-5 ${sectionIntroAfterH2Class} lg:text-[15px]`}
               style={{ color: t.textSecondary, borderColor: "rgba(182,138,53,0.45)" }}
               dangerouslySetInnerHTML={{ __html: data.institutional_context }}
             />
@@ -503,7 +503,7 @@ const DeveloperSection = ({ data }) => {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                       Headline Claim
                     </p>
-                    <p className="mt-1.5 text-sm leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_intro }} />
+                    <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_intro }} />
                   </div>
                 </div>
               </div>
@@ -557,11 +557,11 @@ const DeveloperSection = ({ data }) => {
                 <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>Analysis</p>
                   {data.delivery_analysis_claim && (
-                    <p className="mt-1.5 text-base font-semibold leading-snug" style={{ color: t.text }}>
+                    <p className="mt-1.5 text-sm font-semibold leading-snug" style={{ color: t.text }}>
                       {data.delivery_analysis_claim}
                     </p>
                   )}
-                  <p className="mt-1.5 text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
+                  <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
                 </div>
               </div>
             </div>
@@ -633,7 +633,7 @@ const DeveloperSection = ({ data }) => {
                       </span>
                     </button>
                     <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
-                      <p className="px-3 pb-3 text-sm leading-7" style={{ color: t.textSecondary }}>
+                      <p className="px-3 pb-3 text-[14px] leading-5" style={{ color: t.textSecondary }}>
                         {issue.content}
                       </p>
                     </div>
@@ -664,7 +664,7 @@ const DeveloperSection = ({ data }) => {
                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(16,185,129,0.12)" }}>
                       <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke={GREEN} strokeWidth="3"><path d="M5 13l4 4L19 7" /></svg>
                     </span>
-                    <span className="text-sm leading-6" style={{ color: t.textSecondary }}>{item}</span>
+                    <span className="text-[14px] leading-5" style={{ color: t.textSecondary }}>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -686,7 +686,7 @@ const DeveloperSection = ({ data }) => {
               subtitle={data.rera_tab.subtitle}
               t={t}
             />
-            <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+            <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>
               {data.rera_tab?.description || data.rera_details}
             </p>
             <div className="mt-4 overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
@@ -699,7 +699,7 @@ const DeveloperSection = ({ data }) => {
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}>
                     <ShieldCheckIcon />
                   </span>
-                  <span className="text-sm leading-6" style={{ color: t.textSecondary }}>{item}</span>
+                  <span className="text-sm leading-5" style={{ color: t.textSecondary }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -718,7 +718,7 @@ const DeveloperSection = ({ data }) => {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                     {data.rera_tab.recommended_action_label}
                   </p>
-                  <p className="mt-1.5 text-sm leading-7" style={{ color: t.textSecondary }}>
+                  <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                     {data.rera_tab?.recommended_action}
                   </p>
                 </div>
@@ -755,15 +755,15 @@ const DeveloperSection = ({ data }) => {
                       <FinancialIcon index={i} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-2xl font-semibold sm:text-3xl" style={{ color: GOLD }}>{item.value}</p>
-                      <p className="mt-1 text-sm leading-5" style={{ color: t.textSecondary }}>{item.label}</p>
+                      <p className="text-xl font-semibold sm:text-3xl" style={{ color: GOLD }}>{item.value}</p>
+                      <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>{item.label}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="mt-5 border-t pt-5 text-sm leading-7" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
+            <p className="mt-5 border-t pt-5 text-[13px] leading-5" style={{ color: t.textSecondary, borderColor: t.cardBorder }}>
               {data.financial_followup}
             </p>
           </div>
@@ -804,7 +804,7 @@ const DeveloperSection = ({ data }) => {
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold leading-tight" style={{ color: t.text }}>{item.title}</p>
-                        <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
+                        <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>{item.content}</p>
                       </div>
                     </div>
                   ))}
@@ -830,7 +830,7 @@ const DeveloperSection = ({ data }) => {
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold leading-tight" style={{ color: t.text }}>{item.title}</p>
-                        <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{item.content}</p>
+                        <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>{item.content}</p>
                       </div>
                     </div>
                   ))}
@@ -889,7 +889,7 @@ const DeveloperSection = ({ data }) => {
                             </span>
                             <div>
                               <p className="text-sm font-semibold" style={{ color: t.text }}>{title}</p>
-                              <p className="mt-1 text-xs leading-6" style={{ color: t.textSecondary }}>{description}</p>
+                              <p className="mt-1 text-xs leading-5" style={{ color: t.textSecondary }}>{description}</p>
                             </div>
                           </div>
                         );
@@ -913,7 +913,7 @@ const DeveloperSection = ({ data }) => {
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
               Transparency Statement
             </p>
-            <p className="text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
+            <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.transparency_statement }} />
             {(data.research_notes || []).length > 0 && (
               <div className="mt-4 border-t pt-4" style={{ borderColor: t.cardBorder }}>
                 <p className="mb-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
@@ -922,7 +922,7 @@ const DeveloperSection = ({ data }) => {
                 <p className="mb-2 text-sm font-medium" style={{ color: t.text }}>Sources consulted:</p>
                 <ul className="space-y-2">
                   {data.research_notes.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm" style={{ color: t.textSecondary }}>
+                    <li key={i} className="flex items-start gap-2 text-[13px]" style={{ color: t.textSecondary }}>
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GOLD }} />
                       <span>{item}</span>
                     </li>

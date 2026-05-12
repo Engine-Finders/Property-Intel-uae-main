@@ -7,7 +7,7 @@ import SectionImageHeader from "./SectionImageHeader";
 
 const ACCENT = "#b68a35";
 const sectionH2Class = "text-[32px] font-semibold leading-none";
-const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.75] tracking-[-0.01em]";
+const sectionIntroAfterH2Class = "text-[14px] font-normal leading-[1.5] tracking-[-0.01em]";
 
 const ChevronIcon = ({ open, color }) => (
   <svg
@@ -242,7 +242,7 @@ const VerdictPill = ({ label, tone }) => {
 
   return (
     <span
-      className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em]"
+      className="inline-flex items-center gap-1 rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]"
       style={{
         color: current.color,
         background: current.background,
@@ -868,7 +868,7 @@ const TargetBuyerSection = ({ data }) => {
                   </h4>
                   <VerdictPill label={item.verdict_label} tone={item.verdict_tone} />
                 </div>
-                <p className={`mt-2 ${sectionIntroAfterH2Class}`} style={{ color: t.textSecondary }}>
+                <p className={`mt-2 text-[13px] leading-5`} style={{ color: t.textSecondary }}>
                   {item.rationale}
                 </p>
               </div>

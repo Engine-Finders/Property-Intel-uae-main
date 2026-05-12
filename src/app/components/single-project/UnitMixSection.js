@@ -55,7 +55,7 @@ const MobileAccordion = ({ title, icon, isOpen, onToggle, children, t }) => (
     >
       <div className="flex min-w-0 items-center gap-2.5">
         <SectionIconBadge icon={icon} t={t} />
-        <span className="text-[18px] font-semibold leading-6" style={{ color: t.text }}>
+        <span className="text-[16px] font-semibold leading-6" style={{ color: t.text }}>
           {title}
         </span>
       </div>
@@ -178,10 +178,10 @@ const ExpertContactCard = ({ cta, mobile = false, t }) => {
             <ExpertBadgeIcon />
           </span>
           <span className={mobile ? "text-left" : ""}>
-            <span className={mobile ? "block text-xl font-semibold leading-tight" : "block text-xl font-semibold leading-tight"} style={{ color: t.text }}>
+            <span className={mobile ? "block text-[15px] font-semibold leading-tight" : "block text-xl font-semibold leading-tight"} style={{ color: t.text }}>
               {cta.heading}
             </span>
-            <span className={mobile ? "mt-2 block text-sm leading-snug" : "mt-1 block text-sm leading-relaxed"} style={{ color: t.textSecondary }}>
+            <span className={mobile ? "mt-2 block text-[12px] leading-snug" : "mt-1 block text-sm leading-relaxed"} style={{ color: t.textSecondary }}>
               {cta.subtext}
             </span>
           </span>
@@ -199,7 +199,7 @@ const ExpertContactCard = ({ cta, mobile = false, t }) => {
                 <ContactIcon type={action.type} />
               </span>
               <span className={mobile ? "mt-3 block text-center" : "block min-w-0"}>
-                <span className={mobile ? "block text-sm font-semibold leading-tight" : "block text-sm font-semibold leading-tight"} style={{ color: t.text }}>
+                <span className={mobile ? "block text-[13px] font-semibold leading-tight" : "block text-sm font-semibold leading-tight"} style={{ color: t.text }}>
                   {action.label}
                 </span>
                 <span className={mobile ? "mt-1 block text-xs leading-tight" : "mt-1 block text-xs leading-tight"} style={{ color: t.textSecondary }}>
@@ -290,7 +290,7 @@ const PriceEvolutionNote = ({ note, t }) => {
         <div className="shrink-0 pt-0.5">
           <InfoIcon />
         </div>
-        <p className="text-[13px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: note }} />
+        <p className="text-[12px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: note }} />
       </div>
     </div>
   );
@@ -331,13 +331,13 @@ const UnitMixSection = ({ data }) => {
             <h2 className={sectionH2Class} style={{ color: t.text }}>
               {primary}
               {accent && (
-                <span className="mt-1 block italic" style={{ color: GOLD }}>
+                <span className="block italic" style={{ color: GOLD }}>
                   {accent}
                 </span>
               )}
             </h2>
             {data.subtitle && (
-              <p className="mt-3 max-w-sm text-[15px] leading-6" style={{ color: t.textSecondary }}>
+              <p className="mt-3 max-w-sm text-[15px] leading-5" style={{ color: t.textSecondary }}>
                 {data.subtitle}
               </p>
             )}
@@ -393,11 +393,11 @@ const UnitMixSection = ({ data }) => {
                         <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                           {unit.cluster}
                         </p>
-                        <h3 className="mt-1.5 text-[2rem] font-semibold leading-[1.02]" style={{ color: t.text }}>
+                        <h3 className="mt-1.5 text-[26px] font-semibold leading-[1.02]" style={{ color: t.text }}>
                           {unitName.main}
                         </h3>
                         {unitName.sub && (
-                          <p className="text-[1.6rem] italic leading-none" style={{ color: GOLD }}>
+                          <p className="text-[20px] italic leading-none" style={{ color: GOLD }}>
                             {unitName.sub}
                           </p>
                         )}
@@ -409,7 +409,7 @@ const UnitMixSection = ({ data }) => {
                         </span>
                       </div>
                       <span
-                        className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em]"
+                        className="inline-flex items-center gap-2 rounded-full px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]"
                         style={{
                           background: selectedUnitMeta.background,
                           color: selectedUnitMeta.color,
@@ -433,10 +433,10 @@ const UnitMixSection = ({ data }) => {
                           className="flex items-center justify-between gap-3 px-3 py-2.5"
                           style={{ borderTop: i === 0 ? "none" : `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.06)"}` }}
                         >
-                          <span className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: t.textMuted }}>
+                          <span className="text-[12px] font-semibold uppercase tracking-[0.14em]" style={{ color: t.textMuted }}>
                             {item.label}
                           </span>
-                          <span className="text-right text-[15px] font-semibold" style={{ color: item.accent ? GOLD : t.text }}>
+                          <span className="text-right text-[14px] font-semibold" style={{ color: item.accent ? GOLD : t.text }}>
                             {item.value}
                           </span>
                         </div>
@@ -462,7 +462,7 @@ const UnitMixSection = ({ data }) => {
                   <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                     Pricing Note
                   </p>
-                  <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+                  <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                     {data.pricing_note}
                   </p>
                 </div>
@@ -478,13 +478,13 @@ const UnitMixSection = ({ data }) => {
             t={t}
           >
             <div className="space-y-4">
-              <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
+              <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
               {commentary.factors.map((factor, i) => (
                 <div key={i}>
                   <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: GOLD }}>
                     {factor.title}
                   </p>
-                  <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
+                  <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
                 </div>
               ))}
             </div>
@@ -498,7 +498,7 @@ const UnitMixSection = ({ data }) => {
             t={t}
           >
             <div className="space-y-4">
-              <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.intro }} />
+              <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.intro }} />
               <div className="space-y-3">
                 {mobileDriverBars.map((driver, i) => (
                   <div key={i}>
@@ -540,7 +540,7 @@ const UnitMixSection = ({ data }) => {
             onToggle={() => toggleMobileSection("floorplans")}
             t={t}
           >
-            <p className="mb-3 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+            <p className="mb-3 text-[13px] leading-5" style={{ color: t.textSecondary }}>
               {data.floor_plan_intro}
             </p>
             <div className="space-y-2.5">
@@ -621,7 +621,7 @@ const UnitMixSection = ({ data }) => {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                   {data.insider_tip_title || "What portals don't tell you"}
                 </p>
-                <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
+                <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
               </div>
             </div>
           </div>
@@ -675,7 +675,7 @@ const UnitMixSection = ({ data }) => {
                       <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                         {unit.cluster}
                       </p>
-                      <h3 className="mt-1.5 text-[2rem] font-semibold leading-[1.02]" style={{ color: t.text }}>
+                      <h3 className="mt-1.5 text-[26px] font-semibold leading-[1.02]" style={{ color: t.text }}>
                         {unitName.main}
                         {unitName.sub && (
                           <span className="ml-1 text-[1.45rem] font-normal" style={{ color: t.textSecondary }}>
@@ -745,7 +745,7 @@ const UnitMixSection = ({ data }) => {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                   Pricing Note
                 </p>
-                <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+                <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                   {data.pricing_note}
                 </p>
               </div>
@@ -762,13 +762,13 @@ const UnitMixSection = ({ data }) => {
                 t={t}
               >
                 <div className="space-y-4">
-                  <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
+                  <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
                   {commentary.factors.map((factor, i) => (
                     <div key={i}>
                       <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: GOLD }}>
                         {factor.title}
                       </p>
-                      <p className="mt-1.5 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
+                      <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: factor.content }} />
                     </div>
                   ))}
                 </div>
@@ -781,7 +781,7 @@ const UnitMixSection = ({ data }) => {
                 onToggle={() => toggleMobileSection("floorplans")}
                 t={t}
               >
-                <p className="mb-3 text-[14px] leading-6" style={{ color: t.textSecondary }}>
+                <p className="mb-3 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                   {data.floor_plan_intro}
                 </p>
                 <div className="space-y-2.5">
@@ -821,7 +821,7 @@ const UnitMixSection = ({ data }) => {
                 t={t}
               >
                 <div className="space-y-4">
-                  <p className="text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.intro }} />
+                  <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: evolution.intro }} />
                   <div className="space-y-3">
                     {mobileDriverBars.map((driver, i) => (
                       <div key={i}>
@@ -909,7 +909,7 @@ const UnitMixSection = ({ data }) => {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
                   {data.insider_tip_title || "What portals don't tell you"}
                 </p>
-                <p className="mt-2 text-[14px] leading-6" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
+                <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
               </div>
             </div>
           </div>

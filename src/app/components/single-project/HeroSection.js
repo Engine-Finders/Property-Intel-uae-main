@@ -118,7 +118,7 @@ const ExpertBadgeIcon = () => (
 const PrimaryCtaButton = ({ cta, mobile = false }) => {
   const { text, href } = getCtaDetails(cta);
   const className = [
-    mobile ? "w-full px-[12px] py-[12px] text-[0.95rem]" : "w-full px-7 py-4 text-lg",
+    mobile ? "w-full px-[12px] py-[12px] text-[14px]" : "w-full px-7 py-4 text-lg",
     "rounded-[8px] font-semibold transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90 text-left",
   ].join(" ");
   const style = { background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)", color: "#ffffff" };
@@ -176,7 +176,7 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
 
   return (
     <div className={cardClass} style={cardStyle}>
-      <div className={mobile ? "flex flex-col gap-4" : "grid grid-cols-[1.25fr_repeat(3,1fr)] items-center"}>
+      <div className={mobile ? "flex flex-col gap-2" : "grid grid-cols-[1.25fr_repeat(3,1fr)] items-center"}>
         <div
           className={mobile ? "flex items-center gap-3 border-b pb-4" : "flex items-center gap-3.5 pr-5"}
           style={mobile ? { borderColor: dividerColor } : undefined}
@@ -185,10 +185,10 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
             <ExpertBadgeIcon />
           </span>
           <span className="min-w-0">
-            <span className="block text-xl font-semibold leading-tight" style={{ color: titleColor }}>
+            <span className="block text-[15px] font-semibold leading-tight" style={{ color: titleColor }}>
               {title}
             </span>
-            <span className="mt-1 block text-sm leading-relaxed" style={{ color: subtitleColor }}>
+            <span className="mt-1 block text-[12px] leading-relaxed" style={{ color: subtitleColor }}>
               {subtitle}
             </span>
           </span>
@@ -330,7 +330,7 @@ const SecondaryAccordionButton = ({ open, onClick, title, icon, t, hideLeadingIc
         {icon ?? <GoldAccordionSectionIcon />}
       </div>
     )}
-    <span className="flex-1 text-lg font-medium leading-snug sm:text-[1.65rem]">{title}</span>
+    <span className="flex-1 text-lg font-medium leading-snug sm:text-[1.65rem]" style={{ fontFamily: HERO_STAT_UI_SERIF}}>{title}</span>
     <AccordionChevron open={open} size={22} color="#ffffff" />
   </button>
 );
@@ -394,7 +394,7 @@ const HeroSection = ({ data }) => {
     },
   ].filter((item) => item.label);
   const snapshotCardClass =
-    "rounded-2xl p-6 lg:p-7 border flex flex-col overflow-hidden max-lg:min-h-[18rem] max-lg:max-h-[18rem] lg:h-[24rem]";
+    "rounded-2xl p-5 lg:p-7 border flex flex-col overflow-hidden max-lg:min-h-[18rem] max-lg:max-h-[18rem] lg:h-[24rem]";
   const snapshotCardStyle = {
     border: "1px solid rgba(182,138,53,0.2)",
     background: t.isDark ? "rgba(182,138,53,0.05)" : t.cardBg,
@@ -481,13 +481,13 @@ const HeroSection = ({ data }) => {
           }}
         />
 
-        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-3 lg:px-12 py-7 lg:py-11 flex items-end">
+        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-3 lg:px-12 py-[17px] lg:py-11 flex items-end">
           <div className="w-full max-w-[640px] lg:max-w-none">
             <div className="flex flex-wrap gap-3">
               {chipItems.map((item, i) => (
                 <span
                   key={`${item.label}-${i}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-[0.1em]"
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-[0.1em]"
                   style={{
                     background: item.variant === "gold" ? "rgba(182,138,53,0.92)" : "rgba(255,255,255,0.72)",
                     color: item.variant === "gold" ? "#ffffff" : "#4b5563",
@@ -510,7 +510,7 @@ const HeroSection = ({ data }) => {
                 aria-hidden="true"
               />
               <div className="relative">
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-[575] tracking-tight leading-[1.05]">
+                <h1 className="text-[40px] sm:text-6xl lg:text-7xl font-[575] tracking-tight leading-[1.05]">
                   <span className="block text-[#0a0a0a]">{line1}</span>
                   {line2 && (
                     <span className="mt-0.5 block" style={{ color: GOLD }}>
@@ -518,7 +518,7 @@ const HeroSection = ({ data }) => {
                     </span>
                   )}
                 </h1>
-                <h2 className="mt-3 text-lg sm:text-xl lg:text-2xl font-medium" style={{ color: SUBTITLE_GREY }}>
+                <h2 className="mt-3 text-[16px] sm:text-xl lg:text-2xl font-medium" style={{ color: SUBTITLE_GREY }}>
                   {hero.subtitle}
                 </h2>
               </div>
@@ -624,7 +624,7 @@ const HeroSection = ({ data }) => {
               </span>
             </h3>
             <div
-              className="min-h-0 flex-1 overflow-y-auto pr-1.5 text-base lg:text-sm leading-relaxed lg:leading-7 scrollbar-gold"
+              className="min-h-0 flex-1 overflow-y-auto pr-1.5 text-[14px] lg:text-sm leading-sm lg:leading-7 scrollbar-gold"
               style={{ color: t.textSecondary }}
             >
               {hero.overview_paragraphs.map((paragraph, i) => (
@@ -670,7 +670,7 @@ const HeroSection = ({ data }) => {
               </span>
             </h3>
             <div
-              className="min-h-0 flex-1 overflow-y-auto pr-1.5 text-base lg:text-sm leading-relaxed lg:leading-7 scrollbar-gold"
+              className="min-h-0 flex-1 overflow-y-auto pr-1.5 text-sm lg:text-sm leading-sm lg:leading-7 scrollbar-gold"
               style={{ color: t.textSecondary, scrollbarWidth: "thin" }}
             >
               {Array.isArray(hero.data_led_hook) ? (
@@ -897,7 +897,7 @@ const HeroSection = ({ data }) => {
         </div>
 
         <div className="mt-4 lg:hidden">
-          <h3 className="text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] font-semibold tracking-tight" style={{ color: t.text }}>
+          <h3 className="text-[30px] sm:text-[2.25rem] lg:text-[2.5rem] font-semibold tracking-tight" style={{ color: t.text }}>
             <span>{keyFactsSection.title_prefix || "Key Facts at a"} </span>
             <span style={{ color: GOLD }}>{keyFactsSection.title_accent || "Glance"}</span>
           </h3>
@@ -1151,7 +1151,7 @@ const HeroSection = ({ data }) => {
         {/* Infrastructure Accordion */}
         <div className="mt-16 hidden grid-cols-[0.95fr_1.65fr] gap-5 lg:grid">
           <div className="relative overflow-hidden rounded-[14px] border p-8" style={desktopFactsCardStyle}>
-            <h3 className="text-3xl font-semibold leading-tight" style={{ color: t.text }}>
+            <h3 className="text-3xl font-semibold leading-tight" style={{ color: t.text, fontFamily: HERO_STAT_UI_SERIF}} >
               Future Infrastructure
               <span className="block" style={{ color: GOLD }}>&amp; Economic Development</span>
             </h3>

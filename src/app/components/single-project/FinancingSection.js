@@ -83,7 +83,7 @@ const MobileCards = ({ headers, rows, t, highlightLast }) =>
           <p className="text-[10px] uppercase tracking-wider" style={{ color: t.textMuted }}>
             {h}
           </p>
-          <p className="mt-0.5 text-sm font-medium" style={{ color: highlightLast && i === rows.length - 1 && j === headers.length - 1 ? GOLD : t.text }}>
+          <p className="mt-0.5 text-[13px] font-medium" style={{ color: highlightLast && i === rows.length - 1 && j === headers.length - 1 ? GOLD : t.text }}>
             {row[j]}
           </p>
         </div>
@@ -122,7 +122,7 @@ const DesktopTable = ({ headers, rows, t, highlightLast, minTableWidth = 0 }) =>
             {row.map((cell, j) => (
               <td
                 key={j}
-                className={`px-4 py-2.5 text-sm ${highlightLast && i === rows.length - 1 ? "font-bold" : j === 0 ? "font-medium" : ""}`}
+                className={`px-4 py-2.5 text-[13px] md:text-sm ${highlightLast && i === rows.length - 1 ? "font-bold" : j === 0 ? "font-medium" : ""}`}
                 style={{ color: highlightLast && i === rows.length - 1 ? GOLD : j === 0 ? t.text : t.textSecondary }}
               >
                 {cell}
@@ -142,7 +142,7 @@ const BulletList = ({ items, t, color = GOLD }) => (
         <span className="mt-[7px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] leading-none" style={{ background: `${color}20`, color }}>
           ✓
         </span>
-        <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: item }} />
+        <p className="text-[13px] md:text-sm leading-5 md:leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: item }} />
       </div>
     ))}
   </div>
@@ -184,7 +184,7 @@ const KeyInsightBox = ({ children, t }) => (
       </span>
       <div>
         <p className="mb-2 text-sm font-semibold" style={{ color: GOLD }}>Key Insight:</p>
-        <p className="text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: children }} />
+        <p className="text-[13px] md:text-sm leading-5 md:leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: children }} />
       </div>
     </div>
   </div>
@@ -195,7 +195,7 @@ const GoldDotList = ({ items, t }) => (
     {items.map((item) => (
       <li key={item} className="flex items-start gap-3">
         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GOLD }} />
-        <span className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+        <span className="text-[13px] md:text-sm leading-5 md:leading-relaxed" style={{ color: t.textSecondary }}>
           {item}
         </span>
       </li>
@@ -217,7 +217,7 @@ const ServiceChargeEstimateCard = ({ data, t }) => (
     <p className="mt-2 text-xs" style={{ color: t.textMuted }}>
       Estimated Service Charge Range
     </p>
-    <p className="mt-4 text-[2.35rem] font-semibold leading-none" style={{ color: GOLD }}>
+    <p className="mt-4 md:text-[2.35rem] text-[1.8rem] font-semibold leading-none" style={{ color: GOLD }}>
       {data.service_charge_display_range}
     </p>
     <p className="mt-1 text-xs" style={{ color: t.textSecondary }}>
@@ -278,7 +278,7 @@ const ServiceChargeComparisonCards = ({ items, unitLabel, t }) => (
               </span>
             )}
           </div>
-          <p className="mt-3 text-2xl font-semibold" style={{ color: GOLD }}>
+          <p className="mt-3 md:text-2xl text-[1.2rem] font-semibold" style={{ color: GOLD }}>
             AED {item.charge}
           </p>
           <p className="text-xs" style={{ color: t.textMuted }}>
@@ -662,7 +662,7 @@ const FinancingSection = ({ data }) => {
                   ⚠️
                 </span>
                 <p
-                  className="text-sm leading-relaxed"
+                  className="text-[13px] leading-5"
                   style={{ color: t.textSecondary }}
                   dangerouslySetInnerHTML={{ __html: `<strong>Critical:</strong> ${data.financing_intro}` }}
                 />
@@ -701,7 +701,7 @@ const FinancingSection = ({ data }) => {
           </AccordionCard>
 
           <AccordionCard title="Loan-to-Value (LTV) Caps for Handover Financing" icon="%" isOpen={openSections.ltv} onToggle={() => toggle("ltv")} t={t}>
-            <p className="mb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+            <p className="mb-4 text-[13px] leading-5" style={{ color: t.textSecondary }}>
               Based on Central Bank of UAE regulations, these are the maximum LTV ratios available when the property is completed.
             </p>
 
@@ -735,7 +735,7 @@ const FinancingSection = ({ data }) => {
           </AccordionCard>
 
           <AccordionCard title="Total Cash Required at Purchase" icon="$" isOpen={openSections.cash} onToggle={() => toggle("cash")} t={t}>
-            <p className="mb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_required_intro }} />
+            <p className="mb-4 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_required_intro }} />
             <div className="mb-4 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.14)" : "#f8f1e5", border: `1px solid ${t.cardBorder}` }}>
               {data.cash_purchase_label}
             </div>
@@ -752,7 +752,7 @@ const FinancingSection = ({ data }) => {
           </AccordionCard>
 
           <AccordionCard title="ROI Estimator — Rental Yield Projections" subtitle="Benchmarking · 3 scenarios · yield context" icon="📈" isOpen={openSections.roi} onToggle={() => toggle("roi")} t={t}>
-            <p className="mb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+            <p className="mb-4 text-[13px] leading-5" style={{ color: t.textSecondary }}>
               {data.roi_intro}
             </p>
 
@@ -839,7 +839,7 @@ const FinancingSection = ({ data }) => {
           </AccordionCard>
 
           <AccordionCard title="Project Comparison — Emaar vs. Competitors" icon="⚖️" isOpen={openSections.comparison} onToggle={() => toggle("comparison")} t={t} accentColor="#286CFF">
-            <p className="mb-4 text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+            <p className="mb-4 text-[13px] leading-5" style={{ color: t.textSecondary }}>
               {data.comparison_intro}
             </p>
 
@@ -894,10 +894,10 @@ const FinancingSection = ({ data }) => {
                       background: index % 2 !== 0 ? (t.isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)") : "transparent",
                     }}
                   >
-                    <span className="font-medium" style={{ color: t.text }}>
+                    <span className="font-medium text-[13px]" style={{ color: t.text }}>
                       {feature}
                     </span>
-                    <span style={{ color: t.textSecondary }}>
+                    <span className="text-[13px]" style={{ color: t.textSecondary }}>
                       {value}
                     </span>
                   </div>
@@ -924,7 +924,7 @@ const FinancingSection = ({ data }) => {
                       )}
                     </div>
                     <div className="pt-0.5">
-                      <p className="text-base font-semibold leading-5" style={{ color: t.text }}>
+                      <p className="text-sm font-semibold leading-5" style={{ color: t.text }}>
                         {item.project}
                       </p>
                       <p className="mt-1 text-sm leading-5" style={{ color: t.textMuted }}>
@@ -943,7 +943,7 @@ const FinancingSection = ({ data }) => {
               {data.comparison_analysis.map((item, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "#286CFF" }} />
-                  <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>
+                  <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>
                     {item}
                   </p>
                 </div>

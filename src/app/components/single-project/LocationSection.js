@@ -356,7 +356,7 @@ const LocationSection = ({ data }) => {
 
   const renderWalkability = () => (
     <div className="pt-4">
-      <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+      <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>
         {data.walkability_intro}
       </p>
 
@@ -373,7 +373,7 @@ const LocationSection = ({ data }) => {
                 <h4 className="text-sm font-semibold" style={{ color: t.text }}>
                   {item.title}
                 </h4>
-                <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>
+                <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                   {item.content}
                 </p>
               </div>
@@ -392,7 +392,7 @@ const LocationSection = ({ data }) => {
         >
           <div className="flex items-start gap-3">
             <DetailIcon icon="info" t={t} highlight />
-            <p className="text-sm leading-6" style={{ color: t.textSecondary }}>
+            <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>
               {data.walkability_note}
             </p>
           </div>
@@ -551,7 +551,7 @@ const LocationSection = ({ data }) => {
                   />
                   <HtmlText
                     html={bullet}
-                    className="text-sm leading-6"
+                    className="text-[13px] leading-5"
                     style={{ color: t.textSecondary }}
                   />
                 </div>
@@ -575,7 +575,7 @@ const LocationSection = ({ data }) => {
 
   const renderNeighbourhood = () => (
     <div className="pt-4">
-      <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+      <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>
         {data.neighbourhood_intro}
       </p>
 
@@ -595,7 +595,7 @@ const LocationSection = ({ data }) => {
                 <h4 className="text-base font-semibold" style={{ color: t.text }}>
                   {item.title}
                 </h4>
-                <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>
+                <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>
                   {item.content}
                 </p>
               </div>

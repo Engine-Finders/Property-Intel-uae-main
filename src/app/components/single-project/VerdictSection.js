@@ -8,6 +8,7 @@ const GOLD = "#B68A35";
 const GREEN = "#6EAF4A";
 const RED = "#D97D74";
 const BLUE = "#1565C0";
+const HERO_STAT_UI_SERIF = 'ui-serif, Georgia, Cambria, "Times New Roman", serif';
 
 const STEP_COLORS = [GREEN, GOLD, BLUE];
 
@@ -149,7 +150,7 @@ const MobileFitCard = ({ title, items, color, icon, t }) => (
       {items.map((item, i) => (
         <div key={i} className="flex items-start gap-2.5">
           <span className="mt-[7px] block h-1.5 w-1.5 rounded-full" style={{ background: color }} />
-          <p className="text-[13px] leading-6" style={{ color: t.textSecondary }}>
+          <p className="text-[12px] leading-5" style={{ color: t.textSecondary }}>
             {item}
           </p>
         </div>
@@ -185,11 +186,11 @@ const MobileApproachCard = ({ item, index, t }) => {
           <p className="text-xs font-semibold tracking-[0.12em] uppercase" style={{ color: GOLD }}>
             {String(index + 1).padStart(2, "0")}
           </p>
-          <h4 className="mt-1 text-[18px] font-semibold leading-6" style={{ color: t.text }}>
+          <h4 className="mt-1 text-[14px] font-semibold leading-5" style={{ color: t.text }}>
             {lead}
             {rest ? <> <span>{rest}</span></> : null}
           </h4>
-          <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }}>
+          <p className="mt-1.5 text-[12px] leading-4" style={{ color: t.textSecondary }}>
             {item.subtitle}
           </p>
         </div>
