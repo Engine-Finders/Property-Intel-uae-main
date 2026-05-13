@@ -183,7 +183,7 @@ const Callout = ({ label, children, tone = "gold", t }) => {
           <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color }}>
             {label}
           </p>
-          <p className="text-xs leading-6" style={{ color: t.textSecondary }}>
+          <p className="text-xs leading-5" style={{ color: t.textSecondary }}>
             {children}
           </p>
         </div>
@@ -211,7 +211,7 @@ const TipCard = ({ tip, index, t }) => (
 
       <div className="space-y-3">
         {tip.paragraphs.map((p, i) => (
-          <p key={i} className="text-sm leading-7" style={{ color: t.textSecondary }}>{p}</p>
+          <p key={i} className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{p}</p>
         ))}
       </div>
 
@@ -316,9 +316,9 @@ const ScamTable = ({ headers, rows, t }) => {
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ background: t.isDark ? "rgba(201,80,74,0.14)" : "#FCEBEA", color: RED }}>
               <Icon name={icons[i] || "shield"} size={17} />
             </span>
-            <p className="text-sm font-bold leading-6" style={{ color: RED }}>{row[0]}</p>
+            <p className="text-sm font-bold leading-5" style={{ color: RED }}>{row[0]}</p>
           </div>
-          <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{row[1]}</p>
+          <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{row[1]}</p>
         </div>
       ))}
     </div>
@@ -338,8 +338,8 @@ const RegulatoryCard = ({ item, t }) => (
       <Icon name="check" size={20} />
     </span>
     <div>
-      <p className="text-sm font-bold leading-6" style={{ color: t.text }}>{item.label}</p>
-      <p className="mt-1 text-sm leading-6" style={{ color: t.textSecondary }}>{item.desc}</p>
+      <p className="text-sm font-bold leading-5" style={{ color: t.text }}>{item.label}</p>
+      <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }}>{item.desc}</p>
     </div>
   </div>
 );
@@ -371,9 +371,9 @@ const FinalWord = ({ finalWord, t }) => {
           {eyebrow || finalWord.badge}
         </p>
         <h3 className="font-serif text-3xl font-medium leading-tight sm:text-4xl">{title}</h3>
-        {mainText && <p className="mt-5 text-lg leading-8 text-white/90">{mainText.trim()}</p>}
+        {mainText && <p className="mt-3 md:mt-5 text-lg leading-6 md:leading-8 text-white/90">{mainText.trim()}</p>}
         {howeverText && (
-          <blockquote className="mt-5 border-l-2 border-white/45 pl-5 text-lg italic leading-8 text-white/90">
+          <blockquote className="mt-3 md:mt-5 border-l-2 border-white/45 pl-5 text-lg italic md:leading-8 leading-6 text-white/90">
             However,{howeverText.trim()}
           </blockquote>
         )}
@@ -502,11 +502,18 @@ const ExpertTipsSection = ({ data }) => {
         </div>
 
         <div className="mx-auto max-w-3xl lg:hidden">
-        <div className="mb-8 text-center">
-          <h2 className="mx-auto max-w-xl font-serif text-[32px] font-medium leading-tight sm:text-4xl" style={{ color: t.text }}>
-            {data.title}
-          </h2>
-          {data.subtitle && <p className="mt-4 text-xl" style={{ color: t.textMuted }}>{data.subtitle}</p>}
+        <div className="mb-4 text-center">
+        <h2
+  className="font-serif text-[32px] font-medium leading-tight"
+  style={{ color: t.text }}
+>
+  {desktopTitleLead || "Insider Tips for"}{' '}
+  
+  <span className="italic" style={{ color: GOLD }}>
+    Off-Plan Buyers
+  </span>
+</h2>
+          {data.subtitle && <p className="mt-1 text-lg" style={{ color: t.textMuted }}>{data.subtitle}</p>}
         </div>
 
         <div className="space-y-4">
@@ -548,7 +555,7 @@ const ExpertTipsSection = ({ data }) => {
             onToggle={() => toggle("regulatory")}
             t={t}
           >
-            <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }}>{regulatory.intro}</p>
+            <p className="mb-5 text-[13px] leading-5" style={{ color: t.textSecondary }}>{regulatory.intro}</p>
             <div className="space-y-3">
                 {(regulatory.items || []).map((item, i) => (
                 <RegulatoryCard key={i} item={item} t={t} />

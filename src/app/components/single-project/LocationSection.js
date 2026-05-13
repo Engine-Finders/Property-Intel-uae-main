@@ -680,7 +680,7 @@ const LocationSection = ({ data }) => {
         <div className="text-center mb-10 lg:hidden">
           <h2
             style={{ color: t.text }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight"
+            className="text-[32px] sm:text-3xl lg:text-4xl font-bold leading-tight"
           >
             Location Analysis —{" "}
             <span style={{ color: "#b8860b" }}>Connectivity, Amenities & Future Infrastructure</span>

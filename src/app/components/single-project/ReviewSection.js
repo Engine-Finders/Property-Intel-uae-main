@@ -272,7 +272,7 @@ const SentimentBar = ({ item, t }) => {
       <div className="h-2 rounded-full overflow-hidden" style={{ background: t.isDark ? "rgba(255,255,255,0.08)" : "#EFECE5" }}>
         <div className="h-full rounded-full transition-all duration-1000 ease-out" style={{ width: `${w}%`, background: color }} />
       </div>
-      <p className="mt-3 text-sm italic leading-6" style={{ color: t.textSecondary }}>{item.themes}</p>
+      <p className="mt-3 text-[13px] italic leading-5" style={{ color: t.textSecondary }}>{item.themes}</p>
     </div>
   );
 };
@@ -290,7 +290,7 @@ const QuoteCard = ({ quote, accentColor, t }) => {
         borderLeft: `3px solid ${accentColor}`,
       }}
     >
-      <p className="text-sm italic leading-6" style={{ color: t.textSecondary }}>
+      <p className="text-[13px] italic leading-5" style={{ color: t.textSecondary }}>
         &quot;{quote.text}&quot;
       </p>
       <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px] font-semibold" style={{ color: t.textMuted }}>
@@ -339,7 +339,7 @@ const PatternCard = ({ row, index, t }) => {
         <p className="text-sm font-semibold leading-5" style={{ color: t.text }}>
           {row[0]}
         </p>
-        <p className="mt-1 text-xs leading-6" style={{ color: t.textSecondary }}>
+        <p className="mt-1 text-xs leading-5" style={{ color: t.textSecondary }}>
           {row[1]}
         </p>
       </div>
@@ -366,7 +366,7 @@ const FutureCard = ({ item, t }) => {
           {title}
         </p>
         {description && (
-          <p className="mt-1 text-xs leading-6" style={{ color: t.textSecondary }}>
+          <p className="mt-1 text-xs leading-5" style={{ color: t.textSecondary }}>
             {description}
           </p>
         )}
@@ -404,7 +404,7 @@ const DesktopTransparencyNote = ({ data, t }) => (
       <IconBadge t={t} className="h-11 w-11">
         <Icon name="spark" size={20} />
       </IconBadge>
-      <p className="text-sm leading-6" style={{ color: t.textSecondary }}>
+      <p className="text-sm leading-5" style={{ color: t.textSecondary }}>
         <strong style={{ color: t.text }}>{data.transparency_title}:</strong> {data.transparency_note}
       </p>
     </div>
@@ -660,7 +660,7 @@ const ReviewsSection = ({ data }) => {
         <div className="mx-auto max-w-3xl lg:hidden">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="mx-auto max-w-xl font-serif text-[28px] font-medium leading-tight sm:text-4xl" style={{ color: t.text }}>
+          <h2 className="mx-auto max-w-xl font-serif text-[32px] font-medium leading-tight sm:text-4xl" style={{ color: t.text }}>
             {headerHighlight && titleParts.length > 1 ? (
               <>
                 {titleParts[0]}
@@ -672,10 +672,9 @@ const ReviewsSection = ({ data }) => {
             ) : (
               headerTitle
             )}
-            {data.subtitle && <span className="block text-[22px] sm:text-3xl">{data.subtitle}</span>}
           </h2>
           {data.intro && (
-            <p className="mx-auto mt-4 max-w-sm text-sm leading-6" style={{ color: t.textSecondary }}>
+            <p className="mx-auto mt-4 max-w-sm text-sm leading-5" style={{ color: t.textSecondary }}>
               {data.intro}
             </p>
           )}
@@ -705,7 +704,7 @@ const ReviewsSection = ({ data }) => {
             onToggle={() => toggleAccordion("methodology")}
             t={t}
           >
-            <p className="text-sm leading-7" style={{ color: t.textSecondary }}>
+            <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>
               {data.methodology}
             </p>
             {methodologyCommunities.length > 0 && (
@@ -733,7 +732,7 @@ const ReviewsSection = ({ data }) => {
             {data.methodology_sources && (
               <div className="mt-5 border-l-2 p-4" style={{ borderColor: GOLD, background: t.isDark ? "rgba(182,138,53,0.08)" : "#FBF8F1" }}>
                 <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: GOLD }}>{data.methodology_sources_title}</p>
-                <p className="text-xs leading-6" style={{ color: t.textSecondary }}>
+                <p className="text-xs leading-5" style={{ color: t.textSecondary }}>
                   {data.methodology_sources}
                 </p>
               </div>
@@ -749,7 +748,7 @@ const ReviewsSection = ({ data }) => {
             t={t}
           >
             {sentiment.intro && (
-              <p className="mb-5 text-sm italic leading-6" style={{ color: t.textSecondary }}>
+              <p className="mb-5 text-[14px] italic leading-5" style={{ color: t.textSecondary }}>
                 {sentiment.intro}
               </p>
             )}
@@ -759,7 +758,7 @@ const ReviewsSection = ({ data }) => {
               ))}
             </div>
             <div className="mt-5 rounded-xl px-4 py-3" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#FBF8F1" }}>
-              <p className="text-xs italic leading-6" style={{ color: t.textMuted }}>{sentiment.source_label}: {sentiment.source}</p>
+              <p className="text-xs italic leading-5" style={{ color: t.textMuted }}>{sentiment.source_label}: {sentiment.source}</p>
             </div>
           </AccordionCard>
 
@@ -772,7 +771,7 @@ const ReviewsSection = ({ data }) => {
             t={t}
           >
             {quotes.intro && (
-              <p className="mb-5 text-sm leading-6" style={{ color: t.textSecondary }}>
+              <p className="mb-5 text-[14px] leading-5" style={{ color: t.textSecondary }}>
                 {quotes.intro}
               </p>
             )}
@@ -806,7 +805,7 @@ const ReviewsSection = ({ data }) => {
             t={t}
           >
             {future.intro && (
-              <p className="mb-5 text-sm leading-6" style={{ color: t.textSecondary }}>
+              <p className="mb-5 text-sm leading-5" style={{ color: t.textSecondary }}>
                 {future.intro}
               </p>
             )}

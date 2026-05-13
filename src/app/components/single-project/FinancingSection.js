@@ -370,9 +370,17 @@ const FinancingSection = ({ data }) => {
       `}</style>
       <div className="mx-auto max-w-7xl px-3 sm:px-6">
         <div className="mb-10 lg:hidden">
-          <h2 className="text-2xl font-bold leading-tight lg:text-3xl xl:text-4xl" style={{ color: t.text }}>
-            {data.heading}
-          </h2>
+        <h2
+  className="text-[32px] font-bold leading-tight lg:text-3xl xl:text-4xl"
+>
+  <span style={{ color: t.text }}>
+    {data.heading.split(' ').slice(0, 5).join(' ')}{' '}
+  </span>
+
+  <span style={{ color: '#B68A35' }}>
+    {data.heading.split(' ').slice(5).join(' ')}
+  </span>
+</h2>
         </div>
 
         <div className="hidden lg:block">

@@ -253,7 +253,7 @@ const RiskOptionCard = ({ label, icon, active, onClick, t }) => (
     >
       <RiskIcon name={icon} size={30} />
     </span>
-    <span className="block text-[1rem] font-semibold leading-5" style={{ color: t.text }}>
+    <span className="block text-[14px] font-semibold leading-5" style={{ color: t.text }}>
       {label}
     </span>
   </button>
@@ -281,7 +281,7 @@ const WarningBox = ({ children, t }) => (
 const BulletList = ({ items, t, icon = "→" }) => (
   <ul className="space-y-2 mt-3">
     {items.map((item, i) => (
-      <li key={i} className="flex gap-2 items-start text-xs leading-relaxed" style={{ color: t.textSecondary }}>
+      <li key={i} className="flex gap-2 items-start text-xs leading-5" style={{ color: t.textSecondary }}>
         <span style={{ color: "#B68A35" }} className="shrink-0 mt-0.5">{icon}</span>
         <span>{item}</span>
       </li>
@@ -686,9 +686,17 @@ const RisksSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-10">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: t.text }}>
-            {data.subtitle}
-          </h2>
+        <h2
+  className="text-[32px] lg:text-3xl font-bold mb-3 leading-tight"
+>
+  <span style={{ color: t.text }}>
+    {data.subtitle.split(' ').slice(0, 5).join(' ')}{' '}
+  </span>
+
+  <span style={{ color: '#B68A35' }}>
+    {data.subtitle.split(' ').slice(5).join(' ')}
+  </span>
+</h2>
         </div>
 
         {/* Risk Radar Bars — always visible */}
@@ -726,8 +734,8 @@ const RisksSection = ({ data }) => {
         >
           {activeTab === "handover" && (
             <div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: t.text }}>{delay.title}</h3>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: t.textSecondary }}>{delay.intro}</p>
+              <h3 className="text-[17px] font-semibold mb-2" style={{ color: t.text }}>{delay.title}</h3>
+              <p className="text-sm leading-5 mb-4" style={{ color: t.textSecondary }}>{delay.intro}</p>
               <HandoverDelaySlider
                 headers={delay.table?.headers || []}
                 rows={delay.table?.rows || []}
@@ -750,7 +758,7 @@ const RisksSection = ({ data }) => {
               <h3 className="text-lg font-semibold mb-4" style={{ color: t.text }}>{oversupply.title}</h3>
               <div className="mb-4 grid grid-cols-[1fr_auto] gap-3 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
                 <div>
-                  <p className="text-5xl font-semibold leading-none" style={{ color: "#B68A35" }}>{oversupply.stat_value}</p>
+                  <p className="text-4xl font-semibold leading-none" style={{ color: "#B68A35" }}>{oversupply.stat_value}</p>
                   <p className="mt-2 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{oversupply.intro}</p>
                 </div>
                 <div className="border-l pl-4 text-center" style={{ borderColor: t.cardBorder }}>
@@ -783,7 +791,7 @@ const RisksSection = ({ data }) => {
           {activeTab === "costs" && (
             <div>
               <h3 className="text-lg font-semibold mb-3" style={{ color: t.text }}>{hidden.title}</h3>
-              <p className="text-sm leading-relaxed mb-5" style={{ color: t.textSecondary }}>{hidden.intro}</p>
+              <p className="text-[13px] leading-5 mb-5" style={{ color: t.textSecondary }}>{hidden.intro}</p>
               <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#B68A35" }}>Post-Handover Cost Considerations</p>
               <div className="space-y-3">
                 {(hidden.post_handover_costs || []).map((cost, i) => (
@@ -791,7 +799,7 @@ const RisksSection = ({ data }) => {
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white" style={{ background: "#B68A35" }}>{i + 1}</span>
                     <div>
                       <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{cost.item}</p>
-                      <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{cost.detail}</p>
+                      <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{cost.detail}</p>
                     </div>
                   </div>
                 ))}
@@ -807,14 +815,14 @@ const RisksSection = ({ data }) => {
                 {(quality.table?.rows || []).map((row) => (
                   <div key={row[0]} className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
                     <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{row[0]}</p>
-                    <p className="text-sm leading-relaxed mb-2" style={{ color: t.textSecondary }}>{row[1]}</p>
+                    <p className="text-[13px] leading-5 mb-2" style={{ color: t.textSecondary }}>{row[1]}</p>
                     <p className="text-xs italic" style={{ color: "#B68A35" }}>Relevance: {row[2]}</p>
                   </div>
                 ))}
               </div>
               <div className="mt-4 rounded-xl border-l-2 p-4" style={{ borderColor: "#B68A35", background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
                 <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#B68A35" }}>Mitigation Strategy</p>
-                <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{quality.mitigation}</p>
+                <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{quality.mitigation}</p>
               </div>
             </div>
           )}
@@ -840,19 +848,19 @@ const RisksSection = ({ data }) => {
                     </span>
                     <div>
                       <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{lim.issue}</p>
-                      <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{lim.detail}</p>
+                      <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{lim.detail}</p>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="rounded-xl p-4 mb-4" style={{ border: `1px solid ${t.cardBorder}` }}>
                 <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#B68A35" }}>Construction Phase Disruption</p>
-                <p className="text-sm leading-relaxed mb-2" style={{ color: t.textSecondary }}>{location.construction_disruption?.text}</p>
+                <p className="text-[13px] leading-5 mb-2" style={{ color: t.textSecondary }}>{location.construction_disruption?.text}</p>
                 <BulletList items={location.construction_disruption?.items || []} t={t} icon="•" />
               </div>
               <div className="rounded-xl border-l-2 p-4" style={{ borderColor: "#B68A35", background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
                 <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#B68A35" }}>Flood Risk Assessment</p>
-                <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{location.flood_risk}</p>
+                <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{location.flood_risk}</p>
               </div>
             </div>
           )}
@@ -867,13 +875,13 @@ const RisksSection = ({ data }) => {
                       <p className="text-sm font-semibold" style={{ color: t.text }}>{row[0]}</p>
                       <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold" style={{ background: `${getSeverityColor(row[1])}18`, color: getSeverityColor(row[1]) }}>{row[1]}</span>
                     </div>
-                    <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{row[2]}</p>
+                    <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{row[2]}</p>
                   </div>
                 ))}
               </div>
               <div className="rounded-xl p-4" style={{ background: "linear-gradient(135deg, rgba(182,138,53,0.1), rgba(182,138,53,0.03))", border: "1px solid rgba(182,138,53,0.25)" }}>
                 <p className="text-xs font-semibold mb-2" style={{ color: "#B68A35" }}>Final Perspective</p>
-                <p className="text-sm leading-relaxed" style={{ color: t.textSecondary }}>{data.final_perspective}</p>
+                <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{data.final_perspective}</p>
               </div>
             </div>
           )}

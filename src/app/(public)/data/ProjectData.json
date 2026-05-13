@@ -246,7 +246,7 @@
       ],
       "h3_cta": "Want a Straight Answer on This Project?",
       "cta_subtitle": "Speak to a specialist who understands Serro at The Heights — not someone trying to sell everything.",
-      "cta_buttons": ["Get Expert Opinion", "WhatsApp Now", "Request Callback"]
+      "cta_buttons": ["Email Us", "WhatsApp", "Call Us"]
     },
     "unit_mix_section": {
       "heading": "Unit Mix, Sizes & Price Trends — Serro at The Heights",
@@ -1196,7 +1196,7 @@
       "badge": "Resident Reviews",
       "title": "What Residents & Early Owners Are Saying",
       "title_highlight": "Saying",
-      "subtitle": "Emaar Communities",
+      "subtitle": "",
       "intro": "Patterns drawn from 187 verified reviews across comparable Emaar villa communities.",
       "stats": [
         { "icon": "reviews", "value": "187", "label": "Verified Reviews" },

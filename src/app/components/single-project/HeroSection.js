@@ -185,7 +185,7 @@ const ExpertContactCard = ({ cta, mobile = false }) => {
             <ExpertBadgeIcon />
           </span>
           <span className="min-w-0">
-            <span className="block text-[15px] font-semibold leading-tight" style={{ color: titleColor }}>
+            <span className="block text-[16px] font-semibold leading-tight" style={{ color: titleColor }}>
               {title}
             </span>
             <span className="mt-1 block text-[12px] leading-relaxed" style={{ color: subtitleColor }}>
@@ -481,7 +481,7 @@ const HeroSection = ({ data }) => {
           }}
         />
 
-        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-3 lg:px-12 py-[17px] lg:py-11 flex items-end">
+        <div className="relative z-10 min-h-[640px] lg:min-h-[760px] max-w-7xl mx-auto px-3 lg:px-12 py-8 lg:py-11 flex items-end">
           <div className="w-full max-w-[640px] lg:max-w-none">
             <div className="flex flex-wrap gap-3">
               {chipItems.map((item, i) => (
@@ -510,7 +510,7 @@ const HeroSection = ({ data }) => {
                 aria-hidden="true"
               />
               <div className="relative">
-                <h1 className="text-[40px] sm:text-6xl lg:text-7xl font-[575] tracking-tight leading-[1.05]">
+                <h1 className="text-[40px] sm:text-6xl lg:text-7xl font-[575] italic tracking-tight leading-[1.05]">
                   <span className="block text-[#0a0a0a]">{line1}</span>
                   {line2 && (
                     <span className="mt-0.5 block" style={{ color: GOLD }}>

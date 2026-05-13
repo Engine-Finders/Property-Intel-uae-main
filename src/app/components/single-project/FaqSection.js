@@ -53,7 +53,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle, t }) => (
     <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"}`}>
       <div className="space-y-3 border-t px-4 py-5 sm:px-5 lg:px-12 lg:py-7 lg:pl-[104px]" style={{ borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "#EFEAE1" }}>
         {faq.answer.map((p, i) => (
-          <p key={i} className="text-sm leading-7 lg:text-base lg:leading-8" style={{ color: t.textSecondary }}>{p}</p>
+          <p key={i} className="text-sm leading-6 lg:text-base lg:leading-8" style={{ color: t.textSecondary }}>{p}</p>
         ))}
         {faq.list && (
           <ul className="mt-2 space-y-2">

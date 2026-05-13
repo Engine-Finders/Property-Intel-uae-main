@@ -81,19 +81,19 @@ const getVerdictCta = (data) => {
     subtext: data.mobile_cta_subtitle || data.cta_subtitle || "Speak to a specialist for project-specific guidance.",
     actions: [
       {
-        label: buttons[0] || data.mobile_cta_button || "Get Expert Opinion",
+        label: buttons[0] || data.mobile_cta_button || "Email Us",
         subtext: data.mobile_cta_note || "No pressure advice",
         type: "email",
         href: "#",
       },
       {
-        label: buttons[1] || "WhatsApp Now",
+        label: buttons[1] || "WhatsApp",
         subtext: "Chat instantly",
         type: "whatsapp",
         href: "#",
       },
       {
-        label: buttons[2] || "Request Callback",
+        label: buttons[2] || "Call Us",
         subtext: "Speak directly",
         type: "phone",
         href: "#",

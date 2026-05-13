@@ -8,7 +8,7 @@ import SectionImageHeader from "./SectionImageHeader";
 const GOLD = "#B68A35";
 const sectionH2Class = "text-[32px] font-semibold leading-none";
 /** Body intro (mobile h2 lead-in, institutional, etc.): 14px / 400 / 1.75 / -0.01em; pair with `lg:text-[15px]` where desktop should read slightly larger. */
-const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.5] tracking-[-0.01em]";
+const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.7] tracking-[-0.01em]";
 const GREEN = "#10b981";
 const AMBER = "#D9B05F";
 const RED = "#f59e0b";
@@ -633,7 +633,7 @@ const DeveloperSection = ({ data }) => {
                       </span>
                     </button>
                     <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"}`}>
-                      <p className="px-3 pb-3 text-[14px] leading-5" style={{ color: t.textSecondary }}>
+                      <p className="px-3 pb-3 text-[12px] leading-5" style={{ color: t.textSecondary }}>
                         {issue.content}
                       </p>
                     </div>

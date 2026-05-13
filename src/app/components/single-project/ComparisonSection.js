@@ -55,7 +55,7 @@ const WinnerCard = ({ item, t }) => {
           <p className="mt-1 text-sm font-semibold leading-5" style={{ color: t.text }}>
             {item.winner}
           </p>
-          <p className="mt-2 text-sm leading-7" style={{ color: t.textSecondary }}>
+          <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }}>
             {item.rationale}
           </p>
         </div>
@@ -76,7 +76,7 @@ const StatLine = ({ label, sublabel, value, max = 6000000, color, t }) => {
   const width = Math.max(18, Math.min(100, (number / max) * 100));
 
   return (
-    <div className="border-b py-4 last:border-b-0" style={{ borderColor: t.cardBorder }}>
+    <div className="border-b py-1 last:border-b-0" style={{ borderColor: t.cardBorder }}>
       <div className="grid grid-cols-[1fr_1.2fr_auto] items-center gap-3">
         <div>
           <p className="text-sm font-semibold" style={{ color: t.text }}>{label}</p>
@@ -124,9 +124,9 @@ const CompetitorDetail = ({ comp, projectMeta, activeIndex, t }) => {
 
       <div className="grid grid-cols-2 border-t" style={{ borderColor: t.cardBorder }}>
         {details.map(([label, value], index) => (
-          <div key={label} className="border-b border-r p-4 even:border-r-0" style={{ borderColor: t.cardBorder }}>
+          <div key={label} className="border-b border-r p-3 even:border-r-0" style={{ borderColor: t.cardBorder }}>
             <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: GOLD }}>{label}</p>
-            <p className="text-sm font-semibold leading-6" style={{ color: index === 2 && activeIndex === 2 ? "#286CFF" : t.text }}>{value}</p>
+            <p className="text-[13px] font-semibold leading-5" style={{ color: index === 2 && activeIndex === 2 ? "#286CFF" : t.text }}>{value}</p>
           </div>
         ))}
       </div>
@@ -139,7 +139,7 @@ const CompetitorDetail = ({ comp, projectMeta, activeIndex, t }) => {
             </span>
             <div>
               <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: GOLD }}>{label}</p>
-              <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{value}</p>
+              <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{value}</p>
             </div>
           </div>
         ))}
@@ -400,21 +400,21 @@ const ComparisonSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ color: t.text }}>
+          <h2 className="text-[32px] font-semibold leading-[1.05] mb-3" style={{ color: t.text }}>
             <span className="block">How Serro at The Heights</span>
             <span className="block" style={{ color: GOLD }}>Stacks Up Against Competitors</span>
           </h2>
-          <p className="text-sm leading-6 max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
+          <p className="text-sm leading-5 max-w-3xl" style={{ color: t.textSecondary }}>{data.intro}</p>
         </div>
 
-        <div className="mb-8 rounded-xl p-4" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
+        <div className="mb-8 rounded-lg p-4" style={{ background: t.cardBg, border: `1px solid ${t.cardBorder}` }}>
           <h3 className="mb-4 text-lg font-semibold" style={{ color: t.text }}>Starting price at a glance</h3>
-          <div className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+          <div className="rounded-xl p-1" style={{ border: `1px solid ${t.cardBorder}` }}>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: GOLD }}>Entry Price — 3 Bedroom</p>
             {data.mobile_price_glance.rows.map((row, index) => (
               <StatLine key={row.label} label={row.label} sublabel={data.project_meta[index]?.sublabel} value={row.value} color={row.color} t={t} />
             ))}
-            <p className="mt-3 text-sm leading-6" style={{ color: t.textMuted }}>
+            <p className="mt-3 text-sm leading-5" style={{ color: t.textMuted }}>
               {data.mobile_price_glance.summary}
             </p>
           </div>
@@ -457,7 +457,7 @@ const ComparisonSection = ({ data }) => {
         </Expandable>
 
         <Expandable title={verdict.title || "Strategic Verdict"} icon="◎" open={openPanel === "verdict"} onToggle={() => toggle("verdict")} t={t}>
-          <p className="text-sm leading-6 mb-5" style={{ color: t.textSecondary }}>{verdict.intro}</p>
+          <p className="text-[13px] leading-5 mb-5" style={{ color: t.textSecondary }}>{verdict.intro}</p>
           <div className="divide-y mb-5" style={{ borderColor: t.cardBorder }}>
             {(verdict.points || []).map((p, i) => {
               const [title, desc] = String(p).split(" — ");
@@ -467,8 +467,8 @@ const ComparisonSection = ({ data }) => {
                     {i + 1}
                   </span>
                   <div>
-                    <p className="font-semibold mb-1" style={{ color: t.text }}>{title}</p>
-                    {desc && <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{desc}</p>}
+                    <p className="mb-1 text-[13px]" style={{ color: t.text }}>{title}</p>
+                    {desc && <p className="text-sm leading-5" style={{ color: t.textSecondary }}>{desc}</p>}
                   </div>
                 </div>
               );
@@ -476,7 +476,7 @@ const ComparisonSection = ({ data }) => {
           </div>
           <div className="border-l-2 p-4" style={{ borderColor: GOLD, background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] mb-2" style={{ color: GOLD }}>Bottom Line</p>
-            <p className="text-sm leading-6" style={{ color: t.textSecondary }}>{verdict.closing}</p>
+            <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{verdict.closing}</p>
           </div>
         </Expandable>
 

@@ -178,7 +178,7 @@ const ExpertContactCard = ({ cta, mobile = false, t }) => {
             <ExpertBadgeIcon />
           </span>
           <span className={mobile ? "text-left" : ""}>
-            <span className={mobile ? "block text-[15px] font-semibold leading-tight" : "block text-xl font-semibold leading-tight"} style={{ color: t.text }}>
+            <span className={mobile ? "block text-[16px] font-semibold leading-tight" : "block text-xl font-semibold leading-tight"} style={{ color: t.text }}>
               {cta.heading}
             </span>
             <span className={mobile ? "mt-2 block text-[12px] leading-snug" : "mt-1 block text-sm leading-relaxed"} style={{ color: t.textSecondary }}>

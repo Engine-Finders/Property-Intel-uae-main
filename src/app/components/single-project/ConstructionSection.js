@@ -30,7 +30,7 @@ const TimelineDot = ({ milestone, isLast, t }) => {
           {milestone.year} {milestone.quarter}
         </span>
         <p className="text-sm font-semibold mt-1" style={{ color: t.text }}>{milestone.label}</p>
-        <p className="text-sm leading-6 mt-0.5" style={{ color: t.textSecondary }}>{milestone.detail}</p>
+        <p className="text-[13px] leading-5 mt-0.5" style={{ color: t.textSecondary }}>{milestone.detail}</p>
       </div>
     </div>
   );
@@ -479,9 +479,14 @@ const ConstructionSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-1" style={{ color: t.text }}>{data.title}</h2>
+        <h2 className="text-[32px] font-semibold leading-[1.05]" style={{ color: t.text }}>
+                Construction Progress &amp;
+                <span className="block italic" style={{ color: GOLD }}>
+                  Handover Outlook
+                </span>
+              </h2>
           {data.intro && (
-            <p className="mt-3 text-sm leading-6" style={{ color: t.textSecondary }}>{data.intro}</p>
+            <p className="mt-3 text-sm leading-5" style={{ color: t.textSecondary }}>{data.intro}</p>
           )}
         </div>
 
@@ -516,7 +521,7 @@ const ConstructionSection = ({ data }) => {
             <ConstructionIcon name="duration" size={24} />
             {dur.title}
           </h3>
-          <p className="mb-6 text-sm leading-7" style={{ color: t.textSecondary }}>{dur.intro}</p>
+          <p className="mb-6 text-[14px] leading-5" style={{ color: t.textSecondary }}>{dur.intro}</p>
           <div className="space-y-5">
             {(dur.factors || []).map((f, i) => (
               <div key={f.label} className="border-b pb-5 last:border-b-0 last:pb-0" style={{ borderColor: t.cardBorder }}>
@@ -526,7 +531,7 @@ const ConstructionSection = ({ data }) => {
                   </span>
                   <div>
                     <p className="mb-1.5 text-base font-semibold" style={{ color: t.text }}>{f.label}</p>
-                    <p className="text-sm leading-7" style={{ color: t.textSecondary }}>{f.detail}</p>
+                    <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{f.detail}</p>
                   </div>
                 </div>
               </div>
@@ -562,7 +567,7 @@ const ConstructionSection = ({ data }) => {
               }}
             >
               <span className="block text-4xl leading-none" style={{ color: GOLD }}>“</span>
-              <p className="text-sm leading-7 italic" style={{ color: t.textSecondary }}>{ground.quote}</p>
+              <p className="text-[14px] leading-5 italic" style={{ color: t.textSecondary }}>{ground.quote}</p>
             </div>
             <div
               className="rounded-lg p-4"

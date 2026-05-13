@@ -63,7 +63,7 @@ const SectionExpertCta = ({ cta, t, className = "" }) => {
             <ExpertBadgeIcon />
           </span>
           <span className="text-left">
-            <span className="block text-[15px] font-semibold leading-tight" style={{ color: t.text }}>
+            <span className="block text-[16px] font-semibold leading-tight" style={{ color: t.text }}>
               {cta.heading}
             </span>
             <span className="mt-2 block text-[12px] leading-snug lg:mt-1 lg:leading-relaxed" style={{ color: t.textSecondary }}>

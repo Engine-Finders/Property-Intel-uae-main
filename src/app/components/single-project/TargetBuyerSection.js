@@ -329,9 +329,15 @@ const TargetBuyerSection = ({ data }) => {
           className="mb-5 hidden lg:block rounded-b-xl"
         />
         <div className="mb-6 max-w-3xl lg:hidden">
-          <h2 className={sectionH2Class} style={{ color: t.text }}>
-            {data.heading}
-          </h2>
+        <h1 className={sectionH2Class}>
+  <span style={{ color: t.text }}>
+    {data.heading.split(' ').slice(0, 5).join(' ')}{' '}
+  </span>
+
+  <span style={{ color: '#B68A35' }}>
+    {data.heading.split(' ').slice(5).join(' ')}
+  </span>
+</h1>
           <p
             className={`mt-3 max-w-xl ${sectionIntroAfterH2Class}`}
             style={{ color: t.textSecondary }}
@@ -846,10 +852,10 @@ const TargetBuyerSection = ({ data }) => {
         </div>
 
         <div className="mt-6">
-          <h3 className="text-xl font-medium tracking-[-0.02em] lg:text-xl" style={{ color: t.text }}>
+          <h4 className="text-[26px] font-medium tracking-[-0.02em] lg:text-xl" style={{ color: t.text }}>
             <span style={{ color: ACCENT }}>{data.matrix_title_prefix}</span>{" "}
             <span>{data.matrix_title_suffix}</span>
-          </h3>
+          </h4>
 
           <div className="mt-3 space-y-2.5 lg:hidden">
             {data.matrix.map((item) => (
