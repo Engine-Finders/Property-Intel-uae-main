@@ -6,6 +6,9 @@ import SectionImageHeader from "./SectionImageHeader";
 
 const GOLD = "#B68A35";
 
+const goldSectionDivider = (isDark) =>
+  isDark ? "rgba(217,176,95,0.26)" : "rgba(182,138,53,0.22)";
+
 const sectionH2Class = "text-[32px] font-semibold leading-none";
 
 const ChevronIcon = ({ open, color = GOLD }) => (
@@ -454,19 +457,20 @@ const UnitMixSection = ({ data }) => {
                 border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
               }}
             >
-              <div className="flex items-start gap-2.5">
+              <div className="mb-3 flex items-start gap-2.5">
                 <div className="shrink-0 pt-0.5">
                   <InfoIcon />
                 </div>
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                    Pricing Note
-                  </p>
-                  <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }}>
-                    {data.pricing_note}
-                  </p>
-                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                  Pricing Note
+                </p>
               </div>
+              <p
+                className="w-full border-l-2 pl-4 text-[13px] leading-5"
+                style={{ color: t.textSecondary, borderColor: "rgba(182,138,53,0.45)" }}
+              >
+                {data.pricing_note}
+              </p>
             </div>
           </div>
 
@@ -477,10 +481,27 @@ const UnitMixSection = ({ data }) => {
             onToggle={() => toggleMobileSection("pricing")}
             t={t}
           >
-            <div className="space-y-4">
-              <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
+            <div>
+              <div
+                className={commentary.factors.length > 0 ? "pb-4" : undefined}
+                style={
+                  commentary.factors.length > 0
+                    ? { borderBottom: `1px solid ${goldSectionDivider(t.isDark)}` }
+                    : undefined
+                }
+              >
+                <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
+              </div>
               {commentary.factors.map((factor, i) => (
-                <div key={i}>
+                <div
+                  key={i}
+                  className="pt-4"
+                  style={
+                    i < commentary.factors.length - 1
+                      ? { borderBottom: `1px solid ${goldSectionDivider(t.isDark)}`, paddingBottom: "1rem" }
+                      : undefined
+                  }
+                >
                   <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: GOLD }}>
                     {factor.title}
                   </p>
@@ -563,7 +584,7 @@ const UnitMixSection = ({ data }) => {
                     <h4 className="text-[15px] font-semibold" style={{ color: t.text }}>
                       {plan.title}
                     </h4>
-                    <p className="mt-1 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: plan.description }} />
+                    <p className="mt-1 text-[12px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: plan.description }} />
                   </div>
                 </div>
               ))}
@@ -613,17 +634,19 @@ const UnitMixSection = ({ data }) => {
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
-            <div className="flex items-start gap-2.5">
+            <div className="mb-3 flex items-start gap-2.5">
               <div className="shrink-0 pt-0.5">
                 <InfoIcon />
               </div>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                  {data.insider_tip_title || "What portals don't tell you"}
-                </p>
-                <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
-              </div>
+              <p className="min-w-0 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                {data.insider_tip_title || "What portals don't tell you"}
+              </p>
             </div>
+            <div
+              className="w-full border-l-2 pl-4 text-[13px] leading-5"
+              style={{ color: t.textSecondary, borderColor: "rgba(182,138,53,0.45)" }}
+              dangerouslySetInnerHTML={{ __html: insider }}
+            />
           </div>
           <ExpertContactCard cta={data.expert_cta} mobile t={t} />
         </div>
@@ -737,19 +760,20 @@ const UnitMixSection = ({ data }) => {
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
-            <div className="flex items-start gap-3">
+            <div className="mb-3 flex items-start gap-3">
               <div className="shrink-0 pt-0.5">
                 <InfoIcon />
               </div>
-              <div className="min-w-0">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                  Pricing Note
-                </p>
-                <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }}>
-                  {data.pricing_note}
-                </p>
-              </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                Pricing Note
+              </p>
             </div>
+            <p
+              className="w-full border-l-2 pl-4 text-[13px] leading-5"
+              style={{ color: t.textSecondary, borderColor: "rgba(182,138,53,0.45)" }}
+            >
+              {data.pricing_note}
+            </p>
           </div>
 
           <div className="mt-4 grid grid-cols-2 items-start gap-3">
@@ -761,10 +785,27 @@ const UnitMixSection = ({ data }) => {
                 onToggle={() => toggleMobileSection("pricing")}
                 t={t}
               >
-                <div className="space-y-4">
-                  <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
+                <div>
+                  <div
+                    className={commentary.factors.length > 0 ? "pb-4" : undefined}
+                    style={
+                      commentary.factors.length > 0
+                        ? { borderBottom: `1px solid ${goldSectionDivider(t.isDark)}` }
+                        : undefined
+                    }
+                  >
+                    <p className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: commentary.intro }} />
+                  </div>
                   {commentary.factors.map((factor, i) => (
-                    <div key={i}>
+                    <div
+                      key={i}
+                      className="pt-4"
+                      style={
+                        i < commentary.factors.length - 1
+                          ? { borderBottom: `1px solid ${goldSectionDivider(t.isDark)}`, paddingBottom: "1rem" }
+                          : undefined
+                      }
+                    >
                       <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: GOLD }}>
                         {factor.title}
                       </p>
@@ -901,17 +942,19 @@ const UnitMixSection = ({ data }) => {
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
             }}
           >
-            <div className="flex gap-4">
+            <div className="mb-3 flex gap-4">
               <div className="shrink-0 pt-0.5">
                 <InfoIcon />
               </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
-                  {data.insider_tip_title || "What portals don't tell you"}
-                </p>
-                <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: insider }} />
-              </div>
+              <p className="min-w-0 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: GOLD }}>
+                {data.insider_tip_title || "What portals don't tell you"}
+              </p>
             </div>
+            <div
+              className="w-full border-l-2 pl-4 text-[13px] leading-5"
+              style={{ color: t.textSecondary, borderColor: "rgba(182,138,53,0.45)" }}
+              dangerouslySetInnerHTML={{ __html: insider }}
+            />
           </div>
           <div className="mt-4">
             <ExpertContactCard cta={data.expert_cta} t={t} />

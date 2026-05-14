@@ -1,8 +1,55 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import {
+  BarChart3,
+  ClipboardCheck,
+  Clock,
+  Hammer,
+  HardHat,
+  MapPin,
+  Snowflake,
+  Sprout,
+  TrendingDown,
+  Volume2,
+  Wallet,
+} from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import SectionExpertCta from "./SectionExpertCta";
+
+const GOLD = "#B68A35";
+
+/** Solid gold tile + white glyph (matches financing / risk accordion ref). */
+const MobileGoldIconTile = ({ children, className = "" }) => (
+  <span
+    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-white ${className}`}
+    style={{ background: GOLD }}
+    aria-hidden
+  >
+    {children}
+  </span>
+);
+
+function QualityIssueLucideIcon({ label, size = 20 }) {
+  const l = String(label || "").toLowerCase();
+  const p = { size, strokeWidth: 2, className: "shrink-0", "aria-hidden": true };
+  if (l.includes("snag")) return <ClipboardCheck {...p} />;
+  if (l.includes("acoustic") || l.includes("sound")) return <Volume2 {...p} />;
+  if (l.includes("ac ") || l.includes("cooling") || l.includes("efficiency")) return <Snowflake {...p} />;
+  if (l.includes("landscap") || l.includes("garden")) return <Sprout {...p} />;
+  return <Hammer {...p} />;
+}
+
+function SummaryFactorLucideIcon({ factor, size = 20 }) {
+  const l = String(factor || "").toLowerCase();
+  const p = { size, strokeWidth: 2, className: "shrink-0", "aria-hidden": true };
+  if (l.includes("handover")) return <Clock {...p} />;
+  if (l.includes("oversupply")) return <TrendingDown {...p} />;
+  if (l.includes("hidden")) return <Wallet {...p} />;
+  if (l.includes("construction") || l.includes("quality")) return <HardHat {...p} />;
+  if (l.includes("location")) return <MapPin {...p} />;
+  return <BarChart3 {...p} />;
+}
 
 /* ── Animated Risk Bar ── */
 const RiskBar = ({ label, level, value, t }) => {
@@ -809,19 +856,31 @@ const RisksSection = ({ data }) => {
 
           {activeTab === "quality" && (
             <div>
-              <h3 className="text-lg font-semibold mb-3" style={{ color: t.text }}>{quality.title}</h3>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: t.textSecondary }}>{quality.intro}</p>
+              <div className="mb-4 flex items-start gap-3">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                  <RiskIcon name="crane" size={22} />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-semibold" style={{ color: t.text }}>{quality.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed" style={{ color: t.textSecondary }}>{quality.intro}</p>
+                </div>
+              </div>
               <div className="space-y-3">
                 {(quality.table?.rows || []).map((row) => (
-                  <div key={row[0]} className="rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
-                    <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{row[0]}</p>
-                    <p className="text-[13px] leading-5 mb-2" style={{ color: t.textSecondary }}>{row[1]}</p>
-                    <p className="text-xs italic" style={{ color: "#B68A35" }}>Relevance: {row[2]}</p>
+                  <div key={row[0]} className="flex gap-3 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                    <MobileGoldIconTile>
+                      <QualityIssueLucideIcon label={row[0]} />
+                    </MobileGoldIconTile>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-semibold mb-1" style={{ color: t.text }}>{row[0]}</p>
+                      <p className="text-[13px] leading-5 mb-2" style={{ color: t.textSecondary }}>{row[1]}</p>
+                      <p className="text-xs italic" style={{ color: GOLD }}>Relevance: {row[2]}</p>
+                    </div>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 rounded-xl border-l-2 p-4" style={{ borderColor: "#B68A35", background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
-                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#B68A35" }}>Mitigation Strategy</p>
+              <div className="mt-4 rounded-xl border-l-2 p-4" style={{ borderColor: GOLD, background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0" }}>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: GOLD }}>Mitigation Strategy</p>
                 <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{quality.mitigation}</p>
               </div>
             </div>
@@ -867,20 +926,35 @@ const RisksSection = ({ data }) => {
 
           {activeTab === "summary" && (
             <div>
-              <h3 className="text-lg font-semibold mb-4" style={{ color: t.text }}>{summary.title}</h3>
+              <div className="mb-4 flex items-start gap-3">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style={{ background: "rgba(182,138,53,0.12)" }}>
+                  <RiskIcon name="shield" size={22} />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-semibold" style={{ color: t.text }}>{summary.title}</h3>
+                </div>
+              </div>
               <div className="space-y-3 mb-5">
                 {(summary.rows || []).map((row) => (
-                  <div key={row[0]} className="grid grid-cols-[1fr_1.2fr] gap-3 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
-                    <div>
+                  <div key={row[0]} className="flex gap-3 rounded-xl p-4" style={{ border: `1px solid ${t.cardBorder}` }}>
+                    <MobileGoldIconTile>
+                      <SummaryFactorLucideIcon factor={row[0]} />
+                    </MobileGoldIconTile>
+                    <div className="min-w-0 flex-1">
                       <p className="text-sm font-semibold" style={{ color: t.text }}>{row[0]}</p>
-                      <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold" style={{ background: `${getSeverityColor(row[1])}18`, color: getSeverityColor(row[1]) }}>{row[1]}</span>
+                      <span
+                        className="mt-2 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold"
+                        style={{ background: `${getSeverityColor(row[1])}18`, color: getSeverityColor(row[1]) }}
+                      >
+                        {row[1]}
+                      </span>
+                      <p className="mt-2 text-[13px] leading-5" style={{ color: t.textSecondary }}>{row[2]}</p>
                     </div>
-                    <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{row[2]}</p>
                   </div>
                 ))}
               </div>
               <div className="rounded-xl p-4" style={{ background: "linear-gradient(135deg, rgba(182,138,53,0.1), rgba(182,138,53,0.03))", border: "1px solid rgba(182,138,53,0.25)" }}>
-                <p className="text-xs font-semibold mb-2" style={{ color: "#B68A35" }}>Final Perspective</p>
+                <p className="text-xs font-semibold mb-2" style={{ color: GOLD }}>Final Perspective</p>
                 <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>{data.final_perspective}</p>
               </div>
             </div>

@@ -547,22 +547,22 @@ const DeveloperSection = ({ data }) => {
             </div>
 
             <div className="rounded-xl p-4" style={{ background: "rgba(182,138,53,0.06)", border: "1px solid rgba(182,138,53,0.15)" }}>
-              <div className="flex items-start gap-2.5">
+              <div className="mb-3 flex items-start gap-2.5">
                 <div
                   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
                   style={{ background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)", color: GOLD }}
                 >
                   <AnalysisIcon />
                 </div>
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>Analysis</p>
-                  {data.delivery_analysis_claim && (
-                    <p className="mt-1.5 text-sm font-semibold leading-snug" style={{ color: t.text }}>
-                      {data.delivery_analysis_claim}
-                    </p>
-                  )}
-                  <p className="mt-1.5 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
-                </div>
+                <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD }}>Analysis</p>
+              </div>
+              <div className="space-y-1.5 border-l-2 pl-4" style={{ borderColor: "rgba(182,138,53,0.45)" }}>
+                {data.delivery_analysis_claim && (
+                  <p className="text-sm font-semibold leading-snug" style={{ color: t.text }}>
+                    {data.delivery_analysis_claim}
+                  </p>
+                )}
+                <div className="text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.delivery_analysis }} />
               </div>
             </div>
           </div>

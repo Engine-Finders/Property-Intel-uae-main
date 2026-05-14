@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { useTheme } from "@/app/components/context/ThemeContext";
 import DeveloperSection from "@/app/components/single-project/DeveloperSection";
 import TargetBuyerSection from "@/app/components/single-project/TargetBuyerSection";
@@ -52,7 +52,7 @@ const SectionIcon = () => (
   </svg>
 );
 
-const AccordionItem = ({ title, isOpen, onToggle, children, t }) => {
+const AccordionItem = ({ title, isOpen, onToggle, children, t, headerRef }) => {
   const patternedGoldBackground = {
     backgroundColor: "#b98a16",
     backgroundImage: `
@@ -68,12 +68,14 @@ const AccordionItem = ({ title, isOpen, onToggle, children, t }) => {
 
   return (
     <div
-      className="overflow-hidden md:rounded-2xl"
+      className="overflow-hidden md:rounded-2xl [overflow-anchor:none]"
       style={{
         boxShadow: t.isDark ? "0 14px 30px rgba(0,0,0,0.28)" : "0 10px 25px rgba(0,0,0,0.08)",
+        overflowAnchor: "none",
       }}
     >
       <button
+        ref={headerRef}
         type="button"
         onClick={onToggle}
         className="flex w-full items-center gap-4 px-5 py-4 text-left text-white sm:px-6 sm:py-5"
@@ -95,11 +97,9 @@ const AccordionItem = ({ title, isOpen, onToggle, children, t }) => {
         <ChevronIcon isOpen={isOpen} />
       </button>
 
-      <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-[8000px] opacity-100" : "max-h-0 opacity-0"}`}
-      >
-        <div>{children}</div>
-      </div>
+      {/* No max-height animation: huge sections + transitioning height confuse scroll anchoring.
+          Only mount content when open (like typical accordions) so closed panels don’t affect layout. */}
+      {isOpen ? <div>{children}</div> : null}
     </div>
   );
 };
@@ -107,6 +107,26 @@ const AccordionItem = ({ title, isOpen, onToggle, children, t }) => {
 const ProjectAccordionSections = ({ data }) => {
   const { t } = useTheme();
   const [openSection, setOpenSection] = useState(null);
+  /** When closing the last open panel, restore scroll position before the click. */
+  const scrollPreserveY = useRef(null);
+  /** One ref per accordion header for scroll pinning after open/switch. */
+  const headerRefs = useRef({});
+
+  useLayoutEffect(() => {
+    if (openSection) {
+      const el = headerRefs.current[openSection];
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el?.scrollIntoView({ block: "start", behavior: "instant" });
+        });
+      });
+      return;
+    }
+    if (scrollPreserveY.current == null) return;
+    const y = scrollPreserveY.current;
+    scrollPreserveY.current = null;
+    window.scrollTo(0, y);
+  }, [openSection]);
 
   const sections = [
     {
@@ -163,10 +183,10 @@ const ProjectAccordionSections = ({ data }) => {
 
   return (
     <div
-      className="space-y-4 py-6 sm:space-y-5 lg:py-8"
-      style={{ background: t.bg }}
+      className="space-y-4 py-6 sm:space-y-5 lg:py-8 [overflow-anchor:none]"
+      style={{ background: t.bg, overflowAnchor: "none" }}
     >
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:px-6 lg:gap-5 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:px-6 lg:gap-5 lg:px-8 [overflow-anchor:none]" style={{ overflowAnchor: "none" }}>
         {sections.map((section) => {
           const isOpen = openSection === section.id;
 
@@ -176,11 +196,17 @@ const ProjectAccordionSections = ({ data }) => {
               title={section.title}
               isOpen={isOpen}
               t={t}
-              onToggle={() =>
-                setOpenSection((current) =>
-                  current === section.id ? null : section.id
-                )
-              }
+              headerRef={(el) => {
+                headerRefs.current[section.id] = el;
+              }}
+              onToggle={() => {
+                setOpenSection((current) => {
+                  const closing = current === section.id;
+                  if (closing) scrollPreserveY.current = window.scrollY;
+                  else scrollPreserveY.current = null;
+                  return closing ? null : section.id;
+                });
+              }}
             >
               {section.content}
             </AccordionItem>

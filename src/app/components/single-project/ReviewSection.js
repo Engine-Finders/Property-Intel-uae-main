@@ -400,11 +400,11 @@ const DesktopTabButton = ({ tab, active, onClick, t }) => (
 
 const DesktopTransparencyNote = ({ data, t }) => (
   data.transparency_note ? (
-    <div className="mt-5 flex flex-col gap-4 rounded-2xl px-5 py-4 sm:flex-row sm:items-center sm:px-6" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0", border: `1px solid ${t.cardBorder}` }}>
-      <IconBadge t={t} className="h-11 w-11">
+    <div className="mt-5 flex flex-row items-start gap-4 rounded-2xl px-5 py-4 sm:items-center sm:px-6" style={{ background: t.isDark ? "rgba(182,138,53,0.08)" : "#fffaf0", border: `1px solid ${t.cardBorder}` }}>
+      <IconBadge t={t} className="h-11 w-11 shrink-0">
         <Icon name="spark" size={20} />
       </IconBadge>
-      <p className="text-sm leading-5" style={{ color: t.textSecondary }}>
+      <p className="min-w-0 flex-1 text-sm leading-5" style={{ color: t.textSecondary }}>
         <strong style={{ color: t.text }}>{data.transparency_title}:</strong> {data.transparency_note}
       </p>
     </div>

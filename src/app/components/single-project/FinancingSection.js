@@ -5,6 +5,55 @@ import { useTheme } from "../context/ThemeContext";
 import SectionExpertCta from "./SectionExpertCta";
 
 const GOLD = "#B68A35";
+/** Dark gold strip under active comparison tab (ref). */
+const TAB_BOTTOM_GOLD = "#7a5a28";
+
+/** Gold `$` only (no square bg) — pairs with purchase label text in cash accordion. */
+const CashPurchaseDollarGlyph = () => (
+  <span className="shrink-0 text-lg font-semibold leading-none" style={{ color: GOLD }} aria-hidden>
+    $
+  </span>
+);
+
+/** Four project tabs: cream active, gold text, inset bottom bar; inactive white + dividers. */
+const ProjectComparisonTabRow = ({ labels, activeIdx, onChange, t, dense }) => {
+  const stroke = t.isDark ? "rgba(255,255,255,0.12)" : "#e5e0d6";
+  const cream = t.isDark ? "rgba(182,138,53,0.16)" : "#fff9f0";
+  return (
+    <div
+      className="mb-5 grid grid-cols-4 overflow-hidden rounded-xl"
+      style={{ border: `1px solid ${stroke}`, background: t.isDark ? t.cardBg : "#fff" }}
+    >
+      {labels.map((label, idx) => {
+        const active = idx === activeIdx;
+        const isLast = idx === labels.length - 1;
+        return (
+          <button
+            key={label}
+            type="button"
+            onClick={() => onChange(idx)}
+            className={
+              dense
+                ? "min-h-[3.75rem] px-1 py-2 text-center text-[10px] font-medium leading-tight sm:text-[11px]"
+                : "min-h-[3.5rem] px-2 py-2.5 text-center text-[11px] font-medium leading-tight sm:min-h-[3.75rem] sm:px-3 sm:text-sm"
+            }
+            style={{
+              borderRight: isLast ? undefined : `1px solid ${stroke}`,
+              background: active ? cream : t.isDark ? "rgba(255,255,255,0.03)" : "#fff",
+              color: active ? GOLD : t.text,
+              fontWeight: active ? 600 : 500,
+              boxShadow: active ? `inset 0 -3px 0 ${TAB_BOTTOM_GOLD}` : "none",
+            }}
+          >
+            <span className="inline-block max-w-full hyphens-auto" style={{ wordBreak: "break-word" }}>
+              {label}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+};
 
 const ChevronIcon = ({ open, color = GOLD }) => (
   <svg
@@ -39,8 +88,8 @@ const AccordionCard = ({ title, subtitle, icon, children, isOpen, onToggle, t, a
       style={{ color: t.text }}
     >
       <span
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-base"
-        style={{ background: accentColor + "22", color: accentColor }}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm leading-none text-white [&_svg]:stroke-white"
+        style={{ background: accentColor }}
       >
         {icon}
       </span>
@@ -169,24 +218,31 @@ const InfoCircleIcon = ({ size = 18 }) => (
 
 const KeyInsightBox = ({ children, t }) => (
   <div
-    className="rounded-2xl p-5"
+    className="rounded-xl p-4 sm:p-5"
     style={{
-      background: t.isDark ? "rgba(255,255,255,0.03)" : "#fff8ef",
-      border: `1px solid ${t.cardBorder}`,
+      background: t.isDark ? "rgba(255,255,255,0.03)" : "#fffdf9",
+      border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)"}`,
     }}
   >
-    <div className="flex gap-3">
-      <span
-        className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-        style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.14)" : "#fbf3e1" }}
+    <div className="mb-3 flex items-center gap-2.5">
+      <div
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+        style={{
+          background: t.isDark ? "rgba(182,138,53,0.14)" : "rgba(182,138,53,0.1)",
+          color: GOLD,
+        }}
       >
-        <InfoCircleIcon size={17} />
-      </span>
-      <div>
-        <p className="mb-2 text-sm font-semibold" style={{ color: GOLD }}>Key Insight:</p>
-        <p className="text-[13px] md:text-sm leading-5 md:leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: children }} />
+        <InfoCircleIcon size={18} />
       </div>
+      <h3 className="text-xl font-semibold" style={{ color: t.text }}>
+        Key Insight:
+      </h3>
     </div>
+    <div
+      className="w-full border-l-2 pl-4 text-[13px] leading-5 sm:text-[15px] sm:leading-7"
+      style={{ color: t.textSecondary, borderColor: "rgba(182,138,53,0.45)" }}
+      dangerouslySetInnerHTML={{ __html: children }}
+    />
   </div>
 );
 
@@ -298,6 +354,59 @@ const TableWrap = ({ children }) => (
     >
       {children}
     </div>
+  </div>
+);
+
+/** Two columns on small screens: stacked cost component + calculation | amount (no horizontal scroll). */
+const CashPurchaseMobileTable = ({ rows, t, highlightLast }) => (
+  <div className="min-w-0 overflow-hidden rounded-xl" style={{ border: `1px solid ${t.cardBorder}` }}>
+    <div
+      className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3 px-3 py-2.5"
+      style={{ background: t.isDark ? t.cardBg : "#f6efe3" }}
+    >
+      <span className="min-w-0 text-[10px] font-semibold uppercase leading-tight tracking-wider" style={{ color: t.textMuted }}>
+        Cost component / calculation
+      </span>
+      <span className="shrink-0 whitespace-nowrap text-right text-[10px] font-semibold uppercase tracking-wider" style={{ color: t.textMuted }}>
+        Amount (AED)
+      </span>
+    </div>
+    {rows.map((row, i) => {
+      const [component, calc, amount] = row;
+      const isLast = highlightLast && i === rows.length - 1;
+      return (
+        <div
+          key={i}
+          className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-t px-3 py-3"
+          style={{
+            borderColor: t.cardBorder,
+            background:
+              isLast
+                ? "rgba(182,138,53,0.08)"
+                : i % 2 !== 0
+                  ? t.isDark
+                    ? "rgba(255,255,255,0.02)"
+                    : "rgba(0,0,0,0.02)"
+                  : "transparent",
+          }}
+        >
+          <div className="min-w-0">
+            <p className={`text-[13px] leading-snug ${isLast ? "font-bold" : "font-medium"}`} style={{ color: isLast ? GOLD : t.text }}>
+              {component}
+            </p>
+            <p className="mt-1 text-[12px] leading-4" style={{ color: t.textMuted }}>
+              {calc}
+            </p>
+          </div>
+          <p
+            className={`shrink-0 whitespace-nowrap text-right text-[13px] leading-snug ${isLast ? "font-bold" : "font-medium"}`}
+            style={{ color: isLast ? GOLD : t.textSecondary }}
+          >
+            {amount}
+          </p>
+        </div>
+      );
+    })}
   </div>
 );
 
@@ -519,7 +628,6 @@ const FinancingSection = ({ data }) => {
             {activeDesktopTab === "cash" && (
               <div className="grid grid-cols-[1.45fr_0.78fr] gap-10">
                 <div>
-                  <h3 className="mb-3 text-2xl font-semibold" style={{ color: t.text }}><span style={{ color: GOLD }}>H3:</span> Total Cash Required at Purchase</h3>
                   <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_required_intro }} />
                   <DesktopTable headers={cashHeaders} rows={cashRows} t={t} highlightLast />
                 </div>
@@ -628,12 +736,12 @@ const FinancingSection = ({ data }) => {
               <div>
                 <h3 className="mb-2 text-2xl font-semibold" style={{ color: t.text }}>{data.comparison_h3}</h3>
                 <p className="mb-5 text-sm leading-7" style={{ color: t.textSecondary }}>{data.comparison_intro}</p>
-                <div className="mb-5 grid grid-cols-4 gap-3">
-                  {comparisonTabs.map((label, idx) => {
-                    const active = idx === activeComparisonIndex;
-                    return <button key={label} type="button" onClick={() => setActiveComparisonIndex(idx)} className="rounded-xl px-4 py-3 text-sm font-semibold" style={{ background: active ? GOLD : "transparent", color: active ? "#fff" : t.text, border: `1px solid ${active ? GOLD : t.cardBorder}` }}>{label}</button>;
-                  })}
-                </div>
+                <ProjectComparisonTabRow
+                  labels={comparisonTabs}
+                  activeIdx={activeComparisonIndex}
+                  onChange={setActiveComparisonIndex}
+                  t={t}
+                />
                 <div className="grid grid-cols-[1.1fr_0.9fr] gap-6">
                   <div className="rounded-2xl p-5" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
                     <div className="mb-4 flex items-start justify-between gap-3">
@@ -744,14 +852,16 @@ const FinancingSection = ({ data }) => {
 
           <AccordionCard title="Total Cash Required at Purchase" icon="$" isOpen={openSections.cash} onToggle={() => toggle("cash")} t={t}>
             <p className="mb-4 text-[13px] leading-5" style={{ color: t.textSecondary }} dangerouslySetInnerHTML={{ __html: data.cash_required_intro }} />
-            <div className="mb-4 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-wider" style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.14)" : "#f8f1e5", border: `1px solid ${t.cardBorder}` }}>
-              {data.cash_purchase_label}
+            <div
+              className="mb-4 flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-xs font-semibold uppercase tracking-wider"
+              style={{ color: GOLD, background: t.isDark ? "rgba(182,138,53,0.14)" : "#f8f1e5", border: `1px solid ${t.cardBorder}` }}
+            >
+              <CashPurchaseDollarGlyph />
+              <span className="min-w-0 leading-snug">{data.cash_purchase_label}</span>
             </div>
 
             <div className="mb-4">
-              <TableWrap>
-                <DesktopTable headers={cashHeaders} rows={cashRows} t={t} highlightLast minTableWidth={700} />
-              </TableWrap>
+              <CashPurchaseMobileTable rows={cashRows} t={t} highlightLast />
             </div>
 
             <div>
@@ -846,31 +956,18 @@ const FinancingSection = ({ data }) => {
             </div>
           </AccordionCard>
 
-          <AccordionCard title="Project Comparison — Emaar vs. Competitors" icon="⚖️" isOpen={openSections.comparison} onToggle={() => toggle("comparison")} t={t} accentColor="#286CFF">
+          <AccordionCard title="Project Comparison — Emaar vs. Competitors" icon="⚖️" isOpen={openSections.comparison} onToggle={() => toggle("comparison")} t={t}>
             <p className="mb-4 text-[13px] leading-5" style={{ color: t.textSecondary }}>
               {data.comparison_intro}
             </p>
 
-            <div className="mb-4 grid grid-cols-2 gap-2 rounded-xl p-2 sm:grid-cols-4" style={{ background: t.isDark ? "rgba(255,255,255,0.03)" : "#f6efe3", border: `1px solid ${t.cardBorder}` }}>
-              {comparisonTabs.map((label, idx) => {
-                const active = idx === activeComparisonIndex;
-                return (
-                  <button
-                    key={label}
-                    type="button"
-                    onClick={() => setActiveComparisonIndex(idx)}
-                    className="rounded-lg px-2 py-2 text-center text-[11px] font-medium leading-4 transition-colors"
-                    style={{
-                      background: active ? (t.isDark ? "rgba(182,138,53,0.2)" : "#fff") : "transparent",
-                      color: active ? GOLD : t.textMuted,
-                      border: active ? `1px solid ${t.cardBorder}` : "1px solid transparent",
-                    }}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
+            <ProjectComparisonTabRow
+              labels={comparisonTabs}
+              activeIdx={activeComparisonIndex}
+              onChange={setActiveComparisonIndex}
+              t={t}
+              dense
+            />
 
             <div className="mb-6 rounded-xl p-3 sm:p-4" style={{ border: `1px solid ${t.cardBorder}`, background: t.isDark ? "rgba(255,255,255,0.02)" : "#fff" }}>
               <div className="mb-3 flex items-start justify-between gap-3">
@@ -950,7 +1047,7 @@ const FinancingSection = ({ data }) => {
             <div className="space-y-2">
               {data.comparison_analysis.map((item, i) => (
                 <div key={i} className="flex items-start gap-2">
-                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "#286CFF" }} />
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GOLD }} />
                   <p className="text-[13px] leading-5" style={{ color: t.textSecondary }}>
                     {item}
                   </p>
