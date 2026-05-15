@@ -295,7 +295,7 @@ const DesktopVerdictPanel = ({ verdict, t }) => (
 /* ── Main Component ── */
 const ComparisonSection = ({ data }) => {
   const { t } = useTheme();
-  const [openPanel, setOpenPanel] = useState("verdict");
+  const [openPanel, setOpenPanel] = useState(null);
   const [activeProject, setActiveProject] = useState(0);
   const toggle = (key) => setOpenPanel((prev) => (prev === key ? null : key));
 

@@ -3,8 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 import {
   Building2,
-  Calendar,
-  Database,
   RefreshCw,
   ShieldCheck,
   Info,
@@ -16,10 +14,11 @@ import {
 } from "lucide-react";
 import SectionExpertCta from "../home-page-common/cta-common";
 
-const TRUST_BADGE_ICONS = [ShieldCheck, Database, Calendar];
 const METRIC_BADGE_ICONS = [Users, Building2, RefreshCw];
 
 const GOLD = "#B68A35";
+/** Match project HeroSection subtitle / UnitMix eyebrow readability */
+const SUBTITLE_GREY = "#2d2d2d";
 
 const splitMetricLabel = (label) => {
   const parts = label.split(" ");
@@ -70,7 +69,7 @@ const TypeAheadDropdown = ({
         }}
         onFocus={() => setOpen(true)}
         placeholder={placeholder}
-        className={`w-full px-4 py-3 text-sm bg-transparent outline-none ${placeholderClass}`}
+        className={`w-full px-4 py-3 text-[15px] leading-5 bg-transparent outline-none ${placeholderClass}`}
         style={{ color: t.text }}
       />
       {open && filtered.length > 0 && (
@@ -89,7 +88,7 @@ const TypeAheadDropdown = ({
                   onSelect(opt);
                   setOpen(false);
                 }}
-                className="w-full text-left px-4 py-2.5 text-sm transition-colors"
+                className="w-full text-left px-4 py-2.5 text-[15px] leading-5 transition-colors"
                 style={{ color: t.text }}
                 onMouseEnter={(e) =>
                   (e.target.style.background = t.isDark
@@ -192,59 +191,65 @@ const HomeHeroSection = ({ data }) => {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[850px] w-full max-w-[1440px] flex-col px-3 pb-5 pt-6 sm:px-6 lg:min-h-[700px] lg:px-10 lg:py-7 xl:px-14">
+      <div className="relative z-10 mx-auto flex min-h-[850px] w-full max-w-7xl flex-col px-3 py-8 sm:px-6 lg:min-h-[640px] lg:px-12 lg:py-11 xl:min-h-[700px]">
         <div className="w-full lg:max-w-[820px]">
           {topTrustSignals.length > 0 && (
-            <div
-              className="mb-16 flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap lg:mb-12 lg:inline-flex lg:overflow-hidden lg:rounded-full "
-              
-            >
-              {topTrustSignals.map((label, i) => {
-                const Icon = TRUST_BADGE_ICONS[i] || ShieldCheck;
-                return (
-                  <div
-                    key={label}
-                    className="inline-flex items-center gap-2 rounded-full border px-3 py-2 text-[11px] font-medium backdrop-blur-md lg:border-0 lg:px-4 lg:py-2.5 lg:text-sm"
-                    style={{
-                      color: t.text,
-                      borderColor: softBorder,
-                      background: t.isDark
-                        ? "rgba(15,23,42,0.48)"
-                        : "rgba(255,255,255,0.66)",
-                    }}
-                  >
-                    <Icon size={17} strokeWidth={1.8} style={{ color: GOLD }} />
-                    <span>{label}</span>
-                  </div>
-                );
-              })}
+            <div className="flex flex-wrap md:gap-3 gap-2">
+              {topTrustSignals.map((label) => (
+                <div
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-md sm:text-xs"
+                  style={{
+                    color: t.isDark ? "rgba(255,255,255,0.88)" : "#4b5563",
+                    borderColor: t.isDark ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.45)",
+                    background: t.isDark
+                      ? "rgba(15,23,42,0.55)"
+                      : "rgba(255,255,255,0.72)",
+                    backdropFilter: "blur(10px)",
+                  }}
+                >
+                  <span
+                    className="inline-block h-2 w-2 shrink-0 rounded-full"
+                    style={{ background: GOLD }}
+                    aria-hidden
+                  />
+                  <span>{label}</span>
+                </div>
+              ))}
             </div>
           )}
 
-          <div className="relative max-w-[660px]">
+          <div className="relative mt-9 max-w-[660px] lg:mt-3">
             <div
               className="pointer-events-none absolute -inset-x-4 -inset-y-5 z-0 rounded-[2rem] blur-2xl lg:hidden"
               style={{ background: heroCopyFade }}
               aria-hidden="true"
             />
-            <h1
-              className="relative z-10 max-w-[620px] font-serif text-[2.35rem] font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.55rem] xl:text-[3.8rem]"
-              style={{ color: t.isDark ? t.text : "#242424" }}
-            >
+            <h1 className="relative z-10 max-w-[640px] text-[40px] font-[575] tracking-tight leading-[1.05] sm:text-6xl lg:text-7xl">
               {hasDubaiHighlight ? (
                 <>
-                  {titleBeforeDubai}
-                  <span style={{ color: GOLD }}>Dubai</span>
-                  {titleAfterDubai}
+                  <span
+                    className="block"
+                    style={{ color: t.isDark ? t.text : "#0a0a0a" }}
+                  >
+                    {titleBeforeDubai}
+                    <span style={{ color: GOLD }}>Dubai</span>
+                    {titleAfterDubai}
+                  </span>
                 </>
               ) : (
-                hero.h1
+                <span
+                  className="block"
+                  style={{ color: t.isDark ? t.text : "#0a0a0a" }}
+                >
+                  {hero.h1}
+                </span>
               )}
             </h1>
 
             <p
-              className="relative z-10 mt-5 max-w-[510px] text-sm leading-7 sm:text-base lg:text-lg"
-              style={{ color: t.isDark ? t.textSecondary : "#5f6673" }}
+              className="relative z-10 mt-3 max-w-xl text-[15px] font-medium leading-snug sm:text-xl lg:text-2xl lg:leading-snug"
+              style={{ color: t.isDark ? t.textSecondary : SUBTITLE_GREY }}
             >
               {hero.hero_description}
             </p>
@@ -252,43 +257,46 @@ const HomeHeroSection = ({ data }) => {
 
           {metricSignals.length > 0 && (
             <div
-              className="mt-8 grid grid-cols-3 overflow-hidden rounded-2xl border shadow-xl backdrop-blur-xl lg:max-w-[760px]"
+              className="mt-6 grid grid-cols-3 overflow-hidden rounded-[18px] border shadow-xl backdrop-blur-xl lg:max-w-[760px]"
               style={{
                 background: cardBackground,
                 borderColor: softBorder,
                 boxShadow: t.isDark
                   ? "0 24px 60px rgba(0,0,0,0.28)"
-                  : "0 24px 65px rgba(15,23,42,0.10)",
+                  : "0 24px 70px rgba(15,23,42,0.14)",
               }}
             >
               {metricSignals.map((label, i) => {
                 const Icon = METRIC_BADGE_ICONS[i] || ShieldCheck;
                 const metric = splitMetricLabel(label);
+
                 return (
                   <div
                     key={label}
-                    className="flex min-h-[70px] items-center justify-center gap-2 border-r px-2 text-center last:border-r-0 sm:gap-4 sm:px-5 lg:min-h-[88px]"
+                    className="flex min-h-[72px] items-center gap-2.5 border-r pl-2 pr-1 py-2.5 last:border-r-0 sm:gap-4 sm:px-5 lg:min-h-[88px]"
                     style={{ borderColor: softBorder }}
                   >
                     <Icon
-                      size={26}
+                      className="h-[18px] w-[18px] shrink-0 self-center sm:h-5 sm:w-5"
                       strokeWidth={1.8}
-                      className="hidden shrink-0 sm:block"
                       style={{ color: GOLD }}
+                      aria-hidden
                     />
-                    <div className="text-left">
-                      <div
-                        className="text-base font-bold leading-none sm:text-xl"
+                    <div className="min-w-0 flex-1 text-left">
+                      <p
+                        className="text-base font-semibold leading-none tracking-tight sm:text-xl lg:text-2xl"
                         style={{ color: GOLD }}
                       >
                         {metric.value}
-                      </div>
-                      <div
-                        className="mt-1 text-[10px] font-medium sm:text-xs"
-                        style={{ color: t.text }}
-                      >
-                        {metric.label}
-                      </div>
+                      </p>
+                      {metric.label.trim() ? (
+                        <p
+                          className="mt-1 text-[11px] font-medium leading-snug sm:text-xs"
+                          style={{ color: t.isDark ? t.textSecondary : "#475569" }}
+                        >
+                          {metric.label}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 );
@@ -297,7 +305,7 @@ const HomeHeroSection = ({ data }) => {
           )}
 
           <div
-            className="mt-4 rounded-2xl border p-3 shadow-xl backdrop-blur-xl lg:max-w-[1050px] lg:p-5"
+            className="mt-4 rounded-[18px] border p-4 shadow-xl backdrop-blur-xl lg:max-w-[1050px] lg:p-5"
             style={{
               background: cardBackground,
               borderColor: softBorder,
@@ -315,7 +323,7 @@ const HomeHeroSection = ({ data }) => {
                 <input
                   type="text"
                   placeholder="Project Name"
-                  className={`w-full bg-transparent text-sm outline-none ${
+                  className={`w-full bg-transparent text-[15px] leading-5 outline-none ${
                     t.isDark
                       ? "placeholder:text-[#9aa3b2]"
                       : "placeholder:text-[#64748b]"
@@ -358,7 +366,7 @@ const HomeHeroSection = ({ data }) => {
             <div className="mt-3 grid gap-3 lg:grid-cols-[1fr_1.35fr] lg:items-center">
               <button
                 onClick={() => setGoldenVisa(!goldenVisa)}
-                className="flex min-h-[48px] items-center gap-3 rounded-xl px-1 text-left text-xs font-medium sm:text-sm"
+                className="flex min-h-[48px] items-center gap-3 rounded-xl px-1 text-left text-[13px] font-medium leading-5"
                 style={{ color: t.text }}
                 type="button"
               >
@@ -380,7 +388,7 @@ const HomeHeroSection = ({ data }) => {
 
               <button
                 type="button"
-                className="flex min-h-[56px] items-center justify-center gap-3 rounded-xl px-6 text-sm font-bold text-white transition-opacity hover:opacity-95"
+                className="flex min-h-[56px] items-center justify-center gap-3 rounded-xl px-6 text-[15px] font-semibold leading-5 text-white transition-opacity hover:opacity-95"
                 style={{ background: GOLD }}
               >
                 <Search size={20} />
@@ -396,7 +404,7 @@ const HomeHeroSection = ({ data }) => {
           </div>
 
           <div
-            className="mt-4 flex items-center justify-center gap-2 text-xs lg:max-w-[1050px]"
+            className="mt-4 flex items-center justify-center gap-2 text-[13px] leading-5 lg:max-w-[1050px]"
             style={{ color: t.textMuted }}
           >
             <Lock size={14} />

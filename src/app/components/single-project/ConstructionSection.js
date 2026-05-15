@@ -287,8 +287,8 @@ const DesktopPhotoCards = ({ photos, t }) => {
 /* ── Main Component ── */
 const ConstructionSection = ({ data }) => {
   const { t } = useTheme();
-  const [openMilestones, setOpenMilestones] = useState(true);
-  const [openIntel, setOpenIntel] = useState(true);
+  const [openMilestones, setOpenMilestones] = useState(false);
+  const [openIntel, setOpenIntel] = useState(false);
   const [showPhotos, setShowPhotos] = useState(false);
   const [openPhoto, setOpenPhoto] = useState(null);
   const [activeDesktopPanel, setActiveDesktopPanel] = useState("milestones");

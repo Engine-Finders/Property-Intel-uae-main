@@ -105,7 +105,7 @@ const HowCard = ({ card, index, t, isOpen, onToggle }) => {
         <div className="h-px w-full" style={{ background: t.cardBorder }} />
         <div className="mt-4 space-y-3">
           {back.map((paragraph) => (
-            <p key={paragraph} className="text-sm leading-7" style={{ color: t.textSecondary }}>
+            <p key={paragraph} className="text-[14px] leading-5" style={{ color: t.textSecondary }}>
               {paragraph}
             </p>
           ))}
@@ -172,7 +172,7 @@ const HowWeHelpHome = ({ data }) => {
         />
 
         <div className="mb-6 text-center lg:hidden">
-          <h2 className="font-serif text-[2.35rem] font-semibold leading-[1.04]" style={{ color: t.text }}>
+          <h2 className="font-serif text-[32px] md:text-[2.35rem] font-semibold leading-[1.04]" style={{ color: t.text }}>
             {before}
             {highlight && (
               <>
@@ -181,7 +181,7 @@ const HowWeHelpHome = ({ data }) => {
               </>
             )}
           </h2>
-          <p className="mt-3 text-sm leading-6" style={{ color: t.textSecondary }}>
+          <p className="mt-3 text-sm leading-5" style={{ color: t.textSecondary }}>
             {data.h3}
           </p>
         </div>

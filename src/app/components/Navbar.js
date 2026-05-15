@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { useTheme } from "./context/ThemeContext";
 
@@ -21,14 +22,14 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <a href="#" className="flex items-center gap-2 cursor-pointer">
+          <Link href="/" className="flex items-center gap-2 cursor-pointer">
             <span className="font-bold text-xl lg:text-2xl tracking-tight" style={{ color: "#B68A35" }}>
               Property Experts
             </span>
             <span className="text-xs font-medium uppercase tracking-widest hidden sm:inline" style={{ color: t.isDark ? "rgba(255,255,255,0.6)" : "#94a3b8" }}>
               UAE
             </span>
-          </a>
+          </Link>
 
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (

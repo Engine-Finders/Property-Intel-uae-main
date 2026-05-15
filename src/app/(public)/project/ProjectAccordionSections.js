@@ -117,7 +117,12 @@ const ProjectAccordionSections = ({ data }) => {
       const el = headerRefs.current[openSection];
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          el?.scrollIntoView({ block: "start", behavior: "instant" });
+          // el?.scrollIntoView({ block: "start", behavior: "instant" });
+          el?.scrollIntoView({
+            block: "center",
+            inline: "nearest",
+            behavior: "instant",
+          });
         });
       });
       return;

@@ -319,7 +319,7 @@ const infrastructureScrollStyles = `
 
 const LocationSection = ({ data }) => {
   const { t } = useTheme();
-  const [openSection, setOpenSection] = useState("walkability");
+  const [openSection, setOpenSection] = useState("");
   const [driveMode, setDriveMode] = useState("off_peak");
 
   const timelineEvents = data.timeline;

@@ -413,11 +413,11 @@ const CashPurchaseMobileTable = ({ rows, t, highlightLast }) => (
 const FinancingSection = ({ data }) => {
   const { t } = useTheme();
   const [openSections, setOpenSections] = useState({
-    financing: true,
-    ltv: true,
-    cash: true,
-    roi: true,
-    service: true,
+    financing: false,
+    ltv: false,
+    cash: false,
+    roi: false,
+    service: false,
     comparison: false,
   });
   const [activeDesktopTab, setActiveDesktopTab] = useState("financing");

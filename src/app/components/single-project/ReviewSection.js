@@ -415,11 +415,11 @@ const DesktopTransparencyNote = ({ data, t }) => (
 const ReviewsSection = ({ data }) => {
   const { t } = useTheme();
   const [openAccordions, setOpenAccordions] = useState({
-    methodology: true,
-    sentiment: true,
-    quotes: true,
-    patterns: true,
-    future: true,
+    methodology: false,
+    sentiment: false,
+    quotes: false,
+    patterns: false,
+    future: false,
   });
   const [activeDesktopTab, setActiveDesktopTab] = useState("methodology");
 
