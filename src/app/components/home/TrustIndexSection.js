@@ -104,9 +104,36 @@ const TrustIndexSection = ({ data }) => {
     <section style={{ background: t.bgAlt }} className="py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
-        {/* ── Header ── */}
+        {/* ── Header (mobile: no card, centered) ── */}
+        <div className="mb-6 text-center lg:hidden">
+          <span
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]"
+            style={{
+              background: "rgba(182,138,53,0.08)",
+              color: GOLD,
+              border: "1px solid rgba(182,138,53,0.20)",
+            }}
+          >
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: GOLD }} />
+            {data.last_updated_label} {data.last_updated}
+          </span>
+
+          <h2 className="mt-4 mx-auto max-w-2xl text-[32px] font-bold leading-tight sm:text-4xl" style={{ color: t.text }}>
+            {renderAccentText(data.h2, data.h2_accent)}
+          </h2>
+
+          <div
+            className="mx-auto mt-4 max-w-2xl space-y-4 border-l-2 pl-4 text-left text-[14px] leading-[22px] sm:text-base"
+            style={{ borderColor: GOLD, color: t.textSecondary }}
+          >
+            <p>{highlightText(data.h3, data.h3_highlights)}</p>
+            <p>{highlightText(data.trust_statement, data.trust_statement_highlights)}</p>
+          </div>
+        </div>
+
+        {/* ── Header (desktop: card + image) ── */}
         <div
-          className="relative overflow-hidden rounded-[28px] p-5 sm:p-7 lg:min-h-[295px] lg:p-8"
+          className="relative hidden overflow-hidden rounded-[28px] p-5 sm:p-7 lg:block lg:min-h-[295px] lg:p-8"
           style={{
             background: t.isDark ? "rgba(255,255,255,0.04)" : "#fbf8f1",
             border: "1px solid rgba(182,138,53,0.14)",
@@ -331,7 +358,7 @@ const TrustIndexSection = ({ data }) => {
                       <span>{insight.delayed_units_label}</span>
                       <span>{insight.total_units_label}</span>
                     </div>
-                    <p className="mt-6 text-sm leading-7 sm:text-base" style={{ color: t.textSecondary }}>
+                    <p className="mt-6 text-[13px] leading-[21px] md:leading-7 sm:text-base" style={{ color: t.textSecondary }}>
                       {highlightText(insight.content, insight.content_highlights)}
                     </p>
                   </div>
@@ -355,7 +382,7 @@ const TrustIndexSection = ({ data }) => {
                         );
                       })}
                     </div>
-                    <p className="mt-6 text-sm leading-7 sm:text-base" style={{ color: t.textSecondary }}>
+                    <p className="mt-6 text-[13px] leading-[21px] md:leading-7 sm:text-base" style={{ color: t.textSecondary }}>
                       {highlightText(insight.content, insight.content_highlights)}
                     </p>
                   </div>

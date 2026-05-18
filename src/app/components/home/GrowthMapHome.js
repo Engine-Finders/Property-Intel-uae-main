@@ -102,7 +102,7 @@ const GrowthMapSection = ({ data }) => {
 
             {/* Mobile headline */}
             <h2
-              className="mb-4 text-3xl font-bold leading-tight sm:text-4xl lg:hidden"
+              className="mb-4 text-[32px] leading-[33px] font-bold md:leading-tight sm:text-4xl lg:hidden"
               style={{ color: t.text }}
             >
               {data.h2_mobile ? (
@@ -131,7 +131,7 @@ const GrowthMapSection = ({ data }) => {
             </h2>
 
             <p
-              className="mb-6 max-w-xl text-sm leading-relaxed sm:text-base"
+              className="mb-6 max-w-xl text-sm leading-[21px] md:leading-relaxed sm:text-base"
               style={{ color: t.textMuted }}
             >
               {data.h3}
@@ -146,7 +146,7 @@ const GrowthMapSection = ({ data }) => {
             >
               <Shield size={22} className="mt-0.5 shrink-0" style={{ color: GOLD }} strokeWidth={1.5} />
               <p
-                className="text-sm italic leading-relaxed lg:not-italic"
+                className="text-sm italic lg:not-italic"
                 style={{ color: t.textMuted }}
               >
                 {data.trust_statement}
@@ -264,7 +264,7 @@ const GrowthMapSection = ({ data }) => {
                 >
                   {zone.headline}
                 </h3>
-                <p className="text-sm leading-relaxed sm:text-base" style={{ color: t.textSecondary }}>
+                <p className="text-[14px] leading-[21px] md:leading-relaxed sm:text-base" style={{ color: t.textSecondary }}>
                   {highlightText(zone.content, zone.content_highlights)}
                 </p>
               </div>
@@ -318,7 +318,8 @@ const GrowthMapSection = ({ data }) => {
 
             {/* Mobile-only: key row + CTA below grid */}
             <div className="border-t px-5 py-4 lg:hidden" style={{ borderColor: t.cardBorder }}>
-              <div className="mb-4 flex flex-wrap items-start gap-3">
+              <div className="mb-4 flex flex-col gap-4">
+                <div className="flex items-start gap-3">
                 <div
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
                   style={{ background: "rgba(182,138,53,0.1)", color: GOLD }}
@@ -335,15 +336,16 @@ const GrowthMapSection = ({ data }) => {
                     </p>
                   ) : null}
                 </div>
+                </div>
                 <span
-                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold"
+                  className="inline-flex w-fit max-w-full items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold"
                   style={{
                     background: "rgba(182,138,53,0.08)",
                     border: `1px solid rgba(182,138,53,0.25)`,
                     color: GOLD,
                   }}
                 >
-                  <MapPin size={13} strokeWidth={2} />
+                  <MapPin size={14} strokeWidth={2} />
                   {zone.keyword_tag}
                 </span>
               </div>
@@ -378,7 +380,7 @@ const GrowthMapSection = ({ data }) => {
                 </div>
                 {data.footer.title}
               </h4>
-              <p className="max-w-3xl text-sm leading-relaxed" style={{ color: t.textMuted }}>
+              <p className="max-w-3xl text-[13px] leading-[21px] md:leading-relaxed" style={{ color: t.textMuted }}>
                 {data.footer.attribution}
               </p>
             </div>

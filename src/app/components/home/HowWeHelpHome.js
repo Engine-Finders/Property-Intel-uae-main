@@ -153,7 +153,7 @@ const HowWeHelpHome = ({ data }) => {
 
   return (
     <section className="py-8 md:py-10" style={{ background: t.bg }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6">
         <SectionImageHeader
           title={
             <>

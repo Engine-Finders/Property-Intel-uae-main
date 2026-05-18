@@ -15,6 +15,10 @@ import {
 import SectionImageHeader from "../home-page-common/SectionImageHeader";
 
 const GOLD = "#B68A35";
+/** Match single-project DeveloperSection mobile section typography */
+const sectionH2Class = "text-[32px] font-semibold leading-none";
+const sectionIntroAfterH2Class =
+  "text-sm font-normal leading-[1.5] tracking-[-0.01em]";
 
 const TAB_ICONS = [Home, BarChart3, Target, UserRound];
 const TRUST_ICONS = [ShieldCheck, CalendarDays];
@@ -67,10 +71,10 @@ const CuratedProjectsSection = ({ data }) => {
 
   return (
     <section
-      className="py-8 lg:py-10"
+      className="py-5 lg:py-10"
       style={{ background: t.isDark ? "#1a1c1f" : t.bg }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6">
 
         {/* ── Header ── */}
         <SectionImageHeader
@@ -83,23 +87,40 @@ const CuratedProjectsSection = ({ data }) => {
           contentClassName="py-10"
         />
 
-        <div className="text-center lg:hidden">
-          <h2
-            className="mx-auto max-w-[360px] font-serif text-[2.1rem] font-semibold leading-[1.05]"
-            style={{ color: t.text }}
-          >
+        <div className="mb-6 text-center lg:hidden px-1">
+          <h2 className={`mx-auto max-w-[360px] ${sectionH2Class}`} style={{ color: t.text }}>
             {titleWithDubai(data.h2)}
           </h2>
           <p
-            className="mx-auto mt-3 max-w-[360px] text-sm leading-6"
+            className={`mx-auto mt-3 max-w-[360px] ${sectionIntroAfterH2Class}`}
             style={{ color: t.textSecondary }}
           >
             {data.h3}
           </p>
+
+          <div className="mx-auto mt-4 flex w-full max-w-[360px] flex-nowrap items-stretch justify-center gap-2">
+            {data.trust_badges.map((badge, i) => (
+              <span
+                key={i}
+                className="inline-flex min-w-0 flex-1 items-center justify-center gap-1 rounded-full px-2 py-1.5 text-[10px] font-semibold uppercase leading-tight tracking-[0.08em] shadow-sm"
+                style={{
+                  background: t.isDark ? "rgba(255,255,255,0.035)" : "rgba(255,255,255,0.72)",
+                  color: GOLD,
+                  border: "1px solid rgba(182,138,53,0.18)",
+                }}
+              >
+                {(() => {
+                  const Icon = TRUST_ICONS[i] || ShieldCheck;
+                  return <Icon className="shrink-0" size={14} strokeWidth={1.8} />;
+                })()}
+                <span className="min-w-0 text-center">{badge}</span>
+              </span>
+            ))}
+          </div>
         </div>
 
-        {/* ── Trust Badges ── */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+        {/* ── Trust Badges (desktop) ── */}
+        <div className="mt-5 hidden flex-wrap items-center justify-center gap-3 lg:flex">
           {data.trust_badges.map((badge, i) => (
             <span
               key={i}
@@ -121,7 +142,7 @@ const CuratedProjectsSection = ({ data }) => {
 
         {/* ── Tabs ── */}
         <div
-          className="mt-7 grid grid-cols-4 overflow-hidden rounded-2xl border lg:mt-8"
+          className="mt-6 grid grid-cols-4 overflow-hidden rounded-2xl border lg:mt-8"
           style={{
             borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "rgba(182,138,53,0.12)",
             background: t.isDark ? "rgba(255,255,255,0.025)" : "rgba(255,255,255,0.70)",
@@ -140,7 +161,7 @@ const CuratedProjectsSection = ({ data }) => {
                   setActiveTab(i);
                   setSlideIndex(0);
                 }}
-                className="relative flex min-h-[86px] flex-col items-center justify-center gap-2 border-r px-2 py-3 text-center text-[10px] font-semibold transition-all duration-200 last:border-r-0 sm:text-xs lg:min-h-[68px] lg:flex-row lg:gap-3 lg:text-sm"
+                className="relative flex min-h-[86px] flex-col items-center justify-center gap-2 border-r px-2 py-3 text-center text-[11px] font-semibold leading-4 transition-all duration-200 last:border-r-0 lg:min-h-[68px] lg:flex-row lg:gap-3 lg:text-sm"
                 style={{
                   background: isActive
                     ? t.isDark
@@ -165,7 +186,7 @@ const CuratedProjectsSection = ({ data }) => {
         </div>
 
         {/* ── Project Cards Slider ── */}
-        <div className="relative mt-10">
+        <div className="relative mt-8 lg:mt-10">
           <div className="flex items-center justify-end gap-2 mb-4 lg:absolute lg:left-0 lg:right-0 lg:top-1/2 lg:z-20 lg:-translate-y-1/2 lg:justify-between lg:px-0 lg:pointer-events-none">
             <button
               onClick={handlePrev}
@@ -269,7 +290,7 @@ const CuratedProjectsSection = ({ data }) => {
 
                 {/* Title */}
                 <h3
-                  className="mt-1.5 text-base sm:text-lg font-bold leading-snug"
+                  className="mt-1.5 text-[16px] font-semibold leading-6 lg:text-lg lg:font-bold lg:leading-snug"
                   style={{ color: t.text }}
                 >
                   {project.title}
@@ -320,7 +341,7 @@ const CuratedProjectsSection = ({ data }) => {
 
                 {/* Why + Best fit */}
                 <p
-                  className="mt-3 text-xs sm:text-sm leading-relaxed flex-1"
+                  className={`mt-3 flex-1 ${sectionIntroAfterH2Class} lg:text-sm lg:leading-relaxed`}
                   style={{ color: t.textSecondary }}
                 >
                   <span className="font-semibold" style={{ color: t.text }}>
@@ -329,7 +350,7 @@ const CuratedProjectsSection = ({ data }) => {
                   {project.why_this_is_here}
                 </p>
                 <p
-                  className="mt-2 text-xs sm:text-sm leading-relaxed flex-1"
+                  className={`mt-2 flex-1 ${sectionIntroAfterH2Class} lg:text-sm lg:leading-relaxed`}
                   style={{ color: t.textSecondary }}
                 >
                   <span className="font-semibold" style={{ color: t.text }}>
@@ -359,7 +380,7 @@ const CuratedProjectsSection = ({ data }) => {
 
         {/* ── Footer ── */}
         <div
-          className="mt-10 rounded-2xl p-5 text-center sm:p-6 lg:mx-auto lg:max-w-3xl"
+          className="mt-8 rounded-2xl p-4 text-center sm:p-6 lg:mx-auto lg:mt-10 lg:max-w-3xl"
           style={{
             background: t.cardBg,
             border: `1px solid ${t.cardBorder}`,
@@ -369,13 +390,13 @@ const CuratedProjectsSection = ({ data }) => {
             “
           </div>
           <p
-            className="-mt-4 text-sm font-semibold sm:text-base"
+            className="-mt-4 text-sm font-semibold lg:text-base"
             style={{ color: t.text }}
           >
             We don&apos;t show everything - <span style={{ color: GOLD }}>only what stands out.</span>
           </p>
           <p
-            className="mt-3 text-sm leading-relaxed sm:text-base"
+            className={`mt-3 text-[13px] font-normal leading-[1.5] tracking-[-0.01em] lg:text-base lg:leading-relaxed`}
             style={{ color: t.textSecondary }}
           >
             Each project is selected based on location strength, pricing, demand, and long-term potential - so you can focus on what actually matters instead of sorting through hundreds of listings.

@@ -66,42 +66,83 @@ const TrendLine = ({ trend, direction }) => {
   );
 };
 
+const polar = (cx, cy, r, deg) => {
+  const rad = ((deg - 90) * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+};
+
+const donutArcPath = (cx, cy, outerR, innerR, startDeg, endDeg) => {
+  const startOuter = polar(cx, cy, outerR, startDeg);
+  const endOuter = polar(cx, cy, outerR, endDeg);
+  const startInner = polar(cx, cy, innerR, endDeg);
+  const endInner = polar(cx, cy, innerR, startDeg);
+  const largeArc = endDeg - startDeg > 180 ? 1 : 0;
+
+  return [
+    `M ${startOuter.x} ${startOuter.y}`,
+    `A ${outerR} ${outerR} 0 ${largeArc} 1 ${endOuter.x} ${endOuter.y}`,
+    `L ${startInner.x} ${startInner.y}`,
+    `A ${innerR} ${innerR} 0 ${largeArc} 0 ${endInner.x} ${endInner.y}`,
+    "Z",
+  ].join(" ");
+};
+
 const DonutChart = ({ data }) => {
-  const total = data.reduce((sum, item) => sum + item.value, 0);
-  const first = data[0] || { value: 0, label: "", color: GOLD };
-  const second = data[1] || { value: 0, label: "", color: "#E6E2DC" };
-  const firstPct = total > 0 ? first.value / total : 0;
-  const firstDegrees = firstPct * 360;
-  const gapDegrees = 3.5;
-  const readyColor = "#E3DED7";
+  const size = 256;
+  const cx = size / 2;
+  const cy = size / 2;
+  const outerR = size / 2 - 6;
+  const innerR = outerR * 0.58;
+  const labelR = (outerR + innerR) / 2;
+  const startOffset = 135;
+
+  const total = data.reduce((sum, item) => sum + item.value, 0) || 100;
+  let cursor = startOffset;
+
+  const segments = data.map((item, index) => {
+    const sweep = (item.value / total) * 360;
+    const startDeg = cursor;
+    const endDeg = cursor + sweep;
+    const midDeg = startDeg + sweep / 2;
+    cursor = endDeg;
+
+    return {
+      ...item,
+      path: donutArcPath(cx, cy, outerR, innerR, startDeg, endDeg),
+      labelPos: polar(cx, cy, labelR, midDeg),
+      labelColor: index === 0 ? "#ffffff" : "#1e293b",
+    };
+  });
 
   return (
     <div className="relative mx-auto h-64 w-64 lg:h-56 lg:w-56">
-      <div
-        className="absolute inset-0 rounded-full shadow-[inset_0_2px_8px_rgba(0,0,0,0.08)]"
-        style={{
-          background: `conic-gradient(from 135deg, ${first.color} 0deg ${firstDegrees}deg, #ffffff ${firstDegrees}deg ${firstDegrees + gapDegrees}deg, ${readyColor} ${firstDegrees + gapDegrees}deg 360deg)`,
-        }}
-      />
-      <div className="absolute inset-[32%] rounded-full bg-white shadow-[0_2px_18px_rgba(15,23,42,0.08)]" />
-      <div className="absolute inset-0 flex items-center justify-center text-center">
-        <div>
-          <div className="text-xs font-bold uppercase leading-tight" style={{ color: "#334155" }}>
-            Jan 2026
-          </div>
-          <div className="text-[10px] font-bold uppercase leading-tight" style={{ color: "#334155" }}>
-            Sales Activity
-          </div>
-        </div>
-      </div>
-      <div className="absolute left-[25%] top-[45%] -translate-x-1/2 -translate-y-1/2 text-center text-white">
-        <div className="text-2xl font-bold leading-none drop-shadow-sm">{first.value}%</div>
-        <div className="mt-1 text-xs leading-none">{first.label}</div>
-      </div>
-      <div className="absolute right-[15%] top-[48%] -translate-y-1/2 text-center" style={{ color: "#1f2937" }}>
-        <div className="text-xl font-bold leading-none">{second.value}%</div>
-        <div className="mt-1 text-xs leading-none">{second.label}</div>
-      </div>
+      <svg
+        viewBox={`0 0 ${size} ${size}`}
+        className="h-full w-full"
+        role="img"
+        aria-label="Off-plan versus ready sales split"
+      >
+        {segments.map((seg) => (
+          <path key={seg.label} d={seg.path} fill={seg.color} />
+        ))}
+        <circle cx={cx} cy={cy} r={innerR - 1} fill="#ffffff" />
+        <text x={cx} y={cy - 6} textAnchor="middle" fill="#334155" style={{ fontSize: 11, fontWeight: 700 }}>
+          Jan 2026
+        </text>
+        <text x={cx} y={cy + 10} textAnchor="middle" fill="#334155" style={{ fontSize: 9, fontWeight: 700 }}>
+          Sales Activity
+        </text>
+        {segments.map((seg) => (
+          <g key={`${seg.label}-label`} transform={`translate(${seg.labelPos.x}, ${seg.labelPos.y})`}>
+            <text y={-4} textAnchor="middle" fill={seg.labelColor} style={{ fontSize: 22, fontWeight: 700 }}>
+              {seg.value}%
+            </text>
+            <text y={12} textAnchor="middle" fill={seg.labelColor} style={{ fontSize: 11, fontWeight: 500 }}>
+              {seg.label}
+            </text>
+          </g>
+        ))}
+      </svg>
     </div>
   );
 };
@@ -136,7 +177,7 @@ const MarketPulseSection = ({ data }) => {
 
   return (
     <section className="py-8 lg:py-10" style={{ background: t.bg }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6">
         <div className="mb-7 hidden lg:block">
           <div className="mb-4 flex justify-end">
             <span
@@ -157,23 +198,17 @@ const MarketPulseSection = ({ data }) => {
           />
         </div>
 
-        <div
-          className="relative mb-7 overflow-hidden rounded-[24px] border p-5 lg:hidden"
-          style={{
-            borderColor: t.cardBorder,
-            background: t.isDark ? t.cardBg : "#fffdfa",
-          }}
-        >
+        <div className="mb-6 text-center lg:hidden px-1">
           <span
-            className="mb-5 inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
+            className="mb-4 inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
             style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
           >
             Updated: {data.last_updated}
           </span>
-          <h2 className="font-serif text-[2.2rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
+          <h2 className="font-serif text-[32px] font-semibold leading-[1.05]" style={{ color: t.text }}>
             {titleWithAccent(data.h2)}
           </h2>
-          <p className="mt-4 text-sm leading-7" style={{ color: t.textSecondary }}>
+          <p className="mt-4 text-sm leading-[20px]" style={{ color: t.textSecondary }}>
             {data.h3}
           </p>
         </div>
@@ -263,7 +298,7 @@ const MarketPulseSection = ({ data }) => {
             })}
           </div>
 
-          <div className="p-5 lg:p-7">
+          <div className="p-3 lg:p-7">
             {currentTab.chart_type === "donut" && (
               <div className="grid gap-6 lg:grid-cols-[320px_1fr] lg:items-center">
                 <div>
@@ -280,7 +315,7 @@ const MarketPulseSection = ({ data }) => {
                 <div className="hidden lg:block">
                   <DonutChart data={currentTab.chart_data || []} />
                 </div>
-                <p className="text-base leading-8 lg:col-start-2 lg:row-start-1 lg:row-end-3" style={{ color: t.textSecondary }}>
+                <p className="md:text-base leading-[21px] text-[14px] md:leading-8 lg:col-start-2 lg:row-start-1 lg:row-end-3" style={{ color: t.textSecondary }}>
                   {currentTab.content}
                 </p>
                 <div className="lg:col-span-2">
@@ -294,7 +329,7 @@ const MarketPulseSection = ({ data }) => {
                 <h4 className="font-serif text-2xl font-semibold leading-tight" style={{ color: t.text }}>
                   {currentTab.title} <span style={{ color: GOLD }}>{currentTab.sub_title}</span>
                 </h4>
-                <p className="mt-2 max-w-4xl text-base leading-7" style={{ color: t.textSecondary }}>
+                <p className="mt-2 max-w-4xl md:text-base leading-[21px] text-[14px] md:leading-7" style={{ color: t.textSecondary }}>
                   {currentTab.intro}
                 </p>
                 <div className="mt-5 overflow-hidden rounded-xl border" style={{ borderColor: t.cardBorder }}>
@@ -309,7 +344,7 @@ const MarketPulseSection = ({ data }) => {
                         <div className="flex min-h-[62px] items-center justify-center" style={{ color: GOLD }}>
                           <Icon size={24} strokeWidth={1.55} />
                         </div>
-                        <div className="py-3 pr-3">
+                        <div className="pt-3 pb-2 pr-3">
                           <div className="font-semibold" style={{ color: t.text }}>
                             {row.area}
                           </div>
@@ -317,7 +352,7 @@ const MarketPulseSection = ({ data }) => {
                             {row.insight}
                           </div>
                         </div>
-                        <div className="col-start-2 border-t py-3 pr-3 font-serif text-lg font-semibold lg:col-start-auto lg:border-t-0 lg:text-base" style={{ color: GOLD, borderColor: t.cardBorder }}>
+                        <div className="col-start-2 border-t pb-3 pr-3 font-serif text-lg font-semibold lg:col-start-auto lg:border-t-0 lg:text-base" style={{ color: GOLD, borderColor: t.cardBorder }}>
                           {row.price}
                         </div>
                         <div className="hidden py-3 text-sm leading-6 lg:block" style={{ color: t.textSecondary }}>
@@ -337,7 +372,7 @@ const MarketPulseSection = ({ data }) => {
                   <h4 className="font-serif text-2xl font-semibold leading-tight" style={{ color: t.text }}>
                     {currentTab.title} <span style={{ color: GOLD }}>{currentTab.sub_title}</span>
                   </h4>
-                  <p className="mt-3 text-base leading-7" style={{ color: t.textSecondary }}>
+                  <p className="mt-3 md:text-base leading-[21px] text-[14px] md:leading-7" style={{ color: t.textSecondary }}>
                     {currentTab.intro}
                   </p>
                 </div>
@@ -378,7 +413,7 @@ const MarketPulseSection = ({ data }) => {
                     <Lightbulb size={20} />
                     Key Insight
                   </div>
-                  <p className="mt-3 text-sm leading-7" style={{ color: t.textSecondary }}>
+                  <p className="mt-3 md:text-sm leading-[21px] text-[13px] md:leading-7" style={{ color: t.textSecondary }}>
                     {currentTab.insight}
                   </p>
                 </div>
@@ -397,17 +432,29 @@ const MarketPulseSection = ({ data }) => {
             background: t.isDark ? "rgba(255,255,255,0.025)" : "#ffffff",
           }}
         >
-          <div className="flex gap-3">
-            <ShieldCheck size={30} className="shrink-0" style={{ color: GOLD }} />
-            <div>
-              <h4 className="font-bold uppercase tracking-wide" style={{ color: t.text }}>
-                Data Integrity & Attribution
-              </h4>
-              <div className="mt-3 h-px w-24" style={{ background: GOLD }} />
-              <p className="mt-4 text-sm leading-7" style={{ color: t.textSecondary }}>
-                {footerText}
-              </p>
+          {/* fixing icon position for mobile: icon + title on one row; body full-width on next row */}
+          <div className="flex flex-col">
+            <div className="flex gap-3">
+              <ShieldCheck size={30} className="shrink-0" style={{ color: GOLD }} />
+              <div className="min-w-0 flex-1">
+                <h4 className="font-bold uppercase tracking-wide" style={{ color: t.text }}>
+                  Data Integrity & Attribution
+                </h4>
+                <div className="mt-3 h-px w-24" style={{ background: GOLD }} />
+                <p
+                  className="mt-4 hidden text-[13px] leading-[20px] md:text-sm md:leading-7 lg:block"
+                  style={{ color: t.textSecondary }}
+                >
+                  {footerText}
+                </p>
+              </div>
             </div>
+            <p
+              className="mt-4 text-[13px] leading-[20px] md:text-sm md:leading-7 lg:hidden"
+              style={{ color: t.textSecondary }}
+            >
+              {footerText}
+            </p>
           </div>
           <div className="flex flex-col gap-3">
             <button

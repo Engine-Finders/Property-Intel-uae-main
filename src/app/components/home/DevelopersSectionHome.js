@@ -25,14 +25,14 @@ const TopDevelopersSection = ({ data }) => {
 
   return (
     <section style={{ background: sectionBg }} className="py-6 md:py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6">
 
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3" style={{ color: t.text }}>
             {data.title}
           </h2>
-          <p className="text-sm md:text-base leading-relaxed max-w-2xl mx-auto" style={{ color: bodyColor }}>
+          <p className="text-sm md:text-base leading-[20px] max-w-2xl mx-auto" style={{ color: bodyColor }}>
             {data.subtitle}
           </p>
         </div>
