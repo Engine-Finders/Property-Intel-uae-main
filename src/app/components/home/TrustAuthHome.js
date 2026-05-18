@@ -9,6 +9,16 @@ const GOLD = "#B68A35";
 const GOLD_BG = "rgba(182,138,53,0.06)";
 const GOLD_BORDER = "rgba(182,138,53,0.18)";
 
+const TRUST_AUTH_H2_PRIMARY = "Your Expert Guide to the ";
+const TRUST_AUTH_H2_ACCENT = "Buying Property in Dubai Process";
+
+const trustAuthHeading = (
+  <>
+    {TRUST_AUTH_H2_PRIMARY}
+    <span style={{ color: GOLD }}>{TRUST_AUTH_H2_ACCENT}</span>
+  </>
+);
+
 const iconMap = {
   database: "/home/Cross%20Referenced%20Official%20Sources.svg",
   shield: "/home/Secure%20Your%20ownership.svg",
@@ -39,13 +49,29 @@ const TrustAuthoritySection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* ── Header ── */}
+        {/* ── Header (mobile: no card, centered) ── */}
+        <div className="mb-6 text-center lg:hidden">
+          <h2
+            className="mx-auto max-w-2xl text-2xl font-bold leading-tight sm:text-3xl"
+            style={{ color: t.text }}
+          >
+            {trustAuthHeading}
+          </h2>
+          <p
+            className="mx-auto mt-4 max-w-2xl text-sm leading-[20px] md:leading-7"
+            style={{ color: t.textSecondary }}
+          >
+            {data.h3}
+          </p>
+        </div>
+
+        {/* ── Header (desktop: card + image) ── */}
         <SectionImageHeader
-          title={data.h2}
+          title={trustAuthHeading}
           subtitle={data.h3}
           t={t}
           imageSrc="/developer/finance-section.webp"
-          className="mb-10 lg:mb-14 rounded-[28px] border"
+          className="mb-10 hidden rounded-[28px] border lg:mb-14 lg:block"
           contentClassName="max-w-3xl"
         />
 
@@ -82,7 +108,7 @@ const TrustAuthoritySection = ({ data }) => {
                     </h4>
                   </div>
 
-                  <p className="mt-3 text-[13px] sm:text-sm mb-4" style={{ color: t.textMuted, lineHeight: 1.75 }}>
+                  <p className="mt-3 text-[13px] leading-[20px] md:leading-relaxed sm:text-sm mb-4" style={{ color: t.textMuted}}>
                     {pillar.content}
                   </p>
 
