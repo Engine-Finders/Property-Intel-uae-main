@@ -4,6 +4,7 @@ import { useTheme } from "../context/ThemeContext";
 import Image from "next/image";
 import { ShieldCheck } from "lucide-react";
 import SectionImageHeader from "../home-page-common/SectionImageHeader";
+import SectionBgTextHeader from "../home-page-common/SectionBgTextHeader";
 import SectionExpertCta from "../home-page-common/cta-common";
 
 const GOLD = "#B68A35";
@@ -120,20 +121,27 @@ const TrustedBySection = ({ data }) => {
         </div>
 
         {/* Mobile header */}
-        <div className="mb-6 lg:hidden">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: t.text }}>
-            {sectionTitle}{" "}
-            <span style={{ color: GOLD }}>{sectionAccent}</span>
-          </h2>
-          <span
-            className="inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap mb-3"
-            style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
-          >
-            Last Updated: {data.last_updated}
-          </span>
-          <p className="text-sm md:text-base leading-relaxed" style={{ color: bodyColor }}>
-            {data.h3}
-          </p>
+        <div className="mb-6 lg:hidden -mx-4 sm:-mx-6">
+          <SectionBgTextHeader
+            title={
+              <>
+                {sectionTitle}{" "}
+                <span style={{ color: GOLD }}>{sectionAccent}</span>
+              </>
+            }
+            subtitle={data.h3}
+            imageSrc="/developer/finance-section.webp"
+            t={t}
+            minHeight={270}
+            meta={
+              <span
+                className="inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
+                style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
+              >
+                Last Updated: {data.last_updated}
+              </span>
+            }
+          />
         </div>
 
         {/* Trust statement + shield */}
@@ -331,7 +339,7 @@ const TrustedBySection = ({ data }) => {
                   {/* Testimonial body */}
                   <div className="px-5 pt-2 pb-4 flex-1 flex flex-col">
                     <p
-                      className="text-xs leading-relaxed mb-3"
+                      className="text-[13px] leading-[18px] mb-3"
                       style={{
                         color: bodyColor,
                         display: "-webkit-box",

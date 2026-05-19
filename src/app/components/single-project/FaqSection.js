@@ -53,7 +53,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle, t }) => (
     <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[900px] opacity-100" : "max-h-0 opacity-0"}`}>
       <div className="space-y-3 border-t px-4 py-5 sm:px-5 lg:px-12 lg:py-7 lg:pl-[104px]" style={{ borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "#EFEAE1" }}>
         {faq.answer.map((p, i) => (
-          <p key={i} className="text-sm leading-6 lg:text-base lg:leading-8" style={{ color: t.textSecondary }}>{p}</p>
+          <p key={i} className="text-sm leading-5 lg:text-base lg:leading-8" style={{ color: t.textSecondary }}>{p}</p>
         ))}
         {faq.list && (
           <ul className="mt-2 space-y-2">
@@ -72,7 +72,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle, t }) => (
 
 const FaqSection = ({ data }) => {
   const { t } = useTheme();
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
   const heading = splitTitle(data.title);
 
   const toggle = (i) => setOpenIndex((prev) => (prev === i ? null : i));
@@ -93,9 +93,16 @@ const FaqSection = ({ data }) => {
           )}
         </div>
 
+        {/* FAQ Accordions */}
+        <div className="mb-6 space-y-3 lg:space-y-5">
+          {(data.items || []).map((faq, i) => (
+            <FaqItem key={i} faq={faq} index={i} isOpen={openIndex === i} onToggle={() => toggle(i)} t={t} />
+          ))}
+        </div>
+
         {data.note && (
           <div
-            className="mb-6 flex gap-4 rounded-2xl px-4 py-4 sm:px-5 lg:mb-8 lg:items-center lg:px-8 lg:py-6"
+            className="mt-6 flex gap-4 rounded-2xl px-4 py-4 sm:px-5 lg:mt-8 lg:items-center lg:px-8 lg:py-6"
             style={{
               background: t.cardBg,
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "#E9E3D9"}`,
@@ -105,18 +112,11 @@ const FaqSection = ({ data }) => {
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-serif text-lg" style={{ color: GOLD, borderColor: GOLD }}>
               i
             </span>
-            <p className="text-sm leading-7 lg:text-base" style={{ color: t.textSecondary }}>
+            <p className="text-[13px] leading-5 lg:text-base" style={{ color: t.textSecondary }}>
               <strong style={{ color: GOLD }}>Note:</strong> {data.note}
             </p>
           </div>
         )}
-
-        {/* FAQ Accordions */}
-        <div className="mb-6 space-y-3 lg:space-y-5">
-          {(data.items || []).map((faq, i) => (
-            <FaqItem key={i} faq={faq} index={i} isOpen={openIndex === i} onToggle={() => toggle(i)} t={t} />
-          ))}
-        </div>
 
         <SectionExpertCta cta={data.section_cta || data.cta} t={t} />
       </div>

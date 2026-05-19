@@ -3,10 +3,19 @@ import { useState, useRef, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
 import Image from "next/image";
 import SectionImageHeader from "../home-page-common/SectionImageHeader";
+import SectionBgTextHeader from "../home-page-common/SectionBgTextHeader";
 import SectionExpertCta from "../home-page-common/cta-common";
 
 const GOLD = "#B68A35";
 const GOLD_LIGHT = "#D4A84B";
+
+const intelligenceMobileTitle = (
+  <>
+    Dubai Real <span style={{ color: GOLD }}>Estate News</span> Today
+    <br />
+    & Investment <span style={{ color: GOLD }}>Intelligence</span>
+  </>
+);
 const GOLD_BORDER = "rgba(182,138,53,0.25)";
 const TECH_BLUE = "#286CFF";
 
@@ -103,40 +112,33 @@ const IntelligenceSection = ({ data }) => {
         </div>
 
         {/* Mobile Header */}
-        <div className="text-center mb-10 md:mb-14 max-w-4xl mx-auto lg:hidden">
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
-            <h2
-              className="text-2xl sm:text-3xl md:text-4xl font-bold"
-              style={{ color: t.text }}
-            >
-              Dubai Real <span style={{ color: GOLD }}>Estate News</span> Today
-              <br className="hidden sm:block" />
-              & Investment <span style={{ color: GOLD }}>Intelligence</span>
-            </h2>
-            <span
-              className="text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
-              style={{ background: `rgba(182,138,53,0.12)`, color: GOLD }}
-            >
-              Last Updated: {data.last_updated}
-            </span>
-          </div>
-          <p
-            className="text-sm md:text-base leading-relaxed mb-4"
-            style={{ color: bodyColor }}
-          >
-            {data.h3}
-          </p>
-          <div
-            className="inline-flex items-start gap-2 text-xs md:text-sm px-4 py-2.5 rounded-lg text-left"
-            style={{
-              background: isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
-              color: bodyColor,
-              border: `1px solid ${GOLD_BORDER}`,
-            }}
-          >
-            <span style={{ color: GOLD }} className="mt-0.5 flex-shrink-0">✓</span>
-            <span>{data.trust_statement}</span>
-          </div>
+        <div className="mb-6 lg:hidden -mx-4 sm:-mx-6">
+          <SectionBgTextHeader
+            title={intelligenceMobileTitle}
+            subtitle={data.h3}
+            imageSrc="/developer/finance-section.webp"
+            t={t}
+            minHeight={270}
+            meta={
+              <span
+                className="inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
+                style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
+              >
+                Last Updated: {data.last_updated}
+              </span>
+            }
+          />
+        </div>
+        <div
+          className="mb-10 flex w-full items-start gap-2 text-xs md:text-sm px-4 py-2.5 rounded-lg text-left lg:hidden"
+          style={{
+            background: isDark ? "rgba(182,138,53,0.08)" : "rgba(182,138,53,0.06)",
+            color: bodyColor,
+            border: `1px solid ${GOLD_BORDER}`,
+          }}
+        >
+          <span style={{ color: GOLD }} className="mt-0.5 flex-shrink-0">✓</span>
+          <span>{data.trust_statement}</span>
         </div>
 
         {/* Slider */}
@@ -240,7 +242,7 @@ const IntelligenceSection = ({ data }) => {
                       {card.headline}
                     </h4>
                     <p
-                      className="text-xs leading-relaxed mb-3 flex-1"
+                      className="text-xs leading-[18px] mb-3 flex-1"
                       style={{
                         color: bodyColor,
                         display: "-webkit-box",

@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import SectionImageHeader from "../home-page-common/SectionImageHeader";
+import SectionBgTextHeader from "../home-page-common/SectionBgTextHeader";
 
 const GOLD = "#B68A35";
 const GREEN = "#15803D";
@@ -198,19 +199,22 @@ const MarketPulseSection = ({ data }) => {
           />
         </div>
 
-        <div className="mb-6 text-center lg:hidden px-1">
-          <span
-            className="mb-4 inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
-            style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
-          >
-            Updated: {data.last_updated}
-          </span>
-          <h2 className="font-serif text-[32px] font-semibold leading-[1.05]" style={{ color: t.text }}>
-            {titleWithAccent(data.h2)}
-          </h2>
-          <p className="mt-4 text-sm leading-[20px]" style={{ color: t.textSecondary }}>
-            {data.h3}
-          </p>
+        <div className="mb-6 lg:hidden -mx-2 sm:-mx-6">
+          <SectionBgTextHeader
+            title={titleWithAccent(data.h2)}
+            subtitle={data.h3}
+            imageSrc="/developer/finance-section.webp"
+            t={t}
+            minHeight={270}
+            meta={
+              <span
+                className="inline-flex text-xs px-3 py-1 rounded-full font-medium whitespace-nowrap"
+                style={{ background: "rgba(182,138,53,0.12)", color: GOLD }}
+              >
+                Updated: {data.last_updated}
+              </span>
+            }
+          />
         </div>
 
         <div style={{ color: t.text }}>{sectionLabel("Key Market Metrics")}</div>

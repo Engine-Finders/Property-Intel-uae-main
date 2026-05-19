@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import Image from "next/image";
 import SectionImageHeader from "../home-page-common/SectionImageHeader";
+import SectionBgTextHeader from "../home-page-common/SectionBgTextHeader";
 
 
 const GOLD = "#B68A35";
@@ -49,20 +50,15 @@ const TrustAuthoritySection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
-        {/* ── Header (mobile: no card, centered) ── */}
-        <div className="mb-6 text-center lg:hidden">
-          <h2
-            className="mx-auto max-w-2xl text-2xl font-bold leading-tight sm:text-3xl"
-            style={{ color: t.text }}
-          >
-            {trustAuthHeading}
-          </h2>
-          <p
-            className="mx-auto mt-4 max-w-2xl text-sm leading-[20px] md:leading-7"
-            style={{ color: t.textSecondary }}
-          >
-            {data.h3}
-          </p>
+        {/* ── Header (mobile: bg image + smoke) ── */}
+        <div className="mb-6 lg:hidden -mx-4 sm:-mx-6 lg:mx-0">
+          <SectionBgTextHeader
+            title={trustAuthHeading}
+            subtitle={data.h3}
+            imageSrc="/developer/finance-section.webp"
+            t={t}
+            minHeight={270}
+          />
         </div>
 
         {/* ── Header (desktop: card + image) ── */}

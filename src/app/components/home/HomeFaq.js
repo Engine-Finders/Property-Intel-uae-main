@@ -72,7 +72,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle, t }) => (
         style={{ borderColor: t.isDark ? "rgba(255,255,255,0.08)" : "#EFEAE1" }}
       >
         {faq.answer.map((p, i) => (
-          <p key={i} className="text-sm leading-7 lg:text-base lg:leading-8" style={{ color: t.textSecondary }}>
+          <p key={i} className="text-sm leading-5 lg:text-base lg:leading-8" style={{ color: t.textSecondary }}>
             {p}
           </p>
         ))}
@@ -98,7 +98,7 @@ const FaqItem = ({ faq, index, isOpen, onToggle, t }) => (
 
 const HomeFaqSection = ({ data }) => {
   const { t } = useTheme();
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
   const em = splitEmDashTitle(data.title);
   const comma = em.accent ? null : splitCommaAccent(data.title);
 
@@ -135,15 +135,21 @@ const HomeFaqSection = ({ data }) => {
             )}
           </h2>
           {data.subtitle && (
-            <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed lg:text-base" style={{ color: t.textSecondary }}>
+            <p className="mx-auto mt-3 max-w-3xl text-sm leading-[20px] lg:text-base" style={{ color: t.textSecondary }}>
               {data.subtitle}
             </p>
           )}
         </div>
 
+        <div className="mb-6 space-y-3 lg:space-y-5">
+          {(data.items || []).map((faq, i) => (
+            <FaqItem key={i} faq={faq} index={i} isOpen={openIndex === i} onToggle={() => toggle(i)} t={t} />
+          ))}
+        </div>
+
         {data.note && (
           <div
-            className="mb-6 flex gap-4 rounded-2xl px-4 py-4 sm:px-5 lg:mb-8 lg:items-center lg:px-8 lg:py-6"
+            className="mt-6 flex gap-4 rounded-2xl px-4 py-4 sm:px-5 lg:mt-8 lg:items-center lg:px-8 lg:py-6"
             style={{
               background: t.cardBg,
               border: `1px solid ${t.isDark ? "rgba(255,255,255,0.08)" : "#E9E3D9"}`,
@@ -156,17 +162,12 @@ const HomeFaqSection = ({ data }) => {
             >
               i
             </span>
-            <p className="text-sm leading-7 lg:text-base" style={{ color: t.textSecondary }}>
+            <p className="text-[13px] leading-5 lg:text-base" style={{ color: t.textSecondary }}>
               <strong style={{ color: GOLD }}>Note:</strong> {data.note}
             </p>
           </div>
         )}
 
-        <div className="mb-6 space-y-3 lg:space-y-5">
-          {(data.items || []).map((faq, i) => (
-            <FaqItem key={i} faq={faq} index={i} isOpen={openIndex === i} onToggle={() => toggle(i)} t={t} />
-          ))}
-        </div>
       </div>
     </section>
   );
