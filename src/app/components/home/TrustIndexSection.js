@@ -103,7 +103,7 @@ const TrustIndexSection = ({ data }) => {
 
   return (
     <section style={{ background: t.bgAlt }} className="py-8 lg:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6">
 
         {/* ── Header (mobile: bg image + smoke) ── */}
         <div className="mb-6 lg:hidden -mx-4 sm:-mx-6">

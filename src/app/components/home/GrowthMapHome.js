@@ -84,7 +84,7 @@ const GrowthMapSection = ({ data }) => {
 
   return (
     <section style={{ background: t.bgAlt }} className="py-8 sm:py-10 lg:py-14">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         {/* ── Desktop: header + map row ── */}
         <div className="mb-8 grid gap-8 lg:mb-10 lg:grid-cols-2 lg:items-stretch lg:gap-10">
           <div className="flex flex-col">

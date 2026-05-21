@@ -47,7 +47,7 @@ const TrustAuthoritySection = ({ data }) => {
   const toggleStep = (idx) => setExpandedStep(expandedStep === idx ? null : idx);
 
   return (
-    <section style={{ background: t.bg }} className="py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8">
+    <section style={{ background: t.bg }} className="py-4 sm:py-6 lg:py-8 px-2 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         {/* ── Header (mobile: bg image + smoke) ── */}

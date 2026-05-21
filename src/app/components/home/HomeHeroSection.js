@@ -144,7 +144,7 @@ const HomeHeroSection = ({ data }) => {
       }}
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-x-0 top-0 h-[54%] lg:inset-y-0 lg:left-auto lg:h-auto lg:w-[52%] xl:w-[50%]">
+        <div className="absolute inset-x-0 top-0 h-[54%] lg:inset-y-0 lg:left-[40%] lg:right-0 lg:h-auto lg:w-auto xl:left-[38%]">
           <link rel="preload" as="image" href="hero-bg.webp" />
           <video
             autoPlay
@@ -191,41 +191,46 @@ const HomeHeroSection = ({ data }) => {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[850px] w-full max-w-7xl flex-col px-3 py-8 sm:px-6 lg:min-h-[640px] lg:px-12 lg:py-11 xl:min-h-[700px]">
-        <div className="w-full lg:max-w-[820px]">
-          {topTrustSignals.length > 0 && (
-            <div className="flex flex-wrap md:gap-3 gap-2">
-              {topTrustSignals.map((label) => (
-                <div
-                  key={label}
-                  className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-md sm:text-xs"
-                  style={{
-                    color: t.isDark ? "rgba(255,255,255,0.88)" : "#4b5563",
-                    borderColor: t.isDark ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.45)",
-                    background: t.isDark
-                      ? "rgba(15,23,42,0.55)"
-                      : "rgba(255,255,255,0.72)",
-                    backdropFilter: "blur(10px)",
-                  }}
-                >
-                  <span
-                    className="inline-block h-2 w-2 shrink-0 rounded-full"
-                    style={{ background: GOLD }}
-                    aria-hidden
-                  />
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-          )}
+      <div className="relative z-10 mx-auto flex min-h-[850px] w-full max-w-7xl flex-col px-3 py-8 sm:px-6 lg:mx-0 lg:min-h-[640px] lg:max-w-none lg:px-7 lg:py-11 xl:min-h-[700px] xl:px-10 2xl:px-14">
+        {/* Trust badges: row on desktop, can span across fade / video */}
+        {topTrustSignals.length > 0 && (
+          <div
+            className="relative z-20 flex w-full max-w-md flex-wrap gap-2 sm:max-w-xl sm:gap-3 md:max-w-2xl lg:absolute lg:left-7 lg:right-auto lg:top-11 lg:max-w-none lg:flex-nowrap lg:gap-3 lg:w-[min(68rem,max(32rem,calc(42vw+12rem)))] xl:left-10 xl:top-11 xl:w-[min(72rem,max(34rem,calc(44vw+14rem)))] 2xl:left-14 2xl:w-[min(76rem,max(36rem,calc(46vw+16rem)))]"
+            aria-label="Trust indicators"
+          >
+            {topTrustSignals.map((label) => (
+              <div
+                key={label}
+                className="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] backdrop-blur-xl sm:text-xs"
+                style={{
+                  color: t.isDark ? "rgba(255,255,255,0.88)" : "#4b5563",
+                  borderColor: softBorder,
+                  background: cardBackground,
+                  boxShadow: t.isDark
+                    ? "0 12px 28px rgba(0,0,0,0.22)"
+                    : "0 12px 28px rgba(15,23,42,0.08)",
+                }}
+              >
+                <span
+                  className="inline-block h-2 w-2 shrink-0 rounded-full"
+                  style={{ background: GOLD }}
+                  aria-hidden
+                />
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
+        {/* Desktop: narrow copy column (heading only) */}
+        <div className="w-full lg:max-w-[min(640px,38vw)] xl:max-w-[min(680px,36vw)] lg:pt-14">
           <div className="relative mt-9 max-w-[660px] lg:mt-3">
             <div
               className="pointer-events-none absolute -inset-x-4 -inset-y-5 z-0 rounded-[2rem] blur-2xl lg:hidden"
               style={{ background: heroCopyFade }}
               aria-hidden="true"
             />
-            <h1 className="relative z-10 max-w-[640px] text-[40px] font-[575] tracking-tight leading-[1.05] sm:text-6xl lg:text-7xl">
+            <h1 className="relative z-10 max-w-[640px] text-[40px] font-[575] tracking-tight leading-[1.05] sm:text-4xl lg:text-5xl">
               {hasDubaiHighlight ? (
                 <>
                   <span
@@ -248,16 +253,19 @@ const HomeHeroSection = ({ data }) => {
             </h1>
 
             <p
-              className="relative z-10 mt-3 max-w-xl text-[15px] font-medium leading-snug sm:text-xl lg:text-2xl lg:leading-snug"
+              className="relative z-10 mt-3 max-w-xl text-[15px] font-medium leading-snug sm:text-lg lg:text-[16px] lg:leading-snug"
               style={{ color: t.isDark ? t.textSecondary : SUBTITLE_GREY }}
             >
               {hero.hero_description}
             </p>
           </div>
+        </div>
 
+        {/* Panels: fluid width — narrow on mobile/tablet, grows across fade on desktop */}
+        <div className="mt-6 w-full max-w-md space-y-4 sm:max-w-xl md:max-w-2xl lg:mt-5 lg:max-w-none lg:w-[min(68rem,max(32rem,calc(42vw+12rem)))] xl:w-[min(72rem,max(34rem,calc(44vw+14rem)))] 2xl:w-[min(76rem,max(36rem,calc(46vw+16rem)))]">
           {metricSignals.length > 0 && (
             <div
-              className="mt-6 grid grid-cols-3 overflow-hidden rounded-[18px] border shadow-xl backdrop-blur-xl lg:max-w-[760px]"
+              className="grid grid-cols-3 overflow-hidden rounded-[18px] border shadow-xl backdrop-blur-xl"
               style={{
                 background: cardBackground,
                 borderColor: softBorder,
@@ -273,7 +281,7 @@ const HomeHeroSection = ({ data }) => {
                 return (
                   <div
                     key={label}
-                    className="flex min-h-[72px] items-center gap-2.5 border-r pl-2 pr-1 py-2.5 last:border-r-0 sm:gap-4 sm:px-5 lg:min-h-[88px]"
+                    className="flex min-h-[72px] items-center gap-2.5 border-r pl-2 pr-1 py-2.5 last:border-r-0 sm:gap-4 sm:px-5 lg:min-h-[88px] lg:px-6"
                     style={{ borderColor: softBorder }}
                   >
                     <Icon
@@ -305,7 +313,7 @@ const HomeHeroSection = ({ data }) => {
           )}
 
           <div
-            className="mt-4 rounded-[18px] border p-4 shadow-xl backdrop-blur-xl lg:max-w-[1050px] lg:p-5"
+            className="rounded-[18px] border p-4 shadow-xl backdrop-blur-xl lg:p-5"
             style={{
               background: cardBackground,
               borderColor: softBorder,
@@ -398,13 +406,13 @@ const HomeHeroSection = ({ data }) => {
           </div>
 
           <div
-            className="mt-4 lg:max-w-[1050px] [&_span.text-left>span:first-of-type]:!text-[1rem] [&_span.text-left>span:first-of-type]:!leading-snug sm:[&_span.text-left>span:first-of-type]:!text-[1.0625rem] [&_span.text-left>span:last-of-type]:!mt-1 [&_span.text-left>span:last-of-type]:!text-xs [&_span.text-left>span:last-of-type]:!leading-snug [&_span.text-left>span:last-of-type]:lg:!mt-0.5 [&_span.text-left>span:last-of-type]:lg:!leading-normal"
+            className="[&_span.text-left>span:first-of-type]:!text-[1rem] [&_span.text-left>span:first-of-type]:!leading-snug sm:[&_span.text-left>span:first-of-type]:!text-[1.0625rem] [&_span.text-left>span:last-of-type]:!mt-1 [&_span.text-left>span:last-of-type]:!text-xs [&_span.text-left>span:last-of-type]:!leading-snug [&_span.text-left>span:last-of-type]:lg:!mt-0.5 [&_span.text-left>span:last-of-type]:lg:!leading-normal"
           >
             <SectionExpertCta cta={hero.expert_cta} t={t} />
           </div>
 
           <div
-            className="mt-4 flex items-center justify-center gap-2 text-[13px] leading-5 lg:max-w-[1050px]"
+            className="flex items-center gap-2 text-[13px] leading-5"
             style={{ color: t.textMuted }}
           >
             <Lock size={14} />
