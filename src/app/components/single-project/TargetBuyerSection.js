@@ -6,7 +6,10 @@ import SectionExpertCta from "./SectionExpertCta";
 import SectionImageHeader from "./SectionImageHeader";
 
 const ACCENT = "#b68a35";
-const sectionH2Class = "text-[32px] font-semibold leading-none";
+const GOLD = "#B68A35";
+const TARGET_BUYER_H2_PRIMARY = "Who Should Buy at Serro The Heights?";
+const TARGET_BUYER_H2_ACCENT = "Investor, End-User, or Both?";
+const sectionH2Class = "text-[32px] font-medium leading-none";
 const sectionIntroAfterH2Class = "text-[14px] font-normal leading-[1.5] tracking-[-0.01em]";
 
 const ChevronIcon = ({ open, color }) => (
@@ -323,21 +326,17 @@ const TargetBuyerSection = ({ data }) => {
     <section style={{ background: t.bg }} className="py-5 lg:py-8">
       <div className="mx-auto max-w-7xl px-2 sm:px-5">
         <SectionImageHeader
-          title={data.heading}
+          primary={TARGET_BUYER_H2_PRIMARY}
+          accent={TARGET_BUYER_H2_ACCENT}
           subtitle={data.intro}
           t={t}
           className="mb-5 hidden lg:block rounded-b-xl"
         />
         <div className="mb-6 max-w-3xl lg:hidden">
-        <h1 className={sectionH2Class}>
-  <span style={{ color: t.text }}>
-    {data.heading.split(' ').slice(0, 5).join(' ')}{' '}
-  </span>
-
-  <span style={{ color: '#B68A35' }}>
-    {data.heading.split(' ').slice(5).join(' ')}
-  </span>
-</h1>
+          <h2 className={sectionH2Class} style={{ color: t.text }}>
+            {TARGET_BUYER_H2_PRIMARY}{" "}
+            <span style={{ color: GOLD }}>{TARGET_BUYER_H2_ACCENT}</span>
+          </h2>
           <p
             className={`mt-3 max-w-xl ${sectionIntroAfterH2Class}`}
             style={{ color: t.textSecondary }}

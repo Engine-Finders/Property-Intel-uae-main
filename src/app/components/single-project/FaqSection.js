@@ -82,7 +82,7 @@ const FaqSection = ({ data }) => {
       <div className="mx-auto max-w-3xl lg:max-w-7xl">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="mx-auto max-w-lg font-serif text-[32px] font-medium leading-tight sm:text-4xl lg:max-w-4xl lg:text-[3.25rem]" style={{ color: t.text }}>
+          <h2 className="mx-auto max-w-lg font-serif text-[32px] font-medium leading-tight lg:max-w-4xl lg:text-[44px]" style={{ color: t.text }}>
             <span>Frequently Asked </span>
             <span style={{ color: GOLD }}>Questions</span>
           </h2>

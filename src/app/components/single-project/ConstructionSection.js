@@ -333,7 +333,7 @@ const ConstructionSection = ({ data }) => {
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-[560px] px-8 py-12">
-              <h2 className="text-[3rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
+              <h2 className="text-[44px] font-medium leading-[1.05]" style={{ color: t.text }}>
                 Construction Progress &amp;
                 <span className="block italic" style={{ color: GOLD }}>
                   Handover Outlook
@@ -479,7 +479,7 @@ const ConstructionSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
-        <h2 className="text-[32px] font-semibold leading-[1.05]" style={{ color: t.text }}>
+        <h2 className="text-[32px] font-medium leading-[1.05]" style={{ color: t.text }}>
                 Construction Progress &amp;
                 <span className="block italic" style={{ color: GOLD }}>
                   Handover Outlook

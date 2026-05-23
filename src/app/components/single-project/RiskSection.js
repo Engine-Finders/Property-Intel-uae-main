@@ -498,7 +498,7 @@ const RisksSection = ({ data }) => {
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-[590px] px-8 py-12">
-              <h2 className="text-[3rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
+              <h2 className="text-[44px] font-medium leading-[1.05]" style={{ color: t.text }}>
                 What Buyers Often Overlook —
                 <span className="block italic" style={{ color: "#B68A35" }}>
                   Honest Risk Assessment
@@ -734,7 +734,7 @@ const RisksSection = ({ data }) => {
         {/* Header */}
         <div className="mb-10">
         <h2
-  className="text-[32px] lg:text-3xl font-bold mb-3 leading-tight"
+  className="text-[32px] font-medium mb-3 leading-tight"
 >
   <span style={{ color: t.text }}>
     {data.subtitle.split(' ').slice(0, 5).join(' ')}{' '}

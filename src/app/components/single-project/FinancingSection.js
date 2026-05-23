@@ -480,7 +480,7 @@ const FinancingSection = ({ data }) => {
       <div className="mx-auto max-w-7xl px-3 sm:px-6">
         <div className="mb-10 lg:hidden">
         <h2
-  className="text-[32px] font-bold leading-tight lg:text-3xl xl:text-4xl"
+  className="text-[32px] font-medium leading-tight"
 >
   <span style={{ color: t.text }}>
     {data.heading.split(' ').slice(0, 5).join(' ')}{' '}
@@ -516,7 +516,7 @@ const FinancingSection = ({ data }) => {
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-[560px] px-8 py-12">
-              <h2 className="text-[3.1rem] font-semibold leading-[1.05]" style={{ color: t.text }}>
+              <h2 className="text-[44px] font-medium leading-[1.05]" style={{ color: t.text }}>
                 Mortgage Options,
                 <span className="block" style={{ color: GOLD }}>
                   ROI Projections &amp; Service Charges

@@ -6,7 +6,7 @@ import SectionExpertCta from "./SectionExpertCta";
 import SectionImageHeader from "./SectionImageHeader";
 
 const GOLD = "#B68A35";
-const sectionH2Class = "text-[32px] font-semibold leading-none";
+const sectionH2Class = "text-[32px] font-medium leading-none";
 /** Body intro (mobile h2 lead-in, institutional, etc.): 14px / 400 / 1.75 / -0.01em; pair with `lg:text-[15px]` where desktop should read slightly larger. */
 const sectionIntroAfterH2Class = "text-sm font-normal leading-[1.7] tracking-[-0.01em]";
 const GREEN = "#10b981";

@@ -12,7 +12,7 @@ const HERO_STAT_UI_SERIF = 'ui-serif, Georgia, Cambria, "Times New Roman", serif
 
 const STEP_COLORS = [GREEN, GOLD, BLUE];
 
-const sectionH2Class = "text-[32px] font-semibold leading-none";
+const sectionH2Class = "text-[32px] md:text-[44px] font-medium leading-none";
 
 const CircleIcon = ({ children, color, bg, size = "h-10 w-10" }) => (
   <div

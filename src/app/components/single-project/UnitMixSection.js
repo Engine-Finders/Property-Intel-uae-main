@@ -9,7 +9,7 @@ const GOLD = "#B68A35";
 const goldSectionDivider = (isDark) =>
   isDark ? "rgba(217,176,95,0.26)" : "rgba(182,138,53,0.22)";
 
-const sectionH2Class = "text-[32px] font-semibold leading-none";
+const sectionH2MobileH2Class = "text-[32px] font-medium leading-none";
 
 const ChevronIcon = ({ open, color = GOLD }) => (
   <svg
@@ -331,7 +331,7 @@ const UnitMixSection = ({ data }) => {
       <div className="max-w-7xl mx-auto px-3">
         <div className="mb-6 lg:hidden">
           <div>
-            <h2 className={sectionH2Class} style={{ color: t.text }}>
+            <h2 className={sectionH2MobileH2Class} style={{ color: t.text }}>
               {primary}
               {accent && (
                 <span className="block italic" style={{ color: GOLD }}>

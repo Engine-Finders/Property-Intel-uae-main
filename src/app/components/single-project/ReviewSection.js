@@ -473,7 +473,7 @@ const ReviewsSection = ({ data }) => {
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-[620px] px-8 py-12">
-              <h2 className="font-serif text-[3rem] font-medium leading-[1.08]" style={{ color: t.text }}>
+              <h2 className="font-serif text-[44px] font-medium leading-[1.08]" style={{ color: t.text }}>
                 {headerHighlight && titleParts.length > 1 ? (
                   <>
                     {titleParts[0]}
@@ -660,7 +660,7 @@ const ReviewsSection = ({ data }) => {
         <div className="mx-auto max-w-3xl lg:hidden">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="mx-auto max-w-xl font-serif text-[32px] font-medium leading-tight sm:text-4xl" style={{ color: t.text }}>
+          <h2 className="mx-auto max-w-xl font-serif text-[32px] font-medium leading-tight" style={{ color: t.text }}>
             {headerHighlight && titleParts.length > 1 ? (
               <>
                 {titleParts[0]}

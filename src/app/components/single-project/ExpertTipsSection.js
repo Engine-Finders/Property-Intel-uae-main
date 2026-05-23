@@ -422,7 +422,7 @@ const ExpertTipsSection = ({ data }) => {
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-[560px] px-8 py-12">
-              <h2 className="font-serif text-[3.1rem] font-medium leading-[1.05]" style={{ color: t.text }}>
+              <h2 className="font-serif text-[44px] font-medium leading-[1.05]" style={{ color: t.text }}>
                 {desktopTitleLead || "Insider Tips for"}
                 <span className="block italic" style={{ color: GOLD }}>Off-Plan Buyers</span>
               </h2>

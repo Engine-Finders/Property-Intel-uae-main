@@ -332,7 +332,7 @@ const ComparisonSection = ({ data }) => {
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-[590px] px-8 py-12">
-              <h2 className="text-[2.8rem] font-semibold leading-[1.08]" style={{ color: t.text }}>
+              <h2 className="text-[44px] font-medium leading-[1.08]" style={{ color: t.text }}>
                 <span className="block">How Serro at The Heights</span>
                 <span className="block" style={{ color: GOLD }}>Stacks Up Against Competitors</span>
               </h2>
@@ -400,7 +400,7 @@ const ComparisonSection = ({ data }) => {
         <div className="lg:hidden">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-[32px] font-semibold leading-[1.05] mb-3" style={{ color: t.text }}>
+          <h2 className="text-[32px] font-medium leading-[1.05] mb-3" style={{ color: t.text }}>
             <span className="block">How Serro at The Heights</span>
             <span className="block" style={{ color: GOLD }}>Stacks Up Against Competitors</span>
           </h2>

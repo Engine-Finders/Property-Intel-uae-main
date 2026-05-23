@@ -37,7 +37,7 @@ const SectionImageHeader = ({
       aria-hidden="true"
     />
     <div className="relative z-10 max-w-[590px] px-7 py-9">
-      <h2 className="text-[32px] font-semibold leading-none" style={{ color: t.text }}>
+      <h2 className="text-[44px] font-medium leading-none" style={{ color: t.text }}>
         {title || primary}
         {accent && (
           <span className="block" style={{ color: GOLD }}>
