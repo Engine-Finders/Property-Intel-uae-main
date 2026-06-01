@@ -1,5 +1,11 @@
+import { ThemeProvider } from "./ThemeProvider";
+
 export default function PublicLayout({ children }) {
   return (
-    <>{children}</>
+    <>
+    <ThemeProvider>
+    {children}
+    </ThemeProvider>
+    </>
   );
 }

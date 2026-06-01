@@ -1,35 +1,25 @@
-import completedProjectsData from "@/app/(public)/data/completedProjectDate.json";
-import CompletedHeroSection from "@/app/components/completed-projects/CompletedHerSection";
-import CompletedReviewsSection from "@/app/components/completed-projects/CompletedReviewSection";
-import TrackRecordSection from "@/app/components/completed-projects/TrackRecordSection";
-import CompletedMarketValue from "@/app/components/completed-projects/CompletedMarketValue";
-import CompletedLocationSec from "@/app/components/completed-projects/CompletedLocationSec";
-import CompletedFinancialReality from "@/app/components/completed-projects/CompletedFinancialReality";
-import ResaleInvestment from "@/app/components/completed-projects/ResaleInvestment";
-import CompletedFaqSection from "@/app/components/completed-projects/CompletedFaqSection";
+import EmiratesHillsHero from "./components/Hero";
+import Section2 from "./components/Section2";
+import Section1 from "./components/Section1";
+import Section3 from "./components/Section3";
+import Section4 from "./components/Section4";
+import Section5 from "./components/Section5";
+import Section6 from "./components/Section6";
+import Section7 from "./components/Section7";
+import Section8 from "./components/Section8";
 
-
-const data = completedProjectsData;
-
-// export const metadata = {
-//   title: developerData.seo.meta_title,
-//   description: developerData.seo.meta_description,
-//   alternates: {
-//     canonical: developerData.seo.canonical,
-//   },
-// };
-
-export default function Developer() {
+export default function Home() {
   return (
     <>
-      <CompletedHeroSection data={data.hero_section} />
-      <CompletedMarketValue  data={data.market_value_section}/>
-      <TrackRecordSection data={data.track_record_section}/>
-      <CompletedReviewsSection data={data.reviews_section}/>
-      <CompletedLocationSec data={data.location_section}/>
-      <CompletedFinancialReality data={data.financial_section}/>
-      <ResaleInvestment data={data.resale_investment_section} />
-      <CompletedFaqSection data={data.faq_section} />
+    <EmiratesHillsHero />
+    <Section1 />
+    <Section2 />
+    <Section3 />
+    <Section4 />
+    <Section5 />
+    <Section6 />
+    <Section7 />
+    <Section8 />
     </>
   );
 }
