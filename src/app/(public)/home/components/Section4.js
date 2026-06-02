@@ -14,6 +14,7 @@ import { GoPerson } from "react-icons/go";
 import { FaRegFlag } from "react-icons/fa";
 import { HiOutlineGlobeAlt } from "react-icons/hi2";
 import ExpertSection from './ExpertSection';
+import { useThemeStyles, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
 // --- Data Structures ---
 const timelineData = [
@@ -83,9 +84,10 @@ const sourcesData = [
 export default function Section4() {
     const [activeTab, setActiveTab] = useState('founding');
     const [isSourcesOpen, setIsSourcesOpen] = useState(false);
+    const { t, isDark, dark } = useThemeStyles();
 
     return (
-        <section className="w-full bg-white font-sans antialiased">
+        <section className={isDark ? "" : "w-full bg-white font-sans antialiased"} style={isDark ? { background: t.bg } : undefined}>
             {/* Header Section */}
             <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -96,18 +98,18 @@ export default function Section4() {
                         className="object-cover object-center grayscale-[10%]"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent" />
+                    <div className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`} style={isDark ? dark.heroOverlayLeft : undefined} />
                 </div>
 
                 <div className="relative z-10 max-w-[1400px] mx-auto px-2 w-full">
-                    <h2 className="text-3xl lg:text-5xl font-serif text-[#1A1A1A] mb-1">
+                    <h2 className="text-3xl lg:text-5xl font-serif mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                         Company History <span className="hidden lg:inline">& Leadership:</span>
                         <span className="lg:hidden">—</span>
                     </h2>
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
                         Emaar Properties
                     </h3>
-                    <p className="max-w-xl text-sm lg:text-base text-gray-600 leading-relaxed font-medium">
+                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                         This section establishes the authority, experience, and corporate structure of Emaar Properties, based on verified public records and official sources.
                     </p>
                 </div>
@@ -115,44 +117,56 @@ export default function Section4() {
 
             {/* Tabs and Main Content Container */}
             <div className="max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-2 -mt-12 relative z-20 pb-20">
-                <div className="bg-white rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] border border-[#F3EFE9] overflow-hidden">
-
+                <div 
+                    className={`rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden ${isDark ? "" : "bg-white border border-[#F3EFE9]"}`}
+                    style={isDark ? dark.panel : undefined}
+                >
                     {/* Tab Navigation */}
-                    <div className="flex flex-row lg:flex-row items-stretch gap-1 px-1.5 py-1.5 sm:px-3 sm:py-3 lg:px-0 border-b border-[#F3EFE9]">
+                    <div 
+                        className={`flex flex-row lg:flex-row items-stretch gap-1 px-1.5 py-1.5 sm:px-3 sm:py-3 lg:px-0 ${isDark ? "" : "border-b border-[#F3EFE9]"}`}
+                        style={isDark ? { borderBottom: `1px solid ${dark?.dividerColor}` } : undefined}
+                    >
                         <TabButton
                             active={activeTab === 'founding'}
                             onClick={() => setActiveTab('founding')}
                             icon={<HiOutlineBuildingOffice2 className="text-xl" />}
                             label="Founding & History"
+                            isDark={isDark}
+                            dark={dark}
                         />
                         <TabButton
                             active={activeTab === 'leadership'}
                             onClick={() => setActiveTab('leadership')}
                             icon={<HiOutlineUsers className="text-xl" />}
                             label="Leadership Team"
+                            isDark={isDark}
+                            dark={dark}
                         />
                         <TabButton
                             active={activeTab === 'ownership'}
                             onClick={() => setActiveTab('ownership')}
                             icon={<HiOutlineChartPie className="text-xl" />}
                             label="Honors, Ties & Structure"
+                            isDark={isDark}
+                            dark={dark}
                         />
                     </div>
 
                     {/* Tab Content Body */}
                     <div className="p-2 sm:p-6 lg:p-6 min-h-[480px]">
-                        {activeTab === 'founding' && <FoundingView />}
-                        {activeTab === 'leadership' && <LeadershipView />}
-                        {activeTab === 'ownership' && <OwnershipView />}
+                        {activeTab === 'founding' && <FoundingView isDark={isDark} dark={dark} t={t} />}
+                        {activeTab === 'leadership' && <LeadershipView isDark={isDark} dark={dark} t={t} />}
+                        {activeTab === 'ownership' && <OwnershipView isDark={isDark} dark={dark} t={t} />}
 
                         {/* Sources Footer within Tab */}
-                        <div className="mt-12 border-t border-[#F3EFE9] p-4 sm:p-0 sm:pt-6">
+                        <div className={`mt-12 ${isDark ? "" : "border-t border-[#F3EFE9] p-4 sm:p-0 sm:pt-6"}`} style={isDark ? { borderTop: `1px solid ${dark?.dividerColor}`, padding: '1rem 0 0' } : undefined}>
                             <button
                                 type="button"
                                 onClick={() => setIsSourcesOpen((current) => !current)}
                                 aria-expanded={isSourcesOpen}
                                 aria-controls="sources-verification-panel"
-                                className="w-full flex items-center justify-between text-gray-700 cursor-pointer group"
+                                className="w-full flex items-center justify-between cursor-pointer group"
+                                style={isDark ? { color: t.text } : { color: '#374151' }}
                             >
                                 <div className="flex items-center gap-3">
                                     <div className=" flex items-center justify-center">
@@ -160,25 +174,28 @@ export default function Section4() {
                                     </div>
                                     <span className="font-bold text-sm">Sources & Verification</span>
                                 </div>
-                                <LuChevronDown className={`text-xl text-gray-400 group-hover:text-[#B68A35] transition-all ${isSourcesOpen ? 'rotate-180 text-[#B68A35]' : ''}`} />
+                                <LuChevronDown className={`text-xl transition-all ${isSourcesOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={isDark ? { color: t.textMuted } : { color: '#9CA3AF' }} />
                             </button>
 
                             <div
                                 id="sources-verification-panel"
                                 className={`overflow-hidden transition-all duration-300 ${isSourcesOpen ? 'max-h-[1200px] opacity-100 pt-5' : 'max-h-0 opacity-0 pt-0'}`}
                             >
-                                <div className="rounded-xl border border-[#F3EFE9] bg-[#FBF9F6] p-4 sm:p-5 space-y-4">
-                                    <p className="text-[12px] sm:text-[13px] text-gray-700 leading-relaxed">
+                                <div 
+                                    className={`rounded-xl ${isDark ? "" : "border border-[#F3EFE9] bg-[#FBF9F6]"} p-4 sm:p-5 space-y-4`}
+                                    style={isDark ? { border: `1px solid ${dark?.dividerColor}`, background: PANEL_DARK_BG } : undefined}
+                                >
+                                    <p className="text-[12px] sm:text-[13px] leading-relaxed" style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
                                         The following sources support the information presented above. We prioritize official registrars, annual reports, and government filings.
                                     </p>
 
                                     <div className="space-y-3">
                                         {sourcesData.map((item, idx) => (
-                                            <div key={idx} className="text-[11px] sm:text-[12px] text-gray-700 leading-relaxed space-y-0.5">
-                                                <p><span className="font-semibold text-[#1A1A1A]">Fact:</span> {item.fact}</p>
-                                                <p><span className="font-semibold text-[#1A1A1A]">Source:</span> {item.source}</p>
+                                            <div key={idx} className="text-[11px] sm:text-[12px] leading-relaxed space-y-0.5" style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
+                                                <p><span className="font-semibold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Fact:</span> {item.fact}</p>
+                                                <p><span className="font-semibold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Source:</span> {item.source}</p>
                                                 <p className="break-all">
-                                                    <span className="font-semibold text-[#1A1A1A]">URL:</span>{' '}
+                                                    <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>URL:</span>{' '}
                                                     {item.urls
                                                         ? item.urls.map((url, urlIdx) => (
                                                             <React.Fragment key={url}>
@@ -218,9 +235,12 @@ export default function Section4() {
                 <ExpertSection />
 
                 {/* Floating Info Banner */}
-                <div className="mt-6 bg-[#FBF9F6] border border-[#F3EFE9] rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start">
+                <div 
+                    className={`mt-6 rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start ${isDark ? "" : "bg-[#FBF9F6] border border-[#F3EFE9]"}`}
+                    style={isDark ? { background: PANEL_DARK_BG, border: `1px solid ${dark?.dividerColor}` } : undefined}
+                >
                     <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-                    <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
+                    <p className="text-xs lg:text-sm leading-relaxed" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                         All information on this page is sourced from public records, financial filings and official disclosures.
                         Please refer to the Sources & Verification section for detailed references.
                     </p>
@@ -232,17 +252,26 @@ export default function Section4() {
 
 // --- Internal View Components ---
 
-function TabButton({ active, onClick, icon, label }) {
+function TabButton({ active, onClick, icon, label, isDark, dark }) {
     return (
         <button
             onClick={onClick}
             className={`flex-1 flex items-center justify-center sm:gap-3 transition-all relative
                 min-w-0 py-2 px-1.5 sm:px-2 lg:py-6 lg:px-4 rounded-2xl lg:rounded-none lg:mx-0
-                ${active
+                ${active && !isDark
                     ? 'text-[#B68A35] bg-[#FDF8F0] border border-[#B68A35]/20 lg:border-none lg:bg-white'
-                    : 'text-gray-500 bg-transparent lg:bg-white hover:text-gray-800'
+                    : !isDark && active === false
+                    ? 'text-gray-500 bg-transparent lg:bg-white hover:text-gray-800'
+                    : ''
                 }
             `}
+            style={
+                isDark && active
+                    ? { ...dark.tabActive, color: '#B68A35', borderRadius: '1rem' }
+                    : isDark && !active
+                    ? dark.tabInactive
+                    : undefined
+            }
         >
             <span className="hidden lg:inline-flex">{icon}</span>
             <span className={`text-[11px] sm:text-sm leading-tight text-center tracking-wide lg:capitalize ${active ? 'font-semibold' : 'font-medium'}`}>
@@ -250,14 +279,17 @@ function TabButton({ active, onClick, icon, label }) {
             </span>
 
             {/* Desktop Active Underline */}
-            {active && (
+            {active && !isDark && (
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#B68A35] hidden lg:block" />
+            )}
+            {active && isDark && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B68A35] hidden lg:block" />
             )}
         </button>
     );
 }
 
-function FoundingView() {
+function FoundingView({ isDark, dark, t }) {
     const foundingText = "Emaar Properties was established in 1997 by Mohamed Ali Alabbar, following a royal decree from Sheikh Mohammed bin Rashid Al Maktoum to create a flagship developer for Dubai's urban transformation. The company's initial mandate was to deliver integrated, master-planned communities that would support Dubai's economic diversification and position the emirate as a global destination for investment and tourism. Emaar's first major project, Emirates Hills (launched 2003), introduced Dubai's first gated luxury community and set a new benchmark for high-end residential development. This early success provided the foundation for Emaar's rapid expansion, culminating in the development of Downtown Dubai and the Burj Khalifa—projects that redefined the city's skyline and global reputation. The company's founding vision remains centered on creating lifestyle-oriented destinations that combine residential, commercial, hospitality, and retail components. (Source: Emaar Official Website - About-Emaar; Wikipedia)";
     const [isExpanded, setIsExpanded] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
@@ -278,19 +310,19 @@ function FoundingView() {
     const displayText = isExpanded || !isTruncated ? foundingText : `${foundingText.slice(0, limit).trimEnd()}...`;
 
     return (
-        <div className="space-y-5 md:border md:border-[#F3EFE9] md:rounded-xl md:p-4">
+        <div className="space-y-5 md:border md:rounded-xl md:p-4" style={isDark ? { border: `1px solid ${dark?.dividerColor}` } : { borderColor: '#F3EFE9' }}>
             {/* Stats Grid - Set to 2 columns on mobile to match screenshot */}
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-1.5 sm:gap-3">
-                <StatBox icon={<HiOutlineCalendarDays />} label="Founded in" value="1997" />
-                <StatBox icon={<GoPerson />} label="Founder" value="Mohamed Ali Alabbar" />
+                <StatBox icon={<HiOutlineCalendarDays />} label="Founded in" value="1997" isDark={isDark} dark={dark} t={t} />
+                <StatBox icon={<GoPerson />} label="Founder" value="Mohamed Ali Alabbar" isDark={isDark} dark={dark} t={t} />
                 <div className="hidden lg:flex justify-center">
-                    <StatBox icon={<HiOutlineShieldCheck />} label="First Major Project" value="Emirates Hills (2003)" />
+                    <StatBox icon={<HiOutlineShieldCheck />} label="First Major Project" value="Emirates Hills (2003)" isDark={isDark} dark={dark} t={t} />
                 </div>
             </div>
 
             {/* Description Section */}
             <div className="space-y-2.5">
-                <p className="text-[#4A4A4A] leading-relaxed text-[12px] sm:text-sm lg:text-[15px] font-medium">
+                <p className="leading-relaxed text-[12px] sm:text-sm lg:text-[15px] font-medium" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                     {displayText}
                 </p>
                 <button
@@ -310,7 +342,7 @@ function FoundingView() {
                     <span className="lg:hidden">Key Evolution Milestones</span>
                     <div className="hidden lg:flex items-center gap-3">
                         <FaRegFlag />
-                        <span className='text-black'>Key Evolution Milestones</span>
+                        <span style={isDark ? { color: t.text } : { color: 'black' }}>Key Evolution Milestones</span>
                     </div>
                 </h4>
 
@@ -320,21 +352,21 @@ function FoundingView() {
                     {timelineData.map((item, idx) => (
                         <div key={idx} className="relative z-10 flex flex-col items-center w-40 text-center">
                             <div className="w-3 h-3 rounded-full bg-[#B68A35]" />
-                            <span className="font-bold text-[#1A1A1A] text-sm mb-2">{item.year}</span>
-                            <p className="text-[10px] text-gray-500 leading-relaxed font-medium">{item.desc}</p>
+                            <span className="font-bold text-sm mb-2" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{item.year}</span>
+                            <p className="text-[10px] leading-relaxed font-medium" style={isDark ? { color: t.textMuted } : { color: '#6B7280' }}>{item.desc}</p>
                         </div>
                     ))}
                 </div>
 
                 {/* Mobile Vertical Timeline (Refined for exact match) */}
-                <div className="lg:hidden max-h-80 overflow-y-scroll mobile-timeline-scrollbar space-y-5 border-l border-gray-200 ml-1 pl-7 sm:pl-5 pr-3 pb-4">
+                <div className="lg:hidden max-h-80 overflow-y-scroll mobile-timeline-scrollbar space-y-5 border-l ml-1 pl-7 sm:pl-5 pr-3 pb-4" style={isDark ? { borderLeftColor: dark?.dividerColor } : { borderColor: '#E5E7EB' }}>
                     {timelineData.map((item, idx) => (
                         <div key={idx} className="relative">
                             {/* Circular Indicator */}
                             <div className="absolute left-[-18px] top-1 w-2.5 h-2.5 rounded-full bg-[#B68A35]" />
 
-                            <span className="block font-bold text-[13px] sm:text-[14px] text-[#1A1A1A] mb-1">{item.year}</span>
-                            <p className="text-[11px] sm:text-[12px] text-[#666666] leading-relaxed font-medium">
+                            <span className="block font-bold text-[13px] sm:text-[14px] mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{item.year}</span>
+                            <p className="text-[11px] sm:text-[12px] leading-relaxed font-medium" style={isDark ? { color: t.textMuted } : { color: '#666666' }}>
                                 {item.desc}
                             </p>
                         </div>
@@ -345,7 +377,7 @@ function FoundingView() {
     );
 }
 
-function LeadershipView() {
+function LeadershipView({ isDark, dark, t }) {
     const [expandedLeaderIndex, setExpandedLeaderIndex] = useState(null);
     const [isDesktop, setIsDesktop] = useState(false);
 
@@ -371,8 +403,7 @@ function LeadershipView() {
                     : leader.bio;
 
                 return (
-                    <div key={idx} className="flex flex-row lg:flex-row gap-4 lg:gap-8 bg-white border border-[#E5E5E5] rounded-xl p-2 lg:p-5 items-start">
-
+                    <div key={idx} className="flex flex-row lg:flex-row gap-4 lg:gap-8 rounded-xl p-2 lg:p-5 items-start" style={isDark ? { background: PANEL_DARK_BG, border: `1px solid ${dark?.dividerColor}` } : { background: 'white', border: '1px solid #E5E5E5' }}>
                         {/* Image Container - Strictly smaller on mobile to match screenshot */}
                         <div className="w-24 h-24 lg:w-48 lg:h-48 relative rounded-xl overflow-hidden shrink-0">
                             {leader.image ? (
@@ -384,18 +415,18 @@ function LeadershipView() {
                                     sizes="(max-width: 1024px) 96px, 192px"
                                 />
                             ) : (
-                                <div className="flex items-center justify-center h-full bg-[#FBF9F6] text-gray-300 font-bold uppercase text-[10px] tracking-widest">Profile Image</div>
+                                <div className="flex items-center justify-center h-full text-gray-300 font-bold uppercase text-[10px] tracking-widest" style={isDark ? { background: t.bg } : { background: '#FBF9F6' }}>Profile Image</div>
                             )}
                         </div>
 
                         {/* Content Middle Section */}
                         <div className="flex-1 space-y-3 min-w-0">
-                            <div className="border-b border-[#F3EFE9] pb-2 lg:border-0 lg:pb-0">
-                                <h4 className="text-[17px] lg:text-2xl font-serif text-[#1A1A1A] font-semibold leading-tight">{leader.name}</h4>
+                            <div className="pb-2 lg:border-0 lg:pb-0" style={!isDark ? { borderBottom: '1px solid #F3EFE9' } : undefined}>
+                                <h4 className="text-[17px] lg:text-2xl font-serif font-semibold leading-tight" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{leader.name}</h4>
                                 <p className="text-[#B68A35] text-[10px] lg:text-[12px] font-bold tracking-widest mt-1 uppercase">{leader.role}</p>
                             </div>
 
-                            <p className={isDesktop ? "text-gray-600 text-[12px] lg:text-[14px] leading-relaxed" : `text-gray-600 text-[12px] lg:text-[14px] leading-relaxed lg:line-clamp-none ${expandedLeaderIndex === idx ? '' : 'line-clamp-4'}`}>
+                            <p className={isDesktop ? "text-[12px] lg:text-[14px] leading-relaxed" : `text-[12px] lg:text-[14px] leading-relaxed lg:line-clamp-none ${expandedLeaderIndex === idx ? '' : 'line-clamp-4'}`} style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                                 {isDesktop ? desktopDisplay : leader.bio}
                             </p>
 
@@ -410,16 +441,17 @@ function LeadershipView() {
                             )}
 
                             {expandedLeaderIndex === idx && (
-                                <div className="lg:hidden pt-3 border-t border-[#F3EFE9] flex items-start gap-3">
+                                <div className="lg:hidden pt-3 flex items-start gap-3" style={!isDark ? { borderTop: '1px solid #F3EFE9' } : { borderTop: `1px solid ${dark?.dividerColor}` }}>
                                     <div className="mt-1 shrink-0">
                                         <HiOutlineGlobeAlt className="text-[#B68A35] text-xl" />
                                     </div>
                                     <div className="text-[12px] leading-snug min-w-0">
-                                        <span className="text-gray-500">Source:</span>
+                                        <span style={isDark ? { color: t.textMuted } : { color: '#6B7280' }}>Source:</span>
                                         <div className="mt-1">
                                             <a
                                                 href="#"
-                                                className="font-medium text-[#1A1A1A] hover:text-[#B68A35] transition-colors inline-flex items-baseline gap-1"
+                                                className="font-medium hover:text-[#B68A35] transition-colors inline-flex items-baseline gap-1"
+                                                style={isDark ? { color: t.text } : { color: '#1A1A1A' }}
                                             >
                                                 {leader.source}
                                                 <LuExternalLink className="text-[#B68A35] text-[12px] shrink-0 translate-y-0.5" />
@@ -431,16 +463,17 @@ function LeadershipView() {
                         </div>
 
                         {/* Source Section - Right Column (Hidden on mobile to match screenshot) */}
-                        <div className="hidden lg:flex lg:w-64 items-start gap-3 pt-4 lg:pt-0 lg:pl-8 border-t lg:border-t-0 lg:border-l border-[#F3EFE9] self-stretch">
+                        <div className="hidden lg:flex lg:w-64 items-start gap-3 pt-4 lg:pt-0 lg:pl-8 self-stretch" style={!isDark ? { borderLeft: '1px solid #F3EFE9', borderTop: 'none' } : { borderLeft: `1px solid ${dark?.dividerColor}` }}>
                             <div className="mt-1">
                                 <HiOutlineGlobeAlt className="text-[#B68A35] text-xl" />
                             </div>
                             <div className="text-[13px] leading-snug">
-                                <span className="text-gray-500">Source:</span>
+                                <span style={isDark ? { color: t.textMuted } : { color: '#6B7280' }}>Source:</span>
                                 <div className="mt-1">
                                     <a
                                         href="#"
-                                        className="font-medium text-[#1A1A1A] hover:text-[#B68A35] transition-colors inline-flex items-baseline gap-1"
+                                        className="font-medium hover:text-[#B68A35] transition-colors inline-flex items-baseline gap-1"
+                                        style={isDark ? { color: t.text } : { color: '#1A1A1A' }}
                                     >
                                         {leader.source}
                                         <LuExternalLink className="text-[#B68A35] text-[12px] shrink-0 translate-y-0.5" />
@@ -455,7 +488,7 @@ function LeadershipView() {
     );
 }
 
-function OwnershipView() {
+function OwnershipView({ isDark, dark, t }) {
     const ownershipText = "Emaar Properties is publicly traded on the Dubai Financial Market (DFM: EMAAR). The company operates under a transparent corporate governance framework aligned with UAE Securities and Commodities Authority regulations. The Government of Dubai, through Investment Corporation of Dubai (ICD), holds a significant minority stake, providing strategic alignment with Dubai's long-term development goals. The remaining shares are held by institutional investors, retail shareholders, and founding family interests.";
     const [isExpanded, setIsExpanded] = useState(false);
     const [isPhone, setIsPhone] = useState(false);
@@ -487,7 +520,7 @@ function OwnershipView() {
                         Ownership structure
                     </h4>
                 </div>
-                <p className="text-[#4A4A4A] leading-[1.8] text-[12px] sm:text-[15px] font-normal mb-2 sm:mb-8 mt-2">
+                <p className="leading-[1.8] text-[12px] sm:text-[15px] font-normal mb-2 sm:mb-8 mt-2" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                     {displayText}
                 </p>
 
@@ -506,7 +539,7 @@ function OwnershipView() {
             </div>
 
             {/* Vertical Divider (Visible only on LG) */}
-            <div className="hidden lg:block w-px bg-[#F3EFE9] self-stretch" />
+            <div className="hidden lg:block w-px self-stretch" style={!isDark ? { background: '#F3EFE9' } : { background: dark?.dividerColor }} />
 
             {/* Right Column: Shareholder Cards */}
             <div className="lg:w-[450px] space-y-4">
@@ -521,6 +554,9 @@ function OwnershipView() {
                     name="Investment Corporation of Dubai (ICD)"
                     source="Investing.com – Emaar Shareholders,"
                     date="February 2026"
+                    isDark={isDark}
+                    dark={dark}
+                    t={t}
                 />
                 <ShareholderCard
                     icon={<HiOutlineUsers className="text-2xl sm:text-5xl" />}
@@ -528,6 +564,9 @@ function OwnershipView() {
                     name="Public & Institutional Investors"
                     source="Investing.com – Emaar Shareholders,"
                     date="February 2026"
+                    isDark={isDark}
+                    dark={dark}
+                    t={t}
                 />
             </div>
         </div>
@@ -536,24 +575,24 @@ function OwnershipView() {
 
 // --- Utility Components ---
 
-function StatBox({ icon, label, value }) {
+function StatBox({ icon, label, value, isDark, dark, t }) {
     return (
         <div className="rounded-xl flex items-center gap-1.5 sm:gap-4 transition-transform hover:scale-[1.02]">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-[#fbf5ee] flex items-center justify-center text-[#B68A35] text-2xl sm:text-3xl">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-[#B68A35] text-2xl sm:text-3xl" style={!isDark ? { background: '#fbf5ee' } : { background: 'rgba(182,138,53,0.1)' }}>
                 {icon}
             </div>
             <div>
-                <p className="text-[10px] sm:text-[12px] tracking-widest text-gray-700 font-bold mb-0.5 leading-tight">{label}</p>
+                <p className="text-[10px] sm:text-[12px] tracking-widest font-bold mb-0.5 leading-tight" style={isDark ? { color: t.textMuted } : { color: '#374151' }}>{label}</p>
                 <p className="text-[#B68A35] font-bold text-[12px] sm:text-sm lg:text-base leading-tight">{value}</p>
             </div>
         </div>
     );
 }
 
-const ShareholderCard = ({ icon, percent, name, source, date }) => (
-    <div className="flex item-start sm:items-center gap-5 p-2 sm:p-6 border border-[#F3EFE9] rounded-2xl bg-white shadow-sm">
+const ShareholderCard = ({ icon, percent, name, source, date, isDark, dark, t }) => (
+    <div className="flex item-start sm:items-center gap-5 p-2 sm:p-6 rounded-2xl shadow-sm" style={!isDark ? { border: '1px solid #F3EFE9', background: 'white' } : { border: `1px solid ${dark?.dividerColor}`, background: PANEL_DARK_BG }}>
         {/* Circular Icon Holder */}
-        <div className="w-10 h-10 sm:w-20 sm:h-20 shrink-0 rounded-full text-2xl bg-[#FBF9F6] flex items-center justify-center text-[#B68A35]">
+        <div className="w-10 h-10 sm:w-20 sm:h-20 shrink-0 rounded-full text-2xl flex items-center justify-center text-[#B68A35]" style={!isDark ? { background: '#FBF9F6' } : { background: 'rgba(182,138,53,0.08)' }}>
             {icon}
         </div>
 
@@ -561,10 +600,10 @@ const ShareholderCard = ({ icon, percent, name, source, date }) => (
             <span className="block text-xl sm:text-3xl font-serif text-[#B68A35] font-medium">
                 {percent}
             </span>
-            <h5 className="text-[12px] sm:text-[15px] font-bold text-[#1A1A1A] leading-tight">
+            <h5 className="text-[12px] sm:text-[15px] font-bold leading-tight" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                 {name}
             </h5>
-            <p className="text-gray-500 text-[11px] sm:text-[12px] leading-tight mt-1">
+            <p className="text-[11px] sm:text-[12px] leading-tight mt-1" style={isDark ? { color: t.textMuted } : { color: '#6B7280' }}>
                 Source: {source} <br /> {date}
             </p>
         </div>

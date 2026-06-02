@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useTheme } from '@/app/(public)/ThemeProvider';
+import { useThemeStyles, GOLD_BORDER } from '@/app/components/context/themeStyles';
 import ExpertSection from './ExpertSection';
 import {
     BsChevronLeft,
@@ -30,7 +30,7 @@ import { IoGridOutline } from "react-icons/io5";
 
 
 const Section2 = () => {
-    const { isDark } = useTheme();
+    const { t, isDark, dark, section } = useThemeStyles();
     const [activeTab, setActiveTab] = useState('All Projects');
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const [visibleCardCount, setVisibleCardCount] = useState(3);
@@ -476,7 +476,7 @@ const Section2 = () => {
     const visibleCards = filteredProjects.slice(currentCardIndex, currentCardIndex + visibleCardCount);
 
     return (
-        <section className={`py-5 transition-colors duration-300 ${isDark ? 'bg-black' : 'bg-[#FCFBFA]'}`}>
+        <section className={`py-5 transition-colors duration-300 ${isDark ? "" : "bg-[#FCFBFA]"}`} style={section}>
             <div className="max-w-350 mx-auto px-4 sm:px-6">
 
                 {/* Header */}
@@ -485,56 +485,109 @@ const Section2 = () => {
                         <BsBuildings className='text-[#B68A35] text-2xl sm:text-5xl' />
                     </div>
                     <div>
-                        <h2 className={`text-2xl lg:text-4xl font-serif leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                        <h2
+                            className={`text-2xl lg:text-4xl font-serif leading-tight ${isDark ? "" : "text-slate-900"}`}
+                            style={isDark ? dark.text : undefined}
+                        >
                             Emaar Upcoming Projects – <br />
                             <span className="text-[#B68A35]">New Launches & Off-Plan Opportunities</span>
                         </h2>
-                        <p className={`mt-3 text-sm lg:text-base max-w-2xl ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <p
+                            className={`mt-3 text-sm lg:text-base max-w-2xl ${isDark ? "" : "text-slate-600"}`}
+                            style={isDark ? dark.textSecondary : undefined}
+                        >
                             Explore the latest Emaar projects across Dubai, from waterfront apartments to luxury villas. Download brochures directly.
                         </p>
                     </div>
                 </div>
 
                 {/* Tab Navigation Container */}
-                <div className={`grid grid-cols-4 lg:flex gap-1 lg:gap-0 mb-10 pb-0 
-    ${isDark ? 'border-slate-700 bg-slate-900' : '] border-0'} 
-    border rounded-2xl p-1 lg:border-none lg:bg-transparent lg:rounded-none lg:p-0`}>
+                <div
+                    className={`grid grid-cols-4 lg:flex gap-1 lg:gap-0 mb-10 pb-0 border rounded-2xl p-1 lg:rounded-none lg:p-0 overflow-hidden ${
+                        isDark ? "lg:border lg:border-solid" : "border-gray-200 lg:border-none lg:bg-transparent"
+                    }`}
+                    style={isDark ? dark.tabBar : undefined}
+                >
 
-                    {tabs.map((tab, index) => (
-                        <button
-                            key={tab.name}
-                            onClick={() => {
-                                setActiveTab(tab.name);
-                                setCurrentCardIndex(0);
-                            }}
-                            className={`flex flex-col sm:flex-row items-center justify-center py-2 px-1 lg:py-3 lg:px-2 transition-all w-full min-w-0 sm:flex-1 relative
-                ${activeTab === tab.name
-                                    ? 'bg-white border-2 border-[#B68A35] rounded-xl text-[#B68A35] lg:border lg:ring-1 lg:ring-[#B68A35] lg:rounded-none z-10'
-                                    : `${isDark ? 'bg-slate-900 border-slate-700 text-slate-400' : 'bg-white border-gray-100 text-slate-500 border'}`
+                    {tabs.map((tab, index) => {
+                        const isActive = activeTab === tab.name;
+                        const isFirst = index === 0;
+                        const isLast = index === tabs.length - 1;
+
+                        return (
+                            <button
+                                key={tab.name}
+                                onClick={() => {
+                                    setActiveTab(tab.name);
+                                    setCurrentCardIndex(0);
+                                }}
+                                className={`flex flex-col sm:flex-row items-center justify-center py-2 px-1 lg:py-3 lg:px-2 transition-all w-full min-w-0 sm:flex-1 relative border
+                                    ${
+                                        isDark
+                                            ? `rounded-xl lg:rounded-none ${isActive ? "font-semibold z-10" : "font-medium"} ${isFirst ? "lg:rounded-tl-2xl" : ""} ${isLast ? "lg:rounded-tr-2xl" : ""}`
+                                            : isActive
+                                              ? "bg-white border-2 border-[#B68A35] rounded-xl text-[#B68A35] lg:border lg:ring-1 lg:ring-[#B68A35] lg:rounded-none z-10"
+                                              : "bg-white border-gray-100 text-slate-500 rounded-xl lg:rounded-none"
+                                    }`}
+                                style={
+                                    isDark
+                                        ? isActive
+                                            ? {
+                                                  ...dark.tabActive,
+                                                  borderColor: GOLD_BORDER,
+                                                  borderWidth: 1,
+                                                  borderStyle: "solid",
+                                              }
+                                            : {
+                                                  ...dark.tabInactive,
+                                                  borderColor: t.cardBorder,
+                                                  borderWidth: 1,
+                                                  borderStyle: "solid",
+                                              }
+                                        : undefined
                                 }
-            `}
-                        >
-                            {/* Icon: Top on mobile, Left on desktop */}
-                            <span className={`text-lg lg:text-2xl mb-1 lg:mb-0 lg:mr-3 ${activeTab === tab.name ? 'text-[#B68A35]' : ''}`}>
-                                {tab.icon}
-                            </span>
+                            >
+                                {isActive && isDark && (
+                                    <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" aria-hidden />
+                                )}
 
-                            {/* Label and Count Container */}
-                            <div className="flex items-center gap-1">
-                                <span className="text-[10px] sm:text-[12px] lg:text-md font-bold lg:font-medium whitespace-nowrap">
-                                    {tab.name}
+                                {/* Icon: Top on mobile, Left on desktop */}
+                                <span
+                                    className={`text-lg lg:text-2xl mb-1 lg:mb-0 lg:mr-3 ${isActive ? "text-[#B68A35]" : ""}`}
+                                    style={isDark && !isActive ? dark.textMuted : undefined}
+                                >
+                                    {tab.icon}
                                 </span>
 
-                                {/* Count Badge */}
-                                <span className={`flex items-center justify-center min-w-5 h-5 lg:w-6 lg:h-6 text-[10px] lg:text-sm rounded-full font-bold lg:font-normal
-                    ${activeTab === tab.name
-                                        ? 'bg-[#B68A35] text-white lg:bg-[#FAF3E6] lg:text-[#B68A35]'
-                                        : 'bg-[#FAF3E6] text-[#B68A35] lg:bg-gray-100 lg:text-slate-500'}`}>
-                                    {tab.count}
-                                </span>
-                            </div>
-                        </button>
-                    ))}
+                                {/* Label and Count Container */}
+                                <div className="flex items-center gap-1">
+                                    <span className="text-[10px] sm:text-[12px] lg:text-md font-bold lg:font-medium whitespace-nowrap">
+                                        {tab.name}
+                                    </span>
+
+                                    {/* Count Badge */}
+                                    <span
+                                        className={`flex items-center justify-center min-w-5 h-5 lg:w-6 lg:h-6 text-[10px] lg:text-sm rounded-full font-bold lg:font-normal ${
+                                            isDark
+                                                ? ""
+                                                : isActive
+                                                  ? "bg-[#B68A35] text-white lg:bg-[#FAF3E6] lg:text-[#B68A35]"
+                                                  : "bg-[#FAF3E6] text-[#B68A35] lg:bg-gray-100 lg:text-slate-500"
+                                        }`}
+                                        style={
+                                            isDark
+                                                ? isActive
+                                                    ? dark.tabCountActive
+                                                    : dark.tabCountInactive
+                                                : undefined
+                                        }
+                                    >
+                                        {tab.count}
+                                    </span>
+                                </div>
+                            </button>
+                        );
+                    })}
                 </div>
 
                 {/* Project Grid - Single Row Carousel */}
@@ -549,7 +602,9 @@ const Section2 = () => {
                     <button
                         onClick={handlePrevCard}
                         disabled={currentCardIndex === 0}
-                        className="absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100 text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        className={`absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg border text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "bg-white border-gray-100"}`}
+                        style={isDark ? dark.card : undefined}
+                    >
                         <span className="flex h-full w-full items-center justify-center">
                             <BsChevronLeft size={24} />
                         </span>
@@ -557,7 +612,9 @@ const Section2 = () => {
                     <button
                         onClick={handleNextCard}
                         disabled={currentCardIndex >= maxStartIndex}
-                        className="absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100 text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        className={`absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg border text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "bg-white border-gray-100"}`}
+                        style={isDark ? dark.card : undefined}
+                    >
                         <span className="flex h-full w-full items-center justify-center">
                             <BsChevronRight size={24} />
                         </span>
@@ -569,14 +626,23 @@ const Section2 = () => {
                     <button
                         onClick={handlePrevCard}
                         disabled={currentCardIndex === 0}
-                        className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-slate-400 hover:text-[#B68A35] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        className={`w-10 h-10 rounded-full border flex items-center justify-center text-slate-400 hover:text-[#B68A35] transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "border-gray-200"}`}
+                        style={isDark ? dark.card : undefined}
+                    >
                         <BsChevronLeft />
                     </button>
-                    <span className="text-sm text-slate-500 font-medium">{Math.min(currentCardIndex + 1, filteredProjects.length)} / {filteredProjects.length}</span>
+                    <span
+                        className={`text-sm font-medium ${isDark ? "" : "text-slate-500"}`}
+                        style={isDark ? dark.textMuted : undefined}
+                    >
+                        {Math.min(currentCardIndex + 1, filteredProjects.length)} / {filteredProjects.length}
+                    </span>
                     <button
                         onClick={handleNextCard}
                         disabled={currentCardIndex >= maxStartIndex}
-                        className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-slate-400 hover:text-[#B68A35] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        className={`w-10 h-10 rounded-full border flex items-center justify-center text-slate-400 hover:text-[#B68A35] transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "border-gray-200"}`}
+                        style={isDark ? dark.card : undefined}
+                    >
                         <BsChevronRight />
                     </button>
                 </div>
@@ -587,7 +653,8 @@ const Section2 = () => {
                         <button
                             key={index}
                             onClick={() => setCurrentCardIndex(index)}
-                            className={`h-2 rounded-full transition-all cursor-pointer ${currentCardIndex === index ? 'w-8 bg-[#B68A35]' : 'w-2 bg-gray-200 hover:bg-gray-300'}`}
+                            className={`h-2 rounded-full transition-all cursor-pointer ${currentCardIndex === index ? "w-8 bg-[#B68A35]" : `w-2 hover:opacity-80 ${isDark ? "" : "bg-gray-200 hover:bg-gray-300"}`}`}
+                            style={isDark && currentCardIndex !== index ? dark.track : undefined}
                         />
                     ))}
                 </div>
@@ -595,15 +662,24 @@ const Section2 = () => {
                 <ExpertSection />
 
                 {/* Disclaimer Footer */}
-                <div className={`mt-12 p-2 sm:p-6 rounded-2xl border flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-4 transition-colors ${isDark ? 'bg-slate-900 border-slate-700' : 'bg-[#FAF9F6] border-[#F2EEE8]'}`}>
+                <div
+                    className={`mt-12 p-2 sm:p-6 rounded-2xl border flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-4 transition-colors ${isDark ? "" : "bg-[#FAF9F6] border-[#F2EEE8]"}`}
+                    style={isDark ? dark.verifyBanner : undefined}
+                >
                     <div className="flex gap-3">
                         <HiOutlineInformationCircle className="text-[#B68A35] shrink-0 text-xl" />
-                        <p className={`text-[11px] lg:text-sm leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <p
+                            className={`text-[11px] lg:text-sm leading-relaxed ${isDark ? "" : "text-slate-600"}`}
+                            style={isDark ? dark.textSecondary : undefined}
+                        >
                             Project details, prices, and handover dates are subject to change.
                             Please verify all information before making any investment decision.
                         </p>
                     </div>
-                    <div className={`text-[11px] lg:text-sm whitespace-nowrap ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+                    <div
+                        className={`text-[11px] lg:text-sm whitespace-nowrap ${isDark ? "" : "text-slate-500"}`}
+                        style={isDark ? dark.textMuted : undefined}
+                    >
                         Last updated: <span className="font-bold text-[#B68A35]">21 February 2026</span>
                     </div>
                 </div>
@@ -613,10 +689,14 @@ const Section2 = () => {
 };
 
 const ProjectCard = ({ project, isDark }) => {
+    const { t, dark } = useThemeStyles();
     const [firstWord, ...remainingWords] = project.title.split(' ');
     const [accordionOpen, setAccordionOpen] = useState(false);
     return (
-        <div className={`w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] flex-shrink-0 rounded-3xl border overflow-hidden flex flex-col transition-all hover:shadow-xl ${isDark ? 'bg-black border-slate-800' : 'bg-white border-gray-100'}`}>
+        <div
+            className={`w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] flex-shrink-0 rounded-3xl border overflow-hidden flex flex-col transition-all hover:shadow-xl ${isDark ? "" : "bg-white border-gray-100"}`}
+            style={isDark ? dark.card : undefined}
+        >
 
             {/* Image Container */}
             <div className="relative h-60 lg:h-48">
@@ -630,11 +710,16 @@ const ProjectCard = ({ project, isDark }) => {
             <div className="p-5 lg:p-4 flex flex-col flex-1">
                 <div className="flex items-center gap-1 text-[#64748b] mb-1">
                     <GrLocation className="text-sm text-[#B68A35]" />
-                    <span className="text-[11px] font-medium uppercase tracking-tight text-gray-600">{project.location}</span>
+                    <span
+                        className={`text-[11px] font-medium uppercase tracking-tight ${isDark ? "" : "text-gray-600"}`}
+                        style={isDark ? dark.textMuted : undefined}
+                    >
+                        {project.location}
+                    </span>
                 </div>
-                <h3 className={`text-xl lg:text-2xl font-serif mb-4 ${isDark ? 'text-white' : 'text-[#B68A35]'}`}>
-                    <span className="text-black">{firstWord}</span>{' '}
-                    <span>{remainingWords.join(' ')}</span>
+                <h3 className={`text-xl lg:text-2xl font-serif mb-4 ${isDark ? "" : "text-[#B68A35]"}`}>
+                    <span style={isDark ? { color: t.text } : undefined} className={isDark ? "" : "text-black"}>{firstWord}</span>{' '}
+                    <span className="text-[#B68A35]">{remainingWords.join(' ')}</span>
                 </h3>
 
                 {/* Stats Grid */}
@@ -648,30 +733,55 @@ const ProjectCard = ({ project, isDark }) => {
                 {/* Timeline */}
                 <div className="my-6">
                     <div className="flex justify-between items-end mb-2">
-                        <div className="flex items-center gap-1.5 text-[14px] text-slate-800 uppercase">
+                        <div
+                            className={`flex items-center gap-1.5 text-[14px] uppercase ${isDark ? "" : "text-slate-800"}`}
+                            style={isDark ? dark.text : undefined}
+                        >
                             <span className="text-[#B68A35]"><IoMdTime className='text-[18px]' /></span> Timeline
                         </div>
-                        <span className="text-[14px] text-slate-900">{project.monthsToGo} months to go</span>
+                        <span
+                            className={`text-[14px] ${isDark ? "" : "text-slate-900"}`}
+                            style={isDark ? dark.text : undefined}
+                        >
+                            {project.monthsToGo} months to go
+                        </span>
                     </div>
-                    <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                    <div
+                        className={`h-2 w-full rounded-full overflow-hidden ${isDark ? "" : "bg-gray-100"}`}
+                        style={isDark ? dark.track : undefined}
+                    >
                         <div
                             className="h-full bg-[#B68A35] rounded-full"
                             style={{ width: `${project.timelineProgress}%` }}
                         />
                     </div>
-                    <div className="flex justify-between mt-2 text-[13px] font-medium text-slate-600 uppercase">
+                    <div
+                        className={`flex justify-between mt-2 text-[13px] font-medium uppercase ${isDark ? "" : "text-slate-600"}`}
+                        style={isDark ? dark.textSecondary : undefined}
+                    >
                         <span>{project.launchDate}</span>
                         <span>{project.completionDate}</span>
                     </div>
                 </div>
 
                 {/* Info Box */}
-                <div className={`p-2 rounded-xl border mb-6 ${isDark ? 'bg-slate-900 border-slate-700' : 'bg-[#FDFBF7] border-[#F3EFE9]'}`}>
+                <div
+                    className={`p-2 rounded-xl border mb-6 ${isDark ? "" : "bg-[#FDFBF7] border-[#F3EFE9]"}`}
+                    style={isDark ? dark.verifyBanner : undefined}
+                >
                     <div className="flex items-center gap-2 mb-1.5">
                         <MdPayments className="text-[#B68A35] text-[20px]" />
-                        <span className="text-[14px] font-bold text-slate-800 uppercase tracking-tight">Payment Plan <span className="text-[#B68A35] ml-1">{project.paymentPlan}</span></span>
+                        <span
+                            className={`text-[14px] font-bold uppercase tracking-tight ${isDark ? "" : "text-slate-800"}`}
+                            style={isDark ? dark.text : undefined}
+                        >
+                            Payment Plan <span className="text-[#B68A35] ml-1">{project.paymentPlan}</span>
+                        </span>
                     </div>
-                    <p className="text-[12px] text-slate-500 leading-relaxed font-medium">
+                    <p
+                        className={`text-[12px] leading-relaxed font-medium ${isDark ? "" : "text-slate-500"}`}
+                        style={isDark ? dark.textMuted : undefined}
+                    >
                         10% down • 70% during construction • 20% on handover
                     </p>
                 </div>
@@ -680,7 +790,9 @@ const ProjectCard = ({ project, isDark }) => {
                 <button
                     onClick={() => setAccordionOpen((s) => !s)}
                     aria-expanded={accordionOpen}
-                    className={`w-full flex items-center justify-between py-3 px-1 border-t text-[11px] font-bold uppercase tracking-wider mb-4 ${isDark ? 'border-slate-800 text-slate-300' : 'border-gray-100 text-slate-600'}`}>
+                    className={`w-full flex items-center justify-between py-3 px-1 border-t text-[11px] font-bold uppercase tracking-wider mb-4 ${isDark ? "" : "border-gray-100 text-slate-600"}`}
+                    style={isDark ? { ...dark.borderDivider, ...dark.textSecondary } : undefined}
+                >
                     <div className="flex items-center gap-2 text-[12px]">
                         <LuShieldCheck className="text-[#B68A35] text-[18px]" />
                         SOURCES & VERIFICATION
@@ -689,11 +801,14 @@ const ProjectCard = ({ project, isDark }) => {
                 </button>
 
                 {accordionOpen && (
-                    <div className={`mb-6 p-4 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-700 text-slate-300' : 'bg-[#FFFDF8] border-[#F3EFE9] text-slate-700'}`}>
+                    <div
+                        className={`mb-6 p-4 rounded-lg border ${isDark ? "" : "bg-[#FFFDF8] border-[#F3EFE9] text-slate-700"}`}
+                        style={isDark ? { ...dark.panelInner, ...dark.textSecondary } : undefined}
+                    >
                         <div className="grid grid-cols-1 gap-3">
                             {/* Project Info */}
                             <div>
-                                <p className="text-xs font-bold uppercase text-slate-500">Project Information</p>
+                                <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Project Information</p>
                                 <p className="text-sm font-medium">{project.sourceVerification?.projectInfo?.source || 'N/A'}</p>
                                 {project.sourceVerification?.projectInfo?.url && (
                                     <a href={project.sourceVerification.projectInfo.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
@@ -704,7 +819,7 @@ const ProjectCard = ({ project, isDark }) => {
 
                             {/* Pricing Data */}
                             <div>
-                                <p className="text-xs font-bold uppercase text-slate-500">Pricing Data</p>
+                                <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Pricing Data</p>
                                 <p className="text-sm font-medium">{project.sourceVerification?.pricingData?.source || 'N/A'}</p>
                                 {project.sourceVerification?.pricingData?.url && (
                                     <a href={project.sourceVerification.pricingData.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
@@ -715,7 +830,7 @@ const ProjectCard = ({ project, isDark }) => {
 
                             {/* Handover Date */}
                             <div>
-                                <p className="text-xs font-bold uppercase text-slate-500">Handover Date Source</p>
+                                <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Handover Date Source</p>
                                 <p className="text-sm font-medium">{project.sourceVerification?.handoverDate?.source || 'N/A'}</p>
                                 {project.sourceVerification?.handoverDate?.url && (
                                     <a href={project.sourceVerification.handoverDate.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
@@ -727,7 +842,7 @@ const ProjectCard = ({ project, isDark }) => {
                             {/* Last Verified & Brochure */}
                             <div className="flex items-start gap-4 mt-2">
                                 <div>
-                                    <p className="text-xs font-bold uppercase text-slate-500">Last Verified</p>
+                                    <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Last Verified</p>
                                     <p className="text-sm font-medium">{project.sourceVerification?.lastVerified || 'N/A'}</p>
                                 </div>
                                 {/* {project.sourceVerification?.brochureImage && (
@@ -758,16 +873,32 @@ const ProjectCard = ({ project, isDark }) => {
     );
 };
 
-const StatBox = ({ icon, label, value, isDark, isSmall }) => (
-    <div className={`p-3 lg:p-2 lg:py-3 ${isDark ? 'bg-black' : 'bg-[#fbf9f6] border border-[#F3EFE9] rounded-lg'} flex  gap-2`}>
-        <div className="flex items-start gap-2 text-[#B68A35] text-2xl mt-1">
-            {icon}
+const StatBox = ({ icon, label, value, isDark, isSmall }) => {
+    const { dark } = useThemeStyles();
+    return (
+        <div
+            className={`p-3 lg:p-2 lg:py-3 flex gap-2 rounded-lg ${isDark ? "border" : "bg-[#fbf9f6] border border-[#F3EFE9]"}`}
+            style={isDark ? dark.statCard : undefined}
+        >
+            <div className="flex items-start gap-2 text-[#B68A35] text-2xl mt-1">
+                {icon}
+            </div>
+            <div>
+                <p
+                    className={`text-[11px] font-bold tracking-wider uppercase ${isDark ? "" : "text-slate-500"}`}
+                    style={isDark ? dark.textMuted : undefined}
+                >
+                    {label}
+                </p>
+                <p
+                    className={`text-[11px] font-bold ${isDark ? "" : "text-gray-700"}`}
+                    style={isDark ? dark.textSecondary : undefined}
+                >
+                    {value}
+                </p>
+            </div>
         </div>
-        <div>
-            <p className="text-[11px] font-bold text-slate-500 tracking-wider uppercase">{label}</p>
-            <p className="text-[11px] font-bold text-gray-700">{value}</p>
-        </div>
-    </div>
-);
+    );
+};
 
 export default Section2;

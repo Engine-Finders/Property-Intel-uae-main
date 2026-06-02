@@ -21,14 +21,20 @@ import {
 } from 'lucide-react';
 import { BsBoxSeam, BsChevronUp, BsChevronDown, BsLink45Deg } from 'react-icons/bs';
 import { HiOutlineExternalLink } from 'react-icons/hi';
-import { useTheme } from '@/app/(public)/ThemeProvider';
 import ExpertSection from './ExpertSection';
+import { useThemeStyles, GOLD_BORDER, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
 const Section7 = () => {
-    const { isDark } = useTheme();
+    const { t, isDark, dark } = useThemeStyles();
     const [activeTab, setActiveTab] = useState('joint-ventures');
     const [expandedCard, setExpandedCard] = useState(null);
     const [sourcesOpen, setSourcesOpen] = useState(false);
+
+    const cardBg = isDark ? PANEL_DARK_BG : "#FFFFFF";
+    const cardBorder = isDark ? t.cardBorder : "rgba(0,0,0,0.08)";
+    const sectionBg = isDark ? t.bg : "#FCFBFA";
+    const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
+    const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
 
     const categories = [
         {
@@ -208,47 +214,43 @@ const Section7 = () => {
                 return (
                     <div className="space-y-6">
                         {jointVentures.map((venture, index) => (
-                            <div key={index} className={`rounded-2xl border p-6 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
+                            <div key={index} className={`rounded-2xl p-6 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                                    {/* Left Icon */}
                                     <div className="flex-shrink-0">
-                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center ${isDark ? 'bg-slate-900' : 'bg-[#FDFBF7]'}`}>
+                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center`} style={!isDark ? { background: '#FDFBF7' } : { background: 'rgba(182,138,53,0.12)' }}>
                                             <Landmark className="w-8 h-8 text-[#B68A35]" />
                                         </div>
                                     </div>
 
-                                    {/* Middle Content */}
                                     <div className="flex-grow">
                                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                                             <div>
-                                                <h4 className={`text-lg font-serif font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                <h4 className={`text-lg font-serif font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                     {venture.title}
                                                 </h4>
                                                 <p className="text-xs font-semibold text-[#B68A35] uppercase tracking-wider mt-1">
                                                     {venture.subtitle}
                                                 </p>
                                             </div>
-                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${isDark ? 'bg-slate-900 text-[#B68A35]' : 'bg-[#FDFBF7] text-[#B68A35]'}`}>
+                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold`} style={!isDark ? { background: '#FDFBF7', color: '#B68A35' } : { background: 'rgba(182,138,53,0.12)', color: '#B68A35' }}>
                                                 {venture.year}
                                             </span>
                                         </div>
 
-                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl`} style={{ color: bodyColor }}>
                                             {venture.description}
                                         </p>
                                     </div>
 
-                                    {/* Right Source Card - Moved outside the flex-grow div to sit side-by-side */}
                                     <div className="w-full lg:w-110 flex-shrink-0">
-                                        <div className={`rounded-xl p-4 ${isDark ? 'bg-slate-900/50' : 'bg-[#FAF9F6]'}`}>
+                                        <div className={`rounded-xl p-4`} style={!isDark ? { background: '#FAF9F6' } : { background: 'rgba(255,255,255,0.04)' }}>
                                             <div className="flex items-start gap-2 mb-2">
-                                                {/* Changed FileText to MapPin to match screenshot style */}
-                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'}`} />
+                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 text-[#B68A35]`} />
                                                 <div>
-                                                    <p className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                                                    <p className={`text-xs font-semibold uppercase tracking-wider`} style={isDark ? { color: subtextColor } : { color: '#6B7280' }}>
                                                         SOURCE • {venture.sourceDate}
                                                     </p>
-                                                    <p className={`text-sm mt-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                    <p className={`text-sm mt-1`} style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
                                                         {venture.source}
                                                     </p>
                                                 </div>
@@ -257,15 +259,14 @@ const Section7 = () => {
                                             <div className="space-y-2 mt-3 ml-6">
                                                 <div className="flex items-center gap-2">
                                                     <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                         {venture.url}
                                                     </a>
                                                 </div>
-                                                {/* Added check for secondary link (as seen in the second item of the screenshot) */}
                                                 {venture.secondaryUrl && (
                                                     <div className="flex items-center gap-2">
                                                         <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                             {venture.secondaryUrl}
                                                         </a>
                                                     </div>
@@ -283,47 +284,43 @@ const Section7 = () => {
                 return (
                     <div className="space-y-6">
                         {governmentContracts.map((venture, index) => (
-                            <div key={index} className={`rounded-2xl border p-6 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
+                            <div key={index} className={`rounded-2xl p-6 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                                    {/* Left Icon */}
                                     <div className="flex-shrink-0">
-                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center ${isDark ? 'bg-slate-900' : 'bg-[#FDFBF7]'}`}>
+                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center`} style={!isDark ? { background: '#FDFBF7' } : { background: 'rgba(182,138,53,0.12)' }}>
                                             <Landmark className="w-8 h-8 text-[#B68A35]" />
                                         </div>
                                     </div>
 
-                                    {/* Middle Content */}
                                     <div className="flex-grow">
                                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                                             <div>
-                                                <h4 className={`text-lg font-serif font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                <h4 className={`text-lg font-serif font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                     {venture.title}
                                                 </h4>
                                                 <p className="text-xs font-semibold text-[#B68A35] uppercase tracking-wider mt-1">
                                                     {venture.subtitle}
                                                 </p>
                                             </div>
-                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${isDark ? 'bg-slate-900 text-[#B68A35]' : 'bg-[#FDFBF7] text-[#B68A35]'}`}>
+                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold`} style={!isDark ? { background: '#FDFBF7', color: '#B68A35' } : { background: 'rgba(182,138,53,0.12)', color: '#B68A35' }}>
                                                 {venture.year}
                                             </span>
                                         </div>
 
-                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl`} style={{ color: bodyColor }}>
                                             {venture.description}
                                         </p>
                                     </div>
 
-                                    {/* Right Source Card - Moved outside the flex-grow div to sit side-by-side */}
                                     <div className="w-full lg:w-110 flex-shrink-0">
-                                        <div className={`rounded-xl p-4 ${isDark ? 'bg-slate-900/50' : 'bg-[#FAF9F6]'}`}>
+                                        <div className={`rounded-xl p-4`} style={!isDark ? { background: '#FAF9F6' } : { background: 'rgba(255,255,255,0.04)' }}>
                                             <div className="flex items-start gap-2 mb-2">
-                                                {/* Changed FileText to MapPin to match screenshot style */}
-                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'}`} />
+                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 text-[#B68A35]`} />
                                                 <div>
-                                                    <p className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                                                    <p className={`text-xs font-semibold uppercase tracking-wider`} style={isDark ? { color: subtextColor } : { color: '#6B7280' }}>
                                                         SOURCE • {venture.sourceDate}
                                                     </p>
-                                                    <p className={`text-sm mt-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                    <p className={`text-sm mt-1`} style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
                                                         {venture.source}
                                                     </p>
                                                 </div>
@@ -332,15 +329,14 @@ const Section7 = () => {
                                             <div className="space-y-2 mt-3 ml-6">
                                                 <div className="flex items-center gap-2">
                                                     <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                         {venture.url}
                                                     </a>
                                                 </div>
-                                                {/* Added check for secondary link (as seen in the second item of the screenshot) */}
                                                 {venture.secondaryUrl && (
                                                     <div className="flex items-center gap-2">
                                                         <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                             {venture.secondaryUrl}
                                                         </a>
                                                     </div>
@@ -358,47 +354,43 @@ const Section7 = () => {
                 return (
                     <div className="space-y-6">
                         {strategicFrameworks.map((venture, index) => (
-                            <div key={index} className={`rounded-2xl border p-6 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
+                            <div key={index} className={`rounded-2xl p-6 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                                    {/* Left Icon */}
                                     <div className="flex-shrink-0">
-                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center ${isDark ? 'bg-slate-900' : 'bg-[#FDFBF7]'}`}>
+                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center`} style={!isDark ? { background: '#FDFBF7' } : { background: 'rgba(182,138,53,0.12)' }}>
                                             <Landmark className="w-8 h-8 text-[#B68A35]" />
                                         </div>
                                     </div>
 
-                                    {/* Middle Content */}
                                     <div className="flex-grow">
                                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                                             <div>
-                                                <h4 className={`text-lg font-serif font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                <h4 className={`text-lg font-serif font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                     {venture.title}
                                                 </h4>
                                                 <p className="text-xs font-semibold text-[#B68A35] uppercase tracking-wider mt-1">
                                                     {venture.subtitle}
                                                 </p>
                                             </div>
-                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${isDark ? 'bg-slate-900 text-[#B68A35]' : 'bg-[#FDFBF7] text-[#B68A35]'}`}>
+                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold`} style={!isDark ? { background: '#FDFBF7', color: '#B68A35' } : { background: 'rgba(182,138,53,0.12)', color: '#B68A35' }}>
                                                 {venture.year}
                                             </span>
                                         </div>
 
-                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl`} style={{ color: bodyColor }}>
                                             {venture.description}
                                         </p>
                                     </div>
 
-                                    {/* Right Source Card - Moved outside the flex-grow div to sit side-by-side */}
                                     <div className="w-full lg:w-110 flex-shrink-0">
-                                        <div className={`rounded-xl p-4 ${isDark ? 'bg-slate-900/50' : 'bg-[#FAF9F6]'}`}>
+                                        <div className={`rounded-xl p-4`} style={!isDark ? { background: '#FAF9F6' } : { background: 'rgba(255,255,255,0.04)' }}>
                                             <div className="flex items-start gap-2 mb-2">
-                                                {/* Changed FileText to MapPin to match screenshot style */}
-                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'}`} />
+                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 text-[#B68A35]`} />
                                                 <div>
-                                                    <p className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                                                    <p className={`text-xs font-semibold uppercase tracking-wider`} style={isDark ? { color: subtextColor } : { color: '#6B7280' }}>
                                                         SOURCE • {venture.sourceDate}
                                                     </p>
-                                                    <p className={`text-sm mt-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                    <p className={`text-sm mt-1`} style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
                                                         {venture.source}
                                                     </p>
                                                 </div>
@@ -407,15 +399,14 @@ const Section7 = () => {
                                             <div className="space-y-2 mt-3 ml-6">
                                                 <div className="flex items-center gap-2">
                                                     <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                         {venture.url}
                                                     </a>
                                                 </div>
-                                                {/* Added check for secondary link (as seen in the second item of the screenshot) */}
                                                 {venture.secondaryUrl && (
                                                     <div className="flex items-center gap-2">
                                                         <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                             {venture.secondaryUrl}
                                                         </a>
                                                     </div>
@@ -433,47 +424,43 @@ const Section7 = () => {
                 return (
                     <div className="space-y-6">
                         {awards.map((venture, index) => (
-                            <div key={index} className={`rounded-2xl border p-6 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
+                            <div key={index} className={`rounded-2xl p-6 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                 <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                                    {/* Left Icon */}
                                     <div className="flex-shrink-0">
-                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center ${isDark ? 'bg-slate-900' : 'bg-[#FDFBF7]'}`}>
+                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center`} style={!isDark ? { background: '#FDFBF7' } : { background: 'rgba(182,138,53,0.12)' }}>
                                             <Landmark className="w-8 h-8 text-[#B68A35]" />
                                         </div>
                                     </div>
 
-                                    {/* Middle Content */}
                                     <div className="flex-grow">
                                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                                             <div>
-                                                <h4 className={`text-lg font-serif font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                <h4 className={`text-lg font-serif font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                     {venture.title}
                                                 </h4>
                                                 <p className="text-xs font-semibold text-[#B68A35] uppercase tracking-wider mt-1">
                                                     {venture.subtitle}
                                                 </p>
                                             </div>
-                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${isDark ? 'bg-slate-900 text-[#B68A35]' : 'bg-[#FDFBF7] text-[#B68A35]'}`}>
+                                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold`} style={!isDark ? { background: '#FDFBF7', color: '#B68A35' } : { background: 'rgba(182,138,53,0.12)', color: '#B68A35' }}>
                                                 {venture.year}
                                             </span>
                                         </div>
 
-                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                                        <p className={`text-sm leading-relaxed mb-4 max-w-2xl`} style={{ color: bodyColor }}>
                                             {venture.description}
                                         </p>
                                     </div>
 
-                                    {/* Right Source Card - Moved outside the flex-grow div to sit side-by-side */}
                                     <div className="w-full lg:w-110 flex-shrink-0">
-                                        <div className={`rounded-xl p-4 ${isDark ? 'bg-slate-900/50' : 'bg-[#FAF9F6]'}`}>
+                                        <div className={`rounded-xl p-4`} style={!isDark ? { background: '#FAF9F6' } : { background: 'rgba(255,255,255,0.04)' }}>
                                             <div className="flex items-start gap-2 mb-2">
-                                                {/* Changed FileText to MapPin to match screenshot style */}
-                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'}`} />
+                                                <ExternalLink className={`w-4 h-4 mt-0.5 flex-shrink-0 text-[#B68A35]`} />
                                                 <div>
-                                                    <p className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                                                    <p className={`text-xs font-semibold uppercase tracking-wider`} style={isDark ? { color: subtextColor } : { color: '#6B7280' }}>
                                                         SOURCE • {venture.sourceDate}
                                                     </p>
-                                                    <p className={`text-sm mt-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                    <p className={`text-sm mt-1`} style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
                                                         {venture.source}
                                                     </p>
                                                 </div>
@@ -482,15 +469,14 @@ const Section7 = () => {
                                             <div className="space-y-2 mt-3 ml-6">
                                                 <div className="flex items-center gap-2">
                                                     <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                    <a href={venture.fullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                         {venture.url}
                                                     </a>
                                                 </div>
-                                                {/* Added check for secondary link (as seen in the second item of the screenshot) */}
                                                 {venture.secondaryUrl && (
                                                     <div className="flex items-center gap-2">
                                                         <ExternalLink className="w-3.5 h-3.5 text-[#B68A35]" />
-                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs ${isDark ? 'text-[#B68A35]' : 'text-[#B68A35]'} hover:underline`}>
+                                                        <a href={venture.secondaryFullUrl} target="_blank" rel="noopener noreferrer" className={`text-xs text-[#B68A35] hover:underline`}>
                                                             {venture.secondaryUrl}
                                                         </a>
                                                     </div>
@@ -510,40 +496,40 @@ const Section7 = () => {
     };
 
     return (
-        <section className={`w-full font-sans antialiased transition-colors duration-300 ${isDark ? 'bg-black' : 'bg-[#FCFBFA]'}`}>
+        <section className={`w-full font-sans antialiased transition-colors duration-300`} style={{ background: sectionBg }}>
             {/* Header Section */}
-                        <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
-                            <div className="absolute inset-0 z-0">
-                                <Image
-                                    src="/Home/Section3bg.webp"
-                                    alt="Dubai Skyline"
-                                    fill
-                                    className="object-cover object-center grayscale-[10%]"
-                                    priority
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent" />
-                            </div>
-            
-                            <div className="relative z-10 max-w-[1400px] mx-auto px-2 w-full">
-                                <h2 className="text-3xl lg:text-5xl font-serif text-[#1A1A1A] mb-1">
-                                    Emaar Government & Strategic
-                                    <span className="lg:hidden">—</span>
-                                </h2>
-                                <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
-                                    Partnerships - Stability Through Collaboration
-                                </h3>
-                                <p className="max-w-xl text-sm lg:text-base text-gray-600 leading-relaxed font-medium">
-                                    Emaar Properties maintains strategic alignments with UAE government entities through shareholding structures, infrastructure delivery, and participation in national master plans.
-                                </p>
-                            </div>
-                        </div>
+            <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/Home/Section3bg.webp"
+                        alt="Dubai Skyline"
+                        fill
+                        className="object-cover object-center grayscale-[10%]"
+                        priority
+                    />
+                    <div className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`} style={isDark ? dark?.heroOverlayLeft : undefined} />
+                </div>
+
+                <div className="relative z-10 max-w-[1400px] mx-auto px-2 w-full">
+                    <h2 className="text-3xl lg:text-5xl font-serif mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
+                        Emaar Government & Strategic
+                        <span className="lg:hidden">—</span>
+                    </h2>
+                    <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
+                        Partnerships - Stability Through Collaboration
+                    </h3>
+                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
+                        Emaar Properties maintains strategic alignments with UAE government entities through shareholding structures, infrastructure delivery, and participation in national master plans.
+                    </p>
+                </div>
+            </div>
 
             {/* Main Content */}
             <div className="max-w-[1400px] mx-auto px-2 sm:px-6 -mt-8 sm:-mt-15 relative z-10 pb-20">
 
                 {/* Tabs + Content (joined, Section6-style) */}
-                <div className={`rounded-2xl border shadow-sm overflow-hidden mb-6 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
-                    <div className={`border-b ${isDark ? 'border-slate-700' : 'border-gray-100'}`}>
+                <div className={`rounded-2xl shadow-sm overflow-hidden mb-6 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                    <div style={isDark ? { ...dark.tabBar, borderBottom: `1px solid ${cardBorder}` } : { borderBottom: `1px solid ${cardBorder}` }}>
                         {/* Desktop tab row */}
                         <div className="hidden md:flex flex-row items-stretch gap-1 lg:px-0">
                             {categories.map((category) => {
@@ -554,17 +540,35 @@ const Section7 = () => {
                                         key={category.id}
                                         onClick={() => setActiveTab(category.id)}
                                         aria-pressed={isActive}
-                                        className={`flex-1 flex items-center justify-center gap-2 py-3 px-3 transition-all relative border-b-2 ${isActive
-                                            ? (isDark ? 'text-[#B68A35] border-[#B68A35] bg-slate-900/50' : 'text-[#B68A35] border-[#B68A35] bg-[#FDFBF7]')
-                                            : (isDark ? 'text-gray-400 border-transparent bg-slate-800 hover:bg-slate-900/30' : 'text-gray-400 border-transparent bg-[#FBF9F6] hover:bg-gray-50')
-                                            }`}
+                                        className={`relative flex-1 flex items-center justify-center gap-2 py-3 px-3 transition-all border-b-2 ${
+                                            isActive && !isDark
+                                                ? "text-[#B68A35] border-[#B68A35] bg-[#FDFBF7]"
+                                                : !isDark && !isActive
+                                                  ? "text-gray-400 border-transparent bg-[#FBF9F6] hover:bg-gray-50"
+                                                  : isActive
+                                                    ? "text-[#B68A35]"
+                                                    : ""
+                                        }`}
+                                        style={
+                                            isDark
+                                                ? isActive
+                                                    ? { ...dark.tabActive, borderBottomColor: GOLD_BORDER }
+                                                    : { ...dark.tabInactive, borderBottomColor: "transparent" }
+                                                : undefined
+                                        }
                                     >
                                         <div className="flex items-center justify-center w-full gap-2">
                                             <Icon className="text-2xl sm:text-3xl flex-shrink-0" />
-                                            <span className={`font-semibold text-sm ${isDark ? (isActive ? 'text-[#B68A35]' : 'text-white') : (isActive ? 'text-[#B68A35]' : 'text-slate-900')}`}>
+                                            <span
+                                                className={`font-semibold text-sm ${!isDark && !isActive ? "text-slate-900" : ""}`}
+                                                style={isDark && !isActive ? dark.textMuted : undefined}
+                                            >
                                                 {category.title}
                                             </span>
                                         </div>
+                                        {isDark && isActive && (
+                                            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" aria-hidden />
+                                        )}
                                     </button>
                                 );
                             })}
@@ -574,22 +578,21 @@ const Section7 = () => {
                         <div className="md:hidden px-2 py-2">
                             {expandedCard ? (
                                 <div className="space-y-2">
-                                    {/* Expanded card full-width */}
                                     {expandedCategory && (
-                                        <div className={`rounded-2xl border p-2 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
+                                        <div className={`rounded-2xl p-2 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                             <div className="w-full">
                                                 <button
                                                     onClick={() => setExpandedCard(null)}
                                                     aria-expanded={true}
                                                     className="w-full flex flex-col items-center text-center gap-3"
                                                 >
-                                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${isDark ? 'bg-slate-900 text-slate-400' : 'bg-[#FDFBF7] text-[#B68A35]'}`}>
+                                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors`} style={!isDark ? { background: '#FDFBF7', color: '#B68A35' } : { background: 'rgba(182,138,53,0.12)', color: subtextColor }}>
                                                         <expandedCategory.icon className="w-6 h-6" />
                                                     </div>
-                                                    <h4 className={`font-serif font-semibold text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                    <h4 className={`font-serif font-semibold text-sm`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                         {expandedCategory.title}
                                                     </h4>
-                                                    <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                                                    <p className={`text-xs leading-relaxed`} style={{ color: bodyColor }}>
                                                         {expandedCategory.description}
                                                     </p>
                                                 </button>
@@ -605,12 +608,11 @@ const Section7 = () => {
                                         </div>
                                     )}
 
-                                    {/* Other cards below */}
                                     <div className="grid grid-cols-2 gap-4">
                                         {categories.filter((c) => c.id !== expandedCard).map((cat) => {
                                             const Icon = cat.icon;
                                             return (
-                                                <div key={cat.id} className={`rounded-2xl border p-4 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
+                                                <div key={cat.id} className={`rounded-2xl p-4 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                                     <button
                                                         onClick={() => {
                                                             setExpandedCard(cat.id);
@@ -619,16 +621,16 @@ const Section7 = () => {
                                                         aria-expanded={false}
                                                         className="w-full flex flex-col items-center text-center gap-3"
                                                     >
-                                                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${isDark ? 'bg-slate-900 text-slate-400' : 'bg-[#FDFBF7] text-[#B68A35]'}`}>
+                                                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors`} style={!isDark ? { background: '#FDFBF7', color: '#B68A35' } : { background: 'rgba(182,138,53,0.12)', color: subtextColor }}>
                                                             <Icon className="w-6 h-6" />
                                                         </div>
-                                                        <h4 className={`font-serif font-semibold text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                        <h4 className={`font-serif font-semibold text-sm`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                             {cat.title}
                                                         </h4>
-                                                        <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                                                        <p className={`text-xs leading-relaxed`} style={{ color: bodyColor }}>
                                                             {cat.description}
                                                         </p>
-                                                        {/* <ChevronRight className="w-5 h-5 text-[#B68A35]" /> */}
+                                                        <ChevronRight className="w-5 h-5 text-[#B68A35]" />
                                                     </button>
                                                 </div>
                                             );
@@ -640,7 +642,7 @@ const Section7 = () => {
                                     {categories.map((cat) => {
                                         const Icon = cat.icon;
                                         return (
-                                            <div key={cat.id} className={`rounded-2xl border p-4 transition-colors duration-300 ${isDark ? 'bg-black border-slate-700' : 'bg-white border-gray-100'}`}>
+                                            <div key={cat.id} className={`rounded-2xl p-4 transition-colors duration-300`} style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                                 <button
                                                     onClick={() => {
                                                         setExpandedCard(cat.id);
@@ -649,13 +651,13 @@ const Section7 = () => {
                                                     aria-expanded={false}
                                                     className="w-full flex flex-col items-center text-center gap-3"
                                                 >
-                                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${isDark ? 'bg-slate-900 text-slate-400' : 'bg-[#FDFBF7] text-[#B68A35]'}`}>
+                                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors`} style={!isDark ? { background: '#FDFBF7', color: '#B68A35' } : { background: 'rgba(182,138,53,0.12)', color: subtextColor }}>
                                                         <Icon className="w-6 h-6" />
                                                     </div>
-                                                    <h4 className={`font-serif font-semibold text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                    <h4 className={`font-serif font-semibold text-sm`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                         {cat.title}
                                                     </h4>
-                                                    <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                                                    <p className={`text-xs leading-relaxed`} style={{ color: bodyColor }}>
                                                         {cat.description}
                                                     </p>
                                                     <ChevronRight className="w-5 h-5 text-[#B68A35]" />
@@ -670,10 +672,10 @@ const Section7 = () => {
 
                     <div className="p-6 hidden md:block">
                         <div className="mb-6">
-                            <h3 className={`text-lg font-serif font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                            <h3 className={`text-lg font-serif font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                 {activeCategory.title}
                             </h3>
-                            <p className={`text-sm mt-1 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+                            <p className={`text-sm mt-1`} style={{ color: bodyColor }}>
                                 {activeCategory.description}
                             </p>
                         </div>
@@ -682,39 +684,41 @@ const Section7 = () => {
                     </div>
                 </div>
 
-                {/* Sources & Verification (accordion) — Section8 style */}
-                <div className={`rounded-xl border overflow-hidden transition-colors duration-300 ${isDark ? 'border-slate-700' : 'border-[#EDE8DF]'}`}>
+                {/* Sources & Verification (accordion) */}
+                <div className={`rounded-xl overflow-hidden transition-colors duration-300`} style={{ border: `1px solid ${cardBorder}` }}>
                     <button
                         onClick={() => setSourcesOpen(!sourcesOpen)}
                         className={`w-full flex items-center justify-between p-4 text-left transition-colors ${isDark ? 'hover:bg-slate-800/40' : 'hover:bg-[#FAF6EE]'}`}
+                        style={{ background: cardBg }}
                     >
                         <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isDark ? 'bg-slate-800' : 'bg-[#FAF6EE]'}`}>
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center`} style={!isDark ? { background: '#FAF6EE' } : { background: 'rgba(182,138,53,0.12)' }}>
                                 <BsBoxSeam className="text-[#B68A35] w-4 h-4" />
                             </div>
-                            <span className={`text-[13px] font-semibold ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>Sources & Verification</span>
-                            <span className={`text-[11px] px-2 py-0.5 rounded-full ${isDark ? 'bg-slate-800 text-slate-400' : 'bg-[#FAF6EE] text-slate-500'}`}>
+                            <span className={`text-[13px] font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Sources & Verification</span>
+                            <span className={`text-[11px] px-2 py-0.5 rounded-full`} style={!isDark ? { background: '#FAF6EE', color: '#6B7280' } : { background: 'rgba(182,138,53,0.12)', color: subtextColor }}>
                                 {sourcesList.length} Financial & Regulatory Sources
                             </span>
                         </div>
-                        {sourcesOpen ? <BsChevronUp className={`w-4 h-4 ${isDark ? 'text-slate-400' : 'text-slate-400'}`} /> : <BsChevronDown className={`w-4 h-4 ${isDark ? 'text-slate-400' : 'text-slate-400'}`} />}
+                        {sourcesOpen ? <BsChevronUp className={`w-4 h-4`} style={{ color: subtextColor }} /> : <BsChevronDown className={`w-4 h-4`} style={{ color: subtextColor }} />}
                     </button>
 
                     {sourcesOpen && (
-                        <div className={`border-t ${isDark ? 'border-slate-700' : 'border-[#EDE8DF]'}`}>
+                        <div style={{ borderTop: `1px solid ${cardBorder}`, background: cardBg }}>
                             {sourcesList.map((s, i) => (
                                 <div
                                     key={i}
-                                    className={`flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 px-4 py-3 border-b text-[11px] last:border-b-0 ${isDark ? 'border-slate-800' : 'border-[#F2EEE8]'}`}
+                                    className={`flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 px-4 py-3 border-b text-[11px] last:border-b-0`}
+                                    style={{ borderBottom: `1px solid ${cardBorder}` }}
                                 >
                                     <div className="sm:w-[22%] shrink-0">
-                                        <span className={`font-bold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Fact: </span>
-                                        <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{s.fact}</span>
+                                        <span className={`font-bold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Fact: </span>
+                                        <span style={{ color: bodyColor }}>{s.fact}</span>
                                     </div>
                                     <div className="sm:flex-1">
-                                        <span className={`font-bold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Source: </span>
-                                        <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>{s.source}</span>
-                                        <span className={`block mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{s.reference}</span>
+                                        <span className={`font-bold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Source: </span>
+                                        <span style={{ color: bodyColor }}>{s.source}</span>
+                                        <span className={`block mt-0.5`} style={{ color: subtextColor }}>{s.reference}</span>
                                     </div>
                                     <div className="sm:w-[28%] shrink-0 flex items-start justify-between">
                                         {s.urls && s.urls.length > 0 ? (
@@ -722,15 +726,15 @@ const Section7 = () => {
                                                 href={s.urls[0]}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`flex items-center gap-1 group hover:underline truncate max-w-[90%] ${isDark ? 'text-[#B68A35]/80' : 'text-[#B68A35]'}`}
+                                                className={`flex items-center gap-1 group hover:underline truncate max-w-[90%] text-[#B68A35]`}
                                             >
                                                 <BsLink45Deg className="shrink-0 w-3.5 h-3.5" />
                                                 <span className="truncate">{s.urls[0].replace('https://', '')}</span>
                                             </a>
                                         ) : (
-                                            <span className={isDark ? 'text-slate-500' : 'text-slate-400'}>-</span>
+                                            <span style={{ color: subtextColor }}>-</span>
                                         )}
-                                        <HiOutlineExternalLink className={`shrink-0 w-3.5 h-3.5 ml-1 mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
+                                        <HiOutlineExternalLink className={`shrink-0 w-3.5 h-3.5 ml-1 mt-0.5`} style={{ color: subtextColor }} />
                                     </div>
                                 </div>
                             ))}
@@ -739,12 +743,13 @@ const Section7 = () => {
                 </div>
 
                 <ExpertSection />
-                <div className="mt-2 sm:mt-6 rounded-xl border border-[#F3EFE9] bg-[#FBF9F6] px-4 py-4 sm:px-5 flex items-start gap-3">
-                                    <Info className="w-5 h-5 text-[#B68A35] shrink-0" />
-                                    <p className="text-[10px] sm:text-xs text-gray-600 leading-relaxed">
-                                        <span className="font-bold text-[#1A1A1A] uppercase">Disclaimer</span> All information sourced from official government announcements and publicly filed reports. Last verified: 22 February 2026.
-                                    </p>
-                                </div>
+                
+                <div className="mt-2 sm:mt-6 rounded-xl px-4 py-4 sm:px-5 flex items-start gap-3" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6' }}>
+                    <Info className="w-5 h-5 text-[#B68A35] shrink-0" />
+                    <p className="text-[10px] sm:text-xs leading-relaxed" style={{ color: bodyColor }}>
+                        <span className="font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Disclaimer</span> All information sourced from official government announcements and publicly filed reports. Last verified: 22 February 2026.
+                    </p>
+                </div>
 
             </div>
         </section>

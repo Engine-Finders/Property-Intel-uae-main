@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const darkColors = {
   bg: "#232528",
-  bgAlt: "#1a1c1f",
+  bgAlt: "#2a2d33",
   text: "#ffffff",
   textSecondary: "#c0c7d6",
   textMuted: "#6b7a99",
