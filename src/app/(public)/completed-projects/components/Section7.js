@@ -24,6 +24,10 @@ import {
 } from "lucide-react";
 import { LuInfo } from "react-icons/lu";
 import { PiUsersBold } from "react-icons/pi";
+import { useThemeStyles } from '@/app/components/context/themeStyles';
+
+const GOLD = "#B68A35";
+const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
@@ -168,18 +172,18 @@ const strategyRecommendations = [
     },
 ];
 
-function SuitabilityBadge({ type, label }) {
+function SuitabilityBadge({ type, label, isDark }) {
     const map = {
         high: {
-            bg: "bg-emerald-50",
-            text: "text-emerald-600",
+            bg: isDark ? "rgba(39,174,96,0.15)" : "bg-emerald-50",
+            text: isDark ? "text-emerald-400" : "text-emerald-600",
         },
         moderate: {
-            bg: "bg-[#FDF8F0]",
+            bg: isDark ? "rgba(182,138,53,0.12)" : "bg-[#FDF8F0]",
             text: "text-[#B68A35]",
         },
         low: {
-            bg: "bg-[#FDF8F0]",
+            bg: isDark ? "rgba(182,138,53,0.12)" : "bg-[#FDF8F0]",
             text: "text-[#B68A35]",
         },
     };
@@ -187,110 +191,85 @@ function SuitabilityBadge({ type, label }) {
     const cfg = map[type] || map.high;
     return (
         <span
-            className={`${cfg.bg} inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${cfg.text} text-xs font-semibold justify-self-start w-max`}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold justify-self-start w-max`}
+            style={{ background: cfg.bg, color: cfg.text }}
         >
-            {cfg.icon}
             {label}
         </span>
     );
 }
 
-function LeftIndicator({ profile, type }) {
+function LeftIndicator({ profile, type, isDark }) {
     const base = "w-8 h-8 rounded-full flex items-center justify-center shrink-0";
+    
     if (profile === "Families Seeking Ready Homes" || profile === "Capital Preservation Investors") {
         return (
-            <div className={`${base} bg-emerald-50 border border-emerald-100`}>
-                <Check className="w-4 h-4 text-green-600" />
+            <div className={`${base}`} style={{ background: isDark ? 'rgba(39,174,96,0.15)' : '#E8F5E9', border: `1px solid ${isDark ? 'rgba(39,174,96,0.3)' : '#C8E6C9'}` }}>
+                <Check className="w-4 h-4 text-green-500" />
             </div>
         );
     }
 
     if (profile === "Downsizers / Retirees") {
         return (
-            <div className={`${base} bg-[#FDF8F0] border border-[#FCEFD9]`}>
-                <div className="w-3.5 h-3.5 rounded-full border-2 border-[#B68A35]" />
-            </div>
-        );
-    }
-
-    if (profile === "High-Yield Seekers") {
-        return (
-            <div className={`${base} bg-white border border-[#FDE8E8]`}>
-                <AlertTriangle className="w-4 h-4 text-rose-600" />
-            </div>
-        );
-    }
-
-    if (profile === "Short-Term Flippers") {
-        return (
-            <div className={`${base} bg-white border border-[#FDE8E8]`}>
-                <XCircle className="w-4 h-4 text-rose-600" />
-            </div>
-        );
-    }
-
-    // fallback based on suitability type
-    if (type === "high") {
-        return (
-            <div className={`${base} bg-emerald-50 border border-emerald-100`}>
-                <Check className="w-4 h-4 text-emerald-600" />
-            </div>
-        );
-    }
-
-    if (type === "moderate") {
-        return (
-            <div className={`${base} bg-[#FDF8F0] border border-[#FCEFD9]`}>
+            <div className={`${base}`} style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${isDark ? 'rgba(182,138,53,0.2)' : '#FCEFD9'}` }}>
                 <div className="w-3.5 h-3.5 rounded-full border-2 border-[#B68A35]" />
             </div>
         );
     }
 
     return (
-        <div className={`${base} bg-white border border-[#FDE8E8]`}>
-            <XCircle className="w-4 h-4 text-rose-600" />
+        <div className={`${base}`} style={{ background: isDark ? 'rgba(239,68,68,0.1)' : '#FFFFFF', border: `1px solid ${isDark ? 'rgba(239,68,68,0.3)' : '#FDE8E8'}` }}>
+            <XCircle className="w-4 h-4 text-rose-500" />
         </div>
     );
 }
 
-function SourceNote({ text }) {
+function SourceNote({ text, isDark, bodyColor, cardBorder, subtextColor }) {
     return (
-        <div className="flex gap-3 items-start mt-4 p-2 sm:p-4 bg-[#fbf7f1] rounded-2xl">
+        <div className="flex gap-3 items-start mt-4 p-2 sm:p-4 rounded-2xl" 
+            style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#fbf7f1', border: `1px solid ${cardBorder}` }}>
             <FileText className="w-4 h-4 text-[#B68A35] shrink-0 mt-0.5" />
-            <p className="text-xs text-slate-500 leading-relaxed">{text}</p>
+            <p className="text-xs leading-relaxed" style={{ color: subtextColor }}>{text}</p>
         </div>
     );
 }
 
-function InsightBox({ icon: Icon, title, children }) {
+function InsightBox({ icon: Icon, title, children, isDark, cardBorder }) {
     return (
-        <div className=" bg-[#FAF9F6] flex gap-3 items-start pb-4 border-b border-gray-200 rounded-2xl">
-            <div className="w-9 h-9 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+        <div className="flex gap-3 items-start pb-4 border-b rounded-2xl" 
+            style={{ background: isDark ? 'rgba(255,255,255,0.03)' : '#FAF9F6', borderColor: cardBorder }}>
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+                style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
                 <Icon className="w-5 h-5 text-[#B68A35]" />
             </div>
             <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
                     {title}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{children}</p>
+                <p className="text-xs sm:text-sm leading-relaxed" style={{ color: isDark ? 'rgba(255,255,255,0.7)' : '#4A4A4A' }}>{children}</p>
             </div>
         </div>
     );
 }
 
-function AccordionItem({ title, icon: Icon, content, isOpen, onToggle }) {
+function AccordionItem({ title, icon: Icon, content, isOpen, onToggle, isDark, cardBorder, bodyColor }) {
     return (
-        <div className="border border-[#F2EEE8] rounded-xl overflow-hidden bg-white">
+        <div className="rounded-xl overflow-hidden" 
+            style={{ border: `1px solid ${cardBorder}`, background: isDark ? '#2a2d31' : '#FFFFFF' }}>
             <button
                 type="button"
                 onClick={onToggle}
-                className={`w-full flex gap-3 items-center p-4 text-left transition-colors ${isOpen ? "bg-[#FAF9F6]" : "bg-white hover:bg-[#FCFAF5]"
-                    }`}
+                className={`w-full flex gap-3 items-center p-4 text-left transition-colors ${
+                    isOpen ? (isDark ? 'bg-[#2a2d31]' : 'bg-[#FAF9F6]') : (isDark ? 'bg-[#2a2d31]' : 'bg-white')
+                }`}
             >
-                <div className="w-9 h-9 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+                    style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
                     <Icon className="w-4 h-4 text-[#B68A35]" />
                 </div>
-                <span className="font-semibold text-sm sm:text-[15px] text-slate-800 flex-1">
+                <span className="font-semibold text-sm sm:text-[15px] flex-1" 
+                    style={{ color: isDark ? '#FFFFFF' : '#1F2937' }}>
                     {title}
                 </span>
                 {isOpen ? (
@@ -300,8 +279,8 @@ function AccordionItem({ title, icon: Icon, content, isOpen, onToggle }) {
                 )}
             </button>
             {isOpen && (
-                <div className="px-4 pb-4 bg-[#FAF9F6]">
-                    <p className="text-sm text-slate-600 leading-relaxed pl-12">
+                <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.03)' : '#FAF9F6' }}>
+                    <p className="text-sm leading-relaxed pl-12" style={{ color: bodyColor }}>
                         {content}
                     </p>
                 </div>
@@ -312,18 +291,19 @@ function AccordionItem({ title, icon: Icon, content, isOpen, onToggle }) {
 
 // ─── TAB CONTENT COMPONENTS ──────────────────────────────────────────────────
 
-function WhosBuyingTab() {
+function WhosBuyingTab({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
     return (
         <div className="px-4 sm:px-5 pt-5">
-            <div className=" pb-3 flex gap-2">
-                <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center shrink-0">
+            <div className="pb-3 flex gap-2">
+                <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0" 
+                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                     <PiUsersBold className="text-[#B68A35] text-xl sm:text-2xl" />
                 </div>
                 <div>
-                    <h3 className="text-md sm:text-2xl font-serif text-[#1A1A1A] leading-snug">
+                    <h3 className="text-md sm:text-2xl font-serif leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                         Current Buyer Suitability — <span className="text-[#B68A35]">Who Is Buying Now?</span>
                     </h3>
-                    <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
                         Unlike off-plan projects where buyer profiles are speculative,
                         Emirates Hills has a verified resale buyer demographic based on
                         actual transaction data from the last 24 months. The community now
@@ -337,29 +317,30 @@ function WhosBuyingTab() {
                     {buyerProfiles.map((item) => (
                         <div
                             key={item.profile}
-                            className="flex flex-row items-start gap-3 p-0 sm:p-4 border-b border-[#F2EEE8] bg-white rounded-lg"
+                            className="flex flex-row items-start gap-3 p-0 sm:p-4 rounded-lg"
+                            style={{ background: cardBg, borderBottom: `1px solid ${cardBorder}` }}
                         >
                             <div className="shrink-0 mt-0.5">
-                                <LeftIndicator profile={item.profile} type={item.suitabilityType} />
+                                <LeftIndicator profile={item.profile} type={item.suitabilityType} isDark={isDark} />
                             </div>
                             <div className="flex-1 min-w-0">
-                                <p className="font-semibold text-sm sm:text-[15px] text-slate-800 leading-snug">
+                                <p className="font-semibold text-sm sm:text-[15px] leading-snug" style={{ color: isDark ? t.text : '#1F2937' }}>
                                     {item.profile}
                                 </p>
-                                <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                                <p className="text-xs sm:text-sm mt-1.5 leading-relaxed" style={{ color: bodyColor }}>
                                     {item.rationale}
                                 </p>
                             </div>
                             <div className="shrink-0 flex-none">
-                                <SuitabilityBadge type={item.suitabilityType} label={item.suitability} />
+                                <SuitabilityBadge type={item.suitabilityType} label={item.suitability} isDark={isDark} />
                             </div>
                         </div>
                     ))}
                 </div>
 
                 <aside className="lg:col-span-4 cursor-pointer">
-                    <div className="p-4 rounded-xl border border-[#F2EEE8] bg-[#FAF9F6]">
-                        <InsightBox icon={Lightbulb} title="Market Insight">
+                    <div className="p-4 rounded-xl" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                        <InsightBox icon={Lightbulb} title="Market Insight" isDark={isDark} cardBorder={cardBorder}>
                             Transaction data indicates approximately 65% of recent buyers are
                             end-users (families and business owners), while 35% are long-term
                             investors holding for 5+ years. This ratio contributes to community
@@ -369,19 +350,19 @@ function WhosBuyingTab() {
 
                         <div className="space-y-3 my-6">
                             <div className="flex items-center gap-3">
-                                <span className="text-xs font-semibold text-slate-600 w-28">End-users</span>
-                                <div className="flex-1 h-2 bg-white rounded-full overflow-hidden">
+                                <span className="text-xs font-semibold w-28" style={{ color: subtextColor }}>End-users</span>
+                                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: isDark ? 'rgba(255,255,255,0.1)' : '#E5E7EB' }}>
                                     <div className="h-full w-[65%] bg-[#B68A35] rounded-full" />
                                 </div>
                                 <span className="text-xs font-bold text-[#B68A35] ml-3">65%</span>
                             </div>
 
                             <div className="flex items-center gap-3">
-                                <span className="text-xs font-semibold text-slate-600 w-28">Investors</span>
-                                <div className="flex-1 h-2 bg-white rounded-full overflow-hidden">
+                                <span className="text-xs font-semibold w-28" style={{ color: subtextColor }}>Investors</span>
+                                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: isDark ? 'rgba(255,255,255,0.1)' : '#E5E7EB' }}>
                                     <div className="h-full w-[35%] bg-emerald-500 rounded-full" />
                                 </div>
-                                <span className="text-xs font-bold text-emerald-600 ml-3">35%</span>
+                                <span className="text-xs font-bold text-emerald-500 ml-3">35%</span>
                             </div>
                         </div>
                     </div>
@@ -391,20 +372,21 @@ function WhosBuyingTab() {
     );
 }
 
-function ComparativeAnalysisTab() {
+function ComparativeAnalysisTab({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
     return (
         <div>
             <div className="px-4 sm:px-5 pt-5">
                 <div className="pb-3 flex gap-2">
-                    <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <TrendingUp className="text-[#B68A35] text-xl sm:text-2xl" />
                     </div>
                     <div>
-                        <h3 className="text-md sm:text-2xl font-serif text-[#1A1A1A] leading-snug">
+                        <h3 className="text-md sm:text-2xl font-serif leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                             Comparative Value Analysis —{" "}
                             <span className="text-[#B68A35]">Completed Luxury Communities</span>
                         </h3>
-                        <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p className="mt-2 text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
                             To assess Emirates Hills' current market positioning, we compare it
                             against three other completed, gated villa communities in Dubai's
                             premium corridor. Data reflects Q1 2026 market averages.
@@ -416,54 +398,42 @@ function ComparativeAnalysisTab() {
             <div className="mt-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-start px-1 sm:px-2">
                 {/* Desktop Table */}
                 <div className="hidden lg:block lg:col-span-9">
-                    <div className="rounded-xl border border-[#F2EEE8] bg-white overflow-hidden">
-                        <div className="grid grid-cols-6 gap-4 bg-white border-b border-[#F2EEE8] px-6 py-4">
-                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                                Community
-                            </p>
-                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                                Status
-                            </p>
-                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                                Avg. Price per Sqft
-                            </p>
-                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                                Avg. Gross Yield
-                            </p>
-                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                                Community Maturity
-                            </p>
-                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
-                                Value Proposition
-                            </p>
+                    <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                        <div className="grid grid-cols-6 gap-4 px-6 py-4" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+                            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Community</p>
+                            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Status</p>
+                            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Avg. Price per Sqft</p>
+                            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Avg. Gross Yield</p>
+                            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Community Maturity</p>
+                            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Value Proposition</p>
                         </div>
                         {comparativeData.map((item) => {
                             const Icon = item.icon;
                             return (
                                 <div
                                     key={item.community}
-                                    className="grid grid-cols-6 gap-4 items-center px-6 py-5 border-b border-[#F2EEE8] hover:bg-[#FCFAF5] transition-colors last:border-b-0"
+                                    className="grid grid-cols-6 gap-4 items-center px-6 py-5 transition-colors last:border-b-0"
+                                    style={{ borderBottom: `1px solid ${cardBorder}` }}
                                 >
                                     <div className="flex items-center gap-3">
                                         <Icon className="w-6 h-6 text-[#B68A35] shrink-0" />
-                                        <span className="font-semibold text-sm text-slate-800">
+                                        <span className="font-semibold text-sm" style={{ color: isDark ? t.text : '#1F2937' }}>
                                             {item.community}
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <Check className="w-6 h-6 text-green-600 bg-green-600/20 shrink-0 rounded-full p-0.5" />
-                                        <span className="text-xs text-slate-700">{item.status}</span>
+                                        <Check className="w-6 h-6 text-green-500 shrink-0 rounded-full p-0.5" />
+                                        <span className="text-xs" style={{ color: bodyColor }}>{item.status}</span>
                                     </div>
-                                    <span className="text-sm font-bold text-[#B68A35]">
-                                        {item.pricePerSqft}
-                                    </span>
-                                    <span className="text-sm text-slate-700 font-medium">{item.grossYield}</span>
+                                    <span className="text-sm font-bold text-[#B68A35]">{item.pricePerSqft}</span>
+                                    <span className="text-sm font-medium" style={{ color: bodyColor }}>{item.grossYield}</span>
                                     <div>
-                                        <span className="inline-block text-xs font-semibold text-[#B68A35] bg-[#FDF8F0] px-3 py-1.5 rounded-full">
+                                        <span className="inline-block text-xs font-semibold px-3 py-1.5 rounded-full" 
+                                            style={{ color: GOLD, background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0' }}>
                                             {item.maturity}
                                         </span>
                                     </div>
-                                    <p className="text-xs text-slate-600 leading-relaxed">{item.valueProp}</p>
+                                    <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>{item.valueProp}</p>
                                 </div>
                             );
                         })}
@@ -477,50 +447,50 @@ function ComparativeAnalysisTab() {
                         return (
                             <div
                                 key={item.community}
-                                className={`rounded-xl border border-[#F2EEE8] p-4 ${idx === 0 ? "bg-[#FAF9F6]" : "bg-white"
-                                    }`}
+                                className={`rounded-xl p-4 ${idx === 0 ? (isDark ? 'bg-[#2a2d31]' : 'bg-[#FAF9F6]') : (isDark ? 'bg-[#2a2d31]' : 'bg-white')}`}
+                                style={{ border: `1px solid ${cardBorder}` }}
                             >
                                 <div className="flex items-center gap-2 mb-3">
                                     <Icon className="w-5 h-5 text-[#B68A35] shrink-0" />
-                                    <span className="font-semibold text-base text-slate-800">
+                                    <span className="font-semibold text-base" style={{ color: isDark ? t.text : '#1F2937' }}>
                                         {item.community}
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-2 gap-3 text-sm">
                                     <div>
-                                        <p className="text-xs text-slate-500">Price/Sqft</p>
+                                        <p className="text-xs" style={{ color: subtextColor }}>Price/Sqft</p>
                                         <p className="font-semibold text-[#B68A35]">{item.pricePerSqft}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-slate-500">Gross Yield</p>
-                                        <p className="font-semibold text-slate-700">{item.grossYield}</p>
+                                        <p className="text-xs" style={{ color: subtextColor }}>Gross Yield</p>
+                                        <p className="font-semibold" style={{ color: bodyColor }}>{item.grossYield}</p>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-slate-500">Status</p>
+                                        <p className="text-xs" style={{ color: subtextColor }}>Status</p>
                                         <div className="flex items-center gap-1.5 mt-0.5">
-                                            <Check className="w-3.5 h-3.5 text-emerald-600" />
-                                            <span className="text-slate-700">{item.status}</span>
+                                            <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                            <span style={{ color: bodyColor }}>{item.status}</span>
                                         </div>
                                     </div>
                                     <div>
-                                        <p className="text-xs text-slate-500">Maturity</p>
-                                        <span className="inline-block mt-0.5 text-xs font-semibold text-[#B68A35] bg-[#FDF8F0] px-2 py-1 rounded-full">
+                                        <p className="text-xs" style={{ color: subtextColor }}>Maturity</p>
+                                        <span className="inline-block mt-0.5 text-xs font-semibold px-2 py-1 rounded-full" 
+                                            style={{ color: GOLD, background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0' }}>
                                             {item.maturity}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="mt-3 pt-3 border-t border-[#F2EEE8]">
-                                    <p className="text-xs text-slate-600">{item.valueProp}</p>
+                                <div className="mt-3 pt-3" style={{ borderTop: `1px solid ${cardBorder}` }}>
+                                    <p className="text-xs" style={{ color: bodyColor }}>{item.valueProp}</p>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
 
-                {/* Sidebar with InsightBox */}
                 <aside className="lg:col-span-3">
-                    <div className="p-4 rounded-xl border border-[#F2EEE8] bg-[#FAF9F6]">
-                        <InsightBox icon={Lightbulb} title="What the comparison indicates">
+                    <div className="p-4 rounded-xl" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                        <InsightBox icon={Lightbulb} title="What the comparison indicates" isDark={isDark} cardBorder={cardBorder}>
                             Emirates Hills commands a price premium of approximately 25-30% over
                             Jumeirah Golf Estates and 80-100% over Arabian Ranches per square foot.
                             This premium is justified by lower density (larger plots), stricter
@@ -535,19 +505,20 @@ function ComparativeAnalysisTab() {
     );
 }
 
-function KpisTab() {
+function KpisTab({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
     return (
         <div>
             <div className="px-4 sm:px-5 pt-5">
                 <div className="pb-3 flex gap-2">
-                    <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <Award className="text-[#B68A35] text-xl sm:text-2xl" />
                     </div>
                     <div>
-                        <h3 className="text-md sm:text-2xl font-serif text-[#1A1A1A] leading-snug">
+                        <h3 className="text-md sm:text-2xl font-serif leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                             Long-Term Performance Verdict
                         </h3>
-                        <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p className="mt-2 text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
                             Emirates Hills performance vs. Dubai market context
                         </p>
                     </div>
@@ -555,75 +526,76 @@ function KpisTab() {
             </div>
 
             <div className="mt-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-start px-2 sm:px-5">
-                {/* KPI list (left) */}
                 <div className="lg:col-span-8">
-                    <div className="rounded-xl border border-[#F2EEE8] bg-white overflow-hidden">
-                        <div>
-                            {kpiData.map((item) => {
-                                const Icon = item.icon;
-                                return (
-                                    <div
-                                        key={item.label}
-                                        className="grid grid-cols-12 gap-4 items-center px-2 sm:px-6 py-2 sm:py-5 border-b border-[#F2EEE8] hover:bg-[#FCFAF5] transition-colors last:border-b-0"
-                                    >
-                                        <div className="col-span-6 flex items-center gap-3">
-                                            <div className="w-9 h-9 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
-                                                <Icon className="w-4 h-4 text-[#B68A35]" />
-                                            </div>
-                                            <span className="font-semibold text-xs sm:text-sm text-slate-800">
-                                                {item.label}
-                                            </span>
+                    <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                        {kpiData.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <div
+                                    key={item.label}
+                                    className="grid grid-cols-12 gap-4 items-center px-2 sm:px-6 py-2 sm:py-5 transition-colors last:border-b-0"
+                                    style={{ borderBottom: `1px solid ${cardBorder}` }}
+                                >
+                                    <div className="col-span-6 flex items-center gap-3">
+                                        <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+                                            style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+                                            <Icon className="w-4 h-4 text-[#B68A35]" />
                                         </div>
+                                        <span className="font-semibold text-xs sm:text-sm" style={{ color: isDark ? t.text : '#1F2937' }}>
+                                            {item.label}
+                                        </span>
+                                    </div>
 
-                                        <div className="col-span-6 flex flex-col sm:flex-row items-end sm:items-center sm:justify-end sm:gap-4">
-                                            <div className="text-xs sm:text-lg font-bold text-[#B68A35]">
-                                                {item.value}
-                                            </div>
-                                            <div className="text-xs text-slate-500 text-right">
-                                                {item.context}
-                                            </div>
+                                    <div className="col-span-6 flex flex-col sm:flex-row items-end sm:items-center sm:justify-end sm:gap-4">
+                                        <div className="text-xs sm:text-lg font-bold text-[#B68A35]">
+                                            {item.value}
+                                        </div>
+                                        <div className="text-xs text-right" style={{ color: subtextColor }}>
+                                            {item.context}
                                         </div>
                                     </div>
-                                );
-                            })}
-                        </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
 
-                {/* Right sidebar with verdict + important note */}
                 <aside className="lg:col-span-4">
-                    <div className="rounded-xl border border-[#F2EEE8] bg-white overflow-hidden p-2 sm:p-5">
+                    <div className="rounded-xl overflow-hidden p-2 sm:p-5" 
+                        style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <div className="flex gap-3 items-start">
-                            <div className="w-9 h-9 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+                            <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+                                style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
                                 <Award className="w-5 h-5 text-[#B68A35]" />
                             </div>
                             <div>
                                 <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-2">
                                     Long-Term Performance Verdict
                                 </p>
-                                <p className="text-sm text-slate-600 leading-relaxed">
+                                <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
                                     Based on DLD transaction data aggregated via DXBInteract, Emirates Hills has delivered an estimated annualised appreciation of 5.5–7.0% since initial handover (2003–2008) to Q1 2026. This performance outpaces Dubai's overall villa market average (~4.5–5.5% annualised) over the same period, reflecting the asset's scarcity value and premium positioning.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="mt-4 p-4 rounded-lg border border-[#F2EEE8] bg-[#FAF9F6]">
+                        <div className="mt-4 p-4 rounded-lg" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FAF9F6' }}>
                             <div className="flex gap-3 items-start">
-                                <div className="w-8 h-8 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+                                <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" 
+                                    style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
                                     <Info className="w-4 h-4 text-[#B68A35]" />
                                 </div>
                                 <div>
                                     <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-2">
                                         Important Note
                                     </p>
-                                    <p className="text-sm text-slate-600 leading-relaxed">
+                                    <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
                                         Past performance does not guarantee future results. Future appreciation will depend on Dubai's overall economic growth, infrastructure developments in surrounding corridors (e.g., Al Khail Road upgrades), and maintenance of community standards.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-4 text-sm text-slate-600">
+                        <div className="mt-4 text-sm" style={{ color: bodyColor }}>
                             <p>
                                 For end-users, the community is <span className="font-semibold text-[#B68A35]">fully mature</span>. All landscaping, amenities, and infrastructure are established. There is no uncertainty regarding delivery timelines, amenity completion, or neighbourhood character. Residents know exactly what they are buying—a stable, low-density enclave with verified security protocols and managed maintenance standards.
                             </p>
@@ -635,21 +607,22 @@ function KpisTab() {
     );
 }
 
-function StrategyTab() {
+function StrategyTab({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
     const [openIdx, setOpenIdx] = useState(0);
 
     return (
         <div>
             <div className="px-4 sm:px-5 pt-5">
                 <div className="pb-3 flex gap-2">
-                    <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <Lightbulb className="text-[#B68A35] text-xl sm:text-2xl" />
                     </div>
                     <div>
-                        <h3 className="text-md sm:text-2xl font-serif text-[#1A1A1A] leading-snug">
+                        <h3 className="text-md sm:text-2xl font-serif leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                             Strategic Recommendations by Buyer Type
                         </h3>
-                        <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p className="mt-2 text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
                             Actionable guidance tailored to your investment goals.
                         </p>
                     </div>
@@ -665,6 +638,9 @@ function StrategyTab() {
                         content={item.content}
                         isOpen={openIdx === idx}
                         onToggle={() => setOpenIdx(openIdx === idx ? -1 : idx)}
+                        isDark={isDark}
+                        cardBorder={cardBorder}
+                        bodyColor={bodyColor}
                     />
                 ))}
             </div>
@@ -682,17 +658,25 @@ const TABS = [
 ];
 
 function Section7() {
+    const { t, isDark, dark } = useThemeStyles();
     const [activeTab, setActiveTab] = useState("whosBuying");
 
+    // Card colors matching TopDevelopersSection pattern
+    const cardBg = isDark ? "#2a2d31" : "#FFFFFF";
+    const cardBorder = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)";
+    const sectionBg = isDark ? t.bg : "#FCFBFA";
+    const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
+    const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
+
     const renderTab = () => {
-        if (activeTab === "whosBuying") return <WhosBuyingTab />;
-        if (activeTab === "comparative") return <ComparativeAnalysisTab />;
-        if (activeTab === "kpis") return <KpisTab />;
-        return <StrategyTab />;
+        if (activeTab === "whosBuying") return <WhosBuyingTab isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />;
+        if (activeTab === "comparative") return <ComparativeAnalysisTab isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />;
+        if (activeTab === "kpis") return <KpisTab isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />;
+        return <StrategyTab isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />;
     };
 
     return (
-        <section className="w-full bg-[#FCFBFA] font-sans antialiased">
+        <section className="w-full font-sans antialiased" style={{ background: sectionBg }}>
             {/* ── Header ── */}
             <div className="relative w-full h-80 lg:h-96 flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -701,16 +685,16 @@ function Section7() {
                         alt="Emirates Hills luxury villas"
                         fill
                         className="object-cover object-center"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent" />
+                        priority                    />
+                    <div className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`} 
+                        style={isDark ? dark?.heroOverlayLeft : undefined} />
                 </div>
 
                 <div className="relative z-10 max-w-350 mx-auto px-4 sm:px-6 w-full">
-                    <h2 className="text-3xl lg:text-5xl font-serif text-[#1A1A1A] mb-0.5">
+                    <h2 className="text-3xl lg:text-5xl font-serif mb-0.5" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                         Resale &amp; Investment Performance
                     </h2>
-                    <h2 className="text-3xl lg:text-5xl font-serif text-[#1A1A1A] mb-0.5">
+                    <h2 className="text-3xl lg:text-5xl font-serif mb-0.5" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                         <span className="text-[#B68A35]">Emirates Hills</span> by Emaar
                     </h2>
                 </div>
@@ -718,15 +702,17 @@ function Section7() {
 
             <div className="relative z-20 max-w-[1400px] mx-auto px-2 sm:px-6 pb-5 sm:pb-10 -mt-24 sm:-mt-28 lg:-mt-32">
                 {/* ── Source Transparency ── */}
-                <div className="mt-5 rounded-2xl border border-[#F2EEE8] shadow-[0_4px_25px_rgba(0,0,0,0.06)] bg-white p-4 sm:p-5 flex gap-3 items-start">
-                    <div className="w-9 h-9 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+                <div className="mt-5 rounded-2xl shadow-sm p-4 sm:p-5 flex gap-3 items-start" 
+                    style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#B68A35/10' }}>
                         <ShieldCheck className="w-5 h-5 text-[#B68A35]" />
                     </div>
                     <div>
                         <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
                             Source Transparency
                         </p>
-                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        <p className="text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
                             Performance data aggregated from Dubai Land Department (DLD)
                             transaction records via DXBInteract.com, covering the period from
                             first handover (2003) to Q1 2026. Comparative data reflects current
@@ -739,24 +725,29 @@ function Section7() {
                 </div>
 
                 {/* ── Tabbed Panel ── */}
-                <div className="bg-white rounded-xl border border-[#F3EFE9] overflow-hidden shadow-sm mt-5">
-                    <div className="flex border-b border-[#F3EFE9]">
+                <div className="rounded-xl shadow-sm mt-5" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="flex" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                         <div className="flex w-full">
                             {TABS.map((tab) => (
                                 <button
                                     key={tab.key}
                                     type="button"
                                     onClick={() => setActiveTab(tab.key)}
-                                    className={`flex-1 flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-3 py-3 lg:py-6 px-1 lg:px-4 transition-all relative ${activeTab === tab.key
-                                        ? "text-[#B68A35] bg-[#FDF8F0]/50"
-                                        : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
-                                        }`}
+                                    className={`flex-1 flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-3 py-3 lg:py-6 px-1 lg:px-4 transition-all relative ${
+                                        activeTab === tab.key && !isDark ? 'text-[#B68A35] bg-[#FDF8F0]/50' : !isDark && activeTab !== tab.key ? 'text-gray-400 hover:text-gray-600 hover:bg-gray-50' : ''
+                                    }`}
+                                    style={
+                                        isDark && activeTab === tab.key
+                                            ? { color: GOLD, background: 'rgba(182,138,53,0.08)' }
+                                            : isDark && activeTab !== tab.key
+                                            ? { color: subtextColor, background: 'transparent' }
+                                            : undefined
+                                    }
                                 >
                                     <span className="text-base lg:text-xl">
                                         <tab.icon />
                                     </span>
-                                    <span className={`text-[10px] lg:text-sm tracking-wide whitespace-nowrap ${activeTab === tab.key ? "font-bold" : "font-medium"
-                                        }`}>
+                                    <span className={`text-[10px] lg:text-sm tracking-wide whitespace-nowrap ${activeTab === tab.key ? "font-bold" : "font-medium"}`}>
                                         {tab.label}
                                     </span>
 
@@ -772,12 +763,14 @@ function Section7() {
                     <div className="pb-5">{renderTab()}</div>
                 </div>
 
-                <SourceNote text="Source: DXBInteract.com transaction analysis, PropertyIntel market research, Q1 2026." />
+                <SourceNote text="Source: DXBInteract.com transaction analysis, PropertyIntel market research, Q1 2026." 
+                    isDark={isDark} bodyColor={bodyColor} cardBorder={cardBorder} subtextColor={subtextColor} />
 
                 {/* ── Disclaimer ── */}
-                <div className="mt-6 bg-[#FBF9F6] border border-[#F3EFE9] rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start">
+                <div className="mt-6 rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start" 
+                    style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
                     <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-                    <p className="text-xs lg:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-xs lg:text-sm leading-relaxed" style={{ color: bodyColor }}>
                         All performance data is for educational and research purposes only.
                         PropertyIntel.ae does not provide financial, legal, or investment
                         advice. Market values, rental yields, and appreciation rates are
