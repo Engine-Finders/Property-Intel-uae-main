@@ -11,24 +11,22 @@ import {
 } from "react-icons/hi2";
 import { LuInfo } from "react-icons/lu";
 import { HiOutlineDatabase } from 'react-icons/hi';
+import { useThemeStyles } from '@/app/components/context/themeStyles';
+
+const GOLD = "#B68A35";
+const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
 // ─── Shared Style Constants (mirrored from Section2) ───────────────────────
-const sectionHeaderClass = "flex items-start gap-4 mb-8";
-const sectionIconShellClass =
-    "w-12 h-12 rounded-xl bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center shrink-0 shadow-sm";
-const sectionTitleClass =
-    "text-[#1A1A1A] font-semibold font-[Merriweather] tabular-nums text-md sm:text-xl leading-tight";
-const sectionSubtitleClass =
-    "text-[#B68A35] text-[10px] md:text-xs font-bold uppercase tracking-wider mt-1";
-const sectionBodyClass = "text-[13px] md:text-sm text-gray-600 leading-relaxed";
-const sectionPanelClass = "bg-white border border-[#F3EFE9] rounded-2xl shadow-sm";
-
-const SectionHeader = ({ icon, title, subtitle }) => (
-    <div className={sectionHeaderClass}>
-        <div className={sectionIconShellClass}>{icon}</div>
+const SectionHeader = ({ icon, title, subtitle, isDark, t }) => (
+    <div className="flex items-start gap-4 mb-8">
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm" 
+            style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+            {icon}
+        </div>
         <div>
-            <h3 className={sectionTitleClass}>{title}</h3>
-            {subtitle ? <p className={sectionSubtitleClass}>{subtitle}</p> : null}
+            <h3 className="font-semibold font-[Merriweather] tabular-nums text-md sm:text-xl leading-tight" 
+                style={{ color: isDark ? t.text : '#1A1A1A' }}>{title}</h3>
+            {subtitle ? <p className="text-[#B68A35] text-[10px] md:text-xs font-bold uppercase tracking-wider mt-1">{subtitle}</p> : null}
         </div>
     </div>
 );
@@ -40,10 +38,7 @@ const CheckIcon = () => (
     </svg>
 );
 
-
-
-
-const DeliveryTrackRecordView = () => {
+const DeliveryTrackRecordView = ({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) => {
     const phases = [
         {
             phase: "Phase 1",
@@ -86,17 +81,19 @@ const DeliveryTrackRecordView = () => {
     const [openInsights, setOpenInsights] = useState(false);
 
     return (
-        <div className="max-w-[1400px] mx-auto p-2 bg-white animate-in fade-in duration-500 space-y-12">
+        <div className="max-w-[1400px] mx-auto p-2 animate-in fade-in duration-500 space-y-12" style={{ background: cardBg }}>
             {/* Header */}
             <SectionHeader
                 icon={<HiOutlineClipboard className="text-[#B68A35] text-2xl sm:text-3xl" />}
                 title="Delivery Track Record – Emirates Hills Project Outcome"
                 subtitle="Project Phase · Handover Timeline"
+                isDark={isDark}
+                t={t}
             />
 
             {/* Timeline Section */}
             <div className="relative">
-                {/* Vertical connecting line (Desktop: left-aligned | Mobile: beside dots) */}
+                {/* Vertical connecting line */}
                 <div className="absolute left-[11px] lg:left-[11px] top-6 sm:top-8 bottom-12 w-[2px] bg-[#B68A35]/40" />
 
                 <div className="space-y-4 lg:space-y-3">
@@ -108,14 +105,16 @@ const DeliveryTrackRecordView = () => {
                             </div>
 
                             {/* Row Container */}
-                            <div className="flex-1 bg-[#FAF9F6]/50 border border-[#F3EFE9] rounded-xl p-2 lg:p-4 lg:flex lg:items-center lg:justify-between lg:gap-8 transition-hover hover:border-[#B68A35]/30">
+                            <div className="flex-1 rounded-xl p-2 lg:p-4 lg:flex lg:items-center lg:justify-between lg:gap-8 transition-all" 
+                                style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6/50', border: `1px solid ${cardBorder}` }}>
 
                                 {/* Phase & Name */}
                                 <div className="lg:w-1/4 mb-4 lg:mb-0">
                                     <p className="text-[#B68A35] text-[10px] font-bold uppercase tracking-wider mb-1">
                                         {phase.phase}
                                     </p>
-                                    <h4 className="font-semibold font-[Merriweather] text-[#1A1A1A] text-base leading-tight">
+                                    <h4 className="font-semibold font-[Merriweather] text-base leading-tight" 
+                                        style={{ color: isDark ? t.text : '#1A1A1A' }}>
                                         {phase.name}
                                     </h4>
                                 </div>
@@ -123,29 +122,28 @@ const DeliveryTrackRecordView = () => {
                                 {/* Dates Group */}
                                 <div className="flex flex-wrap gap-6 sm:gap-12 lg:w-1/3 items-center">
                                     <div>
-                                        <p className="text-[10px] font-bold text-gray-400 uppercase mb-0.5">Original Handover</p>
-                                        <p className="text-sm font-bold text-[#1A1A1A]">{phase.original}</p>
+                                        <p className="text-[10px] font-bold uppercase mb-0.5" style={{ color: subtextColor }}>Original Handover</p>
+                                        <p className="text-sm font-bold" style={{ color: isDark ? t.text : '#1A1A1A' }}>{phase.original}</p>
                                     </div>
-                                    <div className="hidden lg:block h-8 w-px bg-gray-100" />
+                                    <div className="hidden lg:block h-8 w-px" style={{ background: cardBorder }} />
                                     <div>
-                                        <p className="text-[10px] font-bold text-gray-400 uppercase mb-0.5">Actual Handover</p>
-                                        <p className="text-sm font-bold text-[#1A1A1A]">{phase.actual}</p>
+                                        <p className="text-[10px] font-bold uppercase mb-0.5" style={{ color: subtextColor }}>Actual Handover</p>
+                                        <p className="text-sm font-bold" style={{ color: isDark ? t.text : '#1A1A1A' }}>{phase.actual}</p>
                                     </div>
                                 </div>
 
                                 {/* Delay Badge */}
                                 <div className="mt-4 mb-4 lg:my-0 lg:w-24">
-                                    <span className={`inline-block text-[10px] font-bold px-3 py-1 rounded-full border text-center min-w-[80px] ${phase.delayStyle}`}>
+                                    <span className={`inline-block text-[10px] font-bold px-3 py-1 rounded-full border text-center min-w-[80px] ${phase.delayStyle}`}
+                                        style={isDark ? { background: 'rgba(182,138,53,0.12)', borderColor: GOLD_BORDER, color: GOLD } : {}}>
                                         {phase.delay}
                                     </span>
                                 </div>
 
                                 {/* Outcome */}
-                                <div className="lg:w-1/3 lg:border-l lg:border-gray-100 lg:pl-4">
-                                    <p className="text-[10px] font-bold text-[#B68A35] uppercase mb-1.5">
-                                        Project Outcome
-                                    </p>
-                                    <p className="text-[12px] text-gray-600 leading-relaxed italic lg:not-italic">
+                                <div className="lg:w-1/3 lg:border-l lg:pl-4" style={{ borderLeftColor: cardBorder }}>
+                                    <p className="text-[10px] font-bold text-[#B68A35] uppercase mb-1.5">Project Outcome</p>
+                                    <p className="text-[12px] leading-relaxed italic lg:not-italic" style={{ color: bodyColor }}>
                                         {phase.outcome}
                                     </p>
                                 </div>
@@ -158,27 +156,28 @@ const DeliveryTrackRecordView = () => {
             {/* Bottom Section: Data source + insights side-by-side for desktop */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Data Source */}
-                <div className="flex gap-4 p-6 bg-[#FAF9F6] border border-[#F3EFE9] rounded-2xl items-start h-fit">
+                <div className="flex gap-4 p-6 rounded-2xl items-start h-fit" 
+                    style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', border: `1px solid ${cardBorder}` }}>
                     <HiOutlineDatabase className="text-[#B68A35] text-2xl shrink-0" />
                     <div>
-                        <p className="text-[11px] text-gray-500 leading-relaxed">
-                            <span className="font-bold text-gray-700 block mb-1 uppercase tracking-tight">Data Source</span>
+                        <p className="text-[11px] leading-relaxed" style={{ color: subtextColor }}>
+                            <span className="font-bold block mb-1 uppercase tracking-tight" style={{ color: isDark ? t.textSecondary : '#374151' }}>Data Source</span>
                             DLD project completion records via DXBInteract.com; Emaar historical delivery reports.
                             Sample size: 4 phased handovers across ~450 villas, 2003–2008.
                         </p>
                     </div>
                 </div>
 
-                {/* Insights - desktop (visible on md+) */}
-                <div className="hidden md:flex lg:col-span-2 rounded-xl gap-5 p-2 sm:p-6 bg-white border-l-4 border-[#B68A35] rounded-r-2xl shadow-sm border-y border-r border-y-[#F3EFE9] border-r-[#F3EFE9]">
-                    <div className="bg-[#FDF8F0] w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
+                {/* Insights - desktop */}
+                <div className="hidden md:flex lg:col-span-2 rounded-xl gap-5 p-2 sm:p-6 rounded-r-2xl shadow-sm border-y border-r" 
+                    style={{ background: cardBg, borderLeft: `4px solid ${GOLD}`, borderColor: cardBorder, borderLeftColor: GOLD }}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0' }}>
                         <HiOutlineLightBulb className="text-[#B68A35] text-2xl" />
                     </div>
                     <div>
-                        <h4 className="font-bold text-[#1A1A1A] text-base mb-2">
-                            What the outcomes indicate
-                        </h4>
-                        <p className="text-[13px] text-gray-600 leading-relaxed">
+                        <h4 className="font-bold text-base mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>What the outcomes indicate</h4>
+                        <p className="text-[13px] leading-relaxed" style={{ color: bodyColor }}>
                             Emirates Hills was delivered across four phases between 2004 and 2008, with minor
                             timeline adjustments primarily attributed to the scale of custom villa construction and
                             landscaping maturity requirements. Unlike high-volume, standardized developments, each
@@ -190,33 +189,35 @@ const DeliveryTrackRecordView = () => {
                     </div>
                 </div>
 
-                {/* Insights - mobile accordion (visible on phones) */}
+                {/* Insights - mobile accordion */}
                 <div className="md:hidden lg:col-span-2">
-                    <div className="border border-[#F3EFE9] rounded-2xl overflow-hidden">
+                    <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
                         <button
                             className="w-full flex items-center justify-between gap-4 p-4"
                             onClick={() => setOpenInsights(!openInsights)}
                             aria-expanded={openInsights}
+                            style={{ background: cardBg }}
                         >
                             <div className="flex items-center gap-4">
-                                <div className="bg-[#FDF8F0] w-12 h-12 rounded-xl flex items-center justify-center shrink-0">
+                                <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" 
+                                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0' }}>
                                     <HiOutlineLightBulb className="text-[#B68A35] text-2xl" />
                                 </div>
                                 <div className="min-w-0">
-                                    <h4 className="font-bold text-[#1A1A1A] text-base mb-0 truncate">
+                                    <h4 className="font-bold text-base mb-0 truncate" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                                         What the outcomes indicate
                                     </h4>
-                                    <p className="text-[12px] text-gray-500 mt-1">Tap to expand</p>
+                                    <p className="text-[12px] mt-1" style={{ color: subtextColor }}>Tap to expand</p>
                                 </div>
                             </div>
-                            <div className="shrink-0 text-gray-400">
-                                {openInsights ? <HiChevronUp className="text-base" /> : <HiChevronDown className="text-base" />}
+                            <div className="shrink-0">
+                                {openInsights ? <HiChevronUp className="text-base" style={{ color: subtextColor }} /> : <HiChevronDown className="text-base" style={{ color: subtextColor }} />}
                             </div>
                         </button>
 
                         {openInsights && (
-                            <div className="p-4 bg-white border-t border-[#F3EFE9]">
-                                <p className="text-[13px] text-gray-600 leading-relaxed">
+                            <div className="p-4" style={{ borderTop: `1px solid ${cardBorder}`, background: cardBg }}>
+                                <p className="text-[13px] leading-relaxed" style={{ color: bodyColor }}>
                                     Emirates Hills was delivered across four phases between 2004 and 2008, with minor
                                     timeline adjustments primarily attributed to the scale of custom villa construction and
                                     landscaping maturity requirements. Unlike high-volume, standardized developments, each
@@ -235,7 +236,7 @@ const DeliveryTrackRecordView = () => {
 };
 
 // ─── Tab 2: Reality Check ─────────────────────────────────────────────────
-const RealityCheckView = () => {
+const RealityCheckView = ({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) => {
     const [openItem, setOpenItem] = useState(null);
     const [openKeyObs, setOpenKeyObs] = useState(false);
     const [openMeaning, setOpenMeaning] = useState(false);
@@ -274,25 +275,28 @@ const RealityCheckView = () => {
     ];
 
     return (
-        <div className="p-0 bg-white animate-in fade-in duration-500 mt-2 sm:mt-0">
+        <div className="p-0 animate-in fade-in duration-500 mt-2 sm:mt-0" style={{ background: cardBg }}>
             <SectionHeader
                 icon={<HiOutlineShieldCheck className="text-[#B68A35] text-2xl sm:text-3xl" />}
                 title="Original Promises vs. Reality – Emirates Hills Delivery Assessment"
                 subtitle="Marketed Amenities vs. Delivered Infrastructure"
+                isDark={isDark}
+                t={t}
             />
 
             {/* Desktop Table */}
-            <div className="hidden md:block overflow-hidden border border-[#F3EFE9] rounded-2xl bg-white shadow-sm mb-8">
+            <div className="hidden md:block overflow-hidden rounded-2xl shadow-sm mb-8" 
+                style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-[#FAF9F6] border-b border-[#F3EFE9]">
-                            <th className="p-5 text-[12px] font-bold text-gray-700 uppercase tracking-widest w-[30%]">
+                        <tr className="border-b" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', borderColor: cardBorder }}>
+                            <th className="p-5 text-[12px] font-bold uppercase tracking-widest w-[30%]" style={{ color: subtextColor }}>
                                 Amenity (Original Marketing)
                             </th>
-                            <th className="p-5 text-[12px] font-bold text-gray-700 uppercase tracking-widest w-[22%]">
+                            <th className="p-5 text-[12px] font-bold uppercase tracking-widest w-[22%]" style={{ color: subtextColor }}>
                                 Delivered Status
                             </th>
-                            <th className="p-5 text-[12px] font-bold text-gray-700 uppercase tracking-widest">
+                            <th className="p-5 text-[12px] font-bold uppercase tracking-widest" style={{ color: subtextColor }}>
                                 Resident Verification (Aggregated Reviews)
                             </th>
                         </tr>
@@ -301,18 +305,18 @@ const RealityCheckView = () => {
                         {amenities.map((row, i) => (
                             <tr
                                 key={i}
-                                className="border-b border-[#F3EFE9] last:border-0 hover:bg-[#FDF8F0]/20 transition-colors"
+                                className="border-b last:border-0 transition-colors"
+                                style={{ borderColor: cardBorder }}
                             >
                                 <td className="p-5">
                                     <div className="flex items-center gap-3">
-
-                                        <span className="font-semibold text-[#1A1A1A] text-sm">{row.amenity}</span>
+                                        <span className="font-semibold text-sm" style={{ color: isDark ? t.text : '#1A1A1A' }}>{row.amenity}</span>
                                     </div>
                                 </td>
                                 <td className="p-5">
-                                    <span className="text-[#B68A35] font-bold text-sm">{row.status}</span>
+                                    <span className="font-bold text-sm text-[#B68A35]">{row.status}</span>
                                 </td>
-                                <td className="p-5 text-gray-600 text-[13px] leading-relaxed">{row.verification}</td>
+                                <td className="p-5 text-[13px] leading-relaxed" style={{ color: bodyColor }}>{row.verification}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -320,18 +324,19 @@ const RealityCheckView = () => {
             </div>
 
             {/* Mobile Accordion */}
-            <div className="md:hidden border border-[#F3EFE9] rounded-2xl overflow-hidden mb-2 sm:mb-8">
+            <div className="md:hidden rounded-2xl overflow-hidden mb-2 sm:mb-8" style={{ border: `1px solid ${cardBorder}` }}>
                 {amenities.map((row, i) => (
-                    <div key={i} className="border-b border-[#F3EFE9] last:border-0">
+                    <div key={i} className="border-b last:border-0" style={{ borderColor: cardBorder }}>
                         <button
                             className="w-full flex items-center justify-between p-4 text-left gap-2"
                             onClick={() => setOpenItem(openItem === i ? null : i)}
+                            style={{ background: cardBg }}
                         >
                             <div className="flex items-center gap-3 min-w-0">
-                                <div className="w-5 h-5 rounded-full bg-[#EEF6EE] flex items-center justify-center shrink-0">
+                                <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(39,174,96,0.15)' }}>
                                     <CheckIcon />
                                 </div>
-                                <span className="font-semibold text-[#1A1A1A] text-sm leading-tight">
+                                <span className="font-semibold text-sm leading-tight" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                                     {row.amenity}
                                 </span>
                             </div>
@@ -340,16 +345,16 @@ const RealityCheckView = () => {
                                     {row.status}
                                 </span>
                                 {openItem === i ? (
-                                    <HiChevronUp className="text-gray-400 text-base" />
+                                    <HiChevronUp className="text-base" style={{ color: subtextColor }} />
                                 ) : (
-                                    <HiChevronDown className="text-gray-400 text-base" />
+                                    <HiChevronDown className="text-base" style={{ color: subtextColor }} />
                                 )}
                             </div>
                         </button>
                         {openItem === i && (
-                            <div className="px-4 pb-4 space-y-2">
+                            <div className="px-4 pb-4 space-y-2" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
                                 <p className="text-[#B68A35] font-bold text-[11px]">{row.status}</p>
-                                <p className="text-[12px] text-gray-500 leading-relaxed">{row.verification}</p>
+                                <p className="text-[12px] leading-relaxed" style={{ color: bodyColor }}>{row.verification}</p>
                             </div>
                         )}
                     </div>
@@ -357,16 +362,16 @@ const RealityCheckView = () => {
             </div>
 
             {/* Key Observations - desktop */}
-            <div className="hidden md:block bg-[#FDF8F0]/60 border border-[#F3EFE9] rounded-2xl p-2 sm:p-6 mb-6">
+            <div className="hidden md:block rounded-2xl p-2 sm:p-6 mb-6" 
+                style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FDF8F0/60', border: `1px solid ${cardBorder}` }}>
                 <div className="flex gap-3 mb-4 items-center">
-                    <div className="bg-[#FDF8F0] w-9 h-9 rounded-lg flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0' }}>
                         <HiOutlineLightBulb className="text-[#B68A35] text-xl" />
                     </div>
-                    <h4 className="font-bold text-[#B68A35] text-[10px] uppercase tracking-wider">
-                        Key observations
-                    </h4>
+                    <h4 className="font-bold text-[#B68A35] text-[10px] uppercase tracking-wider">Key observations</h4>
                 </div>
-                <p className={sectionBodyClass + " mb-4"}>
+                <p className="text-[13px] md:text-sm leading-relaxed mb-4" style={{ color: bodyColor }}>
                     Emirates Hills represents one of Emaar's earliest ultra-luxury villa communities, delivered
                     before the company's current standardized delivery frameworks were fully established.
                     Despite this, the project achieved a high degree of alignment between marketed promises and
@@ -375,7 +380,7 @@ const RealityCheckView = () => {
                     standards, plot sizes, and amenity access met or exceeded buyer expectations at the time of
                     purchase.
                 </p>
-                <p className={sectionBodyClass}>
+                <p className="text-[13px] md:text-sm leading-relaxed" style={{ color: bodyColor }}>
                     The community's sustained premium positioning in Dubai's luxury resale market—two decades
                     post-handover—further supports the conclusion that delivered value aligned with original
                     representations.
@@ -384,14 +389,16 @@ const RealityCheckView = () => {
 
             {/* Key Observations - mobile accordion */}
             <div className="md:hidden mb-6">
-                <div className="border border-[#F3EFE9] rounded-2xl overflow-hidden">
+                <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
                     <button
                         className="w-full flex items-center justify-between gap-4 p-4"
                         onClick={() => setOpenKeyObs(!openKeyObs)}
                         aria-expanded={openKeyObs}
+                        style={{ background: cardBg }}
                     >
                         <div className="flex items-center gap-3">
-                            <div className="bg-[#FDF8F0] w-9 h-9 rounded-lg flex items-center justify-center shrink-0">
+                            <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+                                style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0' }}>
                                 <HiOutlineLightBulb className="text-[#B68A35] text-xl" />
                             </div>
                             <div className="min-w-0">
@@ -400,14 +407,14 @@ const RealityCheckView = () => {
                                 </h4>
                             </div>
                         </div>
-                        <div className="shrink-0 text-gray-400">
-                            {openKeyObs ? <HiChevronUp className="text-base" /> : <HiChevronDown className="text-base" />}
+                        <div className="shrink-0">
+                            {openKeyObs ? <HiChevronUp className="text-base" style={{ color: subtextColor }} /> : <HiChevronDown className="text-base" style={{ color: subtextColor }} />}
                         </div>
                     </button>
 
                     {openKeyObs && (
-                        <div className="p-4 bg-[#FDF8F0]/60">
-                            <p className={sectionBodyClass + " mb-4"}>
+                        <div className="p-4" style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FDF8F0/60' }}>
+                            <p className="text-[13px] leading-relaxed mb-4" style={{ color: bodyColor }}>
                                 Emirates Hills represents one of Emaar's earliest ultra-luxury villa communities, delivered
                                 before the company's current standardized delivery frameworks were fully established.
                                 Despite this, the project achieved a high degree of alignment between marketed promises and
@@ -416,7 +423,7 @@ const RealityCheckView = () => {
                                 standards, plot sizes, and amenity access met or exceeded buyer expectations at the time of
                                 purchase.
                             </p>
-                            <p className={sectionBodyClass}>
+                            <p className="text-[13px] leading-relaxed" style={{ color: bodyColor }}>
                                 The community's sustained premium positioning in Dubai's luxury resale market—two decades
                                 post-handover—further supports the conclusion that delivered value aligned with original
                                 representations.
@@ -427,10 +434,11 @@ const RealityCheckView = () => {
             </div>
 
             {/* Source */}
-            <div className="flex gap-3 p-3 sm:p-4 bg-[#FAF9F6] border border-[#F3EFE9] rounded-xl items-start">
+            <div className="flex gap-3 p-3 sm:p-4 rounded-xl items-start" 
+                style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', border: `1px solid ${cardBorder}` }}>
                 <HiOutlineDatabase className="text-[#B68A35] text-lg shrink-0" />
-                <p className="text-[10px] sm:text-[11px] text-gray-500 leading-snug">
-                    <span className="font-bold text-gray-700">Source:</span> Emaar original brochures
+                <p className="text-[10px] sm:text-[11px] leading-snug" style={{ color: subtextColor }}>
+                    <span className="font-bold" style={{ color: isDark ? t.textSecondary : '#374151' }}>Source:</span> Emaar original brochures
                     (2002–2003 archives), DLD handover documentation, aggregated resident reviews (Google,
                     community forums, property platforms), Q1 2025–Q1 2026.
                 </p>
@@ -438,262 +446,8 @@ const RealityCheckView = () => {
         </div>
     );
 };
-
-// ─── Tab 3: Performance ───────────────────────────────────────────────────
-const PerformanceView = () => {
-    const [openItem, setOpenItem] = useState(0);
-    const [openMeaning, setOpenMeaning] = useState(false);
-
-
-
-    const services = [
-        {
-            area: "Snagging & Defect Rectification",
-            period: "2004–2010",
-            icon: (
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-            ),
-            highlight: "14–21 days avg. · <1% structural defects",
-            performance:
-                "Warranty claims processed within 14–21 days on average; structural defects rare (<1% of villas).",
-            feedback:
-                "Early-phase residents report efficient resolution; later phases benefited from refined processes.",
-        },
-        {
-            area: "Long-Term Maintenance",
-            period: "2010–Present",
-            icon: <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />,
-            highlight: null,
-            performance:
-                "Emaar Community Management handles landscaping, security, and common-area upkeep; annual service charge reviews published via owners' association.",
-            feedback:
-                "Service charge increases (avg. 3–5% annually) align with amenity upgrades; transparency rated 'high' by long-term owners.",
-        },
-        {
-            area: "Community Upgrades & Refreshes",
-            period: "2015–2022",
-            icon: <path d="M23 6l-9.5 9.5-5-5L1 18M17 6h6v6" />,
-            highlight: null,
-            performance:
-                "Golf course refurbishment (2015), lake filtration system upgrade (2019), security technology refresh (2022).",
-            feedback:
-                "Residents note proactive investment in maintaining community standards; minimal disruption during upgrade works.",
-        },
-        {
-            area: "Resale & Title Transfer Support",
-            period: "Ongoing",
-            icon: (
-                <>
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                </>
-            ),
-            highlight: null,
-            performance:
-                "DLD-registered freehold titles; Emaar facilitates NOC issuance for resale transactions within 5–7 business days.",
-            feedback:
-                "Resale process rated 'smooth' by 91% of verified transaction reviews; clear documentation standards.",
-        },
-    ];
-
-    return (
-        <div className="p-0 bg-white animate-in fade-in duration-500 mt-2 sm:mt-0">
-            <SectionHeader
-                icon={
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B68A35" strokeWidth="2">
-                        <path d="M3 3v18h18" />
-                        <path d="m19 9-5 5-4-4-3 3" />
-                    </svg>
-                }
-                title="Post-Handover Performance"
-                subtitle="After-Sales Service & Warranty Handling · 2004–Present"
-            />
-
-
-
-            {/* Desktop Table */}
-            <div className="hidden md:block overflow-hidden border border-[#F3EFE9] rounded-2xl bg-white shadow-sm mb-8">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="bg-[#FAF9F6] border-b border-[#F3EFE9]">
-                            <th className="p-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest w-[28%]">
-                                Service Area
-                            </th>
-                            <th className="p-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                Performance Summary
-                            </th>
-                            <th className="p-5 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                Resident Feedback Pattern
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {services.map((row, i) => (
-                            <tr
-                                key={i}
-                                className="border-b border-[#F3EFE9] last:border-0 hover:bg-[#FDF8F0]/20 transition-colors"
-                            >
-                                <td className="p-5">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-8 h-8 rounded-lg bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center shrink-0">
-                                            <svg
-                                                width="15"
-                                                height="15"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="#B68A35"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            >
-                                                {row.icon}
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <p className="font-semibold text-[#1A1A1A] text-sm leading-tight">
-                                                {row.area}
-                                            </p>
-                                            <p className="text-[10px] text-gray-400 mt-0.5">{row.period}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="p-5 text-gray-600 text-[13px] leading-relaxed">{row.performance}</td>
-                                <td className="p-5 text-gray-500 text-[13px] leading-relaxed">{row.feedback}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
-            {/* Mobile Accordion */}
-            <div className="md:hidden border border-[#F3EFE9] rounded-2xl overflow-hidden mb-2 sm:mb-8">
-                {services.map((row, i) => (
-                    <div key={i} className="border-b border-[#F3EFE9] last:border-0">
-                        <button
-                            className="w-full flex items-center justify-between p-4 text-left gap-3"
-                            onClick={() => setOpenItem(openItem === i ? null : i)}
-                        >
-                            <div className="flex items-center gap-3 min-w-0">
-                                <div className="w-8 h-8 rounded-lg bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center shrink-0">
-                                    <svg
-                                        width="14"
-                                        height="14"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="#B68A35"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        {row.icon}
-                                    </svg>
-                                </div>
-                                <div className="min-w-0">
-                                    <p className="font-semibold text-[#1A1A1A] text-sm leading-tight">{row.area}</p>
-                                    <p className="text-[10px] text-gray-400">{row.period}</p>
-                                </div>
-                            </div>
-                            {openItem === i ? (
-                                <HiChevronUp className="text-gray-400 shrink-0" />
-                            ) : (
-                                <HiChevronDown className="text-gray-400 shrink-0" />
-                            )}
-                        </button>
-                        {openItem === i && (
-                            <div className="px-4 pb-4 space-y-3">
-                                <div>
-                                    <p className="text-[10px] font-bold text-gray-600 uppercase mb-1">
-                                        Performance Summary
-                                    </p>
-                                    <p className="text-[12px] text-gray-600 leading-relaxed">{row.performance}</p>
-                                </div>
-                                <div>
-                                    <p className="text-[10px] font-bold text-gray-600 uppercase mb-1">
-                                        Resident Feedback
-                                    </p>
-                                    <p className="text-[12px] text-gray-500 leading-relaxed">{row.feedback}</p>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
-
-            {/* What this means - desktop */}
-            <div className="hidden md:block bg-[#FDF8F0]/60 border border-[#F3EFE9] rounded-2xl p-4 sm:p-6 mb-6">
-                <div className="flex gap-3 mb-4 items-center">
-                    <div className="bg-[#FDF8F0] w-9 h-9 rounded-lg flex items-center justify-center shrink-0">
-                        <HiOutlineLightBulb className="text-[#B68A35] text-xl" />
-                    </div>
-                    <h4 className="font-bold text-[#B68A35] text-[10px] uppercase tracking-wider">
-                        What this means for prospective buyers
-                    </h4>
-                </div>
-                <p className={sectionBodyClass}>
-                    Emirates Hills benefits from two decades of operational history, providing verified data on
-                    Emaar's post-handover performance in an ultra-luxury context. After-sales service during
-                    the initial warranty period was responsive, with structural issues being exceptionally rare.
-                    Long-term community management has maintained high standards through scheduled upgrades and
-                    transparent service charge reviews. For resale buyers, the established title transfer
-                    process and clear documentation requirements reduce transaction friction compared to newer,
-                    less-mature communities.
-                </p>
-            </div>
-
-            {/* What this means - mobile accordion */}
-            <div className="md:hidden mb-6">
-                <div className="border border-[#F3EFE9] rounded-2xl overflow-hidden">
-                    <button
-                        className="w-full flex items-center justify-between gap-4 p-4"
-                        onClick={() => setOpenMeaning(!openMeaning)}
-                        aria-expanded={openMeaning}
-                    >
-                        <div className="flex items-center gap-3">
-                            <div className="bg-[#FDF8F0] w-9 h-9 rounded-lg flex items-center justify-center shrink-0">
-                                <HiOutlineLightBulb className="text-[#B68A35] text-xl" />
-                            </div>
-                            <div className="min-w-0">
-                                <h4 className="font-bold text-[#B68A35] text-[10px] uppercase tracking-wider mb-0">
-                                    What this means for prospective buyers
-                                </h4>
-                            </div>
-                        </div>
-                        <div className="shrink-0 text-gray-400">
-                            {openMeaning ? <HiChevronUp className="text-base" /> : <HiChevronDown className="text-base" />}
-                        </div>
-                    </button>
-
-                    {openMeaning && (
-                        <div className="p-4 bg-[#FDF8F0]/60">
-                            <p className={sectionBodyClass}>
-                                Emirates Hills benefits from two decades of operational history, providing verified data on
-                                Emaar's post-handover performance in an ultra-luxury context. After-sales service during
-                                the initial warranty period was responsive, with structural issues being exceptionally rare.
-                                Long-term community management has maintained high standards through scheduled upgrades and
-                                transparent service charge reviews. For resale buyers, the established title transfer
-                                process and clear documentation requirements reduce transaction friction compared to newer,
-                                less-mature communities.
-                            </p>
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* Source */}
-            <div className="flex gap-3 p-3 sm:p-4 bg-[#FAF9F6] border border-[#F3EFE9] rounded-xl items-start">
-                <HiOutlineDatabase className="text-[#B68A35] text-lg shrink-0 mt-0.5" />
-                <p className="text-[10px] sm:text-[11px] text-gray-500 leading-snug">
-                    <span className="font-bold text-gray-700">Source:</span> Emaar Community Management annual
-                    reports (2010–2025), DLD transaction records via DXBInteract.com, aggregated resident
-                    reviews (Q1 2025–Q1 2026).
-                </p>
-            </div>
-        </div>
-    );
-};
-
 // ─── Strengths & Considerations Section ───────────────────────────────────
-const StrengthsConsiderationsSection = () => {
+const StrengthsConsiderationsSection = ({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) => {
     const [mobileTab, setMobileTab] = useState("strengths");
     const [isOpen, setIsOpen] = useState(false);
 
@@ -759,11 +513,13 @@ const StrengthsConsiderationsSection = () => {
     ];
 
     return (
-        <div className="bg-white border border-[#F3EFE9] rounded-2xl shadow-sm overflow-hidden mt-6">
+        <div className="rounded-2xl shadow-sm overflow-hidden mt-6" 
+            style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
             {/* Panel Header (desktop) */}
-            <div className="hidden md:block p-2 sm:p-6 lg:p-8 border-b border-[#F3EFE9]">
+            <div className="hidden md:block p-2 sm:p-6 lg:p-8" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                 <div className="flex items-start gap-4">
-                    <div className={sectionIconShellClass}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <svg
                             width="22"
                             height="22"
@@ -776,24 +532,25 @@ const StrengthsConsiderationsSection = () => {
                         </svg>
                     </div>
                     <div>
-                        <h3 className={sectionTitleClass}>Strengths & Considerations</h3>
-                        <p className={sectionSubtitleClass}>Post-Completion Perspective</p>
-                        <p className="text-[11px] text-gray-400 mt-1">
-                            Post-completion perspective based on verified evidence
-                        </p>
+                        <h3 className="font-semibold font-[Merriweather] tabular-nums text-md sm:text-xl leading-tight" 
+                            style={{ color: isDark ? t.text : '#1A1A1A' }}>Strengths & Considerations</h3>
+                        <p className="text-[#B68A35] text-[10px] md:text-xs font-bold uppercase tracking-wider mt-1">Post-Completion Perspective</p>
+                        <p className="text-[11px] mt-1" style={{ color: subtextColor }}>Post-completion perspective based on verified evidence</p>
                     </div>
                 </div>
             </div>
 
             {/* Mobile accordion header */}
-            <div className="md:hidden border-b border-[#F3EFE9]">
+            <div className="md:hidden" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                 <button
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setIsOpen(prev => !prev)}
                     className="w-full p-4 flex items-start gap-4"
+                    style={{ background: cardBg }}
                 >
-                    <div className={sectionIconShellClass}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <svg
                             width="22"
                             height="22"
@@ -806,8 +563,9 @@ const StrengthsConsiderationsSection = () => {
                         </svg>
                     </div>
                     <div className="flex-1 text-left">
-                        <h3 className={sectionTitleClass}>Strengths & Considerations</h3>
-                        <p className={sectionSubtitleClass}>Post-Completion Perspective</p>
+                        <h3 className="font-semibold font-[Merriweather] tabular-nums text-md sm:text-xl leading-tight" 
+                            style={{ color: isDark ? t.text : '#1A1A1A' }}>Strengths & Considerations</h3>
+                        <p className="text-[#B68A35] text-[10px] md:text-xs font-bold uppercase tracking-wider mt-1">Post-Completion Perspective</p>
                     </div>
                     <svg
                         width="20"
@@ -826,51 +584,50 @@ const StrengthsConsiderationsSection = () => {
             {/* Body (visible on desktop or when mobile accordion is open) */}
             <div className={`${isOpen ? "block" : "hidden"} md:block`}>
                 {/* Mobile Tab Toggle */}
-                <div className="md:hidden flex border-b border-[#F3EFE9]">
+                <div className="md:hidden flex" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                     <button
                         onClick={() => setMobileTab("strengths")}
-                        className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors ${mobileTab === "strengths"
-                            ? "text-[#27AE60] border-b-2 border-[#27AE60] bg-[#F7FAF7]"
-                            : "text-gray-400 hover:text-gray-500"
-                            }`}
+                        className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                            mobileTab === "strengths"
+                                ? "text-[#27AE60] border-b-2 border-[#27AE60]"
+                                : "text-gray-400 hover:text-gray-500"
+                        }`}
+                        style={mobileTab === "strengths" && isDark ? { background: 'rgba(39,174,96,0.1)' } : { background: cardBg }}
                     >
                         Strengths
                     </button>
                     <button
                         onClick={() => setMobileTab("considerations")}
-                        className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors ${mobileTab === "considerations"
-                            ? "text-[#E67E22] border-b-2 border-[#E67E22] bg-[#FFF9F5]"
-                            : "text-gray-400 hover:text-gray-500"
-                            }`}
+                        className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                            mobileTab === "considerations"
+                                ? "text-[#E67E22] border-b-2 border-[#E67E22]"
+                                : "text-gray-400 hover:text-gray-500"
+                        }`}
+                        style={mobileTab === "considerations" && isDark ? { background: 'rgba(230,126,34,0.1)' } : { background: cardBg }}
                     >
                         Considerations
                     </button>
                 </div>
 
                 {/* Two-column grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#F3EFE9]">
+                <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0" style={{ borderColor: cardBorder }}>
                     {/* Strengths */}
-                    <div
-                        className={`p-4 sm:p-6 lg:p-8 ${mobileTab !== "strengths" ? "hidden md:block" : ""
-                            }`}
-                    >
+                    <div className={`p-4 sm:p-6 lg:p-8 ${mobileTab !== "strengths" ? "hidden md:block" : ""}`}
+                        style={{ borderRight: `1px solid ${cardBorder}` }}>
                         <div className="flex items-center gap-2 mb-6">
-                            <div className="w-5 h-5 rounded-full bg-[#EEF6EE] flex items-center justify-center shrink-0">
+                            <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(39,174,96,0.15)' }}>
                                 <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#27AE60" strokeWidth="3">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                             </div>
-                            <span className="text-[10px] font-bold text-[#27AE60] uppercase tracking-widest">
-                                Strengths Demonstrated at Emirates Hills
-                            </span>
+                            <span className="text-[10px] font-bold text-[#27AE60] uppercase tracking-widest">Strengths Demonstrated at Emirates Hills</span>
                         </div>
                         <div className="space-y-4">
                             {strengths.map((s, i) => (
-                                <div
-                                    key={i}
-                                    className="flex gap-4 p-4 bg-[#F7FAF7] border border-[#EEF6EE] rounded-xl"
-                                >
-                                    <div className="w-10 h-10 rounded-xl bg-white border border-[#EEF6EE] flex items-center justify-center shrink-0 shadow-sm">
+                                <div key={i} className="flex gap-4 p-4 rounded-xl"
+                                    style={{ background: isDark ? 'rgba(39,174,96,0.08)' : '#F7FAF7', border: `1px solid ${isDark ? 'rgba(39,174,96,0.2)' : '#EEF6EE'}` }}>
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
+                                        style={{ background: cardBg, border: `1px solid ${isDark ? 'rgba(39,174,96,0.2)' : '#EEF6EE'}` }}>
                                         <svg
                                             width="17"
                                             height="17"
@@ -885,10 +642,10 @@ const StrengthsConsiderationsSection = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-[#1A1A1A] text-sm mb-1 leading-tight">
+                                        <h4 className="font-bold text-sm mb-1 leading-tight" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                                             {s.title}
                                         </h4>
-                                        <p className="text-[12px] text-gray-500 leading-relaxed">{s.evidence}</p>
+                                        <p className="text-[12px] leading-relaxed" style={{ color: bodyColor }}>{s.evidence}</p>
                                     </div>
                                 </div>
                             ))}
@@ -896,27 +653,21 @@ const StrengthsConsiderationsSection = () => {
                     </div>
 
                     {/* Considerations */}
-                    <div
-                        className={`p-4 sm:p-6 lg:p-8 ${mobileTab !== "considerations" ? "hidden md:block" : ""
-                            }`}
-                    >
+                    <div className={`p-4 sm:p-6 lg:p-8 ${mobileTab !== "considerations" ? "hidden md:block" : ""}`}>
                         <div className="flex items-center gap-2 mb-6">
-                            <div className="w-5 h-5 rounded-full bg-[#FFF4ED] flex items-center justify-center shrink-0">
+                            <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: 'rgba(230,126,34,0.15)' }}>
                                 <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#E67E22" strokeWidth="3">
                                     <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
                                 </svg>
                             </div>
-                            <span className="text-[10px] font-bold text-[#E67E22] uppercase tracking-widest">
-                                Areas for Consideration (Based on Resident Feedback)
-                            </span>
+                            <span className="text-[10px] font-bold text-[#E67E22] uppercase tracking-widest">Areas for Consideration (Based on Resident Feedback)</span>
                         </div>
                         <div className="space-y-4">
                             {considerations.map((c, i) => (
-                                <div
-                                    key={i}
-                                    className="flex gap-4 p-4 bg-[#FFF9F5] border border-[#FDE8D3] rounded-xl"
-                                >
-                                    <div className="w-10 h-10 rounded-xl bg-white border border-[#FDE8D3] flex items-center justify-center shrink-0 shadow-sm">
+                                <div key={i} className="flex gap-4 p-4 rounded-xl"
+                                    style={{ background: isDark ? 'rgba(230,126,34,0.08)' : '#FFF9F5', border: `1px solid ${isDark ? 'rgba(230,126,34,0.2)' : '#FDE8D3'}` }}>
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
+                                        style={{ background: cardBg, border: `1px solid ${isDark ? 'rgba(230,126,34,0.2)' : '#FDE8D3'}` }}>
                                         <svg
                                             width="17"
                                             height="17"
@@ -931,10 +682,10 @@ const StrengthsConsiderationsSection = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-[#1A1A1A] text-sm mb-1 leading-tight">
+                                        <h4 className="font-bold text-sm mb-1 leading-tight" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                                             {c.title}
                                         </h4>
-                                        <p className="text-[12px] text-gray-500 leading-relaxed">{c.context}</p>
+                                        <p className="text-[12px] leading-relaxed" style={{ color: bodyColor }}>{c.context}</p>
                                     </div>
                                 </div>
                             ))}
@@ -944,10 +695,11 @@ const StrengthsConsiderationsSection = () => {
 
                 {/* Source */}
                 <div className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6 pt-2">
-                    <div className="flex gap-3 p-3 sm:p-4 bg-[#FAF9F6] border border-[#F3EFE9] rounded-xl items-start">
+                    <div className="flex gap-3 p-3 sm:p-4 rounded-xl items-start"
+                        style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', border: `1px solid ${cardBorder}` }}>
                         <HiOutlineDatabase className="text-[#B68A35] text-lg shrink-0 mt-0.5" />
-                        <p className="text-[10px] sm:text-[11px] text-gray-500 leading-snug">
-                            <span className="font-bold text-gray-700">Source:</span> Aggregated resident reviews
+                        <p className="text-[10px] sm:text-[11px] leading-snug" style={{ color: subtextColor }}>
+                            <span className="font-bold" style={{ color: isDark ? t.textSecondary : '#374151' }}>Source:</span> Aggregated resident reviews
                             (Google, community forums, property platforms), Emaar Community Management financial
                             summaries, DLD service charge records via DXBInteract.com.
                         </p>
@@ -959,16 +711,14 @@ const StrengthsConsiderationsSection = () => {
 };
 
 // ─── Verification Framework Section ───────────────────────────────────────
-const VerificationFrameworkSection = () => {
+const VerificationFrameworkSection = ({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) => {
     const [isOpen, setIsOpen] = useState(false);
     const steps = [
         {
             num: "01",
             title: "Verify DLD Transaction History",
             desc: "Request the full DLD transaction history for the specific plot via the Dubai REST app to verify ownership chain, encumbrances, and past sale prices.",
-            icon: (
-                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            ),
+            icon: <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />,
         },
         {
             num: "02",
@@ -1019,34 +769,40 @@ const VerificationFrameworkSection = () => {
     ];
 
     return (
-        <div className="bg-white border border-[#F3EFE9] rounded-2xl shadow-sm overflow-hidden mt-6">
+        <div className="rounded-2xl shadow-sm overflow-hidden mt-6" 
+            style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
             {/* Header (desktop) */}
-            <div className="hidden md:block p-4 sm:p-6 lg:p-8 border-b border-[#F3EFE9]">
-                <div className={sectionHeaderClass + " mb-0"}>
-                    <div className={sectionIconShellClass}>
+            <div className="hidden md:block p-4 sm:p-6 lg:p-8" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+                <div className="flex items-start gap-4 mb-0">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <HiOutlineShieldCheck className="text-[#B68A35] text-2xl" />
                     </div>
                     <div>
-                        <h3 className={sectionTitleClass}>Verification Framework for Prospective Buyers</h3>
-                        <p className={sectionSubtitleClass}>Before Purchasing a Resale Unit at Emirates Hills</p>
+                        <h3 className="font-semibold font-[Merriweather] tabular-nums text-md sm:text-xl leading-tight" 
+                            style={{ color: isDark ? t.text : '#1A1A1A' }}>Verification Framework for Prospective Buyers</h3>
+                        <p className="text-[#B68A35] text-[10px] md:text-xs font-bold uppercase tracking-wider mt-1">Before Purchasing a Resale Unit at Emirates Hills</p>
                     </div>
                 </div>
             </div>
 
             {/* Mobile accordion header */}
-            <div className="md:hidden border-b border-[#F3EFE9]">
+            <div className="md:hidden" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                 <button
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setIsOpen(prev => !prev)}
                     className="w-full p-4 flex items-start gap-4"
+                    style={{ background: cardBg }}
                 >
-                    <div className={sectionIconShellClass}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <HiOutlineShieldCheck className="text-[#B68A35] text-2xl" />
                     </div>
                     <div className="flex-1 text-left">
-                        <h3 className={sectionTitleClass}>Verification Framework for Prospective Buyers</h3>
-                        <p className={sectionSubtitleClass}>Before Purchasing a Resale Unit at Emirates Hills</p>
+                        <h3 className="font-semibold font-[Merriweather] tabular-nums text-md sm:text-xl leading-tight" 
+                            style={{ color: isDark ? t.text : '#1A1A1A' }}>Verification Framework for Prospective Buyers</h3>
+                        <p className="text-[#B68A35] text-[10px] md:text-xs font-bold uppercase tracking-wider mt-1">Before Purchasing a Resale Unit at Emirates Hills</p>
                     </div>
                     <svg
                         width="20"
@@ -1071,7 +827,8 @@ const VerificationFrameworkSection = () => {
                             <div key={i} className="flex flex-row lg:flex-col gap-4 lg:gap-3">
                                 {/* Icon + number stacked on desktop, side-by-side on mobile */}
                                 <div className="flex lg:flex-col items-center lg:items-start gap-3 shrink-0">
-                                    <div className="w-10 h-10 rounded-xl bg-[#FDF8F0] border border-[#B68A35]/10 flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+                                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                                         <svg
                                             width="18"
                                             height="18"
@@ -1090,17 +847,18 @@ const VerificationFrameworkSection = () => {
                                     </span>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-[#1A1A1A] text-sm mb-1.5 leading-tight">
+                                    <h4 className="font-bold text-sm mb-1.5 leading-tight" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                                         {step.title}
                                     </h4>
-                                    <p className="text-[12px] text-gray-500 leading-relaxed">{step.desc}</p>
+                                    <p className="text-[12px] leading-relaxed" style={{ color: bodyColor }}>{step.desc}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Disclaimer inside framework */}
-                    <div className="mt-8 flex gap-3 p-4 bg-[#FFF9F5] border border-[#FDE8D3] rounded-xl items-start">
+                    <div className="mt-8 flex gap-3 p-4 rounded-xl items-start"
+                        style={{ background: isDark ? 'rgba(230,126,34,0.08)' : '#FFF9F5', border: `1px solid ${isDark ? 'rgba(230,126,34,0.2)' : '#FDE8D3'}` }}>
                         <svg
                             width="18"
                             height="18"
@@ -1116,8 +874,8 @@ const VerificationFrameworkSection = () => {
                             <line x1="12" y1="9" x2="12" y2="13" />
                             <line x1="12" y1="17" x2="12.01" y2="17" />
                         </svg>
-                        <p className="text-[11px] text-gray-500 leading-relaxed">
-                            <span className="font-bold text-gray-700">Disclaimer:</span> All information is for
+                        <p className="text-[11px] leading-relaxed" style={{ color: subtextColor }}>
+                            <span className="font-bold" style={{ color: isDark ? t.textSecondary : '#374151' }}>Disclaimer:</span> All information is for
                             educational and research purposes only. PropertyIntel.ae does not provide financial,
                             legal, or investment advice. Market values, service charges, and resident feedback are
                             estimates based on aggregated third-party sources and are subject to change. Verify all
@@ -1133,7 +891,15 @@ const VerificationFrameworkSection = () => {
 
 // ─── Main Section Component ────────────────────────────────────────────────
 export default function Section3() {
+    const { t, isDark, dark } = useThemeStyles();
     const [activeTab, setActiveTab] = useState("delivery");
+
+    // Card colors matching TopDevelopersSection pattern
+    const cardBg = isDark ? "#2a2d31" : "#FFFFFF";
+    const cardBorder = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)";
+    const sectionBg = isDark ? t.bg : "#FBF9F6";
+    const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
+    const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
 
     const tabs = [
         {
@@ -1163,7 +929,7 @@ export default function Section3() {
     ];
 
     return (
-        <section className="w-full bg-[#FBF9F6] py-5 font-sans selection:bg-[#B68A35]/20">
+        <section className="w-full py-5 font-sans selection:bg-[#B68A35]/20" style={{ background: sectionBg }}>
             {/* ── Hero Header ──────────────────────────────────────────────────── */}
             <div className="relative w-full h-80 lg:h-100 flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -1174,18 +940,19 @@ export default function Section3() {
                         className="object-cover object-center grayscale-10"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent" />
+                    <div className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`} 
+                        style={isDark ? dark?.heroOverlayLeft : undefined} />
                 </div>
 
                 <div className="relative z-10 max-w-350 mx-auto px-4 sm:px-6 w-full">
-                    <h2 className="text-3xl lg:text-5xl font-serif text-[#1A1A1A] mb-0.5">
+                    <h2 className="text-3xl lg:text-5xl font-serif mb-0.5" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                         Emaar Properties –
                     </h2>
-                    <h2 className="text-3xl lg:text-5xl font-serif text-[#1A1A1A] mb-0.5">
+                    <h2 className="text-3xl lg:text-5xl font-serif mb-0.5" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                         Developer{" "}
                         <span className="text-[#B68A35]">Track Record</span> for Emirates Hills
                     </h2>
-                    <p className="max-w-4xl text-sm lg:text-base text-gray-600 leading-relaxed font-medium">
+                    <p className="max-w-4xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
                         Delivery timelines, project outcomes, and resident feedback aggregated from{" "}
                         <span className="font-bold text-[#B68A35]">Dubai Land Department (DLD)</span> transaction
                         records, DXBInteract.com (official DLD partner), and verified resident reviews across
@@ -1200,31 +967,28 @@ export default function Section3() {
             {/* ── Content Area ─────────────────────────────────────────────────── */}
             <div className="max-w-350 mx-auto px-2">
                 {/* Tab Card */}
-                <div className="bg-white rounded-xl border border-[#F3EFE9] overflow-hidden shadow-sm">
+                <div className="rounded-xl shadow-sm overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                     {/* Tab Navigation */}
-                    <div className="flex border-b border-[#F3EFE9] w-full">
+                    <div className="flex" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`
-                  flex-1
-                  flex flex-col lg:flex-row items-center justify-center
-                  gap-1 lg:gap-3
-                  py-3 lg:py-6
-                  px-1 lg:px-4
-                  transition-all relative
-                  ${activeTab === tab.id
-                                        ? "text-[#B68A35] bg-[#FDF8F0]/50"
-                                        : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
-                                    }
-                `}
+                                    flex-1 flex flex-col lg:flex-row items-center justify-center
+                                    gap-1 lg:gap-3 py-3 lg:py-6 px-1 lg:px-4 transition-all relative
+                                    ${activeTab === tab.id && !isDark ? "text-[#B68A35] bg-[#FDF8F0]/50" : !isDark && activeTab !== tab.id ? "text-gray-400 hover:text-gray-600 hover:bg-gray-50" : ""}
+                                `}
+                                style={
+                                    isDark && activeTab === tab.id
+                                        ? { color: GOLD, background: 'rgba(182,138,53,0.08)' }
+                                        : isDark && activeTab !== tab.id
+                                        ? { color: subtextColor, background: 'transparent' }
+                                        : undefined
+                                }
                             >
                                 <span className="text-base lg:text-xl">{tab.icon}</span>
-                                <span
-                                    className={`text-[10px] lg:text-sm tracking-wide whitespace-nowrap ${activeTab === tab.id ? "font-bold" : "font-medium"
-                                        }`}
-                                >
+                                <span className={`text-[10px] lg:text-sm tracking-wide whitespace-nowrap ${activeTab === tab.id ? "font-bold" : "font-medium"}`}>
                                     {tab.label}
                                 </span>
                                 {activeTab === tab.id && (
@@ -1235,26 +999,27 @@ export default function Section3() {
                     </div>
 
                     {/* Tab Content */}
-                    <div className="p-2 sm:p-6 lg:p-10 bg-white min-h-100 lg:min-h-125">
-                        {activeTab === "delivery" && <DeliveryTrackRecordView />}
-                        {activeTab === "reality" && <RealityCheckView />}
-                        {activeTab === "performance" && <PerformanceView />}
+                    <div className="p-2 sm:p-6 lg:p-10 min-h-100 lg:min-h-125" style={{ background: cardBg }}>
+                        {activeTab === "delivery" && <DeliveryTrackRecordView isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />}
+                        {activeTab === "reality" && <RealityCheckView isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />}
+                        {activeTab === "performance" && <PerformanceView isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />}
                     </div>
                 </div>
 
                 {/* Strengths & Considerations */}
-                <StrengthsConsiderationsSection />
+                <StrengthsConsiderationsSection isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />
 
                 {/* Verification Framework */}
-                <VerificationFrameworkSection />
+                <VerificationFrameworkSection isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />
 
                 {/* Global Disclaimer Footer */}
                 <div className="p-2">
-                    <div className="mt-6 flex items-start gap-4 p-2 sm:p-5 bg-[#FDF8F0] border border-[#B68A35]/10 rounded-xl">
+                    <div className="mt-6 flex items-start gap-4 p-2 sm:p-5 rounded-xl" 
+                        style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
                         <LuInfo className="text-[#B68A35] text-xl shrink-0 mt-0.5" />
-                        <p className="text-[11px] text-gray-500 leading-relaxed uppercase tracking-wider font-bold">
+                        <p className="text-[11px] uppercase tracking-wider font-bold leading-relaxed" style={{ color: subtextColor }}>
                             Disclaimer:{" "}
-                            <span className="font-medium normal-case">
+                            <span className="font-medium normal-case" style={{ color: bodyColor }}>
                                 All data is for educational and research purposes only. PropertyIntel.ae does not
                                 provide financial, legal, or investment advice. Market values, rental yields, and
                                 transaction data are estimates based on aggregated third-party sources and are subject

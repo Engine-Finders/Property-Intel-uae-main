@@ -18,6 +18,10 @@ import {
 import { LuInfo } from "react-icons/lu";
 import { GrSun } from "react-icons/gr";
 import Image from "next/image";
+import { useThemeStyles } from '@/app/components/context/themeStyles';
+
+const GOLD = "#B68A35";
+const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
@@ -154,42 +158,47 @@ const lessonsLearned = [
 
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
 
-function SourceNote({ text }) {
+function SourceNote({ text, isDark, bodyColor, subtextColor }) {
   return (
     <div className="flex gap-3 items-start mt-4 px-4 pb-4">
       <GrSun className="w-4 h-4 text-[#B68A35] shrink-0 mt-0.5" />
-      <p className="text-xs text-slate-500 leading-relaxed">{text}</p>
+      <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>{text}</p>
     </div>
   );
 }
 
-function InsightBox({ icon: Icon, title, children }) {
+function InsightBox({ icon: Icon, title, children, isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
   return (
-    <div className="mt-5 rounded-2xl border border-[#F2EEE8] bg-[#FAF9F6] p-4 sm:p-5 flex gap-3 items-start">
-      <div className="w-9 h-9 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+    <div className="mt-5 rounded-2xl p-4 sm:p-5 flex gap-3 items-start" 
+      style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#FAF9F6' }}>
+      <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+        style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
         <Icon className="w-5 h-5 text-[#B68A35]" />
       </div>
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
           {title}
         </p>
-        <p className="text-sm text-slate-600 leading-relaxed">{children}</p>
+        <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>{children}</p>
       </div>
     </div>
   );
 }
 
-function AccordionRow({ title, children, points, isOpen, onToggle }) {
+function AccordionRow({ title, children, points, isOpen, onToggle, isDark, cardBorder, bodyColor, subtextColor, t }) {
   return (
-    <div className="border-b border-[#F2EEE8] last:border-b-0">
+    <div className="border-b last:border-b-0" style={{ borderColor: cardBorder }}>
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full flex gap-4 items-center p-4 text-left transition-colors ${isOpen ? "bg-[#FAF9F6]" : "bg-white hover:bg-[#FCFAF5]"
-          }`}
+        className={`w-full flex gap-4 items-center p-4 text-left transition-colors ${isOpen ? "" : ""}`}
+        style={{ 
+          background: isOpen && isDark ? 'rgba(255,255,255,0.04)' : isOpen ? '#FAF9F6' : 'transparent',
+          hover: { background: isDark ? 'rgba(255,255,255,0.02)' : '#FCFAF5' }
+        }}
       >
         <span className="w-2.5 h-2.5 rounded-full bg-[#B68A35] shrink-0 mt-0.5" />
-        <span className="font-semibold text-sm sm:text-[15px] text-slate-800 flex-1">
+        <span className="font-semibold text-sm sm:text-[15px] flex-1" style={{ color: isDark ? t.text : '#1A1A1A' }}>
           {title}
         </span>
         <span className="ml-auto shrink-0">
@@ -201,14 +210,14 @@ function AccordionRow({ title, children, points, isOpen, onToggle }) {
         </span>
       </button>
       {isOpen && (
-        <div className="px-4 pb-4 bg-[#FAF9F6]">
-          {children && <p className="text-sm text-slate-600 leading-relaxed pl-5 mb-2">{children}</p>}
+        <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
+          {children && <p className="text-sm leading-relaxed pl-5 mb-2" style={{ color: bodyColor }}>{children}</p>}
           {points && (
             <ul className="space-y-2 pl-5">
               {points.map((point, idx) => (
                 <li key={idx} className="flex gap-2 items-start">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-1.5" />
-                  <span className="text-sm text-slate-600 leading-relaxed">{point}</span>
+                  <span className="text-sm leading-relaxed" style={{ color: bodyColor }}>{point}</span>
                 </li>
               ))}
             </ul>
@@ -221,11 +230,11 @@ function AccordionRow({ title, children, points, isOpen, onToggle }) {
 
 // ─── TAB CONTENT COMPONENTS ──────────────────────────────────────────────────
 
-function RentalYieldsTab() {
+function RentalYieldsTab({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
   return (
     <div>
       <div className="px-4 sm:px-5 pt-5 pb-3">
-        <h3 className="text-xl sm:text-2xl font-serif text-[#1A1A1A] leading-snug">
+        <h3 className="text-xl sm:text-2xl font-serif leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>
           Actual Achieved Rental Yields{" "}
           <span className="text-[#B68A35]">
             — Last 12 Months (Verified Transactions)
@@ -233,81 +242,78 @@ function RentalYieldsTab() {
         </h3>
       </div>
 
-      <div className="rounded-2xl border border-[#F2EEE8] shadow-[0_4px_25px_rgba(0,0,0,0.06)] bg-white overflow-hidden mx-4 sm:mx-5">
+      <div className="rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden mx-4 sm:mx-5" 
+        style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
         {/* Table Header */}
-        <div className="hidden sm:grid sm:grid-cols-4 bg-[#FAF9F6] border-b border-[#F2EEE8] px-4 py-3">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Unit Configuration
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Avg. Annual Rent (Verified)
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Typical Lease Term
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Implied Gross Yield*
-          </p>
+        <div className="hidden sm:grid sm:grid-cols-4 px-4 py-3" 
+          style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', borderBottom: `1px solid ${cardBorder}` }}>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Unit Configuration</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Avg. Annual Rent (Verified)</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Typical Lease Term</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Implied Gross Yield*</p>
         </div>
 
         {/* Table Body */}
         {rentalYields.map((item, idx) => (
           <div
             key={idx}
-            className="border-b border-[#F2EEE8] last:border-b-0 sm:grid sm:grid-cols-4 sm:items-center sm:px-4 sm:py-3"
+            className="border-b last:border-b-0 sm:grid sm:grid-cols-4 sm:items-center sm:px-4 sm:py-3"
+            style={{ borderColor: cardBorder }}
           >
             {/* Left: unit + badge */}
             <div className="p-4 sm:p-0 flex items-start sm:items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[#B68A35] mt-1.5 sm:mt-0 shrink-0" />
               <div className="min-w-0">
-                <p className="font-semibold text-sm sm:text-[15px] text-slate-800 flex items-center gap-3">
+                <p className="font-semibold text-sm sm:text-[15px] flex items-center gap-3" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                   <span className="truncate">{item.unitConfig}</span>
-                  <span className="ml-0 inline-block bg-[#FDF8F0] text-[#B68A35] px-2 py-0.5 rounded-full text-xs font-semibold border border-[#FCEFD9]">{item.subConfig}</span>
+                  <span className="ml-0 inline-block text-[#B68A35] px-2 py-0.5 rounded-full text-xs font-semibold" 
+                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>{item.subConfig}</span>
                 </p>
               </div>
             </div>
 
-            {/* Avg rent (center-left) */}
+            {/* Avg rent */}
             <div className="hidden sm:flex items-center justify-start">
               <p className="text-lg lg:text-md font-bold text-[#B68A35] tracking-tight">
                 {item.avgRent}
               </p>
             </div>
 
-            {/* Lease term (center-right) */}
+            {/* Lease term */}
             <div className="hidden sm:flex items-center justify-start">
-              <p className="text-sm text-slate-600">{item.leaseTerm}</p>
+              <p className="text-sm" style={{ color: bodyColor }}>{item.leaseTerm}</p>
             </div>
 
-            {/* Yield (right) */}
+            {/* Yield */}
             <div className="hidden sm:flex items-center justify-start">
-              <span className="text-base lg:text-lg font-bold text-slate-800">{item.yield}</span>
+              <span className="text-base lg:text-lg font-bold" style={{ color: isDark ? t.text : '#1A1A1A' }}>{item.yield}</span>
             </div>
 
             {/* Mobile view */}
             <div className="sm:hidden px-4 pb-3 space-y-2">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-semibold text-sm text-slate-800">{item.unitConfig}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{item.subConfig}</p>
+                  <p className="font-semibold text-sm" style={{ color: isDark ? t.text : '#1A1A1A' }}>{item.unitConfig}</p>
+                  <p className="text-xs mt-0.5" style={{ color: subtextColor }}>{item.subConfig}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-semibold text-[#B68A35]">{item.avgRent}</p>
-                  <p className="text-xs text-slate-600 mt-1">{item.leaseTerm}</p>
+                  <p className="text-xs mt-1" style={{ color: bodyColor }}>{item.leaseTerm}</p>
                 </div>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-500">Yield:</span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#FDF8F0] text-[#B68A35] text-xs font-semibold">{item.yield}</span>
+                <span className="text-xs" style={{ color: subtextColor }}>Yield:</span>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[#B68A35] text-xs font-semibold" 
+                  style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0' }}>{item.yield}</span>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      <SourceNote text="Gross yield calculated as (Annual Rent ÷ Current Market Value) × 100. Based on DXBInteract rental transaction records, Q1 2025–Q1 2026. Excludes service charges, utilities, and management fees." />
+      <SourceNote text="Gross yield calculated as (Annual Rent ÷ Current Market Value) × 100. Based on DXBInteract rental transaction records, Q1 2025–Q1 2026. Excludes service charges, utilities, and management fees." isDark={isDark} bodyColor={bodyColor} subtextColor={subtextColor} />
 
-      <InsightBox icon={Lightbulb} title="What the numbers indicate">
+      <InsightBox icon={Lightbulb} title="What the numbers indicate" isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t}>
         Emirates Hills rental yields sit at the lower end of Dubai's villa
         spectrum (typically 4–6% for newer communities), reflecting its
         positioning as a capital-preservation asset rather than a high-yield
@@ -322,13 +328,13 @@ function RentalYieldsTab() {
   );
 }
 
-function ServiceChargesTab() {
+function ServiceChargesTab({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
   const [openIdx, setOpenIdx] = useState(null);
 
   return (
     <div>
       <div className="px-4 sm:px-5 pt-5 pb-3">
-        <h3 className="text-xl sm:text-2xl font-serif text-[#1A1A1A] leading-snug">
+        <h3 className="text-xl sm:text-2xl font-serif leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>
           Current Service Charges{" "}
           <span className="text-[#B68A35]">
             — Verified History & Transparency
@@ -336,18 +342,14 @@ function ServiceChargesTab() {
         </h3>
       </div>
 
-      <div className="rounded-2xl border border-[#F2EEE8] shadow-[0_4px_25px_rgba(0,0,0,0.06)] bg-white overflow-hidden mx-4 sm:mx-5">
+      <div className="rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden mx-4 sm:mx-5" 
+        style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
         {/* Table Header */}
-        <div className="hidden sm:grid sm:grid-cols-3 bg-[#FAF9F6] border-b border-[#F2EEE8] px-4 py-3">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Metric
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Value
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Source
-          </p>
+        <div className="hidden sm:grid sm:grid-cols-3 px-4 py-3" 
+          style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', borderBottom: `1px solid ${cardBorder}` }}>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Metric</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Value</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Source</p>
         </div>
 
         {/* Table Body */}
@@ -356,13 +358,15 @@ function ServiceChargesTab() {
           return (
             <div
               key={idx}
-              className="border-b border-[#F2EEE8] last:border-b-0 sm:grid sm:grid-cols-3 sm:items-center sm:px-4 sm:py-3"
+              className="border-b last:border-b-0 sm:grid sm:grid-cols-3 sm:items-center sm:px-4 sm:py-3"
+              style={{ borderColor: cardBorder }}
             >
               <div className="p-2 sm:p-0 flex items-start sm:items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0" 
+                  style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
                   <Icon className="w-4 h-4 text-[#B68A35]" />
                 </div>
-                <p className="font-semibold text-sm sm:text-[15px] text-slate-800">
+                <p className="font-semibold text-sm sm:text-[15px]" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                   {item.metric}
                 </p>
               </div>
@@ -372,20 +376,20 @@ function ServiceChargesTab() {
                 </p>
               </div>
               <div className="hidden sm:block">
-                <p className="text-xs text-slate-500">{item.source}</p>
+                <p className="text-xs" style={{ color: subtextColor }}>{item.source}</p>
               </div>
 
               {/* Mobile view */}
               <div className="sm:hidden px-4 pb-3 space-y-1.5">
                 <div className="flex justify-between items-start">
-                  <span className="text-xs text-slate-500">Value:</span>
+                  <span className="text-xs" style={{ color: subtextColor }}>Value:</span>
                   <span className="text-sm font-semibold text-[#B68A35] text-right">
                     {item.value}
                   </span>
                 </div>
                 <div className="flex justify-between items-start">
-                  <span className="text-xs text-slate-500">Source:</span>
-                  <span className="text-xs text-slate-500 text-right max-w-[60%]">
+                  <span className="text-xs" style={{ color: subtextColor }}>Source:</span>
+                  <span className="text-xs text-right max-w-[60%]" style={{ color: subtextColor }}>
                     {item.source}
                   </span>
                 </div>
@@ -396,34 +400,21 @@ function ServiceChargesTab() {
       </div>
 
       <div className="mx-4 sm:mx-5 mt-4">
-        <h4 className="font-semibold text-sm text-slate-800 mb-3">
-          What service charges fund:
-        </h4>
-        <ul className="space-y-2 text-sm text-slate-600">
-          <li className="flex gap-2 items-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-            <span>24/7 security personnel, CCTV infrastructure, and gate management</span>
-          </li>
-          <li className="flex gap-2 items-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-            <span>Landscaping, irrigation, and mature tree maintenance across 25% green space allocation</span>
-          </li>
-          <li className="flex gap-2 items-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-            <span>Lake filtration systems, water feature upkeep, and environmental management</span>
-          </li>
-          <li className="flex gap-2 items-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-            <span>Road maintenance, street lighting, and common-area utilities</span>
-          </li>
-          <li className="flex gap-2 items-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-            <span>Community clubhouse, fitness facilities, and amenity operations</span>
-          </li>
-          <li className="flex gap-2 items-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-            <span>Exterior building maintenance coordination and warranty claim facilitation</span>
-          </li>
+        <h4 className="font-semibold text-sm mb-3" style={{ color: isDark ? t.text : '#1A1A1A' }}>What service charges fund:</h4>
+        <ul className="space-y-2 text-sm">
+          {[
+            "24/7 security personnel, CCTV infrastructure, and gate management",
+            "Landscaping, irrigation, and mature tree maintenance across 25% green space allocation",
+            "Lake filtration systems, water feature upkeep, and environmental management",
+            "Road maintenance, street lighting, and common-area utilities",
+            "Community clubhouse, fitness facilities, and amenity operations",
+            "Exterior building maintenance coordination and warranty claim facilitation"
+          ].map((item, idx) => (
+            <li key={idx} className="flex gap-2 items-start">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
+              <span className="text-sm" style={{ color: bodyColor }}>{item}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -431,10 +422,11 @@ function ServiceChargesTab() {
         <button
           type="button"
           onClick={() => setOpenIdx(openIdx === 0 ? null : 0)}
-          className="w-full flex gap-3 items-center p-4 text-left bg-[#FAF9F6] rounded-xl border border-[#F2EEE8]"
+          className="w-full flex gap-3 items-center p-4 text-left rounded-xl"
+          style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', border: `1px solid ${cardBorder}` }}
         >
           <span className="w-2.5 h-2.5 rounded-full bg-[#B68A35] shrink-0" />
-          <span className="font-semibold text-sm text-slate-800 flex-1">
+          <span className="font-semibold text-sm flex-1" style={{ color: isDark ? t.text : '#1A1A1A' }}>
             Historical Context & Buyer Guidance
           </span>
           {openIdx === 0 ? (
@@ -446,10 +438,8 @@ function ServiceChargesTab() {
         {openIdx === 0 && (
           <div className="mt-3 px-4 pb-4 space-y-4">
             <div>
-              <p className="text-sm font-semibold text-slate-800 mb-2">
-                Historical context:
-              </p>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Historical context:</p>
+              <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
                 Service charges at Emirates Hills have increased gradually since
                 handover (2003–2008), aligning with inflation, amenity upgrades,
                 and enhanced security protocols. The most significant adjustments
@@ -464,10 +454,8 @@ function ServiceChargesTab() {
               </p>
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-800 mb-2">
-                Buyer guidance:
-              </p>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Buyer guidance:</p>
+              <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
                 Request the last 3 years of service charge statements and owners'
                 association budgets during due diligence. Factor in potential
                 annual adjustments of 3–5% when modelling long-term holding
@@ -479,16 +467,16 @@ function ServiceChargesTab() {
         )}
       </div>
 
-      <SourceNote text="Source: DLD Mollak Service Charge Index, Q4 2025; Emaar Historical Brochures; Owners' Association Budget Records." />
+      <SourceNote text="Source: DLD Mollak Service Charge Index, Q4 2025; Emaar Historical Brochures; Owners' Association Budget Records." isDark={isDark} bodyColor={bodyColor} subtextColor={subtextColor} />
     </div>
   );
 }
 
-function SalesComparablesTab() {
+function SalesComparablesTab({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
   return (
     <div>
       <div className="px-4 sm:px-5 pt-5 pb-3">
-        <h3 className="text-xl sm:text-2xl font-serif text-[#1A1A1A] leading-snug">
+        <h3 className="text-xl sm:text-2xl font-serif leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>
           Recent Sales Comparables{" "}
           <span className="text-[#B68A35]">
             — Verified DXBInteract Transactions (Last 12 Months)
@@ -496,84 +484,67 @@ function SalesComparablesTab() {
         </h3>
       </div>
 
-      <div className="rounded-2xl border border-[#F2EEE8] shadow-[0_4px_25px_rgba(0,0,0,0.06)] bg-white overflow-hidden mx-2 sm:mx-5">
+      <div className="rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden mx-2 sm:mx-5" 
+        style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
         {/* Table Header */}
-        <div className="hidden lg:grid lg:grid-cols-6 bg-[#FAF9F6] border-b border-[#F2EEE8] px-2 sm:px-4 py-2 sm:py-3">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Unit Type
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Built-up Area
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Sale Price
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Price/Sqft
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Date
-          </p>
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
-            Plot Feature
-          </p>
+        <div className="hidden lg:grid lg:grid-cols-6 px-2 sm:px-4 py-2 sm:py-3" 
+          style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', borderBottom: `1px solid ${cardBorder}` }}>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Unit Type</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Built-up Area</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Sale Price</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Price/Sqft</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Date</p>
+          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Plot Feature</p>
         </div>
 
         {/* Table Body */}
         {salesComparables.map((item, idx) => (
           <div
             key={idx}
-            className="border-b border-[#F2EEE8] last:border-b-0 lg:grid lg:grid-cols-6 lg:items-center lg:px-4 lg:py-3"
+            className="border-b last:border-b-0 lg:grid lg:grid-cols-6 lg:items-center lg:px-4 lg:py-3"
+            style={{ borderColor: cardBorder }}
           >
             <div className="p-4 lg:p-0">
-              <p className="font-semibold text-sm lg:text-[15px] text-slate-800">
+              <p className="font-semibold text-sm lg:text-[15px]" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                 {item.unitType}
               </p>
             </div>
             <div className="hidden lg:block">
-              <p className="text-sm text-slate-700">{item.builtUp}</p>
+              <p className="text-sm" style={{ color: bodyColor }}>{item.builtUp}</p>
             </div>
             <div className="hidden lg:block">
-              <p className="text-sm font-semibold text-[#B68A35]">
-                {item.salePrice}
-              </p>
+              <p className="text-sm font-semibold text-[#B68A35]">{item.salePrice}</p>
             </div>
             <div className="hidden lg:block">
-              <p className="text-sm text-slate-700">{item.pricePerSqft}</p>
+              <p className="text-sm" style={{ color: bodyColor }}>{item.pricePerSqft}</p>
             </div>
             <div className="hidden lg:block">
-              <p className="text-sm text-slate-600">{item.date}</p>
+              <p className="text-sm" style={{ color: subtextColor }}>{item.date}</p>
             </div>
             <div className="hidden lg:block">
-              <p className="text-xs text-slate-500">{item.feature}</p>
+              <p className="text-xs" style={{ color: subtextColor }}>{item.feature}</p>
             </div>
 
             {/* Mobile view */}
             <div className="lg:hidden px-4 pb-4 space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-500">Built-up:</span>
-                <span className="text-sm font-medium text-slate-700">
-                  {item.builtUp}
-                </span>
+                <span className="text-xs" style={{ color: subtextColor }}>Built-up:</span>
+                <span className="text-sm font-medium" style={{ color: bodyColor }}>{item.builtUp}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-500">Sale Price:</span>
-                <span className="text-sm font-semibold text-[#B68A35]">
-                  {item.salePrice}
-                </span>
+                <span className="text-xs" style={{ color: subtextColor }}>Sale Price:</span>
+                <span className="text-sm font-semibold text-[#B68A35]">{item.salePrice}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-500">Price/sqft:</span>
-                <span className="text-sm font-medium text-slate-700">
-                  {item.pricePerSqft}
-                </span>
+                <span className="text-xs" style={{ color: subtextColor }}>Price/sqft:</span>
+                <span className="text-sm font-medium" style={{ color: bodyColor }}>{item.pricePerSqft}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-500">Date:</span>
-                <span className="text-xs text-slate-600">{item.date}</span>
+                <span className="text-xs" style={{ color: subtextColor }}>Date:</span>
+                <span className="text-xs" style={{ color: subtextColor }}>{item.date}</span>
               </div>
-              <div className="pt-2 border-t border-[#F2EEE8]">
-                <p className="text-xs text-slate-500">
+              <div className="pt-2" style={{ borderTop: `1px solid ${cardBorder}` }}>
+                <p className="text-xs" style={{ color: subtextColor }}>
                   <span className="font-medium">Feature:</span> {item.feature}
                 </p>
               </div>
@@ -582,9 +553,9 @@ function SalesComparablesTab() {
         ))}
       </div>
 
-      <SourceNote text="Source: DXBInteract.com (official DLD transaction data), filtered for Emirates Hills villa sales, Q1 2025–Q1 2026. Excludes off-market private transactions and non-disclosed deals." />
+      <SourceNote text="Source: DXBInteract.com (official DLD transaction data), filtered for Emirates Hills villa sales, Q1 2025–Q1 2026. Excludes off-market private transactions and non-disclosed deals." isDark={isDark} bodyColor={bodyColor} subtextColor={subtextColor} />
 
-      <InsightBox icon={TrendingUp} title="Market insight">
+      <InsightBox icon={TrendingUp} title="Market insight" isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t}>
         The spread between transaction prices (AED 2,314–3,086/sqft) reflects the
         impact of plot position, view quality, interior condition, and
         negotiation dynamics. Golf/lake-front properties command premiums of
@@ -601,21 +572,20 @@ function SalesComparablesTab() {
 
 // ─── LESSONS LEARNED SECTION ─────────────────────────────────────────────────
 
-function LessonsLearnedSection() {
+function LessonsLearnedSection({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
   const [openIdx, setOpenIdx] = useState(0);
 
   return (
-    <div className="mt-5 rounded-2xl border border-[#F2EEE8] shadow-[0_4px_25px_rgba(0,0,0,0.06)] bg-white overflow-hidden">
-      <div className="px-4 sm:px-5 py-4 border-b border-[#F2EEE8]">
-        <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35]">
-          Post-Handover Reality
-        </p>
-        <h3 className="font-serif text-lg sm:text-xl text-[#1A1A1A] mt-0.5">
+    <div className="mt-5 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden" 
+      style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+      <div className="px-4 sm:px-5 py-4" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+        <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35]">Post-Handover Reality</p>
+        <h3 className="font-serif text-lg sm:text-xl mt-0.5" style={{ color: isDark ? t.text : '#1A1A1A' }}>
           Lessons Learned & Current Considerations
         </h3>
       </div>
 
-      <div className="divide-y divide-[#F2EEE8]">
+      <div className="divide-y" style={{ borderColor: cardBorder }}>
         {lessonsLearned.map((item, idx) => (
           <AccordionRow
             key={idx}
@@ -623,6 +593,11 @@ function LessonsLearnedSection() {
             isOpen={openIdx === idx}
             onToggle={() => setOpenIdx(openIdx === idx ? null : idx)}
             points={item.points}
+            isDark={isDark}
+            cardBorder={cardBorder}
+            bodyColor={bodyColor}
+            subtextColor={subtextColor}
+            t={t}
           >
             {item.content}
           </AccordionRow>
@@ -634,33 +609,35 @@ function LessonsLearnedSection() {
 
 // ─── WHAT THIS MEANS SECTION ─────────────────────────────────────────────────
 
-function WhatThisMeansSection() {
+function WhatThisMeansSection({ isDark, cardBg, cardBorder, bodyColor, subtextColor, t }) {
   const [openEndUser, setOpenEndUser] = useState(true);
   const [openInvestor, setOpenInvestor] = useState(false);
   const [openChecklist, setOpenChecklist] = useState(false);
 
   return (
-    <div className="mt-5 rounded-2xl border border-[#F2EEE8] shadow-[0_4px_25px_rgba(0,0,0,0.06)] bg-white overflow-hidden">
-      <div className="px-4 sm:px-5 py-4 border-b border-[#F2EEE8]">
-        <h3 className="font-serif text-lg sm:text-xl text-[#1A1A1A]">
+    <div className="mt-5 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden" 
+      style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+      <div className="px-4 sm:px-5 py-4" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+        <h3 className="font-serif text-lg sm:text-xl" style={{ color: isDark ? t.text : '#1A1A1A' }}>
           What This Means for Buyers
         </h3>
       </div>
 
       <div className="p-2 sm:p-4 space-y-4">
         {/* End Users */}
-        <div className="border border-[#F2EEE8] rounded-xl overflow-hidden">
+        <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
           <button
             type="button"
             onClick={() => setOpenEndUser(!openEndUser)}
-            className={`w-full flex gap-3 items-center p-2 text-left transition-colors ${openEndUser ? "bg-[#FAF9F6]" : "bg-white hover:bg-[#FCFAF5]"
-              }`}
+            className={`w-full flex gap-3 items-center p-2 text-left transition-colors ${openEndUser ? "" : ""}`}
+            style={{ background: openEndUser && isDark ? 'rgba(255,255,255,0.04)' : openEndUser ? '#FAF9F6' : 'transparent' }}
           >
-            <div className="w-10 h-10 bg-[#B68A35]/10 rounded-lg flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" 
+              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
               <Home className="w-5 h-5 text-[#B68A35]" />
             </div>
             <div className="flex-1">
-              <p className="font-semibold text-sm sm:text-base text-slate-900">
+              <p className="font-semibold text-sm sm:text-base" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                 For end-users seeking a primary residence
               </p>
             </div>
@@ -671,8 +648,8 @@ function WhatThisMeansSection() {
             )}
           </button>
           {openEndUser && (
-            <div className="px-4 pb-4 bg-[#FAF9F6]">
-              <p className="text-sm text-slate-600 leading-relaxed pl-[52px]">
+            <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
+              <p className="text-sm leading-relaxed pl-[52px]" style={{ color: bodyColor }}>
                 Emirates Hills offers predictable holding costs, transparent
                 service charge history, and a mature community with resolved
                 early-phase teething issues. Budget for potential system upgrades
@@ -687,18 +664,19 @@ function WhatThisMeansSection() {
         </div>
 
         {/* Investors */}
-        <div className="border border-[#F2EEE8] rounded-xl overflow-hidden">
+        <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
           <button
             type="button"
             onClick={() => setOpenInvestor(!openInvestor)}
-            className={`w-full flex gap-3 items-center p-2 text-left transition-colors ${openInvestor ? "bg-[#FAF9F6]" : "bg-white hover:bg-[#FCFAF5]"
-              }`}
+            className={`w-full flex gap-3 items-center p-2 text-left transition-colors ${openInvestor ? "" : ""}`}
+            style={{ background: openInvestor && isDark ? 'rgba(255,255,255,0.04)' : openInvestor ? '#FAF9F6' : 'transparent' }}
           >
-            <div className="w-10 h-10 bg-[#B68A35]/10 rounded-lg flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" 
+              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
               <TrendingUp className="w-5 h-5 text-[#B68A35]" />
             </div>
             <div className="flex-1">
-              <p className="font-semibold text-sm sm:text-base text-slate-900">
+              <p className="font-semibold text-sm sm:text-base" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                 For investors evaluating resale or rental strategy
               </p>
             </div>
@@ -709,8 +687,8 @@ function WhatThisMeansSection() {
             )}
           </button>
           {openInvestor && (
-            <div className="px-4 pb-4 bg-[#FAF9F6]">
-              <p className="text-sm text-slate-600 leading-relaxed pl-[52px]">
+            <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
+              <p className="text-sm leading-relaxed pl-[52px]" style={{ color: bodyColor }}>
                 Current yields (3.0–4.2%) are modest but stable, reflecting the
                 community's capital-preservation positioning. Capital appreciation
                 has historically outpaced rental income in this asset class.
@@ -725,18 +703,19 @@ function WhatThisMeansSection() {
         </div>
 
         {/* Checklist */}
-        <div className="border border-[#F2EEE8] rounded-xl overflow-hidden">
+        <div className="rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
           <button
             type="button"
             onClick={() => setOpenChecklist(!openChecklist)}
-            className={`w-full flex gap-3 items-center p-2 text-left transition-colors ${openChecklist ? "bg-[#FAF9F6]" : "bg-white hover:bg-[#FCFAF5]"
-              }`}
+            className={`w-full flex gap-3 items-center p-2 text-left transition-colors ${openChecklist ? "" : ""}`}
+            style={{ background: openChecklist && isDark ? 'rgba(255,255,255,0.04)' : openChecklist ? '#FAF9F6' : 'transparent' }}
           >
-            <div className="w-10 h-10 bg-[#B68A35]/10 rounded-lg flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" 
+              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
               <CheckCircle className="w-5 h-5 text-[#B68A35]" />
             </div>
             <div className="flex-1">
-              <p className="font-semibold text-sm sm:text-base text-slate-900">
+              <p className="font-semibold text-sm sm:text-base" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                 Key due diligence checklist
               </p>
             </div>
@@ -747,43 +726,20 @@ function WhatThisMeansSection() {
             )}
           </button>
           {openChecklist && (
-            <div className="px-4 pb-4 bg-[#FAF9F6]">
-              <ul className="space-y-2 text-sm text-slate-600 pl-[52px]">
-                <li className="flex gap-2 items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-                  <span>
-                    Request the last 3 years of service charge statements and
-                    owners' association budgets
-                  </span>
-                </li>
-                <li className="flex gap-2 items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-                  <span>
-                    Commission an independent building survey focused on
-                    age-related systems (HVAC, electrical, exterior finishes)
-                  </span>
-                </li>
-                <li className="flex gap-2 items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-                  <span>
-                    Verify the full DLD transaction history for the specific plot
-                    via the Dubai REST app
-                  </span>
-                </li>
-                <li className="flex gap-2 items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-                  <span>
-                    Confirm Emaar Community Management's current response
-                    protocols for maintenance requests
-                  </span>
-                </li>
-                <li className="flex gap-2 items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
-                  <span>
-                    If planning renovations, engage a RERA-licensed contractor
-                    early to assess approval feasibility and timelines
-                  </span>
-                </li>
+            <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
+              <ul className="space-y-2 text-sm pl-[52px]">
+                {[
+                  "Request the last 3 years of service charge statements and owners' association budgets",
+                  "Commission an independent building survey focused on age-related systems (HVAC, electrical, exterior finishes)",
+                  "Verify the full DLD transaction history for the specific plot via the Dubai REST app",
+                  "Confirm Emaar Community Management's current response protocols for maintenance requests",
+                  "If planning renovations, engage a RERA-licensed contractor early to assess approval feasibility and timelines"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex gap-2 items-start">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
+                    <span className="text-sm" style={{ color: bodyColor }}>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           )}
@@ -802,17 +758,24 @@ const TABS = [
 ];
 
 function Section6() {
+  const { t, isDark, dark } = useThemeStyles();
   const [activeTab, setActiveTab] = useState("rentalYields");
 
+  // Card colors matching TopDevelopersSection pattern
+  const cardBg = isDark ? "#2a2d31" : "#FFFFFF";
+  const cardBorder = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)";
+  const sectionBg = isDark ? t.bg : "#FCFBFA";
+  const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
+  const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
+
   const renderTab = () => {
-    if (activeTab === "rentalYields") return <RentalYieldsTab />;
-    if (activeTab === "serviceCharges") return <ServiceChargesTab />;
-    return <SalesComparablesTab />;
+    if (activeTab === "rentalYields") return <RentalYieldsTab isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />;
+    if (activeTab === "serviceCharges") return <ServiceChargesTab isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />;
+    return <SalesComparablesTab isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />;
   };
 
   return (
-    <section className="w-full bg-[#FCFBFA] font-sans antialiased">
-      {/* ── Header ── */}
+    <section className="w-full font-sans antialiased" style={{ background: sectionBg }}>
       {/* ── Header ── */}
       <div className="relative w-full h-80 lg:h-96 flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -823,14 +786,15 @@ function Section6() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent" />
+          <div className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`} 
+            style={isDark ? dark?.heroOverlayLeft : undefined} />
         </div>
 
         <div className="relative z-10 max-w-350 mx-auto px-4 sm:px-6 w-full">
-          <h2 className="text-3xl lg:text-5xl font-serif text-[#1A1A1A] mb-0.5">
+          <h2 className="text-3xl lg:text-5xl font-serif mb-0.5" style={{ color: isDark ? t.text : '#1A1A1A' }}>
             Financial Reality — <span className="text-[#B68A35] italic">Emirates Hills</span> by Emaar
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-slate-500 font-medium">
+          <p className="mt-2 text-sm sm:text-base font-medium" style={{ color: bodyColor }}>
             ROI, Service Charges & Comparables
           </p>
         </div>
@@ -838,15 +802,15 @@ function Section6() {
 
       <div className="relative z-20 max-w-[1400px] mx-auto px-2 sm:px-6 pb-5 sm:pb-10 -mt-24 sm:-mt-28 lg:-mt-32">
         {/* ── Source Transparency ── */}
-        <div className="mt-5 rounded-2xl border border-[#F2EEE8] shadow-[0_4px_25px_rgba(0,0,0,0.06)] bg-white p-4 sm:p-5 flex gap-3 items-start">
-          <div className="w-9 h-9 rounded-lg bg-[#B68A35]/10 flex items-center justify-center shrink-0">
+        <div className="mt-5 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] p-4 sm:p-5 flex gap-3 items-start" 
+          style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+          <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" 
+            style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
             <ShieldCheck className="w-5 h-5 text-[#B68A35]" />
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
-              Source Transparency
-            </p>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">Source Transparency</p>
+            <p className="text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
               All financial data presented below is aggregated from the Dubai
               Land Department (DLD) via DXBInteract.com (official DLD partner),
               DLD Mollak Service Charge Index, and verified owner association
@@ -861,8 +825,8 @@ function Section6() {
         </div>
 
         {/* ── Tabbed Panel ── */}
-        <div className="mt-5 bg-white rounded-xl border border-[#F3EFE9] overflow-hidden shadow-sm">
-          <div className="flex border-b border-[#F3EFE9]">
+        <div className="mt-5 rounded-xl shadow-sm overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+          <div className="flex" style={{ borderBottom: `1px solid ${cardBorder}` }}>
             <div className="flex w-full overflow-x-auto">
               {TABS.map((tab) => {
                 const Icon = tab.icon;
@@ -871,16 +835,17 @@ function Section6() {
                     key={tab.key}
                     type="button"
                     onClick={() => setActiveTab(tab.key)}
-                    className={`flex-1 flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-3 py-3 lg:py-6 px-1 lg:px-4 transition-all relative ${activeTab === tab.key
-                      ? "text-[#B68A35] bg-[#FDF8F0]/50"
-                      : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
-                      }`}
+                    className={`flex-1 flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-3 py-3 lg:py-6 px-1 lg:px-4 transition-all relative ${activeTab === tab.key && !isDark ? "text-[#B68A35] bg-[#FDF8F0]/50" : !isDark && activeTab !== tab.key ? "text-gray-400 hover:text-gray-600 hover:bg-gray-50" : ""}`}
+                    style={
+                      isDark && activeTab === tab.key
+                        ? { color: GOLD, background: 'rgba(182,138,53,0.08)' }
+                        : isDark && activeTab !== tab.key
+                        ? { color: subtextColor, background: 'transparent' }
+                        : undefined
+                    }
                   >
-                    <span className="text-base lg:text-xl">
-                      <Icon />
-                    </span>
-                    <span className={`text-[10px] lg:text-sm tracking-wide whitespace-nowrap ${activeTab === tab.key ? "font-bold" : "font-medium"
-                      }`}>
+                    <span className="text-base lg:text-xl"><Icon /></span>
+                    <span className={`text-[10px] lg:text-sm tracking-wide whitespace-nowrap ${activeTab === tab.key ? "font-bold" : "font-medium"}`}>
                       {tab.label}
                     </span>
 
@@ -898,15 +863,16 @@ function Section6() {
         </div>
 
         {/* ── Lessons Learned ── */}
-        <LessonsLearnedSection />
+        <LessonsLearnedSection isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />
 
         {/* ── What This Means ── */}
-        <WhatThisMeansSection />
+        <WhatThisMeansSection isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />
 
         {/* ── Disclaimer ── */}
-        <div className="mt-6 bg-[#FBF9F6] border border-[#F3EFE9] rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start">
+        <div className="mt-6 rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start" 
+          style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
           <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-          <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
+          <p className="text-xs lg:text-sm leading-relaxed" style={{ color: bodyColor }}>
             All financial data is for educational and research purposes only.
             PropertyIntel.ae does not provide financial, legal, or investment
             advice. Market values, rental yields, service charges, and
