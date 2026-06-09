@@ -1,0 +1,190 @@
+{
+    "id": "section7",
+    "heroImage": "/Home/Section3bg.webp",
+    "heroAlt": "Emirates Hills luxury villas",
+    "headings": {
+      "line1": "Resale & Investment Performance",
+      "highlight": "Emirates Hills",
+      "line2": "by Emaar"
+    },
+    "sourceTransparency": {
+      "title": "Source Transparency",
+      "content": "Performance data aggregated from Dubai Land Department (DLD) transaction records via DXBInteract.com, covering the period from first handover (2003) to Q1 2026. Comparative data reflects current market values for completed villa communities in similar premium corridors. All figures are estimates for informational purposes; verify specific unit performance with a RERA-licensed broker before transacting."
+    },
+    "whosBuying": {
+      "header": {
+        "title": "Current Buyer Suitability — ",
+        "highlight": "Who Is Buying Now?",
+        "description": "Unlike off-plan projects where buyer profiles are speculative, Emirates Hills has a verified resale buyer demographic based on actual transaction data from the last 24 months. The community now primarily attracts:"
+      },
+      "profiles": [
+        {
+          "profile": "Families Seeking Ready Homes",
+          "suitability": "High",
+          "suitabilityType": "high",
+          "rationale": "Immediate occupancy; no construction risk; mature landscaping; established school catchments (JESS, Dubai British School)."
+        },
+        {
+          "profile": "Capital Preservation Investors",
+          "suitability": "High",
+          "suitabilityType": "high",
+          "rationale": "Low volatility asset; historically resilient during market corrections; scarce supply of gated luxury villas supports floor values."
+        },
+        {
+          "profile": "Downsizers / Retirees",
+          "suitability": "Moderate",
+          "suitabilityType": "moderate",
+          "rationale": "Quiet, low-density environment; single-level living options available; however, car dependency is high for daily errands."
+        },
+        {
+          "profile": "High-Yield Seekers",
+          "suitability": "Low",
+          "suitabilityType": "low",
+          "rationale": "Gross yields (3.2-4.1%) are below Dubai villa average (5-6%); better suited for long-term capital hold than immediate cash flow."
+        },
+        {
+          "profile": "Short-Term Flippers",
+          "suitability": "Low",
+          "suitabilityType": "low",
+          "rationale": "High entry price (AED 25M+); slower transaction velocity (60-90 days on market); significant DLD fees reduce margin potential."
+        }
+      ],
+      "highProfiles": ["Families Seeking Ready Homes", "Capital Preservation Investors"],
+      "moderateProfiles": ["Downsizers / Retirees"],
+      "buyerRatios": [
+        { "label": "End-users", "percentage": 65, "color": "gold" },
+        { "label": "Investors", "percentage": 35, "color": "green" }
+      ],
+      "insight": {
+        "title": "Market Insight",
+        "content": "Transaction data indicates approximately 65% of recent buyers are end-users (families and business owners), while 35% are long-term investors holding for 5+ years. This ratio contributes to community stability, reducing tenant turnover and preserving neighbourhood aesthetics."
+      }
+    },
+    "comparativeAnalysis": {
+      "header": {
+        "title": "Comparative Value Analysis — ",
+        "highlight": "Completed Luxury Communities",
+        "description": "To assess Emirates Hills' current market positioning, we compare it against three other completed, gated villa communities in Dubai's premium corridor. Data reflects Q1 2026 market averages."
+      },
+      "tableHeaders": ["Community", "Status", "Avg. Price per Sqft", "Avg. Gross Yield", "Community Maturity", "Value Proposition"],
+      "communities": [
+        {
+          "community": "Emirates Hills",
+          "status": "Completed (2008)",
+          "pricePerSqft": "AED 3,100-3,800",
+          "grossYield": "3.2-4.1%",
+          "maturity": "Fully Mature",
+          "valueProp": "Highest privacy; established prestige; stable capital value.",
+          "iconName": "Award"
+        },
+        {
+          "community": "Palm Jumeirah Garden Homes",
+          "status": "Completed (2006)",
+          "pricePerSqft": "AED 3,500-4,200",
+          "grossYield": "3.0-3.8%",
+          "maturity": "Fully Mature",
+          "valueProp": "Beach access premium; higher maintenance costs; similar stability.",
+          "iconName": "Home"
+        },
+        {
+          "community": "Jumeirah Golf Estates",
+          "status": "Completed (2015)",
+          "pricePerSqft": "AED 2,400-3,100",
+          "grossYield": "4.0-5.0%",
+          "maturity": "Mature",
+          "valueProp": "Newer stock; higher yields; slightly less privacy than Emirates Hills.",
+          "iconName": "Building2"
+        },
+        {
+          "community": "Arabian Ranches (Phase 1)",
+          "status": "Completed (2004)",
+          "pricePerSqft": "AED 1,600-2,100",
+          "grossYield": "5.0-6.0%",
+          "maturity": "Fully Mature",
+          "valueProp": "Lower entry price; higher yields; higher density; less exclusive.",
+          "iconName": "MapPin"
+        }
+      ],
+      "insight": {
+        "title": "What the comparison indicates",
+        "content": "Emirates Hills commands a price premium of approximately 25-30% over Jumeirah Golf Estates and 80-100% over Arabian Ranches per square foot. This premium is justified by lower density (larger plots), stricter architectural control, and established prestige. However, investors prioritizing rental yield over capital stability may find better value in Jumeirah Golf Estates or Arabian Ranches, where yields exceed 5%."
+      }
+    },
+    "kpis": {
+      "header": {
+        "title": "Long-Term Performance Verdict",
+        "description": "Emirates Hills performance vs. Dubai market context"
+      },
+      "kpis": [
+        {
+          "label": "Capital Appreciation Since Handover",
+          "value": "~5.5 - 7.0%",
+          "context": "Outperforms Dubai villa avg (~4.5-5.5%)",
+          "iconName": "TrendingUp"
+        },
+        {
+          "label": "Current Rental Yield",
+          "value": "3.2 - 4.1%",
+          "context": "Below Dubai villa avg (5-6%)",
+          "iconName": "Percent"
+        },
+        {
+          "label": "Resale Velocity",
+          "value": "60 - 90 days",
+          "context": "Slower than high-density (30-45 days)",
+          "iconName": "Clock"
+        },
+        {
+          "label": "Price Stability During Corrections",
+          "value": "High",
+          "context": "Resilient: 2009, 2015, 2020 downturns",
+          "iconName": "Award"
+        },
+        {
+          "label": "Community Maturity",
+          "value": "100%",
+          "context": "All amenities, landscaping & infrastructure operational",
+          "iconName": "CheckCircle"
+        }
+      ],
+      "verdict": {
+        "title": "Long-Term Performance Verdict",
+        "content": "Based on DLD transaction data aggregated via DXBInteract, Emirates Hills has delivered an estimated annualised appreciation of 5.5–7.0% since initial handover (2003–2008) to Q1 2026. This performance outpaces Dubai's overall villa market average (~4.5–5.5% annualised) over the same period, reflecting the asset's scarcity value and premium positioning."
+      },
+      "importantNote": {
+        "title": "Important Note",
+        "content": "Past performance does not guarantee future results. Future appreciation will depend on Dubai's overall economic growth, infrastructure developments in surrounding corridors (e.g., Al Khail Road upgrades), and maintenance of community standards."
+      },
+      "endUserNote": "For end-users, the community is fully mature. All landscaping, amenities, and infrastructure are established. There is no uncertainty regarding delivery timelines, amenity completion, or neighbourhood character. Residents know exactly what they are buying—a stable, low-density enclave with verified security protocols and managed maintenance standards."
+    },
+    "strategy": {
+      "header": {
+        "title": "Strategic Recommendations by Buyer Type",
+        "description": "Actionable guidance tailored to your investment goals."
+      },
+      "recommendations": [
+        {
+          "title": "Families & End-users",
+          "iconName": "Users",
+          "content": "Prioritise turnkey, ready homes; focus on plot, orientation and school catchments. Negotiate on cosmetic items and secure a 3–5 year holding horizon for best outcomes."
+        },
+        {
+          "title": "Yield-Focused Investors",
+          "iconName": "DollarSign",
+          "content": "Consider nearby higher-yield communities if rental income is the primary objective. For Emirates Hills, target long-term capital appreciation and selective leasing strategies to improve yield."
+        },
+        {
+          "title": "Long-Term Capital Holders",
+          "iconName": "TrendingUp",
+          "content": "Buy and hold strategy benefits from scarcity and low-density premium. Aim for high-quality maintenance and tenant selection to preserve value over multi-year horizons."
+        },
+        {
+          "title": "Short-Term Flippers",
+          "iconName": "Clock",
+          "content": "Not recommended: high entry price and slower resale velocity compress margins. If pursuing flips, focus on exceptionally well-priced lots and strong local demand windows."
+        }
+      ]
+    },
+    "sourceNote": "Source: DXBInteract.com transaction analysis, PropertyIntel market research, Q1 2026.",
+    "footerDisclaimer": "All performance data is for educational and research purposes only. PropertyIntel.ae does not provide financial, legal, or investment advice. Market values, rental yields, and appreciation rates are estimates based on aggregated third-party sources and are subject to change. Verify all details with the Dubai Land Department, licensed real estate brokers, and official developer channels before making any commitment."
+  }

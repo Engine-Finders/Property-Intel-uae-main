@@ -23,7 +23,7 @@ const SectionHeader = ({ icon, title, subtitle, isDark, t }) => (
     <div className="flex items-start gap-4 mb-8">
         {icon ? (
             <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
-                style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+                style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
                 {icon}
             </div>
         ) : null}
@@ -74,12 +74,22 @@ const CheckIcon = () => (
     </svg>
 );
 
+const AccentIconColumn = ({ children, color = GOLD }) => (
+    <div className="flex self-stretch shrink-0 flex-col items-center gap-2">
+        <div className="shrink-0 text-[#B68A35]">
+            {children}
+        </div>
+        <span className="min-h-14 w-px flex-1 md:min-h-12" style={{ background: color }} />
+    </div>
+);
+
 export default function Section4({ data }) {
     const { t, isDark, dark } = useThemeStyles();
     const [openMethodology, setOpenMethodology] = useState(false);
     const [openData, setOpenData] = useState(false);
     const [openSource, setOpenSource] = useState(false);
     const [activeTab, setActiveTab] = useState("strengths");
+    const [openQuoteGroup, setOpenQuoteGroup] = useState("positive");
 
     // Card colors matching TopDevelopersSection pattern
     const cardBg = isDark ? "#2a2d31" : "#FFFFFF";
@@ -98,14 +108,75 @@ export default function Section4({ data }) {
         );
     }
 
+    const quoteItems = data.quotesTab?.quotes || [];
+    const quoteGroups = [
+        {
+            id: "positive",
+            title: "Positive Experiences (Long-Term Owners)",
+            icon: <FaThumbsUp className="text-[#B68A35] text-lg" />,
+            quotes: quoteItems.slice(0, 2),
+        },
+        {
+            id: "neutral",
+            title: "Neutral / Constructive Feedback",
+            icon: <FaMeh className="text-[#B68A35] text-lg" />,
+            quotes: quoteItems.slice(2, 4),
+        },
+        {
+            id: "investment",
+            title: "Investment Perspective",
+            icon: <BsFillBarChartFill className="text-[#B68A35] text-lg" />,
+            quotes: quoteItems.slice(4),
+        },
+    ];
+
     return (
         <section className="w-full py-5 sm:py-10 font-sans selection:bg-[#B68A35]/20" style={{ background: sectionBg }}>
             {/* ── Hero Header ──────────────────────────────────────────────────── */}
-            <div className="relative w-full h-80 lg:h-96 flex items-center overflow-hidden">
+            <div className="md:hidden max-w-350 mx-auto px-1">
+                <div
+                    className="relative min-h-[285px] overflow-hidden border rounded-none"
+                    style={{
+                        borderColor: cardBorder,
+                        background: isDark ? t.cardBg : "#fffdfa",
+                    }}
+                >
+                    <Image
+                        src={"/projects/cm-projects.webp"}
+                        alt={"Emirates Hills"}
+                        fill
+                        className="object-cover object-center grayscale-10"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-[1.08] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : '#1A1A1A' }}
+                        >
+                            {data.headings?.line1 || "Resident & Owner"}
+                            <span className="block">
+                                {data.headings?.line2 || "Reviews from "}
+                                <span className="text-[#B68A35]">{data.headings?.highlight || "Emirates Hills"}</span> {data.headings?.line3 || "by Emaar"}
+                            </span>
+                        </h2>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="hidden md:flex relative w-full h-80 lg:h-96 items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src={data.heroImage || "/Home/Section3bg.webp"}
-                        alt={data.heroAlt || "Emirates Hills"}
+                        src={"/projects/cm-projects.webp"}
+                        alt={"Emirates Hills"}
                         fill
                         className="object-cover object-center grayscale-10"
                         priority
@@ -374,7 +445,7 @@ export default function Section4({ data }) {
                                                 <div key={i} className="p-4 rounded-xl" style={{ border: `1px solid ${cardBorder}` }}>
                                                     <div className="flex items-start gap-3">
                                                         <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
-                                                            style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+                                                            style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
                                                             {getStrengthIcon(s.iconName)}
                                                         </div>
                                                         <div className="flex-1">
@@ -417,19 +488,38 @@ export default function Section4({ data }) {
                                             </table>
                                         </div>
 
-                                        <div className="md:hidden space-y-3">
-                                            {data.insightsTab?.items?.map((it, idx) => (
-                                                <div key={idx} className="p-4 rounded-xl" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', border: `1px solid ${cardBorder}` }}>
-                                                    <div className="flex items-start gap-3">
-                                                        <div className="mt-1 text-[#B68A35]">{getInsightIcon(it.iconName)}</div>
-                                                        <div>
-                                                            <p className="font-semibold" style={{ color: isDark ? t.text : '#1A1A1A' }}>{it.theme}</p>
-                                                            <p className="text-[13px] mt-1" style={{ color: bodyColor }}>{it.feedback}</p>
-                                                            <p className="text-[13px] mt-2" style={{ color: bodyColor }}>{it.meaning}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            ))}
+                                        <div className="md:hidden overflow-hidden rounded-xl" style={{ border: `1px solid ${cardBorder}` }}>
+                                            <table className="w-full table-fixed border-collapse">
+                                                <thead>
+                                                    <tr style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
+                                                        <th className="w-[30%] p-2 text-left text-[9px] font-bold uppercase tracking-wider" style={{ color: subtextColor }}>Theme</th>
+                                                        <th className="w-[35%] p-2 text-left text-[9px] font-bold uppercase tracking-wider" style={{ color: subtextColor, borderLeft: `1px solid ${cardBorder}` }}>Resident Feedback Pattern</th>
+                                                        <th className="w-[35%] p-2 text-left text-[9px] font-bold uppercase tracking-wider" style={{ color: subtextColor, borderLeft: `1px solid ${cardBorder}` }}>What This Means for You</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {data.insightsTab?.items?.map((it, idx) => (
+                                                        <tr key={idx} style={{ borderTop: `1px solid ${cardBorder}` }}>
+                                                            <td className="p-2 align-top">
+                                                                <div className="flex flex-col gap-2">
+                                                                    <div className="text-[#B68A35]">{getInsightIcon(it.iconName)}</div>
+                                                                    <p className="text-[11px] font-semibold leading-tight" style={{ color: isDark ? t.text : '#1A1A1A' }}>{it.theme}</p>
+                                                                </div>
+                                                            </td>
+                                                            <td className="p-2 align-top text-[11px] leading-[1.45]" style={{ color: bodyColor, borderLeft: `1px solid ${cardBorder}` }}>{it.feedback}</td>
+                                                            <td className="p-2 align-top" style={{ borderLeft: `1px solid ${cardBorder}` }}>
+                                                                <div className="flex items-start gap-2">
+                                                                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full"
+                                                                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#F8F1E6', color: GOLD }}>
+                                                                        <FaRegCircleCheck className="text-[10px]" />
+                                                                    </span>
+                                                                    <p className="text-[11px] leading-[1.45]" style={{ color: bodyColor }}>{it.meaning}</p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 )}
@@ -439,13 +529,55 @@ export default function Section4({ data }) {
                                         <h3 className="text-2xl font-semibold mb-4" style={{ color: isDark ? t.text : '#1A1A1A' }}>{data.quotesTab?.title || "Resident Quotes from Verified Owners"}</h3>
                                         <p className="text-[13px] mb-4" style={{ color: bodyColor }}>{data.quotesTab?.disclaimer || "The following quotes are paraphrased from verified reviews to protect privacy while retaining authentic sentiment."}</p>
 
-                                        <div className="space-y-4">
+                                        <div className="hidden md:block space-y-4">
                                             {data.quotesTab?.quotes?.map((quote, i) => (
                                                 <blockquote key={i} className="p-4 rounded-xl" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
                                                     <p className="text-[13px]" style={{ color: isDark ? t.text : '#1A1A1A' }}>"{quote.text}"</p>
                                                     <footer className="text-[12px] mt-2" style={{ color: subtextColor }}>{quote.footer}</footer>
                                                 </blockquote>
                                             ))}
+                                        </div>
+
+                                        <div className="md:hidden space-y-3">
+                                            {quoteGroups.map((group) => {
+                                                const isOpen = openQuoteGroup === group.id;
+
+                                                return (
+                                                    <div key={group.id} className="overflow-hidden rounded-xl"
+                                                        style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setOpenQuoteGroup(isOpen ? "" : group.id)}
+                                                            aria-expanded={isOpen}
+                                                            className="w-full flex items-center gap-3 p-4 text-left"
+                                                        >
+                                                            <span className="shrink-0">{group.icon}</span>
+                                                            <span className="flex-1 font-semibold text-[15px] leading-tight" style={{ color: isDark ? t.text : '#1A1A1A' }}>
+                                                                {group.title}
+                                                            </span>
+                                                            {isOpen ? <HiChevronUp className="text-base shrink-0" style={{ color: GOLD }} /> : <HiChevronDown className="text-base shrink-0" style={{ color: GOLD }} />}
+                                                        </button>
+
+                                                        {isOpen && (
+                                                            <div style={{ borderTop: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FAF9F6' }}>
+                                                                {group.quotes.map((quote, i) => (
+                                                                    <blockquote key={i} className="px-5 py-4" style={i > 0 ? { borderTop: `1px solid ${cardBorder}` } : undefined}>
+                                                                        <div className="text-[#B68A35]/35 text-3xl leading-none mb-2">”</div>
+                                                                        <p className="text-[14px] italic leading-[1.75]" style={{ color: isDark ? t.textSecondary : '#1A1A1A' }}>
+                                                                            "{quote.text}"
+                                                                        </p>
+                                                                        <footer className="mt-4 flex items-start gap-2 pt-3 text-[12px] leading-relaxed"
+                                                                            style={{ color: GOLD, borderTop: `1px solid ${cardBorder}` }}>
+                                                                            <HiOutlineShieldCheck className="mt-0.5 shrink-0 text-[#B68A35]" />
+                                                                            <span>{quote.footer.replace(/^—\s*/, "")}</span>
+                                                                        </footer>
+                                                                    </blockquote>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 )}
@@ -459,7 +591,7 @@ export default function Section4({ data }) {
                                                 <div key={idx} className="p-2 sm:p-4 rounded-xl" style={{ border: `1px solid ${cardBorder}` }}>
                                                     <div className="flex items-start gap-3">
                                                         <div className="w-16 h-16 rounded-full flex items-center justify-center shrink-0"
-                                                            style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+                                                            style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
                                                             {getBuyerIcon(section.iconName)}
                                                         </div>
                                                         <div>
@@ -496,8 +628,10 @@ export default function Section4({ data }) {
                 {/* Global Disclaimer Footer */}
                 <div className="p-2">
                     <div className="mt-6 flex items-start gap-4 p-2 sm:p-5 rounded-xl"
-                        style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
-                        <LuInfo className="text-[#B68A35] text-xl shrink-0 mt-0.5" />
+                        style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
+                        <AccentIconColumn>
+                            <LuInfo className="text-[#B68A35] text-xl" />
+                        </AccentIconColumn>
                         <p className="text-[11px] uppercase tracking-wider font-bold leading-relaxed" style={{ color: subtextColor }}>
                             {data.footerDisclaimer?.title || "Trust & Transparency Note:"}{" "}
                             <span className="font-medium normal-case" style={{ color: bodyColor }}>

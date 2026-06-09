@@ -5,7 +5,7 @@ const darkColors = {
   bg: "#232528",
   bgAlt: "#2a2d33",
   text: "#ffffff",
-  textSecondary: "#c0c7d6",
+  textSecondary: "#ffffffb3",
   textMuted: "#6b7a99",
   cardBg: "rgba(255,255,255,0.05)",
   cardBorder: "#2a2d33",

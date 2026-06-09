@@ -32,6 +32,15 @@ const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
 
+const AccentIconColumn = ({ children, color = GOLD, lineClassName = "min-h-14 w-px flex-1 md:min-h-12" }) => (
+    <div className="flex self-stretch shrink-0 flex-col items-center gap-2">
+        <div className="shrink-0 text-[#B68A35]">
+            {children}
+        </div>
+        <span className={lineClassName} style={{ background: color }} />
+    </div>
+);
+
 function SuitabilityBadge({ type, label, isDark }) {
     const map = {
         high: {
@@ -89,8 +98,10 @@ function SourceNote({ text, isDark, bodyColor, cardBorder, subtextColor }) {
     return (
         <div className="flex gap-3 items-start mt-4 p-2 sm:p-4 rounded-2xl"
             style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#fbf7f1', border: `1px solid ${cardBorder}` }}>
-            <FileText className="w-4 h-4 text-[#B68A35] shrink-0 mt-0.5" />
-            <p className="text-xs leading-relaxed" style={{ color: subtextColor }}>{text}</p>
+            <AccentIconColumn lineClassName="min-h-0 w-px flex-1">
+                <FileText className="w-4 h-4 text-[#B68A35]" />
+            </AccentIconColumn>
+            <p className="text-[13px] md:leading-relaxed" style={{ color: subtextColor }}>{text}</p>
         </div>
     );
 }
@@ -99,15 +110,14 @@ function InsightBox({ icon: Icon, title, children, isDark, cardBorder }) {
     return (
         <div className="flex gap-3 items-start pb-4 border-b rounded-2xl"
             style={{ background: isDark ? 'rgba(255,255,255,0.03)' : '#FAF9F6', borderColor: cardBorder }}>
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+            <AccentIconColumn>
                 <Icon className="w-5 h-5 text-[#B68A35]" />
-            </div>
+            </AccentIconColumn>
             <div>
                 <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
                     {title}
                 </p>
-                <p className="text-xs sm:text-sm leading-relaxed" style={{ color: isDark ? 'rgba(255,255,255,0.7)' : '#4A4A4A' }}>{children}</p>
+                <p className="text-[13px] md:leading-relaxed" style={{ color: isDark ? 'rgba(255,255,255,0.7)' : '#4A4A4A' }}>{children}</p>
             </div>
         </div>
     );
@@ -124,7 +134,7 @@ function AccordionItem({ title, icon: Icon, content, isOpen, onToggle, isDark, c
                     }`}
             >
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                    style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+                    style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
                     <Icon className="w-4 h-4 text-[#B68A35]" />
                 </div>
                 <span className="font-semibold text-sm sm:text-[15px] flex-1"
@@ -139,7 +149,7 @@ function AccordionItem({ title, icon: Icon, content, isOpen, onToggle, isDark, c
             </button>
             {isOpen && (
                 <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.03)' : '#FAF9F6' }}>
-                    <p className="text-sm leading-relaxed pl-12" style={{ color: bodyColor }}>
+                    <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
                         {content}
                     </p>
                 </div>
@@ -155,7 +165,7 @@ function WhosBuyingTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextCol
         <div className="px-4 sm:px-5 pt-5">
             <div className="pb-3 flex gap-2">
                 <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0"
-                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
                     <PiUsersBold className="text-[#B68A35] text-xl sm:text-2xl" />
                 </div>
                 <div>
@@ -226,7 +236,7 @@ function ComparativeAnalysisTab({ data, isDark, cardBg, cardBorder, bodyColor, s
             <div className="px-4 sm:px-5 pt-5">
                 <div className="pb-3 flex gap-2">
                     <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0"
-                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
                         <TrendingUp className="text-[#B68A35] text-xl sm:text-2xl" />
                     </div>
                     <div>
@@ -347,7 +357,7 @@ function KpisTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextColor, t 
             <div className="px-4 sm:px-5 pt-5">
                 <div className="pb-3 flex gap-2">
                     <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0"
-                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
                         <Award className="text-[#B68A35] text-xl sm:text-2xl" />
                     </div>
                     <div>
@@ -374,7 +384,7 @@ function KpisTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextColor, t 
                                 >
                                     <div className="col-span-6 flex items-center gap-3">
                                         <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                                            style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+                                            style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
                                             <Icon className="w-4 h-4 text-[#B68A35]" />
                                         </div>
                                         <span className="font-semibold text-xs sm:text-sm" style={{ color: isDark ? t.text : '#1F2937' }}>
@@ -400,15 +410,14 @@ function KpisTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextColor, t 
                     <div className="rounded-xl overflow-hidden p-2 sm:p-5"
                         style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <div className="flex gap-3 items-start">
-                            <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                                style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+                            <AccentIconColumn>
                                 <Award className="w-5 h-5 text-[#B68A35]" />
-                            </div>
+                            </AccentIconColumn>
                             <div>
                                 <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-2">
                                     {data?.verdict?.title || "Long-Term Performance Verdict"}
                                 </p>
-                                <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
+                                <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
                                     {data?.verdict?.content || ""}
                                 </p>
                             </div>
@@ -416,15 +425,14 @@ function KpisTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextColor, t 
 
                         <div className="mt-4 p-4 rounded-lg" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FAF9F6' }}>
                             <div className="flex gap-3 items-start">
-                                <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                                    style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+                                <AccentIconColumn>
                                     <Info className="w-4 h-4 text-[#B68A35]" />
-                                </div>
+                                </AccentIconColumn>
                                 <div>
                                     <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-2">
                                         {data?.importantNote?.title || "Important Note"}
                                     </p>
-                                    <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
+                                    <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
                                         {data?.importantNote?.content || ""}
                                     </p>
                                 </div>
@@ -451,7 +459,7 @@ function StrategyTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextColor
             <div className="px-4 sm:px-5 pt-5">
                 <div className="pb-3 flex gap-2">
                     <div className="h-10 w-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0"
-                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>
                         <Lightbulb className="text-[#B68A35] text-xl sm:text-2xl" />
                     </div>
                     <div>
@@ -555,7 +563,45 @@ function Section7({ data }) {
 
     return (
         <section className="w-full font-sans antialiased" style={{ background: sectionBg }}>
-            <div className="relative w-full h-80 lg:h-96 flex items-center overflow-hidden">
+            <div className="md:hidden max-w-350 mx-auto px-1">
+                <div
+                    className="relative min-h-[285px] overflow-hidden border rounded-none"
+                    style={{
+                        borderColor: cardBorder,
+                        background: isDark ? t.cardBg : "#fffdfa",
+                    }}
+                >
+                    <Image
+                        src={"/projects/cm-projects.webp"}
+                        alt={"Emirates Hills luxury villas"}
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-[1.08] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : '#1A1A1A' }}
+                        >
+                            {data.headings?.line1 || "Resale & Investment Performance"}
+                            <span className="block">
+                                <span className="text-[#B68A35]">{data.headings?.highlight || "Emirates Hills"}</span> {data.headings?.line2 || "by Emaar"}
+                            </span>
+                        </h2>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="hidden md:flex relative w-full h-80 lg:h-96 items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={data.heroImage || "/Home/Section3bg.webp"}
@@ -581,15 +627,14 @@ function Section7({ data }) {
             <div className="relative z-20 max-w-[1400px] mx-auto px-2 sm:px-6 pb-5 sm:pb-10 -mt-24 sm:-mt-28 lg:-mt-32">
                 <div className="mt-5 rounded-2xl shadow-sm p-4 sm:p-5 flex gap-3 items-start"
                     style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#B68A35/10' }}>
+                    <AccentIconColumn>
                         <ShieldCheck className="w-5 h-5 text-[#B68A35]" />
-                    </div>
+                    </AccentIconColumn>
                     <div>
                         <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
                             {data.sourceTransparency?.title || "Source Transparency"}
                         </p>
-                        <p className="text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
+                        <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
                             {data.sourceTransparency?.content || ""}
                         </p>
                     </div>
@@ -635,8 +680,10 @@ function Section7({ data }) {
 
                 <div className="mt-6 rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start"
                     style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-                    <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-                    <p className="text-xs lg:text-sm leading-relaxed" style={{ color: bodyColor }}>
+                    <AccentIconColumn>
+                        <LuInfo className="text-[#B68A35] text-2xl" />
+                    </AccentIconColumn>
+                    <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
                         {data.footerDisclaimer || ""}
                     </p>
                 </div>

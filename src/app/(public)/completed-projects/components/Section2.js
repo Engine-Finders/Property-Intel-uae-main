@@ -19,17 +19,18 @@ import { LuCalendarDays } from "react-icons/lu";
 import { GoInfo } from "react-icons/go";
 import { HiChevronUp } from "react-icons/hi2";
 import { HiChevronDown } from "react-icons/hi2";
-import { useThemeStyles } from '@/app/components/context/themeStyles';
+import { useThemeStyles, GOLD_BORDER, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
 const GOLD = "#B68A35";
-const GOLD_BORDER = "rgba(182,138,53,0.25)";
+const GOLD_BORDER_SOFT = "rgba(182,138,53,0.18)";
+const GOLD_BG_SOFT = "rgba(182,138,53,0.06)";
 
 // --- Sub-components for Tab Views ---
 
 const SectionHeader = ({ icon, title, subtitle, isDark, t }) => (
   <div className="flex items-start gap-4 mb-8">
-    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
-      style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+    <div className="w-12 h-12 flex items-center justify-center shrink-0 shadow-sm"
+      style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER_SOFT}` }}>
       {icon}
     </div>
     <div>
@@ -119,10 +120,10 @@ const TransactionsView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
         </p>
         {/* Data Source Footer */}
         <div className="flex gap-3 px-1 sm:px-2 pt-2 rounded-2xl items-start"
-          style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FDF8F0/60', border: `1px solid ${cardBorder}` }}>
+          style={{ background: isDark ? 'rgba(182,138,53,0.06)' : GOLD_BG_SOFT, border: `1px solid ${cardBorder}` }}>
           <HiOutlineDatabase className="text-[#B68A35] text-lg shrink-0 mt-0.5" />
           <div className="space-y-2">
-            <p className="text-[10px] sm:text-[11px] leading-tight" style={{ color: subtextColor }}>
+            <p className="text-[18px] sm:text-[11px] leading-relaxed" style={{ color: subtextColor }}>
               <span className="font-bold" style={{ color: isDark ? t.textSecondary : '#374151' }}>Data Source:</span> {data?.dataSource || ""}
             </p>
           </div>
@@ -210,7 +211,7 @@ const PriceHistoryView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
                   {/* Main Badge */}
                   {p.isMainBadge && (
                     <div className="absolute bottom-6 right-0 translate-x-2 p-2 md:p-3 rounded-xl text-center shadow-md min-w-32.5 z-30"
-                      style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/30` }}>
+                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER_SOFT}` }}>
                       <p className="text-[#B68A35] text-[10px] font-bold uppercase mb-0.5">{p.badgeLabel || "Q1 2026"}</p>
                       <p className="text-xs md:text-sm font-bold whitespace-nowrap" style={{ color: isDark ? t.text : '#1A1A1A' }}>{p.badgeValue || "AED 3,100–3,800"}</p>
                     </div>
@@ -229,7 +230,7 @@ const PriceHistoryView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
 
           {/* Bottom Note */}
           <div className="rounded-2xl p-4 md:p-5 flex gap-4 items-start mt-4"
-            style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FDF8F0/60', border: `1px solid ${cardBorder}` }}>
+            style={{ background: isDark ? 'rgba(182,138,53,0.06)' : GOLD_BG_SOFT, border: `1px solid ${cardBorder}` }}>
             <div className="text-[#B68A35] mt-0.5 shrink-0">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9.663 17h4.674M12 3v1M18.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
             </div>
@@ -256,7 +257,7 @@ const PriceHistoryView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
                 <div className="flex justify-between items-start gap-2 mb-1.5">
                   <span className="text-[#B68A35] text-[10px] md:text-[11px] font-bold uppercase tracking-wider">{item.range}</span>
                   <span className="text-[#B68A35] text-[9px] md:text-[10px] font-bold px-2 py-0.5 rounded border"
-                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', borderColor: `${GOLD}/10` }}>
+                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', borderColor: GOLD_BORDER_SOFT }}>
                     {item.badge}
                   </span>
                 </div>
@@ -364,7 +365,7 @@ const RentalYieldView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtextC
 
           {/* Table Footer / Disclaimer */}
           <div className="rounded-2xl p-4 flex gap-4 items-start"
-            style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FDF8F0/60', border: `1px solid ${cardBorder}` }}>
+            style={{ background: isDark ? 'rgba(182,138,53,0.06)' : GOLD_BG_SOFT, border: `1px solid ${cardBorder}` }}>
             <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
               <GoInfo className="text-[#B68A35] font-serif italic text-md font-bold" />
             </div>
@@ -410,7 +411,7 @@ const RentalYieldView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtextC
 
       {/* FULL WIDTH DISCLAIMER */}
       <div className="mt-5 rounded-xl p-5"
-        style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FDF8F0/40', border: `1px solid ${cardBorder}` }}>
+        style={{ background: isDark ? 'rgba(182,138,53,0.06)' : GOLD_BG_SOFT, border: `1px solid ${cardBorder}` }}>
         <div className="flex items-center gap-2 mb-2">
           <div className="w-6 h-6 rounded-full flex items-center justify-center shrink-0">
             <GoInfo className="text-[#B68A35] font-serif italic text-md font-bold" />
@@ -470,7 +471,10 @@ const BuyerGuideView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtextCo
             </div>
 
             {/* Content: Visible on Desktop, Toggleable on Mobile */}
-            <div className={`${openSection === section.id ? 'block' : 'hidden'} md:block p-5 sm:p-6 flex-1`}>
+            <div
+              className={`${openSection === section.id ? 'block' : 'hidden'} md:block p-5 sm:p-6 flex-1`}
+              style={{ color: bodyColor }}
+            >
               <div dangerouslySetInnerHTML={{ __html: section.content }} />
             </div>
           </div>
@@ -496,9 +500,8 @@ export default function Section2({ data }) {
   const { t, isDark, dark } = useThemeStyles();
   const [activeTab, setActiveTab] = useState('transactions');
 
-  // Card colors matching TopDevelopersSection pattern
-  const cardBg = isDark ? "#2a2d31" : "#FFFFFF";
-  const cardBorder = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.08)";
+  const cardBg = isDark ? PANEL_DARK_BG : "#FFFFFF";
+  const cardBorder = isDark ? GOLD_BORDER : "rgba(0,0,0,0.08)";
   const sectionBg = isDark ? t.bg : "#FBF9F6";
   const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
   const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
@@ -523,23 +526,66 @@ export default function Section2({ data }) {
   return (
     <section className="w-full py-5 font-sans selection:bg-[#B68A35]/20" style={{ background: sectionBg }}>
       {/* Header Section */}
-      <div className="relative w-full h-80 lg:h-100 flex items-center overflow-hidden">
+      <div className="md:hidden max-w-350 mx-auto px-1">
+        <div
+          className="relative min-h-[285px] overflow-hidden border"
+          style={{
+            borderColor: t.cardBorder,
+            background: isDark ? t.cardBg : "#fffdfa",
+          }}
+        >
+          <Image
+            src={"/projects/cm-projects.webp"}
+            alt={data.heroAlt || "Dubai Skyline"}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isDark
+                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+            }}
+          />
+          <div className="relative z-10 max-w-full px-2 py-8 text-left">
+            <h2
+              className="text-[32px] font-semibold leading-[1.08] tracking-[-0.01em]"
+              style={{ color: t.text }}
+            >
+              Current Market Value &
+              <span className="block text-[#B68A35]">Price History</span>
+            </h2>
+            <p
+              className="mt-4 max-w-[380px] text-left text-[14px] font-normal leading-relaxed tracking-[-0.01em]"
+              style={{ color: t.textSecondary }}
+            >
+              {data.headerDescription || ""}
+            </p>
+            <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden md:flex relative w-full h-80 lg:h-100 items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src={data.heroImage || "/Home/Section3bg.webp"}
             alt={data.heroAlt || "Dubai Skyline"}
             fill
-            className="object-cover object-center grayscale-10"
+            className="object-cover object-center grayscale-[10%]"
             priority
           />
-          <div className={`absolute inset-0 ${isDark ? "" : "bg-linear-to-r from-white via-white/85 to-transparent"}`}
-            style={isDark ? dark?.heroOverlayLeft : undefined} />
+          <div
+            className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`}
+            style={isDark ? dark?.heroOverlayLeft : undefined}
+          />
         </div>
 
-        <div className="relative z-10 max-w-350 mx-auto px-2 w-full">
+        <div className="relative z-10 max-w-350 mx-auto w-full">
           <h2 className="text-3xl lg:text-5xl font-serif mb-1" style={{ color: isDark ? t.text : '#1A1A1A' }}>
             {data.headings?.mainTitle || "Current Market Value & Price History"}
-            <span className="lg:hidden">—</span>
           </h2>
           <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
             {data.headings?.subtitle || "Emirates Hills by Emaar"}
@@ -550,11 +596,14 @@ export default function Section2({ data }) {
         </div>
       </div>
 
-      <div className="max-w-350 mx-auto">
+      <div className="max-w-350 mx-auto px-2 sm:px-6 -mt-8 md:mt-0 relative z-10">
 
         {/* Tab Navigation */}
         <div className="rounded-xl shadow-sm overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-          <div className="flex" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+          <div
+            className="flex"
+            style={isDark ? { ...dark.tabBar, borderBottom: `1px solid ${cardBorder}` } : { borderBottom: `1px solid ${cardBorder}`, background: "#FAF9F6" }}
+          >
             <div className="flex w-full">
               {tabs.map((tab) => (
                 <button
@@ -563,13 +612,13 @@ export default function Section2({ data }) {
                   className={`
                     flex-1 flex flex-col lg:flex-row items-center justify-center
                     gap-1 lg:gap-3 py-3 lg:py-6 px-1 lg:px-4 transition-all relative
-                    ${activeTab === tab.id && !isDark ? 'text-[#B68A35] bg-[#FDF8F0]/50' : !isDark && activeTab !== tab.id ? 'text-gray-400 hover:text-gray-600 hover:bg-gray-50' : ''}
+                    ${activeTab === tab.id && !isDark ? 'text-[#B68A35] bg-white' : !isDark && activeTab !== tab.id ? 'text-[#6b7280] hover:text-[#1f2937] hover:bg-white/70' : ''}
                   `}
                   style={
                     isDark && activeTab === tab.id
-                      ? { color: GOLD, background: 'rgba(182,138,53,0.08)' }
+                      ? { ...dark.tabActive, color: GOLD }
                       : isDark && activeTab !== tab.id
-                        ? { color: subtextColor, background: 'transparent' }
+                        ? { ...dark.tabInactive, color: t.textSecondary }
                         : undefined
                   }
                 >
@@ -587,7 +636,7 @@ export default function Section2({ data }) {
           </div>
 
           {/* Main Content Area */}
-          <div className="p-2 sm:p-6 lg:p-10 min-h-100 lg:min-h-125" style={{ background: cardBg }}>
+          <div className="py-2 sm:p-6 lg:p-10 min-h-100 lg:min-h-125" style={{ background: cardBg }}>
             {activeTab === 'transactions' && <TransactionsView data={data.transactions} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />}
             {activeTab === 'price-history' && <PriceHistoryView data={data.priceHistory} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />}
             {activeTab === 'rental-yield' && <RentalYieldView data={data.rentalYield} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} bodyColor={bodyColor} subtextColor={subtextColor} t={t} />}
@@ -598,7 +647,7 @@ export default function Section2({ data }) {
         {/* Global Footer Disclaimer */}
         <div className="p-2">
           <div className="mt-6 flex items-start gap-4 p-2 sm:p-5 rounded-xl"
-            style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>
+            style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER_SOFT}` }}>
             <LuInfo className="text-[#B68A35] text-xl shrink-0 mt-0.5" />
             <p className="text-[11px] uppercase tracking-wider font-bold leading-relaxed" style={{ color: subtextColor }}>
               Disclaimer: <span className="font-medium normal-case" style={{ color: bodyColor }}>{data.footerDisclaimer || "All data is for educational and research purposes only. PropertyIntel.ae does not provide financial, legal, or investment advice. Market values, rental yields, and transaction data are estimates based on aggregated third-party sources and are subject to change."}</span>

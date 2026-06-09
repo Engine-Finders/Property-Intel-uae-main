@@ -27,11 +27,22 @@ const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
 
+const AccentIconColumn = ({ children, color = GOLD }) => (
+  <div className="flex self-stretch shrink-0 flex-col items-center gap-2">
+    <div className="shrink-0 text-[#B68A35]">
+      {children}
+    </div>
+    <span className="min-h-14 w-px flex-1 md:min-h-12" style={{ background: color }} />
+  </div>
+);
+
 function SourceNote({ text, isDark, bodyColor }) {
   return (
     <div className="flex gap-3 items-start mt-4 px-4 pb-4">
-      <GrSun className="w-4 h-4 text-[#B68A35] shrink-0 mt-0.5" />
-      <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>{text}</p>
+      <AccentIconColumn>
+        <GrSun className="w-4 h-4 text-[#B68A35]" />
+      </AccentIconColumn>
+      <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>{text}</p>
     </div>
   );
 }
@@ -40,15 +51,14 @@ function InsightBox({ icon: Icon, title, children, isDark, cardBorder, bodyColor
   return (
     <div className="mt-5 rounded-2xl p-4 sm:p-5 flex gap-3 items-start"
       style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#FAF9F6' }}>
-      <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-        style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+      <AccentIconColumn>
         <Icon className="w-5 h-5 text-[#B68A35]" />
-      </div>
+      </AccentIconColumn>
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
           {title}
         </p>
-        <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>{children}</p>
+        <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>{children}</p>
       </div>
     </div>
   );
@@ -134,7 +144,7 @@ function RentalYieldsTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextC
                 <p className="font-semibold text-sm sm:text-[15px] flex items-center gap-3 flex-wrap" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                   <span className="truncate">{item.unitConfig}</span>
                   <span className="ml-0 inline-block text-[#B68A35] px-2 py-0.5 rounded-full text-xs font-semibold"
-                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD}/10` }}>{item.subConfig}</span>
+                    style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER}` }}>{item.subConfig}</span>
                 </p>
               </div>
             </div>
@@ -198,7 +208,7 @@ function ServiceChargesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtex
         </h3>
       </div>
 
-      <div className="rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden mx-4 sm:mx-5"
+      <div className="rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden mx-1 sm:mx-5"
         style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
         <div className="hidden sm:grid sm:grid-cols-3 px-4 py-3"
           style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6', borderBottom: `1px solid ${cardBorder}` }}>
@@ -207,17 +217,48 @@ function ServiceChargesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtex
           <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: subtextColor }}>Source</p>
         </div>
 
+        <div className="sm:hidden grid grid-cols-2 gap-2 p-2">
+          {data?.items?.map((item, idx) => {
+            const Icon = getServiceIcon(item.iconName);
+            return (
+              <div
+                key={idx}
+                className="rounded-xl p-2"
+                style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FFFCF8' }}
+              >
+                <div className="flex items-start gap-2">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+                    style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
+                    {Icon}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-bold leading-tight" style={{ color: isDark ? t.text : '#1A1A1A' }}>
+                      {item.metric}
+                    </p>
+                    <p className="mt-1 text-[15px] font-semibold leading-tight text-[#B68A35]">
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-[10px]" style={{ color: subtextColor }}>
+                      {item.source}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
         {data?.items?.map((item, idx) => {
           const Icon = getServiceIcon(item.iconName);
           return (
             <div
               key={idx}
-              className="border-b last:border-b-0 sm:grid sm:grid-cols-3 sm:items-center sm:px-4 sm:py-3"
+              className="hidden border-b last:border-b-0 sm:grid sm:grid-cols-3 sm:items-center sm:px-4 sm:py-3"
               style={{ borderColor: cardBorder }}
             >
               <div className="p-2 sm:p-0 flex items-start sm:items-center gap-3">
                 <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
-                  style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+                  style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
                   {Icon}
                 </div>
                 <p className="font-semibold text-sm sm:text-[15px]" style={{ color: isDark ? t.text : '#1A1A1A' }}>
@@ -231,21 +272,6 @@ function ServiceChargesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtex
               </div>
               <div className="hidden sm:block">
                 <p className="text-xs" style={{ color: subtextColor }}>{item.source}</p>
-              </div>
-
-              <div className="sm:hidden px-4 pb-3 space-y-1.5">
-                <div className="flex justify-between items-start">
-                  <span className="text-xs" style={{ color: subtextColor }}>Value:</span>
-                  <span className="text-sm font-semibold text-[#B68A35] text-right">
-                    {item.value}
-                  </span>
-                </div>
-                <div className="flex justify-between items-start">
-                  <span className="text-xs" style={{ color: subtextColor }}>Source:</span>
-                  <span className="text-xs text-right max-w-[60%]" style={{ color: subtextColor }}>
-                    {item.source}
-                  </span>
-                </div>
               </div>
             </div>
           );
@@ -282,18 +308,30 @@ function ServiceChargesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtex
           )}
         </button>
         {openIdx === 0 && (
-          <div className="mt-3 px-4 pb-4 space-y-4">
-            <div>
+          <div className="mt-3 space-y-3">
+            <div className="flex gap-3 rounded-xl p-4"
+              style={{ background: isDark ? 'rgba(255,255,255,0.03)' : '#FFFCF8', border: `1px solid ${cardBorder}` }}>
+              <AccentIconColumn>
+                <Clock className="w-5 h-5 text-[#B68A35]" />
+              </AccentIconColumn>
+              <div>
               <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Historical context:</p>
-              <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
+              <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
                 {data?.historicalContext?.context || ""}
               </p>
+              </div>
             </div>
-            <div>
+            <div className="flex gap-3 rounded-xl p-4"
+              style={{ background: isDark ? 'rgba(255,255,255,0.03)' : '#FFFCF8', border: `1px solid ${cardBorder}` }}>
+              <AccentIconColumn>
+                <Lightbulb className="w-5 h-5 text-[#B68A35]" />
+              </AccentIconColumn>
+              <div>
               <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Buyer guidance:</p>
-              <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
+              <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
                 {data?.historicalContext?.guidance || ""}
               </p>
+              </div>
             </div>
           </div>
         )}
@@ -334,7 +372,7 @@ function SalesComparablesTab({ data, isDark, cardBg, cardBorder, bodyColor, subt
             className="border-b last:border-b-0 lg:grid lg:grid-cols-6 lg:items-center lg:px-4 lg:py-3"
             style={{ borderColor: cardBorder }}
           >
-            <div className="p-4 lg:p-0">
+            <div className="hidden lg:block lg:p-0">
               <p className="font-semibold text-sm lg:text-[15px]" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                 {item.unitType}
               </p>
@@ -355,27 +393,30 @@ function SalesComparablesTab({ data, isDark, cardBg, cardBorder, bodyColor, subt
               <p className="text-xs" style={{ color: subtextColor }}>{item.feature}</p>
             </div>
 
-            <div className="lg:hidden px-4 pb-4 space-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-xs" style={{ color: subtextColor }}>Built-up:</span>
-                <span className="text-sm font-medium" style={{ color: bodyColor }}>{item.builtUp}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs" style={{ color: subtextColor }}>Sale Price:</span>
-                <span className="text-sm font-semibold text-[#B68A35]">{item.salePrice}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs" style={{ color: subtextColor }}>Price/sqft:</span>
-                <span className="text-sm font-medium" style={{ color: bodyColor }}>{item.pricePerSqft}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-xs" style={{ color: subtextColor }}>Date:</span>
-                <span className="text-xs" style={{ color: subtextColor }}>{item.date}</span>
-              </div>
-              <div className="pt-2" style={{ borderTop: `1px solid ${cardBorder}` }}>
-                <p className="text-xs" style={{ color: subtextColor }}>
-                  <span className="font-medium">Feature:</span> {item.feature}
-                </p>
+            <div className="lg:hidden px-4 pb-4">
+              <div className="grid grid-cols-[1.2fr_1fr_0.85fr] items-center gap-3">
+                <div className="min-w-0">
+                  <div className="flex items-baseline gap-2">
+                    <p className="font-semibold text-[15px]" style={{ color: isDark ? t.text : '#1A1A1A' }}>{item.unitType}</p>
+                    <p className="text-[11px]" style={{ color: subtextColor }}>{item.builtUp}</p>
+                  </div>
+                  <p className="mt-2 flex items-center gap-1 text-[11px] italic text-[#B68A35]">
+                    <Info className="w-3 h-3 shrink-0" />
+                    {item.feature}
+                  </p>
+                </div>
+                <div className="min-w-0 text-center" style={{ borderLeft: `1px solid ${cardBorder}` }}>
+                  <p className="text-[18px] font-semibold leading-tight text-[#B68A35]">{item.salePrice}</p>
+                  <p className="mt-1 text-[10px]" style={{ color: subtextColor }}>sale price</p>
+                </div>
+                <div className="relative min-w-0 pl-3 text-left" style={{ borderLeft: `1px solid ${cardBorder}` }}>
+                  <span className="absolute right-0 -top-3 rounded-full px-2 py-1 text-[9px]"
+                    style={{ background: isDark ? 'rgba(255,255,255,0.05)' : '#FAF9F6', color: subtextColor }}>
+                    {item.date}
+                  </span>
+                  <p className="mt-3 text-[13px] font-semibold" style={{ color: isDark ? t.text : '#1A1A1A' }}>{item.pricePerSqft}</p>
+                  <p className="mt-1 text-[10px]" style={{ color: subtextColor }}>per sqft</p>
+                </div>
               </div>
             </div>
           </div>
@@ -452,7 +493,7 @@ function WhatThisMeansSection({ data, isDark, cardBg, cardBorder, bodyColor, sub
             style={{ background: openEndUser && isDark ? 'rgba(255,255,255,0.04)' : openEndUser ? '#FAF9F6' : 'transparent' }}
           >
             <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
               <Home className="w-5 h-5 text-[#B68A35]" />
             </div>
             <div className="flex-1">
@@ -468,7 +509,7 @@ function WhatThisMeansSection({ data, isDark, cardBg, cardBorder, bodyColor, sub
           </button>
           {openEndUser && (
             <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
-              <p className="text-sm leading-relaxed pl-[52px]" style={{ color: bodyColor }}>
+              <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
                 {data?.endUser?.content || ""}
               </p>
             </div>
@@ -483,7 +524,7 @@ function WhatThisMeansSection({ data, isDark, cardBg, cardBorder, bodyColor, sub
             style={{ background: openInvestor && isDark ? 'rgba(255,255,255,0.04)' : openInvestor ? '#FAF9F6' : 'transparent' }}
           >
             <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
               <TrendingUp className="w-5 h-5 text-[#B68A35]" />
             </div>
             <div className="flex-1">
@@ -499,7 +540,7 @@ function WhatThisMeansSection({ data, isDark, cardBg, cardBorder, bodyColor, sub
           </button>
           {openInvestor && (
             <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
-              <p className="text-sm leading-relaxed pl-[52px]" style={{ color: bodyColor }}>
+              <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
                 {data?.investor?.content || ""}
               </p>
             </div>
@@ -514,7 +555,7 @@ function WhatThisMeansSection({ data, isDark, cardBg, cardBorder, bodyColor, sub
             style={{ background: openChecklist && isDark ? 'rgba(255,255,255,0.04)' : openChecklist ? '#FAF9F6' : 'transparent' }}
           >
             <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+              style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
               <CheckCircle className="w-5 h-5 text-[#B68A35]" />
             </div>
             <div className="flex-1">
@@ -530,7 +571,7 @@ function WhatThisMeansSection({ data, isDark, cardBg, cardBorder, bodyColor, sub
           </button>
           {openChecklist && (
             <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
-              <ul className="space-y-2 text-sm pl-[52px]">
+              <ul className="space-y-2 text-sm ">
                 {data?.checklist?.items?.map((item, idx) => (
                   <li key={idx} className="flex gap-2 items-start">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#B68A35] shrink-0 mt-2" />
@@ -594,7 +635,46 @@ function Section6({ data }) {
 
   return (
     <section className="w-full font-sans antialiased" style={{ background: sectionBg }}>
-      <div className="relative w-full h-80 lg:h-96 flex items-center overflow-hidden">
+      <div className="md:hidden max-w-350 mx-auto px-1">
+        <div
+          className="relative min-h-[285px] overflow-hidden border rounded-none"
+          style={{
+            borderColor: cardBorder,
+            background: isDark ? t.cardBg : "#fffdfa",
+          }}
+        >
+          <Image
+            src={"/projects/cm-projects.webp"}
+            alt={"Emirates Hills luxury villas"}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isDark
+                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+            }}
+          />
+          <div className="relative z-10 max-w-full px-2 py-8 text-left">
+            <h2
+              className="text-[32px] font-semibold leading-[1.08] tracking-[-0.01em]"
+              style={{ color: isDark ? t.text : '#1A1A1A' }}
+            >
+              {data.headings?.line1 || "Financial Reality — "}
+              <span className="text-[#B68A35] italic">{data.headings?.highlight || "Emirates Hills"}</span> {data.headings?.line2 || "by Emaar"}
+            </h2>
+            <p className="mt-4 max-w-[380px] text-left text-[14px] font-normal leading-[24px] tracking-[-0.01em]" style={{ color: bodyColor }}>
+              {data.headings?.subtitle || "ROI, Service Charges & Comparables"}
+            </p>
+            <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden md:flex relative w-full h-80 lg:h-96 items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src={data.heroImage || "/Home/Section3bg.webp"}
@@ -620,13 +700,12 @@ function Section6({ data }) {
       <div className="relative z-20 max-w-[1400px] mx-auto px-2 sm:px-6 pb-5 sm:pb-10 -mt-24 sm:-mt-28 lg:-mt-32">
         <div className="mt-5 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] p-4 sm:p-5 flex gap-3 items-start"
           style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-          <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+          <AccentIconColumn>
             <ShieldCheck className="w-5 h-5 text-[#B68A35]" />
-          </div>
+          </AccentIconColumn>
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">{data.sourceTransparency?.title || "Source Transparency"}</p>
-            <p className="text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
+            <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
               {data.sourceTransparency?.content || ""}
             </p>
           </div>
@@ -673,8 +752,10 @@ function Section6({ data }) {
 
         <div className="mt-6 rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start"
           style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-          <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-          <p className="text-xs lg:text-sm leading-relaxed" style={{ color: bodyColor }}>
+          <AccentIconColumn>
+            <LuInfo className="text-[#B68A35] text-2xl" />
+          </AccentIconColumn>
+          <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
             {data.footerDisclaimer || ""}
           </p>
         </div>

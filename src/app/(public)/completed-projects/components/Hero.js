@@ -2,23 +2,58 @@
 
 import React from 'react';
 import { GrLocation } from "react-icons/gr";
-import { FiCheckCircle, FiDollarSign, FiTrendingUp, FiPieChart, FiShield, FiCalendar, FiArrowRight, FiMap } from "react-icons/fi";
+import {
+    FiCheckCircle,
+    FiDollarSign,
+    FiTrendingUp,
+    FiPieChart,
+    FiShield,
+    FiCalendar,
+    FiArrowRight,
+    FiMap,
+    FiPhone,
+    FiMail,
+    FiUser,
+} from "react-icons/fi";
+import { BsWhatsapp } from "react-icons/bs";
 
-import ExpertSection from "@/app/(public)/home/components/ExpertSection";
 import { useThemeStyles, GOLD_BORDER } from "@/app/components/context/themeStyles";
 
-const EmiratesHillsHero = () => {
+const STAT_ICONS = {
+    transaction_price: FiDollarSign,
+    price_per_sqft: FiTrendingUp,
+    rental_yield: FiPieChart,
+    community_maturity: FiShield,
+};
+
+const CONTACT_ACTIONS = [
+    { label: "WhatsApp", subtext: "Chat instantly", type: "whatsapp", href: "#" },
+    { label: "Call Us", subtext: "Speak directly", type: "phone", href: "#" },
+    { label: "Email Us", subtext: "We'll get back", type: "email", href: "#" },
+];
+
+const ContactIcon = ({ type }) => {
+    if (type === "whatsapp") return <BsWhatsapp className="h-6 w-6" />;
+    if (type === "phone") return <FiPhone className="h-6 w-6" />;
+    return <FiMail className="h-6 w-6" />;
+};
+
+const EmiratesHillsHero = ({ data }) => {
     const { t, isDark, dark } = useThemeStyles();
+
+    if (!data) return null;
+
+    const { backgroundImage, badges, brand, stats, cta, utilityBar } = data;
 
     return (
         <div
-            className={`relative min-h-screen w-full font-serif overflow-x-hidden transition-colors duration-300 ${isDark ? "" : "text-[#1a1a1a]"}`}
+            className={`relative min-h-screen w-full overflow-x-hidden transition-colors duration-300 ${isDark ? "" : "text-[#1a1a1a]"}`}
             style={isDark ? { color: t.text } : undefined}
         >
             {/* Background Image */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('/completed-projects/bg.webp')" }}
+                style={{ backgroundImage: `url('${backgroundImage}')` }}
             >
                 <div
                     className={`absolute inset-0 transition-colors duration-300 ${isDark ? "" : "bg-black/10"}`}
@@ -33,110 +68,75 @@ const EmiratesHillsHero = () => {
                 />
             </div>
 
-            {/* Main Content Container */}
-            <div className="relative z-10 max-w-7xl mx-auto px-2 sm:px-4 pt-10 pb-5 md:pt-12">
+            <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 pt-8 pb-5 md:pt-12">
 
                 {/* Top Badges */}
                 <div className="flex flex-wrap gap-3 mb-8">
                     <div className="flex items-center gap-2 bg-[#b08139] text-white px-4 py-2 rounded-full text-[10px] sm:text-sm font-sans font-semibold tracking-wider uppercase">
                         <FiCheckCircle className='w-4 h-4' />
-                        Completed — Phased Delivery 2003-2008
+                        {badges?.status}
                     </div>
                     <div
                         className={`flex items-center gap-2 px-4 py-2 rounded-full text-[10px] sm:text-sm font-sans font-bold tracking-wider uppercase shadow-sm ${isDark ? "" : "bg-white/90 backdrop-blur-sm"}`}
                         style={isDark ? { ...dark.goldTint, color: t.textSecondary } : undefined}
                     >
                         <GrLocation className='w-4 h-4' />
-                        Established Community
+                        {badges?.location}
                     </div>
                 </div>
 
-                {/* Hero Text */}
-                <div className="mb-12 md:max-w-2xl">
+                {/* Hero Text — h1 / h2 hardcoded */}
+                <div className="mb-3 md:mb-12 md:max-w-2xl">
                     <h1
-                        className={`text-3xl lg:text-5xl xl:text-6xl font-serif leading-tight lg:leading-[1.1] mb-2 sm:mb-4 ${isDark ? "" : ""}`}
+                        className="text-[40px] sm:text-6xl lg:text-7xl font-[575] italic tracking-tight leading-[1.05] mb-2 sm:mb-4"
                         style={{ fontWeight: 510, ...(isDark ? { color: t.text } : {}) }}
                     >
                         Emirates Hills by Emaar.
                     </h1>
                     <p
-                        className={`text-2xl md:text-4xl max-w-lg ${isDark ? "" : ""}`}
+                        className="text-[16px] sm:text-xl lg:text-2xl font-medium max-w-lg"
                         style={isDark ? { color: t.textSecondary } : undefined}
                     >
                         Completed <span className="text-[#b08139]">Luxury Villas</span> in Emirates Hills, Dubai.
                     </p>
                     <div className="mt-4 flex items-center gap-2 border-l-2 border-[#b08139] pl-3">
-                        <span
-                            className={`text-sm font-sans font-medium ${isDark ? "" : "text-gray-700"}`}
-                            style={isDark ? dark.textMuted : undefined}
-                        >
-                            PropertyIntel.ae
-                        </span>
+                        
                     </div>
                 </div>
 
                 {/* Stats Glass Card */}
                 <div
-                    className={`rounded-2xl p-2 sm:p-5 shadow-2xl max-w-5xl mx-auto transition-colors duration-300 ${isDark ? "border" : "bg-white/80 backdrop-blur-md border border-white/50"}`}
-                    style={isDark ? dark.card : undefined}
+                    className={`transition-colors duration-300 lg:mx-auto lg:max-w-5xl lg:overflow-hidden lg:rounded-[18px] lg:border lg:p-4 lg:shadow-[0_24px_70px_rgba(15,23,42,0.14)] lg:backdrop-blur-2xl ${isDark ? "" : "lg:border-white/45 lg:bg-white/55"}`}
+                    style={
+                        isDark
+                            ? {
+                                  background: undefined,
+                                  borderColor: undefined,
+                                  boxShadow: undefined,
+                              }
+                            : undefined
+                    }
                 >
-                    {/* Stats Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-8 mb-8">
-                        <StatItem
-                            icon={<FiDollarSign size={25} />}
-                            label="LATEST TRANSACTION PRICE (5BR VILLA)"
-                            value="AED 32.5M"
-                        />
-                        <StatItem
-                            icon={<FiTrendingUp size={25} />}
-                            label="CURRENT PRICE PER SQFT (MARKET AVG)"
-                            value="AED 3,100–3,800"
-                        />
-                        <StatItem
-                            icon={<FiPieChart size={25} />}
-                            label="RENTAL YIELD (12-MONTH AVG)"
-                            value="3.2–4.1%"
-                        />
-                        <StatItem
-                            icon={<FiShield size={25} />}
-                            label="COMMUNITY MATURITY"
-                            value="Fully Established"
-                        />
+                    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/45">
+                        {(stats || []).map((stat) => {
+                            const Icon = STAT_ICONS[stat.key] || FiShield;
+                            return (
+                                <StatItem
+                                    key={stat.key}
+                                    icon={<Icon size={25} />}
+                                    label={stat.label}
+                                    value={stat.value}
+                                />
+                            );
+                        })}
                     </div>
 
-                    {/* Action Button */}
-                    <button className=" mx-auto w-full sm:w-max max-w-full flex flex-row bg-[#b08139] hover:bg-[#966b2d] transition-colors text-white py-4 sm:py-4 px-2 sm:px-6 rounded-xl items-center justify-center gap-2 sm:gap-3 text-[10px] sm:text-lg text-center font-sans font-semibold mb-4 shadow-lg group">
-                        <FiCalendar size={20} className='hidden sm:block'/>
-                        <span className="whitespace-normal leading-snug text-[12px] sm:text-lg">
-                            Get Current Market Valuation for Emirates Hills
-                        </span>
-                        <FiArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-                    </button>
-
-                    <p
-                        className={`text-center text-[10px] md:text-xs font-sans uppercase tracking-widest mb-10 max-w-2xl mx-auto ${isDark ? "" : "text-gray-600"}`}
-                        style={isDark ? dark.textSecondary : undefined}
-                    >
-                        Receive a data-driven valuation report based on recent transactions, listings, and property-specific factors — no obligation.
-                    </p>
-
-                    <div className="items-center justify-between">
-                        <ExpertSection />
-                    </div>
-
-                    {/* Mobile Specific Secondary Buttons */}
-                    <div className="md:hidden space-y-3 mt-4">
-                        <button
-                            className={`w-full py-4 px-6 rounded-xl flex items-center justify-between text-[#b08139] font-bold border ${isDark ? "" : "bg-white/80 border-[#b08139]/30"}`}
-                            style={isDark ? { ...dark.goldTint, borderColor: GOLD_BORDER } : undefined}
-                        >
-                            Explore Similar Off-Plan Projects by Emaar
-                            <FiArrowRight size={20} />
-                        </button>
+                    <div className="mt-4 flex w-full flex-col gap-3.5 lg:pt-4">
+                        <PrimaryCtaButton label={cta?.label} />
+                        <ExpertContactCard />
                     </div>
                 </div>
 
-                {/* Bottom Utility Bar */}
                 <div className="mt-4 max-w-5xl mx-auto">
                     <button
                         className={`w-full py-4 px-6 rounded-xl flex items-center justify-between shadow-lg border group transition-colors duration-300 ${isDark ? "" : "bg-white/90 backdrop-blur-sm text-[#1a1a1a] border-white/50"}`}
@@ -144,7 +144,7 @@ const EmiratesHillsHero = () => {
                     >
                         <div className="flex items-center gap-4">
                             <FiMap size={24} color="#b08139" />
-                            <span className="font-sans font-semibold">View Emirates Hills Community Map and Amenities</span>
+                            <span className="font-sans font-semibold">{utilityBar?.label}</span>
                         </div>
                         <FiArrowRight className="group-hover:translate-x-1 transition-transform" size={24} color="#b08139" />
                     </button>
@@ -155,31 +155,104 @@ const EmiratesHillsHero = () => {
     );
 };
 
+const PrimaryCtaButton = ({ label }) => (
+    <button
+        type="button"
+        className="w-full rounded-[8px] px-[12px] py-[12px] text-[14px] font-semibold transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90 text-left lg:px-7 lg:py-4 lg:text-lg"
+        style={{ background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)", color: "#ffffff" }}
+    >
+        <span className="flex min-w-0 flex-1 items-center gap-3">
+            <FiCalendar className="h-5 w-5 lg:h-6 lg:w-6" />
+            <span className="min-w-0 text-left">{label}</span>
+        </span>
+        <FiArrowRight className="h-6 w-6 shrink-0 lg:h-8 lg:w-8" />
+    </button>
+);
+
+const ExpertContactCard = () => (
+    <div
+        className="rounded-[10px] border border-white/45 bg-white/55 px-[12px] py-[12px] shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl lg:border-transparent lg:bg-transparent lg:px-5 lg:py-3 lg:shadow-none lg:backdrop-blur-0"
+    >
+        <div className="flex flex-col gap-2 lg:grid lg:grid-cols-[1.25fr_repeat(3,1fr)] lg:items-center">
+            <div className="flex items-center gap-3 border-b pb-4 lg:border-b-0 lg:pr-5 lg:pb-0">
+                <span
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.35)]"
+                    style={{ background: "linear-gradient(180deg, #C99432 0%, #AE7A22 100%)" }}
+                >
+                    <FiUser className="h-8 w-8" />
+                </span>
+                <span className="min-w-0">
+                    <span className="block text-[16px] font-semibold leading-tight text-[#111111]">
+                        Speak to an Investment Expert
+                    </span>
+                    <span className="mt-1 block text-[12px] leading-relaxed text-[#5c5c5c]">
+                        Get expert guidance. It's free & with no obligation.
+                    </span>
+                </span>
+            </div>
+
+            <div className="grid grid-cols-3 divide-x divide-[#eadfce] lg:contents">
+                {CONTACT_ACTIONS.map((action, index) => (
+                    <a
+                        key={`${action.label}-${index}`}
+                        href={action.href}
+                        className="px-2 text-center transition-opacity hover:opacity-80 lg:flex lg:items-center lg:gap-3 lg:border-l lg:px-4 lg:text-left"
+                        style={{ borderColor: "#eadfce" }}
+                    >
+                        <span
+                            className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border text-[#B68A35] lg:mx-0 lg:shrink-0"
+                            style={{ borderColor: "rgba(182,138,53,0.28)" }}
+                        >
+                            <ContactIcon type={action.type} />
+                        </span>
+                        <span className="mt-2 block text-center lg:mt-0 lg:min-w-0 lg:text-left">
+                            <span className="block text-sm font-semibold leading-tight text-[#111111]">
+                                {action.label}
+                            </span>
+                            <span className="mt-1 block text-xs leading-tight text-[#6a6a6a]">
+                                {action.subtext}
+                            </span>
+                        </span>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </div>
+);
+
 const StatItem = ({ icon, label, value }) => {
     const { t, isDark, dark } = useThemeStyles();
 
     return (
-        <div className="flex flex-col items-center text-center space-y-3">
+        <div
+            className={`min-w-0 rounded-xl border p-3 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl sm:p-4 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-5 lg:py-2.5 lg:shadow-none lg:backdrop-blur-0 ${isDark ? "" : "border-white/45 bg-white/55"}`}
+            style={
+                isDark
+                    ? {
+                          background: "rgba(255,255,255,0.55)",
+                          borderColor: "rgba(255,255,255,0.45)",
+                      }
+                    : undefined
+            }
+        >
+            <div className="flex items-center gap-2 sm:gap-2.5">
             <div
-                className={`w-14 h-14 rounded-full border flex items-center justify-center text-[#b08139] ${isDark ? "" : "border-[#b08139]/30 bg-white/50"}`}
-                style={isDark ? { ...dark.iconCircle, border: `1px solid ${GOLD_BORDER}` } : undefined}
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-[#b08139] sm:h-9 sm:w-9 ${isDark ? "" : "border-white/55 bg-white/45"}`}
+                    style={isDark ? { background: "rgba(255,255,255,0.45)", borderColor: "rgba(255,255,255,0.55)" } : undefined}
             >
                 {icon}
             </div>
-            <div>
                 <p
-                    className={`text-[10px] sm:text-[12px] font-bold uppercase tracking-tighter leading-tight mb-1 ${isDark ? "" : "text-gray-600"}`}
-                    style={isDark ? dark.textMuted : undefined}
+                    className="min-w-0 flex-1 text-[10px] font-semibold uppercase leading-tight tracking-[0.18em] text-[#9b835e] sm:text-[11px]"
                 >
                     {label}
                 </p>
-                <p
-                    className={`text-lg sm:text-xl font-bold whitespace-nowrap font-[Merriweather] tabular-nums ${isDark ? "" : "text-[#1a1a1a]"}`}
-                    style={isDark ? dark.text : undefined}
-                >
+            </div>
+            <p
+                className={`mt-1.5 text-lg font-semibold tracking-tight text-[#161616] sm:text-xl lg:text-2xl ${label.includes("SQFT") ? "whitespace-nowrap" : ""}`}
+            >
                     {value}
                 </p>
-            </div>
         </div>
     );
 };

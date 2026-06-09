@@ -1,0 +1,40 @@
+{
+  "backgroundImage": "projects/villa-render-1.jpg",
+  "badges": {
+    "status": "Completed — Phased Delivery 2003-2008",
+    "location": "Established Community"
+  },
+  "brand": "PropertyIntel.ae",
+  "stats": [
+    {
+      "key": "transaction_price",
+      "label": "LATEST TRANSACTION PRICE (5BR VILLA)",
+      "value": "AED 32.5M"
+    },
+    {
+      "key": "price_per_sqft",
+      "label": "CURRENT PRICE PER SQFT (MARKET AVG)",
+      "value": "AED 3,100–3,800"
+    },
+    {
+      "key": "rental_yield",
+      "label": "RENTAL YIELD (12-MONTH AVG)",
+      "value": "3.2–4.1%"
+    },
+    {
+      "key": "community_maturity",
+      "label": "COMMUNITY MATURITY",
+      "value": "Fully Established"
+    }
+  ],
+  "cta": {
+    "label": "Get Current Market Valuation for Emirates Hills",
+    "disclaimer": "Receive a data-driven valuation report based on recent transactions, listings, and property-specific factors — no obligation."
+  },
+  "mobileSecondaryCta": {
+    "label": "Explore Similar Off-Plan Projects by Emaar"
+  },
+  "utilityBar": {
+    "label": "View Emirates Hills Community Map and Amenities"
+  }
+}

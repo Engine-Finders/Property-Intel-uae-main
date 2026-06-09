@@ -1,0 +1,87 @@
+{
+    "id": "section1",
+    "headings": {
+      "mainTitle": "Project Overview",
+      "subtitle": "Emirates Hills, Dubai",
+      "keyFactsTitle": "Key Facts",
+      "keyFactsSubtitle": "at a Glance"
+    },
+    "bodyText": {
+      "primary": "Emirates Hills is a completed, gated luxury villa community developed by Emaar Properties, positioned within one of Dubai's most established premium residential enclaves. Comprising approximately 450 custom-designed detached villas across landscaped plots ranging from 15,000 to over 50,000 sqft, the community was delivered in phases between 2003 and 2008 and has since matured into a benchmark for ultra-luxury living in the UAE."
+    },
+    "bulletPoints": [
+      "Residents benefit from 24/7 security, direct access to the Montgomerie Golf Club, lake and golf course views, and proximity to Dubai Marina, JBR, and major arterial routes including Sheikh Zayed Road (E11).",
+      "The broader Emirates Hills district spans approximately 2.1 million sqm and forms part of Dubai's \"Premium Residential Corridor\" alongside Jumeirah Islands, Jumeirah Golf Estates, and Dubai Hills Estate."
+    ],
+    "keyFacts": [
+      {
+        "iconName": "LuBuilding2",
+        "label": "Developer",
+        "value": "Emaar Properties",
+        "valueIcon": false,
+        "sub": "118,000+ units delivered globally; founded 1997"
+      },
+      {
+        "iconName": "LuBadgeCheck",
+        "label": "Project Status",
+        "value": "Completed",
+        "valueIcon": true,
+        "sub": "Phased handover 2003–2008; fully operational"
+      },
+      {
+        "iconName": "LuLayers",
+        "label": "Total Units",
+        "value": "~450 Detached Villas",
+        "valueIcon": false,
+        "sub": "Custom-designed; plot sizes 15K–50K+ sqft"
+      },
+      {
+        "iconName": "PiHouseLight",
+        "label": "Unit Types",
+        "value": "5–10+ Bedroom Villas",
+        "valueIcon": false,
+        "sub": "Built-up area: ~10,000–30,000+ sqft"
+      },
+      {
+        "iconName": "LuTag",
+        "label": "Current Price Range",
+        "value": "AED 25M–100M+",
+        "valueIcon": false,
+        "sub": "Based on DXBInteract transactions Q4 2025"
+      },
+      {
+        "iconName": "LuChartBar",
+        "label": "Price per Sqft (Current)",
+        "value": "AED 3,100–3,800",
+        "valueIcon": false,
+        "sub": "Market average; varies by view, customization, plot"
+      },
+      {
+        "iconName": "LuTrees",
+        "label": "Community Amenities",
+        "value": "Montgomerie Golf Club, Lakes, Parks, 24/7 Security",
+        "valueIcon": false,
+        "sub": "Managed by Emaar Community Management"
+      },
+      {
+        "iconName": "LuFileText",
+        "label": "Resale Process",
+        "value": "DLD-Registered Freehold",
+        "valueIcon": false,
+        "sub": "Title deed transfer via Dubai Land Department; mortgage financing available"
+      }
+    ],
+    "disclaimer": {
+      "title": "Source & Disclaimer",
+      "blocks": [
+        {
+          "title": "Source Transparency",
+          "content": "Pricing and transaction data aggregated from DXBInteract.com (official DLD partner), along with other portals listings as of February 2026. Values represent market estimates for informational purposes and may vary by property condition, view, customization, and negotiation. Verify all details with licensed real estate professionals and official DLD channels before transacting."
+        },
+        {
+          "title": "Disclaimer",
+          "content": "All information is for educational and research purposes only. PropertyIntel.ae does not provide financial, legal, or investment advice. Market values, rental yields, and transaction data are estimates based on aggregated third-party sources and are subject to change. Verify all details with the Dubai Land Department, licensed real estate brokers, and official developer channels before making any commitment."
+        }
+      ]
+    }
+  }

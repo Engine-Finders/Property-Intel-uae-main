@@ -27,6 +27,15 @@ const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
 // ─── SUB-COMPONENTS ──────────────────────────────────────────────────────────
 
+const AccentIconColumn = ({ children, color = GOLD }) => (
+  <div className="flex self-stretch shrink-0 flex-col items-center gap-2">
+    <div className="shrink-0 text-[#B68A35]">
+      {children}
+    </div>
+    <span className="min-h-14 w-px flex-1 md:min-h-12" style={{ background: color }} />
+  </div>
+);
+
 function StatusBadge({ type, label, isDark }) {
   if (type === "operational") {
     return (
@@ -90,15 +99,14 @@ function InsightBox({ icon: Icon, title, children, isDark, cardBorder, bodyColor
   return (
     <div className="mt-5 rounded-2xl p-4 sm:p-5 flex gap-3 items-start"
       style={{ border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : '#F2EEE8'}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#FAF9F6' }}>
-      <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-        style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+      <AccentIconColumn>
         <Icon className="w-5 h-5 text-[#B68A35]" />
-      </div>
+      </AccentIconColumn>
       <div>
         <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">
           {title}
         </p>
-        <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>{children}</p>
+        <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>{children}</p>
       </div>
     </div>
   );
@@ -106,8 +114,10 @@ function InsightBox({ icon: Icon, title, children, isDark, cardBorder, bodyColor
 
 function SourceNote({ text, isDark, bodyColor }) {
   return (
-    <div className="flex gap-3 items-start mt-4 px-4 pb-4">
-      <FileText className="w-4 h-4 text-[#B68A35] shrink-0 mt-0.5" />
+    <div className="flex gap-3 items-start mt-4 px-2 pb-4">
+      <AccentIconColumn>
+        <FileText className="w-4 h-3 text-[#B68A35]" />
+      </AccentIconColumn>
       <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>{text}</p>
     </div>
   );
@@ -192,7 +202,7 @@ function DriveTimesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextCol
             {data?.header?.highlight || "(Real-World Data, Validated via Google Maps)"}
           </span>
         </h3>
-        <p className="mt-2 text-sm leading-relaxed" style={{ color: bodyColor }}>
+        <p className="mt-2 text-[13px]" style={{ color: bodyColor }}>
           {data?.header?.description || ""}
         </p>
       </div>
@@ -206,13 +216,27 @@ function DriveTimesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextCol
               <button
                 type="button"
                 onClick={() => setOpenIdx(isOpen ? null : idx)}
-                className={`w-full flex gap-3 items-center p-4 text-left transition-colors ${isOpen ? "" : ""}`}
+                className={`w-full flex gap-2 sm:gap-3 items-center p-3 sm:p-4 text-left transition-colors ${isOpen ? "" : ""}`}
                 style={{ background: isOpen && isDark ? 'rgba(255,255,255,0.04)' : isOpen ? '#FAF9F6' : isDark ? 'rgba(255,255,255,0.02)' : '#f9f6f1' }}
               >
                 <span className="w-2.5 h-2.5 rounded-full bg-[#B68A35] shrink-0" />
-                <span className="font-semibold text-sm sm:text-[15px] flex-1 min-w-0 truncate" style={{ color: isDark ? t.text : '#1A1A1A' }}>
+                <span className="font-semibold text-[12px] sm:text-[15px] flex-1 min-w-0 truncate" style={{ color: isDark ? t.text : '#1A1A1A' }}>
                   {item.destination}
                 </span>
+                <div className="sm:hidden flex items-center gap-1.5 shrink-0">
+                  <div className="text-center">
+                    <p className="text-[8px] leading-none mb-1" style={{ color: subtextColor }}>10 AM</p>
+                    <p className="text-[10px] font-semibold px-2 py-1 rounded-full whitespace-nowrap" style={{ color: isDark ? t.text : '#1A1A1A', background: isDark ? 'rgba(255,255,255,0.08)' : '#efeae4' }}>
+                      {item.offPeak}
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[8px] leading-none mb-1" style={{ color: subtextColor }}>Peak</p>
+                    <p className="text-[10px] font-semibold text-[#B68A35] px-2 py-1 rounded-full whitespace-nowrap" style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#efe4d4' }}>
+                      {item.peak}
+                    </p>
+                  </div>
+                </div>
                 <div className="flex items-center gap-3 shrink-0">
                   <div className="text-right hidden sm:block">
                     <p className="text-xs" style={{ color: subtextColor }}>Off-Peak (10 AM)</p>
@@ -235,21 +259,7 @@ function DriveTimesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtextCol
               </button>
               {isOpen && (
                 <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
-                  <div className="flex gap-6 mb-3 sm:hidden pl-5">
-                    <div>
-                      <p className="text-xs" style={{ color: subtextColor }}>Off-Peak (10 AM)</p>
-                      <p className="text-sm font-semibold p-2 text-center rounded-full" style={{ color: isDark ? t.text : '#1A1A1A', background: isDark ? 'rgba(255,255,255,0.08)' : '#efeae4' }}>
-                        {item.offPeak}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs" style={{ color: subtextColor }}>Peak (8 AM / 6 PM)</p>
-                      <p className="text-sm font-semibold text-[#B68A35] p-2 text-center rounded-full" style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#efe4d4' }}>
-                        {item.peak}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-sm leading-relaxed p-5" style={{ background: isDark ? cardBg : 'white', color: bodyColor }}>
+                  <p className="text-[13px] sm:text-sm md:leading-relaxed p-4 sm:p-5" style={{ background: isDark ? cardBg : 'white', color: bodyColor }}>
                     {item.note}
                   </p>
                 </div>
@@ -364,25 +374,27 @@ function MapSection({ data, isDark, cardBg, cardBorder, bodyColor, subtextColor,
       style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
       <div className="flex gap-3 items-start px-4 sm:px-5 py-4" style={{ borderBottom: `1px solid ${cardBorder}` }}>
         <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 mt-1 sm:mt-0"
-          style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+          style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
           <Map className="w-5 h-5 text-[#B68A35]" />
         </div>
         <div className="flex-1">
           <p className="font-semibold text-sm sm:text-base" style={{ color: isDark ? t.text : '#1A1A1A' }}>
             {data?.title || "Map Description (Alt-Text Style)"}
           </p>
-          <p className="text-sm leading-relaxed mt-2" style={{ color: bodyColor }}>
+          <p className="text-[13px] mt-2" style={{ color: bodyColor }}>
             {data?.description || ""}
           </p>
         </div>
       </div>
 
       <div className="px-4 sm:px-5 py-5">
-        <div className="relative rounded-xl overflow-hidden">
-          <img
-            src={data?.imageUrl || "/completed-projects/map.webp"}
-            alt={data?.imageAlt || "Map showing Emirates Hills positioned in western Dubai"}
-            className="w-full h-full object-cover"
+        <div className="relative h-[300px] sm:h-[420px] rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
+          <iframe
+            title={data?.imageAlt || "Map showing Emirates Hills positioned in western Dubai"}
+            src="https://www.google.com/maps?q=Emirates%20Hills%20Dubai&output=embed"
+            className="h-full w-full"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
       </div>
@@ -424,7 +436,7 @@ function NeighbourhoodSection({ data, isDark, cardBg, cardBorder, bodyColor, sub
 
       {open && (
         <div className="px-4 pb-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF9F6' }}>
-          <p className="text-sm leading-relaxed mb-4 pt-2" style={{ color: bodyColor }}>
+          <p className="text-[13px] mb-4 pt-2" style={{ color: bodyColor }}>
             {data?.description || ""}
           </p>
 
@@ -489,7 +501,7 @@ function CTASection({ data, isDark, cardBg, cardBorder, bodyColor, subtextColor,
           <div key={idx} className="p-4 sm:p-5 flex flex-col gap-3">
             <div className="flex gap-3 items-start">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+                style={{ background: isDark ? 'rgba(182,138,53,0.15)' : 'rgba(182,138,53,0.10)' }}>
                 {getCTAIcon(btn.iconName)}
               </div>
               <div className="min-w-0">
@@ -578,7 +590,46 @@ function Section5({ data }) {
   return (
     <section className="w-full font-sans antialiased" style={{ background: sectionBg }}>
       {/* ── Header ── */}
-      <div className="relative w-full h-80 lg:h-96 flex items-center overflow-hidden">
+      <div className="md:hidden max-w-350 mx-auto px-1">
+        <div
+          className="relative min-h-[285px] overflow-hidden border rounded-none"
+          style={{
+            borderColor: cardBorder,
+            background: isDark ? t.cardBg : "#fffdfa",
+          }}
+        >
+          <Image
+            src={"/projects/cm-projects.webp"}
+            alt={"Emirates Hills luxury villas"}
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isDark
+                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+            }}
+          />
+          <div className="relative z-10 max-w-full px-2 py-8 text-left">
+            <h2
+              className="text-[32px] font-semibold leading-[1.08] tracking-[-0.01em]"
+              style={{ color: isDark ? t.text : '#1A1A1A' }}
+            >
+              {data.headings?.line1 || "Location & "}
+              <span className="text-[#B68A35] italic">{data.headings?.highlight || "Community"}</span> {data.headings?.line2 || "Maturity"}
+            </h2>
+            <p className="mt-4 max-w-[380px] text-left text-[14px] font-normal leading-[24px] tracking-[-0.01em]" style={{ color: bodyColor }}>
+              {data.headings?.subtitle || "Emirates Hills – by Emaar Properties"}
+            </p>
+            <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden md:flex relative w-full h-80 lg:h-96 items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src={data.heroImage || "/Home/Section3bg.webp"}
@@ -605,13 +656,12 @@ function Section5({ data }) {
         {/* ── Source Transparency ── */}
         <div className="mt-5 rounded-2xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] p-4 sm:p-5 flex gap-3 items-start"
           style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-          <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ background: isDark ? 'rgba(182,138,53,0.15)' : '#B68A35/10' }}>
+          <AccentIconColumn>
             <ShieldCheck className="w-5 h-5 text-[#B68A35]" />
-          </div>
+          </AccentIconColumn>
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-[#B68A35] mb-1">{data.sourceTransparency?.title || "Source Transparency"}</p>
-            <p className="text-xs sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
+            <p className="text-[13px]" style={{ color: bodyColor }}>
               {data.sourceTransparency?.content || ""}
             </p>
           </div>
@@ -665,8 +715,10 @@ function Section5({ data }) {
         {/* ── Disclaimer ── */}
         <div className="mt-6 rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start"
           style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-          <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-          <p className="text-xs lg:text-sm leading-relaxed" style={{ color: bodyColor }}>
+          <AccentIconColumn>
+            <LuInfo className="text-[#B68A35] text-2xl" />
+          </AccentIconColumn>
+          <p className="text-[13px]" style={{ color: bodyColor }}>
             {data.footerDisclaimer || ""}
           </p>
         </div>
