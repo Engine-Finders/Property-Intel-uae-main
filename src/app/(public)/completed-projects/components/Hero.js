@@ -17,7 +17,7 @@ import {
 } from "react-icons/fi";
 import { BsWhatsapp } from "react-icons/bs";
 
-import { useThemeStyles, GOLD_BORDER } from "@/app/components/context/themeStyles";
+import { useThemeStyles } from "@/app/components/context/themeStyles";
 
 const STAT_ICONS = {
     transaction_price: FiDollarSign,
@@ -104,19 +104,8 @@ const EmiratesHillsHero = ({ data }) => {
                     </div>
                 </div>
 
-                {/* Stats Glass Card */}
-                <div
-                    className={`transition-colors duration-300 lg:mx-auto lg:max-w-5xl lg:overflow-hidden lg:rounded-[18px] lg:border lg:p-4 lg:shadow-[0_24px_70px_rgba(15,23,42,0.14)] lg:backdrop-blur-2xl ${isDark ? "" : "lg:border-white/45 lg:bg-white/55"}`}
-                    style={
-                        isDark
-                            ? {
-                                  background: undefined,
-                                  borderColor: undefined,
-                                  boxShadow: undefined,
-                              }
-                            : undefined
-                    }
-                >
+                {/* Stats Glass Card — one shared white-glass panel (light + dark) */}
+                <div className="transition-colors duration-300 lg:mx-auto lg:max-w-5xl lg:overflow-hidden lg:rounded-[18px] lg:border lg:border-white/45 lg:bg-white/55 lg:p-4 lg:shadow-[0_24px_70px_rgba(15,23,42,0.14)] lg:backdrop-blur-2xl">
                     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/45">
                         {(stats || []).map((stat) => {
                             const Icon = STAT_ICONS[stat.key] || FiShield;
@@ -131,7 +120,7 @@ const EmiratesHillsHero = ({ data }) => {
                         })}
                     </div>
 
-                    <div className="mt-4 flex w-full flex-col gap-3.5 lg:pt-4">
+                    <div className="mt-4 flex w-full flex-col gap-3.5 lg:border-t lg:border-white/45 lg:pt-4">
                         <PrimaryCtaButton label={cta?.label} />
                         <ExpertContactCard />
                     </div>
@@ -139,14 +128,15 @@ const EmiratesHillsHero = ({ data }) => {
 
                 <div className="mt-4 max-w-5xl mx-auto">
                     <button
-                        className={`w-full py-4 px-6 rounded-xl flex items-center justify-between shadow-lg border group transition-colors duration-300 ${isDark ? "" : "bg-white/90 backdrop-blur-sm text-[#1a1a1a] border-white/50"}`}
-                        style={isDark ? { ...dark.panel, color: t.text } : undefined}
+                        type="button"
+                        className="w-full py-4 px-6 rounded-xl flex items-center justify-between border border-[rgba(255,255,255,0.14)] text-white shadow-[0_10px_24px_rgba(182,138,53,0.24)] group transition-opacity hover:opacity-90"
+                        style={{ background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)" }}
                     >
                         <div className="flex items-center gap-4">
-                            <FiMap size={24} color="#b08139" />
+                            <FiMap size={24} color="#ffffff" />
                             <span className="font-sans font-semibold">{utilityBar?.label}</span>
                         </div>
-                        <FiArrowRight className="group-hover:translate-x-1 transition-transform" size={24} color="#b08139" />
+                        <FiArrowRight className="group-hover:translate-x-1 transition-transform" size={24} color="#ffffff" />
                     </button>
                 </div>
 
@@ -158,8 +148,11 @@ const EmiratesHillsHero = ({ data }) => {
 const PrimaryCtaButton = ({ label }) => (
     <button
         type="button"
-        className="w-full rounded-[8px] px-[12px] py-[12px] text-[14px] font-semibold transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90 text-left lg:px-7 lg:py-4 lg:text-lg"
-        style={{ background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)", color: "#ffffff" }}
+        className="w-full rounded-[8px] px-[12px] py-[12px] text-[14px] font-semibold text-white transition-colors focus:outline-none inline-flex items-center justify-between gap-3 shadow-[0_10px_24px_rgba(182,138,53,0.24)] hover:opacity-90 text-left lg:px-7 lg:py-4 lg:text-lg"
+        style={{
+            background: "linear-gradient(180deg, #C99432 0%, #B27C21 100%)",
+            color: "#ffffff",
+        }}
     >
         <span className="flex min-w-0 flex-1 items-center gap-3">
             <FiCalendar className="h-5 w-5 lg:h-6 lg:w-6" />
@@ -170,9 +163,7 @@ const PrimaryCtaButton = ({ label }) => (
 );
 
 const ExpertContactCard = () => (
-    <div
-        className="rounded-[10px] border border-white/45 bg-white/55 px-[12px] py-[12px] shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl lg:border-transparent lg:bg-transparent lg:px-5 lg:py-3 lg:shadow-none lg:backdrop-blur-0"
-    >
+    <div className="max-lg:rounded-[10px] max-lg:border max-lg:border-white/45 max-lg:bg-white/55 max-lg:px-[12px] max-lg:py-[12px] max-lg:shadow-[0_24px_70px_rgba(15,23,42,0.14)] max-lg:backdrop-blur-2xl lg:px-5 lg:py-3">
         <div className="flex flex-col gap-2 lg:grid lg:grid-cols-[1.25fr_repeat(3,1fr)] lg:items-center">
             <div className="flex items-center gap-3 border-b pb-4 lg:border-b-0 lg:pr-5 lg:pb-0">
                 <span
@@ -220,41 +211,22 @@ const ExpertContactCard = () => (
     </div>
 );
 
-const StatItem = ({ icon, label, value }) => {
-    const { t, isDark, dark } = useThemeStyles();
-
-    return (
-        <div
-            className={`min-w-0 rounded-xl border p-3 shadow-[0_24px_70px_rgba(15,23,42,0.14)] backdrop-blur-2xl sm:p-4 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-5 lg:py-2.5 lg:shadow-none lg:backdrop-blur-0 ${isDark ? "" : "border-white/45 bg-white/55"}`}
-            style={
-                isDark
-                    ? {
-                          background: "rgba(255,255,255,0.55)",
-                          borderColor: "rgba(255,255,255,0.45)",
-                      }
-                    : undefined
-            }
-        >
-            <div className="flex items-center gap-2 sm:gap-2.5">
-            <div
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-[#b08139] sm:h-9 sm:w-9 ${isDark ? "" : "border-white/55 bg-white/45"}`}
-                    style={isDark ? { background: "rgba(255,255,255,0.45)", borderColor: "rgba(255,255,255,0.55)" } : undefined}
-            >
+const StatItem = ({ icon, label, value }) => (
+    <div className="min-w-0 max-lg:rounded-xl max-lg:border max-lg:border-white/45 max-lg:bg-white/55 max-lg:p-3 max-lg:shadow-[0_24px_70px_rgba(15,23,42,0.14)] max-lg:backdrop-blur-2xl sm:max-lg:p-4 lg:px-5 lg:py-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/55 bg-white/45 text-[#b08139] sm:h-9 sm:w-9">
                 {icon}
             </div>
-                <p
-                    className="min-w-0 flex-1 text-[10px] font-semibold uppercase leading-tight tracking-[0.18em] text-[#9b835e] sm:text-[11px]"
-                >
-                    {label}
-                </p>
-            </div>
-            <p
-                className={`mt-1.5 text-lg font-semibold tracking-tight text-[#161616] sm:text-xl lg:text-2xl ${label.includes("SQFT") ? "whitespace-nowrap" : ""}`}
-            >
-                    {value}
-                </p>
+            <p className="min-w-0 flex-1 text-[10px] font-semibold uppercase leading-tight tracking-[0.18em] text-[#9b835e] sm:text-[11px]">
+                {label}
+            </p>
         </div>
-    );
-};
+        <p
+            className={`mt-1.5 text-lg font-semibold tracking-tight text-[#161616] sm:text-xl lg:text-2xl ${label.includes("SQFT") ? "whitespace-nowrap" : ""}`}
+        >
+            {value}
+        </p>
+    </div>
+);
 
 export default EmiratesHillsHero;

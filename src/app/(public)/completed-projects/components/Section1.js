@@ -17,9 +17,18 @@ const GOLD = "#B68A35";
 ───────────────────────────────────────────── */
 const FactRow = ({ icon, label, value, valueIcon, sub, isDark, bodyColor, subtextColor, t, isFirst }) => (
     <div
-        className={`grid grid-cols-[3.5rem_1fr] gap-2 px-4 py-5 sm:grid-cols-[4.5rem_1.2fr_1fr] sm:items-center sm:px-6 ${isFirst ? "" : "border-t"}`}
+        className={`relative grid grid-cols-[3.5rem_1fr] gap-2 px-2 py-5 sm:grid-cols-[4.5rem_1.2fr_1fr] sm:items-center sm:px-6 ${isFirst ? "" : "border-t"}`}
         style={{ borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(15,23,42,0.08)" }}
     >
+        {sub ? (
+            <p
+                className="absolute top-5 right-4 z-10 max-w-[48%] text-right text-[11px] leading-snug sm:static sm:col-start-3 sm:max-w-none sm:self-center sm:text-[13px] sm:leading-relaxed"
+                style={{ color: bodyColor }}
+            >
+                {sub}
+            </p>
+        ) : null}
+
         <div
             className={`flex h-14 w-14 items-center justify-center rounded-xl border sm:h-16 sm:w-16 ${isFirst ? "p-2" : ""}`}
             style={{
@@ -35,7 +44,7 @@ const FactRow = ({ icon, label, value, valueIcon, sub, isDark, bodyColor, subtex
             )}
         </div>
 
-        <div className="min-w-0">
+        <div className="min-w-0 pr-[50%] sm:pr-0">
             <p className="text-[11px] font-medium leading-tight" style={{ color: subtextColor }}>
                 {label}
             </p>
@@ -43,10 +52,6 @@ const FactRow = ({ icon, label, value, valueIcon, sub, isDark, bodyColor, subtex
                 {valueIcon}{value}
             </p>
         </div>
-
-        <p className="col-start-2 text-right text-[12px] leading-relaxed sm:col-start-auto sm:text-right sm:text-[13px]" style={{ color: bodyColor }}>
-            {sub}
-        </p>
     </div>
 );
 
