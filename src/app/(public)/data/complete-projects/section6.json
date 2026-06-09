@@ -1,0 +1,212 @@
+{
+    "id": "section6",
+    "heroImage": "/Home/Section3bg.webp",
+    "heroAlt": "Emirates Hills luxury villas",
+    "headings": {
+      "line1": "Financial Reality — ",
+      "highlight": "Emirates Hills",
+      "line2": "by Emaar",
+      "subtitle": "ROI, Service Charges & Comparables"
+    },
+    "sourceTransparency": {
+      "title": "Source Transparency",
+      "content": "All financial data presented below is aggregated from the Dubai Land Department (DLD) via DXBInteract.com (official DLD partner), DLD Mollak Service Charge Index, and verified owner association records. Market values, rental yields, and service charges represent verified transaction data and disclosed community budgets as of Q1 2026. Figures are estimates for informational purposes and may vary by plot position, customization, view, and condition. Always verify specific property details with a RERA-licensed broker and official DLD channels before transacting."
+    },
+    "rentalYields": {
+      "header": {
+        "title": "Actual Achieved Rental Yields ",
+        "highlight": "— Last 12 Months (Verified Transactions)"
+      },
+      "items": [
+        {
+          "unitConfig": "5-Bedroom Villa",
+          "subConfig": "Standard",
+          "avgRent": "AED 950K – 1.2M",
+          "yield": "3.1 – 3.8%",
+          "leaseTerm": "12-month renewable"
+        },
+        {
+          "unitConfig": "6-Bedroom Villa",
+          "subConfig": "Extended",
+          "avgRent": "AED 1.4M – 1.9M",
+          "yield": "3.3 – 4.2%",
+          "leaseTerm": "12-month renewable"
+        },
+        {
+          "unitConfig": "7+ Bedroom Villa",
+          "subConfig": "Custom Build",
+          "avgRent": "AED 2.2M – 3.5M",
+          "yield": "3.0 – 4.0%",
+          "leaseTerm": "12-24 month negotiated"
+        }
+      ],
+      "source": "Gross yield calculated as (Annual Rent ÷ Current Market Value) × 100. Based on DXBInteract rental transaction records, Q1 2025–Q1 2026. Excludes service charges, utilities, and management fees.",
+      "insight": {
+        "title": "What the numbers indicate",
+        "content": "Emirates Hills rental yields sit at the lower end of Dubai's villa spectrum (typically 4–6% for newer communities), reflecting its positioning as a capital-preservation asset rather than a high-yield investment. Demand is driven by executive relocations, family upgrades, and long-term luxury leases. Properties with recent interior updates, smart-home integration, or prime golf/lake views achieve rental premiums of 10–15% above community averages. For investors, the trade-off is clear: modest current income in exchange for long-term value stability and scarcity-driven appreciation."
+      }
+    },
+    "serviceCharges": {
+      "header": {
+        "title": "Current Service Charges ",
+        "highlight": "— Verified History & Transparency"
+      },
+      "items": [
+        {
+          "metric": "Current Service Charge (Avg.)",
+          "value": "AED 11.50/sqft annually",
+          "source": "DLD Mollak Index, Q4 2025",
+          "iconName": "DollarSign"
+        },
+        {
+          "metric": "Original Estimate at Launch (2003)",
+          "value": "AED 6.00–8.00/sqft annually",
+          "source": "Emaar Historical Brochures",
+          "iconName": "Clock"
+        },
+        {
+          "metric": "Cumulative Increase Since Handover",
+          "value": "+44 –92%",
+          "source": "DLD Mollak Historical Data",
+          "iconName": "TrendingUp"
+        },
+        {
+          "metric": "Annual Adjustment Trend (2010–2025)",
+          "value": "+3–5% average",
+          "source": "Owners' Association Budget Records",
+          "iconName": "LineChart"
+        }
+      ],
+      "whatFunds": {
+        "title": "What service charges fund:",
+        "items": [
+          "24/7 security personnel, CCTV infrastructure, and gate management",
+          "Landscaping, irrigation, and mature tree maintenance across 25% green space allocation",
+          "Lake filtration systems, water feature upkeep, and environmental management",
+          "Road maintenance, street lighting, and common-area utilities",
+          "Community clubhouse, fitness facilities, and amenity operations",
+          "Exterior building maintenance coordination and warranty claim facilitation"
+        ]
+      },
+      "historicalContext": {
+        "title": "Historical Context & Buyer Guidance",
+        "context": "Service charges at Emirates Hills have increased gradually since handover (2003–2008), aligning with inflation, amenity upgrades, and enhanced security protocols. The most significant adjustments occurred during 2015–2018 (golf course refurbishment, lake system upgrades) and 2022–2024 (post-pandemic operational cost normalization). Unlike newer communities where initial estimates are often optimistic, Emirates Hills benefits from two decades of transparent budget disclosure via owners' association meetings. Current charges remain competitive relative to comparable ultra-luxury enclaves (e.g., Palm Jumeirah Garden Homes: AED 14–18/sqft; Jumeirah Golf Estates: AED 10–13/sqft).",
+        "guidance": "Request the last 3 years of service charge statements and owners' association budgets during due diligence. Factor in potential annual adjustments of 3–5% when modelling long-term holding costs. Properties with larger plots or premium views may incur marginally higher charges due to expanded landscaping scope."
+      },
+      "source": "Source: DLD Mollak Service Charge Index, Q4 2025; Emaar Historical Brochures; Owners' Association Budget Records."
+    },
+    "salesComparables": {
+      "header": {
+        "title": "Recent Sales Comparables ",
+        "highlight": "— Verified DXBInteract Transactions (Last 12 Months)"
+      },
+      "items": [
+        {
+          "unitType": "5-Bed Villa",
+          "builtUp": "12,450 sqft",
+          "salePrice": "AED 29.8M",
+          "pricePerSqft": "AED 2,394",
+          "date": "Nov 2025",
+          "feature": "Golf course view"
+        },
+        {
+          "unitType": "6-Bed Villa",
+          "builtUp": "16,200 sqft",
+          "salePrice": "AED 41.5M",
+          "pricePerSqft": "AED 2,562",
+          "date": "Jan 2026",
+          "feature": "Lake frontage"
+        },
+        {
+          "unitType": "7-Bed Villa",
+          "builtUp": "22,100 sqft",
+          "salePrice": "AED 68.2M",
+          "pricePerSqft": "AED 3,086",
+          "date": "Dec 2025",
+          "feature": "Corner plot, extended garden"
+        },
+        {
+          "unitType": "5-Bed Villa",
+          "builtUp": "11,800 sqft",
+          "salePrice": "AED 27.3M",
+          "pricePerSqft": "AED 2,314",
+          "date": "Oct 2025",
+          "feature": "Standard orientation"
+        },
+        {
+          "unitType": "6-Bed Villa",
+          "builtUp": "15,500 sqft",
+          "salePrice": "AED 39.1M",
+          "pricePerSqft": "AED 2,523",
+          "date": "Feb 2026",
+          "feature": "Recently renovated interior"
+        }
+      ],
+      "source": "Source: DXBInteract.com (official DLD transaction data), filtered for Emirates Hills villa sales, Q1 2025–Q1 2026. Excludes off-market private transactions and non-disclosed deals.",
+      "insight": {
+        "title": "Market insight",
+        "content": "The spread between transaction prices (AED 2,314–3,086/sqft) reflects the impact of plot position, view quality, interior condition, and negotiation dynamics. Golf/lake-front properties command premiums of 15–25% over standard orientations. Recently renovated units achieve faster sales and stronger pricing, underscoring the value of proactive maintenance in a mature community. Transaction velocity remains selective—typical time-on-market for well-priced, turnkey villas is 60–90 days, compared to 120+ days for properties requiring significant updates."
+      }
+    },
+    "lessonsLearned": {
+      "header": {
+        "badge": "Post-Handover Reality",
+        "title": "Lessons Learned & Current Considerations"
+      },
+      "items": [
+        {
+          "title": "Snagging & After-Sales Service",
+          "content": "Early residents (2003–2006 handovers) reported initial delays in snagging resolution, with wait times of 2–4 weeks for non-urgent cosmetic items. Emaar's after-sales team has since refined its processes; current warranty claims for structural items are typically addressed within 7–10 business days. For resale buyers commissioning independent surveys, budget AED 15,000–35,000 for a comprehensive building inspection given the age of assets (handed over 2003–2008)."
+        },
+        {
+          "title": "Service Charge Evolution",
+          "content": "Service charges have increased cumulatively by 44–92% since original estimates, driven by inflation, amenity enhancements, and elevated security standards. While this exceeds initial projections, the increases have been transparently communicated via annual owners' association budgets. Current charges remain competitive relative to comparable ultra-luxury communities."
+        },
+        {
+          "title": "Age-Related Maintenance Considerations",
+          "points": [
+            "HVAC units typically have a 15–20 year lifespan; many original installations are due for replacement or major servicing.",
+            "Electrical panels and wiring may benefit from upgrades to support modern smart-home integration.",
+            "Exterior finishes (stucco, stone cladding) may require repointing or resealing after two decades of UAE climate exposure."
+          ]
+        },
+        {
+          "title": "Renovation Approval Process",
+          "content": "Major exterior modifications require Emaar Community Management approval, with typical review timelines of 4–8 weeks. Interior renovations face fewer restrictions but must comply with building structural guidelines. Engage a RERA-licensed contractor early to assess feasibility and budget for permit-related timelines."
+        },
+        {
+          "title": "Resale Process Clarity",
+          "points": [
+            "Immediate mortgage eligibility (subject to bank valuation and buyer profile)",
+            "Clear title deed transfer via Dubai Land Department (typically 5–7 business days post-NOC)",
+            "Transparent service charge history and owners' association records",
+            "Established community management protocols for maintenance requests"
+          ]
+        }
+      ]
+    },
+    "whatThisMeans": {
+      "header": {
+        "title": "What This Means for Buyers"
+      },
+      "endUser": {
+        "title": "For end-users seeking a primary residence",
+        "content": "Emirates Hills offers predictable holding costs, transparent service charge history, and a mature community with resolved early-phase teething issues. Budget for potential system upgrades (HVAC, electrical) given the asset age, and factor in the renovation approval timeline if planning significant modifications. The resale process is streamlined compared to off-plan purchases, with immediate mortgage eligibility and clear title transfer protocols."
+      },
+      "investor": {
+        "title": "For investors evaluating resale or rental strategy",
+        "content": "Current yields (3.0–4.2%) are modest but stable, reflecting the community's capital-preservation positioning. Capital appreciation has historically outpaced rental income in this asset class. Investors with a 5–10 year horizon may benefit from continued infrastructure maturation in surrounding corridors, though near-term liquidity remains selective. Properties with recent interior updates achieve rental premiums and faster resale velocity."
+      },
+      "checklist": {
+        "title": "Key due diligence checklist",
+        "items": [
+          "Request the last 3 years of service charge statements and owners' association budgets",
+          "Commission an independent building survey focused on age-related systems (HVAC, electrical, exterior finishes)",
+          "Verify the full DLD transaction history for the specific plot via the Dubai REST app",
+          "Confirm Emaar Community Management's current response protocols for maintenance requests",
+          "If planning renovations, engage a RERA-licensed contractor early to assess approval feasibility and timelines"
+        ]
+      }
+    },
+    "footerDisclaimer": "All financial data is for educational and research purposes only. PropertyIntel.ae does not provide financial, legal, or investment advice. Market values, rental yields, service charges, and transaction data are estimates based on aggregated third-party sources and are subject to change. Verify all details with the Dubai Land Department, licensed real estate brokers, and official developer channels before making any commitment."
+  }

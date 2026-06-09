@@ -15,7 +15,7 @@ const SectionImageHeader = ({
   minHeight = 285,
 }) => (
   <div
-    className={`relative overflow-hidden rounded-t-[28px] border ${className}`}
+    className={`relative overflow-hidden border ${className}`}
     style={{
       borderColor: t.cardBorder,
       background: t.isDark ? t.cardBg : "#fffdfa",
