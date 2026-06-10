@@ -1,0 +1,271 @@
+{
+  "id": "home-section8",
+  "heroImage": "/Home/Section3bg.webp",
+  "heroAlt": "Dubai Skyline",
+  "header": {
+    "title": {
+      "line1": "Emaar Financial Health & Market",
+      "line2": "Position - Investor Analysis"
+    },
+    "description": "Analysis of Emaar Properties' financial strength, market share, and development pipeline based on audited financial reports and DLD data."
+  },
+  "disclaimer": {
+    "title": "Disclaimer ",
+    "text": "All financial data sourced from publicly available reports and regulatory filings. Placeholder values indicate backend-populated data for real-time accuracy.",
+    "lastUpdated": "Last updated: 22 February 2026"
+  },
+  "tabs": [
+    { "id": "financials", "label": "Financials", "iconName": "TbChartBar" },
+    { "id": "market", "label": "Market", "iconName": "BsBarChartLine" },
+    { "id": "pipeline", "label": "Pipeline", "iconName": "TbRocket" },
+    { "id": "ratings", "label": "Ratings", "iconName": "BsShieldCheck" }
+  ],
+  "statTiles": [
+    {
+      "iconName": "CiBank",
+      "label": "Publicly Traded",
+      "value": "Yes",
+      "sub": null
+    },
+    {
+      "iconName": "BsBarChartLine",
+      "label": "Stock Ticker",
+      "value": "DFM: EMAAR",
+      "sub": null
+    },
+    {
+      "iconName": "LiaCoinsSolid",
+      "label": "Market Capitalization",
+      "value": "AED 145.2 billion",
+      "sub": "as of 21 February 2026, per DFM trading summary"
+    }
+  ],
+  "financials": {
+    "performanceLabel": "Financial Performance — FY 2025",
+    "sourceNote": "Source: Emaar Annual Report 2025 via Gulf News / Yahoo Finance",
+    "financialPerformance": [
+      {
+        "iconName": "PiChartLineUpLight",
+        "label": "Annual Revenue",
+        "value": "AED 49.6B",
+        "growth": "+40%",
+        "sub": "FY 2025"
+      },
+      {
+        "iconName": "LiaMoneyBillWaveAltSolid",
+        "label": "Net Profit",
+        "value": "AED 25.7B",
+        "growth": "+36%",
+        "sub": "FY 2025"
+      },
+      {
+        "iconName": "HiOutlineChartPie",
+        "label": "EBITDA Margin",
+        "value": "52%",
+        "growth": null,
+        "sub": "Profit margin"
+      },
+      {
+        "iconName": "IoWalletOutline",
+        "label": "Cash Reserves",
+        "value": "AED 28.25B",
+        "growth": null,
+        "sub": "as of 31 December 2025"
+      }
+    ],
+    "debtLabel": "Debt & Liquidity Metrics",
+    "debtSourceNote": "Source: Calculated from Emaar Annual Report 2025 via Yahoo Finance / AInvest",
+    "debtMetrics": [
+      { "iconName": "TbBuildingBank", "label": "Total Debt", "value": "AED 10.61B" },
+      { "iconName": "MdOutlineBalance", "label": "Debt-to-Equity Ratio", "value": "9.86%" },
+      { "iconName": "MdOutlineSpeed", "label": "Interest Coverage", "value": "24x" },
+      { "iconName": "RiLineChartLine", "label": "Current Ratio", "value": "7.45" },
+      { "iconName": "MdOutlineWaterDrop", "label": "Quick Ratio", "value": "7.45" }
+    ],
+    "esg": {
+      "label": "ESG Rating",
+      "date": "December 2025",
+      "rating": "A"
+    }
+  },
+  "market": {
+    "marketPosition": {
+      "title": "Market Position",
+      "label": "Market Share",
+      "value": "65.8B",
+      "description": "Emaar led the market with AED 65.8 billion in sales value (2025)",
+      "source": "Source: DLD Annual Report 2025 / PropertyIntel analysis via CW Property Middle East – Dubai developers 2025: Emaar tops sales, Binghatti leads transactions"
+    },
+    "industryRank": {
+      "title": "Industry Rank",
+      "source": "Source: Zawya Top 100 UAE Companies 2025 / Kantar BrandZ Most Valuable Emirati Brands 2025 via Gulf News (Sep 2025)",
+      "items": [
+        {
+          "iconName": "BsAward",
+          "rank": "#1",
+          "description": "developer in Dubai by sales value"
+        },
+        {
+          "iconName": "BsGlobe2",
+          "rank": "#3",
+          "description": "most valuable UAE brand ($6.7 billion, +53% YoY)"
+        }
+      ]
+    },
+    "segmentStrengths": {
+      "title": "Segment Strengths",
+      "items": [
+        {
+          "iconName": "TbHome",
+          "title": "Luxury Villas",
+          "description": "Dominant in Dubai Hills, Arabian Ranches, and The Oasis."
+        },
+        {
+          "iconName": "TbBuildingSkyscraper",
+          "title": "Mixed-Use Communities",
+          "description": "Downtown Dubai, Dubai Creek Harbour as flagship developments."
+        }
+      ]
+    }
+  },
+  "pipeline": {
+    "landBankTitle": "Land Bank & Future Capacity",
+    "landValueNote": "Estimated land value: Not publicly disclosed. Source: Emaar Investor Presentation Q4 2025 via Emaar Press Release (Nov 2025).",
+    "keyHoldingsTitle": "Key Land Holdings",
+    "landBankStats": [
+      { "label": "Global", "value": "~660M sq. ft." },
+      { "label": "UAE", "value": "~370M sq. ft." }
+    ],
+    "landHoldings": [
+      {
+        "iconName": "TbMapPin",
+        "location": "Dubai South / Expo Valley",
+        "size": "~7 sq km (~75 million sq ft)",
+        "status": "Masterplanned — phased development",
+        "badge": "~7"
+      },
+      {
+        "iconName": "TbMapPin",
+        "location": "Dubai Hills Estate",
+        "size": "11 million sq m (~118 million sq ft)",
+        "status": "Under development — ongoing releases",
+        "badge": "11M"
+      },
+      {
+        "iconName": "TbMapPin",
+        "location": "Dubai Creek Harbour",
+        "size": "6 million sq m (~64.5 million sq ft)",
+        "status": "Under development",
+        "badge": "6M"
+      }
+    ],
+    "pipelineTitle": "Project Pipeline",
+    "pipelineSourceNote": "Revenue backlog as of 31 December 2025. Source: Emaar Investor Relations / Gulf News (Feb 2026); Decypha (Feb 2026); Emaar Official Press Release (June 2025).",
+    "pipelineStats": [
+      {
+        "iconName": "TbRocket",
+        "title": "Upcoming Projects (2025)",
+        "description": "Including Grand Polo Club and Resort, The Valley, and Bristol at Emaar Beachfront.",
+        "value": "48",
+        "sub": "projects"
+      },
+      {
+        "iconName": "GoPeople",
+        "title": "Total Future Units",
+        "description": null,
+        "value": "~51,000",
+        "sub": "units under development"
+      },
+      {
+        "iconName": "TbStack2",
+        "title": "Estimated GDV (Revenue Backlog)",
+        "description": "revenue backlog as of 31 December 2025",
+        "value": "AED 155B",
+        "sub": null
+      }
+    ]
+  },
+  "ratings": {
+    "title": "Credit Ratings",
+    "ratings": [
+      {
+        "agency": "Moody's",
+        "rating": "Baa1",
+        "outlook": "Stable",
+        "date": "June 2025",
+        "source": "Moody's Investors Service"
+      },
+      {
+        "agency": "S&P",
+        "rating": "BBB+",
+        "outlook": "Stable",
+        "date": "June 2025",
+        "source": "S&P Global Ratings"
+      }
+    ]
+  },
+  "sourcesAccordion": {
+    "sourcesTitle": "Sources & Verification",
+    "analystCommentary": {
+      "title": "Analyst Commentary",
+      "content": "The consensus among 12 analysts covering Emaar Properties is a \"BUY\" rating, with an average 12-month target price of AED 19.41, representing approximately 18% upside from current levels. Analysts highlight Emaar's record 2025 performance (AED 49.6B revenue, AED 65.8B property sales, AED 155B backlog), strong balance sheet with net cash position, and credit rating upgrades to Baa1/BBB+ by Moody's and S&P. The company's dominant market position (AED 65.8B sales, 48 new launches) and ~51,000 units under development provide strong revenue visibility. Goldman Sachs maintains a positive outlook on Emaar Development, citing robust UAE real estate fundamentals. Key risks monitored include potential market cyclicality and execution of large-scale projects.",
+      "source": "Goldman Sachs Research (2025)"
+    },
+    "sources": [
+      {
+        "fact": "Revenue and profit figures",
+        "source": "Gulf News; Decypha",
+        "ref": "Emaar reports record 2025 with highest sales, revenue and profit (Feb 2026)",
+        "url": "https://gulfnews.com/business/property/emaar-reports-record-2025-with-highest-sales-revenue-and-profit-1.500441130"
+      },
+      {
+        "fact": "Cash reserves, debt metrics",
+        "source": "Yahoo Finance",
+        "ref": "Emaar Properties PJSC Key Statistics (31 Dec 2025)",
+        "url": "https://sg.finance.yahoo.com/quote/EMAAR.AE/key-statistics/"
+      },
+      {
+        "fact": "Interest coverage ratio",
+        "source": "AInvest",
+        "ref": "Navigating Uncertainty with Middle Eastern Dividend Champions (June 2025)",
+        "url": "https://www.ainvest.com/news/navigating-uncertainty-middle-eastern-dividend-champions-emaar-delek-edc-2025-income-plays-2506/"
+      },
+      {
+        "fact": "ESG Rating",
+        "source": "MarketScreener",
+        "ref": "Emaar Properties Stock — ESG MSCI A rating",
+        "url": "https://sa.marketscreener.com/quote/stock/EMAAR-PROPERTIES-9059234"
+      },
+      {
+        "fact": "Market share calculation",
+        "source": "CW Property Middle East; DXBinteract",
+        "ref": "Dubai developers 2025: Emaar tops sales, Binghatti leads transactions (January 2026)",
+        "url": "https://property.constructionweekonline.com/dubai-developers-2025-emaar-tops-sales-binghatti-leads-transactions/"
+      },
+      {
+        "fact": "Credit rating, Total land bank figures",
+        "source": "Emaar Properties Official Press Release (Nov 2025)",
+        "ref": "Emaar's Property Sales reached AED 61 billion (6 November 2025)",
+        "url": "https://properties.emaar.com/en/press-release-listing/emaars-property-sales-reached-aed-61-billion/"
+      },
+      {
+        "fact": "Dubai Hills Estate size",
+        "source": "Emaar Properties Official Website",
+        "ref": "Dubai Hills Estate — The Green Heart of Dubai",
+        "url": "https://properties.emaar.com/en/our-communities/dubai-hills-estate/"
+      },
+      {
+        "fact": "Dubai Creek Harbour size",
+        "source": "Gulf Times",
+        "ref": "Creekside 18 promises luxury living alongside Dubai Creek (27 January 2026)",
+        "url": "https://www.gulf-times.com/story/455087/--creekside-18-promises-luxury-living-alongside-dubai-creek"
+      },
+      {
+        "fact": "UAE land bank trend and The Heights size",
+        "source": "Arabian Gulf Business Insight (AGBI)",
+        "ref": "Emaar's land bank shrinks as it focuses on Dubai South (17 February 2026)",
+        "url": "https://www.agbi.com/analysis/real-estate/2026/02/emaars-land-bank-shrinks-as-it-focuses-on-dubai-south/"
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "id": "home-section7",
+  "heroImage": "/Home/Section3bg.webp",
+  "heroAlt": "Dubai Skyline",
+  "header": {
+    "title": {
+      "line1": "Emaar Government & Strategic",
+      "line2": "Partnerships - Stability Through Collaboration"
+    },
+    "description": "Emaar Properties maintains strategic alignments with UAE government entities through shareholding structures, infrastructure delivery, and participation in national master plans."
+  },
+  "footer": {
+    "disclaimerTitle": "Disclaimer",
+    "disclaimerText": "All information sourced from official government announcements and publicly filed reports. Last verified: 22 February 2026."
+  },
+  "categories": [
+    {
+      "id": "joint-ventures",
+      "title": "Government Joint Ventures",
+      "description": "List of joint ventures with government entities.",
+      "iconName": "Handshake"
+    },
+    {
+      "id": "contracts",
+      "title": "Government Contracts",
+      "description": "Publicly awarded contracts from government entities.",
+      "iconName": "Building2"
+    },
+    {
+      "id": "frameworks",
+      "title": "Alignment with National Strategic Frameworks",
+      "description": "Emaar's alignment with UAE national strategic vision and long-term goals.",
+      "iconName": "Target"
+    },
+    {
+      "id": "awards",
+      "title": "Government Recognitions & Awards",
+      "description": "Awards and recognitions received from government authorities.",
+      "iconName": "Trophy"
+    }
+  ],
+  "jointVentures": {
+    "items": [
+      {
+        "year": "2005",
+        "title": "Investment Corporation of Dubai (ICD) – Strategic Shareholder (2005)",
+        "subtitle": "STRATEGIC SHAREHOLDER",
+        "logo": "ICD",
+        "description": "ICD, the principal investment arm of the Government of Dubai, holds a significant stake in Emaar Properties PJSC. This relationship ensures strategic alignment between Emaar's development pipeline and Dubai's economic growth objectives.",
+        "source": "Dubai Housing Analysis — Who Is the Real Owner of Emaar?",
+        "sourceDate": "25 SEPTEMBER 2023",
+        "url": "dubaihousing-ae.com",
+        "fullUrl": "https://www.dubaihousing-ae.com/people-also-ask/who-is-the-real-owner-of-emaar"
+      },
+      {
+        "year": "2016",
+        "title": "Dubai Holding – Dubai Creek Harbour Development (2016)",
+        "subtitle": "JOINT DEVELOPMENT",
+        "logo": "DUBAI HOLDING",
+        "description": "Strategic collaboration between Emaar Properties and Dubai Holding to develop the Dubai Creek Harbour master community. This partnership leverages state-owned land assets combined with Emaar's development expertise to create a new city center.",
+        "source": "The National; Santiago Calatrava Architects Official Website",
+        "sourceDate": "FEBRUARY 2016",
+        "url": "thenationalnews.com, prod.calatrava.com",
+        "fullUrl": "https://www.thenationalnews.com/business/property/architects-keen-on-calatrava-designed-tower-at-dubai-creek-project-1.172832/, https://www.prod.calatrava.com/news/reader/calatrava-wins-international-competition-tower-in-dubai.html"
+      }
+    ]
+  },
+  "governmentContracts": {
+    "items": [
+      {
+        "year": "2017",
+        "title": "Expo 2020 Dubai Infrastructure & Al Wasl Plaza (2017)",
+        "subtitle": "INFRASTRUCTURE DEVELOPMENT",
+        "logo": "EXPO 2020",
+        "description": "Client: Expo 2020 Dubai / Dubai Government Description: Emaar was appointed to develop key infrastructure at the Expo 2020 site, including the iconic Al Wasl Plaza dome and surrounding districts, serving as the central gathering point for the event. Value: Undisclosed Status: Completed",
+        "source": "Meydan Free Zone - Emaar Hospitality Group Case Study",
+        "sourceDate": "JUNE 2025",
+        "url": "meydanfz.ae",
+        "fullUrl": "https://www.meydanfz.ae/case-studies/emaar-hospitality-group"
+      },
+      {
+        "year": "2008",
+        "title": "Dubai Metro Integration - Downtown Dubai Stations (2008-2010)",
+        "subtitle": "TRANSIT INFRASTRUCTURE",
+        "logo": "RTA",
+        "description": "Client: Roads and Transport Authority (RTA) Description: Emaar funded and constructed metro stations and connectivity infrastructure integrating the Dubai Metro Red Line with Downtown Dubai and Dubai Mall, enhancing public transit access. Value: Undisclosed Status: Completed",
+        "source": "Gulf News - First batch of companies to win Dubai Metro naming rights",
+        "sourceDate": "DECEMBER 2008",
+        "url": "gulfnews.com",
+        "fullUrl": "https://gulfnews.com/uae/first-batch-of-companies-to-win-dubai-metro-naming-rights-announced-1.150041"
+      }
+    ]
+  },
+  "strategicFrameworks": {
+    "items": [
+      {
+        "year": "2021",
+        "title": "Dubai 2040 Urban Master Plan",
+        "subtitle": "URBAN DEVELOPMENT ALIGNMENT",
+        "logo": "DUBAI 2040",
+        "description": "Role: Major private sector contributor Description: Emaar's master communities, including Dubai Hills Estate, The Valley, and Dubai Creek Harbour, align with the Dubai 2040 Urban Master Plan's objectives for sustainable urban expansion, green spaces, and population distribution.",
+        "source": "Government of Dubai Media Office",
+        "sourceDate": "13 MARCH 2021",
+        "url": "mediaoffice.ae",
+        "fullUrl": "https://www.mediaoffice.ae/en/news/2021/march/13-03/mohammed-bin-rashid"
+      },
+      {
+        "year": "2024",
+        "title": "UAE Centennial 2071",
+        "subtitle": "ECONOMIC DIVERSIFICATION PARTNER",
+        "logo": "UAE 2071",
+        "description": "Role: Economic diversification partner Description: Through tourism, retail, and hospitality assets, Emaar supports the UAE Centennial 2071 goal of establishing the UAE as the best country in the world by enhancing quality of life and economic resilience.",
+        "source": "UAE Government portal",
+        "sourceDate": "2024",
+        "url": "u.ae",
+        "fullUrl": "https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/innovation-and-future-shaping/uae-centennial-2071"
+      }
+    ]
+  },
+  "awards": {
+    "items": [
+      {
+        "year": "2024",
+        "title": "DLD Top Developer Award (2024) ⚠️ Pending Verification",
+        "subtitle": "TOP DEVELOPER RECOGNITION",
+        "logo": "DLD",
+        "description": "Issuing Body: Dubai Land Department Source Reference: DLD Annual Ceremony 2024",
+        "source": "DLD Annual Ceremony 2024",
+        "sourceDate": "2024",
+        "url": "dubailand.gov.ae",
+        "fullUrl": ""
+      },
+      {
+        "year": "2023",
+        "title": "RERA Excellence in Community Management (2023) ⚠️ Pending Verification",
+        "subtitle": "COMMUNITY MANAGEMENT EXCELLENCE",
+        "logo": "RERA",
+        "description": "Issuing Body: Real Estate Regulatory Agency (RERA) Source Reference: RERA Awards Program 2023",
+        "source": "RERA Awards Program 2023",
+        "sourceDate": "2023",
+        "url": "dubailand.gov.ae",
+        "fullUrl": ""
+      }
+    ]
+  },
+  "sources": {
+    "title": "Sources & Verification",
+    "items": [
+      {
+        "fact": "ICD strategic shareholding",
+        "source": "Dubai Housing Analysis",
+        "reference": "Who Is the Real Owner of Emaar? (25 September 2023)",
+        "urls": ["https://www.dubaihousing-ae.com/people-also-ask/who-is-the-real-owner-of-emaar"]
+      },
+      {
+        "fact": "Dubai Creek Harbour collaboration",
+        "source": "The National; Santiago Calatrava Architects Official Website",
+        "reference": "Architects keen on Calatrava-designed tower at Dubai Creek project (Feb 2016); Calatrava wins international design competition (Feb 2016)",
+        "urls": [
+          "https://www.thenationalnews.com/business/property/architects-keen-on-calatrava-designed-tower-at-dubai-creek-project-1.172832/",
+          "https://www.prod.calatrava.com/news/reader/calatrava-wins-international-competition-tower-in-dubai.html"
+        ]
+      },
+      {
+        "fact": "Expo 2020 hospitality partnership",
+        "source": "Meydan Free Zone - Emaar Hospitality Group Case Study",
+        "reference": "Emaar Hospitality Group Case Study (June 2025)",
+        "urls": ["https://www.meydanfz.ae/case-studies/emaar-hospitality-group"]
+      },
+      {
+        "fact": "Dubai Metro integration",
+        "source": "Gulf News",
+        "reference": "First batch of companies to win Dubai Metro naming rights (December 2008)",
+        "urls": ["https://gulfnews.com/uae/first-batch-of-companies-to-win-dubai-metro-naming-rights-announced-1.150041"]
+      },
+      {
+        "fact": "Dubai 2040 alignment",
+        "source": "Government of Dubai Media Office",
+        "reference": "Mohammed bin Rashid launches Dubai 2040 Urban Master Plan (13 March 2021)",
+        "urls": ["https://www.mediaoffice.ae/en/news/2021/march/13-03/mohammed-bin-rashid"]
+      },
+      {
+        "fact": "UAE Centennial 2071 alignment",
+        "source": "UAE Government Official Portal",
+        "reference": "UAE Centennial 2071 official page (updated 2024)",
+        "urls": ["https://u.ae/en/about-the-uae/strategies-initiatives-and-awards/strategies-plans-and-visions/innovation-and-future-shaping/uae-centennial-2071"]
+      }
+    ]
+  }
+}

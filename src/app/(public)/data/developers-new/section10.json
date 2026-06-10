@@ -1,0 +1,181 @@
+{
+  "id": "home-section10",
+  "heroImage": "/Home/Section3bg.webp",
+  "heroAlt": "Dubai Skyline",
+  "header": {
+    "title": {
+      "line1": "Emaar Financial Health:",
+      "line2": "The Balance Sheet Check"
+    },
+    "description": "Analysis of Emaar Properties' financial strength, cash position, and ability to fund future projects based on audited reports and credit rating agency data."
+  },
+  "footerNote": "All financial figures are for Emaar Properties PJSC unless stated otherwise. Last updated: 22 February 2026",
+  "tabs": [
+    { "id": "key-metrics", "label": "Key Metrics", "iconName": "BarChart3" },
+    { "id": "pipeline", "label": "Pipeline", "iconName": "ChartBar" },
+    { "id": "analyst-commentary", "label": "Analyst Commentary", "iconName": "BsChatDots" }
+  ],
+  "financialMetrics": [
+    {
+      "iconName": "Building2",
+      "metric": "Revenue (Annual)",
+      "value": "AED 49.6 billion",
+      "period": "FY 2025",
+      "trend": "up",
+      "trendValue": "+40%",
+      "source": "Emaar Annual Report 2025"
+    },
+    {
+      "iconName": "Wallet",
+      "metric": "Net Profit (Annual)",
+      "value": "AED 25.7 billion (pre-tax)",
+      "period": "FY 2025",
+      "trend": "up",
+      "trendValue": "+36%",
+      "source": "Emaar Annual Report 2025"
+    },
+    {
+      "iconName": "PieChart",
+      "metric": "Profit Margin",
+      "value": "52% (EBITDA margin)",
+      "period": "FY 2025",
+      "trend": null,
+      "trendValue": "—",
+      "source": "Calculated from Annual Report"
+    },
+    {
+      "iconName": "Landmark",
+      "metric": "Cash Reserves",
+      "value": "AED 28.25 billion",
+      "period": "As of 31 Dec 2025",
+      "trend": null,
+      "trendValue": "—",
+      "source": "Emaar Annual Report 2025 / S&P Global Ratings"
+    },
+    {
+      "iconName": "CreditCard",
+      "metric": "Total Debt",
+      "value": "AED 10.61 billion",
+      "period": "As of 31 Dec 2025",
+      "trend": null,
+      "trendValue": "—",
+      "source": "Emaar Annual Report 2025"
+    },
+    {
+      "iconName": "Scale",
+      "metric": "Debt-to-Equity",
+      "value": "0.13 (13%)",
+      "period": "As of 31 Dec 2025",
+      "trend": null,
+      "trendValue": "—",
+      "source": "Calculated from Annual Report"
+    },
+    {
+      "iconName": "Umbrella",
+      "metric": "Interest Coverage",
+      "value": "24x",
+      "period": "FY 2025",
+      "trend": null,
+      "trendValue": "—",
+      "source": "Calculated from Annual Report"
+    },
+    {
+      "iconName": "Droplet",
+      "metric": "Current Ratio",
+      "value": "7.45",
+      "period": "As of 31 Dec 2025",
+      "trend": null,
+      "trendValue": "—",
+      "source": "Calculated from Annual Report"
+    },
+    {
+      "iconName": "Layers",
+      "metric": "Quick Ratio",
+      "value": "7.45",
+      "period": "As of 31 Dec 2025",
+      "trend": null,
+      "trendValue": "—",
+      "source": "Calculated from Annual Report"
+    }
+  ],
+  "pipeline": {
+    "title": "Project Pipeline",
+    "source": "Source: Emaar Annual Report 2025 / S&P Global Ratings",
+    "stats": [
+      {
+        "label": "Revenue Backlog",
+        "value": "AED 155B",
+        "subtext": "As of 31 December 2025"
+      },
+      {
+        "label": "Upcoming Projects",
+        "value": "48",
+        "subtext": "New residential projects launched in 2025"
+      }
+    ]
+  },
+  "escrow": {
+    "title": "Escrow Compliance",
+    "percentage": "100%",
+    "summary": "100% of active off-plan projects are registered with RERA and have fully funded escrow accounts.",
+    "description": "Emaar Properties complies with all RERA escrow requirements under Law No. 8 of 2007. This law mandates separate escrow accounts for each project, requires all buyer payments to be deposited into these accounts, and restricts fund release to verified construction milestones. Project-specific escrow details are publicly accessible via the Dubai REST app and Oqood portal.",
+    "source": "Source: RERA compliance database / Emaar Investor Disclosures / Law No. 8 of 2007"
+  },
+  "analystCommentary": {
+    "title": "Analyst Commentary",
+    "rating": "BUY",
+    "content": "The consensus among 13 analysts covering Emaar Properties is a \"BUY\" rating, with an average 12-month target price of AED 19.33, representing approximately 18% upside from current levels. The highest price target is AED 25.00, while the lowest is AED 15.80. Analysts highlight Emaar's record 2025 performance, strong balance sheet, and credit rating upgrades as key positives.",
+    "lowTarget": "AED 15.80",
+    "avgTarget": "AED 19.33",
+    "highTarget": "AED 25.00",
+    "upsideText": "~18% upside potential from current levels",
+    "source": "Source: MarketScreener Analyst Consensus, February 2026"
+  },
+  "sources": {
+    "title": "Sources & Verification"
+  },
+  "sourcesList": [
+    {
+      "fact": "Revenue and net profit figures",
+      "source": "Emaar Annual Report 2025 via Gulf News / Decypha",
+      "reference": "2025, Consolidated Financial Statements, published 12 February 2026",
+      "urls": [
+        "https://gulfnews.com/business/property/emaar-reports-record-2025-with-highest-sales-revenue-and-profit-1.500441130",
+        "https://decypha.com/en/news/details/Emaar-achieves-highest-ever-property-sales-in-2025--unveils-AED-8-8bn-dividend-payout/21533969"
+      ]
+    },
+    {
+      "fact": "Cash reserves and debt position",
+      "source": "Emaar Annual Report 2025 / S&P Global Ratings via Stock Analysis",
+      "reference": "2025 Report, Liquidity Analysis Section, Balance Sheet as of 31 December 2025",
+      "urls": ["https://stockanalysis.com/quote/dfm/EMAAR/financials/balance-sheet/"]
+    },
+    {
+      "fact": "Credit ratings (S&P, Moody's)",
+      "source": "S&P Global Ratings / Moody's Investors Service via Emaar Official Press Release",
+      "reference": "Public rating reports, June 2025",
+      "urls": ["https://properties.emaar.com/en/press-release-listing/sp-and-moodys-upgrade-emaars-credit-ratings/"]
+    },
+    {
+      "fact": "Escrow compliance status",
+      "source": "RERA Project Registry / Law No. 8 of 2007",
+      "reference": "Dubai REST App and Oqood portal, accessed 22 February 2026",
+      "urls": [
+        "https://dlp.dubailand.gov.ae",
+        "https://dlp.dubai.gov.ae/Legislation%20Reference/2007/Law%20No.%20(8)%20of%202007%20Concerning%20Escrow%20Accounts%20for%20Real%20Estate%20Development%20in%20the%20Emirate%20of%20Dubai.html"
+      ]
+    },
+    {
+      "fact": "Land bank details",
+      "source": "Emaar Investor Presentation Q4 2025 via Official Press Releases",
+      "reference": "Q4 2025, Strategic Update (November–December 2025)",
+      "urls": ["https://properties.emaar.com/en/tag/press-release/"]
+    },
+    {
+      "fact": "Revenue backlog and pipeline",
+      "source": "Emaar Investor Presentation / ZAWYA",
+      "reference": "Q4 2025, Strategic Update; Emaar records highest sales, revenue, profit in 2025 (Feb 2026)",
+      "urls": ["https://www.zawya.com/en/capital-markets/equities/emaar-records-highest-sales-revenue-profit-in-2025-rp58gxia"]
+    }
+  ]
+}

@@ -28,59 +28,7 @@ import { TbBulb } from "react-icons/tb";
 import { BsShield } from "react-icons/bs";
 import { useThemeStyles, GOLD_BORDER, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
-// Data-driven community assessments for the Asset Condition table
-const COMMUNITY_ASSESSMENTS = [
-    {
-        id: 'the-greens',
-        name: 'The Greens',
-        age: 23,
-        condition: 'Good',
-        Icon: LuWheat,
-        notes: [
-            { type: 'positive', text: 'Emaar launched The Greens in 2001 and completed the first phase in 2003.' },
-            { type: 'positive', text: 'Residents praise "great community for families", "great landscaping", and "extremely well maintained" public areas.' },
-            { type: 'warning', text: 'However, some report maintenance issues and unhelpful management follow-up.' }
-        ]
-    },
-    {
-        id: 'the-springs',
-        name: 'The Springs',
-        age: 22,
-        condition: 'Good',
-        Icon: PiHouseLineLight,
-        notes: [
-            { type: 'positive', text: 'Construction of The Springs 1370 Villas project started in 2004.' },
-            { type: 'positive', text: 'The Springs 2 sub-community took 2 years to complete, starting in 2005 and completed in 2007.' },
-            { type: 'positive', text: 'Mature, well-managed environment with low-rise townhouses and green corridors maintained.' }
-        ]
-    },
-    {
-        id: 'emirates-hills',
-        name: 'Emirates Hills',
-        age: 23,
-        condition: 'Excellent',
-        Icon: BsStar,
-        notes: [
-            { type: 'positive', text: 'Completed in December 2003.' },
-            { type: 'positive', text: 'One of the most prestigious and elite residential communities in the UAE" with ultra‑luxury villas and world‑class golf views.' },
-            { type: 'positive', text: 'Features 24/7 gated security and controlled access. Only around 600 villas total, ensuring exclusivity. Known for strong capital appreciation.' }
-        ]
-    },
-    {
-        id: 'dubai-marina',
-        name: 'Dubai Marina',
-        age: 23,
-        condition: 'Good',
-        Icon: TbBuildingBurjAlArab,
-        notes: [
-            { type: 'positive', text: 'Dubai Marina Towers (Emaar 6 Towers) were completed in 2003' },
-            { type: 'positive', text: 'The complex includes six residential towers with over 1,100 apartments. Residents praise "Emaar build quality" noting properties "have aged better than many other developments around Dubai Marina' },
-            { type: 'warning', text: 'However, maintenance is a recurring concern with reports of slow response times and unresolved issues' }
-        ]
-    }
-];
-
-export default function Section6() {
+export default function Section6({ data }) {
     const [activeTab, setActiveTab] = useState('structure');
     const { t, isDark, dark } = useThemeStyles();
 
@@ -90,14 +38,26 @@ export default function Section6() {
     const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
     const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
 
+    if (!data) {
+        return (
+            <section style={{ background: sectionBg }} className="font-sans">
+                <div className="max-w-[1400px] mx-auto px-4 py-20">
+                    <p className="text-center" style={{ color: bodyColor }}>Loading...</p>
+                </div>
+            </section>
+        );
+    }
+
+    const COMMUNITY_ASSESSMENTS = data.communityAssessments || [];
+
     return (
         <section style={{ background: sectionBg }} className="font-sans">
             {/* Header Section */}
             <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/Home/Section3bg.webp"
-                        alt="Dubai Skyline"
+                        src={data.heroImage || "/Home/Section3bg.webp"}
+                        alt={data.heroAlt || "Dubai Skyline"}
                         fill
                         className="object-cover object-center grayscale-[10%]"
                         priority
@@ -107,14 +67,14 @@ export default function Section6() {
 
                 <div className="relative z-10 max-w-[1400px] mx-auto px-2 w-full">
                     <h2 className="text-3xl lg:text-5xl font-serif mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
-                        Emaar Community Management:
+                        {data.header?.title?.line1 || "Emaar Community Management:"}
                         <span className="lg:hidden">—</span>
                     </h2>
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
-                        Long-Term Value Analysis
+                        {data.header?.title?.line2 || "Long-Term Value Analysis"}
                     </h3>
                     <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
-                        We analyse how Emaar manages communities post-handover, service charge trends, and asset condition to assess long-term preservation.
+                        {data.header?.description || "We analyse how Emaar manages communities post-handover, service charge trends, and asset condition to assess long-term preservation."}
                     </p>
                 </div>
             </div>
@@ -126,53 +86,34 @@ export default function Section6() {
                         className="flex flex-row items-stretch gap-1 lg:px-0"
                         style={isDark ? { ...dark.tabBar, borderBottom: `1px solid ${cardBorder}` } : { borderBottom: `1px solid ${cardBorder}` }}
                     >
-                        <TabButton
-                            active={activeTab === 'structure'}
-                            onClick={() => setActiveTab('structure')}
-                            icon={<HiOutlineBuildingOffice2 className="text-2xl sm:text-3xl" />}
-                            label="Management Structure"
-                            isDark={isDark}
-                            dark={dark}
-                            cardBorder={cardBorder}
-                            subtextColor={subtextColor}
-                            t={t}
-                        />
-                        <TabButton
-                            active={activeTab === 'charges'}
-                            onClick={() => setActiveTab('charges')}
-                            icon={<AiOutlineDollar className="text-2xl sm:text-3xl" />}
-                            label="Service Charges"
-                            isDark={isDark}
-                            dark={dark}
-                            cardBorder={cardBorder}
-                            subtextColor={subtextColor}
-                            t={t}
-                        />
-                        <TabButton
-                            active={activeTab === 'rating'}
-                            onClick={() => setActiveTab('rating')}
-                            icon={<BsStar className="text-2xl sm:text-3xl" />}
-                            label="Asset Condition Rating"
-                            isDark={isDark}
-                            dark={dark}
-                            cardBorder={cardBorder}
-                            subtextColor={subtextColor}
-                            t={t}
-                        />
+                        {data.tabs?.map((tab) => (
+                            <TabButton
+                                key={tab.id}
+                                active={activeTab === tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                icon={getTabIcon(tab.iconName)}
+                                label={tab.label}
+                                isDark={isDark}
+                                dark={dark}
+                                cardBorder={cardBorder}
+                                subtextColor={subtextColor}
+                                t={t}
+                            />
+                        ))}
                     </div>
 
                     {/* --- TAB CONTENT AREA --- */}
                     <div className="p-2 sm:p-6 lg:p-6 min-h-[480px]">
-                        {activeTab === 'structure' && <ManagementStructureView isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />}
-                        {activeTab === 'charges' && <ServiceChargesView isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />}
-                        {activeTab === 'rating' && <AssetConditionView isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />}
+                        {activeTab === 'structure' && <ManagementStructureView data={data.managementStructure} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />}
+                        {activeTab === 'charges' && <ServiceChargesView data={data.serviceCharges} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />}
+                        {activeTab === 'rating' && <AssetConditionView data={data.assetCondition} communityAssessments={COMMUNITY_ASSESSMENTS} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />}
                     </div>
                 </div>
 
                 {/* --- SHARED FOOTER BLOCKS (Owner Satisfaction & Insights) --- */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-                    <SatisfactionCard isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />
-                    <AnalystInsightCard isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />
+                    <SatisfactionCard data={data.ownerSatisfaction} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />
+                    <AnalystInsightCard data={data.analystInsight} isDark={isDark} cardBg={cardBg} cardBorder={cardBorder} subtextColor={subtextColor} bodyColor={bodyColor} t={t} />
                 </div>
 
                 <ExpertSection />
@@ -184,12 +125,12 @@ export default function Section6() {
                             <LuInfo className="text-[#B68A35] w-5 h-5" />
                         </div>
                         <p className="text-[10px] lg:text-[11px] leading-relaxed" style={{ color: subtextColor }}>
-                            All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback.
+                            {data.footer?.disclaimer || "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback."}
                         </p>
                     </div>
                     <div className="rounded-lg p-3 flex items-center gap-3 shrink-0" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
                         <MdCalendarToday className="text-[#B68A35] w-4 h-4" />
-                        <span className="text-[11px] font-medium" style={{ color: subtextColor }}>Last updated: 22 February 2026</span>
+                        <span className="text-[11px] font-medium" style={{ color: subtextColor }}>{data.footer?.lastUpdated || "Last updated: 22 February 2026"}</span>
                     </div>
                 </div>
             </div>
@@ -223,56 +164,31 @@ function TabButton({ active, onClick, icon, label, isDark, dark, cardBorder, sub
     );
 }
 
-function ManagementStructureView({ isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
+function ManagementStructureView({ data, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
+    const cards = data?.cards || [];
     return (
         <div className="space-y-8 py-4">
-            <h3 className="text-lg lg:text-xl font-serif font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Management Structure</h3>
+            <h3 className="text-lg lg:text-xl font-serif font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data?.title || "Management Structure"}</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-                {/* Card 1 */}
-                <div style={{ background: cardBg, border: `1px solid ${cardBorder}` }} className="rounded-xl p-2 sm:p-8 flex gap-2 sm:gap-6 shadow-sm">
-                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0" style={!isDark ? { background: '#fbf6ec', border: '1px solid #F3EFE9' } : { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` }}>
-                        <HiOutlineBuildingOffice2 className="text-[#B68A35] w-6 h-6 sm:w-8 sm:h-8" />
-                    </div>
-                    <div className="flex flex-col flex-1">
-                        <div>
-                            <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest sm:mb-2" style={{ color: subtextColor }}>Management Entity</p>
-                            <h4 className="text-sm sm:text-lg font-bold mb-3 font-serif" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Emaar Community Management (ECM)</h4>
-                            <span className="inline-block px-2.5 py-1 text-[#B68A35] text-[10px] border border-[#B68A35] font-bold rounded-2xl mb-3" style={{ background: isDark ? 'transparent' : 'white' }}>Dedicated Subsidiary</span>
-                            <p className="text-[12px] sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
-                                Emaar Community Management (ECM) Management Type: Dedicated subsidiary Note: ECM operates as a wholly-owned subsidiary managing all Emaar residential communities, ensuring consistent service standards across master developments including Downtown Dubai, Dubai Hills Estate, and Arabian Ranches. Source: Emaar Official Website - Community Management; Emaar Annual Report 2025
-                            </p>
+                {cards.map((card, idx) => (
+                    <div key={idx} style={{ background: cardBg, border: `1px solid ${cardBorder}` }} className="rounded-xl p-2 sm:p-8 flex gap-2 sm:gap-6 shadow-sm">
+                        <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0" style={!isDark ? { background: '#fbf6ec', border: '1px solid #F3EFE9' } : { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` }}>
+                            {getManagementIcon(card.iconName)}
                         </div>
-                        <div className="mt-auto pt-4 flex items-center gap-2 text-[12px]" style={{ color: subtextColor }}>
-                            <IoDocumentOutline className="w-5 h-5 text-[#B68A35]" />
-                            <span>Source: Emaar Official Website / Annual Report 2025</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Card 2 */}
-                <div style={{ background: cardBg, border: `1px solid ${cardBorder}` }} className="rounded-xl p-2 sm:p-8 flex gap-2 sm:gap-6 shadow-sm">
-                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0" style={!isDark ? { background: '#fbf6ec', border: '1px solid #F3EFE9' } : { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` }}>
-                        <GoShieldCheck className="text-[#B68A35] w-6 h-6 sm:w-8 sm:h-8" />
-                    </div>
-                    <div className="flex flex-col flex-1">
-                        <div>
-                            <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: subtextColor }}>Mollak Integration</p>
-                            <div className="flex items-center gap-2 mb-3">
-                                <h4 className="text-sm sm:text-lg font-bold font-serif" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Yes</h4>
-                                <HiOutlineCheckCircle className="text-white bg-green-500 rounded-full w-4 h-4 sm:w-5 sm:h-5" />
+                        <div className="flex flex-col flex-1">
+                            <div>
+                                <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest sm:mb-2" style={{ color: subtextColor }}>{card.label}</p>
+                                <h4 className="text-sm sm:text-lg font-bold mb-3 font-serif" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{card.title}</h4>
+                                {card.badge && <span className="inline-block px-2.5 py-1 text-[#B68A35] text-[10px] border border-[#B68A35] font-bold rounded-2xl mb-3" style={{ background: isDark ? 'transparent' : 'white' }}>{card.badge}</span>}
+                                <p className="text-[12px] sm:text-sm leading-relaxed" style={{ color: bodyColor }}>{card.description}</p>
                             </div>
-                            <p className="text-[12px] sm:text-sm leading-relaxed" style={{ color: bodyColor }}>
-                                Yes Note: All Emaar-managed communities are registered on the DLD Mollak portal, enabling transparent service charge disclosure and owner access to annual statements. Source: DLD Mollak Service Charge Index 2025
-                            </p>
-                        </div>
-                        <div className="mt-auto pt-4 flex items-center gap-2 text-[12px]" style={{ color: subtextColor }}>
-                            <IoDocumentOutline className="w-5 h-5 text-[#B68A35]" />
-                            <span>Source: DLD Mollak Service Charge Index 2025</span>
+                            <div className="mt-auto pt-4 flex items-center gap-2 text-[12px]" style={{ color: subtextColor }}>
+                                <IoDocumentOutline className="w-5 h-5 text-[#B68A35]" />
+                                <span>{card.source}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                ))}
             </div>
         </div>
     );
@@ -292,47 +208,31 @@ const SourceLink = ({ label, href, isDark, subtextColor }) => (
     </a>
 );
 
-function ServiceChargesView({ isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
+function ServiceChargesView({ data, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
+    const tables = data?.tables || [];
     return (
         <div className="space-y-6 py-4">
             <div>
-                <h3 className="text-lg lg:text-xl font-serif font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Service Charge History</h3>
-                <p className="text-xs mt-2" style={{ color: subtextColor }}>Service charge data is sourced from the DLD Mollak Service Charge Index and verified against official records.</p>
+                <h3 className="text-lg lg:text-xl font-serif font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data?.title || "Service Charge History"}</h3>
+                <p className="text-xs mt-2" style={{ color: subtextColor }}>{data?.subtitle || "Service charge data is sourced from the DLD Mollak Service Charge Index and verified against official records."}</p>
             </div>
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                <ChargeTable
-                    community="The Greens"
-                    type="Apartment"
-                    data={[
-                        { year: '2023', charge: '16.50', change: '—', source: 'DLD Mollak Index 2024' },
-                        { year: '2024', charge: '17.10', change: '+3.6%', source: 'DLD Mollak Index 2025' },
-                        { year: '2025', charge: '17.55', change: '+2.6%', source: 'DLD Mollak Index 2026' }
-                    ]}
-                    summary="Modest, stable increases over 3 years averaging ~3.1% p.a., in line with community maintenance cost inflation."
-                    isDark={isDark}
-                    cardBg={cardBg}
-                    cardBorder={cardBorder}
-                    subtextColor={subtextColor}
-                    bodyColor={bodyColor}
-                    t={t}
-                />
-                <ChargeTable
-                    community="Park Heights"
-                    type="Dubai Hills Estate — Apartment"
-                    data={[
-                        { year: '2023', charge: '18.20', change: '—', source: 'DLD Mollak Index 2024' },
-                        { year: '2024', charge: '18.95', change: '+4.1%', source: 'DLD Mollak Index 2025' },
-                        { year: '2025', charge: '19.60', change: '+3.4%', source: 'DLD Mollak Index 2026' }
-                    ]}
-                    summary="Moderate and consistent increases over 3 years averaging ~3.8% p.a., reflecting high-quality community upkeep."
-                    isDark={isDark}
-                    cardBg={cardBg}
-                    cardBorder={cardBorder}
-                    subtextColor={subtextColor}
-                    bodyColor={bodyColor}
-                    t={t}
-                />
+                {tables.map((table, idx) => (
+                    <ChargeTable
+                        key={idx}
+                        community={table.community}
+                        type={table.type}
+                        data={table.data}
+                        summary={table.summary}
+                        isDark={isDark}
+                        cardBg={cardBg}
+                        cardBorder={cardBorder}
+                        subtextColor={subtextColor}
+                        bodyColor={bodyColor}
+                        t={t}
+                    />
+                ))}
             </div>
         </div>
     );
@@ -381,17 +281,18 @@ function ChargeTable({ community, type, data, summary, isDark, cardBg, cardBorde
     );
 }
 
-function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
+function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
     const [isSourcesOpen, setIsSourcesOpen] = useState(false);
-    const [openCommunityId, setOpenCommunityId] = useState('the-greens');
+    const [openCommunityId, setOpenCommunityId] = useState(communityAssessments[0]?.id || '');
+
     return (
         <div className="space-y-8 py-4">
             <div style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', border: `1px solid ${cardBorder}` }} className="rounded-xl shadow-sm">
                 {/* Mobile Layout */}
                 <div className="lg:hidden p-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: subtextColor }}>Overall Rating</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: subtextColor }}>{data?.ratingLabel || "Overall Rating"}</p>
                     <div className="flex items-baseline gap-1 mb-2">
-                        <span className="text-5xl font-serif font-bold text-[#B68A35]">4.2</span>
+                        <span className="text-5xl font-serif font-bold text-[#B68A35]">{data?.overallRating || "4.2"}</span>
                         <span className="text-lg font-serif" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>/ 5</span>
                     </div>
                     <div className="flex gap-1 mb-4">
@@ -406,23 +307,22 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                             <BsShield className="text-[#B68A35] w-4 h-4" />
                         </div>
                         <div>
-                            <p className="text-sm font-medium" style={{ color: bodyColor }}>Based on community data</p>
-                            <p className="text-sm font-medium" style={{ color: bodyColor }}>4 communities assessed</p>
+                            <p className="text-sm font-medium" style={{ color: bodyColor }}>{data?.basedOnLabel || "Based on community data"}</p>
+                            <p className="text-sm font-medium" style={{ color: bodyColor }}>{data?.communitiesCount || "4 communities assessed"}</p>
                         </div>
                     </div>
 
                     <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
-                        Emaar&apos;s established communities demonstrate strong long-term value preservation with generally{" "}
-                        <span className="font-semibold text-[#B68A35]">good to excellent</span> asset condition.
+                        {data?.summary || "Emaar's established communities demonstrate strong long-term value preservation with generally good to excellent asset condition."}
                     </p>
                 </div>
 
                 {/* Desktop Layout */}
                 <div className="hidden lg:flex items-stretch" style={{ divideX: `1px solid ${cardBorder}` }}>
                     <div className="px-6 py-5">
-                        <p className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: subtextColor }}>Overall Rating</p>
+                        <p className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: subtextColor }}>{data?.ratingLabel || "Overall Rating"}</p>
                         <div className="flex items-baseline gap-1 mb-2">
-                            <span className="text-5xl font-serif font-bold text-[#B68A35]">4.2</span>
+                            <span className="text-5xl font-serif font-bold text-[#B68A35]">{data?.overallRating || "4.2"}</span>
                             <span className="text-lg font-serif" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>/ 5</span>
                         </div>
                         <div className="flex gap-1">
@@ -439,16 +339,15 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                                 <BsShield className="text-[#B68A35] w-4 h-4" />
                             </div>
                             <div>
-                                <p className="text-sm font-medium" style={{ color: bodyColor }}>Based on community data</p>
-                                <p className="text-sm font-medium" style={{ color: bodyColor }}>4 communities assessed</p>
+                                <p className="text-sm font-medium" style={{ color: bodyColor }}>{data?.basedOnLabel || "Based on community data"}</p>
+                                <p className="text-sm font-medium" style={{ color: bodyColor }}>{data?.communitiesCount || "4 communities assessed"}</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="px-4 py-5 flex items-center">
                         <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
-                            <span className="font-semibold text-[#B68A35]">Summary:</span> Emaar&apos;s established communities demonstrate strong long-term value preservation with generally{" "}
-                            <span className="font-semibold text-[#B68A35]">good to excellent</span> asset condition.
+                            <span className="font-semibold text-[#B68A35]">Summary:</span> {data?.summary || "Emaar's established communities demonstrate strong long-term value preservation with generally good to excellent asset condition."}
                         </p>
                     </div>
                 </div>
@@ -458,7 +357,7 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                 <div className="w-8 h-8 flex items-center justify-center">
                     <LuUsers className="w-5 h-5 text-[#B68A35]" />
                 </div>
-                <span className="text-sm font-bold" style={isDark ? { color: t.text } : { color: '#374151' }}>Communities Assessed</span>
+                <span className="text-sm font-bold" style={isDark ? { color: t.text } : { color: '#374151' }}>{data?.communitiesTitle || "Communities Assessed"}</span>
             </div>
 
             {/* Community Table (Desktop) */}
@@ -467,15 +366,14 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                     <table className="w-full text-left text-[11px] table-fixed">
                         <thead>
                             <tr style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', color: subtextColor, borderBottom: `1px solid ${cardBorder}` }} className="uppercase tracking-wider text-xs font-bold">
-                                <th className="px-4 py-3 w-[20%]">Community</th>
-                                <th className="px-4 py-3 w-[10%]">Age (Years)</th>
-                                <th className="px-4 py-3 w-[10%]">Condition</th>
-                                <th className="px-4 py-3 w-[60%]">Notes</th>
+                                {data?.tableHeaders?.map((header, idx) => (
+                                    <th key={idx} className="px-4 py-3" style={{ width: header.width }}>{header.label}</th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
-                            {COMMUNITY_ASSESSMENTS.map((c) => {
-                                const Icon = c.Icon;
+                            {communityAssessments.map((c) => {
+                                const Icon = getCommunityIcon(c.iconName);
                                 return (
                                     <tr key={c.id} style={{ borderBottom: `1px solid ${cardBorder}` }} className="hover:bg-white/50 transition-colors">
                                         <td className="px-4 py-4 font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
@@ -504,14 +402,14 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                                 );
                             })}
                         </tbody>
-                     </table>
+                    </table>
                 </div>
             </div>
 
             {/* Community Accordion (Mobile) */}
             <div className="lg:hidden space-y-2">
-                {COMMUNITY_ASSESSMENTS.map((c) => {
-                    const Icon = c.Icon;
+                {communityAssessments.map((c) => {
+                    const Icon = getCommunityIcon(c.iconName);
                     const isOpen = openCommunityId === c.id;
                     const firstNote = c.notes[0];
                     const detailNotes = c.notes.slice(1);
@@ -562,7 +460,7 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
 
                                     <div className="mt-4 pt-3 flex items-start gap-2 text-[13px] italic" style={{ borderTop: `1px solid ${cardBorder}`, color: subtextColor }}>
                                         <IoDocumentOutline className="w-4 h-4 text-[#B68A35] mt-0.5 shrink-0" />
-                                        <span>Source: Community guide references and resident feedback summaries</span>
+                                        <span>{data?.sourceText || "Source: Community guide references and resident feedback summaries"}</span>
                                     </div>
                                 </div>
                             )}
@@ -577,9 +475,9 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                     <Building2 className="w-6 h-6 text-2xl text-[#B68A35]" />
                     <span className="text-[14px] font-bold uppercase tracking-wider" style={{ color: subtextColor }}>Sources</span>
                 </div>
-                <SourceLink label="Driven Properties - The Greens Community Guide" href="https://drivenproperties.com" isDark={isDark} subtextColor={subtextColor} />
-                <SourceLink label="APIL Properties - Emirates Hills Guide" href="#" isDark={isDark} subtextColor={subtextColor} />
-                <SourceLink label="Bayut" href="https://www.bayut.com" isDark={isDark} subtextColor={subtextColor} />
+                {data?.sourcesDesktop?.map((source, idx) => (
+                    <SourceLink key={idx} label={source.label} href={source.href} isDark={isDark} subtextColor={subtextColor} />
+                ))}
             </div>
 
             {/* Mobile sources accordion */}
@@ -601,27 +499,15 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                     {isSourcesOpen && (
                         <div className="p-3" style={{ borderTop: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FBF9F6' }}>
                             <ul className="space-y-3">
-                                <li className="flex items-center justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                        <a href="https://drivenproperties.com" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>Driven Properties - The Greens Community Guide</a>
-                                    </div>
-                                    <a href="https://drivenproperties.com" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                </li>
-                                <li className="flex items-center justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                        <a href="#" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>APIL Properties - Emirates Hills Guide</a>
-                                    </div>
-                                    <a href="#" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                </li>
-                                <li className="flex items-center justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                        <a href="https://www.bayut.com" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>Bayut</a>
-                                    </div>
-                                    <a href="https://www.bayut.com" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                </li>
+                                {data?.sourcesMobile?.map((source, idx) => (
+                                    <li key={idx} className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
+                                            <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>{source.label}</a>
+                                        </div>
+                                        <a href={source.href} target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     )}
@@ -631,10 +517,12 @@ function AssetConditionView({ isDark, cardBg, cardBorder, subtextColor, bodyColo
     );
 }
 
-function SatisfactionCard({ isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
+function SatisfactionCard({ data, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
     const [hasInteracted, setHasInteracted] = useState(false);
     const [manualExpanded, setManualExpanded] = useState(false);
     const isExpanded = hasInteracted ? manualExpanded : false;
+
+    if (!data) return null;
 
     return (
         <div className="rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
@@ -650,7 +538,7 @@ function SatisfactionCard({ isDark, cardBg, cardBorder, subtextColor, bodyColor,
                 >
                     <div className="flex items-center gap-3">
                         <FaRegSmile className="text-[#B68A35] w-7 h-7" />
-                        <h4 className="font-bold text-sm text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Owner Satisfaction with Community Management</h4>
+                        <h4 className="font-bold text-sm text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.title || "Owner Satisfaction with Community Management"}</h4>
                     </div>
                     <BsChevronUp className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-0 text-[#B68A35]' : 'rotate-180'}`} style={!isExpanded ? { color: subtextColor } : undefined} />
                 </button>
@@ -660,18 +548,14 @@ function SatisfactionCard({ isDark, cardBg, cardBorder, subtextColor, bodyColor,
                 <div className="p-5 sm:p-6 space-y-5">
                     <div>
                         <p className="text-[15px] leading-relaxed" style={{ color: bodyColor }}>
-                            <span className="font-bold text-[#B68A35]">Summary:</span> Resident feedback on Emaar Community Management (ECM) reveals significant and consistent concerns across multiple platforms and communities. Reviews indicate systemic issues with maintenance responsiveness, communication, accountability, and service charge transparency. While ECM&apos;s official communications emphasize customer-centricity and 24/7 response capabilities, the on-ground experience reported by residents often contradicts this messaging. The aggregated rating across 220+ reviews averages approximately 3.2/5, with the main ECM office showing 1.0/5 based on recent reviews and 3.3/5 based on 212 reviews on another platform. The Dubai Marina office has a 2.0/5 rating from 4 reviews.
+                            <span className="font-bold text-[#B68A35]">Summary:</span> {data.summary}
                         </p>
                     </div>
 
                     <div>
-                        <h5 className="font-bold text-sm mb-3" style={isDark ? { color: t.text } : { color: '#1F2937' }}>Common Praises</h5>
+                        <h5 className="font-bold text-sm mb-3" style={isDark ? { color: t.text } : { color: '#1F2937' }}>{data.praisesTitle || "Common Praises"}</h5>
                         <ul className="space-y-2">
-                            {[
-                                "Community landscaping and public spaces (general Emaar reputation)",
-                                "Security and gated access (acknowledged in multiple communities)",
-                                "Loyalty programme (UBYEMAAR) for residents"
-                            ].map((item, i) => (
+                            {data.praises?.map((item, i) => (
                                 <li key={i} className="flex items-start gap-2 text-[15px]" style={{ color: bodyColor }}>
                                     <span className="text-[#C9A962] mt-1">•</span>
                                     <span>{item}</span>
@@ -681,40 +565,9 @@ function SatisfactionCard({ isDark, cardBg, cardBorder, subtextColor, bodyColor,
                     </div>
 
                     <div>
-                        <h5 className="font-bold text-sm mb-3" style={isDark ? { color: t.text } : { color: '#1F2937' }}>Common Complaints</h5>
+                        <h5 className="font-bold text-sm mb-3" style={isDark ? { color: t.text } : { color: '#1F2937' }}>{data.complaintsTitle || "Common Complaints"}</h5>
                         <ul className="space-y-4">
-                            {[
-                                {
-                                    title: "Extremely slow maintenance response",
-                                    desc: "Residents report issues like water leakage taking 3+ weeks to address, with multiple follow-ups required and no resolution.",
-                                    quote: "I have an issue with the bathroom water leakage problem... this they still delayed for 3 weeks and can't find a solution"
-                                },
-                                {
-                                    title: "Unresponsive customer service",
-                                    desc: "Emails go unanswered or receive generic template responses; calls are not returned; managers fail to follow up as promised.",
-                                    quote: "This is by far the WORST customer experience I have ever witnessed. Emails never being actually answered, always 'we have referred your email to the relevant dept' then nothing happens"
-                                },
-                                {
-                                    title: "Lack of accountability",
-                                    desc: "No single person takes responsibility for issues; residents are passed between representatives with conflicting information.",
-                                    quote: "Each representative has his own rules and regulations manual... no one taking responsibility for their actions"
-                                },
-                                {
-                                    title: "NOC and permit delays",
-                                    desc: "NOC transfers for property sales take weeks with repeated requests for additional documents.",
-                                    quote: "Wanted to sell my real estate in Springs which requires a NOC transfer. They charge you 525 AED and after 4 days they ask me for more documents"
-                                },
-                                {
-                                    title: "Service charge increases without justification",
-                                    desc: "Dramatic fee hikes (up to 22% year-on-year) with poor communication and deteriorating maintenance quality.",
-                                    quote: "The service fee has been dramatically increased (22% YoY), yet the quality of maintenance suffers"
-                                },
-                                {
-                                    title: "No proper complaint escalation process",
-                                    desc: "No clear mechanism to escalate issues or suggest improvements.",
-                                    quote: "Worst of all there is no process to manage complaints, no escalation number/email/contact available. Almost designed to ensure that no one can suggest an area of improvement"
-                                }
-                            ].map((item, i) => (
+                            {data.complaints?.map((item, i) => (
                                 <li key={i} className="text-[15px]" style={{ color: bodyColor }}>
                                     <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#1F2937' }}>{item.title}:</span> {item.desc}
                                     <blockquote className="mt-1 pl-3 border-l-2 italic" style={{ borderColor: cardBorder, color: subtextColor }}>
@@ -727,7 +580,7 @@ function SatisfactionCard({ isDark, cardBg, cardBorder, subtextColor, bodyColor,
 
                     <div className="pt-2" style={{ borderTop: `1px solid ${cardBorder}` }}>
                         <p className="text-[13px]" style={{ color: subtextColor }}>
-                            <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#374151' }}>Sources:</span> Google Reviews (220+ reviews, Feb 2026) aggregated from GoProfiled; BestThings.ae; ECM Official Website
+                            <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#374151' }}>{data.sourcesLabel || "Sources:"}</span> {data.sources}
                         </p>
                     </div>
                 </div>
@@ -736,8 +589,10 @@ function SatisfactionCard({ isDark, cardBg, cardBorder, subtextColor, bodyColor,
     );
 }
 
-function AnalystInsightCard({ isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
+function AnalystInsightCard({ data, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
     const [isExpanded, setIsExpanded] = useState(false);
+
+    if (!data) return null;
 
     return (
         <div className="rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
@@ -751,7 +606,7 @@ function AnalystInsightCard({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                 >
                     <div className="flex items-center gap-3">
                         <TbBulb className="text-[#B68A35] w-8 h-8" />
-                        <h4 className="font-bold text-sm text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>On-Ground Analyst Insight</h4>
+                        <h4 className="font-bold text-sm text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.title || "On-Ground Analyst Insight"}</h4>
                     </div>
                     <BsChevronUp className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-0 text-[#B68A35]' : 'rotate-180'}`} style={!isExpanded ? { color: subtextColor } : undefined} />
                 </button>
@@ -761,18 +616,44 @@ function AnalystInsightCard({ isDark, cardBg, cardBorder, subtextColor, bodyColo
                 <div className="p-5 sm:p-6 space-y-5">
                     <div className="pt-2" style={{ borderTop: `1px solid ${cardBorder}` }}>
                         <p className="text-[13px]" style={{ color: subtextColor }}>
-                            <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#374151' }}>Source:</span> PropertyIntel on-ground analysis
+                            <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#374151' }}>{data.sourceLabel || "Source:"}</span> {data.source}
                         </p>
                     </div>
 
                     <div className="rounded-lg p-4 text-[12px] leading-relaxed" style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#F9F7F4', color: subtextColor }}>
-                        <p className="font-semibold mb-1" style={isDark ? { color: t.text } : { color: '#374151' }}>Disclaimer:</p>
-                        <p>
-                            All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback. Last updated: 22 February 2026.
-                        </p>
+                        <p className="font-semibold mb-1" style={isDark ? { color: t.text } : { color: '#374151' }}>{data.disclaimerTitle || "Disclaimer:"}</p>
+                        <p>{data.disclaimer}</p>
                     </div>
                 </div>
             )}
         </div>
     );
 }
+
+// Helper functions for icons
+const getTabIcon = (iconName) => {
+    const icons = {
+        'HiOutlineBuildingOffice2': <HiOutlineBuildingOffice2 className="text-2xl sm:text-3xl" />,
+        'AiOutlineDollar': <AiOutlineDollar className="text-2xl sm:text-3xl" />,
+        'BsStar': <BsStar className="text-2xl sm:text-3xl" />
+    };
+    return icons[iconName] || <HiOutlineBuildingOffice2 className="text-2xl sm:text-3xl" />;
+};
+
+const getManagementIcon = (iconName) => {
+    const icons = {
+        'HiOutlineBuildingOffice2': <HiOutlineBuildingOffice2 className="text-[#B68A35] w-6 h-6 sm:w-8 sm:h-8" />,
+        'GoShieldCheck': <GoShieldCheck className="text-[#B68A35] w-6 h-6 sm:w-8 sm:h-8" />
+    };
+    return icons[iconName] || <HiOutlineBuildingOffice2 className="text-[#B68A35] w-6 h-6 sm:w-8 sm:h-8" />;
+};
+
+const getCommunityIcon = (iconName) => {
+    const icons = {
+        'LuWheat': <LuWheat className="text-[#B68A35] w-7 h-7" />,
+        'PiHouseLineLight': <PiHouseLineLight className="text-[#B68A35] w-7 h-7" />,
+        'BsStar': <BsStar className="text-[#B68A35] w-7 h-7" />,
+        'TbBuildingBurjAlArab': <TbBuildingBurjAlArab className="text-[#B68A35] w-7 h-7" />
+    };
+    return icons[iconName] || <BsStar className="text-[#B68A35] w-7 h-7" />;
+};
