@@ -1,0 +1,97 @@
+{
+  "target_buyer_section": {
+    "section_label": "SECTION 04 · TARGET BUYER & INVESTMENT RATIONALE",
+    "heading": "Who Should Buy at Serro The Heights? Investor, End-User, or Both?",
+    "intro": "Four buyer profiles, one honest verdict each. Pick your lens to see how Serro The Heights performs against your goals.",
+    "profiles": [
+      {
+        "id": "yield_investor",
+        "icon": "yield",
+        "card_title": "Yield Investor",
+        "card_subtitle": "Yield seekers & capital growth",
+        "panel_title": "The Investment Case —",
+        "panel_accent": "Yield Seekers & Capital Growth",
+        "panel_subtitle": "For yield-focused investors, Serro presents a measured opportunity.",
+        "intro_html": "The Dubai South corridor recorded <strong>14.2% capital appreciation in 2024</strong>, with average prices now at <strong>AED 917/sq.ft</strong> across the district. While Serro's launch pricing at approximately <strong>AED 1,732/sq.ft</strong> sits above this district average, it reflects the premium attached to Emaar's master-planning and wellness infrastructure.",
+        "table": {
+          "title": "Rental Benchmarking — Per Sq.Ft (Mature Comparables)",
+          "columns": ["Community", "Annual Rent (3BR)", "Size (sq.ft)", "Rent per sq.ft"],
+          "rows": [
+            { "values": ["Emaar South", "AED 148,000", "~2,400", "AED 61.6"] },
+            { "values": ["DAMAC Hills 2", "AED 112,000", "~1,900", "AED 58.9"] },
+            { "values": ["Town Square", "AED 140,000", "~2,200", "AED 63.6"] },
+            { "values": ["Serro (Projected)", "AED 240 - 300K", "3,463", "AED 69 - 86"], "highlight": true }
+          ]
+        },
+        "analysis_html": "Applying a mid-range projection of <strong>AED 270,000</strong> against a <strong>AED 6,000,000</strong> purchase price suggests a <strong>gross yield of approximately 4.5%</strong> — consistent with Dubai South's 5.5 - 7.5% villa yields but below the 8%+ achievable in higher-density apartment districts. The premium rent per sq.ft reflects wellness positioning and Emaar brand equity."
+      },
+      {
+        "id": "short_term_flipper",
+        "icon": "flip",
+        "card_title": "Short-Term Flipper",
+        "card_subtitle": "Short-term strategies",
+        "panel_title": "The Flipper's Perspective —",
+        "panel_accent": "Short-Term Strategies",
+        "panel_subtitle": "Three structured exits across the 4-year timeline.",
+        "intro_html": "Contrary to the \"Avoid\" label, Serro offers multiple entry points for sophisticated short-term investors who understand off-plan mechanics.",
+        "strategies": [
+          { "number": "01", "title": "Launch Phase Flip", "timing": "Months 18 - 24", "content": "Exit when superstructure is visible and later phases launch at higher prices. Target 15 - 20% premium." },
+          { "number": "02", "title": "Stressed Buyer Acquisition", "timing": "Months 12 - 36", "content": "Acquire assignments from original buyers facing liquidity constraints, typically at 20 - 30% below market value. Requires cash and developer NOC (2 - 5% fee)." },
+          { "number": "03", "title": "Handover Flip", "timing": "Post-completion", "content": "Sell immediately post-completion to end-users accessing mortgages. Target 10 - 15% premium over final handover price." }
+        ],
+        "verdict": { "label": "Flipper Verdict", "icon": "visa", "text": "Requires structured capital and strategic timing, but the 4-year timeline creates arbitrage opportunities unavailable in shorter projects." }
+      },
+      {
+        "id": "end_user_family",
+        "icon": "family",
+        "card_title": "End-User Family",
+        "card_subtitle": "Families & wellness buyers",
+        "panel_title": "The End-User Perspective —",
+        "panel_accent": "Families & Wellness Buyers",
+        "panel_subtitle": "Lifestyle calculus over pure financial return.",
+        "intro_html": "For families, Serro's value lies in lifestyle calculus. The Heights dedicates <strong>25% of land to open space</strong>, with <strong>38km of cycling tracks</strong>, wellness lakes, and meditation gardens — amenities typically found in communities priced 20 - 30% higher.",
+        "infrastructure_title": "Future Infrastructure (Handover Alignment)",
+        "infrastructure": [
+          { "icon": "school", "title": "IB School", "timeline": "2027 - 2029", "details": "Within community" },
+          { "icon": "health", "title": "Healthcare Centre", "timeline": "2027 - 2029", "details": "Integrated medical facilities" },
+          { "icon": "retail", "title": "Retail / Dining", "timeline": "2027 - 2029", "details": "Community retail zones" },
+          { "icon": "rail", "title": "Etihad Rail", "timeline": "2026+", "details": "Feeder bus integration" },
+          { "icon": "airport", "title": "Al Maktoum Airport", "timeline": "10 min", "details": "AED 128B expansion to 260M capacity" }
+        ],
+        "notes": [
+          { "label": "Connectivity", "text": "Existing schools (South View, Jebel Ali) within 15 - 20 min until community school opens. Direct road access to Emirates Road; future Metro extension planned post-2030." },
+          { "label": "Lifestyle Positioning", "text": "Premium wellness community in Dubai South corridor — above entry-level (AED 2.6M villas) but below ultra-luxury AED 10M+ segment. Appeals to aviation professionals, DIFC commuters, and health-focused families." }
+        ]
+      },
+      {
+        "id": "residency_buyer",
+        "icon": "visa",
+        "card_title": "Residency Buyer",
+        "card_subtitle": "Golden Visa eligibility",
+        "panel_title": "The Residency / Visa Buyer —",
+        "panel_accent": "Golden Visa Eligibility",
+        "panel_subtitle": "Comfortably above the 2M threshold with low entry.",
+        "stats": [
+          { "icon": "price", "label": "Entry Price", "value": "AED 6,000,000" },
+          { "icon": "visa", "label": "Visa Threshold", "value": "AED 2,000,000" },
+          { "icon": "calendar", "label": "Initial Booking", "value": "10% (AED 600,000)" },
+          { "icon": "clock", "label": "Payment Plan", "value": "70% over 4 years" }
+        ],
+        "paragraphs": [
+          "The AED 6,000,000 entry price positions Serro comfortably above the AED 2,000,000 Golden Visa threshold. <strong>Key advantage:</strong> Only 10% booking (AED 600,000) is required initially — well below the 20% down payment typically associated with visa eligibility, with remaining 70% spread over 4 years.",
+          "Emaar's transparent handover process supports clean title deed registration on completion."
+        ]
+      }
+    ],
+    "matrix_title_prefix": "Clear",
+    "matrix_title_suffix": "Recommendation Matrix",
+    "matrix": [
+      { "profile": "First-time Investor", "verdict_label": "Consider", "verdict_tone": "consider", "rationale": "AED 6M entry significant; 4 - 5% yields below apartments, but Emaar credibility and Dubai South growth support long-term appreciation." },
+      { "profile": "Large Family (End-User)", "verdict_label": "Buy", "verdict_tone": "buy", "rationale": "3 - 5BR layouts, wellness amenities, future school / healthcare, and proximity to DWC employment corridor. Car-dependent initially but infrastructure maturing by handover." },
+      { "profile": "Short-Term Flipper", "verdict_label": "Opportunity", "verdict_tone": "opportunity", "rationale": "Not a traditional quick flip, but launch-phase resale, distressed acquisition, and handover exit strategies remain viable for experienced investors with structured capital." },
+      { "profile": "Residency-Focused Buyer", "verdict_label": "Buy", "verdict_tone": "buy", "rationale": "AED 6M meets visa threshold; 10% booking secures eligibility; Emaar's handover process supports clean title deed." },
+      { "profile": "Yield Investor (5+ Year Hold)", "verdict_label": "Consider", "verdict_tone": "consider", "rationale": "4 - 5% yields below apartment alternatives, but villa scarcity premium and infrastructure maturation (airport, rail) support 3 - 5 year post-handover appreciation." }
+    ],
+    "section_cta": { "heading": "Find Your Buyer Profile", "subtext": "See ROI based on your budget and timeline." }
+  }
+}

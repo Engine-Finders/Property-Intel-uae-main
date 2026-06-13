@@ -1,0 +1,125 @@
+{
+  "financing_section": {
+    "heading": "Mortgage Options, ROI Projections & Service Charges",
+    "hero_subtitle": "A complete financial overview to help Serro buyers plan with confidence — from financing realities to rental potential and true ownership costs.",
+    "financing_intro": "A critical distinction for Serro buyers: <strong>mortgage financing is not available during the construction phase</strong> for off-plan properties in the UAE. Banks typically only consider mortgage applications once a project reaches substantial completion (often 50–60% construction progress) or at handover.",
+    "journey_steps": [
+      { "title": "Booking", "sub": "10% cash deposit", "meta": "Day 1" },
+      { "title": "Construction", "sub": "70% self-funded payments", "meta": "2026-2030" },
+      { "title": "Handover", "sub": "Mortgage available", "meta": "Q1-Q2 2030" }
+    ],
+    "what_this_means": [
+      "All construction-phase payments (70% under the 80/20 plan) must be <strong>self-funded from cash reserves</strong>",
+      "Mortgage financing becomes relevant only at or near <strong>handover (Q1–Q2 2030)</strong>",
+      "Buyers should plan for <strong>full capital commitment</strong> during the 4-year construction timeline"
+    ],
+    "ltv_table": [
+      { "profile": "Resident Expat (First Home)", "value": "≤ AED 5M", "ltv": "80%", "down": "20% + costs" },
+      { "profile": "Resident Expat (First Home)", "value": "> AED 5M", "ltv": "70%", "down": "30% + costs" },
+      { "profile": "Resident Expat (Second/Investment)", "value": "Any", "ltv": "60%", "down": "40% + costs" },
+      { "profile": "Non-Resident Expat", "value": "Any", "ltv": "50–60%", "down": "40–50% + costs" }
+    ],
+    "ltv_note": "These LTV caps apply at handover, not during construction. Final approval depends on bank policy, income profile, and property valuation at the time of application.",
+    "mortgage_rates": {
+      "context_title": "Current Mortgage Rate Context",
+      "context_date": "February 2026",
+      "fixed": "4.2% – 5.2% (bank-dependent, based on profile)",
+      "fixed_label": "Fixed Rates (1-5 years)",
+      "fixed_note": "Bank-dependent, based on profile",
+      "variable": "EIBOR + 2.5% – 3.5%",
+      "variable_label": "Variable Rates (EIBOR-linked)",
+      "variable_note": "EIBOR + margin",
+      "base_rate": "3.650% (as of 13 January 2026)",
+      "base_rate_label": "Central Bank Base Rate",
+      "base_rate_note": "As of 13 January 2026"
+    },
+    "cash_purchase_label": "For AED 6,000,000 Purchase",
+    "cash_required_intro": "Buyers often budget only for the down payment and overlook transaction fees. For a <strong>AED 6,000,000</strong> Serro purchase:",
+    "cash_table": [
+      { "component": "Booking Fee (Day 1)", "calc": "10% of purchase price", "amount": "600,000" },
+      { "component": "Subsequent Payments to SPA", "calc": "Additional 10% to reach 20%", "amount": "600,000" },
+      { "component": "Minimum Cash to Secure SPA", "calc": "20% of purchase price", "amount": "1,200,000" },
+      { "component": "DLD Transfer Fee", "calc": "4% of purchase price (at handover)", "amount": "240,000" },
+      { "component": "Title Deed / Admin Fees", "calc": "Fixed (DLD knowledge/innovation)", "amount": "~4,000" },
+      { "component": "Total Estimated Cash Required", "calc": "Down payment + DLD + admin", "amount": "~1,444,000" }
+    ],
+    "cash_insight": "To secure the SPA, buyers need minimum <strong>20% of the purchase price</strong> in cash (AED 1.2M for a AED 6M villa). The 4% DLD fee (AED 240,000) is payable at handover, not at booking.",
+    "rental_benchmarking": [
+      { "community": "Dubai South", "project": "The Pulse Villas", "rent": "AED 200,000", "size": "2,163", "per_sqft": "AED 92.5" },
+      { "community": "Dubai South", "project": "Emaar South (3BR)", "rent": "AED 148,000", "size": "~2,400", "per_sqft": "AED 61.6" },
+      { "community": "Town Square", "project": "Sama Townhouses", "rent": "AED 180,000", "size": "3,255", "per_sqft": "AED 55.3" },
+      { "community": "DAMAC Hills 2", "project": "Albizia/Avencia", "rent": "AED 112–133k", "size": "~1,900–2,200", "per_sqft": "AED 56–60" },
+      { "community": "Serro (Projected)", "project": "3BR Type A", "rent": "AED 240–300K", "size": "3,463", "per_sqft": "AED 69–86" }
+    ],
+    "roi_intro": "To evaluate Serro's income potential accurately, we compare actual rental transactions from completed communities within the same Dubai South corridor.",
+    "yield_projection_title": "Projected Gross Yield for Serro 3-Bedroom",
+    "yield_projection_mobile_title": "Projected Gross Yield — 3BR @ AED 6M purchase price",
+    "yield_projections": [
+      { "scenario": "Conservative", "rent": "AED 240,000", "price": "AED 6,000,000", "yield": "4.0%" },
+      { "scenario": "Moderate", "rent": "AED 270,000", "price": "AED 6,000,000", "yield": "4.5%" },
+      { "scenario": "Optimistic", "rent": "AED 300,000", "price": "AED 6,000,000", "yield": "5.0%" }
+    ],
+    "yield_context": [
+      "Premium pricing relative to district average (AED 1,732/sq.ft vs. AED 917/sq.ft district average)",
+      "4-year timeline before income generation",
+      "Villa scarcity premium (lower yield but higher capital stability)",
+      "Wellness positioning commanding rental premium over standard communities"
+    ],
+    "yield_disclaimer": "Yields are estimates based on comparable market data. Past performance does not guarantee future returns. Actual rental income depends on market conditions at handover, property condition, and tenancy duration. Investors should conduct independent due diligence and consult with licensed financial advisors.",
+    "service_charge_range": "AED 3–5 per sq.ft annually",
+    "service_charge_short_range": "AED 3-5 / sq.ft / yr",
+    "service_charge_display_range": "AED 3 - 5",
+    "service_charge_unit_label": "per sq.ft annually",
+    "service_charge_example": { "size": "3,463", "annual": "AED 10,389 – 17,315", "monthly": "AED 866 – 1,443" },
+    "service_charge_funds": [
+      "Lagoon filtration and water quality maintenance",
+      "Landscaping, irrigation, and park upkeep",
+      "Community security and access control",
+      "Cycling/jogging trail maintenance",
+      "Clubhouse and fitness facility operations",
+      "Exterior building maintenance",
+      "Community lighting and common area utilities"
+    ],
+    "service_charge_comparison": [
+      { "community": "DAMAC Hills 2 (Acuna)", "charge": "~5.03", "amenity": "Golf community, parks" },
+      { "community": "JVC (La Riviera Estate)", "charge": "~3.85", "amenity": "Townhouses, community pools" },
+      { "community": "Arabian Ranches (Polo Homes)", "charge": "~1.05", "amenity": "Equestrian, parks" },
+      { "community": "Palm Jumeirah (Balqis)", "charge": "~9.00", "amenity": "Beachfront, private pools" },
+      { "community": "Serro (Projected)", "charge": "3–5", "amenity": "Wellness lake, 38km tracks, clubhouse" }
+    ],
+    "service_charge_assessment": "At AED 3–5/sq.ft, Serro's service charges sit at the <strong>lower end of premium community benchmarks</strong>—comparable to DAMAC Hills 2 and well below Palm Jumeirah or Downtown apartment rates.",
+    "service_charge_note": "Buyers should verify the final service charge schedule upon handover. Emaar discloses annual charges through owners' association budgets, and these can adjust based on actual operating costs.",
+    "comparison_h3": "Project Comparison - Emaar vs. Competitor Offerings",
+    "comparison_intro": "To contextualize Serro's value proposition, we compare it against similar-tier projects in the Dubai South corridor:",
+    "comparison_project_labels": [ "Serro at The Heights", "Emaar South (Golf Place)", "DAMAC Hills 2", "Town Square (Nshama)" ],
+    "comparison_project_developers": [ "Emaar Properties", "Emaar Properties", "DAMAC Properties", "Nshama (Wasl)" ],
+    "comparison_columns": ["Feature", "Serro", "Emaar South", "DAMAC Hills 2", "Town Square"],
+    "infrastructure_columns": ["Project", "Timeline", "Proximity to Serro"],
+    "project_comparison": [
+      { "feature": "Developer", "serro": "Emaar Properties", "emaar_south": "Emaar Properties", "damac": "DAMAC Properties", "town_square": "Nshama (Wasl)" },
+      { "feature": "Location", "serro": "Al Yalayis, The Heights", "emaar_south": "Dubai South (near Expo)", "damac": "Dubailand", "town_square": "Dubailand" },
+      { "feature": "Property Type", "serro": "3–5BR Villas", "emaar_south": "3–4BR Townhouses/Villas", "damac": "2–5BR Villas", "town_square": "3–4BR Townhouses" },
+      { "feature": "Unit Size (sq.ft)", "serro": "3,340–5,884", "emaar_south": "2,200–3,800", "damac": "1,900–3,600", "town_square": "2,200–3,200" },
+      { "feature": "Price Range", "serro": "AED 6M–9M+", "emaar_south": "AED 3.8M–5.8M", "damac": "AED 1.54M–3.23M", "town_square": "AED 2.1M–3.5M" },
+      { "feature": "Price/sq.ft", "serro": "~AED 1,732", "emaar_south": "~AED 1,550–1,700", "damac": "~AED 800–900", "town_square": "~AED 950–1,100" },
+      { "feature": "Handover", "serro": "Q1–Q2 2030", "emaar_south": "2027–2028", "damac": "Completed", "town_square": "Completed" },
+      { "feature": "Payment Plan", "serro": "80/20", "emaar_south": "70/30 typical", "damac": "Completed", "town_square": "Completed" },
+      { "feature": "ROI (Villas)", "serro": "Projected 4–5%", "emaar_south": "~4.94%", "damac": "~6.14%", "town_square": "~5.5–6%" },
+      { "feature": "Service Charges", "serro": "AED 3–5/sq.ft", "emaar_south": "AED 5–7/sq.ft", "damac": "AED 5–8/sq.ft", "town_square": "AED 6–9/sq.ft" }
+    ],
+    "infrastructure_plans": [
+      { "project": "Al Maktoum Airport Expansion", "timeline": "2026–2050", "proximity": "10 minutes" },
+      { "project": "Etihad Rail Passenger Station", "timeline": "2026+", "proximity": "Feeder bus connection" },
+      { "project": "Dubai Metro Blue Line", "timeline": "Post-2030", "proximity": "Planned extension to Dubai South" },
+      { "project": "Expo City Dubai", "timeline": "Ongoing", "proximity": "10 minutes" },
+      { "project": "Dubai South Residential District", "timeline": "2026–2035", "proximity": "Adjacent" }
+    ],
+    "comparison_analysis": [
+      "DAMAC Hills 2 offers lower entry prices and higher yields (6.14%) but is located further from the airport growth corridor",
+      "Emaar South provides comparable developer quality at lower price points, with earlier handovers (2027–2028)",
+      "Serro commands a premium for wellness infrastructure, larger unit sizes, and proximity to future airport expansion",
+      "The 4-year timeline aligns with maturation of Dubai South infrastructure (airport, rail, retail)"
+    ],
+    "section_cta": { "heading": "Speak to Mortgage Specialist", "subtext": "Plan LTV, cash needs, and financing options." }
+  }
+}

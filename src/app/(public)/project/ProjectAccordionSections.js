@@ -13,6 +13,18 @@ import ReviewsSection from "@/app/components/single-project/ReviewSection";
 import ExpertTipsSection from "@/app/components/single-project/ExpertTipsSection";
 import FaqSection from "@/app/components/single-project/FaqSection";
 
+// Import all separate JSON files
+import developerData from "@/app/(public)/data/Project/developer.json";
+import targetBuyerData from "@/app/(public)/data/Project/target_buyer.json";
+import locationData from "@/app/(public)/data/Project/location.json";
+import financingData from "@/app/(public)/data/Project/financing.json";
+import risksData from "@/app/(public)/data/Project/risks.json";
+import constructionData from "@/app/(public)/data/Project/construction.json";
+import comparisonData from "@/app/(public)/data/Project/comparison.json";
+import reviewsData from "@/app/(public)/data/Project/reviews.json";
+import expertTipsData from "@/app/(public)/data/Project/expert_tips.json";
+import faqData from "@/app/(public)/data/Project/faq.json";
+
 const ChevronIcon = ({ isOpen }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -97,19 +109,15 @@ const AccordionItem = ({ title, isOpen, onToggle, children, t, headerRef }) => {
         <ChevronIcon isOpen={isOpen} />
       </button>
 
-      {/* No max-height animation: huge sections + transitioning height confuse scroll anchoring.
-          Only mount content when open (like typical accordions) so closed panels don’t affect layout. */}
       {isOpen ? <div>{children}</div> : null}
     </div>
   );
 };
 
-const ProjectAccordionSections = ({ data }) => {
+const ProjectAccordionSections = () => {
   const { t } = useTheme();
   const [openSection, setOpenSection] = useState(null);
-  /** When closing the last open panel, restore scroll position before the click. */
   const scrollPreserveY = useRef(null);
-  /** One ref per accordion header for scroll pinning after open/switch. */
   const headerRefs = useRef({});
 
   useLayoutEffect(() => {
@@ -117,7 +125,6 @@ const ProjectAccordionSections = ({ data }) => {
       const el = headerRefs.current[openSection];
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          // el?.scrollIntoView({ block: "start", behavior: "instant" });
           el?.scrollIntoView({
             block: "center",
             inline: "nearest",
@@ -137,52 +144,52 @@ const ProjectAccordionSections = ({ data }) => {
     {
       id: "developer",
       title: "Developer Profile & Track Record",
-      content: <DeveloperSection data={data.developer_section} />,
+      content: <DeveloperSection data={developerData} />,
     },
     {
       id: "target-buyer",
       title: "Target Buyer & Investment Fit",
-      content: <TargetBuyerSection data={data.target_buyer_section} />,
+      content: <TargetBuyerSection data={targetBuyerData} />,
     },
     {
       id: "location",
       title: "Location & Neighbourhood Analysis",
-      content: <LocationSection data={data.location_section} />,
+      content: <LocationSection data={locationData} />,
     },
     {
       id: "financing",
       title: "Financing & Payment Plan Analysis",
-      content: <FinancingSection data={data.financing_section} />,
+      content: <FinancingSection data={financingData} />,
     },
     {
       id: "risks",
       title: "Risks & Red Flags",
-      content: <RisksSection data={data.risks_section} />,
+      content: <RisksSection data={risksData} />,
     },
     {
       id: "construction",
       title: "Construction Progress & Timeline",
-      content: <ConstructionSection data={data.construction_section} />,
+      content: <ConstructionSection data={constructionData} />,
     },
     {
       id: "comparison",
       title: "Market Comparison & Alternatives",
-      content: <ComparisonSection data={data.comparison_section} />,
+      content: <ComparisonSection data={comparisonData} />,
     },
     {
       id: "reviews",
       title: "Reviews & Resident Feedback",
-      content: <ReviewsSection data={data.reviews_section} />,
+      content: <ReviewsSection data={reviewsData} />,
     },
     {
       id: "expert-tips",
       title: "Expert Tips & Buyer Checklist",
-      content: <ExpertTipsSection data={data.expert_tips_section} />,
+      content: <ExpertTipsSection data={expertTipsData} />,
     },
     {
       id: "faq",
       title: "Frequently Asked Questions",
-      content: <FaqSection data={data.faq_section} />,
+      content: <FaqSection data={faqData} />,
     },
   ];
 

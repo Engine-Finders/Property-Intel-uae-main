@@ -1,0 +1,160 @@
+{
+  "heading": "Unit Mix, Sizes & Price Trends — Serro at The Heights",
+  "subtitle": "Official brochure data with independent market context.",
+  "mobile_unit_prompt": "All unit types • Scroll →",
+  "units": [
+    {
+      "type_name": "3-Bedroom (Type A)",
+      "units_count": 200,
+      "cluster": "Serro",
+      "area_sqft": "3,402 – 3,463",
+      "price": "AED 6,000,000",
+      "price_per_sqft": "~1,732",
+      "availability": "available"
+    },
+    {
+      "type_name": "3-Bedroom (Serro 2)",
+      "units_count": 173,
+      "cluster": "Serro 2",
+      "area_sqft": "3,403",
+      "price": "AED 6,200,000 (est.)",
+      "price_per_sqft": "~1,822",
+      "availability": "limited"
+    },
+    {
+      "type_name": "4-Bedroom (Type A)",
+      "units_count": 172,
+      "cluster": "Serro",
+      "area_sqft": "4,302 – 4,312",
+      "price": "Not yet released",
+      "price_per_sqft": "TBD",
+      "availability": "not_released"
+    },
+    {
+      "type_name": "4-Bedroom (Serro 2)",
+      "units_count": 175,
+      "cluster": "Serro 2",
+      "area_sqft": "4,305",
+      "price": "Not yet released",
+      "price_per_sqft": "TBD",
+      "availability": "not_released"
+    },
+    {
+      "type_name": "5-Bedroom (Type A)",
+      "units_count": 11,
+      "cluster": "Serro",
+      "area_sqft": "5,828",
+      "price": "Not yet released",
+      "price_per_sqft": "TBD",
+      "availability": "not_released"
+    },
+    {
+      "type_name": "5-Bedroom (Serro 2)",
+      "units_count": 49,
+      "cluster": "Serro 2",
+      "area_sqft": "5,822",
+      "price": "Not yet released",
+      "price_per_sqft": "TBD",
+      "availability": "not_released"
+    }
+  ],
+  "pricing_note": "Pricing for 4- and 5-bedroom units has not been released as of February 2026. Emaar typically stages releases, with premium unit pricing following initial sell-through of 3-bedroom inventory. Based on comparable Emaar villa projects, 4-bedroom units are expected to launch at AED 7.5–8.5M, with 5-bedroom units exceeding AED 10M.",
+  "price_commentary": {
+    "intro": "The <strong>AED 6,000,000</strong> entry price for 3-bedroom villas reflects Emaar's strategy of establishing a pricing floor with initial releases. Two factors explain the positioning:",
+    "factors": [
+      {
+        "title": "Master Infrastructure Premium",
+        "content": "The Heights includes significant upfront investment in wellness infrastructure (lakes, tracks, clubhouse) that is <strong>priced into early phases</strong>."
+      },
+      {
+        "title": "Al Yalayis Location Premium vs. Discount",
+        "content": "At <strong>AED 1,732/sqft</strong>, Serro sits approximately <strong>18% below</strong> Dubai Hills' comparable product but <strong>15% above</strong> Emaar South's villa pricing (AED 1,400–1,500/sqft). This reflects The Heights' positioning as a premium wellness enclave rather than a commuter-focused community."
+      }
+    ]
+  },
+  "price_evolution": {
+    "intro": "DLD transaction data from comparable Emaar master communities (Dubai Hills, Arabian Ranches) shows that early phases typically appreciate <strong>15–25%</strong> by handover, driven by:",
+    "mobile_driver_bars": [
+      {
+        "label": "Infrastructure delivery",
+        "subtext": "2027-29",
+        "strength": "High",
+        "value": 86
+      },
+      {
+        "label": "Villa scarcity",
+        "strength": "High",
+        "value": 82
+      },
+      {
+        "label": "Emaar phase discipline",
+        "strength": "Med",
+        "value": 58
+      }
+    ],
+    "caveat": "Investor Note: However, the 4-year construction timeline introduces holding cost considerations. Investors should model 7 - 9% annual opportunity cost of capital against projected appreciation.",
+    "investor_note": "Investor Note: The 4-year construction timeline introduces holding cost considerations. Investors should model 7 - 9% annual opportunity cost of capital against projected appreciation."
+  },
+  "floor_plan_intro": "Serro villas follow a consistent architectural language across all three typologies:",
+  "floor_plans": [
+    {
+      "bedrooms": "3",
+      "title": "3-Bedroom Configuration",
+      "description": "Ground floor features open-plan living/dining (approx. <strong>1,500 sqft</strong>) with guest bedroom and powder room; first floor contains three ensuite bedrooms, master with dressing area. Total covered terrace space averages <strong>107 sqft</strong>."
+    },
+    {
+      "bedrooms": "4",
+      "title": "4-Bedroom Configuration",
+      "description": "Adds a second floor with additional family lounge and fourth ensuite bedroom. Plot sizes increase to <strong>5,177–5,236 sqft</strong>, allowing for larger private gardens."
+    },
+    {
+      "bedrooms": "5",
+      "title": "5-Bedroom Configuration",
+      "description": "Full three-storey layout with roof terrace access; ground floor includes staff quarters. Total built-up area approaches <strong>5,800 sqft</strong> with <strong>7,000+ sqft</strong> plots."
+    }
+  ],
+  "distinguishing_feature_cards": [
+    {
+      "title": "Aesthetic",
+      "text": "Mediterranean-contemporary aesthetic with whitewashed finishes, curved architectural elements, and terracotta accents."
+    },
+    {
+      "title": "Glazing",
+      "text": "Floor-to-ceiling glazing maximising natural light and garden connectivity."
+    },
+    {
+      "title": "Materials",
+      "text": "Neutral material palette (beige stone, warm timber accents) designed for longevity."
+    },
+    {
+      "title": "Carport",
+      "text": "All villas include covered carports (494 - 739 sqft depending on typology)."
+    }
+  ],
+  "insider_tip_title": "What portals don't tell you",
+  "insider_tip": "The 3-bedroom Type A (3,463 sqft) and Type C (3,340 sqft) differ primarily in ground floor layout — Type C sacrifices some living area for a larger private garden. Buyers prioritising outdoor space should target Type C, despite the marginally smaller footprint.",
+  "expert_cta": {
+    "heading": "Get Unit Recommendations",
+    "subtext": "Choose the right layout with expert guidance.",
+    "actions": [
+      {
+        "label": "WhatsApp",
+        "subtext": "Chat instantly",
+        "type": "whatsapp",
+        "href": "#"
+      },
+      {
+        "label": "Call Us",
+        "subtext": "Speak directly",
+        "type": "phone",
+        "href": "#"
+      },
+      {
+        "label": "Email Us",
+        "subtext": "We'll get back",
+        "type": "email",
+        "href": "#"
+      }
+    ]
+  }
+}
