@@ -1,87 +1,88 @@
 {
-  "expert_tips_section": {
-    "badge": "Expert Tips & Scam Avoidance",
-    "title": "Insider Tips for Off‑Plan Buyers",
-    "subtitle": "Specific to Serro at The Heights",
-    "desktop_intro": "Expert guidance to help you buy smart, stay protected, and invest with confidence in Dubai's off-plan market.",
-    "tips_title": "Five Actionable Tips for Serro Buyers",
-    "tips": [
-      {
-        "title": "Verify Payment Plan Alignment with Construction Milestones",
-        "paragraphs": [
-          "Serro's 80/20 structure (10% booking, 70% during construction, 20% on handover) is marketed as construction-linked. Before signing, confirm that each instalment corresponds to a verifiable milestone (e.g., foundation completion, structural framing, finishing works).",
-          "Payments tied to dates rather than progress increase your risk if construction delays occur."
-        ],
-        "action": "Request the milestone schedule in your Sales and Purchase Agreement. Cross-reference with Dubai REST app updates during construction."
-      },
-      {
-        "title": "Negotiate on Multi-Unit Purchases",
-        "paragraphs": [
-          "Developers, including Emaar, often discount for bulk buyers or multiple unit acquisitions. If you're acquiring adjacent villas for extended family or investment pooling, negotiate pricing or payment term flexibility before booking."
-        ],
-        "action": "Engage through a reputable broker who can present multi-unit offers directly to Emaar's sales team."
-      },
-      {
-        "title": "Understand the True Cost of Ownership — Not Just the Purchase Price",
-        "paragraphs": [
-          "For a AED 6,000,000 Serro villa, total cash required at purchase approximates AED 3,285,000:"
-        ],
-        "table": {
-          "rows": [
-            ["Down Payment (50%)", "AED 3,000,000"],
-            ["DLD Transfer Fee (4%)", "AED 240,000"],
-            ["DLD Mortgage Registration (0.25%)", "AED 7,500"],
-            ["Bank Arrangement Fee (~1% + VAT)", "AED 31,500"],
-            ["Valuation/Admin Fees", "~AED 6,500"],
-            ["Total", "~AED 3,285,000"]
+      "badge": "Expert Tips & Scam Avoidance",
+      "title": "Insider Tips for Off‑Plan Buyers",
+      "subtitle": "Specific to Serro at The Heights",
+      "desktop_intro": "Expert guidance to help you buy smart, stay protected, and invest with confidence in Dubai's off-plan market.",
+      "tips_title": "Five Actionable Tips for Serro Buyers",
+      "tips": [
+        {
+          "title": "Verify Payment Plan Alignment with Construction Milestones",
+          "paragraphs": [
+            "Serro's 80/20 structure (10% booking, 70% during construction, 20% on handover) is marketed as construction-linked. Before signing, confirm that each instalment corresponds to a verifiable milestone (e.g., foundation completion, structural framing, finishing works).",
+            "Payments tied to dates rather than progress increase your risk if construction delays occur."
           ],
-          "source": "Gulf News off-plan buying guide"
+          "action": "Request the milestone schedule in your Sales and Purchase Agreement. Cross-reference with Dubai REST app updates during construction."
         },
-        "action": "Budget 10–12% above purchase price for transaction costs. Do not rely on developer DLD fee waivers without verifying total cost impact."
-      },
-      {
-        "title": "Verify Escrow Compliance — Never Transfer Funds Outside Official Channels",
-        "paragraphs": [
-          "Dubai Law No. (8) of 2007 and subsequent amendments mandate that all off-plan payments be held in RERA-regulated escrow accounts. Funds are released to developers only upon verification of construction milestones by licensed consultants."
-        ],
-        "red_flag": "If a broker or developer representative requests payment to a personal account, offshore entity, or non-RERA account, cease all communication and report to Dubai Land Department immediately.",
-        "action": "Confirm escrow account details are registered and visible via the Dubai REST app before transferring any funds."
-      },
-      {
-        "title": "Reject Guaranteed Rental Income Promises",
-        "paragraphs": [
-          "No legitimate developer or broker can guarantee rental returns. Market fluctuations, handover timing, and property-specific factors render such promises unenforceable and often indicate a misrepresentation risk."
-        ],
-        "red_flag": "\"Guaranteed 8% ROI for 5 years\" claims should be treated as marketing gimmicks. Legitimate projections are presented as estimates with clear disclaimers."
-      }
-    ],
-    "scam_red_flags": {
-      "title": "Scam Red Flags — Specific to Dubai Off-Plan Market",
-      "headers": ["Red Flag", "Why It Matters"],
-      "rows": [
-        ["Payment to non-escrow accounts", "Funds unprotected; project may not be RERA-registered"],
-        ["Pressure to sign without independent legal review", "SPA contains binding terms; independent review is essential"],
-        ["\"Too good to be true\" pricing", "May indicate off-plan flipping without title transfer risks"],
-        ["Broker unwilling to provide RERA credentials", "All licensed brokers have RERA cards; verify before engaging"],
-        ["Promises of \"immediate handover\" on newly launched projects", "Off-plan means construction not started; verify actual status"]
-      ]
-    },
-    "regulatory": {
-      "title": "Key Regulatory Protections — Law No. 7 of 2025",
-      "badge": "Effective Jan 2026",
-      "intro": "Effective January 2026, Dubai's new Contracting Law introduces enhanced protections for off-plan buyers:",
-      "items": [
-        { "label": "Mandatory contractor registration and classification", "desc": "Prevents unqualified entities from undertaking large-scale projects" },
-        { "label": "Subcontractor oversight", "desc": "Main contractors remain fully accountable for delegated work quality" },
-        { "label": "10-year document retention", "desc": "Critical for post-handover warranty claims" },
-        { "label": "Penalties up to AED 200,000", "desc": "Deters negligence and misrepresentation" }
+        {
+          "title": "Negotiate on Multi-Unit Purchases",
+          "paragraphs": [
+            "Developers, including Emaar, often discount for bulk buyers or multiple unit acquisitions. If you're acquiring adjacent villas for extended family or investment pooling, negotiate pricing or payment term flexibility before booking."
+          ],
+          "action": "Engage through a reputable broker who can present multi-unit offers directly to Emaar's sales team."
+        },
+        {
+          "title": "Understand the True Cost of Ownership — Not Just the Purchase Price",
+          "paragraphs": [
+            "For a AED 6,000,000 Serro villa, total cash required at purchase approximates AED 3,285,000:"
+          ],
+          "table": {
+            "rows": [
+              ["Down Payment (50%)", "AED 3,000,000"],
+              ["DLD Transfer Fee (4%)", "AED 240,000"],
+              ["DLD Mortgage Registration (0.25%)", "AED 7,500"],
+              ["Bank Arrangement Fee (~1% + VAT)", "AED 31,500"],
+              ["Valuation/Admin Fees", "~AED 6,500"],
+              ["Total", "~AED 3,285,000"]
+            ],
+            "source": "Gulf News off-plan buying guide"
+          },
+          "action": "Budget 10–12% above purchase price for transaction costs. Do not rely on developer DLD fee waivers without verifying total cost impact."
+        },
+        {
+          "title": "Verify Escrow Compliance — Never Transfer Funds Outside Official Channels",
+          "paragraphs": [
+            "Dubai Law No. (8) of 2007 and subsequent amendments mandate that all off-plan payments be held in RERA-regulated escrow accounts. Funds are released to developers only upon verification of construction milestones by licensed consultants."
+          ],
+          "red_flag": "If a broker or developer representative requests payment to a personal account, offshore entity, or non-RERA account, cease all communication and report to Dubai Land Department immediately.",
+          "action": "Confirm escrow account details are registered and visible via the Dubai REST app before transferring any funds."
+        },
+        {
+          "title": "Reject Guaranteed Rental Income Promises",
+          "paragraphs": [
+            "No legitimate developer or broker can guarantee rental returns. Market fluctuations, handover timing, and property-specific factors render such promises unenforceable and often indicate a misrepresentation risk."
+          ],
+          "red_flag": "\"Guaranteed 8% ROI for 5 years\" claims should be treated as marketing gimmicks. Legitimate projections are presented as estimates with clear disclaimers."
+        }
       ],
-      "action": "Familiarize yourself with these protections. They provide recourse if construction quality or timeline issues arise."
-    },
-    "final_word": {
-      "title": "Final Word — Due Diligence Is Your Best Protection",
-      "text": "The off-plan market rewards informed buyers. Serro at The Heights, backed by Emaar's institutional strength and Dubai's evolving regulatory framework, represents a relatively secure entry point. However, \"secure\" does not mean \"risk-free.\" Verify every claim, understand every cost, and never rely on verbal assurances."
-    },
-    "section_cta": { "heading": "Verify Project Compliance", "subtext": "Check RERA and escrow details before payment." }
-  }
-}
+      "scam_red_flags": {
+        "title": "Scam Red Flags — Specific to Dubai Off-Plan Market",
+        "headers": ["Red Flag", "Why It Matters"],
+        "rows": [
+          ["Payment to non-escrow accounts", "Funds unprotected; project may not be RERA-registered"],
+          ["Pressure to sign without independent legal review", "SPA contains binding terms; independent review is essential"],
+          ["\"Too good to be true\" pricing", "May indicate off-plan flipping without title transfer risks"],
+          ["Broker unwilling to provide RERA credentials", "All licensed brokers have RERA cards; verify before engaging"],
+          ["Promises of \"immediate handover\" on newly launched projects", "Off-plan means construction not started; verify actual status"]
+        ]
+      },
+      "regulatory": {
+        "title": "Key Regulatory Protections — Law No. 7 of 2025",
+        "badge": "Effective Jan 2026",
+        "intro": "Effective January 2026, Dubai's new Contracting Law introduces enhanced protections for off-plan buyers:",
+        "items": [
+          { "label": "Mandatory contractor registration and classification", "desc": "Prevents unqualified entities from undertaking large-scale projects" },
+          { "label": "Subcontractor oversight", "desc": "Main contractors remain fully accountable for delegated work quality" },
+          { "label": "10-year document retention", "desc": "Critical for post-handover warranty claims" },
+          { "label": "Penalties up to AED 200,000", "desc": "Deters negligence and misrepresentation" }
+        ],
+        "action": "Familiarize yourself with these protections. They provide recourse if construction quality or timeline issues arise."
+      },
+      "final_word": {
+        "title": "Final Word — Due Diligence Is Your Best Protection",
+        "text": "The off-plan market rewards informed buyers. Serro at The Heights, backed by Emaar's institutional strength and Dubai's evolving regulatory framework, represents a relatively secure entry point. However, \"secure\" does not mean \"risk-free.\" Verify every claim, understand every cost, and never rely on verbal assurances."
+      },
+      "section_cta": {
+        "heading": "Verify Project Compliance",
+        "subtext": "Check RERA and escrow details before payment."
+      }
+    }
