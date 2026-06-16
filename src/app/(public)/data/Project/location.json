@@ -1,0 +1,80 @@
+ {
+      "timeline": [
+        { "year": "2026", "title": "Al Qudra Road Bridge", "detail": "600m four-lane bridge opens, 191% capacity increase" },
+        { "year": "2027", "title": "Community Retail Opens", "detail": "Retail zones, dining, and daily convenience within The Heights" },
+        { "year": "2030", "title": "Metro Blue Line (Est.)", "detail": "14 new stations connecting Dubai South to Creek Harbour" }
+      ],
+      "walkability_title": "Walkability & Pedestrian Experience",
+      "walkability_subtitle": "Walk score & daily convenience",
+      "walkability_intro": "Serro at The Heights is positioned within a low-density, family-oriented master community. The pedestrian experience is deliberately designed around wellness rather than urban convenience.",
+      "walkability": [
+        { "icon": "walk", "title": "Internal Walkability", "content": "The community features extensive landscaped walking paths, jogging tracks, and pedestrian-friendly street design connecting residential clusters to amenity nodes (wellness lake, parks, clubhouse)." },
+        { "icon": "pin", "title": "External Walkability", "content": "A metro station is not within walking distance. The nearest existing stations are approximately 15 - 20 minutes by vehicle." },
+        { "icon": "cart", "title": "Daily Convenience", "content": "Grocery stores and retail outlets are planned within the community retail zone but will not be operational until 2027 - 2029. Early residents will require vehicular access to supermarkets in Dubai South or Expo City." }
+      ],
+      "walkability_note": "Car-dependent community. This is by design - The Heights prioritises wellness space over urban density. Best suited to families with private transport.",
+      "drive_title": "Drive Times",
+      "drive_subtitle": "Off-peak vs. peak hour analysis",
+      "drive_source_note": "Source: Google Maps estimates validated against RTA infrastructure updates.",
+      "drive_times": [
+        { "icon": "airport", "destination": "Al Maktoum International Airport (DWC)", "off_peak": "8 - 12 min", "peak": "12 - 18 min", "notes": "Future primary airport" },
+        { "icon": "expo", "destination": "Expo City Dubai", "off_peak": "12 - 15 min", "peak": "15 - 20 min", "notes": "Direct via Expo Road" },
+        { "icon": "marina", "destination": "Dubai Marina", "off_peak": "22 - 28 min", "peak": "35 - 45 min", "notes": "Via Emirates Rd / Hessa St" },
+        { "icon": "mall", "destination": "DIFC / Dubai Mall", "off_peak": "28 - 32 min", "peak": "45 - 55 min", "notes": "Via E611 + E311" },
+        { "icon": "airport", "destination": "Dubai International Airport (DXB)", "off_peak": "35 - 40 min", "peak": "50 - 65 min", "notes": "Business Bay congestion" },
+        { "icon": "port", "destination": "Jebel Ali Port / Industrial Area", "off_peak": "15 - 18 min", "peak": "20 - 25 min", "notes": "Key employment corridor" },
+        { "icon": "hospital", "destination": "Nearest Hospital (Mediclinic Parkview)", "off_peak": "18 - 22 min", "peak": "25 - 30 min", "notes": "Nearest hospital" }
+      ],
+      "infrastructure_title": "Future Infrastructure",
+      "infrastructure_subtitle": "RTA, Metro, Airport — upcoming catalysts",
+      "infrastructure_developments": [
+        {
+          "icon": "road",
+          "title": "RTA Al Qudra Road Development",
+          "tag": "Feb 2026",
+          "impact": "High impact",
+          "bullets": [
+            "The RTA has completed a <strong>600-metre, four-lane bridge</strong> at the intersection of Al Qudra Road and the link road to Arabian Ranches / Dubai Studio City, increasing capacity by <strong>191%</strong> (6,600 to 19,200 vehicles per hour) and reducing waiting time by 55%.",
+            "A second bridge opening on <strong>15 Feb 2026</strong> at Al Qudra Road & Sheikh Zayed bin Hamdan Al Nahyan Street provides four lanes in each direction, reducing wait times by <strong>85%</strong> (393s to 60s)."
+          ],
+          "relevance": "These upgrades improve connectivity between the southern growth corridor and central Dubai. The enhanced Al Qudra Road corridor benefits communities positioned similarly to The Heights in terms of Dubai South access."
+        },
+        {
+          "icon": "train",
+          "title": "Dubai Metro Blue Line",
+          "tag": "Post-2030",
+          "impact": "Long-term",
+          "bullets": [
+            "The <strong>30-kilometre Blue Line extension</strong> will connect Dubai Creek Harbour and Festival City directly to Dubai South and Expo City, with <strong>14 new stations</strong>.",
+            "While completion is post-2030, the awarded contract signals long-term government commitment to transit-oriented development in the southern corridor."
+          ],
+          "relevance": null
+        },
+        {
+          "icon": "airport",
+          "title": "Al Maktoum International Airport",
+          "tag": "Ongoing",
+          "impact": "Transformative",
+          "bullets": [
+            "<strong>AED 128 billion</strong> (USD 34 - 35B) investment approved for new terminal infrastructure, positioning DWC as the world's largest airport with <strong>260 million passenger capacity</strong>.",
+            "Major passenger operations will progressively shift from DXB to Al Maktoum, concentrating aviation-driven employment and housing demand in Dubai South."
+          ],
+          "relevance": null
+        }
+      ],
+      "neighbourhood_title": "Neighbourhood Character",
+      "neighbourhood_subtitle": "Emerging wellness enclave",
+      "neighbourhood_intro": "The Heights is positioned as an emerging, wellness-focused residential district. Unlike the buzzing energy of Dubai Marina or the urban intensity of Downtown, The Heights offers:",
+      "neighbourhood_vibe": [
+        { "icon": "home", "title": "Low-density living", "content": "25% green space allocation, villa-only product mix." },
+        { "icon": "wellness", "title": "Wellness orientation", "content": "Dedicated wellness lake, meditation gardens, extensive trail networks." },
+        { "icon": "family", "title": "Family focus", "content": "School catchments, children's play areas, community safety." },
+        { "icon": "construction", "title": "Construction phase", "content": "2026 - 2030 will see active development; early residents should expect a live building site environment for 12 - 24 months post-first handovers.", "highlight": true }
+      ],
+      "map_description": "Map showing Serro at The Heights positioned within The Heights Country Club & Wellness master community, located near the intersection of Expo Road and Al Yalayis Street (E77). The community sits approximately 8 kilometres north of Al Maktoum International Airport, 12 kilometres east of Expo City Dubai, and 25 kilometres southwest of Downtown Dubai. Emirates Road (E611) provides the primary north - south arterial connection, with the recently upgraded Al Qudra Road corridor improving east - west connectivity to Arabian Ranches and Studio City.",
+      "hero_subtitle": "Understand commute times, planned infrastructure, neighbourhood character, and what daily life at The Heights will feel like.",
+      "section_cta": {
+        "heading": "Book Location Consultation",
+        "subtext": "Understand commute, access, and neighbourhood feel."
+      }
+    }

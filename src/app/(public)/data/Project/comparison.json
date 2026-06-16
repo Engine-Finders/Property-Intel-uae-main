@@ -1,0 +1,60 @@
+{
+      "badge": "Competitor Analysis",
+      "title": "How Serro at The Heights Stacks Up Against Competitors",
+      "mobile_project_tabs": ["Serro\nThe Heights", "Emaar South\nGolf Place", "Dubai South\nPhase VI"],
+      "project_meta": [
+        { "short": "Serro at The Heights", "brand": "Emaar Properties", "badge": "Premium pick", "sublabel": "The Heights" },
+        { "short": "Emaar South — Golf Place", "brand": "Emaar Properties", "badge": "Emaar Properties", "sublabel": "Golf Place" },
+        { "short": "Dubai South Residential", "brand": "Various (Dubai South Development)", "badge": "Dubai South Development", "sublabel": "Phase VI" }
+      ],
+      "mobile_price_glance": {
+        "rows": [
+          { "label": "Serro", "value": "AED 6.0M", "color": "#B68A35" },
+          { "label": "Emaar South", "value": "AED 3.8M", "color": "#9eba6e" },
+          { "label": "Dubai South", "value": "AED 1.47M", "color": "#6f9fca" }
+        ],
+        "summary": "Price per sqft: Serro ~AED 1,732 · Emaar South ~AED 1,550–1,700 · Dubai South ~AED 700–900"
+      },
+      "intro": "The following comparison examines Serro against two relevant alternatives: another Emaar project in the Dubai South corridor and a competitor development targeting similar buyer profiles.",
+      "competitor_table": {
+        "headers": ["Feature", "Serro at The Heights (Emaar)", "Emaar South (Golf Place)", "Dubai South Residential (Phase VI)"],
+        "rows": [
+          ["Developer", "Emaar Properties", "Emaar Properties", "Various (Dubai South Development)"],
+          ["Location", "Al Yalayis, The Heights", "Dubai South (near Expo City)", "Dubai South (Residential District)"],
+          ["Unit Types", "3 - 5BR Villas", "3 - 4BR Townhouses/Villas", "3BR Townhouses"],
+          ["Size Range", "3,340 - 5,884 sq.ft", "2,200 - 3,800 sq.ft", "2,100 - 2,800 sq.ft"],
+          ["Starting Price", "AED 6,000,000 (3BR)", "AED 3,800,000 (3BR)", "AED 1,470,000 (3BR)"],
+          ["Price per sq.ft", "~AED 1,732", "~AED 1,550 - 1,700", "~AED 700 - 900"],
+          ["Handover", "Q1 - Q2 2030", "2027 - 2028", "2026 - 2027"],
+          ["Payment Plan", "80/20 (10% booking, 70% during construction, 20% on handover)", "70/30 typical", "60/40 typical"],
+          ["Amenities", "Wellness lake, 38km tracks, clubhouse, meditation gardens, sports courts", "Golf course, parks, community pools", "Basic community facilities, proximity to Expo City"],
+          ["Target Buyer", "Premium family, wellness-focused, long-term hold", "Mid-market families, aviation professionals", "First-time buyers, investors seeking yield"],
+          ["Risk Factor", "Extended timeline (4 years), emerging location", "Established Emaar South community", "Higher supply concentration, quality variability"]
+        ],
+        "source": "Broker portals; Dubai South investment guides"
+      },
+      "winner_table": {
+        "title": "Who Wins on Value, Trust, and Lifestyle",
+        "rows": [
+          { "emoji": "🏆", "category": "Value", "winner": "Dubai South Residential", "rationale": "At AED 1.47M entry, significantly lower capital commitment; higher potential yields (6–8%) but lower capital appreciation trajectory" },
+          { "emoji": "🏆", "category": "Trust", "winner": "Serro / Emaar South (Tie)", "rationale": "Emaar's track record and escrow compliance provide institutional certainty; both projects benefit from developer accountability under Law No. 7 of 2025", "highlight": true },
+          { "emoji": "🏆", "category": "Lifestyle", "winner": "Serro", "rationale": "Unmatched wellness infrastructure (lake, 38km tracks, meditation gardens) positions Serro as Dubai's first dedicated wellness community", "highlight": true },
+          { "emoji": "🏆", "category": "Timeline Certainty", "winner": "Dubai South Residential", "rationale": "2026–2027 handovers provide faster entry to rental market and capital realisation" },
+          { "emoji": "🏆", "category": "Capital Growth", "winner": "Serro", "rationale": "Premium positioning in emerging wellness corridor; Emaar's pricing discipline suggests 15–25% appreciation by handover based on historical patterns", "highlight": true }
+        ]
+      },
+      "verdict": {
+        "title": "Strategic Verdict",
+        "intro": "Serro at The Heights is not competing on price — it's competing on positioning and lifestyle differentiation. Buyers choosing Serro are effectively paying a premium for:",
+        "points": [
+          "Emaar's wellness-first masterplan, which has no direct competitor at this price point in Dubai South",
+          "Scarcity value — only 383 villas across two clusters in a master community spanning 81 million sq.ft",
+          "Long-term infrastructure alignment with Al Maktoum Airport expansion and Dubai 2040 growth corridor"
+        ],
+        "closing": "For investors prioritizing immediate yield and lower entry, Dubai South's Phase VI offerings present a compelling alternative. For buyers seeking generational family assets with wellness infrastructure and Emaar's institutional backing, Serro justifies its premium positioning."
+      },
+      "section_cta": {
+        "heading": "Compare Serro Projects",
+        "subtext": "See how Serro compares with your shortlist."
+      }
+    }

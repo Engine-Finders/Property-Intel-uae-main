@@ -17,8 +17,41 @@ import { useThemeStyles } from '@/app/components/context/themeStyles';
 const GOLD = "#B68A35";
 const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
-const Section5 = () => {
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
+};
+
+const Section5 = ({ data }) => {
     const [isDesktop, setIsDesktop] = useState(false);
+    const [isHandoverOpen, setIsHandoverOpen] = useState(false);
+    const [isQualityOpen, setIsQualityOpen] = useState(false);
     const [isInsightOpen, setIsInsightOpen] = useState(false);
     const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
     const [isSourcesOpen, setIsSourcesOpen] = useState(false);
@@ -35,7 +68,8 @@ const Section5 = () => {
         const updateViewport = () => {
             const desktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
             setIsDesktop(desktop);
-            // default open on desktop, closed on phone
+            setIsHandoverOpen(desktop);
+            setIsQualityOpen(desktop);
             setIsInsightOpen(desktop);
             setIsDisclaimerOpen(desktop);
             setIsSourcesOpen(desktop);
@@ -45,16 +79,72 @@ const Section5 = () => {
         window.addEventListener('resize', updateViewport);
         return () => window.removeEventListener('resize', updateViewport);
     }, []);
-    
+
+    if (!data) {
+        return (
+            <section style={{ background: sectionBg }} className="py-12 font-sans">
+                <div className="max-w-[1400px] mx-auto px-4 py-20">
+                    <p className="text-center" style={{ color: bodyColor }}>Loading...</p>
+                </div>
+            </section>
+        );
+    }
+
+    const statCards = data.statCards || [];
+    const tableRows = data.tableRows || [];
+    const prosItems = data.prosItems || [];
+    const consItems = data.consItems || [];
+    const sourcesDesktop = data.sourcesDesktop || [];
+    const sourcesMobile = data.sourcesMobile || [];
+
+    const headerDescription = data.header?.description || "We have analysed official handover records and verified owner feedback to present an honest picture of Emaar's delivery performance.";
+
     return (
         <section style={{ background: sectionBg }} className="py-12 font-sans">
 
-            {/* Header Section */}
-            <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+            {/* Mobile header */}
+            <div className="md:hidden">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt={data.heroAlt || "Dubai Skyline"}
+                        fill
+                        className="object-cover object-center grayscale-[10%]"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1A1A1A" }}
+                        >
+                            {data.header?.title?.line1 || "Emaar Delivery Track Record:"}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "Transparency You Can Trust"}</span>
+                        </h2>
+                        <p
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : bodyColor }}
+                        >
+                            {headerDescription}
+                        </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-[320px] lg:h-[400px] items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/Home/Section3bg.webp"
-                        alt="Dubai Skyline"
+                        src={data.heroImage || "/Home/Section3bg.webp"}
+                        alt={data.heroAlt || "Dubai Skyline"}
                         fill
                         className="object-cover object-center grayscale-[10%]"
                         priority
@@ -64,72 +154,37 @@ const Section5 = () => {
 
                 <div className="relative z-10 max-w-[1400px] mx-auto px-2 w-full">
                     <h2 className="text-3xl lg:text-5xl font-serif mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
-                        Emaar Delivery Track Record:
+                        {data.header?.title?.line1 || "Emaar Delivery Track Record:"}
                         <span className="lg:hidden">—</span>
                     </h2>
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
-                        Transparency You Can Trust
+                        {data.header?.title?.line2 || "Transparency You Can Trust"}
                     </h3>
-                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
-                        We have analysed official handover records and verified owner feedback to present an honest picture of Emaar's delivery performance.
+                    <p className="max-w-xl text-sm lg:text-base leading-[17px] font-medium" style={{ color: bodyColor }}>
+                        {headerDescription}
                     </p>
                 </div>
             </div>
-            
-            <div className="max-w-[1400px] mx-auto -mt-12 relative z-20">
+
+            <div className="max-w-[1400px] mx-auto px-2 md:-mt-12 relative z-20">
                 {/* --- STATS OVERVIEW CARDS --- */}
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-0 mb-8 rounded-2xl overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                    <StatCard
-                        icon={<FaRegCalendarCheck className="text-[#B68A35]" />}
-                        label="On-Time Delivery Rate"
-                        value="96%"
-                        chart
-                        divider
-                        isDark={isDark}
-                        cardBg={cardBg}
-                        cardBorder={cardBorder}
-                        subtextColor={subtextColor}
-                        bodyColor={bodyColor}
-                        t={t}
-                    />
-                    <StatCard
-                        icon={<BsBuildings className="text-[#B68A35]" />}
-                        label="Projects Analysed"
-                        value="3"
-                        unit="Projects"
-                        divider
-                        isDark={isDark}
-                        cardBg={cardBg}
-                        cardBorder={cardBorder}
-                        subtextColor={subtextColor}
-                        bodyColor={bodyColor}
-                        t={t}
-                    />
-                    <StatCard
-                        icon={<SlBadge className="text-[#B68A35]" />}
-                        label="Avg. Delay"
-                        value="~5"
-                        unit="Months"
-                        divider
-                        isDark={isDark}
-                        cardBg={cardBg}
-                        cardBorder={cardBorder}
-                        subtextColor={subtextColor}
-                        bodyColor={bodyColor}
-                        t={t}
-                    />
-                    <StatCard
-                        icon={<Users className="text-[#B68A35]" />}
-                        label="Owner Feedback Analysed"
-                        value="500+"
-                        unit="Reviews"
-                        isDark={isDark}
-                        cardBg={cardBg}
-                        cardBorder={cardBorder}
-                        subtextColor={subtextColor}
-                        bodyColor={bodyColor}
-                        t={t}
-                    />
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-0 mb-8 rounded lg:rounded-2xl overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                    {statCards.map((stat, idx) => (
+                        <StatCard
+                            key={idx}
+                            icon={getStatIcon(stat.iconName)}
+                            label={stat.label}
+                            value={stat.value}
+                            unit={stat.unit}
+                            divider={idx < statCards.length - 1}
+                            isDark={isDark}
+                            cardBg={cardBg}
+                            cardBorder={cardBorder}
+                            subtextColor={subtextColor}
+                            bodyColor={bodyColor}
+                            t={t}
+                        />
+                    ))}
                 </div>
 
                 {/* --- MAIN DASHBOARD GRID --- */}
@@ -139,80 +194,117 @@ const Section5 = () => {
                     <div className="lg:col-span-8 space-y-6">
 
                         {/* Project Handover Analysis */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-5 flex items-center justify-between" style={{ borderBottom: `1px solid ${cardBorder}` }}>
-                                <div className="flex items-center gap-3">
-                                    <PiBuildingApartmentLight className="text-[#B68A35] w-8 h-8" />
-                                    <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Project Handover Analysis</h4>
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <button
+                                type="button"
+                                onClick={() => !isDesktop && setIsHandoverOpen((s) => !s)}
+                                aria-expanded={isHandoverOpen || isDesktop}
+                                className="w-full p-5 flex items-center justify-between text-left lg:cursor-default"
+                                style={{ borderBottom: (isHandoverOpen || isDesktop) ? `1px solid ${cardBorder}` : 'none' }}
+                            >
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <PiBuildingApartmentLight className="text-[#B68A35] w-8 h-8 shrink-0" />
+                                    <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.handoverAnalysis?.title || "Project Handover Analysis"}</h4>
                                 </div>
-                                <ChevronUp className="w-5 h-5" style={{ color: subtextColor }} />
-                            </div>
+                                <ChevronUp className={`w-5 h-5 shrink-0 transition-transform lg:hidden ${isHandoverOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isHandoverOpen ? { color: subtextColor } : undefined} />
+                            </button>
+                            {(isHandoverOpen || isDesktop) && (
                             <div className="p-2">
-                                <p className="text-[14px] mb-4" style={{ color: bodyColor }}>
-                                    The following projects have been analysed using official DLD handover records, RERA progress reports, and developer announcements.
+                                <p className="text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed mb-4" style={{ color: bodyColor }}>
+                                    {data.handoverAnalysis?.description || "The following projects have been analysed using official DLD handover records, RERA progress reports, and developer announcements."}
                                 </p>
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-left text-[11px] lg:text-xs">
                                         <thead>
                                             <tr style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', color: subtextColor, borderTop: `1px solid ${cardBorder}`, borderBottom: `1px solid ${cardBorder}` }}>
-                                                <th className="px-2 py-3 font-bold">Project Name</th>
-                                                <th className="px-2 py-3 font-bold">Original Handover</th>
-                                                <th className="px-2 py-3 font-bold">Actual Handover</th>
-                                                <th className="px-2 py-3 font-bold">Delay (Months)</th>
-                                                <th className="px-2 py-3 font-bold">Reason</th>
-                                                <th className="px-2 py-3 font-bold">Source Reference</th>
+                                                {data.handoverAnalysis?.tableHeaders?.map((header, idx) => (
+                                                    <th key={idx} className="px-2 py-3 font-bold">{header}</th>
+                                                ))}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <TableRow name="Downtown Dubai Phase 1" original="2008" actual="2008" delay="0" reason="On Time" source="Wikipedia" status="on-time" isDark={isDark} cardBorder={cardBorder} bodyColor={bodyColor} t={t} />
-                                            <TableRow name="Arabian Ranches II - Phase 1 Casa" original="Q1 2014" actual="Dec 2014" delay="~9 months" reason="Phased delivery" source="Chainex Real Estate" status="delay" isDark={isDark} cardBorder={cardBorder} bodyColor={bodyColor} t={t} />
-                                            <TableRow name="The Meadows 10" original="Q2 2014" actual="Q4 2014" delay="~6 months" reason="Phased delivery" source="DLD Completion Registry" status="delay" isDark={isDark} cardBorder={cardBorder} bodyColor={bodyColor} t={t} />
+                                            {tableRows.map((row, idx) => (
+                                                <TableRow
+                                                    key={idx}
+                                                    name={row.name}
+                                                    original={row.original}
+                                                    actual={row.actual}
+                                                    delay={row.delay}
+                                                    reason={row.reason}
+                                                    source={row.source}
+                                                    status={row.status}
+                                                    isDark={isDark}
+                                                    cardBorder={cardBorder}
+                                                    bodyColor={bodyColor}
+                                                    t={t}
+                                                />
+                                            ))}
                                         </tbody>
                                     </table>
                                 </div>
-                                <div className="mt-4 p-3 rounded-lg flex gap-3 items-start" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-                                    <Info className="text-[#B68A35] w-6 h-6" />
-                                    <p className="text-[12px] leading-relaxed" style={{ color: subtextColor }}>
-                                        <span className="font-bold text-[#B68A35]">Note:</span> "Dubai Marina Towers" was excluded from analysis as this is a generic designation covering multiple developers; no single Emaar-specific project matching this exact name could be verified in DLD/RERA records.
-                                    </p>
-                                </div>
+                                {data.handoverAnalysis?.note ? (
+                                    <div className="mt-4 p-3 rounded lg:rounded-lg" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
+                                        <div className="lg:hidden">
+                                            <MobileNoteBox
+                                                icon={<Info className="w-5 h-5" />}
+                                                textStyle={{ color: subtextColor }}
+                                            >
+                                                {data.handoverAnalysis.note}
+                                            </MobileNoteBox>
+                                        </div>
+                                        <div className="hidden lg:flex gap-3 items-start">
+                                            <Info className="text-[#B68A35] w-6 h-6 shrink-0" />
+                                            <p className="text-[12px] leading-relaxed" style={{ color: subtextColor }}>
+                                                {data.handoverAnalysis.note}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ) : null}
                             </div>
+                            )}
                         </div>
 
                         {/* Quality & Owner Satisfaction Insights */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-5 flex items-center justify-between" style={{ borderBottom: `1px solid ${cardBorder}` }}>
-                                <div className="flex items-center gap-3">
-                                    <Star className="text-[#B68A35] w-8 h-8" />
-                                    <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Quality & Owner Satisfaction Insights</h4>
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <button
+                                type="button"
+                                onClick={() => !isDesktop && setIsQualityOpen((s) => !s)}
+                                aria-expanded={isQualityOpen || isDesktop}
+                                className="w-full p-5 flex items-center justify-between text-left lg:cursor-default"
+                                style={{ borderBottom: (isQualityOpen || isDesktop) ? `1px solid ${cardBorder}` : 'none' }}
+                            >
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <Star className="text-[#B68A35] w-8 h-8 shrink-0" />
+                                    <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.qualityInsights?.title || "Quality & Owner Satisfaction Insights"}</h4>
                                 </div>
-                                <ChevronUp className="w-5 h-5" style={{ color: subtextColor }} />
-                            </div>
+                                <ChevronUp className={`w-5 h-5 shrink-0 transition-transform lg:hidden ${isQualityOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isQualityOpen ? { color: subtextColor } : undefined} />
+                            </button>
+                            {(isQualityOpen || isDesktop) && (
                             <div className="p-2 sm:p-6">
-                                <p className="text-[14px] leading-relaxed mb-4" style={{ color: bodyColor }}>
-                                    <span className="font-bold text-[#B68A35]">Summary:</span> Owners consistently praise Emaar communities for master-planned design, landscaping quality, and long-term asset value retention. However, maintenance response times and service charge transparency are recurring themes in feedback, particularly in larger communities and high-density towers.
+                                <p className="text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed mb-4" style={{ color: bodyColor }}>
+                                    <span className="font-bold text-[#B68A35]">Summary:</span> {data.qualityInsights?.summary || ""}
                                 </p>
 
                                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                                     {/* Sentiment Chart */}
                                     <div className="md:col-span-2">
-                                        <h5 className="text-[11px] font-bold uppercase tracking-widest mb-6" style={{ color: subtextColor }}>Sentiment Breakdown</h5>
+                                        <h5 className="text-[11px] font-bold uppercase tracking-widest mb-6" style={{ color: subtextColor }}>{data.qualityInsights?.sentimentTitle || "Sentiment Breakdown"}</h5>
                                         <div className="flex items-center gap-8">
-                                            <div className="relative w-32 h-32 rounded-full flex items-center justify-center border-8" style={{ background: 'conic-gradient(from 0deg, #89C587 0deg 280.8deg, #F6B07A 280.8deg 330.4deg, #E87E7E 330.4deg 360deg)', borderColor: cardBg }}>
+                                            <div className="relative w-32 h-32 rounded-full flex items-center justify-center border-8" style={{ background: `conic-gradient(from 0deg, #89C587 0deg ${data.qualityInsights?.positivePercent * 3.6}deg, #F6B07A ${data.qualityInsights?.positivePercent * 3.6}deg ${(data.qualityInsights?.positivePercent + data.qualityInsights?.neutralPercent) * 3.6}deg, #E87E7E ${(data.qualityInsights?.positivePercent + data.qualityInsights?.neutralPercent) * 3.6}deg 360deg)`, borderColor: cardBg }}>
                                                 <div className="absolute inset-4 rounded-full flex items-center justify-center" style={{ background: cardBg }}>
-                                                    <span className="text-2xl font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>78%</span>
+                                                    <span className="text-2xl font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.qualityInsights?.positivePercent}%</span>
                                                 </div>
                                             </div>
                                             <div className="space-y-2">
-                                                <LegendItem color="bg-[#89C587]" label="Positive" percent="78%" isDark={isDark} bodyColor={bodyColor} t={t} />
-                                                <LegendItem color="bg-[#F6B07A]" label="Neutral" percent="14%" isDark={isDark} bodyColor={bodyColor} t={t} />
-                                                <LegendItem color="bg-[#E87E7E]" label="Negative" percent="8%" isDark={isDark} bodyColor={bodyColor} t={t} />
+                                                <LegendItem color="bg-[#89C587]" label="Positive" percent={`${data.qualityInsights?.positivePercent}%`} isDark={isDark} bodyColor={bodyColor} t={t} />
+                                                <LegendItem color="bg-[#F6B07A]" label="Neutral" percent={`${data.qualityInsights?.neutralPercent}%`} isDark={isDark} bodyColor={bodyColor} t={t} />
+                                                <LegendItem color="bg-[#E87E7E]" label="Negative" percent={`${data.qualityInsights?.negativePercent}%`} isDark={isDark} bodyColor={bodyColor} t={t} />
                                             </div>
                                         </div>
                                     </div>
                                     {/* Themes */}
                                     <div className="md:col-span-3">
-                                        <h5 className="text-[11px] font-bold uppercase tracking-widest mb-6" style={{ color: subtextColor }}>Common Themes</h5>
+                                        <h5 className="text-[11px] font-bold uppercase tracking-widest mb-6" style={{ color: subtextColor }}>{data.qualityInsights?.themesTitle || "Common Themes"}</h5>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             {/* Pros Card */}
                                             <div className="rounded-lg p-4" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FAFAF8', border: `1px solid ${cardBorder}` }}>
@@ -221,34 +313,12 @@ const Section5 = () => {
                                                     <p className="text-xs font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Pros</p>
                                                 </div>
                                                 <ul className="space-y-2">
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#89C587] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Integrated community amenities</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#89C587] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Consistent build quality</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#89C587] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Strong resale value</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#89C587] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Landscaping and public spaces</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#89C587] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Security and access control</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#89C587] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Pet-friendly facilities</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#89C587] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Family-oriented environment</span>
-                                                    </li>
+                                                    {prosItems.map((item, idx) => (
+                                                        <li key={idx} className="flex gap-2">
+                                                            <span className="text-[#89C587] font-bold">•</span>
+                                                            <span className="text-[13px] leading-normal lg:text-[12px] lg:leading-normal" style={{ color: bodyColor }}>{item}</span>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
 
@@ -259,26 +329,12 @@ const Section5 = () => {
                                                     <p className="text-xs font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Cons</p>
                                                 </div>
                                                 <ul className="space-y-2">
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#E87E7E] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Maintenance request turnaround (varies by community)</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#E87E7E] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Service charge communication and transparency</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#E87E7E] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Limited visitor parking in high-density towers</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#E87E7E] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Construction activity in actively developing phases</span>
-                                                    </li>
-                                                    <li className="flex gap-2">
-                                                        <span className="text-[#E87E7E] font-bold">•</span>
-                                                        <span className="text-[12px]" style={{ color: bodyColor }}>Occasional handover delays in off-plan projects</span>
-                                                    </li>
+                                                    {consItems.map((item, idx) => (
+                                                        <li key={idx} className="flex gap-2">
+                                                            <span className="text-[#E87E7E] font-bold">•</span>
+                                                            <span className="text-[13px] leading-normal lg:text-[12px] lg:leading-normal" style={{ color: bodyColor }}>{item}</span>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>
@@ -291,16 +347,14 @@ const Section5 = () => {
                                         <Building2 className="w-6 h-6 text-2xl text-[#B68A35]" />
                                         <span className="text-[14px] font-bold uppercase tracking-wider" style={{ color: subtextColor }}>Sources</span>
                                     </div>
-                                    <SourceLink label="EP Log Offplan" href="https://eplogoffplan.com/blog/full-comparison-of-luxury-apartments-by-emaar-and-sobha-and-damac" isDark={isDark} cardBorder={cardBorder} subtextColor={subtextColor} />
-                                    <SourceLink label="ALand Blog" href="https://a.land/blog/build-quality-red-flags-warning-signs-from-different-developers" isDark={isDark} cardBorder={cardBorder} subtextColor={subtextColor} />
-                                    <SourceLink label="Map Homes Real Estate" href="https://maphomesrealestate.com/emaar-vs-damac-dubai-real-estate-comparison/" isDark={isDark} cardBorder={cardBorder} subtextColor={subtextColor} />
-                                    <SourceLink label="Glassdoor" href="https://www.glassdoor.com/Reviews/Emaar-Properties-Dubai-Reviews-EI_IE42707.0,16_IL.17,22_IM954.htm" isDark={isDark} cardBorder={cardBorder} subtextColor={subtextColor} />
-                                    <SourceLink label="Avelon" href="http://avelon.ae/news-and-blogs/top-7-real-estate-developers-in-dubai-for-smart-property-investment-in-2026/" isDark={isDark} cardBorder={cardBorder} subtextColor={subtextColor} />
+                                    {sourcesDesktop.map((source, idx) => (
+                                        <SourceLink key={idx} label={source.label} href={source.href} isDark={isDark} cardBorder={cardBorder} subtextColor={subtextColor} />
+                                    ))}
                                 </div>
 
                                 {/* Mobile sources accordion */}
                                 <div className="mt-6 lg:hidden">
-                                    <div className="rounded-lg overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                                    <div className="rounded overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                         <button
                                             type="button"
                                             onClick={() => setIsSourcesOpen((s) => !s)}
@@ -308,8 +362,9 @@ const Section5 = () => {
                                             className="w-full flex items-center justify-between p-4"
                                         >
                                             <div className="flex items-center gap-3">
+                                                <span className="w-px self-stretch shrink-0 h-5" style={{ background: GOLD }} aria-hidden />
                                                 <Building2 className="w-5 h-5 text-[#B68A35]" />
-                                                <span className="text-[14px] font-bold uppercase tracking-wider" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Sources</span>
+                                                <span className="text-[12px] leading-normal font-bold uppercase tracking-wider" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Sources</span>
                                             </div>
                                             <ChevronUp className={`w-5 h-5 transition-transform ${isSourcesOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isSourcesOpen ? { color: subtextColor } : undefined} />
                                         </button>
@@ -317,47 +372,22 @@ const Section5 = () => {
                                         {isSourcesOpen && (
                                             <div className="p-3" style={{ borderTop: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FBF9F6' }}>
                                                 <ul className="space-y-3">
-                                                    <li className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                                            <a href="https://eplogoffplan.com/blog/full-comparison-of-luxury-apartments-by-emaar-and-sobha-and-damac" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>EP Log Offplan</a>
-                                                        </div>
-                                                        <a href="https://eplogoffplan.com/blog/full-comparison-of-luxury-apartments-by-emaar-and-sobha-and-damac" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                                    </li>
-                                                    <li className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                                            <a href="https://a.land/blog/build-quality-red-flags-warning-signs-from-different-developers" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>ALand Blog</a>
-                                                        </div>
-                                                        <a href="https://a.land/blog/build-quality-red-flags-warning-signs-from-different-developers" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                                    </li>
-                                                    <li className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                                            <a href="https://maphomesrealestate.com/emaar-vs-damac-dubai-real-estate-comparison/" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>Map Homes Real Estate</a>
-                                                        </div>
-                                                        <a href="https://maphomesrealestate.com/emaar-vs-damac-dubai-real-estate-comparison/" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                                    </li>
-                                                    <li className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                                            <a href="https://www.glassdoor.com/Reviews/Emaar-Properties-Dubai-Reviews-EI_IE42707.0,16_IL.17,22_IM954.htm" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>Glassdoor</a>
-                                                        </div>
-                                                        <a href="https://www.glassdoor.com/Reviews/Emaar-Properties-Dubai-Reviews-EI_IE42707.0,16_IL.17,22_IM954.htm" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                                    </li>
-                                                    <li className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                                            <a href="http://avelon.ae/news-and-blogs/top-7-real-estate-developers-in-dubai-for-smart-property-investment-in-2026/" target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>Avelon</a>
-                                                        </div>
-                                                        <a href="http://avelon.ae/news-and-blogs/top-7-real-estate-developers-in-dubai-for-smart-property-investment-in-2026/" target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
-                                                    </li>
+                                                    {sourcesMobile.map((source, idx) => (
+                                                        <li key={idx} className="flex items-center justify-between">
+                                                            <div className="flex items-center gap-3 min-w-0">
+                                                                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: subtextColor }} />
+                                                                <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-[13px] leading-normal underline decoration-gray-200 truncate" style={{ color: bodyColor }}>{source.label}</a>
+                                                            </div>
+                                                            <a href={source.href} target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35] shrink-0"><ExternalLink className="w-4 h-4" /></a>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         )}
                                     </div>
                                 </div>
                             </div>
+                            )}
                         </div>
                     </div>
 
@@ -365,37 +395,37 @@ const Section5 = () => {
                     <div className="lg:col-span-4 sm:space-y-4 p-2 space-y-2">
 
                         {/* On-Ground Analyst Insight */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-3" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <div className="p-3" style={{ borderBottom: isInsightOpen ? `1px solid ${cardBorder}` : 'none' }}>
                                 <button
                                     type="button"
                                     onClick={() => setIsInsightOpen((s) => !s)}
                                     aria-expanded={isInsightOpen}
                                     className="w-full flex items-center justify-between"
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <TbBulb className="text-[#B68A35] w-8 h-8 text-2xl" />
-                                        <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>On-Ground Analyst Insight</h4>
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        <TbBulb className="text-[#B68A35] w-8 h-8 text-2xl shrink-0" />
+                                        <h4 className="font-bold text-sm lg:text-base text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.insight?.title || "On-Ground Analyst Insight"}</h4>
                                     </div>
-                                    <ChevronUp className={`w-5 h-5 transition-transform ${isInsightOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isInsightOpen ? { color: subtextColor } : undefined} />
+                                    <ChevronUp className={`w-5 h-5 shrink-0 transition-transform ${isInsightOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isInsightOpen ? { color: subtextColor } : undefined} />
                                 </button>
                             </div>
 
                             {isInsightOpen && (
                                 <div className="p-3">
-                                    <div className="p-3 rounded-lg flex gap-3 mb-5" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
+                                    <div className="hidden lg:block p-3 rounded-lg flex gap-3 mb-5" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
                                         <Info className="text-[#B68A35] w-4 h-4 mt-0.5 shrink-0" />
                                         <p className="text-[12px] text-[#B68A35] uppercase font-bold leading-tight">
-                                            NOTE: <span className="font-normal capitalize tracking-normal italic" style={{ color: bodyColor }}>Below is a draft on-ground analyst insight section based on my research findings.</span>
+                                            {data.insight?.note || "NOTE:"} <span className="font-normal capitalize tracking-normal italic" style={{ color: bodyColor }}>{data.insight?.noteText || ""}</span>
                                         </p>
                                     </div>
-                                    <div className="space-y-4 text-[14px] leading-relaxed" style={{ color: bodyColor }}>
-                                        <p>Emaar Properties maintains one of the strongest delivery records among Dubai developers, with 96% of projects handed over on time according to industry analysis. This reliability, combined with premium build quality and integrated community planning, justifies the 15-20% price premium Emaar commands over comparable developments. However, our verification of DLD records and buyer feedback confirms that delays do occur, particularly in large-scale, complex projects—with documented delays ranging from 9-12 months for communities like Casa in Arabian Ranches II to over 48 months for selected iconic developments. Service charges remain predictable at AED 15-22 per sqft, though transparency in communication remains a recurring theme in resident feedback. Market-wide factors, including contractor capacity and supply chain constraints highlighted in Cavendish Maxwell's H1 2025 analysis, suggest these delivery timelines reflect industry-wide challenges rather than developer-specific issues. For investors, Emaar's unmatched resale liquidity and long-term capital appreciation in communities like Dubai Hills Estate and Downtown Dubai continue to outweigh the premium entry price, making the developer the preferred choice for risk-averse buyers prioritizing certainty over maximum short-term yields.</p>
+                                    <div className="space-y-4 text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed" style={{ color: bodyColor }}>
+                                        <p>{data.insight?.content || ""}</p>
                                     </div>
                                     <div className="mt-6 flex items-center gap-3 pt-4" style={{ borderTop: `1px solid ${cardBorder}` }}>
-                                        <Building2 className="text-[#B68A35] w-4 h-4" />
-                                        <p className="text-[12px]" style={{ color: subtextColor }}>
-                                            Source: <span className="text-[#B68A35] font-medium cursor-pointer">PropertyIntel on-ground analysis</span> (21 February 2026)
+                                        <Building2 className="text-[#B68A35] w-4 h-4 shrink-0" />
+                                        <p className="text-[12px] leading-normal lg:leading-normal" style={{ color: subtextColor }}>
+                                            {data.insight?.sourceLabel || "Source:"} <span className="text-[#B68A35] font-medium cursor-pointer">{data.insight?.sourceName || "PropertyIntel on-ground analysis"}</span> ({data.insight?.sourceDate || "21 February 2026"})
                                         </p>
                                     </div>
                                 </div>
@@ -403,32 +433,43 @@ const Section5 = () => {
                         </div>
 
                         {/* Disclaimer */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-3" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <div className="p-3" style={{ borderBottom: isDisclaimerOpen ? `1px solid ${cardBorder}` : 'none' }}>
                                 <button
                                     type="button"
                                     onClick={() => setIsDisclaimerOpen((s) => !s)}
                                     aria-expanded={isDisclaimerOpen}
                                     className="w-full flex items-center justify-between"
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <ShieldCheck className="text-[#B68A35] w-8 h-8 text-xl" />
-                                        <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Disclaimer</h4>
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        <ShieldCheck className="text-[#B68A35] w-8 h-8 text-xl shrink-0" />
+                                        <h4 className="font-bold text-sm lg:text-base text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.title || "Disclaimer"}</h4>
                                     </div>
-                                    <ChevronUp className={`w-5 h-5 transition-transform ${isDisclaimerOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isDisclaimerOpen ? { color: subtextColor } : undefined} />
+                                    <ChevronUp className={`w-5 h-5 shrink-0 transition-transform ${isDisclaimerOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isDisclaimerOpen ? { color: subtextColor } : undefined} />
                                 </button>
                             </div>
 
                             {isDisclaimerOpen && (
                                 <div className="p-2">
-                                    <p className="text-[14px] leading-relaxed" style={{ color: bodyColor }}>
-                                        All delay data verified against DLD handover records, RERA progress reports, and Emaar official announcements. Projects with delay ≤2 months are classified as "on-time". Where official handover dates are not publicly disclosed, placeholders are used for backend population. Quality insights aggregated from verified owner reviews; sentiment percentages are estimates based on available public data. Last updated: 21 February 2026. Some legacy projects may lack granular public delay records due to pre-digital reporting standards.
+                                    <p className="text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed" style={{ color: bodyColor }}>
+                                        {data.disclaimer?.content || ""}
                                     </p>
-                                    <div className="mt-6 flex items-center gap-3 p-2 rounded-xl" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-                                        <Calendar className="text-[#B68A35] w-5 h-5" />
-                                        <div>
-                                            <p className="text-[12px] font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Last updated: 21 February 2026</p>
-                                            <p className="text-[12px] mt-0.5 leading-tight" style={{ color: subtextColor }}>Some legacy projects may lack granular public delay records.</p>
+                                    <div className="mt-6 p-2 rounded lg:rounded-xl" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
+                                        <div className="lg:hidden">
+                                            <MobileNoteBox
+                                                icon={<Calendar className="w-5 h-5" />}
+                                                textStyle={{ color: subtextColor }}
+                                            >
+                                                <span className="font-bold block mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.lastUpdated || "Last updated: 21 February 2026"}</span>
+                                                {data.disclaimer?.note || "Some legacy projects may lack granular public delay records."}
+                                            </MobileNoteBox>
+                                        </div>
+                                        <div className="hidden lg:flex items-center gap-3">
+                                            <Calendar className="text-[#B68A35] w-5 h-5 shrink-0" />
+                                            <div>
+                                                <p className="text-[12px] font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.lastUpdated || "Last updated: 21 February 2026"}</p>
+                                                <p className="text-[12px] mt-0.5 leading-tight" style={{ color: subtextColor }}>{data.disclaimer?.note || "Some legacy projects may lack granular public delay records."}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -445,41 +486,21 @@ const Section5 = () => {
 
 // --- Sub-components ---
 
-const StatCard = ({ icon, label, value, unit, chart, divider, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) => (
+const StatCard = ({ icon, label, value, unit, divider, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) => (
     <div className="relative px-4 sm:px-6 py-6 sm:py-8 flex flex-col items-center justify-center text-center">
-
-        {/* Container */}
         <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center">
-
-            {/* Icon */}
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-2xl sm:text-3xl shrink-0" style={!isDark ? { background: '#FBF9F6', border: '1px solid #F3EFE9' } : { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` }}>
                 {icon}
             </div>
-
-            {/* Text */}
             <div>
-                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-1" style={{ color: subtextColor }}>
-                    {label}
-                </p>
-
+                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-1" style={{ color: subtextColor }}>{label}</p>
                 <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-2xl sm:text-4xl font-bold text-[#B68A35]">
-                        {value}
-                    </span>
-
-                    {unit && (
-                        <span className="text-[9px] sm:text-[10px] font-bold uppercase" style={{ color: subtextColor }}>
-                            {unit}
-                        </span>
-                    )}
+                    <span className="text-2xl sm:text-4xl font-bold text-[#B68A35]">{value}</span>
+                    {unit && <span className="text-[9px] sm:text-[10px] font-bold uppercase" style={{ color: subtextColor }}>{unit}</span>}
                 </div>
             </div>
         </div>
-
-        {/* Divider (Desktop only) */}
-        {divider && (
-            <div className="pointer-events-none hidden md:block absolute right-0 top-6 bottom-6 w-px" style={{ background: cardBorder }} />
-        )}
+        {divider && <div className="pointer-events-none hidden md:block absolute right-0 top-6 bottom-6 w-px" style={{ background: cardBorder }} />}
     </div>
 );
 
@@ -488,9 +509,7 @@ const TableRow = ({ name, original, actual, delay, reason, source, status, isDar
         <td className="px-4 py-4 font-medium" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{name}</td>
         <td className="px-4 py-4" style={{ color: bodyColor }}>{original}</td>
         <td className="px-4 py-4" style={{ color: bodyColor }}>{actual}</td>
-        <td className={`px-4 py-4 font-bold ${status === 'on-time' ? 'text-[#89C587]' : 'text-[#E87E7E]'}`}>
-            {delay}
-        </td>
+        <td className={`px-4 py-4 font-bold ${status === 'on-time' ? 'text-[#89C587]' : 'text-[#E87E7E]'}`}>{delay}</td>
         <td className="px-4 py-4" style={{ color: bodyColor }}>{reason}</td>
         <td className="px-4 py-4 text-[#B68A35] font-medium cursor-pointer underline decoration-[#F3EFE9] underline-offset-4">{source}</td>
     </tr>
@@ -519,5 +538,16 @@ const SourceLink = ({ label, href, isDark, cardBorder, subtextColor }) => (
         <ExternalLink className="w-4 h-4 text-[#B68A35]" />
     </a>
 );
+
+// Helper function for icons
+const getStatIcon = (iconName) => {
+    const icons = {
+        'FaRegCalendarCheck': <FaRegCalendarCheck className="text-[#B68A35] text-2xl sm:text-3xl" />,
+        'BsBuildings': <BsBuildings className="text-[#B68A35] text-2xl sm:text-3xl" />,
+        'SlBadge': <SlBadge className="text-[#B68A35] text-2xl sm:text-3xl" />,
+        'Users': <Users className="text-[#B68A35] text-2xl sm:text-3xl" />
+    };
+    return icons[iconName] || <FaRegCalendarCheck className="text-[#B68A35] text-2xl sm:text-3xl" />;
+};
 
 export default Section5;

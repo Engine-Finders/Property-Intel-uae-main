@@ -1,5 +1,6 @@
 import HomeHeroSection from "@/app/components/home/HomeHeroSection";
-import homeData from "@/app/(public)/data/homeData.json";
+import HowWeHelpHome from "./components/home/HowWeHelpHome";
+
 import MarketPulseSection from "@/app/components/home/MarketPulseSection";
 import CuratedProjectsSection from "@/app/components/home/CuratedProjectHome";
 import TrustIndexSection from "@/app/components/home/TrustIndexSection";
@@ -9,29 +10,43 @@ import IntelligenceSection from "@/app/components/home/IntelligenceHome";
 import HomeFaqSection from "@/app/components/home/HomeFaq";
 import TrustedBySection from "@/app/components/home/TrustedByAuthorityHome";
 import DevelopersSectionHome from "@/app/components/home/DevelopersSectionHome";
-import HowWeHelpHome from "./components/home/HowWeHelpHome";
+
+// Import all separate JSON files from the home folder
+import heroData from "@/app/(public)/data/home/hero.json";
+import howWeHelpData from "@/app/(public)/data/home/how_we_help.json";
+import marketPulseData from "@/app/(public)/data/home/market_pulse.json";
+import curatedProjectsData from "@/app/(public)/data/home/curated_projects.json";
+import trustIndexData from "@/app/(public)/data/home/trust_index.json";
+import growthMapData from "@/app/(public)/data/home/growth_map.json";
+import trustAuthorityData from "@/app/(public)/data/home/trust_authority.json";
+import intelligenceData from "@/app/(public)/data/home/intelligence.json";
+import trustedByData from "@/app/(public)/data/home/trusted_by.json";
+import topDevelopersData from "@/app/(public)/data/home/top_developers.json";
+import faqData from "@/app/(public)/data/home/faq.json";
+import seoData from "@/app/(public)/data/home/seo.json";
 
 export const metadata = {
-  title: homeData.seo.meta_title,
-  description: homeData.seo.meta_description,
+  title: seoData.seo.meta_title,
+  description: seoData.seo.meta_description,
   alternates: {
-    canonical: homeData.seo.canonical,
+    canonical: seoData.seo.canonical,
   },
 };
+
 export default function Home() {
   return (
     <>
-      <HomeHeroSection data={homeData.hero_section} />
-      <HowWeHelpHome data={homeData.how_we_help_section} />
-      <CuratedProjectsSection data={homeData.curated_section} />
-      <DevelopersSectionHome data={homeData.top_developers_section} />
-      <MarketPulseSection data={homeData.market_pulse_section} />
-      <TrustIndexSection data={homeData.trust_index_section} />
-      <GrowthMapSection data={homeData.growth_map_section} />
-      <TrustAuthHome data={homeData.trust_authority_section} />
-      <IntelligenceSection data={homeData.intelligence_section} />
-      <TrustedBySection data={homeData.trusted_by_section} />
-      <HomeFaqSection data={homeData.faq_section} />
+      <HomeHeroSection data={heroData} />
+      <HowWeHelpHome data={howWeHelpData} />
+      <CuratedProjectsSection data={curatedProjectsData} />
+      <DevelopersSectionHome data={topDevelopersData} />
+      <MarketPulseSection data={marketPulseData} />
+      <TrustIndexSection data={trustIndexData} />
+      <GrowthMapSection data={growthMapData} />
+      <TrustAuthHome data={trustAuthorityData} />
+      <IntelligenceSection data={intelligenceData} />
+      <TrustedBySection data={trustedByData} />
+      <HomeFaqSection data={faqData} />
     </>
   );
 }

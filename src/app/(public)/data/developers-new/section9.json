@@ -1,0 +1,190 @@
+{
+  "id": "home-section9",
+  "heroImage": "/Home/Section3bg.webp",
+  "heroAlt": "Dubai Skyline",
+  "header": {
+    "title": {
+      "line1": "Emaar Risk Assessment",
+      "line2": "What Buyers Should Know"
+    },
+    "description": "An honest evaluation of potential risks when buying from Emaar, and guidance on whether their projects suit your investment or lifestyle profile."
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "text": "Risk assessments are based on historical data, verified public records, and aggregated owner feedback; they do not guarantee future performance. Individual project risks may vary. Last updated: 22 February 2026."
+  },
+  "riskRadar": {
+    "label": "Risk radar",
+    "title": "Three key risk dimensions",
+    "source": "Source: Emaar Annual Report 2025 / DFM filings / ICD Shareholding Disclosure via Dubai Housing Analysis"
+  },
+  "risks": [
+    {
+      "iconName": "Home",
+      "title": "Financial Stability Risk",
+      "description": "Developer solvency and project abandonment",
+      "level": "Low",
+      "percentage": 25,
+      "color": "green",
+      "explanation": "Emaar Properties is publicly traded on the Dubai Financial Market (DFM: EMAAR) with audited financial disclosures, strong cash reserves (AED 28.25 billion), and strategic backing from Investment Corporation of Dubai (ICD) holding 22.27% stake. The company's diversified revenue streams across development, hospitality, and retail reduce exposure to single-sector volatility. Low risk of project abandonment or financial distress.",
+      "source": "Emaar Annual Report 2025 / DFM filings / ICD Shareholding Disclosure via Dubai Housing Analysis"
+    },
+    {
+      "iconName": "Clock",
+      "title": "Delivery Risk",
+      "description": "Timeline adherence and handover delays",
+      "level": "Moderate",
+      "percentage": 60,
+      "color": "amber",
+      "explanation": "While the majority of Emaar's standard residential projects deliver within acceptable timelines (96% on-time record), large-scale and iconic developments (e.g., Dubai Creek Tower, certain phases of Dubai Creek Harbour) have experienced multi-year delays due to design complexity, infrastructure coordination, or external factors. Based on PropertyIntel analysis of DLD handover records, the average delay across major projects is 3–6 months. Construction progress is generally transparent via official channels.",
+      "source": "PropertyIntel Delivery Analysis (Section 5 link) / DLD Handover Records / RERA Progress Reports"
+    },
+    {
+      "iconName": "Star",
+      "title": "Quality Risk",
+      "description": "Build quality and post-handover satisfaction",
+      "level": "Low",
+      "percentage": 25,
+      "color": "green",
+      "explanation": "Aggregated resident reviews consistently praise Emaar communities for master-planned design, landscaping quality, and long-term asset value retention. Common complaints focus on post-handover maintenance response times and service charge communication rather than inherent construction defects. Build quality in established communities (The Greens, Arabian Ranches) remains strong after 15+ years.",
+      "source": "Aggregated Google (220+ reviews), PropertyFinder.ae, Bayut Community Ratings (Section 6)"
+    }
+  ],
+  "buyerSuitability": {
+    "label": "Buyer suitability",
+    "title": "Who should buy from Emaar?"
+  },
+  "suitabilityTabs": {
+    "best": {
+      "label": "Best for",
+      "iconName": "Check",
+      "tone": "green",
+      "items": [
+        {
+          "iconName": "Users",
+          "title": "Long-term families",
+          "description": "Emaar's master communities (Dubai Hills Estate, Arabian Ranches III, The Valley) offer integrated amenities, international schools, parks, and community events designed for multi-generational living."
+        },
+        {
+          "iconName": "Building",
+          "title": "Safe-haven investors",
+          "description": "Emaar's strong brand recognition, prime locations, and consistent demand typically support stable capital appreciation and reliable rental income over 5-10 year horizons."
+        },
+        {
+          "iconName": "Users",
+          "title": "End-users seeking premium lifestyles",
+          "description": "Projects in Downtown Dubai, Dubai Creek Harbour, and Dubai Marina cater to buyers who value iconic addresses, walkability, and urban convenience."
+        }
+      ]
+    },
+    "caution": {
+      "label": "Caution",
+      "iconName": "AlertTriangle",
+      "tone": "amber",
+      "items": [
+        {
+          "iconName": "Users",
+          "title": "Short-term flippers",
+          "description": "Long construction timelines (3-5 years for master communities), premium entry pricing, and developer transfer fees (typically 4-5% of sale value) may limit quick-flip profitability. Resale during construction is subject to market volatility and RERA regulations."
+        },
+        {
+          "iconName": "TrendingUp",
+          "title": "Yield-focused investors",
+          "description": "Premium pricing in Emaar communities often translates to rental yields of 4-6%, which may be lower than emerging areas like Dubai South or JVC where yields can reach 7-8%."
+        }
+      ]
+    },
+    "not-ideal": {
+      "label": "Not ideal",
+      "iconName": "X",
+      "tone": "red",
+      "items": [
+        {
+          "iconName": "DollarSign",
+          "title": "Budget-conscious buyers",
+          "description": "Emaar commands a premium price per sqft (often 20-30% above market average in comparable locations). More affordable options exist with secondary developers in similar geographic areas."
+        },
+        {
+          "iconName": "TrendingUp",
+          "title": "Investors seeking quick exits",
+          "description": "Handover timelines for off-plan projects are frequently extended; capital may be tied up longer than initially projected. Early exit strategies should account for potential delays and transfer costs."
+        }
+      ]
+    }
+  },
+  "knownIssues": {
+    "title": "Known issues",
+    "subtitle": "Recurring complaints",
+    "disclaimer": "The points below are based on aggregated resident reviews and public records.",
+    "items": [
+      {
+        "label": "Frequent",
+        "tone": "red",
+        "title": "Slow maintenance response for non-urgent requests",
+        "description": "Google Reviews, PropertyFinder (2025-2026), ALand Build Quality Analysis"
+      },
+      {
+        "label": "Occasional",
+        "tone": "amber",
+        "title": "Service charge increases above inflation without detailed justification",
+        "description": "DLD Mollak data, resident, GoProfiled reviews"
+      },
+      {
+        "label": "Occasional",
+        "tone": "amber",
+        "title": "Limited visitor parking in high-density tower communities",
+        "description": "Resident reviews, Bayut community discussions"
+      },
+      {
+        "label": "Occasional",
+        "tone": "amber",
+        "title": "Construction noise and dust in actively developing phases",
+        "description": "Dubai Municipality guidelines ; Resident forums"
+      },
+      {
+        "label": "Consistent",
+        "tone": "red",
+        "title": "Premium pricing vs comparable communities from secondary developers",
+        "description": "Market analysis / DLD transaction data"
+      }
+    ]
+  },
+  "mitigationStrategies": {
+    "title": "Risk Mitigation Strategies for Buyers",
+    "subtitle": "For buyers",
+    "disclaimer": "Practical steps to reduce risk when purchasing from Emaar:"
+  },
+  "mitigationSteps": [
+    {
+      "title": "Verify RERA registration and escrow account",
+      "description": "Before paying any deposit for an off-plan unit, confirm the specific project is registered with RERA and that all payments are directed to a verified escrow account. (Source: RERA Off-Plan Sales Guidelines via BSA Law 2025 ; EGSH Official Center 2026)"
+    },
+    {
+      "title": "Review service charge history via Mollak:",
+      "description": "Check the DLD Mollak portal for service charge trends in the specific community and building you're considering to anticipate future holding costs. (Source: DLD Mollak Service Charge Index)"
+    },
+    {
+      "title": "Speak to current residents in completed phases",
+      "description": "Visit handover communities and speak directly with residents to gather firsthand feedback on maintenance responsiveness, community management, and daily living experience. (Source: PropertyIntel recommendation)"
+    },
+    {
+      "title": "Build buffer time into financial planning",
+      "description": "For off-plan purchases, review the developer's delivery track record on similar projects and add a 6-12 month buffer to expected handover dates when planning relocation or rental income start dates."
+    },
+    {
+      "title": "Factor in transfer fees for resale strategy",
+      "description": "Emaar typically charges a transfer fee (4-5% of sale value) for resale of off-plan units; include this cost in your exit strategy calculations if considering a short-to-medium term hold."
+    }
+  ],
+  "researchTeam": {
+    "title": "PropertyIntel Research Team",
+    "subtitle": "On-ground analysis • 22 February 2026",
+    "content": "Emaar Properties maintains its position as Dubai's most trusted developer with a 96% on-time delivery record and AED 65.8 billion in 2025 sales, more than double its nearest competitor. The company's financial strength (AED 28.25B cash reserves, Baa1/BBB+ credit ratings, 22.27% ICD government backing) effectively eliminates project abandonment risk. However, buyers should approach with realistic expectations. While standard residential communities deliver reliably, iconic projects like Dubai Creek Tower have faced multi-year delays (10+ years from announcement). Off-plan projects including The Valley and Emaar Beachfront reported handover delays in 2025-2026, reflecting industry-wide contractor capacity constraints rather than developer-specific failures.\n\nThe quality proposition is nuanced. Established communities like The Greens and Arabian Ranches maintain strong build quality after 20+ years with ongoing upgrades. However, resident feedback reveals consistent complaints about post-handover maintenance responsiveness (ECM reviews averaging 1.0-3.3/5) and service charge transparency, with documented 22% YoY increases without justification. For investors, Emaar offers unmatched resale liquidity and capital preservation (4-6% stable yields) but sacrifices the higher returns (7-8%) of emerging areas like JVC. Premium pricing (15-20% above comparable communities) is justified by long-term value retention but limits quick-flip potential. The ideal Emaar buyer is a long-term holder prioritizing safety and quality over maximum short-term returns.",
+    "readMoreUrl": "https://properties.emaar.com/en/about-emaar/",
+    "stats": [
+      { "value": "96%", "label": "On-time delivery record" },
+      { "value": "AED 65.8B", "label": "2025 sales" },
+      { "value": "4–6%", "label": "Stable rental yields" }
+    ]
+  }
+}

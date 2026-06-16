@@ -61,41 +61,52 @@ const Section8 = ({ data }) => {
                                 <h3 className="text-lg font-serif font-semibold mb-3 pb-2" style={{ color: isDark ? t.text : '#1A1A1A', borderBottom: `1px solid ${GOLD}/30` }}>
                                     {category}
                                 </h3>
-                                <div className="rounded-2xl p-2 sm:p-6 shadow-sm" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-                                    <div className="divide-y" style={{ borderColor: cardBorder }}>
+                                <div className="space-y-2 sm:space-y-3">
                                         {categoryFaqs.map((item) => {
                                             const globalIdx = data.faqs?.findIndex(f => f.q === item.q);
                                             const isOpen = openIndex === globalIdx;
 
                                             return (
-                                                <div key={globalIdx} className="py-2 sm:py-4">
+                                                <div
+                                                    key={globalIdx}
+                                                    className="rounded-2xl shadow-sm overflow-hidden"
+                                                    style={{ border: `1px solid ${cardBorder}`, background: cardBg }}
+                                                >
                                                     <button
                                                         type="button"
                                                         onClick={() => toggle(globalIdx)}
                                                         aria-expanded={isOpen}
-                                                        className="w-full text-left flex items-start gap-0 sm:gap-4"
+                                                        className="w-full text-left flex items-start gap-0 sm:gap-4 p-3 sm:p-4"
                                                     >
-                                                        <div className="w-12 shrink-0 text-[#B68A35] font-bold text-lg font-serif tabular-nums pt-0.5">
+                                                        <div className="w-10 sm:w-12 shrink-0 text-[#B68A35] font-bold text-base sm:text-lg font-serif tabular-nums">
                                                             {String(globalIdx + 1).padStart(2, '0')}.
                                                         </div>
 
                                                         <div className="flex-1 min-w-0">
                                                             <div className="flex items-start justify-between gap-3">
-                                                                <h4 className="text-sm font-semibold leading-snug" style={{ color: isDark ? t.text : '#1A1A1A' }}>{item.q}</h4>
-                                                                <div className="w-5 h-5 shrink-0 flex items-center justify-center mt-0.5">
-                                                                    <ChevronDown className={`w-full h-full transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} style={{ color: subtextColor }} />
-                                                                </div>
-                                                            </div>
-
-                                                            <div className={`mt-3 text-sm overflow-hidden transition-[max-height] duration-300 ${isOpen ? 'max-h-[2000px]' : 'max-h-0'}`} style={{ color: bodyColor }}>
-                                                                {renderAnswer(item.a)}
+                                                                <h4 className="text-sm font-semibold leading-snug pr-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>{item.q}</h4>
+                                                                <ChevronDown
+                                                                    className={`w-5 h-5 shrink-0 transition-transform duration-200 mt-0.5 ${isOpen ? 'rotate-180' : ''}`}
+                                                                    style={{ color: subtextColor }}
+                                                                />
                                                             </div>
                                                         </div>
                                                     </button>
+
+                                                    <div
+                                                        className={`overflow-hidden transition-[max-height] duration-300 ${isOpen ? 'max-h-[2000px]' : 'max-h-0'}`}
+                                                        style={{ borderTop: isOpen ? `1px solid ${cardBorder}` : 'none' }}
+                                                    >
+                                                        <div
+                                                            className="px-3 sm:px-4 pb-3 sm:pb-4 pt-3 sm:pt-4 pl-[2.75rem] sm:pl-16 text-sm leading-relaxed"
+                                                            style={{ color: bodyColor }}
+                                                        >
+                                                            {renderAnswer(item.a)}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             );
                                         })}
-                                    </div>
                                 </div>
                             </div>
                         );
