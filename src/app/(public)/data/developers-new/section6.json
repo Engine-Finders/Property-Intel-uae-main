@@ -1,0 +1,195 @@
+{
+  "id": "home-section6",
+  "heroImage": "/Home/Section3bg.webp",
+  "heroAlt": "Dubai Skyline",
+  "header": {
+    "title": {
+      "line1": "Emaar Community Management:",
+      "line2": "Long-Term Value Analysis"
+    },
+    "description": "We analyse how Emaar manages communities post-handover, service charge trends, and asset condition to assess long-term preservation."
+  },
+  "footer": {
+    "disclaimer": "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback.",
+    "lastUpdated": "Last updated: 22 February 2026"
+  },
+  "tabs": [
+    { "id": "structure", "label": "Management Structure", "iconName": "HiOutlineBuildingOffice2" },
+    { "id": "charges", "label": "Service Charges", "iconName": "AiOutlineDollar" },
+    { "id": "rating", "label": "Asset Condition Rating", "iconName": "BsStar" }
+  ],
+  "managementStructure": {
+    "title": "Management Structure",
+    "cards": [
+      {
+        "iconName": "HiOutlineBuildingOffice2",
+        "label": "Management Entity",
+        "title": "Emaar Community Management (ECM)",
+        "badge": "Dedicated Subsidiary",
+        "description": "Emaar Community Management (ECM) Management Type: Dedicated subsidiary Note: ECM operates as a wholly-owned subsidiary managing all Emaar residential communities, ensuring consistent service standards across master developments including Downtown Dubai, Dubai Hills Estate, and Arabian Ranches.",
+        "source": "Source: Emaar Official Website - Community Management; Emaar Annual Report 2025"
+      },
+      {
+        "iconName": "GoShieldCheck",
+        "label": "Mollak Integration",
+        "title": "Yes",
+        "badge": null,
+        "description": "Yes Note: All Emaar-managed communities are registered on the DLD Mollak portal, enabling transparent service charge disclosure and owner access to annual statements.",
+        "source": "Source: DLD Mollak Service Charge Index 2025"
+      }
+    ]
+  },
+  "serviceCharges": {
+    "title": "Service Charge History",
+    "subtitle": "Service charge data is sourced from the DLD Mollak Service Charge Index and verified against official records.",
+    "tables": [
+      {
+        "community": "The Greens",
+        "type": "Apartment",
+        "data": [
+          { "year": "2023", "charge": "16.50", "change": "—", "source": "DLD Mollak Index 2024" },
+          { "year": "2024", "charge": "17.10", "change": "+3.6%", "source": "DLD Mollak Index 2025" },
+          { "year": "2025", "charge": "17.55", "change": "+2.6%", "source": "DLD Mollak Index 2026" }
+        ],
+        "summary": "Modest, stable increases over 3 years averaging ~3.1% p.a., in line with community maintenance cost inflation."
+      },
+      {
+        "community": "Park Heights",
+        "type": "Dubai Hills Estate — Apartment",
+        "data": [
+          { "year": "2023", "charge": "18.20", "change": "—", "source": "DLD Mollak Index 2024" },
+          { "year": "2024", "charge": "18.95", "change": "+4.1%", "source": "DLD Mollak Index 2025" },
+          { "year": "2025", "charge": "19.60", "change": "+3.4%", "source": "DLD Mollak Index 2026" }
+        ],
+        "summary": "Moderate and consistent increases over 3 years averaging ~3.8% p.a., reflecting high-quality community upkeep."
+      }
+    ]
+  },
+  "assetCondition": {
+    "ratingLabel": "Overall Rating",
+    "overallRating": "4.2",
+    "basedOnLabel": "Based on community data",
+    "communitiesCount": "4 communities assessed",
+    "summary": "Emaar's established communities demonstrate strong long-term value preservation with generally good to excellent asset condition.",
+    "communitiesTitle": "Communities Assessed",
+    "tableHeaders": [
+      { "label": "Community", "width": "20%" },
+      { "label": "Age (Years)", "width": "10%" },
+      { "label": "Condition", "width": "10%" },
+      { "label": "Notes", "width": "60%" }
+    ],
+    "sourceText": "Source: Community guide references and resident feedback summaries",
+    "sourcesDesktop": [
+      { "label": "Driven Properties - The Greens Community Guide", "href": "https://drivenproperties.com" },
+      { "label": "APIL Properties - Emirates Hills Guide", "href": "#" },
+      { "label": "Bayut", "href": "https://www.bayut.com" }
+    ],
+    "sourcesMobile": [
+      { "label": "Driven Properties - The Greens Community Guide", "href": "https://drivenproperties.com" },
+      { "label": "APIL Properties - Emirates Hills Guide", "href": "#" },
+      { "label": "Bayut", "href": "https://www.bayut.com" }
+    ]
+  },
+  "communityAssessments": [
+    {
+      "id": "the-greens",
+      "name": "The Greens",
+      "age": 23,
+      "condition": "Good",
+      "iconName": "LuWheat",
+      "notes": [
+        { "type": "positive", "text": "Emaar launched The Greens in 2001 and completed the first phase in 2003." },
+        { "type": "positive", "text": "Residents praise \"great community for families\", \"great landscaping\", and \"extremely well maintained\" public areas." },
+        { "type": "warning", "text": "However, some report maintenance issues and unhelpful management follow-up." }
+      ]
+    },
+    {
+      "id": "the-springs",
+      "name": "The Springs",
+      "age": 22,
+      "condition": "Good",
+      "iconName": "PiHouseLineLight",
+      "notes": [
+        { "type": "positive", "text": "Construction of The Springs 1370 Villas project started in 2004." },
+        { "type": "positive", "text": "The Springs 2 sub-community took 2 years to complete, starting in 2005 and completed in 2007." },
+        { "type": "positive", "text": "Mature, well-managed environment with low-rise townhouses and green corridors maintained." }
+      ]
+    },
+    {
+      "id": "emirates-hills",
+      "name": "Emirates Hills",
+      "age": 23,
+      "condition": "Excellent",
+      "iconName": "BsStar",
+      "notes": [
+        { "type": "positive", "text": "Completed in December 2003." },
+        { "type": "positive", "text": "One of the most prestigious and elite residential communities in the UAE\" with ultra‑luxury villas and world‑class golf views." },
+        { "type": "positive", "text": "Features 24/7 gated security and controlled access. Only around 600 villas total, ensuring exclusivity. Known for strong capital appreciation." }
+      ]
+    },
+    {
+      "id": "dubai-marina",
+      "name": "Dubai Marina",
+      "age": 23,
+      "condition": "Good",
+      "iconName": "TbBuildingBurjAlArab",
+      "notes": [
+        { "type": "positive", "text": "Dubai Marina Towers (Emaar 6 Towers) were completed in 2003" },
+        { "type": "positive", "text": "The complex includes six residential towers with over 1,100 apartments. Residents praise \"Emaar build quality\" noting properties \"have aged better than many other developments around Dubai Marina" },
+        { "type": "warning", "text": "However, maintenance is a recurring concern with reports of slow response times and unresolved issues" }
+      ]
+    }
+  ],
+  "ownerSatisfaction": {
+    "title": "Owner Satisfaction with Community Management",
+    "summary": "Resident feedback on Emaar Community Management (ECM) reveals significant and consistent concerns across multiple platforms and communities. Reviews indicate systemic issues with maintenance responsiveness, communication, accountability, and service charge transparency. While ECM's official communications emphasize customer-centricity and 24/7 response capabilities, the on-ground experience reported by residents often contradicts this messaging. The aggregated rating across 220+ reviews averages approximately 3.2/5, with the main ECM office showing 1.0/5 based on recent reviews and 3.3/5 based on 212 reviews on another platform. The Dubai Marina office has a 2.0/5 rating from 4 reviews.",
+    "praisesTitle": "Common Praises",
+    "praises": [
+      "Community landscaping and public spaces (general Emaar reputation)",
+      "Security and gated access (acknowledged in multiple communities)",
+      "Loyalty programme (UBYEMAAR) for residents"
+    ],
+    "complaintsTitle": "Common Complaints",
+    "complaints": [
+      {
+        "title": "Extremely slow maintenance response",
+        "desc": "Residents report issues like water leakage taking 3+ weeks to address, with multiple follow-ups required and no resolution.",
+        "quote": "I have an issue with the bathroom water leakage problem... this they still delayed for 3 weeks and can't find a solution"
+      },
+      {
+        "title": "Unresponsive customer service",
+        "desc": "Emails go unanswered or receive generic template responses; calls are not returned; managers fail to follow up as promised.",
+        "quote": "This is by far the WORST customer experience I have ever witnessed. Emails never being actually answered, always 'we have referred your email to the relevant dept' then nothing happens"
+      },
+      {
+        "title": "Lack of accountability",
+        "desc": "No single person takes responsibility for issues; residents are passed between representatives with conflicting information.",
+        "quote": "Each representative has his own rules and regulations manual... no one taking responsibility for their actions"
+      },
+      {
+        "title": "NOC and permit delays",
+        "desc": "NOC transfers for property sales take weeks with repeated requests for additional documents.",
+        "quote": "Wanted to sell my real estate in Springs which requires a NOC transfer. They charge you 525 AED and after 4 days they ask me for more documents"
+      },
+      {
+        "title": "Service charge increases without justification",
+        "desc": "Dramatic fee hikes (up to 22% year-on-year) with poor communication and deteriorating maintenance quality.",
+        "quote": "The service fee has been dramatically increased (22% YoY), yet the quality of maintenance suffers"
+      },
+      {
+        "title": "No proper complaint escalation process",
+        "desc": "No clear mechanism to escalate issues or suggest improvements.",
+        "quote": "Worst of all there is no process to manage complaints, no escalation number/email/contact available. Almost designed to ensure that no one can suggest an area of improvement"
+      }
+    ],
+    "sourcesLabel": "Sources:",
+    "sources": "Google Reviews (220+ reviews, Feb 2026) aggregated from GoProfiled; BestThings.ae; ECM Official Website"
+  },
+  "analystInsight": {
+    "title": "On-Ground Analyst Insight",
+    "sourceLabel": "Source:",
+    "source": "PropertyIntel on-ground analysis",
+    "disclaimerTitle": "Disclaimer:",
+    "disclaimer": "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback. Last updated: 22 February 2026."
+  }
+}

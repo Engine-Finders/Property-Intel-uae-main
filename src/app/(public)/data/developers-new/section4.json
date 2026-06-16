@@ -1,0 +1,143 @@
+{
+  "id": "home-section4",
+  "heroImage": "/Home/Section3bg.webp",
+  "heroAlt": "Dubai Skyline",
+  "header": {
+    "title": {
+      "line1": "Company History ",
+      "line2": "Emaar Properties"
+    },
+    "description": "This section establishes the authority, experience, and corporate structure of Emaar Properties, based on verified public records and official sources."
+  },
+  "sources": {
+    "title": "Sources & Verification",
+    "description": "The following sources support the information presented above. We prioritize official registrars, annual reports, and government filings."
+  },
+  "footerDisclaimer": "All information on this page is sourced from public records, financial filings and official disclosures. Please refer to the Sources & Verification section for detailed references.",
+  "founding": {
+    "description": "Emaar Properties was established in 1997 by Mohamed Ali Alabbar, following a royal decree from Sheikh Mohammed bin Rashid Al Maktoum to create a flagship developer for Dubai's urban transformation. The company's initial mandate was to deliver integrated, master-planned communities that would support Dubai's economic diversification and position the emirate as a global destination for investment and tourism. Emaar's first major project, Emirates Hills (launched 2003), introduced Dubai's first gated luxury community and set a new benchmark for high-end residential development. This early success provided the foundation for Emaar's rapid expansion, culminating in the development of Downtown Dubai and the Burj Khalifa—projects that redefined the city's skyline and global reputation. The company's founding vision remains centered on creating lifestyle-oriented destinations that combine residential, commercial, hospitality, and retail components.",
+    "stats": [
+      {
+        "iconName": "HiOutlineCalendarDays",
+        "label": "Founded in",
+        "value": "1997"
+      },
+      {
+        "iconName": "GoPerson",
+        "label": "Founder",
+        "value": "Mohamed Ali Alabbar"
+      },
+      {
+        "iconName": "HiOutlineShieldCheck",
+        "label": "First Major Project",
+        "value": "Emirates Hills (2003)"
+      }
+    ],
+    "timelineTitle": {
+      "mobile": "Key Evolution Milestones",
+      "desktop": "Key Evolution Milestones"
+    }
+  },
+  "timelineData": [
+    {
+      "year": "2000",
+      "desc": "Initial Public Offering on Dubai Financial Market (DFM: EMAAR), enabling capital expansion for large-scale projects (Source: Emaar Properties Investor Relations FAQ)"
+    },
+    {
+      "year": "2003",
+      "desc": "Emaar Properties founded by Mohamed Ali Alabbar; launches Emirates Hills, Dubai's first gated luxury community (Source: Wikipedia page - Emirates Hills)"
+    },
+    {
+      "year": "2005",
+      "desc": "Commencement of Burj Khalifa construction, establishing Emaar as a developer of iconic global landmarks (Source: Source: Wikipedia - Burj Khalifa)"
+    },
+    {
+      "year": "2008",
+      "desc": "Handover of Dubai Mall, the world's largest shopping and entertainment destination by total floor area (Source: Gulf News / Wikipedia)"
+    },
+    {
+      "year": "2012",
+      "desc": "Strategic expansion into international markets with projects in Saudi Arabia, Egypt, and Pakistan (Source: Gulf News)"
+    },
+    {
+      "year": "2017",
+      "desc": "Appointment of Amit Jain as CEO, marking a new phase of operational focus and digital transformation (Source: Forbes Middle East / EY Alumni Profile)"
+    }
+  ],
+  "leadership": {
+    "leaders": [
+      {
+        "name": "Mohamed Ali Alabbar",
+        "role": "FOUNDER & CHAIRMAN",
+        "image": "/Home/section4-1.webp",
+        "bio": "Mohamed Ali Alabbar founded Emaar Properties in 1997 and has served as Chairman since inception. A prominent figure in Dubai's economic development, he also serves on the Dubai Executive Council and has been instrumental in shaping the emirate's real estate and tourism strategy. Under his leadership, Emaar has delivered over 200 projects across residential, commercial, hospitality, and retail sectors. Prior to founding Emaar, Alabbar held senior positions in the UAE government and private sector, bringing extensive experience in urban planning and investment. He remains actively involved in Emaar's strategic direction and major project approvals.",
+        "source": "Dubai Immo - Biography of Mohamed Alabbar"
+      },
+      {
+        "name": "Amit Jain",
+        "role": "CHIEF EXECUTIVE OFFICER",
+        "image": "/Home/Section4-2.webp",
+        "bio": "Amit Jain was appointed CEO of Emaar Properties in 2017, having joined the company in 2006 as Chief Financial Officer. He brings over 25 years of experience in real estate, finance, and investment across the Middle East, Asia, and Europe. Prior to Emaar, Jain held senior leadership roles at Jones Lang LaSalle (JLL) and other multinational firms. As CEO, he oversees Emaar's entire project portfolio, strategic growth initiatives, and operational performance. During his tenure, Emaar has launched major communities including The Valley, The Oasis, and Dubai Creek Harbour, while strengthening its hospitality and commercial asset base.",
+        "source": "MarketScreener - Executive Profile: Amit Jain"
+      }
+    ]
+  },
+  "ownership": {
+    "description": "Emaar Properties is publicly traded on the Dubai Financial Market (DFM: EMAAR). The company operates under a transparent corporate governance framework aligned with UAE Securities and Commodities Authority regulations. The Government of Dubai, through Investment Corporation of Dubai (ICD), holds a significant minority stake, providing strategic alignment with Dubai's long-term development goals. The remaining shares are held by institutional investors, retail shareholders, and founding family interests.",
+    "ownershipTitle": "Ownership structure",
+    "shareholdersTitle": "Major Shareholders",
+    "shareholders": [
+      {
+        "iconName": "HiOutlineBuildingOffice2",
+        "percent": "22.27%",
+        "name": "Investment Corporation of Dubai (ICD)",
+        "source": "Investing.com – Emaar Shareholders,",
+        "date": "February 2026"
+      },
+      {
+        "iconName": "HiOutlineUsers",
+        "percent": "70.27%",
+        "name": "Public & Institutional Investors",
+        "source": "Investing.com – Emaar Shareholders,",
+        "date": "February 2026"
+      }
+    ]
+  },
+  "sourcesData": [
+    {
+      "fact": "Founding year and founder",
+      "source": "Emaar Official Website - About Emaar",
+      "url": "https://properties.emaar.com/en/about-emaar/"
+    },
+    {
+      "fact": "IPO and DFM listing",
+      "source": "Emaar Properties Investor Relations FAQ",
+      "url": "https://properties.emaar.com/en/investor-relations/faq/"
+    },
+    {
+      "fact": "Leadership team biographies",
+      "source": "Dubai Immo - Biography of Mohamed Alabbar",
+      "url": "https://dubai-immo.com/en/biographie-de-mohamed-alabbar-le-ceo-de-emaar/"
+    },
+    {
+      "fact": "Leadership team biographies",
+      "source": "MarketScreener - Executive Profile: Amit Jain",
+      "url": "https://www.marketscreener.com/insider/AMIT-JAIN-A0UIX9/experience/"
+    },
+    {
+      "fact": "Ownership structure and ICD stake",
+      "source": "Investing.com - Emaar Shareholders",
+      "url": "https://ph.investing.com/equities/emaar-properti-ownership"
+    },
+    {
+      "fact": "Key project milestones",
+      "source": "Emaar Press Releases (2016-2026); Wikipedia - Burj Khalifa; The National - Dubai Mall; Gulf News - 2014 Expansion",
+      "urls": [
+        "https://properties.emaar.com/en/press-release-listing/",
+        "https://en.wikipedia.org/wiki/Burj_Khalifa",
+        "https://www.thenationalnews.com/business/property/mega-mall-opens-with-high-hopes-1.487846",
+        "https://gulfnews.com/business/property/emaars-net-profit-gains-30-to-dh335b-1.1457527"
+      ]
+    }
+  ]
+}

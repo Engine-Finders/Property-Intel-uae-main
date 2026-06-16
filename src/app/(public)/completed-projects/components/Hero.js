@@ -60,9 +60,9 @@ const EmiratesHillsHero = ({ data }) => {
                     style={
                         isDark
                             ? {
-                                  background:
-                                      "linear-gradient(180deg, rgba(35,37,40,0.88) 0%, rgba(35,37,40,0.45) 42%, rgba(35,37,40,0.72) 100%)",
-                              }
+                                background:
+                                    "linear-gradient(180deg, rgba(35,37,40,0.88) 0%, rgba(35,37,40,0.45) 42%, rgba(35,37,40,0.72) 100%)",
+                            }
                             : undefined
                     }
                 />
@@ -100,7 +100,7 @@ const EmiratesHillsHero = ({ data }) => {
                         Completed <span className="text-[#b08139]">Luxury Villas</span> in Emirates Hills, Dubai.
                     </p>
                     <div className="mt-4 flex items-center gap-2 border-l-2 border-[#b08139] pl-3">
-                        
+
                     </div>
                 </div>
 

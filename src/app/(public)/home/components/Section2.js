@@ -28,8 +28,40 @@ import { MdPayments } from "react-icons/md";
 import { PiBuildingOfficeLight } from "react-icons/pi";
 import { IoGridOutline } from "react-icons/io5";
 
+const GOLD = "#B68A35";
 
-const Section2 = () => {
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
+};
+
+const Section2 = ({ data }) => {
     const { t, isDark, dark, section } = useThemeStyles();
     const [activeTab, setActiveTab] = useState('All Projects');
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -38,420 +70,33 @@ const Section2 = () => {
     useEffect(() => {
         const update = () => {
             const w = window.innerWidth;
-            if (w >= 1024) setVisibleCardCount(3); // lg
-            else if (w >= 768) setVisibleCardCount(2); // md
-            else setVisibleCardCount(1); // sm
+            if (w >= 1024) setVisibleCardCount(3);
+            else if (w >= 768) setVisibleCardCount(2);
+            else setVisibleCardCount(1);
         };
         update();
         window.addEventListener('resize', update);
         return () => window.removeEventListener('resize', update);
     }, []);
 
-    const projects = [
-        {
-            id: 1,
-            title: "Creek Bay",
-            category: "Apartments",
-            location: "Dubai Creek Harbour",
-            image: "/Home/project1.webp",
-            badge: "JUST LAUNCHED",
-            price: "AED 1.8M",
-            unitMix: "1BR, 2BR, 3BR Apartments",
-            handover: "Q2 2030",
-            paymentPlan: "80/20",
-            monthsToGo: 51,
-            timelineProgress: 45,
-            launchDate: "Launch",
-            completionDate: "Q2 2030",
-            projectId: "emaar-creek-bay",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/creek-bay-at-dubai-creek-harbour/"
-                },
-                pricingData: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/creek-bay-at-dubai-creek-harbour/"
-                },
-                handoverDate: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/creek-bay-at-dubai-creek-harbour/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/creek-bay.jpg"
-            }
-        },
-        {
-            id: 2,
-            title: "Mareva at The Oasis",
-            category: "Villas",
-            location: "The Oasis, Dubailand",
-            image: "/Home/project2.webp",
-            badge: "SELLING FAST",
-            price: "AED 13.47M",
-            unitMix: "4BR, 5BR, 6BR Villas",
-            handover: "Q1 2030",
-            paymentPlan: "80/20",
-            monthsToGo: 49,
-            timelineProgress: 50,
-            launchDate: "Launch",
-            completionDate: "Q1 2030",
-            projectId: "emaar-mareva-the-oasis",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/mareva-at-the-oasis/"
-                },
-                pricingData: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/mareva-at-the-oasis/"
-                },
-                handoverDate: {
-                    source: "Property Finder",
-                    url: "https://properties.emaar.com/en/properties/mareva-at-the-oasis/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/mareva-the-oasis.jpg"
-            }
-        },
-        {
-            id: 3,
-            title: "Mirage at The Oasis",
-            category: "Villas",
-            location: "The Oasis, Dubailand",
-            image: "/Home/project3.webp",
-            badge: "SELLING FAST",
-            price: "AED 15.8M",
-            unitMix: "5BR, 6BR Villas",
-            handover: "Q2 2028",
-            paymentPlan: "90/10",
-            monthsToGo: 28,
-            timelineProgress: 75,
-            launchDate: "Launch",
-            completionDate: "Q2 2028",
-            projectId: "emaar-mirage-the-oasis",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/mirage-at-the-oasis/"
-                },
-                pricingData: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/mirage-at-the-oasis/"
-                },
-                handoverDate: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/mirage-at-the-oasis/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/mirage-the-oasis.jpg"
-            }
-        },
-        {
-            id: 4,
-            title: "Lavita at The Oasis",
-            category: "Villas",
-            location: "The Oasis, Dubailand",
-            image: "/asset/img/projects/emaar/lavita-the-oasis.jpg",
-            badge: "LIMITED UNITS",
-            price: "AED 36M",
-            unitMix: "6BR, 7BR Mansions",
-            handover: "Q1 2029",
-            paymentPlan: "80/20",
-            monthsToGo: 36,
-            timelineProgress: 60,
-            launchDate: "Launch",
-            completionDate: "Q1 2029",
-            projectId: "emaar-lavita-the-oasis",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/lavita-at-the-oasis/"
-                },
-                pricingData: {
-                    source: "Emaar",
-                    url: "https://properties.emaar.com/en/properties/lavita-at-the-oasis/"
-                },
-                handoverDate: {
-                    source: "Emaar",
-                    url: "https://properties.emaar.com/en/properties/lavita-at-the-oasis/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/lavita-the-oasis.jpg"
-            }
-        },
-        {
-            id: 5,
-            title: "Elora at The Valley",
-            category: "Townhouses",
-            location: "The Valley, Dubailand",
-            image: "/asset/img/projects/emaar/elora-the-valley.jpg",
-            badge: "SELLING FAST",
-            price: "AED 1.6M",
-            unitMix: "3BR, 4BR Townhouses",
-            handover: "Q3 2026",
-            paymentPlan: "80/20",
-            monthsToGo: 7,
-            timelineProgress: 90,
-            launchDate: "Launch",
-            completionDate: "Q3 2026",
-            projectId: "emaar-elora-the-valley",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/elora/"
-                },
-                pricingData: {
-                    source: "Emaar",
-                    url: "https://properties.emaar.com/en/properties/elora/"
-                },
-                handoverDate: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/elora/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/elora-the-valley.jpg"
-            }
-        },
-        {
-            id: 6,
-            title: "Lyvia by Palace",
-            category: "Apartments",
-            location: "Dubai Creek Harbour",
-            image: "/asset/img/projects/emaar/lyvia-by-palace.jpg",
-            badge: "JUST LAUNCHED",
-            price: "AED 1.98M",
-            unitMix: "1BR, 2BR, 3BR Apartments, 3BR Townhouses",
-            handover: "Q3 2029",
-            paymentPlan: "80/20",
-            monthsToGo: 41,
-            timelineProgress: 55,
-            launchDate: "Launch",
-            completionDate: "Q3 2029",
-            projectId: "emaar-lyvia-by-palace",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/palace-residences/"
-                },
-                pricingData: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/palace-residences/"
-                },
-                handoverDate: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/palace-residences/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/lyvia-by-palace.jpg"
-            }
-        },
-        {
-            id: 7,
-            title: "Creek Haven",
-            category: "Apartments",
-            location: "Dubai Creek Harbour",
-            image: "/asset/img/projects/emaar/creek-haven.jpg",
-            badge: "LAUNCHING SOON",
-            price: "AED 1.86M",
-            unitMix: "1BR, 2BR, 3BR Apartments",
-            handover: "Q1 2030",
-            paymentPlan: "80/20",
-            monthsToGo: 49,
-            timelineProgress: 50,
-            launchDate: "Launch",
-            completionDate: "Q1 2030",
-            projectId: "emaar-creek-haven",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/creek-haven-at-dubai-creek-harbour/"
-                },
-                pricingData: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/creek-haven-at-dubai-creek-harbour/"
-                },
-                handoverDate: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/creek-haven-at-dubai-creek-harbour/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/creek-haven.jpg"
-            }
-        },
-        {
-            id: 8,
-            title: "Address Residences The Bay",
-            category: "Apartments",
-            location: "Dubai Harbour",
-            image: "/asset/img/projects/emaar/address-residences-the-bay.jpg",
-            badge: "SOLD OUT",
-            price: "AED 2.7M",
-            unitMix: "1BR, 2BR, 3BR Apartments",
-            handover: "Q4 2026",
-            paymentPlan: "80/20",
-            monthsToGo: 10,
-            timelineProgress: 85,
-            launchDate: "Launch",
-            completionDate: "Q4 2026",
-            projectId: "emaar-address-residences-the-bay",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/address-residences-the-bay/"
-                },
-                pricingData: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/address-residences-the-bay/"
-                },
-                handoverDate: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/properties/address-residences-the-bay/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/address-residences-the-bay.jpg"
-            }
-        },
-        {
-            id: 9,
-            title: "Park Gate 2",
-            category: "Villas",
-            location: "Dubai Hills Estate",
-            image: "/asset/img/projects/emaar/park-gate-2.jpg",
-            badge: "SELLING FAST",
-            price: "AED 14.12M",
-            unitMix: "4BR, 5BR Villas",
-            handover: "Q1 2027",
-            paymentPlan: "80/20",
-            monthsToGo: 12,
-            timelineProgress: 80,
-            launchDate: "Launch",
-            completionDate: "Q1 2027",
-            projectId: "emaar-park-gate-2",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/properties/park-gate-2-at-dubai-hills-estate/"
-                },
-                pricingData: {
-                    source: "Property Finder",
-                    url: "https://properties.emaar.com/en/properties/park-gate-2-at-dubai-hills-estate/"
-                },
-                handoverDate: {
-                    source: "Property Finder",
-                    url: "https://properties.emaar.com/en/properties/park-gate-2-at-dubai-hills-estate/"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/park-gate-2.jpg"
-            }
-        },
-        {
-            id: 10,
-            title: "Grand Polo Club & Resort",
-            category: "Townhouses",
-            location: "Dubai Investment Park (DIP)",
-            image: "/asset/img/projects/emaar/grand-polo-club-resort.jpg",
-            badge: "LAUNCHING SOON",
-            price: "AED 5.67M",
-            unitMix: "3BR, 4BR, 5BR Villas",
-            handover: "Q2 2029 - Q3 2029",
-            paymentPlan: "80/20",
-            monthsToGo: 0,
-            timelineProgress: 10,
-            launchDate: "April 2026",
-            completionDate: "Q3 2029",
-            projectId: "emaar-grand-polo-club-resort",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Emaar Properties Official Website",
-                    url: "https://properties.emaar.com/en/our-communities/grand-polo-club-and-resort/"
-                },
-                pricingData: {
-                    source: "Emaar Properties Official",
-                    url: "https://properties.emaar.com/en/our-communities/grand-polo-club-and-resort/"
-                },
-                handoverDate: {
-                    source: "Not Yet Announced",
-                    url: null
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/grand-polo-club-resort.jpg"
-            }
-        },
-        {
-            id: 11,
-            title: "Dubai Creek Tower",
-            category: "Apartments",
-            location: "Dubai Creek Harbour",
-            image: "/asset/img/projects/emaar/dubai-creek-tower.jpg",
-            badge: "LAUNCHING SOON",
-            price: "TBA",
-            unitMix: "Luxury Residences, Observatory",
-            handover: "TBA",
-            paymentPlan: "TBA",
-            monthsToGo: 0,
-            timelineProgress: 5,
-            launchDate: "April 2026",
-            completionDate: "TBA",
-            projectId: "emaar-dubai-creek-tower",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Gulf News (Jan 2026)",
-                    url: "https://gulfnews.com/business/property/emaar-to-launch-tender-for-dubai-creek-tower-within-three-months-1.500408173"
-                },
-                pricingData: {
-                    source: "Not yet announced",
-                    url: null
-                },
-                handoverDate: {
-                    source: "Not yet announced",
-                    url: null
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/dubai-creek-tower.jpg"
-            }
-        },
-        {
-            id: 12,
-            title: "Fior 2",
-            category: "Apartments",
-            location: "Rashid Yachts & Marina, Mina Rashid",
-            image: "/asset/img/projects/emaar/fior-2.jpg",
-            badge: "JUST LAUNCHED",
-            price: "AED 1.8M",
-            unitMix: "1BR, 2BR, 3BR Apartments",
-            handover: "Q1 2030",
-            paymentPlan: "80/20",
-            monthsToGo: 48,
-            timelineProgress: 52,
-            launchDate: "Launch",
-            completionDate: "Q1 2030",
-            projectId: "emaar-fior-2",
-            sourceVerification: {
-                projectInfo: {
-                    source: "Property Finder",
-                    url: "https://www.propertyfinder.ae/en/new-projects/emaar-properties/fior-2"
-                },
-                pricingData: {
-                    source: "Engel & Völkers",
-                    url: "https://www.engelvoelkers.com/ae/en/off-plan/fior-2-by-emaar"
-                },
-                handoverDate: {
-                    source: "Property Finder",
-                    url: "https://www.propertyfinder.ae/en/new-projects/emaar-properties/fior-2"
-                },
-                lastVerified: "21 February 2026",
-                brochureImage: "/asset/img/projects/emaar/fior-2.jpg"
-            }
-        },
-    ];
+    if (!data) {
+        return (
+            <section className={`py-5 transition-colors duration-300 ${isDark ? "" : "bg-[#FCFBFA]"}`} style={section}>
+                <div className="max-w-350 mx-auto px-2 sm:px-6 py-20">
+                    <p className="text-center" style={{ color: isDark ? dark.textSecondary : '#666' }}>Loading...</p>
+                </div>
+            </section>
+        );
+    }
 
-    const tabs = [
-        { name: 'All Projects', count: projects.length, icon: <IoGridOutline /> },
-        { name: 'Apartments', count: projects.filter((project) => project.category === 'Apartments').length, icon: <PiBuildingOfficeLight /> },
-        { name: 'Villas', count: projects.filter((project) => project.category === 'Villas').length, icon: <BsHouse /> },
-        { name: 'Townhouses', count: projects.filter((project) => project.category === 'Townhouses').length, icon: <BsBuildings /> },
-    ];
+    const projects = data.projects || [];
+    const tabs = data.tabs?.map(tab => ({
+        ...tab,
+        count: tab.name === 'All Projects'
+            ? projects.length
+            : projects.filter((project) => project.category === tab.name).length,
+        icon: getTabIcon(tab.iconName)
+    })) || [];
 
     const filteredProjects = activeTab === 'All Projects'
         ? projects
@@ -472,43 +117,89 @@ const Section2 = () => {
         setCurrentCardIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     };
 
-    // Get cards for current view
     const visibleCards = filteredProjects.slice(currentCardIndex, currentCardIndex + visibleCardCount);
+
+    const headerDescription = data.header?.description || "Explore the latest Emaar projects across Dubai, from waterfront apartments to luxury villas. Download brochures directly.";
 
     return (
         <section className={`py-5 transition-colors duration-300 ${isDark ? "" : "bg-[#FCFBFA]"}`} style={section}>
-            <div className="max-w-350 mx-auto px-4 sm:px-6">
-
-                {/* Header */}
-                <div className="flex items-start gap-4 mb-8 lg:mb-12">
-                    <div className="">
-                        <BsBuildings className='text-[#B68A35] text-2xl sm:text-5xl' />
-                    </div>
-                    <div>
+            {/* Mobile header */}
+            <div className="md:hidden mb-8">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt="Emaar upcoming projects"
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
                         <h2
-                            className={`text-2xl lg:text-4xl font-serif leading-tight ${isDark ? "" : "text-slate-900"}`}
-                            style={isDark ? dark.text : undefined}
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1a1a1a" }}
                         >
-                            Emaar Upcoming Projects – <br />
-                            <span className="text-[#B68A35]">New Launches & Off-Plan Opportunities</span>
+                            {data.header?.title?.line1 || "Emaar Upcoming Projects – "}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "New Launches & Off-Plan Opportunities"}</span>
                         </h2>
                         <p
-                            className={`mt-3 text-sm lg:text-base max-w-2xl ${isDark ? "" : "text-slate-600"}`}
-                            style={isDark ? dark.textSecondary : undefined}
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : "#475569" }}
                         >
-                            Explore the latest Emaar projects across Dubai, from waterfront apartments to luxury villas. Download brochures directly.
+                            {headerDescription}
                         </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
                     </div>
                 </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-80 lg:h-96 items-center overflow-hidden mb-8 lg:mb-12">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt="Emaar upcoming projects"
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                    <div
+                        className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`}
+                        style={isDark ? dark?.heroOverlayLeft : undefined}
+                    />
+                </div>
+                <div className="relative z-10 max-w-350 mx-auto px-4 sm:px-6 w-full">
+                    <h2
+                        className={`text-2xl lg:text-4xl font-serif leading-tight ${isDark ? "" : "text-slate-900"}`}
+                        style={isDark ? dark.text : undefined}
+                    >
+                        {data.header?.title?.line1 || "Emaar Upcoming Projects – "}<br />
+                        <span className="text-[#B68A35]">{data.header?.title?.line2 || "New Launches & Off-Plan Opportunities"}</span>
+                    </h2>
+                    <p
+                        className={`mt-3 text-sm lg:text-base max-w-2xl leading-[17px] ${isDark ? "" : "text-slate-600"}`}
+                        style={isDark ? dark.textSecondary : undefined}
+                    >
+                        {headerDescription}
+                    </p>
+                </div>
+            </div>
+
+            <div className="max-w-350 mx-auto px-2 sm:px-6">
 
                 {/* Tab Navigation Container */}
                 <div
-                    className={`grid grid-cols-4 lg:flex gap-1 lg:gap-0 mb-10 pb-0 border rounded-2xl p-1 lg:rounded-none lg:p-0 overflow-hidden ${
-                        isDark ? "lg:border lg:border-solid" : "border-gray-200 lg:border-none lg:bg-transparent"
-                    }`}
+                    className={`grid grid-cols-4 lg:flex gap-1 lg:gap-0 mb-10 pb-0 border rounded-xl p-1 lg:rounded-none lg:p-0 overflow-hidden ${isDark ? "lg:border lg:border-solid" : "border-gray-200 lg:border-none lg:bg-transparent"
+                        }`}
                     style={isDark ? dark.tabBar : undefined}
                 >
-
                     {tabs.map((tab, index) => {
                         const isActive = activeTab === tab.name;
                         const isFirst = index === 0;
@@ -522,28 +213,27 @@ const Section2 = () => {
                                     setCurrentCardIndex(0);
                                 }}
                                 className={`flex flex-col sm:flex-row items-center justify-center py-2 px-1 lg:py-3 lg:px-2 transition-all w-full min-w-0 sm:flex-1 relative border
-                                    ${
-                                        isDark
-                                            ? `rounded-xl lg:rounded-none ${isActive ? "font-semibold z-10" : "font-medium"} ${isFirst ? "lg:rounded-tl-2xl" : ""} ${isLast ? "lg:rounded-tr-2xl" : ""}`
-                                            : isActive
-                                              ? "bg-white border-2 border-[#B68A35] rounded-xl text-[#B68A35] lg:border lg:ring-1 lg:ring-[#B68A35] lg:rounded-none z-10"
-                                              : "bg-white border-gray-100 text-slate-500 rounded-xl lg:rounded-none"
+                                    ${isDark
+                                        ? `rounded lg:rounded-none ${isActive ? "font-semibold z-10" : "font-medium"} ${isFirst ? "lg:rounded-tl-2xl" : ""} ${isLast ? "lg:rounded-tr-2xl" : ""}`
+                                        : isActive
+                                            ? "bg-white border-2 border-[#B68A35] rounded text-[#B68A35] lg:border lg:ring-1 lg:ring-[#B68A35] lg:rounded-none z-10"
+                                            : "bg-white border-gray-100 text-slate-500 rounded lg:rounded-none"
                                     }`}
                                 style={
                                     isDark
                                         ? isActive
                                             ? {
-                                                  ...dark.tabActive,
-                                                  borderColor: GOLD_BORDER,
-                                                  borderWidth: 1,
-                                                  borderStyle: "solid",
-                                              }
+                                                ...dark.tabActive,
+                                                borderColor: GOLD_BORDER,
+                                                borderWidth: 1,
+                                                borderStyle: "solid",
+                                            }
                                             : {
-                                                  ...dark.tabInactive,
-                                                  borderColor: t.cardBorder,
-                                                  borderWidth: 1,
-                                                  borderStyle: "solid",
-                                              }
+                                                ...dark.tabInactive,
+                                                borderColor: t.cardBorder,
+                                                borderWidth: 1,
+                                                borderStyle: "solid",
+                                            }
                                         : undefined
                                 }
                             >
@@ -551,7 +241,6 @@ const Section2 = () => {
                                     <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" aria-hidden />
                                 )}
 
-                                {/* Icon: Top on mobile, Left on desktop */}
                                 <span
                                     className={`text-lg lg:text-2xl mb-1 lg:mb-0 lg:mr-3 ${isActive ? "text-[#B68A35]" : ""}`}
                                     style={isDark && !isActive ? dark.textMuted : undefined}
@@ -559,21 +248,18 @@ const Section2 = () => {
                                     {tab.icon}
                                 </span>
 
-                                {/* Label and Count Container */}
                                 <div className="flex items-center gap-1">
                                     <span className="text-[10px] sm:text-[12px] lg:text-md font-bold lg:font-medium whitespace-nowrap">
                                         {tab.name}
                                     </span>
 
-                                    {/* Count Badge */}
                                     <span
-                                        className={`flex items-center justify-center min-w-5 h-5 lg:w-6 lg:h-6 text-[10px] lg:text-sm rounded-full font-bold lg:font-normal ${
-                                            isDark
+                                        className={`flex items-center justify-center min-w-5 h-5 lg:w-6 lg:h-6 text-[10px] lg:text-sm rounded-full font-bold lg:font-normal ${isDark
                                                 ? ""
                                                 : isActive
-                                                  ? "bg-[#B68A35] text-white lg:bg-[#FAF3E6] lg:text-[#B68A35]"
-                                                  : "bg-[#FAF3E6] text-[#B68A35] lg:bg-gray-100 lg:text-slate-500"
-                                        }`}
+                                                    ? "bg-[#B68A35] text-white lg:bg-[#FAF3E6] lg:text-[#B68A35]"
+                                                    : "bg-[#FAF3E6] text-[#B68A35] lg:bg-gray-100 lg:text-slate-500"
+                                            }`}
                                         style={
                                             isDark
                                                 ? isActive
@@ -598,27 +284,6 @@ const Section2 = () => {
                         ))}
                     </div>
 
-                    {/* Slider Arrows (Desktop) */}
-                    <button
-                        onClick={handlePrevCard}
-                        disabled={currentCardIndex === 0}
-                        className={`absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg border text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "bg-white border-gray-100"}`}
-                        style={isDark ? dark.card : undefined}
-                    >
-                        <span className="flex h-full w-full items-center justify-center">
-                            <BsChevronLeft size={24} />
-                        </span>
-                    </button>
-                    <button
-                        onClick={handleNextCard}
-                        disabled={currentCardIndex >= maxStartIndex}
-                        className={`absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg border text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "bg-white border-gray-100"}`}
-                        style={isDark ? dark.card : undefined}
-                    >
-                        <span className="flex h-full w-full items-center justify-center">
-                            <BsChevronRight size={24} />
-                        </span>
-                    </button>
                 </div>
 
                 {/* Mobile Pagination */}
@@ -663,24 +328,34 @@ const Section2 = () => {
 
                 {/* Disclaimer Footer */}
                 <div
-                    className={`mt-12 p-2 sm:p-6 rounded-2xl border flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-4 transition-colors ${isDark ? "" : "bg-[#FAF9F6] border-[#F2EEE8]"}`}
+                    className={`mt-12 p-2 sm:p-6 rounded-xl lg:rounded-2xl border flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-4 transition-colors ${isDark ? "" : "bg-[#FAF9F6] border-[#F2EEE8]"}`}
                     style={isDark ? dark.verifyBanner : undefined}
                 >
-                    <div className="flex gap-3">
-                        <HiOutlineInformationCircle className="text-[#B68A35] shrink-0 text-xl" />
-                        <p
-                            className={`text-[11px] lg:text-sm leading-relaxed ${isDark ? "" : "text-slate-600"}`}
-                            style={isDark ? dark.textSecondary : undefined}
-                        >
-                            Project details, prices, and handover dates are subject to change.
-                            Please verify all information before making any investment decision.
-                        </p>
+                    <div className="flex-1 min-w-0">
+                        <div className="lg:hidden">
+                            <MobileNoteBox
+                                icon={<HiOutlineInformationCircle className="text-xl" />}
+                                textClassName={isDark ? "" : "text-slate-600"}
+                                textStyle={isDark ? dark.textSecondary : undefined}
+                            >
+                                {data.disclaimer?.text || "Project details, prices, and handover dates are subject to change. Please verify all information before making any investment decision."}
+                            </MobileNoteBox>
+                        </div>
+                        <div className="hidden lg:flex gap-3">
+                            <HiOutlineInformationCircle className="text-[#B68A35] shrink-0 text-xl" />
+                            <p
+                                className={`text-sm leading-relaxed ${isDark ? "" : "text-slate-600"}`}
+                                style={isDark ? dark.textSecondary : undefined}
+                            >
+                                {data.disclaimer?.text || "Project details, prices, and handover dates are subject to change. Please verify all information before making any investment decision."}
+                            </p>
+                        </div>
                     </div>
                     <div
-                        className={`text-[11px] lg:text-sm whitespace-nowrap ${isDark ? "" : "text-slate-500"}`}
+                        className={`text-[12px] leading-normal lg:text-sm lg:leading-normal whitespace-nowrap ${isDark ? "" : "text-slate-500"}`}
                         style={isDark ? dark.textMuted : undefined}
                     >
-                        Last updated: <span className="font-bold text-[#B68A35]">21 February 2026</span>
+                        {data.disclaimer?.lastUpdatedLabel || "Last updated:"} <span className="font-bold text-[#B68A35]">{data.disclaimer?.lastUpdatedDate || "21 February 2026"}</span>
                     </div>
                 </div>
             </div>
@@ -694,14 +369,14 @@ const ProjectCard = ({ project, isDark }) => {
     const [accordionOpen, setAccordionOpen] = useState(false);
     return (
         <div
-            className={`w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] flex-shrink-0 rounded-3xl border overflow-hidden flex flex-col transition-all hover:shadow-xl ${isDark ? "" : "bg-white border-gray-100"}`}
+            className={`w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] flex-shrink-0 rounded-xl lg:rounded-3xl border overflow-hidden flex flex-col transition-all hover:shadow-xl ${isDark ? "" : "bg-white border-gray-100"}`}
             style={isDark ? dark.card : undefined}
         >
 
             {/* Image Container */}
             <div className="relative h-60 lg:h-48">
                 <Image src={project.image} alt={project.title} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
-                <div className="absolute top-4 left-4 bg-[#6A9923] text-white text-[10px] font-bold px-3 py-1 rounded-xl tracking-wider">
+                <div className="absolute top-4 left-4 bg-[#6A9923] text-white text-[10px] font-bold px-3 py-1 rounded lg:rounded-xl tracking-wider">
                     {project.badge}
                 </div>
             </div>
@@ -723,7 +398,7 @@ const ProjectCard = ({ project, isDark }) => {
                 </h3>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-2 gap-1  rounded-xl overflow-hiddenmb-6">
+                <div className="grid grid-cols-2 gap-1 rounded lg:rounded-xl overflow-hidden mb-6">
                     <StatBox icon={<AiOutlineDollarCircle />} label="STARTING PRICE" value={project.price} isDark={isDark} />
                     <StatBox icon={<PiHouseBold />} label="UNIT MIX" value={project.unitMix} isDark={isDark} isSmall />
                     <StatBox icon={<MdOutlineCalendarToday />} label="HANDOVER" value={project.handover} isDark={isDark} />
@@ -766,24 +441,40 @@ const ProjectCard = ({ project, isDark }) => {
 
                 {/* Info Box */}
                 <div
-                    className={`p-2 rounded-xl border mb-6 ${isDark ? "" : "bg-[#FDFBF7] border-[#F3EFE9]"}`}
+                    className={`p-2 rounded lg:rounded-xl border mb-6 ${isDark ? "" : "bg-[#FDFBF7] border-[#F3EFE9]"}`}
                     style={isDark ? dark.verifyBanner : undefined}
                 >
-                    <div className="flex items-center gap-2 mb-1.5">
-                        <MdPayments className="text-[#B68A35] text-[20px]" />
-                        <span
-                            className={`text-[14px] font-bold uppercase tracking-tight ${isDark ? "" : "text-slate-800"}`}
-                            style={isDark ? dark.text : undefined}
+                    <div className="lg:hidden">
+                        <MobileNoteBox
+                            icon={<MdPayments className="text-[20px]" />}
+                            title={
+                                <>
+                                    Payment Plan <span className="text-[#B68A35]">{project.paymentPlan}</span>
+                                </>
+                            }
+                            textClassName={`font-medium ${isDark ? "" : "text-slate-500"}`}
+                            textStyle={isDark ? dark.textMuted : undefined}
                         >
-                            Payment Plan <span className="text-[#B68A35] ml-1">{project.paymentPlan}</span>
-                        </span>
+                            10% down • 70% during construction • 20% on handover
+                        </MobileNoteBox>
                     </div>
-                    <p
-                        className={`text-[12px] leading-relaxed font-medium ${isDark ? "" : "text-slate-500"}`}
-                        style={isDark ? dark.textMuted : undefined}
-                    >
-                        10% down • 70% during construction • 20% on handover
-                    </p>
+                    <div className="hidden lg:block min-w-0 flex-1">
+                        <div className="flex items-center gap-2 mb-1.5">
+                            <MdPayments className="text-[#B68A35] text-[20px]" />
+                            <span
+                                className={`text-[14px] font-bold uppercase tracking-tight ${isDark ? "" : "text-slate-800"}`}
+                                style={isDark ? dark.text : undefined}
+                            >
+                                Payment Plan <span className="text-[#B68A35] ml-1">{project.paymentPlan}</span>
+                            </span>
+                        </div>
+                        <p
+                            className={`text-[12px] leading-relaxed font-medium ${isDark ? "" : "text-slate-500"}`}
+                            style={isDark ? dark.textMuted : undefined}
+                        >
+                            10% down • 70% during construction • 20% on handover
+                        </p>
+                    </div>
                 </div>
 
                 {/* Accordion */}
@@ -802,14 +493,58 @@ const ProjectCard = ({ project, isDark }) => {
 
                 {accordionOpen && (
                     <div
-                        className={`mb-6 p-4 rounded-lg border ${isDark ? "" : "bg-[#FFFDF8] border-[#F3EFE9] text-slate-700"}`}
+                        className={`mb-6 p-4 rounded lg:rounded-lg border ${isDark ? "" : "bg-[#FFFDF8] border-[#F3EFE9] text-slate-700"}`}
                         style={isDark ? { ...dark.panelInner, ...dark.textSecondary } : undefined}
                     >
-                        <div className="grid grid-cols-1 gap-3">
-                            {/* Project Info */}
+                        <div className="lg:hidden">
+                            <MobileNoteBox
+                                icon={<LuShieldCheck className="text-[18px]" />}
+                                title="Sources & Verification"
+                            >
+                                <div className="grid grid-cols-1 gap-3">
+                                    <div>
+                                        <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Project Information</p>
+                                        <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.projectInfo?.source || 'N/A'}</p>
+                                        {project.sourceVerification?.projectInfo?.url && (
+                                            <a href={project.sourceVerification.projectInfo.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-[13px] leading-normal underline">
+                                                View source
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Pricing Data</p>
+                                        <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.pricingData?.source || 'N/A'}</p>
+                                        {project.sourceVerification?.pricingData?.url && (
+                                            <a href={project.sourceVerification.pricingData.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-[13px] leading-normal underline">
+                                                View pricing source
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Handover Date Source</p>
+                                        <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.handoverDate?.source || 'N/A'}</p>
+                                        {project.sourceVerification?.handoverDate?.url && (
+                                            <a href={project.sourceVerification.handoverDate.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-[13px] leading-normal underline">
+                                                View handover source
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    <div className="flex items-start gap-4 mt-2">
+                                        <div>
+                                            <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Last Verified</p>
+                                            <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.lastVerified || 'N/A'}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </MobileNoteBox>
+                        </div>
+                        <div className="hidden lg:grid grid-cols-1 gap-3 min-w-0">
                             <div>
                                 <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Project Information</p>
-                                <p className="text-sm font-medium">{project.sourceVerification?.projectInfo?.source || 'N/A'}</p>
+                                <p className="text-sm leading-normal font-medium">{project.sourceVerification?.projectInfo?.source || 'N/A'}</p>
                                 {project.sourceVerification?.projectInfo?.url && (
                                     <a href={project.sourceVerification.projectInfo.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
                                         View source
@@ -817,10 +552,9 @@ const ProjectCard = ({ project, isDark }) => {
                                 )}
                             </div>
 
-                            {/* Pricing Data */}
                             <div>
                                 <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Pricing Data</p>
-                                <p className="text-sm font-medium">{project.sourceVerification?.pricingData?.source || 'N/A'}</p>
+                                <p className="text-sm leading-normal font-medium">{project.sourceVerification?.pricingData?.source || 'N/A'}</p>
                                 {project.sourceVerification?.pricingData?.url && (
                                     <a href={project.sourceVerification.pricingData.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
                                         View pricing source
@@ -828,10 +562,9 @@ const ProjectCard = ({ project, isDark }) => {
                                 )}
                             </div>
 
-                            {/* Handover Date */}
                             <div>
                                 <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Handover Date Source</p>
-                                <p className="text-sm font-medium">{project.sourceVerification?.handoverDate?.source || 'N/A'}</p>
+                                <p className="text-sm leading-normal font-medium">{project.sourceVerification?.handoverDate?.source || 'N/A'}</p>
                                 {project.sourceVerification?.handoverDate?.url && (
                                     <a href={project.sourceVerification.handoverDate.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
                                         View handover source
@@ -839,31 +572,22 @@ const ProjectCard = ({ project, isDark }) => {
                                 )}
                             </div>
 
-                            {/* Last Verified & Brochure */}
                             <div className="flex items-start gap-4 mt-2">
                                 <div>
                                     <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Last Verified</p>
-                                    <p className="text-sm font-medium">{project.sourceVerification?.lastVerified || 'N/A'}</p>
+                                    <p className="text-sm leading-normal font-medium">{project.sourceVerification?.lastVerified || 'N/A'}</p>
                                 </div>
-                                {/* {project.sourceVerification?.brochureImage && (
-                                    <div className="ml-auto">
-                                        <Image src={project.sourceVerification.brochureImage} alt={`${project.title} brochure`} width={180} height={110} className="rounded-md object-cover" />
-                                    </div>
-                                )} */}
                             </div>
                         </div>
                     </div>
                 )}
 
                 {/* Action Button */}
-                <button className="relative w-full bg-[#B38B3F] hover:bg-[#967332] text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center transition-colors">
-                    {/* Centered Content */}
+                <button className="relative w-full bg-[#B38B3F] hover:bg-[#967332] text-white py-4 rounded lg:rounded-xl font-bold text-sm flex items-center justify-center transition-colors">
                     <div className="flex items-center gap-2">
                         <IoDocumentTextOutline className="text-xl" />
                         <span>Download Brochure</span>
                     </div>
-
-                    {/* Right-aligned Download Icon */}
                     <div className="absolute right-4 flex items-center">
                         <HiOutlineDownload className="text-2xl" />
                     </div>
@@ -877,7 +601,7 @@ const StatBox = ({ icon, label, value, isDark, isSmall }) => {
     const { dark } = useThemeStyles();
     return (
         <div
-            className={`p-3 lg:p-2 lg:py-3 flex gap-2 rounded-lg ${isDark ? "border" : "bg-[#fbf9f6] border border-[#F3EFE9]"}`}
+            className={`p-3 lg:p-2 lg:py-3 flex gap-2 rounded lg:rounded-lg ${isDark ? "border" : "bg-[#fbf9f6] border border-[#F3EFE9]"}`}
             style={isDark ? dark.statCard : undefined}
         >
             <div className="flex items-start gap-2 text-[#B68A35] text-2xl mt-1">
@@ -899,6 +623,17 @@ const StatBox = ({ icon, label, value, isDark, isSmall }) => {
             </div>
         </div>
     );
+};
+
+// Helper function for tab icons
+const getTabIcon = (iconName) => {
+    const icons = {
+        'IoGridOutline': <IoGridOutline />,
+        'PiBuildingOfficeLight': <PiBuildingOfficeLight />,
+        'BsHouse': <BsHouse />,
+        'BsBuildings': <BsBuildings />
+    };
+    return icons[iconName] || <IoGridOutline />;
 };
 
 export default Section2;

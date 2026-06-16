@@ -1,0 +1,55 @@
+{
+      "mobile_badge": "Investment Verdict",
+      "mobile_title": "Is Serro at The Heights",
+      "mobile_title_accent": "Worth It?",
+      "mobile_tabs": {
+        "verdict": "Verdict",
+        "good_fit": "Good fit?",
+        "approach": "Our approach"
+      },
+      "mobile_verdict_summary": {
+        "title": "Best for long-term investors",
+        "subtitle": "Enter before peak pricing with patience for the 4-year off-plan timeline."
+      },
+      "mobile_good_fit_heading": "Good fit",
+      "mobile_not_ideal_heading": "Not ideal if",
+      "mobile_bottom_line_label": "Bottom Line",
+      "mobile_cta_badge": "Ready to go deeper?",
+      "mobile_cta_title": "Get your personalised investment analysis",
+      "mobile_cta_subtitle": "Cash-flow projections, risk summary, and recommendations for your timeline.",
+      "mobile_cta_button": "Speak to an expert",
+      "mobile_cta_note": "We'll get back",
+      "h2_worth": "At a Glance - Is Serro at The Heights Worth It?",
+      "worth_points": [
+        { "icon": "check", "text": "Strong long-term growth potential in an emerging corridor" },
+        { "icon": "check", "text": "Early-phase pricing with upside as the community develops" },
+        { "icon": "warn", "text": "Not ideal for investors seeking immediate rental returns" }
+      ],
+      "best_for": "Long-term investors and early buyers looking to enter before peak pricing.",
+      "h2_process": "How We Help You Make the Right Call",
+      "steps": [
+        { "number": "1", "title": "1. We Give You the Real Numbers", "subtitle": "Actual transaction data, market trends, and risks you won't find elsewhere." },
+        { "number": "2", "title": "2. We Show What Others Don't", "subtitle": "Honest pros and cons, developer track records, and hidden costs that get glossed over." },
+        { "number": "3", "title": "3. We Connect You When You're Ready", "subtitle": "Vetted, licensed experts - no pressure, no spam. Just straight answers when you want them." }
+      ],
+      "h3_consider": "Should You Consider Serro at The Heights?",
+      "good_fit": [
+        "You're investing for long-term capital growth",
+        "You want early access to a developing location",
+        "You're comfortable with off-plan timelines"
+      ],
+      "not_ideal": [
+        "You're targeting immediate rental income",
+        "You prefer ready or near-handover properties",
+        "You need quick resale or liquidity"
+      ],
+      "our_take": "Serro at The Heights is best suited for buyers who prioritise long-term appreciation over short-term returns, particularly in areas still undergoing expansion.",
+      "standout": [
+        { "icon": "📍", "title": "Location Advantage", "text": "Positioned in a growth-focused district with ongoing infrastructure and connectivity improvements." },
+        { "icon": "🏗", "title": "Developer Strength", "text": "Backed by a developer with a consistent track record in delivering mid-to-large scale communities." },
+        { "icon": "💰", "title": "Pricing Edge", "text": "Early launch pricing offers a potential entry point before wider market appreciation." }
+      ],
+      "h3_cta": "Want a Straight Answer on This Project?",
+      "cta_subtitle": "Speak to a specialist who understands Serro at The Heights — not someone trying to sell everything.",
+      "cta_buttons": ["Email Us", "WhatsApp", "Call Us"]
+}

@@ -1,0 +1,189 @@
+ {
+    "last_updated": "March 2026",
+    "last_updated_label": "Updated:",
+    "header_image": "/developer/finance-section.webp",
+    "h2": "Verified Property Developers in UAE: The Trust Index",
+    "h2_accent": "The Trust Index",
+    "h3": "We independently audit over 200 UAE developers. With thousands of units scheduled for delivery, empirical data separates the reliable institutions from the speculative risks. We grade the builders so you can maximize returns on dubai real estate projects.",
+    "h3_highlights": [
+      "200 UAE developers"
+    ],
+    "trust_statement": "Our platform only lists RERA approved projects from the top 10 real estate developers in Dubai. Our proprietary grading system is based on on-time delivery history, financial transparency, and post-handover service charge competitiveness.",
+    "trust_statement_highlights": [
+      "RERA approved projects"
+    ],
+    "leaderboard_title": "The Leaderboard",
+    "leaderboard_title_accent": "Leaderboard",
+    "leaderboard_subtitle": "Dynamic matrix ranking developers based on hard operational data.",
+    "default_expanded_index": 1,
+    "service_charge_unit": "AED/sq.ft",
+    "mobile_labels": {
+      "delivery": "Project Delivery Reliability",
+      "service_charges": "Avg. Service Charges",
+      "projects": "Signature 2026 Projects",
+      "positioning": "Market Positioning"
+    },
+    "columns": [
+      "Developer Institution",
+      "PropertyIntel Grade",
+      "Project Delivery Reliability",
+      "Avg. Service Charges (AED/sq.ft)",
+      "Signature 2026 Projects",
+      "Market Positioning"
+    ],
+    "developers": [
+      {
+        "name": "Emaar Properties",
+        "mobile_summary": "85%+ Consistently",
+        "grade": "Gold",
+        "delivery": "Tier 1 (85%+ Consistently)",
+        "service_charges": "15 – 22",
+        "projects": "The Oasis, Emaar South",
+        "positioning": "Apex market leader; unmatched multi-cycle consistency.",
+        "logo": "/developer-logos/EMAAR.webp",
+        "link": "/developer"
+      },
+      {
+        "name": "Sobha Realty",
+        "mobile_summary": "85%+ Consistently",
+        "grade": "Gold",
+        "delivery": "Tier 1 (85%+ Consistently)",
+        "service_charges": "14 – 18",
+        "projects": "Sobha Hartland II, Seahaven",
+        "positioning": "Vertically integrated; exceptional craftsmanship.",
+        "logo": "/developer-logos/SOBHA.webp",
+        "link": null
+      },
+      {
+        "name": "Aldar Properties",
+        "mobile_summary": "90%+ Consistently",
+        "grade": "Gold",
+        "delivery": "Tier 1 (90%+ Consistently)",
+        "service_charges": "15 – 20",
+        "projects": "Saadiyat Lagoons, Yas Riva",
+        "positioning": "Sovereign-backed stability; flawless delivery record.",
+        "logo": "/developer-logos/ALDAAR.webp",
+        "link": null
+      },
+      {
+        "name": "Nakheel",
+        "mobile_summary": "75%+ Consistently",
+        "grade": "Gold",
+        "delivery": "Tier 1 (75%+ Consistently)",
+        "service_charges": "12 – 25",
+        "projects": "Palm Jebel Ali, Dubai Islands",
+        "positioning": "Government-backed; master developer of iconic waterfronts.",
+        "logo": "/developer-logos/NAKHEEL%20.webp",
+        "link": null
+      },
+      {
+        "name": "Meraas",
+        "mobile_summary": "80%+ Consistently",
+        "grade": "Silver",
+        "delivery": "Tier 1 (80%+ Consistently)",
+        "service_charges": "18 – 26",
+        "projects": "Nad Al Sheba Gardens, Ghaf Woods",
+        "positioning": "Lifestyle-oriented districts; strong placemaking vision.",
+        "logo": "/developer-logos/MERAAS.webp",
+        "link": null
+      },
+      {
+        "name": "DAMAC Properties",
+        "mobile_summary": "70%+ Market Avg",
+        "grade": "Silver",
+        "delivery": "Tier 2 (70%+ Market Avg)",
+        "service_charges": "18 – 25+",
+        "projects": "DAMAC Hills 2, Cavalli Tower",
+        "positioning": "Branded luxury focus; large-scale developer.",
+        "logo": "/developer-logos/DAMAC%20.webp",
+        "link": null
+      },
+      {
+        "name": "Azizi Developments",
+        "mobile_summary": "70%+ Market Avg",
+        "grade": "Bronze",
+        "delivery": "Tier 2 (70%+ Market Avg)",
+        "service_charges": "10 – 16",
+        "projects": "Azizi Venice, Riviera",
+        "positioning": "Volume-driven; wide geographic footprint.",
+        "logo": "/developer-logos/AZIZI.webp",
+        "link": null
+      },
+      {
+        "name": "Danube Properties",
+        "mobile_summary": "85%+ Early/On-Time",
+        "grade": "Silver",
+        "delivery": "Tier 2 (85%+ Early/On-Time)",
+        "service_charges": "10 – 16",
+        "projects": "Dreamz, Elitz",
+        "positioning": "Mid-market leader; multiple 2025 projects delivered early.",
+        "logo": "/developer-logos/DANUBE%20.webp",
+        "link": null
+      },
+      {
+        "name": "Binghatti",
+        "mobile_summary": "70%+ Market Avg",
+        "grade": "Bronze",
+        "delivery": "Tier 2 (70%+ Market Avg)",
+        "service_charges": "10 – 15",
+        "projects": "Binghatti Galaxy, Orchid",
+        "positioning": "High-volume residential; distinctive architecture.",
+        "logo": "/developer-logos/BINGHATTI%20.webp",
+        "link": null
+      }
+    ],
+    "insights_title": "Key Insights for Investors",
+    "insights_title_accent": "Investors",
+    "source_label": "Source:",
+    "insights": [
+      {
+        "headline": "The Delivery Reality",
+        "sub_headline": "Navigating Off-Plan Project Risks",
+        "metric_label": "On-Time Delivery",
+        "metric_value": "48%",
+        "metric_percent": 48,
+        "delayed_units_label": "Delayed Units: ~22,800",
+        "total_units_label": "Of ~45,000 total",
+        "content_highlights": [
+          "45,000",
+          "48%",
+          "22,800 units"
+        ],
+        "content": "Of the approximately 45,000 units scheduled for 2026 completion, independent market intelligence suggests only an estimated 48% will be delivered on time. This means nearly 22,800 units face potential delays. Our Trust Index isolates institutions capable of executing at scale from those hindered by supply chain bottlenecks.",
+        "source": "PropertyIntel Analysis based on DLD Transaction Data"
+      },
+      {
+        "headline": "Service Charge Transparency",
+        "sub_headline": "Impact on Net Yield",
+        "display_title_accent": "Net Yield",
+        "grade_cards": [
+          {
+            "grade": "Gold",
+            "summary": "Transparent, competitive"
+          },
+          {
+            "grade": "Silver",
+            "summary": "Moderate exposure"
+          },
+          {
+            "grade": "Bronze",
+            "summary": "Higher execution risk"
+          }
+        ],
+        "content_highlights": [
+          "Gold-rated developers",
+          "Bronze-rated developers"
+        ],
+        "content": "Annual service charges directly impact your net yield. RERA approved projects from Gold-rated developers consistently demonstrate competitive, transparent fee structures verified through DLD's Mollak system. Bronze-rated developers may offer lower entry prices but often carry higher execution risk.",
+        "source": "DLD Mollak System Data"
+      }
+    ],
+    "footer": {
+      "title": "Methodology & Attribution",
+      "attribution": "Developer grades are based on analysis of DLD transaction data, escrow account compliance, and verified project completion records. Updated quarterly. We verify all entities against the Dubai Land Department registry to ensure they are RERA approved projects.",
+      "primary_cta": "View Full Developer Audit: Emaar Properties",
+      "primary_cta_link": "/developer",
+      "secondary_cta": "View All 200+ Developer Pages",
+      "disclaimer": "Grades are proprietary to PropertyIntel.ae and based on publicly available data as of {{date}}."
+    }
+  }

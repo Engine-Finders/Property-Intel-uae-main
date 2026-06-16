@@ -211,7 +211,7 @@ const PriceHistoryView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
                   {/* Main Badge */}
                   {p.isMainBadge && (
                     <div className="absolute bottom-6 right-0 translate-x-2 p-2 md:p-3 rounded-xl text-center shadow-md min-w-32.5 z-30"
-                        style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER_SOFT}` }}>
+                      style={{ background: isDark ? 'rgba(182,138,53,0.12)' : '#FDF8F0', border: `1px solid ${GOLD_BORDER_SOFT}` }}>
                       <p className="text-[#B68A35] text-[10px] font-bold uppercase mb-0.5">{p.badgeLabel || "Q1 2026"}</p>
                       <p className="text-xs md:text-sm font-bold whitespace-nowrap" style={{ color: isDark ? t.text : '#1A1A1A' }}>{p.badgeValue || "AED 3,100–3,800"}</p>
                     </div>

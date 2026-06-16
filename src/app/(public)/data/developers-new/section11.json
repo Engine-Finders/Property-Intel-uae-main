@@ -1,0 +1,136 @@
+{
+  "id": "home-section11",
+  "heroImage": "/Home/Section3bg.webp",
+  "heroAlt": "Dubai Skyline",
+  "header": {
+    "title": {
+      "line1": "What Residents Say About Emaar:",
+      "line2": "Communities - Verified Reviews"
+    },
+    "description": "We've analysed thousands of resident reviews from independent platforms to give you an honest, unfiltered picture of life in Emaar developments across Dubai."
+  },
+  "aggregatedRating": {
+    "overallScore": 3.7,
+    "totalReviews": "3,000+ reviews analysed"
+  },
+  "ratings": [
+    {
+      "platform": "Google Maps",
+      "rating": 3.9,
+      "reviews": "~1,200+",
+      "iconName": "SiGooglemaps",
+      "iconUrl": "/Home/googlemap.png"
+    },
+    {
+      "platform": "PropertyFinder.ae",
+      "rating": 3.5,
+      "reviews": "~850+",
+      "iconName": "TbHomeHeart",
+      "iconUrl": "/Home/propertyfinder.png"
+    },
+    {
+      "platform": "Bayut.com",
+      "rating": 3.5,
+      "reviews": "~950+",
+      "iconName": "custom",
+      "iconUrl": "/Home/beyut.png"
+    }
+  ],
+  "sentiment": {
+    "positive": 78,
+    "neutral": 14,
+    "negative": 8
+  },
+  "tabs": {
+    "love": "What Residents Love",
+    "concerns": "Common Concerns"
+  },
+  "residentsLove": [
+    {
+      "iconName": "Leaf",
+      "title": "Well-maintained landscaping and integrated community amenities",
+      "desc": "Mentioned in ~85% of positive reviews"
+    },
+    {
+      "iconName": "Users",
+      "title": "Strong sense of community in master-planned developments",
+      "desc": "Frequently noted for Dubai Hills Estate, Arabian Ranches, and The Valley"
+    },
+    {
+      "iconName": "Sparkles",
+      "title": "High-quality finishes and attention to detail in newer handovers",
+      "desc": "Highlighted in reviews for recent projects (2024-2026)"
+    },
+    {
+      "iconName": "ShieldCheck",
+      "title": "Security, gated access, and 24/7 community management",
+      "desc": "Consistently praised across apartment and villa communities"
+    }
+  ],
+  "commonConcerns": [
+    {
+      "iconName": "Clock",
+      "title": "Slow response times for non-urgent maintenance requests",
+      "desc": "Appears in approx. 60% of negative reviews"
+    },
+    {
+      "iconName": "Banknote",
+      "title": "Service charge increases without detailed justification",
+      "desc": "Common concern in older communities (The Greens, The Springs) per Mollak-linked feedback"
+    },
+    {
+      "iconName": "Car",
+      "title": "Limited visitor parking in high-density tower communities",
+      "desc": "Recurring theme in Dubai Marina and Downtown Dubai reviews"
+    },
+    {
+      "iconName": "HardHat",
+      "title": "Construction activity and noise in actively developing phases",
+      "desc": "Noted in Dubai Creek Harbour and Expo Valley resident feedback"
+    }
+  ],
+  "recentHighlights": {
+    "title": "Recent Review Highlights",
+    "viewMoreText": "View More Reviews"
+  },
+  "reviews": [
+    {
+      "platform": "Google Maps",
+      "date": "Feb 2026",
+      "stars": 5,
+      "text": "Dubai Hills has everything we need — schools, parks, malls. Community feels safe and well-managed."
+    },
+    {
+      "platform": "PropertyFinder.ae",
+      "date": "Jan 2026",
+      "stars": 3,
+      "text": "Beautiful apartment but took 3 weeks to get a leaking tap fixed. Maintenance team needs more resources."
+    },
+    {
+      "platform": "Bayut.com",
+      "date": "Dec 2025",
+      "stars": 3,
+      "text": "Service charges went up again but no clear breakdown of where the money goes. Transparency would help."
+    },
+    {
+      "platform": "Google Maps",
+      "date": "Jan 2026",
+      "stars": 4,
+      "text": "The Greens still feels premium after 20+ years. Landscaping is immaculate and neighbours are friendly."
+    },
+    {
+      "platform": "PropertyFinder.ae",
+      "date": "Feb 2026",
+      "stars": 3,
+      "text": "Guest parking is very limited in Creek Harbour towers. Visitors often have to park far away."
+    }
+  ],
+  "verificationNote": {
+    "title": "Verification Note",
+    "content": "Reviews aggregated from Google Maps, PropertyFinder.ae, and Bayut.com between August 2025 and February 2026. Only platforms with 50+ verified reviews were included in the weighted average calculation. Sentiment percentages estimated from star rating distributions across all platforms. Emaar communities analysed include Dubai Hills Estate, Downtown Dubai, The Greens, The Springs, Arabian Ranches III, Dubai Creek Harbour, and Dubai Marina. Placeholder values indicate fields populated dynamically from PropertyIntel's review aggregation engine to ensure real-time accuracy."
+  },
+  "disclaimer": {
+    "title": "Disclaimer:",
+    "text": "Reviews are user-generated content and may not reflect all residents' experiences. Aggregated sentiment is for informational purposes only and does not constitute investment advice. Last updated: 22 February 2026."
+  }
+}

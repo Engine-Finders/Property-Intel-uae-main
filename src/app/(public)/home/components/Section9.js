@@ -28,159 +28,36 @@ import { useThemeStyles } from '@/app/components/context/themeStyles';
 const GOLD = "#B68A35";
 const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
-const risks = [
-    {
-        icon: Home,
-        title: 'Financial Stability Risk',
-        description: 'Developer solvency and project abandonment',
-        level: 'Low',
-        percentage: 25,
-        color: 'green',
-        explanation:
-            'Emaar Properties is publicly traded on the Dubai Financial Market (DFM: EMAAR) with audited financial disclosures, strong cash reserves (AED 28.25 billion), and strategic backing from Investment Corporation of Dubai (ICD) holding 22.27% stake. The company\'s diversified revenue streams across development, hospitality, and retail reduce exposure to single-sector volatility. Low risk of project abandonment or financial distress.',
-        source:
-            'Emaar Annual Report 2025 / DFM filings / ICD Shareholding Disclosure via Dubai Housing Analysis',
-    },
-    {
-        icon: Clock,
-        title: 'Delivery Risk',
-        description: 'Timeline adherence and handover delays',
-        level: 'Moderate',
-        percentage: 60,
-        color: 'amber',
-        explanation:
-            'While the majority of Emaar\'s standard residential projects deliver within acceptable timelines (96% on-time record), large-scale and iconic developments (e.g., Dubai Creek Tower, certain phases of Dubai Creek Harbour) have experienced multi-year delays due to design complexity, infrastructure coordination, or external factors. Based on PropertyIntel analysis of DLD handover records, the average delay across major projects is 3–6 months. Construction progress is generally transparent via official channels.',
-        source:
-            'PropertyIntel Delivery Analysis (Section 5 link) / DLD Handover Records / RERA Progress Reports',
-    },
-    {
-        icon: Star,
-        title: 'Quality Risk',
-        description: 'Build quality and post-handover satisfaction',
-        level: 'Low',
-        percentage: 25,
-        color: 'green',
-        explanation:
-            'Aggregated resident reviews consistently praise Emaar communities for master-planned design, landscaping quality, and long-term asset value retention. Common complaints focus on post-handover maintenance response times and service charge communication rather than inherent construction defects. Build quality in established communities (The Greens, Arabian Ranches) remains strong after 15+ years.',
-        source:
-            'Aggregated Google (220+ reviews), PropertyFinder.ae, Bayut Community Ratings (Section 6)',
-    },
-];
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
-const suitabilityTabs = {
-    best: {
-        label: 'Best for',
-        icon: Check,
-        tone: 'green',
-        items: [
-            {
-                icon: Users,
-                title: 'Long-term families',
-                description: "Emaar's master communities (Dubai Hills Estate, Arabian Ranches III, The Valley) offer integrated amenities, international schools, parks, and community events designed for multi-generational living.",
-            },
-            {
-                icon: Building,
-                title: 'Safe-haven investors',
-                description: "Emaar's strong brand recognition, prime locations, and consistent demand typically support stable capital appreciation and reliable rental income over 5-10 year horizons.",
-            },
-            {
-                icon: Users,
-                title: 'End-users seeking premium lifestyles',
-                description: "Projects in Downtown Dubai, Dubai Creek Harbour, and Dubai Marina cater to buyers who value iconic addresses, walkability, and urban convenience.",
-            },
-        ],
-    },
-    caution: {
-        label: 'Caution',
-        icon: AlertTriangle,
-        tone: 'amber',
-        items: [
-            {
-                icon: Users,
-                title: 'Short-term flippers',
-                description: "Long construction timelines (3-5 years for master communities), premium entry pricing, and developer transfer fees (typically 4-5% of sale value) may limit quick-flip profitability. Resale during construction is subject to market volatility and RERA regulations.",
-            },
-            {
-                icon: TrendingUp,
-                title: 'Yield-focused investors',
-                description: "Premium pricing in Emaar communities often translates to rental yields of 4-6%, which may be lower than emerging areas like Dubai South or JVC where yields can reach 7-8%.",
-            },
-        ],
-    },
-    'not-ideal': {
-        label: 'Not ideal',
-        icon: X,
-        tone: 'red',
-        items: [
-            {
-                icon: DollarSign,
-                title: 'Budget-conscious buyers',
-                description: "Emaar commands a premium price per sqft (often 20-30% above market average in comparable locations). More affordable options exist with secondary developers in similar geographic areas.",
-            },
-            {
-                icon: TrendingUp,
-                title: 'Investors seeking quick exits',
-                description: "Handover timelines for off-plan projects are frequently extended; capital may be tied up longer than initially projected. Early exit strategies should account for potential delays and transfer costs.",
-            },
-        ],
-    },
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
 };
-
-const knownIssues = [
-    {
-        label: 'Frequent',
-        tone: 'red',
-        title: 'Slow maintenance response for non-urgent requests',
-        description: 'Google Reviews, PropertyFinder (2025-2026),ALand Build Quality Analysis',
-    },
-    {
-        label: 'Occasional',
-        tone: 'amber',
-        title: 'Service charge increases above inflation without detailed justification',
-        description: 'DLD Mollak data, resident, GoProfiled reviews',
-    },
-    {
-        label: 'Occasional',
-        tone: 'amber',
-        title: 'Limited visitor parking in high-density tower communities',
-        description: 'Resident reviews, Bayut community discussions',
-    },
-    {
-        label: 'Occasional',
-        tone: 'amber',
-        title: 'Construction noise and dust in actively developing phases',
-        description: 'Dubai Municipality guidelines ; Resident forums',
-    },
-    {
-        label: 'Consistent',
-        tone: 'red',
-        title: 'Premium pricing vs comparable communities from secondary developers',
-        description: 'Market analysis / DLD transaction data',
-    },
-];
-
-const mitigationSteps = [
-    {
-        title: 'Verify RERA registration and escrow account',
-        description: 'Before paying any deposit for an off-plan unit, confirm the specific project is registered with RERA and that all payments are directed to a verified escrow account. (Source: RERA Off-Plan Sales Guidelines via BSA Law 2025 ; EGSH Official Center 2026)',
-    },
-    {
-        title: 'Review service charge history via Mollak:',
-        description: "Check the DLD Mollak portal for service charge trends in the specific community and building you're considering to anticipate future holding costs. (Source: DLD Mollak Service Charge Index)",
-    },
-    {
-        title: 'Speak to current residents in completed phases',
-        description: 'Visit handover communities and speak directly with residents to gather firsthand feedback on maintenance responsiveness, community management, and daily living experience. (Source: PropertyIntel recommendation)',
-    },
-    {
-        title: 'Build buffer time into financial planning',
-        description: "For off-plan purchases, review the developer's delivery track record on similar projects and add a 6-12 month buffer to expected handover dates when planning relocation or rental income start dates.",
-    },
-    {
-        title: 'Factor in transfer fees for resale strategy',
-        description: 'Emaar typically charges a transfer fee (4-5% of sale value) for resale of off-plan units; include this cost in your exit strategy calculations if considering a short-to-medium term hold.',
-    },
-];
 
 function toneStyles(tone, isDark) {
     switch (tone) {
@@ -211,7 +88,7 @@ function toneStyles(tone, isDark) {
     }
 }
 
-export default function RiskAnalysisDashboard() {
+export default function RiskAnalysisDashboard({ data }) {
     const { t, isDark, dark } = useThemeStyles();
     const [activeTab, setActiveTab] = useState('best');
     const [isOpenKnownIssues, setIsOpenKnownIssues] = useState(false);
@@ -226,20 +103,73 @@ export default function RiskAnalysisDashboard() {
     const subtextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.45)";
     const bodyColor = isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.65)";
 
+    if (!data) {
+        return (
+            <section className="w-full font-sans antialiased" style={{ background: sectionBg }}>
+                <div className="max-w-350 mx-auto px-4 py-20">
+                    <p className="text-center" style={{ color: bodyColor }}>Loading...</p>
+                </div>
+            </section>
+        );
+    }
+
+    const risks = data.risks || [];
+    const suitabilityTabs = data.suitabilityTabs || {};
+    const knownIssues = data.knownIssues?.items || [];
+    const mitigationSteps = data.mitigationSteps || [];
+
     function toggleRisk(title) {
         setOpenRisks((prev) => ({ ...prev, [title]: !prev[title] }));
     }
 
     const activeSuitability = suitabilityTabs[activeTab];
+    const headerDescription = data.header?.description || "An honest evaluation of potential risks when buying from Emaar, and guidance on whether their projects suit your investment or lifestyle profile.";
 
     return (
         <section className="w-full font-sans antialiased" style={{ background: sectionBg }}>
-            {/* Header Section */}
-            <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+            {/* Mobile header */}
+            <div className="md:hidden">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt={data.heroAlt || "Dubai Skyline"}
+                        fill
+                        className="object-cover object-center grayscale-[10%]"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1A1A1A" }}
+                        >
+                            {data.header?.title?.line1 || "Emaar Risk Assessment"}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "What Buyers Should Know"}</span>
+                        </h2>
+                        <p
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : bodyColor }}
+                        >
+                            {headerDescription}
+                        </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-[320px] lg:h-[400px] items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/Home/Section3bg.webp"
-                        alt="Dubai Skyline"
+                        src="/projects/cm-projects.webp"
+                        alt={data.heroAlt || "Dubai Skyline"}
                         fill
                         className="object-cover object-center grayscale-[10%]"
                         priority
@@ -249,35 +179,35 @@ export default function RiskAnalysisDashboard() {
 
                 <div className="relative z-10 max-w-[1400px] mx-auto px-2 w-full">
                     <h2 className="text-3xl lg:text-5xl font-serif mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
-                        Emaar Risk Assessment
+                        {data.header?.title?.line1 || "Emaar Risk Assessment"}
                         <span className="lg:hidden">—</span>
                     </h2>
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
-                        What Buyers Should Know
+                        {data.header?.title?.line2 || "What Buyers Should Know"}
                     </h3>
-                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
-                        An honest evaluation of potential risks when buying from Emaar, and guidance on whether their projects suit your investment or lifestyle profile.
+                    <p className="max-w-xl text-sm lg:text-base leading-[17px] font-medium" style={{ color: bodyColor }}>
+                        {headerDescription}
                     </p>
                 </div>
             </div>
 
-            <div className="max-w-350 mx-auto px-2 sm:px-4 lg:px-2 -mt-12 relative z-20 pb-20">
+            <div className="max-w-350 mx-auto px-2 sm:px-4 lg:px-2 md:-mt-12 relative z-20 pb-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-6 mb-2 sm:mb-6">
                     {/* Risk Radar Card */}
-                    <div className="rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="rounded lg:rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <div className="p-5 sm:p-6" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#B68A35] mb-1">
-                                Risk radar
+                                {data.riskRadar?.label || "Risk radar"}
                             </p>
                             <h3 className="text-xl lg:text-2xl font-serif" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
-                                Three key risk dimensions
+                                {data.riskRadar?.title || "Three key risk dimensions"}
                             </h3>
                         </div>
 
                         <div className="p-2 sm:p-6">
                             <div style={{ border: `1px solid ${cardBorder}` }} className="sm:border rounded-xl">
                                 {risks.map((risk) => {
-                                    const Icon = risk.icon;
+                                    const Icon = getRiskIcon(risk.iconName);
                                     const colors = toneStyles(risk.color, isDark);
 
                                     return (
@@ -304,7 +234,7 @@ export default function RiskAnalysisDashboard() {
                                                         <h4 className="font-semibold text-sm lg:text-[15px] leading-tight" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                             {risk.title}
                                                         </h4>
-                                                        <p className="text-xs mt-1 leading-relaxed" style={{ color: bodyColor }}>
+                                                        <p className="text-[13px] leading-normal lg:text-xs mt-1 lg:leading-relaxed" style={{ color: bodyColor }}>
                                                             {risk.description}
                                                         </p>
                                                     </div>
@@ -344,7 +274,7 @@ export default function RiskAnalysisDashboard() {
                                                             <div className={`h-full rounded-full ${risk.color === 'green' ? 'bg-emerald-500' : 'bg-amber-500'} transition-all duration-500`} style={{ width: `${risk.percentage}%` }} />
                                                         </div>
                                                     </div>
-                                                    <p className="mt-2 text-xs leading-relaxed" style={{ color: bodyColor }}>{risk.explanation}</p>
+                                                    <p className="mt-2 text-[13px] leading-normal lg:text-xs lg:leading-relaxed" style={{ color: bodyColor }}>{risk.explanation}</p>
                                                 </div>
                                             )}
                                         </div>
@@ -355,19 +285,19 @@ export default function RiskAnalysisDashboard() {
 
                         <div className="px-5 sm:px-6 pb-5 sm:pb-6">
                             <p className="text-[10px] leading-relaxed pt-3" style={{ borderTop: `1px solid ${cardBorder}`, color: subtextColor }}>
-                                Source: Emaar Annual Report 2025 / DFM filings / ICD Shareholding Disclosure via Dubai Housing Analysis
+                                {data.riskRadar?.source || "Source: Emaar Annual Report 2025 / DFM filings / ICD Shareholding Disclosure via Dubai Housing Analysis"}
                             </p>
                         </div>
                     </div>
 
                     {/* Buyer Suitability Card */}
-                    <div className="rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="rounded lg:rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <div className="p-5 sm:p-6" style={{ borderBottom: `1px solid ${cardBorder}` }}>
                             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#B68A35] mb-1">
-                                Buyer suitability
+                                {data.buyerSuitability?.label || "Buyer suitability"}
                             </p>
                             <h3 className="text-xl lg:text-2xl font-serif" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
-                                Who should buy from Emaar?
+                                {data.buyerSuitability?.title || "Who should buy from Emaar?"}
                             </h3>
                         </div>
 
@@ -375,14 +305,14 @@ export default function RiskAnalysisDashboard() {
                             <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-5">
                                 {Object.entries(suitabilityTabs).map(([key, tab]) => {
                                     const active = activeTab === key;
-                                    const Icon = tab.icon;
+                                    const Icon = getTabIcon(tab.iconName);
 
                                     return (
                                         <button
                                             key={key}
                                             type="button"
                                             onClick={() => setActiveTab(key)}
-                                            className={`relative flex items-center justify-center gap-2 rounded-xl px-2 py-3 text-[11px] font-bold transition-all sm:text-xs ${active
+                                            className={`relative flex items-center justify-center gap-1.5 rounded lg:rounded-xl px-1.5 py-3 text-[10px] font-bold transition-all sm:text-xs leading-tight text-center min-w-0 ${active
                                                 ? 'bg-[#FDF8F0] text-[#B68A35] shadow-sm'
                                                 : 'bg-white text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                                                 }`}
@@ -401,11 +331,11 @@ export default function RiskAnalysisDashboard() {
                             </div>
 
                             <div className="space-y-3">
-                                {activeSuitability.items.map((item) => {
-                                    const ItemIcon = item.icon;
+                                {(activeSuitability?.items || []).map((item) => {
+                                    const ItemIcon = getSuitabilityIcon(item.iconName);
 
                                     return (
-                                        <div key={item.title} className="flex gap-4 rounded-xl p-4 transition-colors" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FBF9F6' }}>
+                                        <div key={item.title} className="flex gap-4 rounded lg:rounded-xl p-4 transition-colors" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.03)' : '#FBF9F6' }}>
                                             <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={!isDark ? { background: '#FAF3E6' } : { background: 'rgba(182,138,53,0.12)' }}>
                                                 <ItemIcon className="w-4 h-4 text-[#B68A35]" />
                                             </div>
@@ -413,7 +343,7 @@ export default function RiskAnalysisDashboard() {
                                                 <h4 className="font-semibold text-sm mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                                     {item.title}
                                                 </h4>
-                                                <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>
+                                                <p className="text-[13px] leading-normal lg:text-xs lg:leading-relaxed" style={{ color: bodyColor }}>
                                                     {item.description}
                                                 </p>
                                             </div>
@@ -427,7 +357,7 @@ export default function RiskAnalysisDashboard() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4">
                     {/* Known Issues Accordion */}
-                    <div className="rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="rounded lg:rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <button
                             type="button"
                             onClick={() => setIsOpenKnownIssues((current) => !current)}
@@ -439,8 +369,8 @@ export default function RiskAnalysisDashboard() {
                                     <ShieldAlert className="w-4 h-4 text-[#B68A35]" />
                                 </div>
                                 <div className="min-w-0">
-                                    <h3 className="font-semibold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Known issues</h3>
-                                    <p className="text-xs" style={{ color: subtextColor }}>Recurring complaints</p>
+                                    <h3 className="font-semibold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.knownIssues?.title || "Known issues"}</h3>
+                                    <p className="text-xs" style={{ color: subtextColor }}>{data.knownIssues?.subtitle || "Recurring complaints"}</p>
                                 </div>
                             </div>
                             {isOpenKnownIssues ? <ChevronUp className="w-4 h-4 shrink-0" style={{ color: subtextColor }} /> : <ChevronDown className="w-4 h-4 shrink-0" style={{ color: subtextColor }} />}
@@ -448,8 +378,8 @@ export default function RiskAnalysisDashboard() {
 
                         {isOpenKnownIssues && (
                             <div className="p-4 sm:p-3 space-y-3">
-                                <p className="text-xs italic leading-relaxed" style={{ color: subtextColor }}>
-                                    The points below are based on aggregated resident reviews and public records.
+                                <p className="text-[12px] leading-normal lg:text-xs italic lg:leading-relaxed" style={{ color: subtextColor }}>
+                                    {data.knownIssues?.disclaimer || "The points below are based on aggregated resident reviews and public records."}
                                 </p>
                                 {knownIssues.map((issue) => {
                                     const colors = toneStyles(issue.tone, isDark);
@@ -462,7 +392,7 @@ export default function RiskAnalysisDashboard() {
                                                     {issue.label}
                                                 </span>
                                             </div>
-                                            <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>
+                                            <p className="text-[13px] leading-normal lg:text-xs lg:leading-relaxed" style={{ color: bodyColor }}>
                                                 <span className="font-semibold block mb-0.5" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{issue.title}</span>
                                                 {issue.description}
                                             </p>
@@ -474,7 +404,7 @@ export default function RiskAnalysisDashboard() {
                     </div>
 
                     {/* Risk Mitigation Strategies Accordion */}
-                    <div className="rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="rounded lg:rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <button
                             type="button"
                             onClick={() => setIsOpenStrategies((current) => !current)}
@@ -486,8 +416,8 @@ export default function RiskAnalysisDashboard() {
                                     <ShieldCheck className="w-4 h-4 text-[#B68A35]" />
                                 </div>
                                 <div className="min-w-0">
-                                    <h3 className="font-semibold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Risk Mitigation Strategies for Buyers</h3>
-                                    <p className="text-xs" style={{ color: subtextColor }}>For buyers</p>
+                                    <h3 className="font-semibold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.mitigationStrategies?.title || "Risk Mitigation Strategies for Buyers"}</h3>
+                                    <p className="text-xs" style={{ color: subtextColor }}>{data.mitigationStrategies?.subtitle || "For buyers"}</p>
                                 </div>
                             </div>
                             {isOpenStrategies ? <ChevronUp className="w-4 h-4 shrink-0" style={{ color: subtextColor }} /> : <ChevronDown className="w-4 h-4 shrink-0" style={{ color: subtextColor }} />}
@@ -495,15 +425,15 @@ export default function RiskAnalysisDashboard() {
 
                         {isOpenStrategies && (
                             <div className="p-4 sm:p-5 space-y-4">
-                                <p className="text-xs italic leading-relaxed" style={{ color: subtextColor }}>
-                                    Practical steps to reduce risk when purchasing from Emaar:
+                                <p className="text-[12px] leading-normal lg:text-xs italic lg:leading-relaxed" style={{ color: subtextColor }}>
+                                    {data.mitigationStrategies?.disclaimer || "Practical steps to reduce risk when purchasing from Emaar:"}
                                 </p>
                                 {mitigationSteps.map((step, index) => (
                                     <div key={step.title} className="flex gap-3">
                                         <div className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-[#B68A35]" style={!isDark ? { background: '#FAF3E6', border: '1px solid #F3E6CC' } : { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` }}>
                                             {index + 1}
                                         </div>
-                                        <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>
+                                        <p className="text-[13px] leading-normal lg:text-xs lg:leading-relaxed" style={{ color: bodyColor }}>
                                             <span className="font-semibold block mb-0.5" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{step.title}</span>
                                             {step.description}
                                         </p>
@@ -514,7 +444,7 @@ export default function RiskAnalysisDashboard() {
                     </div>
 
                     {/* PropertyIntel Research Team Accordion */}
-                    <div className="rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="rounded lg:rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.05)] overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <button
                             type="button"
                             onClick={() => setIsOpenAnalyst((current) => !current)}
@@ -526,8 +456,8 @@ export default function RiskAnalysisDashboard() {
                                     <User className="w-4 h-4 text-[#B68A35]" />
                                 </div>
                                 <div className="min-w-0">
-                                    <h3 className="font-semibold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>PropertyIntel Research Team</h3>
-                                    <p className="text-xs" style={{ color: subtextColor }}>On-ground analysis • 22 February 2026</p>
+                                    <h3 className="font-semibold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.researchTeam?.title || "PropertyIntel Research Team"}</h3>
+                                    <p className="text-xs" style={{ color: subtextColor }}>{data.researchTeam?.subtitle || "On-ground analysis • 22 February 2026"}</p>
                                 </div>
                             </div>
                             {isOpenAnalyst ? <ChevronUp className="w-4 h-4 shrink-0" style={{ color: subtextColor }} /> : <ChevronDown className="w-4 h-4 shrink-0" style={{ color: subtextColor }} />}
@@ -535,28 +465,20 @@ export default function RiskAnalysisDashboard() {
 
                         {isOpenAnalyst && (
                             <div className="p-4 sm:p-5">
-                                <p className="text-xs leading-relaxed mb-4" style={{ color: bodyColor }}>
-                                    Emaar Properties maintains its position as Dubai's most trusted developer with a 96% on-time delivery record and AED 65.8 billion in 2025 sales, more than double its nearest competitor. The company's financial strength (AED 28.25B cash reserves, Baa1/BBB+ credit ratings, 22.27% ICD government backing) effectively eliminates project abandonment risk. However, buyers should approach with realistic expectations. While standard residential communities deliver reliably, iconic projects like Dubai Creek Tower have faced multi-year delays (10+ years from announcement). Off-plan projects including The Valley and Emaar Beachfront reported handover delays in 2025-2026, reflecting industry-wide contractor capacity constraints rather than developer-specific failures.
-
-                                    The quality proposition is nuanced. Established communities like The Greens and Arabian Ranches maintain strong build quality after 20+ years with ongoing upgrades. However, resident feedback reveals consistent complaints about post-handover maintenance responsiveness (ECM reviews averaging 1.0-3.3/5) and service charge transparency, with documented 22% YoY increases without justification. For investors, Emaar offers unmatched resale liquidity and capital preservation (4-6% stable yields) but sacrifices the higher returns (7-8%) of emerging areas like JVC. Premium pricing (15-20% above comparable communities) is justified by long-term value retention but limits quick-flip potential. The ideal Emaar buyer is a long-term holder prioritizing safety and quality over maximum short-term returns.
+                                <p className="text-[13px] leading-normal lg:text-xs lg:leading-relaxed mb-4" style={{ color: bodyColor }}>
+                                    {data.researchTeam?.content}
                                 </p>
-                                <a href="https://properties.emaar.com/en/about-emaar/" target="_blank" rel="noreferrer" className="text-xs text-[#B68A35] font-semibold hover:underline flex items-center gap-1">
+                                <a href={data.researchTeam?.readMoreUrl || "https://properties.emaar.com/en/about-emaar/"} target="_blank" rel="noreferrer" className="text-xs text-[#B68A35] font-semibold hover:underline flex items-center gap-1">
                                     Read more <ExternalLink className="w-3 h-3" />
                                 </a>
 
                                 <div className="mt-4 pt-4 grid grid-cols-3 gap-2 text-center" style={{ borderTop: `1px solid ${cardBorder}` }}>
-                                    <div>
-                                        <p className="text-sm font-bold text-[#B68A35]">96%</p>
-                                        <p className="text-[10px]" style={{ color: subtextColor }}>On-time delivery record</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-bold text-[#B68A35]">AED 65.8B</p>
-                                        <p className="text-[10px]" style={{ color: subtextColor }}>2025 sales</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-bold text-[#B68A35]">4–6%</p>
-                                        <p className="text-[10px]" style={{ color: subtextColor }}>Stable rental yields</p>
-                                    </div>
+                                    {data.researchTeam?.stats?.map((stat, idx) => (
+                                        <div key={idx}>
+                                            <p className="text-sm font-bold text-[#B68A35]">{stat.value}</p>
+                                            <p className="text-[10px]" style={{ color: subtextColor }}>{stat.label}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         )}
@@ -565,13 +487,50 @@ export default function RiskAnalysisDashboard() {
 
                 <ExpertSection />
 
-                <div className="mt-2 sm:mt-6 rounded-xl px-4 py-4 sm:px-5 flex items-start gap-3" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6' }}>
-                    <Info className="w-5 h-5 text-[#B68A35] mt-0.5 shrink-0" />
-                    <p className="text-[10px] sm:text-xs leading-relaxed" style={{ color: bodyColor }}>
-                        <span className="font-bold uppercase" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Disclaimer</span> Risk assessments are based on historical data, verified public records, and aggregated owner feedback; they do not guarantee future performance. Individual project risks may vary. Last updated: 22 February 2026.
-                    </p>
+                <div className="mt-2 sm:mt-6 rounded lg:rounded-xl px-4 py-4 sm:px-5" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6' }}>
+                    <div className="lg:hidden">
+                        <MobileNoteBox icon={<Info className="w-5 h-5" />} textStyle={{ color: bodyColor }}>
+                            <span className="font-bold uppercase" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.title || "Disclaimer"}</span>
+                            {" "}{data.disclaimer?.text || "Risk assessments are based on historical data, verified public records, and aggregated owner feedback; they do not guarantee future performance. Individual project risks may vary. Last updated: 22 February 2026."}
+                        </MobileNoteBox>
+                    </div>
+                    <div className="hidden lg:flex items-start gap-3">
+                        <Info className="w-5 h-5 text-[#B68A35] mt-0.5 shrink-0" />
+                        <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>
+                            <span className="font-bold uppercase" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.title || "Disclaimer"}</span> {data.disclaimer?.text || "Risk assessments are based on historical data, verified public records, and aggregated owner feedback; they do not guarantee future performance. Individual project risks may vary. Last updated: 22 February 2026."}
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
     );
 }
+
+// Helper functions for icons
+const getRiskIcon = (iconName) => {
+    const icons = {
+        'Home': Home,
+        'Clock': Clock,
+        'Star': Star
+    };
+    return icons[iconName] || Home;
+};
+
+const getTabIcon = (iconName) => {
+    const icons = {
+        'Check': Check,
+        'AlertTriangle': AlertTriangle,
+        'X': X
+    };
+    return icons[iconName] || Check;
+};
+
+const getSuitabilityIcon = (iconName) => {
+    const icons = {
+        'Users': Users,
+        'Building': Building,
+        'DollarSign': DollarSign,
+        'TrendingUp': TrendingUp
+    };
+    return icons[iconName] || Users;
+};

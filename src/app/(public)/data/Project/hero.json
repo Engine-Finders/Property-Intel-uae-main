@@ -1,0 +1,100 @@
+{
+  "hero_section": {
+    "h1": "Serro at The Heights",
+    "subtitle": "Off-Plan Villas in Al Yalayis, Dubai",
+    "status_badges": [
+      { "label": "Off-Plan", "color": "gold" },
+      { "label": "Active Construction", "color": "emerald" }
+    ],
+    "data_grid": {
+      "starting_price": "AED 6.0M",
+      "price_per_sqft": "AED 1,732",
+      "yield_forecast": "5–6%",
+      "handover": "Q1 2030"
+    },
+    "cta_primary": "Get Availability & Floor Plans",
+    "cta_secondary": {
+      "button_text": "Speak to an Investment Expert",
+      "heading": "Speak to an Investment Expert",
+      "subtext": "Get expert guidance. It's free & with no obligation.",
+      "actions": [
+        { "label": "WhatsApp", "subtext": "Chat instantly", "type": "whatsapp", "href": "#" },
+        { "label": "Call Us", "subtext": "Speak directly", "type": "phone", "href": "#" },
+        { "label": "Email Us", "subtext": "We'll get back", "type": "email", "href": "#" }
+      ]
+    },
+    "overview_paragraphs": [
+      "Serro at The Heights is a villa-only residential release by <strong>Emaar Properties</strong>, forming part of the expansive <strong>AED 55 billion</strong> The Heights Country Club & Wellness master community in Al Yalayis, Dubai. Positioned near the intersection of Emirates Road (E611) and Al Yalayis Street (E77), this development introduces <strong>383 three- to five-bedroom villas</strong> across two adjoining clusters (Serro and Serro 2), designed around a wellness-led lifestyle with 38 kilometres of cycling and jogging tracks, a dedicated Wellness Lake, and meditation gardens.",
+      "The broader master community spans <strong>7.5 million square metres</strong> (81 million sq.ft) and will ultimately comprise over 11,400 residential units across 21 clusters, positioning The Heights as one of Emaar's largest wellness-focused developments since Dubai Hills Estate. Unlike mixed-use projects, Serro maintains a strict residential focus, prioritising low-density living with approximately 25% of the total land dedicated to open green space and 1.36 million sqm of landscaped public realm."
+    ],
+    "data_led_hook": [
+      "Launched in Q1 2026 with an entry price of <strong>AED 6,000,000</strong> for a 3-bedroom Type A villa (3,463 sqft).",
+      "Pricing stands at approximately <strong>AED 1,732/sqft</strong> — positioned below comparable Emaar villa communities like Dubai Hills Estate (AED 2,100+/sqft average), but above entry-level Dubai South offerings.",
+      "Handover is scheduled for <strong>Q1–Q2 2030</strong>, reflecting a four-year construction timeline.",
+      "The extended timeline aligns with the scale of infrastructure development required for a <strong>7.5 million sqm</strong> master community, rather than isolated villa construction."
+    ],
+    "key_facts_section": {
+      "title_prefix": "Key Facts at a",
+      "title_accent": "Glance",
+      "developer_summary": {
+        "name": "Emaar Properties",
+        "logo": "/images/developers/emaar.png",
+        "founded_label": "Founded 1997",
+        "highlights": ["118,000+ units delivered globally", "AED 13.51b profit 2024"]
+      },
+      "project_status": { "label": "Project Status", "badge": "Off-plan", "note": "Booking opens April 2026" },
+      "handover": { "label": "Handover Date", "value": "Q1 2030 (Serro)", "note": "Q2 2030 (Serro 2) · 4-year timeline" },
+      "total_units": { "label": "Total Units (Project)", "value": "383 villas", "note": "200 in Serro · 173 in Serro 2" },
+      "master_community": { "label": "Master Community", "value": "11,400+ units · 21 clusters", "note": "7.5M sqm (81M sq.ft)" },
+      "unit_types_and_prices": {
+        "label": "Unit Types & Prices",
+        "summary": "753 total units",
+        "items": [
+          { "type": "3-Bedroom", "count": "346 units", "price": "AED 6,000,000" },
+          { "type": "4-Bedroom", "count": "347 units", "price": "AED 6,000,000+" },
+          { "type": "5-Bedroom", "count": "60 units", "price": "AED 9,000,000+", "note": "Estimated" }
+        ]
+      },
+      "payment_plan": {
+        "label": "Payment Plan",
+        "summary": "80 / 20",
+        "milestones": [
+          { "percent": 10, "title": "Booking", "note": "On reservation" },
+          { "percent": 70, "title": "Construction", "note": "8 milestone installments" },
+          { "percent": 20, "title": "Handover", "note": "Q1-Q2 2030" }
+        ]
+      }
+    },
+    "infrastructure_items": [
+      { "title": "Al Maktoum International Airport (DWC) Expansion", "content": "Located just 10 minutes from Serro, DWC is undergoing a AED 128 billion (USD 35 billion) expansion to become the world's largest airport with 260 million passenger capacity by 2050. Passenger operations will progressively shift from Dubai International (DXB), concentrating aviation-driven employment and housing demand directly in Dubai South." },
+      { "title": "Expo City Dubai", "content": "Situated 10 minutes from the community, Expo City is evolving into a mixed-use innovation hub, hosting headquarters for regional and international businesses, with continued development of residential and commercial phases through 2030." },
+      { "title": "Dubai South Growth Corridor", "content": "The Heights sits within Dubai's southern development corridor, adjacent to Dubai South's 145 sq.km masterplan, which includes the Logistics District, EZDubai e-commerce zone, and residential communities targeting 1 million population by 2030." },
+      { "title": "Road Network Enhancements", "content": "The junction of Emirates Road (E611) and Al Yalayis Street (E77) provides direct connectivity to recent RTA upgrades on Al Qudra Road (191% capacity increase) and planned expansions to the Dubai South road network supporting the airport growth corridor." },
+      { "title": "Economic Diversification", "content": "The corridor is positioned to benefit from Dubai's economic diversification strategy, with Dubai South designated as a special economic zone offering tax incentives and streamlined business setup—attracting companies and their workforces to the surrounding residential catchment." },
+      { "title": "Proximity to Employment Hubs", "content": "10–15 minutes to Dubai Investment Park (DIP) and Jebel Ali Industrial Area, two of Dubai's largest employment zones, supporting rental demand from professionals seeking short commutes." }
+    ]
+  },
+  "project_meta": {
+    "id": "serro-001",
+    "slug": "serro-at-the-heights",
+    "name": "Serro at The Heights",
+    "status": "off-plan",
+    "construction_status": "active",
+    "launch_date": "2026-04-01",
+    "handover_date": "2030-03-31",
+    "area": { "name": "Al Yalayis", "emirate": "Dubai" },
+    "developer": {
+      "name": "Emaar Properties",
+      "slug": "emaar-properties",
+      "founded_year": 1997,
+      "units_delivered": 118000,
+      "on_time_rating": 98,
+      "rera_registered": true,
+      "logo_url": "/images/developers/emaar.png",
+      "description": "Emaar Properties is one of the UAE's largest developers, known for delivering large-scale master communities including Downtown Dubai and Dubai Hills Estate."
+    },
+    "location": { "lat": 24.8895, "lng": 55.2686, "address": "The Heights, Al Yalayis, Dubai" },
+    "images": ["/projects/villa-render-1.jpg", "/projects/villa-render-2.jpg", "/projects/villa-render-3.jpg"],
+    "slide_labels": ["Villa Exterior", "Master Community", "Interior Living"]
+  }
+}

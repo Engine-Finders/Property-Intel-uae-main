@@ -1,0 +1,78 @@
+   {
+    "last_updated": "March 2026",
+    "h2": "Your Expert Guide to the Buying Property in Dubai Process",
+    "h3": "We don't just list off plan property investment opportunities; we guide you through every regulatory and financial step with verified, RERA-compliant expertise. Knowledge is the only real hedge against risk in Dubai real estate.",
+    "pillars_title": "The Four Pillars of Secure Investment",
+    "pillars": [
+      {
+        "icon": "database",
+        "headline": "Cross-Referenced with Official Sources",
+        "content": "Every price, payment plan, and handover date for off plan projects in UAE is validated against Dubai Land Department (DLD) records and official developer portals. We leverage DXBinteract.com's 20-year historical dataset to verify original launch prices against current market values—ensuring you never buy property in Dubai based on marketing hype alone.",
+        "trust_signals": ["DLD Data Verified", "DXBinteract Partner"],
+        "keyword_tag": "dubai property market"
+      },
+      {
+        "icon": "shield",
+        "headline": "Secure Your Ownership with Confidence",
+        "content": "Understand critical investor protections like Oqood registration, which must occur within 90 days of signing your off-plan Sale and Purchase Agreement (SPA). We guide you through escrow account real estate dubai verification, ensuring your funds are released only against verified construction milestones—protecting your capital at every stage.",
+        "trust_signals": ["RERA Compliance Guide", "Escrow Verification Process"],
+        "keyword_tag": "rera approved"
+      },
+      {
+        "icon": "home",
+        "headline": "Navigate Freehold & Golden Visa Eligibility",
+        "content": "We demystify the process to buy freehold property in Dubai as a foreigner, clearly outlining your rights in designated freehold areas. Our Golden Visa Eligible filter helps you identify golden visa properties (AED 2M+) that can secure your family's 10-year UAE residency—turning complex regulations into actionable investment criteria.",
+        "trust_signals": ["Designated Area Maps", "Visa Eligibility Calculator"],
+        "keyword_tag": "buy freehold property in dubai"
+      },
+      {
+        "icon": "support",
+        "headline": "Dedicated Support From Search to Handover",
+        "content": "From your first search for best real estate investment in Dubai to post-handover support, our team connects you with vetted legal advisors and RERA approved mortgage partners. We help you navigate every step—from oqood registration process to dubai properties service charges—ensuring your investment journey is as seamless as it is secure.",
+        "trust_signals": ["Vetted Partner Network", "Post-Handover Support"],
+        "keyword_tag": "best real estate investment in dubai"
+      }
+    ],
+    "process_title": "The Path to Ownership",
+    "process_subtitle": "A Transparent 4-Step Process",
+    "steps": [
+      {
+        "number": 1,
+        "title": "Verify Eligibility & Developer Credentials",
+        "action": "Confirm the property lies within a designated freehold area and the developer is RERA-registered with a valid escrow account.",
+        "why": "Foreign ownership is only permitted in specific zones under Regulation No. (3) of 2006. Verification prevents legal complications and protects your investment.",
+        "source": "Dubai Land Department Freehold Map",
+        "summary": "Freehold Area • RERA • Escrow Verified"
+      },
+      {
+        "number": 2,
+        "title": "Secure with SPA & Oqood Registration",
+        "action": "Sign the Sale and Purchase Agreement (SPA) and ensure your developer registers the sale on the Oqood system within 90 days.",
+        "why": "Oqood registration legally secures your interim ownership rights during construction. Without it, your contract lacks official DLD recognition.",
+        "source": "RERA Oqood Guidelines",
+        "summary": "90 Days DLD Registration"
+      },
+      {
+        "number": 3,
+        "title": "Register Title & Pay DLD Fees",
+        "action": "Complete the transfer at the DLD, paying the 4% transfer fee plus administrative costs (approx. AED 4,000 + VAT for properties over AED 500k) to receive your title deed.",
+        "why": "The title deed is your legal proof of ownership. Understanding total transaction costs (typically 7-10% above purchase price) prevents budget surprises.",
+        "source": "DLD Fee Schedule",
+        "summary": "4% Transfer + Admin Fees"
+      },
+      {
+        "number": 4,
+        "title": "Maintain & Understand Ongoing Obligations",
+        "action": "Budget for annual dubai properties service charges (set by RERA's Mollak system) and understand your obligations under Dubai's jointly-owned property law.",
+        "why": "Service charges directly impact your net yield. Persistent non-payment can lead to legal enforcement, including potential court-ordered sale of the unit.",
+        "source": "RERA Mollak System",
+        "summary": "Service Charges • RERA Mollak"
+      }
+    ],
+    "footer": {
+      "attribution": "All regulatory guidance is based on current Dubai Land Department (DLD) and Real Estate Regulatory Agency (RERA) guidelines, updated monthly. We verify every process step against official government sources to ensure accuracy for investors seeking buying property in dubai process clarity.",
+      "primary_cta": "Get a Free Investment Consultation",
+      "secondary_cta": "Download Full Buyer's Checklist (PDF)",
+      "disclaimer": "This information is for educational purposes only and does not constitute legal or financial advice. Consult qualified professionals before making investment decisions. Last updated: {{date}}."
+    }
+  }

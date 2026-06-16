@@ -64,7 +64,7 @@ const DeliveryTrackRecordView = ({ data, isDark, cardBg, cardBorder, bodyColor, 
             {/* Timeline Section */}
             <div className="relative">
                 {/* Vertical connecting line */}
-            <div className="absolute left-[11px] top-6 bottom-12 hidden w-[2px] bg-[#B68A35]/40 lg:block" />
+                <div className="absolute left-[11px] top-6 bottom-12 hidden w-[2px] bg-[#B68A35]/40 lg:block" />
 
                 <div className="space-y-4 lg:space-y-3">
                     {data?.phases?.map((phase, i) => (
@@ -291,17 +291,17 @@ const RealityCheckView = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
             <div className="hidden md:flex rounded-2xl p-2 sm:p-6 mb-6 gap-3"
                 style={{ background: isDark ? 'rgba(182,138,53,0.06)' : 'rgba(182,138,53,0.06)', border: `1px solid ${cardBorder}` }}>
                 <AccentIconColumn>
-                        <HiOutlineLightBulb className="text-[#B68A35] text-xl" />
+                    <HiOutlineLightBulb className="text-[#B68A35] text-xl" />
                 </AccentIconColumn>
                 <div>
-                <div className="flex gap-3 mb-4 items-center">
-                    <h4 className="font-bold text-[#B68A35] text-[10px] uppercase tracking-wider">Key observations</h4>
-                </div>
-                {data?.keyObservations?.map((obs, idx) => (
-                    <p key={idx} className="text-[13px] md:text-sm leading-relaxed mb-4" style={{ color: bodyColor }}>
-                        {obs}
-                    </p>
-                ))}
+                    <div className="flex gap-3 mb-4 items-center">
+                        <h4 className="font-bold text-[#B68A35] text-[10px] uppercase tracking-wider">Key observations</h4>
+                    </div>
+                    {data?.keyObservations?.map((obs, idx) => (
+                        <p key={idx} className="text-[13px] md:text-sm leading-relaxed mb-4" style={{ color: bodyColor }}>
+                            {obs}
+                        </p>
+                    ))}
                 </div>
             </div>
 
@@ -439,8 +439,8 @@ const StrengthsConsiderationsSection = ({ data, isDark, cardBg, cardBorder, body
                     <button
                         onClick={() => setMobileTab("strengths")}
                         className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors ${mobileTab === "strengths"
-                                ? "text-[#27AE60] border-b-2 border-[#27AE60]"
-                                : "text-gray-400 hover:text-gray-500"
+                            ? "text-[#27AE60] border-b-2 border-[#27AE60]"
+                            : "text-gray-400 hover:text-gray-500"
                             }`}
                         style={mobileTab === "strengths" && isDark ? { background: 'rgba(39,174,96,0.1)' } : { background: cardBg }}
                     >
@@ -449,8 +449,8 @@ const StrengthsConsiderationsSection = ({ data, isDark, cardBg, cardBorder, body
                     <button
                         onClick={() => setMobileTab("considerations")}
                         className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-wider transition-colors ${mobileTab === "considerations"
-                                ? "text-[#E67E22] border-b-2 border-[#E67E22]"
-                                : "text-gray-400 hover:text-gray-500"
+                            ? "text-[#E67E22] border-b-2 border-[#E67E22]"
+                            : "text-gray-400 hover:text-gray-500"
                             }`}
                         style={mobileTab === "considerations" && isDark ? { background: 'rgba(230,126,34,0.1)' } : { background: cardBg }}
                     >

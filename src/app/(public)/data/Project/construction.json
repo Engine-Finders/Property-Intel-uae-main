@@ -1,0 +1,91 @@
+{
+      "badge": "Construction & Timeline",
+      "title": "Construction Progress & Handover Outlook",
+      "subtitle": "Serro at The Heights",
+      "intro": "Comprehensive analysis of construction timelines, progress updates, and what to expect.",
+      "progress_title": "Estimated Construction Progress (Feb 2026)",
+      "progress_items": [
+        { "label": "Site Preparation", "percent": 15 },
+        { "label": "Foundation Works", "percent": 5 },
+        { "label": "Infrastructure", "percent": 3 },
+        { "label": "Vertical Construction", "percent": 0 },
+        { "label": "Amenities & Landscaping", "percent": 0 }
+      ],
+      "progress_note": "Progress percentages reflect market estimates based on site intelligence as of February 2026.",
+      "progress_mobile_note": "Estimates based on market intelligence. Verify via Dubai REST app.",
+      "desktop_panels": [
+        { "id": "milestones", "title": "Project Key Milestones", "subtitle": "Detailed timeline of project milestones from launch to handover." },
+        { "id": "intel", "title": "On-Ground Intelligence (February 2026)", "subtitle": "Broker insights and market intelligence from site visits and industry sources." },
+        { "id": "photos", "title": "Construction Photos & Site Updates", "subtitle": "Latest on-ground photos and updates from the construction site." }
+      ],
+      "timeline_table": {
+        "headers": ["Timeline Component", "Serro", "Serro 2"],
+        "rows": [
+          ["Launch Date", "Q1 2026", "Q1 2026"],
+          ["Official Handover", "Q1 2030", "Q2 2030"],
+          ["Construction Duration", "~48 months", "~50 months"],
+          ["Current Status (Feb 2026)", "Booking open; site preparation underway", "Booking open; site preparation underway"]
+        ],
+        "source": "Official Emaar project documentation; broker portals"
+      },
+      "duration_analysis": {
+        "title": "Construction Duration Analysis",
+        "intro": "The 48–50 month construction timeline for Serro warrants close examination. This duration is significantly longer than Emaar's typical villa project delivery, which averages 30–36 months from launch to handover.",
+        "factors": [
+          {
+            "label": "Master Infrastructure Integration",
+            "detail": "Serro sits within The Heights' 81 million sq.ft masterplan, which requires concurrent development of roads, utilities, wellness facilities, and landscaping before residential handovers can commence."
+          },
+          {
+            "label": "Phased Community Development",
+            "detail": "The broader Dubai South ecosystem—including schools, retail, and public amenities—is being developed in phases, directly impacting Serro's construction and handover timeline."
+          },
+          {
+            "label": "Scale of Amenities",
+            "detail": "The wellness lake, 38km of cycling tracks, and country club facilities require extended construction periods that precede villa handovers."
+          }
+        ]
+      },
+      "milestones": [
+        { "year": "2026", "quarter": "Q1", "label": "Launch & bookings open", "detail": "Booking open for both Serro and Serro 2. Site preparation and foundation piling underway. Infrastructure corridors and utility connections are the initial focus.", "status": "active" },
+        { "year": "2026", "quarter": "Ongoing", "label": "Site preparation & earthworks", "detail": "Earthworks, utility trenching, and road base preparation underway. Central wellness amenities being prioritised to ensure they are operational near first handovers.", "status": "active" },
+        { "year": "2027", "quarter": "2029", "label": "Vertical construction & amenities", "detail": "Villa vertical construction begins in earnest. Schools, retail nodes, and wellness lake scheduled for progressive completion. 38km cycling and jogging network connected across Serro clusters.", "status": "upcoming" },
+        { "year": "2030", "quarter": "Q1", "label": "Serro — official handover", "detail": "Planned handover for Serro (Cluster 1). Snagging inspections and possession transfers begin. 383 units delivered across the handover window.", "status": "upcoming" },
+        { "year": "2030", "quarter": "Q2", "label": "Serro 2 — official handover", "detail": "Planned handover for Serro 2 (Cluster 2), approximately one quarter after Cluster 1. Community fully delivered.", "status": "upcoming" }
+      ],
+      "on_ground": {
+        "title": "On-Ground Intelligence (February 2026)",
+        "quote": "Brokers familiar with the site report that early construction works have commenced, with site preparation and foundation piling underway as of February 2026. The initial focus is on infrastructure corridors and utility connections before vertical construction begins in earnest. Market sources indicate that Emaar is prioritizing the central wellness amenities to ensure they are operational near first handovers.",
+        "verification": "Information based on site visits and market sources. Construction progress should be independently verified via the Dubai REST app, which provides official milestone updates from RERA-registered projects."
+      },
+      "photo_placeholders": [
+        {
+          "id": 1,
+          "label": "Aerial",
+          "title": "Aerial view of Serro construction plots showing initial site clearance and earthworks, with The Heights master community boundaries visible in the distance.",
+          "caption": "Aerial view of Serro construction plots showing initial site clearance and earthworks, with The Heights master community boundaries visible in the distance. Emirates Road (E611) runs along the eastern edge, providing connectivity to Dubai South and Expo City."
+        },
+        {
+          "id": 2,
+          "label": "Ground Level",
+          "title": "Foundation piling underway for Serro's 3-bedroom villa clusters. The Mediterranean-inspired architecture is not yet visible at this early stage.",
+          "caption": "Foundation piling underway for Serro's 3-bedroom villa clusters. The Mediterranean-inspired architectural language is not yet visible at this early stage, but plot layouts follow the masterplan's wellness-oriented grid."
+        },
+        {
+          "id": 3,
+          "label": "Infrastructure",
+          "title": "Infrastructure corridor development showing utility trenching and road base preparation.",
+          "caption": "Infrastructure corridor development showing utility trenching and road base preparation. These works are essential for the 38km cycling and jogging network that will eventually connect all Serro clusters."
+        },
+        {
+          "id": 4,
+          "label": "Future Amenity",
+          "title": "View towards the future Wellness Lake location, currently a cleared basin awaiting excavation and waterproofing.",
+          "caption": "View towards the future Wellness Lake location, currently a cleared basin awaiting excavation and waterproofing. This central amenity is scheduled for completion ahead of first villa handovers."
+        }
+      ],
+      "section_cta": {
+        "heading": "Track Serro Progress",
+        "subtext": "Get site updates, photos, and milestone reports."
+      }
+    }

@@ -315,10 +315,10 @@ function ServiceChargesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtex
                 <Clock className="w-5 h-5 text-[#B68A35]" />
               </AccentIconColumn>
               <div>
-              <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Historical context:</p>
-              <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
-                {data?.historicalContext?.context || ""}
-              </p>
+                <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Historical context:</p>
+                <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
+                  {data?.historicalContext?.context || ""}
+                </p>
               </div>
             </div>
             <div className="flex gap-3 rounded-xl p-4"
@@ -327,10 +327,10 @@ function ServiceChargesTab({ data, isDark, cardBg, cardBorder, bodyColor, subtex
                 <Lightbulb className="w-5 h-5 text-[#B68A35]" />
               </AccentIconColumn>
               <div>
-              <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Buyer guidance:</p>
-              <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
-                {data?.historicalContext?.guidance || ""}
-              </p>
+                <p className="text-sm font-semibold mb-2" style={{ color: isDark ? t.text : '#1A1A1A' }}>Buyer guidance:</p>
+                <p className="text-[13px] md:leading-relaxed" style={{ color: bodyColor }}>
+                  {data?.historicalContext?.guidance || ""}
+                </p>
               </div>
             </div>
           </div>
