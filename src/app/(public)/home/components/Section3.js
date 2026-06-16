@@ -29,6 +29,39 @@ import { LuInfo } from 'react-icons/lu';
 import ExpertSection from './ExpertSection';
 import { useThemeStyles, GOLD_BORDER, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
+const GOLD = "#B68A35";
+
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+  if (title) {
+    return (
+      <div className="min-w-0">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="shrink-0 text-[#B68A35]">{icon}</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+        </div>
+        <div className="flex gap-3 items-stretch">
+          <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+          <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex min-w-0 gap-3 items-stretch">
+      <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+        <span className="text-[#B68A35]">{icon}</span>
+        <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+      </div>
+      <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 function Section3({ data }) {
   const { t, isDark, dark, section } = useThemeStyles();
   const [activeIndex, setActiveIndex] = useState(null);
@@ -62,13 +95,52 @@ function Section3({ data }) {
     });
   });
 
+  const headerDescription = data.header?.description || "Browse all current and past projects by Emaar Properties, from iconic towers to master communities. Data verified against DLD and RERA records.";
+
   return (
     <section className={`w-full font-sans antialiased transition-colors duration-300 ${isDark ? "" : "bg-[#FCFBFA]"}`} style={section}>
-      {/* Header Section */}
-      <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+      {/* Mobile header */}
+      <div className="md:hidden mb-0">
+        <div className="relative min-h-[285px] overflow-hidden">
+          <Image
+            src="/projects/cm-projects.webp"
+            alt={data.heroAlt || "Dubai Skyline"}
+            fill
+            className="object-cover object-center grayscale-[10%]"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isDark
+                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+            }}
+          />
+          <div className="relative z-10 max-w-full px-2 py-8 text-left">
+            <h2
+              className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+              style={{ color: isDark ? t.text : "#1A1A1A" }}
+            >
+              {data.header?.title?.line1 || "Complete Emaar Project:"}
+              <span className="block text-[#B68A35]">{data.header?.title?.line2 || "Database (2026)"}</span>
+            </h2>
+            <p
+              className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+              style={{ color: isDark ? t.textSecondary : "#4b5563" }}
+            >
+              {headerDescription}
+            </p>
+            <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop header */}
+      <div className="hidden md:flex relative w-full h-[400px] items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={data.heroImage || "/Home/Section3bg.webp"}
+            src="/projects/cm-projects.webp"
             alt={data.heroAlt || "Dubai Skyline"}
             fill
             className="object-cover object-center grayscale-[10%]"
@@ -92,10 +164,10 @@ function Section3({ data }) {
             {data.header?.title?.line2 || "Database (2026)"}
           </h3>
           <p
-            className={`max-w-xl text-sm lg:text-base leading-relaxed font-medium ${isDark ? "" : "text-gray-600"}`}
+            className={`max-w-xl text-sm lg:text-base leading-[17px] font-medium ${isDark ? "" : "text-gray-600"}`}
             style={isDark ? dark.textSecondary : undefined}
           >
-            {data.header?.description || "Browse all current and past projects by Emaar Properties, from iconic towers to master communities. Data verified against DLD and RERA records."}
+            {headerDescription}
           </p>
         </div>
       </div>
@@ -103,7 +175,7 @@ function Section3({ data }) {
       <div className="max-w-350 mx-auto px-2 sm:px-6 -mt-12 relative z-10 pb-16">
         {/* Filter Bar */}
         <div
-          className={`rounded-2xl border shadow-[0_4px_25px_rgba(0,0,0,0.06)] p-3 mt-5 transition-colors duration-300 ${isDark ? "" : "bg-white border-[#F2EEE8]"}`}
+          className={`rounded-xl lg:rounded-2xl border shadow-[0_4px_25px_rgba(0,0,0,0.06)] p-3 mt-5 transition-colors duration-300 ${isDark ? "" : "bg-white border-[#F2EEE8]"}`}
           style={isDark ? dark.card : undefined}
         >
           <div className="flex flex-col lg:flex-row lg:items-center gap-3">
@@ -133,7 +205,7 @@ function Section3({ data }) {
 
         {/* Tabs Container */}
         <div
-          className={`rounded-2xl mt-5 border shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden transition-colors duration-300 ${isDark ? "" : "border-[#F2EEE8] bg-white"}`}
+          className={`rounded-xl lg:rounded-2xl mt-5 border shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden transition-colors duration-300 ${isDark ? "" : "border-[#F2EEE8] bg-white"}`}
           style={isDark ? dark.card : undefined}
         >
           <div
@@ -148,7 +220,7 @@ function Section3({ data }) {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex-1 px-4 py-4 font-semibold text-center transition-colors ${isDark
+                  className={`relative flex-1 px-2 py-4 lg:px-4 font-semibold text-center transition-colors text-[10px] leading-normal whitespace-nowrap lg:text-base lg:leading-normal ${isDark
                       ? `${isFirst ? "rounded-tl-2xl" : ""} ${isLast ? "rounded-tr-2xl" : ""} ${isActive ? "z-10" : ""}`
                       : isActive
                         ? "text-[#B68A35] border-b-2 border-[#B68A35] bg-white"
@@ -196,7 +268,7 @@ function Section3({ data }) {
                       style={isDark ? (isOpen ? dark.surfaceAlt : dark.panel) : undefined}
                     >
                       <div
-                        className={`w-12 h-12 sm:w-12 sm:h-12 rounded-xl flex justify-center items-center border shrink-0 ${isDark ? "" : "bg-white border-[#EFE8DC]"}`}
+                        className={`w-12 h-12 sm:w-12 sm:h-12 rounded lg:rounded-xl flex justify-center items-center border shrink-0 ${isDark ? "" : "bg-white border-[#EFE8DC]"}`}
                         style={isDark ? dark.iconCircle : undefined}
                       >
                         <Icon className="text-[#B68A35] w-6 h-6 sm:w-7 sm:h-7" />
@@ -211,7 +283,7 @@ function Section3({ data }) {
                             {item.name}
                           </h3>
                           <p
-                            className={`text-sm truncate ${isDark ? "" : "text-slate-500"}`}
+                            className={`text-[13px] leading-normal lg:text-sm truncate ${isDark ? "" : "text-slate-500"}`}
                             style={isDark ? dark.textMuted : undefined}
                           >
                             {item.subtitle}
@@ -240,10 +312,10 @@ function Section3({ data }) {
                         style={isDark ? dark.surfaceAlt : undefined}
                       >
                         <div
-                          className={`border overflow-hidden shadow-sm rounded-xl ${isDark ? "" : "bg-white border-[#EFE8DC]"}`}
+                          className={`border overflow-hidden shadow-sm rounded lg:rounded-xl ${isDark ? "" : "bg-white border-[#EFE8DC]"}`}
                           style={isDark ? dark.panelInner : undefined}
                         >
-                          <div className="max-h-96 overflow-y-auto custom-scroll">
+                          <div className={`custom-scroll ${projects.length > 3 ? "max-lg:max-h-[13.5rem] max-lg:overflow-y-auto" : ""} lg:max-h-96 lg:overflow-y-auto`}>
                             {projects.map((row, rowIndex) => (
                               <div
                                 key={`${row.name}-${rowIndex}`}
@@ -254,13 +326,13 @@ function Section3({ data }) {
                                   <div className={`w-2 h-2 rounded-full ${row.handover === 'N/A' ? 'bg-[#B68A35]/40' : 'bg-[#B68A35]'}`} />
                                   <div className="min-w-0">
                                     <h4
-                                      className={`font-semibold text-sm sm:text-[15px] truncate ${isDark ? "" : "text-slate-800"}`}
+                                      className={`font-semibold text-[13px] leading-normal lg:text-sm sm:text-[15px] truncate ${isDark ? "" : "text-slate-800"}`}
                                       style={isDark ? dark.text : undefined}
                                     >
                                       {row.name}
                                     </h4>
                                     <p
-                                      className={`text-xs ${isDark ? "" : "text-slate-400"}`}
+                                      className={`text-[13px] leading-normal lg:text-xs ${isDark ? "" : "text-slate-400"}`}
                                       style={isDark ? dark.textMuted : undefined}
                                     >
                                       {row.type}
@@ -268,7 +340,7 @@ function Section3({ data }) {
                                   </div>
                                 </div>
                                 <div
-                                  className={`font-medium text-sm shrink-0 ${row.handover === 'N/A' ? (isDark ? "" : "text-slate-400") : "text-[#B68A35]"}`}
+                                  className={`font-medium text-[13px] leading-normal lg:text-sm shrink-0 ${row.handover === 'N/A' ? (isDark ? "" : "text-slate-400") : "text-[#B68A35]"}`}
                                   style={isDark && row.handover === 'N/A' ? dark.textMuted : undefined}
                                 >
                                   {row.handover}
@@ -280,7 +352,7 @@ function Section3({ data }) {
 
                         <button
                           type="button"
-                          className={`relative border border-[#B68A35] w-full h-12 mt-4 flex items-center justify-center rounded-xl hover:bg-[#B68A35]/5 transition-colors ${isDark ? "" : ""}`}
+                          className={`relative border border-[#B68A35] w-full h-12 mt-4 flex items-center justify-center rounded lg:rounded-xl hover:bg-[#B68A35]/5 transition-colors ${isDark ? "" : ""}`}
                           style={isDark ? { borderColor: GOLD_BORDER, background: "rgba(182,138,53,0.08)" } : undefined}
                         >
                           <p className="text-[#B68A35] text-sm sm:text-base font-semibold text-center px-10">
@@ -327,31 +399,31 @@ function Section3({ data }) {
                       style={isDark ? { borderColor: dark.dividerColor } : undefined}
                     >
                       <td
-                        className={`px-4 py-3 text-sm font-medium ${isDark ? "" : "text-slate-800"}`}
+                        className={`px-4 py-3 text-[13px] leading-normal lg:text-sm font-medium ${isDark ? "" : "text-slate-800"}`}
                         style={isDark ? dark.text : undefined}
                       >
                         {project.name}
                       </td>
                       <td
-                        className={`px-4 py-3 text-sm hidden sm:table-cell ${isDark ? "" : "text-slate-600"}`}
+                        className={`px-4 py-3 text-[13px] leading-normal lg:text-sm hidden sm:table-cell ${isDark ? "" : "text-slate-600"}`}
                         style={isDark ? dark.textSecondary : undefined}
                       >
                         {project.type}
                       </td>
                       <td
-                        className={`px-4 py-3 text-sm font-medium ${project.handover === 'N/A' ? (isDark ? "" : "text-slate-400") : "text-[#B68A35]"}`}
+                        className={`px-4 py-3 text-[13px] leading-normal lg:text-sm font-medium ${project.handover === 'N/A' ? (isDark ? "" : "text-slate-400") : "text-[#B68A35]"}`}
                         style={isDark && project.handover === 'N/A' ? dark.textMuted : undefined}
                       >
                         {project.handover}
                       </td>
                       <td
-                        className={`px-4 py-3 text-sm font-medium hidden lg:table-cell ${isDark ? "" : "text-slate-800"}`}
+                        className={`px-4 py-3 text-[13px] leading-normal lg:text-sm font-medium hidden lg:table-cell ${isDark ? "" : "text-slate-800"}`}
                         style={isDark ? dark.text : undefined}
                       >
                         {project.locationName}
                       </td>
                       <td
-                        className={`px-4 py-3 text-sm hidden lg:table-cell ${isDark ? "" : "text-slate-600"}`}
+                        className={`px-4 py-3 text-[13px] leading-normal lg:text-sm hidden lg:table-cell ${isDark ? "" : "text-slate-600"}`}
                         style={isDark ? dark.textSecondary : undefined}
                       >
                         {project.locationSubtitle}
@@ -366,7 +438,7 @@ function Section3({ data }) {
 
         {/* Legacy Cards */}
         <div
-          className={`mt-5 rounded-2xl flex flex-col lg:flex-row items-start border shadow-[0_4px_25px_rgba(0,0,0,0.06)] p-4 sm:p-5 gap-4 transition-colors duration-300 ${isDark ? "" : "border-[#F2EEE8] bg-white"}`}
+          className={`mt-5 rounded-xl lg:rounded-2xl flex flex-col lg:flex-row items-start border shadow-[0_4px_25px_rgba(0,0,0,0.06)] p-4 sm:p-5 gap-4 transition-colors duration-300 ${isDark ? "" : "border-[#F2EEE8] bg-white"}`}
           style={isDark ? dark.card : undefined}
         >
           <LegacyCard
@@ -397,16 +469,27 @@ function Section3({ data }) {
         <ExpertSection />
 
         <div
-          className={`mt-6 border rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start transition-colors duration-300 ${isDark ? "" : "bg-[#FBF9F6] border-[#F3EFE9]"}`}
+          className={`mt-6 border rounded lg:rounded-lg p-4 sm:p-5 transition-colors duration-300 ${isDark ? "" : "bg-[#FBF9F6] border-[#F3EFE9]"}`}
           style={isDark ? dark.verifyBanner : undefined}
         >
-          <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-          <p
-            className={`text-xs lg:text-sm leading-relaxed ${isDark ? "" : "text-gray-600"}`}
-            style={isDark ? dark.textSecondary : undefined}
-          >
-            {data.footerDisclaimer || "Project status, prices, and performance data are verified against DLD and RERA records as of 21 February 2026. Capital appreciation calculated from launch price to current market value."}
-          </p>
+          <div className="lg:hidden">
+            <MobileNoteBox
+              icon={<LuInfo className="text-2xl" />}
+              textClassName={isDark ? "" : "text-gray-600"}
+              textStyle={isDark ? dark.textSecondary : undefined}
+            >
+              {data.footerDisclaimer || "Project status, prices, and performance data are verified against DLD and RERA records as of 21 February 2026. Capital appreciation calculated from launch price to current market value."}
+            </MobileNoteBox>
+          </div>
+          <div className="hidden lg:flex gap-3 sm:gap-4 items-start">
+            <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
+            <p
+              className={`text-sm leading-relaxed ${isDark ? "" : "text-gray-600"}`}
+              style={isDark ? dark.textSecondary : undefined}
+            >
+              {data.footerDisclaimer || "Project status, prices, and performance data are verified against DLD and RERA records as of 21 February 2026. Capital appreciation calculated from launch price to current market value."}
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -443,7 +526,7 @@ function LegacyCard({ index, activeIndex, setActiveIndex, icon: Icon, title, sub
 
   return (
     <div
-      className={`rounded-xl overflow-hidden border shadow-sm w-full lg:w-1/2 transition-colors duration-300 ${isDark ? "" : "bg-[#FAF9F6] border-[#F2EEE8]"}`}
+      className={`rounded lg:rounded-xl overflow-hidden border shadow-sm w-full lg:w-1/2 transition-colors duration-300 ${isDark ? "" : "bg-[#FAF9F6] border-[#F2EEE8]"}`}
       style={isDark ? { ...dark.surfaceAlt, borderColor: dark.cardBorder } : undefined}
     >
       <button
@@ -466,7 +549,7 @@ function LegacyCard({ index, activeIndex, setActiveIndex, icon: Icon, title, sub
               {title}
             </h3>
             <p
-              className={`text-sm truncate ${isDark ? "" : "text-slate-500"}`}
+              className={`text-[13px] leading-normal lg:text-sm truncate ${isDark ? "" : "text-slate-500"}`}
               style={isDark ? dark.textMuted : undefined}
             >
               {subtitle}
@@ -487,10 +570,10 @@ function LegacyCard({ index, activeIndex, setActiveIndex, icon: Icon, title, sub
           style={isDark ? dark.surfaceAlt : undefined}
         >
           <div
-            className={`border rounded-xl shadow-sm overflow-hidden ${isDark ? "" : "bg-white border-[#EFE8DC]"}`}
+            className={`border rounded lg:rounded-xl shadow-sm overflow-hidden ${isDark ? "" : "bg-white border-[#EFE8DC]"}`}
             style={isDark ? dark.panelInner : undefined}
           >
-            <div className="max-h-96 overflow-y-auto custom-scroll">
+            <div className={`custom-scroll ${items.length > 3 ? "max-lg:max-h-[13.5rem] max-lg:overflow-y-auto" : ""} lg:max-h-96 lg:overflow-y-auto`}>
               {items.map((item, itemIdx) => (
                 <div
                   key={`${item.name}-${itemIdx}`}
@@ -500,13 +583,13 @@ function LegacyCard({ index, activeIndex, setActiveIndex, icon: Icon, title, sub
                   <div className="w-2 h-2 mt-2 bg-[#B68A35] rounded-full shrink-0" />
                   <div>
                     <h4
-                      className={`font-semibold text-sm sm:text-base ${isDark ? "" : "text-slate-800"}`}
+                      className={`font-semibold text-[13px] leading-normal lg:text-sm sm:text-base ${isDark ? "" : "text-slate-800"}`}
                       style={isDark ? dark.text : undefined}
                     >
                       {item.name}
                     </h4>
                     <p
-                      className={`text-xs sm:text-sm ${isDark ? "" : "text-slate-600"}`}
+                      className={`text-[13px] leading-normal lg:text-sm ${isDark ? "" : "text-slate-600"}`}
                       style={isDark ? dark.textSecondary : undefined}
                     >
                       {item.desc}

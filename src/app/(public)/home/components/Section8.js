@@ -59,6 +59,37 @@ import { useThemeStyles } from '@/app/components/context/themeStyles';
 const GOLD = "#B68A35";
 const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+  if (title) {
+    return (
+      <div className="min-w-0">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="shrink-0 text-[#B68A35]">{icon}</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+        </div>
+        <div className="flex gap-3 items-stretch">
+          <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+          <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex min-w-0 gap-3 items-stretch">
+      <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+        <span className="text-[#B68A35]">{icon}</span>
+        <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+      </div>
+      <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 const GoldDivider = ({ isDark }) => (
@@ -405,22 +436,26 @@ const SourcesAccordion = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
     <div className="flex flex-col gap-2">
       {/* Analyst Commentary accordion */}
       {analystCommentary && (
-        <div className={`rounded-xl overflow-hidden transition-colors duration-300`} style={{ border: `1px solid ${cardBorder}` }}>
+        <div className={`rounded lg:rounded-xl overflow-hidden transition-colors duration-300`} style={{ border: `1px solid ${cardBorder}` }}>
           <button
             onClick={() => setAnalyticOpen(!analyticOpen)}
-            className={`w-full flex items-center justify-between p-4 text-left transition-colors ${isDark ? 'hover:bg-slate-800/40' : 'hover:bg-[#FAF6EE]'}`}
+            className={`w-full flex items-center justify-between p-4 text-left transition-colors ${isDark ? "hover:bg-slate-800/40" : "hover:bg-[#FAF6EE]"}`}
             style={{ background: cardBg }}
           >
-            <div className="flex items-center gap-3">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center`} style={!isDark ? { background: '#FAF6EE' } : { background: 'rgba(182,138,53,0.12)' }}>
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="lg:hidden flex items-stretch gap-3 shrink-0">
+                <span className="w-px self-stretch" style={{ background: GOLD }} aria-hidden />
                 <BsBarChartLine className="text-[#B68A35] w-4 h-4" />
               </div>
-              <span className={`text-[13px] font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{analystCommentary.title}</span>
+              <div className="hidden lg:flex w-8 h-8 rounded-lg items-center justify-center shrink-0" style={!isDark ? { background: "#FAF6EE" } : { background: "rgba(182,138,53,0.12)" }}>
+                <BsBarChartLine className="text-[#B68A35] w-4 h-4" />
+              </div>
+              <span className="text-[12px] leading-normal lg:text-[13px] font-semibold" style={isDark ? { color: t.text } : { color: "#1A1A1A" }}>{analystCommentary.title}</span>
             </div>
-            {analyticOpen ? <BsChevronUp className="w-4 h-4" style={{ color: subtextColor }} /> : <BsChevronDown className="w-4 h-4" style={{ color: subtextColor }} />}
+            {analyticOpen ? <BsChevronUp className="w-4 h-4 shrink-0" style={{ color: subtextColor }} /> : <BsChevronDown className="w-4 h-4 shrink-0" style={{ color: subtextColor }} />}
           </button>
           {analyticOpen && (
-            <div className={`px-4 pb-4 border-t text-[12px] leading-relaxed`} style={{ borderTopColor: cardBorder, background: cardBg }}>
+            <div className="px-4 pb-4 border-t text-[13px] leading-normal lg:text-[12px] lg:leading-relaxed" style={{ borderTopColor: cardBorder, background: cardBg }}>
               <div className={`mt-3 p-3 rounded-lg`} style={isDark ? { background: 'rgba(255,255,255,0.04)' } : { background: 'white' }}>
                 <p className="leading-relaxed" style={{ color: bodyColor }}>
                   {analystCommentary.content}
@@ -433,29 +468,33 @@ const SourcesAccordion = ({ data, isDark, cardBg, cardBorder, bodyColor, subtext
       )}
 
       {/* Sources accordion */}
-      <div className={`rounded-xl overflow-hidden transition-colors duration-300`} style={{ border: `1px solid ${cardBorder}` }}>
+      <div className={`rounded lg:rounded-xl overflow-hidden transition-colors duration-300`} style={{ border: `1px solid ${cardBorder}` }}>
         <button
           onClick={() => setOpen(!open)}
-          className={`w-full flex items-center justify-between p-4 text-left transition-colors ${isDark ? 'hover:bg-slate-800/40' : 'hover:bg-[#FAF6EE]'}`}
+          className={`w-full flex items-center justify-between p-4 text-left transition-colors ${isDark ? "hover:bg-slate-800/40" : "hover:bg-[#FAF6EE]"}`}
           style={{ background: cardBg }}
         >
-          <div className="flex items-center gap-3">
-            <div className={`w-8 h-8 rounded-lg flex items-center justify-center`} style={!isDark ? { background: '#FAF6EE' } : { background: 'rgba(182,138,53,0.12)' }}>
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="lg:hidden flex items-stretch gap-3 shrink-0">
+              <span className="w-px self-stretch" style={{ background: GOLD }} aria-hidden />
               <BsBoxSeam className="text-[#B68A35] w-4 h-4" />
             </div>
-            <span className={`text-[13px] font-semibold`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data?.sourcesTitle || "Sources & Verification"}</span>
-            <span className={`text-[11px] px-2 py-0.5 rounded-full`} style={!isDark ? { background: '#FAF6EE', color: '#6B7280' } : { background: 'rgba(182,138,53,0.12)', color: subtextColor }}>
+            <div className="hidden lg:flex w-8 h-8 rounded-lg items-center justify-center shrink-0" style={!isDark ? { background: "#FAF6EE" } : { background: "rgba(182,138,53,0.12)" }}>
+              <BsBoxSeam className="text-[#B68A35] w-4 h-4" />
+            </div>
+            <span className="text-[12px] leading-normal lg:text-[13px] font-semibold" style={isDark ? { color: t.text } : { color: "#1A1A1A" }}>{data?.sourcesTitle || "Sources & Verification"}</span>
+            <span className="hidden sm:inline text-[11px] px-2 py-0.5 rounded-full shrink-0" style={!isDark ? { background: "#FAF6EE", color: "#6B7280" } : { background: "rgba(182,138,53,0.12)", color: subtextColor }}>
               {sourceData.length} Financial & Regulatory Sources
             </span>
           </div>
-          {open ? <BsChevronUp className="w-4 h-4" style={{ color: subtextColor }} /> : <BsChevronDown className="w-4 h-4" style={{ color: subtextColor }} />}
+          {open ? <BsChevronUp className="w-4 h-4 shrink-0" style={{ color: subtextColor }} /> : <BsChevronDown className="w-4 h-4 shrink-0" style={{ color: subtextColor }} />}
         </button>
         {open && (
           <div style={{ borderTop: `1px solid ${cardBorder}`, background: cardBg }}>
             {sourceData.map((s, i) => (
               <div
                 key={i}
-                className={`flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 px-4 py-3 border-b text-[11px] last:border-b-0`}
+                className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-4 px-4 py-3 border-b text-[12px] leading-normal lg:text-[11px] last:border-b-0"
                 style={{ borderBottom: `1px solid ${cardBorder}` }}
               >
                 <div className="sm:w-[22%] shrink-0">
@@ -519,13 +558,52 @@ const Section8 = ({ data }) => {
 
   const statTiles = data.statTiles || [];
 
+  const headerDescription = data.header?.description || "Analysis of Emaar Properties' financial strength, market share, and development pipeline based on audited financial reports and DLD data.";
+
   return (
     <section className={`w-full font-sans antialiased transition-colors duration-300`} style={{ background: sectionBg }}>
-      {/* Header Section */}
-      <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+      {/* Mobile header */}
+      <div className="md:hidden">
+        <div className="relative min-h-[285px] overflow-hidden">
+          <Image
+            src="/projects/cm-projects.webp"
+            alt={data.heroAlt || "Dubai Skyline"}
+            fill
+            className="object-cover object-center grayscale-[10%]"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isDark
+                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+            }}
+          />
+          <div className="relative z-10 max-w-full px-2 py-8 text-left">
+            <h2
+              className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+              style={{ color: isDark ? t.text : "#1A1A1A" }}
+            >
+              {data.header?.title?.line1 || "Emaar Financial Health & Market"}
+              <span className="block text-[#B68A35]">{data.header?.title?.line2 || "Position - Investor Analysis"}</span>
+            </h2>
+            <p
+              className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+              style={{ color: isDark ? t.textSecondary : bodyColor }}
+            >
+              {headerDescription}
+            </p>
+            <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop header */}
+      <div className="hidden md:flex relative w-full h-[320px] lg:h-[400px] items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src={data.heroImage || "/Home/Section3bg.webp"}
+            src="/projects/cm-projects.webp"
             alt={data.heroAlt || "Dubai Skyline"}
             fill
             className="object-cover object-center grayscale-[10%]"
@@ -542,59 +620,75 @@ const Section8 = ({ data }) => {
           <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
             {data.header?.title?.line2 || "Position - Investor Analysis"}
           </h3>
-          <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
-            {data.header?.description || "Analysis of Emaar Properties' financial strength, market share, and development pipeline based on audited financial reports and DLD data."}
+          <p className="max-w-xl text-sm lg:text-base leading-[17px] font-medium" style={{ color: bodyColor }}>
+            {headerDescription}
           </p>
         </div>
       </div>
 
       <div className="max-w-[1400px] mx-auto px-2 sm:px-6 pb-16">
-        {/* ── Stat Tiles ── */}
-        <div className={`relative z-20 grid grid-cols-1 sm:grid-cols-3 gap-0 rounded-2xl overflow-hidden mb-5 -mt-20 sm:-mt-24 lg:-mt-18`} style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-          {statTiles.map((tile, i) => (
-            <div
-              key={i}
-              className={`flex items-center gap-4 p-4 sm:p-5 border-b sm:border-b-0 sm:border-r last:border-0`}
-              style={{ borderColor: cardBorder }}
-            >
-              <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0`} style={!isDark ? { background: '#FAF6EE' } : { background: 'rgba(182,138,53,0.12)' }}>
-                <span className="text-[#B68A35] text-xl lg:text-2xl">{getStatTileIcon(tile.iconName)}</span>
+        {/* ── Stat Tiles (ref: 3-column status bar) ── */}
+        <div
+          className="relative z-20 -mt-10 sm:-mt-16 lg:-mt-14 mb-5 rounded lg:rounded-2xl overflow-hidden"
+          style={{ border: `1px solid ${cardBorder}`, background: cardBg }}
+        >
+          <div className="grid grid-cols-3">
+            {statTiles.map((tile, i) => (
+              <div
+                key={i}
+                className={`flex flex-col items-center justify-center text-center px-2 py-5 sm:px-4 sm:py-6 gap-1.5 sm:gap-2 ${i < statTiles.length - 1 ? "border-r" : ""}`}
+                style={{ borderColor: cardBorder }}
+              >
+                <div className="text-[#B68A35] text-xl sm:text-2xl">
+                  {getStatTileIcon(tile.iconName)}
+                </div>
+                <p className="text-[10px] sm:text-[11px] font-medium leading-normal" style={{ color: subtextColor }}>
+                  {tile.label}
+                </p>
+                <p className="text-sm sm:text-lg font-serif font-semibold leading-tight px-1" style={isDark ? { color: t.text } : { color: "#1A1A1A" }}>
+                  {tile.value}
+                </p>
+                {tile.sub && (
+                  <p className="text-[9px] sm:text-[10px] leading-normal px-1 hidden sm:block" style={{ color: subtextColor }}>
+                    {tile.sub}
+                  </p>
+                )}
               </div>
-              <div>
-                <p className={`text-[10px] font-medium uppercase tracking-wider`} style={{ color: subtextColor }}>{tile.label}</p>
-                <p className={`text-base lg:text-xl font-serif font-semibold mt-0.5`} style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{tile.value}</p>
-                {tile.sub && <p className={`text-[10px] mt-0.5`} style={{ color: subtextColor }}>{tile.sub}</p>}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* ── Tabs ── */}
-        <div className={`rounded-2xl overflow-hidden`} style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-          {/* Tab headers */}
-          <div className={`flex`} style={{ borderBottom: `1px solid ${cardBorder}`, background: isDark ? cardBg : '#FAF9F6' }}>
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative flex-1 flex items-center justify-center gap-1.5 py-3.5 text-[11px] lg:text-[13px] font-medium transition-colors duration-200
-                  ${activeTab === tab.id && !isDark ? 'text-[#B68A35] bg-white font-semibold' : !isDark && activeTab !== tab.id ? 'text-slate-500 hover:text-slate-700 bg-[#FAF9F6]' : ''}
-                `}
-                style={
-                  isDark && activeTab === tab.id
-                    ? { color: GOLD, background: cardBg, fontWeight: 600 }
-                    : isDark && activeTab !== tab.id
-                      ? { color: subtextColor, background: 'transparent' }
-                      : undefined
-                }
-              >
-                <span className="text-base">{getTabIcon(tab.iconName)}</span>
-                <span className="hidden sm:inline">{tab.label}</span>
-                {activeTab === tab.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" />
-                )}
-              </button>
-            ))}
+        {/* ── Tabs (ref: icon + label, gold active underline) ── */}
+        <div className="rounded lg:rounded-2xl overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+          <div className="flex" style={{ borderBottom: `1px solid ${cardBorder}`, background: isDark ? cardBg : "#FFFFFF" }}>
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              const TabIcon = getTabIconComponent(tab.iconName);
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-3.5 sm:py-4 px-1 sm:px-2 transition-colors duration-200 min-w-0
+                    ${isActive && !isDark ? "text-[#B68A35] bg-white font-semibold" : !isDark && !isActive ? "text-slate-500 bg-[#FAF9F6]" : ""}
+                  `}
+                  style={
+                    isDark && isActive
+                      ? { color: GOLD, background: cardBg, fontWeight: 600 }
+                      : isDark && !isActive
+                        ? { color: subtextColor, background: "transparent" }
+                        : undefined
+                  }
+                >
+                  <TabIcon className={`w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0 ${isActive ? "text-[#B68A35]" : isDark ? "" : "text-slate-500"}`} style={isDark && !isActive ? { color: subtextColor } : undefined} />
+                  <span className={`text-[10px] sm:text-xs leading-tight text-center ${isActive ? "font-semibold" : "font-medium"}`}>
+                    {tab.label}
+                  </span>
+                  {isActive && (
+                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" aria-hidden />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
           {/* Tab content */}
@@ -614,19 +708,31 @@ const Section8 = ({ data }) => {
         <ExpertSection />
 
         {/* ── Disclaimer ── */}
-        <div className={`mt-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4`} style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(255,255,255,0.04)' : '#FAF8F4' }}>
-          <div className="flex items-start gap-3">
-            <BsShieldCheck className={`w-5 h-5 shrink-0 mt-0.5`} style={{ color: subtextColor }} />
-            <div>
-              <span className={`text-[11px] font-semibold`} style={{ color: subtextColor }}>{data.disclaimer?.title || "Disclaimer "}</span>
-              <span className={`text-[11px]`} style={{ color: subtextColor }}>
-                {data.disclaimer?.text || "All financial data sourced from publicly available reports and regulatory filings. Placeholder values indicate backend-populated data for real-time accuracy."}
-              </span>
+        <div className="mt-4 rounded lg:rounded-xl p-4" style={{ border: `1px solid ${cardBorder}`, background: isDark ? "rgba(255,255,255,0.04)" : "#FAF8F4" }}>
+          <div className="lg:hidden">
+            <MobileNoteBox icon={<BsShieldCheck className="w-5 h-5" />} textStyle={{ color: subtextColor }}>
+              <span className="font-semibold" style={isDark ? { color: t.text } : { color: "#1A1A1A" }}>{data.disclaimer?.title || "Disclaimer "}</span>
+              {" "}{data.disclaimer?.text || "All financial data sourced from publicly available reports and regulatory filings. Placeholder values indicate backend-populated data for real-time accuracy."}
+            </MobileNoteBox>
+            <div className="mt-3 flex items-center gap-2 text-[11px] leading-normal" style={{ color: subtextColor }}>
+              <BsCalendar3 className="w-3.5 h-3.5 shrink-0 text-[#B68A35]" />
+              <span>{data.disclaimer?.lastUpdated || "Last updated: 22 February 2026"}</span>
             </div>
           </div>
-          <div className={`flex items-center gap-2 shrink-0 text-[11px]`} style={{ color: subtextColor }}>
-            <BsCalendar3 className="w-3.5 h-3.5" />
-            <span>{data.disclaimer?.lastUpdated || "Last updated: 22 February 2026"}</span>
+          <div className="hidden lg:flex flex-row items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <BsShieldCheck className="w-5 h-5 shrink-0 mt-0.5" style={{ color: subtextColor }} />
+              <div>
+                <span className="text-[11px] font-semibold" style={{ color: subtextColor }}>{data.disclaimer?.title || "Disclaimer "}</span>
+                <span className="text-[11px]" style={{ color: subtextColor }}>
+                  {data.disclaimer?.text || "All financial data sourced from publicly available reports and regulatory filings. Placeholder values indicate backend-populated data for real-time accuracy."}
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 shrink-0 text-[11px]" style={{ color: subtextColor }}>
+              <BsCalendar3 className="w-3.5 h-3.5" />
+              <span>{data.disclaimer?.lastUpdated || "Last updated: 22 February 2026"}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -697,14 +803,16 @@ const getStatTileIcon = (iconName) => {
   return icons[iconName] || <CiBank className="text-[#B68A35] text-xl lg:text-2xl" />;
 };
 
-const getTabIcon = (iconName) => {
+const getTabIconComponent = (iconName) => {
   const icons = {
-    'TbChartBar': <TbChartBar />,
-    'BsBarChartLine': <BsBarChartLine />,
-    'TbRocket': <TbRocket />,
-    'BsShieldCheck': <BsShieldCheck />
+    TbChartBar: IoWalletOutline,
+    IoWalletOutline: IoWalletOutline,
+    BsBarChartLine: BsBarChartLine,
+    TbRocket: TbStack2,
+    TbStack2: TbStack2,
+    BsShieldCheck: BsShieldCheck,
   };
-  return icons[iconName] || <TbChartBar />;
+  return icons[iconName] || IoWalletOutline;
 };
 
 export default Section8;

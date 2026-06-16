@@ -28,6 +28,39 @@ import { TbBulb } from "react-icons/tb";
 import { BsShield } from "react-icons/bs";
 import { useThemeStyles, GOLD_BORDER, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
+const GOLD = "#B68A35";
+
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
+};
+
 export default function Section6({ data }) {
     const [activeTab, setActiveTab] = useState('structure');
     const { t, isDark, dark } = useThemeStyles();
@@ -50,13 +83,52 @@ export default function Section6({ data }) {
 
     const COMMUNITY_ASSESSMENTS = data.communityAssessments || [];
 
+    const headerDescription = data.header?.description || "We analyse how Emaar manages communities post-handover, service charge trends, and asset condition to assess long-term preservation.";
+
     return (
         <section style={{ background: sectionBg }} className="font-sans">
-            {/* Header Section */}
-            <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+            {/* Mobile header */}
+            <div className="md:hidden">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt={data.heroAlt || "Dubai Skyline"}
+                        fill
+                        className="object-cover object-center grayscale-[10%]"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1A1A1A" }}
+                        >
+                            {data.header?.title?.line1 || "Emaar Community Management:"}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "Long-Term Value Analysis"}</span>
+                        </h2>
+                        <p
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : bodyColor }}
+                        >
+                            {headerDescription}
+                        </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-[320px] lg:h-[400px] items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src={data.heroImage || "/Home/Section3bg.webp"}
+                        src="/projects/cm-projects.webp"
                         alt={data.heroAlt || "Dubai Skyline"}
                         fill
                         className="object-cover object-center grayscale-[10%]"
@@ -73,15 +145,15 @@ export default function Section6({ data }) {
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
                         {data.header?.title?.line2 || "Long-Term Value Analysis"}
                     </h3>
-                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
-                        {data.header?.description || "We analyse how Emaar manages communities post-handover, service charge trends, and asset condition to assess long-term preservation."}
+                    <p className="max-w-xl text-sm lg:text-base leading-[17px] font-medium" style={{ color: bodyColor }}>
+                        {headerDescription}
                     </p>
                 </div>
             </div>
 
             {/* Main Content Container */}
-            <div className="max-w-[1400px] mx-auto px-2 -mt-12 relative z-20 pb-20">
-                <div style={{ background: cardBg, border: `1px solid ${cardBorder}` }} className="rounded-xl shadow-sm overflow-hidden">
+            <div className="max-w-[1400px] mx-auto px-2 md:-mt-12 relative z-20 pb-20">
+                <div style={{ background: cardBg, border: `1px solid ${cardBorder}` }} className="rounded lg:rounded-xl shadow-sm overflow-hidden">
                     <div
                         className="flex flex-row items-stretch gap-1 lg:px-0"
                         style={isDark ? { ...dark.tabBar, borderBottom: `1px solid ${cardBorder}` } : { borderBottom: `1px solid ${cardBorder}` }}
@@ -119,18 +191,28 @@ export default function Section6({ data }) {
                 <ExpertSection />
 
                 {/* --- METADATA FOOTER --- */}
-                <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-2 sm:gap-6 p-2 sm:p-4 rounded-2xl" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#fdfaf8' }}>
-                    <div className="flex items-start gap-3 max-w-2xl">
-                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={isDark ? { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` } : { background: '#FBF9F6', border: '1px solid #F3EFE9' }}>
-                            <LuInfo className="text-[#B68A35] w-5 h-5" />
+                <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-2 sm:gap-6 p-2 sm:p-4 rounded lg:rounded-2xl" style={{ border: `1px solid ${cardBorder}`, background: isDark ? 'rgba(182,138,53,0.06)' : '#fdfaf8' }}>
+                    <div className="w-full md:flex-1">
+                        <div className="lg:hidden">
+                            <MobileNoteBox
+                                icon={<LuInfo className="w-5 h-5" />}
+                                textStyle={{ color: subtextColor }}
+                            >
+                                {data.footer?.disclaimer || "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback."}
+                            </MobileNoteBox>
                         </div>
-                        <p className="text-[10px] lg:text-[11px] leading-relaxed" style={{ color: subtextColor }}>
-                            {data.footer?.disclaimer || "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback."}
-                        </p>
+                        <div className="hidden lg:flex items-start gap-3 max-w-2xl">
+                            <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={isDark ? { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` } : { background: '#FBF9F6', border: '1px solid #F3EFE9' }}>
+                                <LuInfo className="text-[#B68A35] w-5 h-5" />
+                            </div>
+                            <p className="text-[11px] leading-relaxed" style={{ color: subtextColor }}>
+                                {data.footer?.disclaimer || "All service charge data sourced from DLD Mollak Index where publicly available; placeholders indicate backend-populated values for real-time accuracy. Actual charges vary by building, floor, and unit size. Asset condition ratings are PropertyIntel proprietary assessments based on site visits and aggregated owner feedback."}
+                            </p>
+                        </div>
                     </div>
-                    <div className="rounded-lg p-3 flex items-center gap-3 shrink-0" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-                        <MdCalendarToday className="text-[#B68A35] w-4 h-4" />
-                        <span className="text-[11px] font-medium" style={{ color: subtextColor }}>{data.footer?.lastUpdated || "Last updated: 22 February 2026"}</span>
+                    <div className="rounded lg:rounded-lg p-3 flex items-center gap-3 shrink-0 w-full md:w-auto" style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
+                        <MdCalendarToday className="text-[#B68A35] w-4 h-4 shrink-0" />
+                        <span className="text-[11px] font-medium leading-normal" style={{ color: subtextColor }}>{data.footer?.lastUpdated || "Last updated: 22 February 2026"}</span>
                     </div>
                 </div>
             </div>
@@ -156,7 +238,7 @@ function TabButton({ active, onClick, icon, label, isDark, dark, cardBorder, sub
             }
         >
             {icon}
-            <span className="font-bold text-[10px] sm:text-xs tracking-wide uppercase">{label}</span>
+            <span className="font-bold text-[10px] sm:text-xs tracking-wide uppercase text-center leading-tight">{label}</span>
             {isDark && active && (
                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" aria-hidden />
             )}
@@ -171,7 +253,7 @@ function ManagementStructureView({ data, isDark, cardBg, cardBorder, subtextColo
             <h3 className="text-lg lg:text-xl font-serif font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data?.title || "Management Structure"}</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {cards.map((card, idx) => (
-                    <div key={idx} style={{ background: cardBg, border: `1px solid ${cardBorder}` }} className="rounded-xl p-2 sm:p-8 flex gap-2 sm:gap-6 shadow-sm">
+                    <div key={idx} style={{ background: cardBg, border: `1px solid ${cardBorder}` }} className="rounded lg:rounded-xl p-2 sm:p-8 flex gap-2 sm:gap-6 shadow-sm">
                         <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0" style={!isDark ? { background: '#fbf6ec', border: '1px solid #F3EFE9' } : { background: 'rgba(182,138,53,0.12)', border: `1px solid ${cardBorder}` }}>
                             {getManagementIcon(card.iconName)}
                         </div>
@@ -180,7 +262,7 @@ function ManagementStructureView({ data, isDark, cardBg, cardBorder, subtextColo
                                 <p className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest sm:mb-2" style={{ color: subtextColor }}>{card.label}</p>
                                 <h4 className="text-sm sm:text-lg font-bold mb-3 font-serif" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{card.title}</h4>
                                 {card.badge && <span className="inline-block px-2.5 py-1 text-[#B68A35] text-[10px] border border-[#B68A35] font-bold rounded-2xl mb-3" style={{ background: isDark ? 'transparent' : 'white' }}>{card.badge}</span>}
-                                <p className="text-[12px] sm:text-sm leading-relaxed" style={{ color: bodyColor }}>{card.description}</p>
+                                <p className="text-[13px] leading-normal sm:text-sm sm:leading-relaxed" style={{ color: bodyColor }}>{card.description}</p>
                             </div>
                             <div className="mt-auto pt-4 flex items-center gap-2 text-[12px]" style={{ color: subtextColor }}>
                                 <IoDocumentOutline className="w-5 h-5 text-[#B68A35]" />
@@ -214,7 +296,7 @@ function ServiceChargesView({ data, isDark, cardBg, cardBorder, subtextColor, bo
         <div className="space-y-6 py-4">
             <div>
                 <h3 className="text-lg lg:text-xl font-serif font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data?.title || "Service Charge History"}</h3>
-                <p className="text-xs mt-2" style={{ color: subtextColor }}>{data?.subtitle || "Service charge data is sourced from the DLD Mollak Service Charge Index and verified against official records."}</p>
+                <p className="text-[13px] leading-normal lg:text-xs mt-2" style={{ color: subtextColor }}>{data?.subtitle || "Service charge data is sourced from the DLD Mollak Service Charge Index and verified against official records."}</p>
             </div>
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
@@ -240,7 +322,7 @@ function ServiceChargesView({ data, isDark, cardBg, cardBorder, subtextColor, bo
 
 function ChargeTable({ community, type, data, summary, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
     return (
-        <div style={{ border: `1px solid ${cardBorder}` }} className="rounded-xl overflow-hidden shadow-sm">
+        <div style={{ border: `1px solid ${cardBorder}` }} className="rounded lg:rounded-xl overflow-hidden shadow-sm">
             <div className="p-4 flex items-center gap-3" style={{ background: cardBg, borderBottom: `1px solid ${cardBorder}` }}>
                 <div className="w-12 h-12 rounded-full flex items-center justify-center" style={!isDark ? { background: '#fbf6ec' } : { background: 'rgba(182,138,53,0.12)' }}>
                     <TbActivityHeartbeat className="text-[#B68A35] w-10 h-10" />
@@ -270,7 +352,7 @@ function ChargeTable({ community, type, data, summary, isDark, cardBg, cardBorde
                     ))}
                 </tbody>
             </table>
-            <div className="p-4 flex gap-3" style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#FDF7E7/30', borderTop: `1px solid ${cardBorder}` }}>
+            <div className="p-4 flex gap-3" style={{ background: isDark ? 'rgba(182,138,53,0.06)' : 'rgba(253,247,231,0.3)', borderTop: `1px solid ${cardBorder}` }}>
                 <MdTrendingUp className="text-[#B68A35] w-8 h-8 shrink-0" />
                 <div>
                     <p className="text-[12px] font-bold text-[#B68A35] uppercase tracking-widest mb-1">Trend Summary</p>
@@ -283,11 +365,11 @@ function ChargeTable({ community, type, data, summary, isDark, cardBg, cardBorde
 
 function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBorder, subtextColor, bodyColor, t }) {
     const [isSourcesOpen, setIsSourcesOpen] = useState(false);
-    const [openCommunityId, setOpenCommunityId] = useState(communityAssessments[0]?.id || '');
+    const [openCommunityId, setOpenCommunityId] = useState('');
 
     return (
         <div className="space-y-8 py-4">
-            <div style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', border: `1px solid ${cardBorder}` }} className="rounded-xl shadow-sm">
+            <div style={{ background: isDark ? 'rgba(255,255,255,0.04)' : '#FBF9F6', border: `1px solid ${cardBorder}` }} className="rounded lg:rounded-xl shadow-sm">
                 {/* Mobile Layout */}
                 <div className="lg:hidden p-5">
                     <p className="text-[10px] font-semibold uppercase tracking-wider mb-2" style={{ color: subtextColor }}>{data?.ratingLabel || "Overall Rating"}</p>
@@ -307,12 +389,12 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
                             <BsShield className="text-[#B68A35] w-4 h-4" />
                         </div>
                         <div>
-                            <p className="text-sm font-medium" style={{ color: bodyColor }}>{data?.basedOnLabel || "Based on community data"}</p>
-                            <p className="text-sm font-medium" style={{ color: bodyColor }}>{data?.communitiesCount || "4 communities assessed"}</p>
+                            <p className="text-[13px] leading-normal font-medium" style={{ color: bodyColor }}>{data?.basedOnLabel || "Based on community data"}</p>
+                            <p className="text-[13px] leading-normal font-medium" style={{ color: bodyColor }}>{data?.communitiesCount || "4 communities assessed"}</p>
                         </div>
                     </div>
 
-                    <p className="text-sm leading-relaxed" style={{ color: bodyColor }}>
+                    <p className="text-[13px] leading-normal" style={{ color: bodyColor }}>
                         {data?.summary || "Emaar's established communities demonstrate strong long-term value preservation with generally good to excellent asset condition."}
                     </p>
                 </div>
@@ -372,14 +454,12 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
                             </tr>
                         </thead>
                         <tbody>
-                            {communityAssessments.map((c) => {
-                                const Icon = getCommunityIcon(c.iconName);
-                                return (
+                            {communityAssessments.map((c) => (
                                     <tr key={c.id} style={{ borderBottom: `1px solid ${cardBorder}` }} className="hover:bg-white/50 transition-colors">
                                         <td className="px-4 py-4 font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
                                             <div className="flex items-center gap-3">
                                                 <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={!isDark ? { background: '#FBF9F6' } : { background: 'rgba(182,138,53,0.08)' }}>
-                                                    <Icon className="text-[#B68A35] w-7 h-7" />
+                                                    {getCommunityIcon(c.iconName, "text-[#B68A35] w-7 h-7")}
                                                 </div>
                                                 <span className="truncate text-sm">{c.name}</span>
                                             </div>
@@ -399,8 +479,7 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
                                             </ul>
                                         </td>
                                     </tr>
-                                );
-                            })}
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -409,13 +488,12 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
             {/* Community Accordion (Mobile) */}
             <div className="lg:hidden space-y-2">
                 {communityAssessments.map((c) => {
-                    const Icon = getCommunityIcon(c.iconName);
                     const isOpen = openCommunityId === c.id;
                     const firstNote = c.notes[0];
                     const detailNotes = c.notes.slice(1);
 
                     return (
-                        <div key={c.id} className="rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                        <div key={c.id} className="rounded lg:rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                             <button
                                 type="button"
                                 onClick={() => setOpenCommunityId(isOpen ? '' : c.id)}
@@ -425,7 +503,7 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
                                 <div className="flex items-center justify-between gap-3">
                                     <div className="flex items-center gap-3 min-w-0">
                                         <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={!isDark ? { background: '#FBF9F6' } : { background: 'rgba(182,138,53,0.08)' }}>
-                                            <Icon className="text-[#B68A35] w-8 h-8" />
+                                            {getCommunityIcon(c.iconName, "text-[#B68A35] w-8 h-8")}
                                         </div>
                                         <div className="min-w-0">
                                             <p className="text-xl leading-tight font-bold truncate" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{c.name}</p>
@@ -446,19 +524,19 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
                             {isOpen && (
                                 <div className="px-4 pb-4 pt-1" style={{ borderTop: `1px solid ${cardBorder}` }}>
                                     {firstNote && (
-                                        <p className="text-[15px] leading-relaxed mb-4 mt-3" style={{ color: bodyColor }}>{firstNote.text}</p>
+                                        <p className="text-[13px] leading-normal mb-4 mt-3" style={{ color: bodyColor }}>{firstNote.text}</p>
                                     )}
 
                                     <ul className="space-y-3">
                                         {detailNotes.map((note, i) => (
                                             <li key={i} className="flex items-start gap-2">
                                                 <HiOutlineCheckCircle className={`w-5 h-5 shrink-0 mt-0.5 ${note.type === 'warning' ? 'text-orange-400' : 'text-[#89C587]'}`} />
-                                                <span className="text-[14px] leading-relaxed" style={{ color: bodyColor }}>{note.text}</span>
+                                                <span className="text-[13px] leading-normal" style={{ color: bodyColor }}>{note.text}</span>
                                             </li>
                                         ))}
                                     </ul>
 
-                                    <div className="mt-4 pt-3 flex items-start gap-2 text-[13px] italic" style={{ borderTop: `1px solid ${cardBorder}`, color: subtextColor }}>
+                                    <div className="mt-4 pt-3 flex items-start gap-2 text-[12px] leading-normal italic" style={{ borderTop: `1px solid ${cardBorder}`, color: subtextColor }}>
                                         <IoDocumentOutline className="w-4 h-4 text-[#B68A35] mt-0.5 shrink-0" />
                                         <span>{data?.sourceText || "Source: Community guide references and resident feedback summaries"}</span>
                                     </div>
@@ -482,7 +560,7 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
 
             {/* Mobile sources accordion */}
             <div className="mt-2 sm:mt-6 lg:hidden">
-                <div className="rounded-lg overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                <div className="rounded overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                     <button
                         type="button"
                         onClick={() => setIsSourcesOpen((s) => !s)}
@@ -490,8 +568,9 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
                         className="w-full flex items-center justify-between p-4"
                     >
                         <div className="flex items-center gap-3">
+                            <span className="w-px self-stretch shrink-0 h-5" style={{ background: GOLD }} aria-hidden />
                             <Building2 className="w-5 h-5 text-[#B68A35]" />
-                            <span className="text-[14px] font-bold uppercase tracking-wider" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Sources</span>
+                            <span className="text-[12px] leading-normal font-bold uppercase tracking-wider" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Sources</span>
                         </div>
                         <BsChevronUp className={`w-5 h-5 transition-transform ${isSourcesOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isSourcesOpen ? { color: subtextColor } : undefined} />
                     </button>
@@ -501,11 +580,11 @@ function AssetConditionView({ data, communityAssessments, isDark, cardBg, cardBo
                             <ul className="space-y-3">
                                 {data?.sourcesMobile?.map((source, idx) => (
                                     <li key={idx} className="flex items-center justify-between">
-                                        <div className="flex items-center gap-3">
-                                            <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                            <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>{source.label}</a>
+                                        <div className="flex items-center gap-3 min-w-0">
+                                            <span className="w-2 h-2 rounded-full shrink-0" style={{ background: subtextColor }} />
+                                            <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-[13px] leading-normal underline decoration-gray-200 truncate" style={{ color: bodyColor }}>{source.label}</a>
                                         </div>
-                                        <a href={source.href} target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
+                                        <a href={source.href} target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35] shrink-0"><ExternalLink className="w-4 h-4" /></a>
                                     </li>
                                 ))}
                             </ul>
@@ -525,7 +604,7 @@ function SatisfactionCard({ data, isDark, cardBg, cardBorder, subtextColor, body
     if (!data) return null;
 
     return (
-        <div className="rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+        <div className="rounded lg:rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
             <div>
                 <button
                     type="button"
@@ -547,7 +626,7 @@ function SatisfactionCard({ data, isDark, cardBg, cardBorder, subtextColor, body
             {isExpanded && (
                 <div className="p-5 sm:p-6 space-y-5">
                     <div>
-                        <p className="text-[15px] leading-relaxed" style={{ color: bodyColor }}>
+                        <p className="text-[13px] leading-normal lg:text-[15px] lg:leading-relaxed" style={{ color: bodyColor }}>
                             <span className="font-bold text-[#B68A35]">Summary:</span> {data.summary}
                         </p>
                     </div>
@@ -556,7 +635,7 @@ function SatisfactionCard({ data, isDark, cardBg, cardBorder, subtextColor, body
                         <h5 className="font-bold text-sm mb-3" style={isDark ? { color: t.text } : { color: '#1F2937' }}>{data.praisesTitle || "Common Praises"}</h5>
                         <ul className="space-y-2">
                             {data.praises?.map((item, i) => (
-                                <li key={i} className="flex items-start gap-2 text-[15px]" style={{ color: bodyColor }}>
+                                <li key={i} className="flex items-start gap-2 text-[13px] leading-normal lg:text-[15px]" style={{ color: bodyColor }}>
                                     <span className="text-[#C9A962] mt-1">•</span>
                                     <span>{item}</span>
                                 </li>
@@ -568,7 +647,7 @@ function SatisfactionCard({ data, isDark, cardBg, cardBorder, subtextColor, body
                         <h5 className="font-bold text-sm mb-3" style={isDark ? { color: t.text } : { color: '#1F2937' }}>{data.complaintsTitle || "Common Complaints"}</h5>
                         <ul className="space-y-4">
                             {data.complaints?.map((item, i) => (
-                                <li key={i} className="text-[15px]" style={{ color: bodyColor }}>
+                                <li key={i} className="text-[13px] leading-normal lg:text-[15px]" style={{ color: bodyColor }}>
                                     <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#1F2937' }}>{item.title}:</span> {item.desc}
                                     <blockquote className="mt-1 pl-3 border-l-2 italic" style={{ borderColor: cardBorder, color: subtextColor }}>
                                         "{item.quote}"
@@ -579,7 +658,7 @@ function SatisfactionCard({ data, isDark, cardBg, cardBorder, subtextColor, body
                     </div>
 
                     <div className="pt-2" style={{ borderTop: `1px solid ${cardBorder}` }}>
-                        <p className="text-[13px]" style={{ color: subtextColor }}>
+                        <p className="text-[12px] leading-normal lg:text-[13px]" style={{ color: subtextColor }}>
                             <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#374151' }}>{data.sourcesLabel || "Sources:"}</span> {data.sources}
                         </p>
                     </div>
@@ -595,7 +674,7 @@ function AnalystInsightCard({ data, isDark, cardBg, cardBorder, subtextColor, bo
     if (!data) return null;
 
     return (
-        <div className="rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+        <div className="rounded lg:rounded-xl shadow-sm overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
             <div>
                 <button
                     type="button"
@@ -614,16 +693,29 @@ function AnalystInsightCard({ data, isDark, cardBg, cardBorder, subtextColor, bo
 
             {isExpanded && (
                 <div className="p-5 sm:p-6 space-y-5">
+                    {data.content && (
+                        <p className="text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed" style={{ color: bodyColor }}>
+                            {data.content}
+                        </p>
+                    )}
+                    {!data.content && data.disclaimer && (
+                        <p className="lg:hidden text-[13px] leading-normal" style={{ color: bodyColor }}>
+                            {data.disclaimer}
+                        </p>
+                    )}
+
                     <div className="pt-2" style={{ borderTop: `1px solid ${cardBorder}` }}>
-                        <p className="text-[13px]" style={{ color: subtextColor }}>
+                        <p className="text-[12px] leading-normal lg:text-[13px]" style={{ color: subtextColor }}>
                             <span className="font-semibold" style={isDark ? { color: t.text } : { color: '#374151' }}>{data.sourceLabel || "Source:"}</span> {data.source}
                         </p>
                     </div>
 
-                    <div className="rounded-lg p-4 text-[12px] leading-relaxed" style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#F9F7F4', color: subtextColor }}>
-                        <p className="font-semibold mb-1" style={isDark ? { color: t.text } : { color: '#374151' }}>{data.disclaimerTitle || "Disclaimer:"}</p>
-                        <p>{data.disclaimer}</p>
-                    </div>
+                    {data.disclaimer && (
+                        <div className="hidden lg:block rounded-lg p-4 text-[12px] leading-relaxed" style={{ background: isDark ? 'rgba(182,138,53,0.06)' : '#F9F7F4', color: subtextColor }}>
+                            <p className="font-semibold mb-1" style={isDark ? { color: t.text } : { color: '#374151' }}>{data.disclaimerTitle || "Disclaimer:"}</p>
+                            <p>{data.disclaimer}</p>
+                        </div>
+                    )}
                 </div>
             )}
         </div>
@@ -648,12 +740,13 @@ const getManagementIcon = (iconName) => {
     return icons[iconName] || <HiOutlineBuildingOffice2 className="text-[#B68A35] w-6 h-6 sm:w-8 sm:h-8" />;
 };
 
-const getCommunityIcon = (iconName) => {
+const getCommunityIcon = (iconName, className = "text-[#B68A35] w-7 h-7") => {
     const icons = {
-        'LuWheat': <LuWheat className="text-[#B68A35] w-7 h-7" />,
-        'PiHouseLineLight': <PiHouseLineLight className="text-[#B68A35] w-7 h-7" />,
-        'BsStar': <BsStar className="text-[#B68A35] w-7 h-7" />,
-        'TbBuildingBurjAlArab': <TbBuildingBurjAlArab className="text-[#B68A35] w-7 h-7" />
+        LuWheat: LuWheat,
+        PiHouseLineLight: PiHouseLineLight,
+        BsStar: BsStar,
+        TbBuildingBurjAlArab: TbBuildingBurjAlArab,
     };
-    return icons[iconName] || <BsStar className="text-[#B68A35] w-7 h-7" />;
+    const Icon = icons[iconName] || BsStar;
+    return <Icon className={className} />;
 };

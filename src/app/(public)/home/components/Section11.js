@@ -13,6 +13,39 @@ import { FaRegHeart } from "react-icons/fa";
 import ExpertSection from './ExpertSection';
 import { useThemeStyles, GOLD_BORDER, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
+const GOLD = "#B68A35";
+
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
+};
+
 const Section11 = ({ data }) => {
     const { t, isDark, dark } = useThemeStyles();
     const [activeTab, setActiveTab] = useState('love'); // 'love' or 'concerns'
@@ -39,15 +72,53 @@ const Section11 = ({ data }) => {
     const residentsLove = data.residentsLove || [];
     const commonConcerns = data.commonConcerns || [];
     const reviews = data.reviews || [];
+    const headerDescription = data.header?.description || "We've analysed thousands of resident reviews from independent platforms to give you an honest, unfiltered picture of life in Emaar developments across Dubai.";
 
     return (
         <section className="w-full py-2 sm:py-5 font-sans antialiased" style={{ background: sectionBg }}>
 
-            {/* Header Section */}
-            <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+            {/* Mobile header */}
+            <div className="md:hidden">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt={data.heroAlt || "Dubai Skyline"}
+                        fill
+                        className="object-cover object-center grayscale-[10%]"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1A1A1A" }}
+                        >
+                            {data.header?.title?.line1 || "What Residents Say About Emaar:"}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "Communities - Verified Reviews"}</span>
+                        </h2>
+                        <p
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : bodyColor }}
+                        >
+                            {headerDescription}
+                        </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-[320px] lg:h-[400px] items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src={data.heroImage || "/Home/Section3bg.webp"}
+                        src="/projects/cm-projects.webp"
                         alt={data.heroAlt || "Dubai Skyline"}
                         fill
                         className="object-cover object-center grayscale-[10%]"
@@ -64,18 +135,18 @@ const Section11 = ({ data }) => {
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
                         {data.header?.title?.line2 || "Communities - Verified Reviews"}
                     </h3>
-                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
-                        {data.header?.description || "We've analysed thousands of resident reviews from independent platforms to give you an honest, unfiltered picture of life in Emaar developments across Dubai."}
+                    <p className="max-w-xl text-sm lg:text-base leading-[17px] font-medium" style={{ color: bodyColor }}>
+                        {headerDescription}
                     </p>
                 </div>
             </div>
 
-            <div className="max-w-350 mx-auto px-2 sm:px-6 -mt-8 sm:-mt-12 relative z-10 pb-16">
+            <div className="max-w-350 mx-auto px-2 sm:px-6 md:-mt-12 relative z-10 pb-16">
 
                 {/* Top Ratings Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2 sm:mb-4">
                     {/* Mobile Layout - Matches Screenshot */}
-                    <div className="lg:hidden rounded-2xl p-6 shadow-sm" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="lg:hidden rounded p-6 shadow-sm" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         {/* Header Section */}
                         <div className="flex items-start justify-between mb-6">
                             <div className="flex items-baseline gap-1">
@@ -175,7 +246,7 @@ const Section11 = ({ data }) => {
                 </div>
 
                 {/* Sentiment Distribution Bar */}
-                <div className="rounded-2xl p-4 mb-2 sm:mb-4 shadow-sm" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                <div className="rounded lg:rounded-2xl p-4 mb-2 sm:mb-4 shadow-sm" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                     <h3 className="text-lg font-semibold mb-6 font-[Merriweather] tabular-nums" style={isDark ? { color: t.text } : { color: '#1F2937' }}>Sentiment Distribution</h3>
                     <div className="w-full h-3 rounded-full flex overflow-hidden mb-4 sm:mb-8" style={{ background: isDark ? 'rgba(255,255,255,0.1)' : '#f0f0f0' }}>
                         <div className="h-full bg-[#C9A962]" style={{ width: `${data.sentiment?.positive || 78}%` }} />
@@ -208,11 +279,11 @@ const Section11 = ({ data }) => {
                 </div>
 
                 {/* Tabs: Love vs Concerns */}
-                <div className="rounded-2xl overflow-hidden mb-2 sm:mb-4 shadow-sm" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                <div className="rounded lg:rounded-2xl overflow-hidden mb-2 sm:mb-4 shadow-sm" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                     <div className="flex" style={isDark ? dark.tabBar : { borderBottom: `1px solid ${cardBorder}` }}>
                         <button
                             onClick={() => setActiveTab('love')}
-                            className={`relative flex-1 py-5 text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeTab === 'love'
+                            className={`relative flex-1 py-4 lg:py-5 text-[10px] lg:text-sm font-bold leading-tight text-center transition-all flex items-center justify-center gap-1.5 lg:gap-2 min-w-0 px-1 ${activeTab === 'love'
                                     ? isDark
                                         ? "text-[#B68A35]"
                                         : "text-[#B68A35] border-b-2 border-[#B68A35]"
@@ -228,14 +299,14 @@ const Section11 = ({ data }) => {
                                         : undefined
                             }
                         >
-                            <FaRegHeart className="w-5 h-5" /> {data.tabs?.love || "What Residents Love"}
+                            <FaRegHeart className="w-4 h-4 lg:w-5 lg:h-5 shrink-0" /> <span className="truncate">{data.tabs?.love || "What Residents Love"}</span>
                             {isDark && activeTab === "love" && (
                                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" aria-hidden />
                             )}
                         </button>
                         <button
                             onClick={() => setActiveTab('concerns')}
-                            className={`relative flex-1 py-5 text-sm font-bold transition-all flex items-center justify-center gap-2 ${activeTab === 'concerns'
+                            className={`relative flex-1 py-4 lg:py-5 text-[10px] lg:text-sm font-bold leading-tight text-center transition-all flex items-center justify-center gap-1.5 lg:gap-2 min-w-0 px-1 ${activeTab === 'concerns'
                                     ? isDark
                                         ? "text-[#B68A35]"
                                         : "text-[#B68A35] border-b-2 border-[#B68A35]"
@@ -251,7 +322,7 @@ const Section11 = ({ data }) => {
                                         : undefined
                             }
                         >
-                            <Info className="w-4 h-4 rotate-180" /> {data.tabs?.concerns || "Common Concerns"}
+                            <Info className="w-4 h-4 rotate-180 shrink-0" /> <span className="truncate">{data.tabs?.concerns || "Common Concerns"}</span>
                             {isDark && activeTab === "concerns" && (
                                 <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#B68A35]" aria-hidden />
                             )}
@@ -262,7 +333,7 @@ const Section11 = ({ data }) => {
                             {(activeTab === 'love' ? residentsLove : commonConcerns).map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className="p-2 sm:p-5 rounded-xl flex gap-4"
+                                    className="p-2 sm:p-5 rounded lg:rounded-xl flex gap-4"
                                     style={
                                         isDark
                                             ? { ...dark.goldTint, border: `1px solid ${GOLD_BORDER}` }
@@ -272,7 +343,7 @@ const Section11 = ({ data }) => {
                                     <div className="mt-1">{getConcernIcon(item.iconName)}</div>
                                     <div>
                                         <h4 className="font-bold text-sm mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{item.title}</h4>
-                                        <p className="text-xs leading-relaxed" style={{ color: bodyColor }}>{item.desc}</p>
+                                        <p className="text-[13px] leading-normal lg:text-xs lg:leading-relaxed" style={{ color: bodyColor }}>{item.desc}</p>
                                     </div>
                                 </div>
                             ))}
@@ -283,7 +354,7 @@ const Section11 = ({ data }) => {
                 {/* Bottom Grid: Recent Highlights & Verification */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-6 items-start">
                     {/* Recent Review Highlights (accordion) */}
-                    <div className="rounded-2xl shadow-sm overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="rounded lg:rounded-2xl shadow-sm overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <button
                             type="button"
                             onClick={() => setOpenRecent(prev => !prev)}
@@ -326,7 +397,7 @@ const Section11 = ({ data }) => {
                                                 <span className="text-[#B68A35] font-bold">{rev.platform}</span> • {rev.date}
                                             </p>
                                         </div>
-                                        <p className={`text-xs italic leading-relaxed ${isDark ? "" : "text-gray-600"}`} style={isDark ? dark.textSecondary : undefined}>
+                                        <p className={`text-[13px] italic leading-normal lg:text-xs lg:leading-relaxed ${isDark ? "" : "text-gray-600"}`} style={isDark ? dark.textSecondary : undefined}>
                                             &ldquo;{rev.text}&rdquo;
                                         </p>
                                     </div>
@@ -346,7 +417,7 @@ const Section11 = ({ data }) => {
                     </div>
 
                     {/* Verification Note (accordion) */}
-                    <div className="rounded-2xl shadow-sm overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
+                    <div className="rounded lg:rounded-2xl shadow-sm overflow-hidden" style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
                         <button
                             type="button"
                             onClick={() => setOpenVerification((prev) => !prev)}
@@ -369,7 +440,7 @@ const Section11 = ({ data }) => {
                         <div className="transition-all duration-300 ease-in-out overflow-hidden" style={{ maxHeight: openVerification ? "360px" : "0px" }}>
                             <div className="p-3 sm:p-5">
                                 <p
-                                    className={`text-[13px] leading-relaxed space-y-4 ${isDark ? "" : "text-gray-600"}`}
+                                    className={`text-[13px] leading-normal lg:leading-relaxed space-y-4 ${isDark ? "" : "text-gray-600"}`}
                                     style={isDark ? dark.textSecondary : undefined}
                                 >
                                     {data.verificationNote?.content}
@@ -382,16 +453,27 @@ const Section11 = ({ data }) => {
                 <ExpertSection />
 
                 <div
-                    className={`gap-2 sm:mt-6 flex items-center mt-6 text-xs p-3 rounded-xl transition-colors duration-300 ${isDark ? "" : "text-gray-500 bg-[#B68A35]/5"}`}
-                    style={isDark ? dark.verifyBanner : undefined}
+                    className="mt-2 sm:mt-6 rounded lg:rounded-xl px-4 py-4 sm:px-5 transition-colors duration-300"
+                    style={{
+                        border: `1px solid ${cardBorder}`,
+                        background: isDark ? 'rgba(182,138,53,0.06)' : '#FBF9F6',
+                        ...(isDark ? dark.verifyBanner : {}),
+                    }}
                 >
-                    <Info className="w-4 h-4 text-[#B68A35] shrink-0" />
-                    <p
-                        className={`text-[11px] leading-relaxed ${isDark ? "" : "text-gray-600"}`}
-                        style={isDark ? dark.textSecondary : undefined}
-                    >
-                        <strong>{data.disclaimer?.title || "Disclaimer:"}</strong> {data.disclaimer?.text || "Reviews are user-generated content and may not reflect all residents' experiences. Aggregated sentiment is for informational purposes only and does not constitute investment advice. Last updated: 22 February 2026."}
-                    </p>
+                    <div className="lg:hidden">
+                        <MobileNoteBox icon={<Info className="w-5 h-5" />} textStyle={isDark ? dark.textSecondary : { color: bodyColor }}>
+                            <span className="font-bold uppercase" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>
+                                {data.disclaimer?.title || "Disclaimer:"}
+                            </span>
+                            {" "}{data.disclaimer?.text || "Reviews are user-generated content and may not reflect all residents' experiences. Aggregated sentiment is for informational purposes only and does not constitute investment advice. Last updated: 22 February 2026."}
+                        </MobileNoteBox>
+                    </div>
+                    <div className="hidden lg:flex items-start gap-3">
+                        <Info className="w-5 h-5 text-[#B68A35] mt-0.5 shrink-0" />
+                        <p className="text-xs leading-relaxed" style={isDark ? dark.textSecondary : { color: bodyColor }}>
+                            <strong>{data.disclaimer?.title || "Disclaimer:"}</strong> {data.disclaimer?.text || "Reviews are user-generated content and may not reflect all residents' experiences. Aggregated sentiment is for informational purposes only and does not constitute investment advice. Last updated: 22 February 2026."}
+                        </p>
+                    </div>
                 </div>
             </div>
 

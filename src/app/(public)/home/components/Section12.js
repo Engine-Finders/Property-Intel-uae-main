@@ -48,36 +48,47 @@ const Section12 = ({ data }) => {
                     </p>
                 </div>
 
-                <div className={`rounded-2xl p-2 sm:p-6 shadow-sm`} style={{ border: `1px solid ${cardBorder}`, background: cardBg }}>
-                    <div className="divide-y" style={{ borderColor: cardBorder }}>
-                        {faqs.map((item, idx) => (
-                            <div key={idx} className="py-2 sm:py-4">
-                                <button
-                                    type="button"
-                                    onClick={() => toggle(idx)}
-                                    aria-expanded={openIndex === idx}
-                                    className="w-full text-left flex items-start gap-0 sm:gap-4"
+                <div className="space-y-2 sm:space-y-3">
+                    {faqs.map((item, idx) => (
+                        <div
+                            key={idx}
+                            className="rounded-xl shadow-sm overflow-hidden"
+                            style={{ border: `1px solid ${cardBorder}`, background: cardBg }}
+                        >
+                            <button
+                                type="button"
+                                onClick={() => toggle(idx)}
+                                aria-expanded={openIndex === idx}
+                                className="w-full text-left flex items-start gap-0 sm:gap-4 p-3 sm:p-4"
+                            >
+                                <div className="w-10 sm:w-12 shrink-0 text-[#B68A35] font-bold text-base sm:text-lg font-[Merriweather] tabular-nums">
+                                    {String(idx + 1).padStart(2, '0')}.
+                                </div>
+
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex items-center justify-between gap-3">
+                                        <h3 className="text-sm font-semibold pr-2" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{item.q}</h3>
+                                        <ChevronDown
+                                            className={`w-5 h-5 shrink-0 transition-transform duration-200 ${openIndex === idx ? 'rotate-180' : ''}`}
+                                            style={{ color: subtextColor }}
+                                        />
+                                    </div>
+                                </div>
+                            </button>
+
+                            <div
+                                className={`overflow-hidden transition-[max-height] duration-300 ${openIndex === idx ? 'max-h-[2000px]' : 'max-h-0'}`}
+                                style={{ borderTop: openIndex === idx ? `1px solid ${cardBorder}` : 'none' }}
+                            >
+                                <div
+                                    className="px-3 sm:px-4 pb-3 sm:pb-4 pt-3 sm:pt-4 pl-[2.75rem] sm:pl-16 text-sm leading-relaxed"
+                                    style={{ color: bodyColor }}
                                 >
-                                    <div className="w-12 shrink-0 text-[#B68A35] font-bold text-lg font-[Merriweather] tabular-nums">
-                                        {String(idx + 1).padStart(2, '0')}.
-                                    </div>
-
-                                    <div className="flex-1">
-                                        <div className="flex items-center justify-between">
-                                            <h3 className="text-sm font-semibold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{item.q}</h3>
-                                            <div className="w-5 h-5 shrink-0 flex items-center justify-center">
-                                                <ChevronDown className={`w-full h-full transition-transform duration-200 transform ${openIndex === idx ? 'rotate-180' : ''}`} style={{ color: subtextColor }} />
-                                            </div>
-                                        </div>
-
-                                        <div className={`mt-3 text-sm overflow-hidden transition-[max-height] duration-300 ${openIndex === idx ? 'max-h-screen' : 'max-h-0'}`} style={{ color: bodyColor }}>
-                                            <div dangerouslySetInnerHTML={{ __html: item.a }} />
-                                        </div>
-                                    </div>
-                                </button>
+                                    <div dangerouslySetInnerHTML={{ __html: item.a }} />
+                                </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
 
                 <ExpertSection />

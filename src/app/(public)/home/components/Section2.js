@@ -28,6 +28,38 @@ import { MdPayments } from "react-icons/md";
 import { PiBuildingOfficeLight } from "react-icons/pi";
 import { IoGridOutline } from "react-icons/io5";
 
+const GOLD = "#B68A35";
+
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
+};
 
 const Section2 = ({ data }) => {
     const { t, isDark, dark, section } = useThemeStyles();
@@ -50,7 +82,7 @@ const Section2 = ({ data }) => {
     if (!data) {
         return (
             <section className={`py-5 transition-colors duration-300 ${isDark ? "" : "bg-[#FCFBFA]"}`} style={section}>
-                <div className="max-w-350 mx-auto px-4 sm:px-6 py-20">
+                <div className="max-w-350 mx-auto px-2 sm:px-6 py-20">
                     <p className="text-center" style={{ color: isDark ? dark.textSecondary : '#666' }}>Loading...</p>
                 </div>
             </section>
@@ -87,35 +119,84 @@ const Section2 = ({ data }) => {
 
     const visibleCards = filteredProjects.slice(currentCardIndex, currentCardIndex + visibleCardCount);
 
+    const headerDescription = data.header?.description || "Explore the latest Emaar projects across Dubai, from waterfront apartments to luxury villas. Download brochures directly.";
+
     return (
         <section className={`py-5 transition-colors duration-300 ${isDark ? "" : "bg-[#FCFBFA]"}`} style={section}>
-            <div className="max-w-350 mx-auto px-4 sm:px-6">
-
-                {/* Header */}
-                <div className="flex items-start gap-4 mb-8 lg:mb-12">
-                    <div className="">
-                        <BsBuildings className='text-[#B68A35] text-2xl sm:text-5xl' />
-                    </div>
-                    <div>
+            {/* Mobile header */}
+            <div className="md:hidden mb-8">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt="Emaar upcoming projects"
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
                         <h2
-                            className={`text-2xl lg:text-4xl font-serif leading-tight ${isDark ? "" : "text-slate-900"}`}
-                            style={isDark ? dark.text : undefined}
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1a1a1a" }}
                         >
-                            {data.header?.title?.line1 || "Emaar Upcoming Projects – "}<br />
-                            <span className="text-[#B68A35]">{data.header?.title?.line2 || "New Launches & Off-Plan Opportunities"}</span>
+                            {data.header?.title?.line1 || "Emaar Upcoming Projects – "}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "New Launches & Off-Plan Opportunities"}</span>
                         </h2>
                         <p
-                            className={`mt-3 text-sm lg:text-base max-w-2xl ${isDark ? "" : "text-slate-600"}`}
-                            style={isDark ? dark.textSecondary : undefined}
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : "#475569" }}
                         >
-                            {data.header?.description || "Explore the latest Emaar projects across Dubai, from waterfront apartments to luxury villas. Download brochures directly."}
+                            {headerDescription}
                         </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
                     </div>
                 </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-80 lg:h-96 items-center overflow-hidden mb-8 lg:mb-12">
+                <div className="absolute inset-0 z-0">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt="Emaar upcoming projects"
+                        fill
+                        className="object-cover object-center"
+                        priority
+                    />
+                    <div
+                        className={`absolute inset-0 ${isDark ? "" : "bg-gradient-to-r from-white via-white/85 to-transparent"}`}
+                        style={isDark ? dark?.heroOverlayLeft : undefined}
+                    />
+                </div>
+                <div className="relative z-10 max-w-350 mx-auto px-4 sm:px-6 w-full">
+                    <h2
+                        className={`text-2xl lg:text-4xl font-serif leading-tight ${isDark ? "" : "text-slate-900"}`}
+                        style={isDark ? dark.text : undefined}
+                    >
+                        {data.header?.title?.line1 || "Emaar Upcoming Projects – "}<br />
+                        <span className="text-[#B68A35]">{data.header?.title?.line2 || "New Launches & Off-Plan Opportunities"}</span>
+                    </h2>
+                    <p
+                        className={`mt-3 text-sm lg:text-base max-w-2xl leading-[17px] ${isDark ? "" : "text-slate-600"}`}
+                        style={isDark ? dark.textSecondary : undefined}
+                    >
+                        {headerDescription}
+                    </p>
+                </div>
+            </div>
+
+            <div className="max-w-350 mx-auto px-2 sm:px-6">
 
                 {/* Tab Navigation Container */}
                 <div
-                    className={`grid grid-cols-4 lg:flex gap-1 lg:gap-0 mb-10 pb-0 border rounded-2xl p-1 lg:rounded-none lg:p-0 overflow-hidden ${isDark ? "lg:border lg:border-solid" : "border-gray-200 lg:border-none lg:bg-transparent"
+                    className={`grid grid-cols-4 lg:flex gap-1 lg:gap-0 mb-10 pb-0 border rounded-xl p-1 lg:rounded-none lg:p-0 overflow-hidden ${isDark ? "lg:border lg:border-solid" : "border-gray-200 lg:border-none lg:bg-transparent"
                         }`}
                     style={isDark ? dark.tabBar : undefined}
                 >
@@ -133,10 +214,10 @@ const Section2 = ({ data }) => {
                                 }}
                                 className={`flex flex-col sm:flex-row items-center justify-center py-2 px-1 lg:py-3 lg:px-2 transition-all w-full min-w-0 sm:flex-1 relative border
                                     ${isDark
-                                        ? `rounded-xl lg:rounded-none ${isActive ? "font-semibold z-10" : "font-medium"} ${isFirst ? "lg:rounded-tl-2xl" : ""} ${isLast ? "lg:rounded-tr-2xl" : ""}`
+                                        ? `rounded lg:rounded-none ${isActive ? "font-semibold z-10" : "font-medium"} ${isFirst ? "lg:rounded-tl-2xl" : ""} ${isLast ? "lg:rounded-tr-2xl" : ""}`
                                         : isActive
-                                            ? "bg-white border-2 border-[#B68A35] rounded-xl text-[#B68A35] lg:border lg:ring-1 lg:ring-[#B68A35] lg:rounded-none z-10"
-                                            : "bg-white border-gray-100 text-slate-500 rounded-xl lg:rounded-none"
+                                            ? "bg-white border-2 border-[#B68A35] rounded text-[#B68A35] lg:border lg:ring-1 lg:ring-[#B68A35] lg:rounded-none z-10"
+                                            : "bg-white border-gray-100 text-slate-500 rounded lg:rounded-none"
                                     }`}
                                 style={
                                     isDark
@@ -203,27 +284,6 @@ const Section2 = ({ data }) => {
                         ))}
                     </div>
 
-                    {/* Slider Arrows (Desktop) */}
-                    <button
-                        onClick={handlePrevCard}
-                        disabled={currentCardIndex === 0}
-                        className={`absolute -left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg border text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "bg-white border-gray-100"}`}
-                        style={isDark ? dark.card : undefined}
-                    >
-                        <span className="flex h-full w-full items-center justify-center">
-                            <BsChevronLeft size={24} />
-                        </span>
-                    </button>
-                    <button
-                        onClick={handleNextCard}
-                        disabled={currentCardIndex >= maxStartIndex}
-                        className={`absolute -right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full shadow-lg border text-slate-400 hover:text-[#B68A35] opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${isDark ? "" : "bg-white border-gray-100"}`}
-                        style={isDark ? dark.card : undefined}
-                    >
-                        <span className="flex h-full w-full items-center justify-center">
-                            <BsChevronRight size={24} />
-                        </span>
-                    </button>
                 </div>
 
                 {/* Mobile Pagination */}
@@ -268,20 +328,31 @@ const Section2 = ({ data }) => {
 
                 {/* Disclaimer Footer */}
                 <div
-                    className={`mt-12 p-2 sm:p-6 rounded-2xl border flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-4 transition-colors ${isDark ? "" : "bg-[#FAF9F6] border-[#F2EEE8]"}`}
+                    className={`mt-12 p-2 sm:p-6 rounded-xl lg:rounded-2xl border flex flex-col lg:flex-row lg:items-center justify-between gap-2 sm:gap-4 transition-colors ${isDark ? "" : "bg-[#FAF9F6] border-[#F2EEE8]"}`}
                     style={isDark ? dark.verifyBanner : undefined}
                 >
-                    <div className="flex gap-3">
-                        <HiOutlineInformationCircle className="text-[#B68A35] shrink-0 text-xl" />
-                        <p
-                            className={`text-[11px] lg:text-sm leading-relaxed ${isDark ? "" : "text-slate-600"}`}
-                            style={isDark ? dark.textSecondary : undefined}
-                        >
-                            {data.disclaimer?.text || "Project details, prices, and handover dates are subject to change. Please verify all information before making any investment decision."}
-                        </p>
+                    <div className="flex-1 min-w-0">
+                        <div className="lg:hidden">
+                            <MobileNoteBox
+                                icon={<HiOutlineInformationCircle className="text-xl" />}
+                                textClassName={isDark ? "" : "text-slate-600"}
+                                textStyle={isDark ? dark.textSecondary : undefined}
+                            >
+                                {data.disclaimer?.text || "Project details, prices, and handover dates are subject to change. Please verify all information before making any investment decision."}
+                            </MobileNoteBox>
+                        </div>
+                        <div className="hidden lg:flex gap-3">
+                            <HiOutlineInformationCircle className="text-[#B68A35] shrink-0 text-xl" />
+                            <p
+                                className={`text-sm leading-relaxed ${isDark ? "" : "text-slate-600"}`}
+                                style={isDark ? dark.textSecondary : undefined}
+                            >
+                                {data.disclaimer?.text || "Project details, prices, and handover dates are subject to change. Please verify all information before making any investment decision."}
+                            </p>
+                        </div>
                     </div>
                     <div
-                        className={`text-[11px] lg:text-sm whitespace-nowrap ${isDark ? "" : "text-slate-500"}`}
+                        className={`text-[12px] leading-normal lg:text-sm lg:leading-normal whitespace-nowrap ${isDark ? "" : "text-slate-500"}`}
                         style={isDark ? dark.textMuted : undefined}
                     >
                         {data.disclaimer?.lastUpdatedLabel || "Last updated:"} <span className="font-bold text-[#B68A35]">{data.disclaimer?.lastUpdatedDate || "21 February 2026"}</span>
@@ -298,14 +369,14 @@ const ProjectCard = ({ project, isDark }) => {
     const [accordionOpen, setAccordionOpen] = useState(false);
     return (
         <div
-            className={`w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] flex-shrink-0 rounded-3xl border overflow-hidden flex flex-col transition-all hover:shadow-xl ${isDark ? "" : "bg-white border-gray-100"}`}
+            className={`w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] flex-shrink-0 rounded-xl lg:rounded-3xl border overflow-hidden flex flex-col transition-all hover:shadow-xl ${isDark ? "" : "bg-white border-gray-100"}`}
             style={isDark ? dark.card : undefined}
         >
 
             {/* Image Container */}
             <div className="relative h-60 lg:h-48">
                 <Image src={project.image} alt={project.title} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
-                <div className="absolute top-4 left-4 bg-[#6A9923] text-white text-[10px] font-bold px-3 py-1 rounded-xl tracking-wider">
+                <div className="absolute top-4 left-4 bg-[#6A9923] text-white text-[10px] font-bold px-3 py-1 rounded lg:rounded-xl tracking-wider">
                     {project.badge}
                 </div>
             </div>
@@ -327,7 +398,7 @@ const ProjectCard = ({ project, isDark }) => {
                 </h3>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-2 gap-1 rounded-xl overflow-hidden mb-6">
+                <div className="grid grid-cols-2 gap-1 rounded lg:rounded-xl overflow-hidden mb-6">
                     <StatBox icon={<AiOutlineDollarCircle />} label="STARTING PRICE" value={project.price} isDark={isDark} />
                     <StatBox icon={<PiHouseBold />} label="UNIT MIX" value={project.unitMix} isDark={isDark} isSmall />
                     <StatBox icon={<MdOutlineCalendarToday />} label="HANDOVER" value={project.handover} isDark={isDark} />
@@ -370,24 +441,40 @@ const ProjectCard = ({ project, isDark }) => {
 
                 {/* Info Box */}
                 <div
-                    className={`p-2 rounded-xl border mb-6 ${isDark ? "" : "bg-[#FDFBF7] border-[#F3EFE9]"}`}
+                    className={`p-2 rounded lg:rounded-xl border mb-6 ${isDark ? "" : "bg-[#FDFBF7] border-[#F3EFE9]"}`}
                     style={isDark ? dark.verifyBanner : undefined}
                 >
-                    <div className="flex items-center gap-2 mb-1.5">
-                        <MdPayments className="text-[#B68A35] text-[20px]" />
-                        <span
-                            className={`text-[14px] font-bold uppercase tracking-tight ${isDark ? "" : "text-slate-800"}`}
-                            style={isDark ? dark.text : undefined}
+                    <div className="lg:hidden">
+                        <MobileNoteBox
+                            icon={<MdPayments className="text-[20px]" />}
+                            title={
+                                <>
+                                    Payment Plan <span className="text-[#B68A35]">{project.paymentPlan}</span>
+                                </>
+                            }
+                            textClassName={`font-medium ${isDark ? "" : "text-slate-500"}`}
+                            textStyle={isDark ? dark.textMuted : undefined}
                         >
-                            Payment Plan <span className="text-[#B68A35] ml-1">{project.paymentPlan}</span>
-                        </span>
+                            10% down • 70% during construction • 20% on handover
+                        </MobileNoteBox>
                     </div>
-                    <p
-                        className={`text-[12px] leading-relaxed font-medium ${isDark ? "" : "text-slate-500"}`}
-                        style={isDark ? dark.textMuted : undefined}
-                    >
-                        10% down • 70% during construction • 20% on handover
-                    </p>
+                    <div className="hidden lg:block min-w-0 flex-1">
+                        <div className="flex items-center gap-2 mb-1.5">
+                            <MdPayments className="text-[#B68A35] text-[20px]" />
+                            <span
+                                className={`text-[14px] font-bold uppercase tracking-tight ${isDark ? "" : "text-slate-800"}`}
+                                style={isDark ? dark.text : undefined}
+                            >
+                                Payment Plan <span className="text-[#B68A35] ml-1">{project.paymentPlan}</span>
+                            </span>
+                        </div>
+                        <p
+                            className={`text-[12px] leading-relaxed font-medium ${isDark ? "" : "text-slate-500"}`}
+                            style={isDark ? dark.textMuted : undefined}
+                        >
+                            10% down • 70% during construction • 20% on handover
+                        </p>
+                    </div>
                 </div>
 
                 {/* Accordion */}
@@ -406,13 +493,58 @@ const ProjectCard = ({ project, isDark }) => {
 
                 {accordionOpen && (
                     <div
-                        className={`mb-6 p-4 rounded-lg border ${isDark ? "" : "bg-[#FFFDF8] border-[#F3EFE9] text-slate-700"}`}
+                        className={`mb-6 p-4 rounded lg:rounded-lg border ${isDark ? "" : "bg-[#FFFDF8] border-[#F3EFE9] text-slate-700"}`}
                         style={isDark ? { ...dark.panelInner, ...dark.textSecondary } : undefined}
                     >
-                        <div className="grid grid-cols-1 gap-3">
+                        <div className="lg:hidden">
+                            <MobileNoteBox
+                                icon={<LuShieldCheck className="text-[18px]" />}
+                                title="Sources & Verification"
+                            >
+                                <div className="grid grid-cols-1 gap-3">
+                                    <div>
+                                        <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Project Information</p>
+                                        <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.projectInfo?.source || 'N/A'}</p>
+                                        {project.sourceVerification?.projectInfo?.url && (
+                                            <a href={project.sourceVerification.projectInfo.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-[13px] leading-normal underline">
+                                                View source
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Pricing Data</p>
+                                        <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.pricingData?.source || 'N/A'}</p>
+                                        {project.sourceVerification?.pricingData?.url && (
+                                            <a href={project.sourceVerification.pricingData.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-[13px] leading-normal underline">
+                                                View pricing source
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Handover Date Source</p>
+                                        <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.handoverDate?.source || 'N/A'}</p>
+                                        {project.sourceVerification?.handoverDate?.url && (
+                                            <a href={project.sourceVerification.handoverDate.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-[13px] leading-normal underline">
+                                                View handover source
+                                            </a>
+                                        )}
+                                    </div>
+
+                                    <div className="flex items-start gap-4 mt-2">
+                                        <div>
+                                            <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Last Verified</p>
+                                            <p className="text-[13px] leading-normal font-medium">{project.sourceVerification?.lastVerified || 'N/A'}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </MobileNoteBox>
+                        </div>
+                        <div className="hidden lg:grid grid-cols-1 gap-3 min-w-0">
                             <div>
                                 <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Project Information</p>
-                                <p className="text-sm font-medium">{project.sourceVerification?.projectInfo?.source || 'N/A'}</p>
+                                <p className="text-sm leading-normal font-medium">{project.sourceVerification?.projectInfo?.source || 'N/A'}</p>
                                 {project.sourceVerification?.projectInfo?.url && (
                                     <a href={project.sourceVerification.projectInfo.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
                                         View source
@@ -422,7 +554,7 @@ const ProjectCard = ({ project, isDark }) => {
 
                             <div>
                                 <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Pricing Data</p>
-                                <p className="text-sm font-medium">{project.sourceVerification?.pricingData?.source || 'N/A'}</p>
+                                <p className="text-sm leading-normal font-medium">{project.sourceVerification?.pricingData?.source || 'N/A'}</p>
                                 {project.sourceVerification?.pricingData?.url && (
                                     <a href={project.sourceVerification.pricingData.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
                                         View pricing source
@@ -432,7 +564,7 @@ const ProjectCard = ({ project, isDark }) => {
 
                             <div>
                                 <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Handover Date Source</p>
-                                <p className="text-sm font-medium">{project.sourceVerification?.handoverDate?.source || 'N/A'}</p>
+                                <p className="text-sm leading-normal font-medium">{project.sourceVerification?.handoverDate?.source || 'N/A'}</p>
                                 {project.sourceVerification?.handoverDate?.url && (
                                     <a href={project.sourceVerification.handoverDate.url} target="_blank" rel="noreferrer" className="text-[#B68A35] text-sm underline">
                                         View handover source
@@ -443,7 +575,7 @@ const ProjectCard = ({ project, isDark }) => {
                             <div className="flex items-start gap-4 mt-2">
                                 <div>
                                     <p className={`text-xs font-bold uppercase ${isDark ? "" : "text-slate-500"}`} style={isDark ? dark.textMuted : undefined}>Last Verified</p>
-                                    <p className="text-sm font-medium">{project.sourceVerification?.lastVerified || 'N/A'}</p>
+                                    <p className="text-sm leading-normal font-medium">{project.sourceVerification?.lastVerified || 'N/A'}</p>
                                 </div>
                             </div>
                         </div>
@@ -451,7 +583,7 @@ const ProjectCard = ({ project, isDark }) => {
                 )}
 
                 {/* Action Button */}
-                <button className="relative w-full bg-[#B38B3F] hover:bg-[#967332] text-white py-4 rounded-xl font-bold text-sm flex items-center justify-center transition-colors">
+                <button className="relative w-full bg-[#B38B3F] hover:bg-[#967332] text-white py-4 rounded lg:rounded-xl font-bold text-sm flex items-center justify-center transition-colors">
                     <div className="flex items-center gap-2">
                         <IoDocumentTextOutline className="text-xl" />
                         <span>Download Brochure</span>
@@ -469,7 +601,7 @@ const StatBox = ({ icon, label, value, isDark, isSmall }) => {
     const { dark } = useThemeStyles();
     return (
         <div
-            className={`p-3 lg:p-2 lg:py-3 flex gap-2 rounded-lg ${isDark ? "border" : "bg-[#fbf9f6] border border-[#F3EFE9]"}`}
+            className={`p-3 lg:p-2 lg:py-3 flex gap-2 rounded lg:rounded-lg ${isDark ? "border" : "bg-[#fbf9f6] border border-[#F3EFE9]"}`}
             style={isDark ? dark.statCard : undefined}
         >
             <div className="flex items-start gap-2 text-[#B68A35] text-2xl mt-1">

@@ -42,7 +42,7 @@ const Hero = ({ data }) => {
             <div className="relative h-[520px] lg:h-[480px] w-full overflow-hidden">
                 <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${data.backgroundImage || '/Home/herobg.webp'}')` }}
+                    style={{ backgroundImage: "url('/projects/cm-projects.webp')" }}
                 >
                     <div
                         className={`lg:block absolute inset-0 transition-colors duration-300 ${isDark ? "" : "bg-gradient-to-r from-white/95 via-white/60 to-transparent"}`}
@@ -54,7 +54,7 @@ const Hero = ({ data }) => {
 
                     <div className="mt-8 lg:mt-14 max-w-2xl">
                         <h2
-                            className={`text-3xl lg:text-5xl xl:text-6xl font-serif leading-tight lg:leading-[1.1] ${isDark ? "" : "text-slate-900"}`}
+                            className={`text-[40px] lg:text-5xl xl:text-6xl font-serif leading-none lg:leading-[1.1] ${isDark ? "" : "text-slate-900"}`}
                             style={{ fontWeight: 510, ...(isDark ? { color: t.text } : {}) }}
                         >
                             {data.hero?.title?.line1 || "Emaar Properties – "}<br />
@@ -63,7 +63,7 @@ const Hero = ({ data }) => {
                             </span>
                         </h2>
                         <p
-                            className={`mt-4 lg:mt-6 leading-relaxed max-w-md text-sm lg:text-md ${isDark ? "" : "text-slate-600"}`}
+                            className={`mt-4 lg:mt-6 max-w-md text-[15px] leading-[19px] lg:text-md lg:leading-relaxed ${isDark ? "" : "text-slate-600"}`}
                             style={isDark ? { color: t.textSecondary } : undefined}
                         >
                             {data.hero?.description || "Explore Emaar's complete portfolio: 200+ projects across Dubai. Compare payment plans, check delivery history, and read verified resident reviews."}

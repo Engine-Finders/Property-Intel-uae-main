@@ -16,6 +16,39 @@ import { HiOutlineGlobeAlt } from "react-icons/hi2";
 import ExpertSection from './ExpertSection';
 import { useThemeStyles, PANEL_DARK_BG } from '@/app/components/context/themeStyles';
 
+const GOLD = "#B68A35";
+
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
+};
+
 export default function Section4({ data }) {
     const [activeTab, setActiveTab] = useState('founding');
     const [isSourcesOpen, setIsSourcesOpen] = useState(false);
@@ -32,16 +65,55 @@ export default function Section4({ data }) {
     }
 
     const timelineData = data.timelineData || [];
-    const leaders = data.leaders || [];
+    const leaders = data.leadership?.leaders || data.leaders || [];
     const sourcesData = data.sourcesData || [];
+
+    const headerDescription = data.header?.description || "This section establishes the authority, experience, and corporate structure of Emaar Properties, based on verified public records and official sources.";
 
     return (
         <section className={isDark ? "" : "w-full bg-white font-sans antialiased"} style={isDark ? { background: t.bg } : undefined}>
-            {/* Header Section */}
-            <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+            {/* Mobile header */}
+            <div className="md:hidden">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt={data.heroAlt || "Dubai Skyline"}
+                        fill
+                        className="object-cover object-center grayscale-[10%]"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1A1A1A" }}
+                        >
+                            {data.header?.title?.line1 || "Company History "}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "Emaar Properties"}</span>
+                        </h2>
+                        <p
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : "#4A4A4A" }}
+                        >
+                            {headerDescription}
+                        </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-[320px] lg:h-[400px] items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src={data.heroImage || "/Home/Section3bg.webp"}
+                        src="/projects/cm-projects.webp"
                         alt={data.heroAlt || "Dubai Skyline"}
                         fill
                         className="object-cover object-center grayscale-[10%]"
@@ -58,16 +130,16 @@ export default function Section4({ data }) {
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
                         {data.header?.title?.line2 || "Emaar Properties"}
                     </h3>
-                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
-                        {data.header?.description || "This section establishes the authority, experience, and corporate structure of Emaar Properties, based on verified public records and official sources."}
+                    <p className="max-w-xl text-sm lg:text-base leading-[17px] font-medium" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
+                        {headerDescription}
                     </p>
                 </div>
             </div>
 
             {/* Tabs and Main Content Container */}
-            <div className="max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-2 -mt-12 relative z-20 pb-20">
+            <div className="max-w-[1400px] mx-auto px-2 sm:px-4 lg:px-2 md:-mt-12 relative z-20 pb-20">
                 <div
-                    className={`rounded-xl shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden ${isDark ? "" : "bg-white border border-[#F3EFE9]"}`}
+                    className={`rounded shadow-[0_4px_25px_rgba(0,0,0,0.06)] overflow-hidden lg:rounded-xl ${isDark ? "" : "bg-white border border-[#F3EFE9]"}`}
                     style={isDark ? dark.panel : undefined}
                 >
                     {/* Tab Navigation */}
@@ -118,10 +190,12 @@ export default function Section4({ data }) {
                                 style={isDark ? { color: t.text } : { color: '#374151' }}
                             >
                                 <div className="flex items-center gap-3">
-                                    <div className=" flex items-center justify-center">
-                                        <HiOutlineShieldCheck className="text-[#B68A35] text-xl" />
+                                    <div className="lg:hidden flex items-stretch gap-3">
+                                        <span className="w-px self-stretch shrink-0" style={{ background: GOLD }} aria-hidden />
+                                        <HiOutlineShieldCheck className="text-[#B68A35] text-xl shrink-0" />
                                     </div>
-                                    <span className="font-bold text-sm">{data.sources?.title || "Sources & Verification"}</span>
+                                    <HiOutlineShieldCheck className="hidden lg:block text-[#B68A35] text-xl shrink-0" />
+                                    <span className="font-bold text-[12px] leading-normal lg:text-sm lg:leading-normal">{data.sources?.title || "Sources & Verification"}</span>
                                 </div>
                                 <LuChevronDown className={`text-xl transition-all ${isSourcesOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={isDark ? { color: t.textMuted } : { color: '#9CA3AF' }} />
                             </button>
@@ -131,10 +205,10 @@ export default function Section4({ data }) {
                                 className={`overflow-hidden transition-all duration-300 ${isSourcesOpen ? 'max-h-[1200px] opacity-100 pt-5' : 'max-h-0 opacity-0 pt-0'}`}
                             >
                                 <div
-                                    className={`rounded-xl ${isDark ? "" : "border border-[#F3EFE9] bg-[#FBF9F6]"} p-4 sm:p-5 space-y-4`}
+                                    className={`rounded lg:rounded-xl ${isDark ? "" : "border border-[#F3EFE9] bg-[#FBF9F6]"} p-4 sm:p-5 space-y-4`}
                                     style={isDark ? { border: `1px solid ${dark?.dividerColor}`, background: PANEL_DARK_BG } : undefined}
                                 >
-                                    <p className="text-[12px] sm:text-[13px] leading-relaxed" style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
+                                    <p className="text-[12px] leading-normal lg:text-[13px] lg:leading-relaxed" style={isDark ? { color: t.textSecondary } : { color: '#374151' }}>
                                         {data.sources?.description || "The following sources support the information presented above. We prioritize official registrars, annual reports, and government filings."}
                                     </p>
 
@@ -185,13 +259,24 @@ export default function Section4({ data }) {
 
                 {/* Floating Info Banner */}
                 <div
-                    className={`mt-6 rounded-lg p-4 sm:p-5 flex gap-3 sm:gap-4 items-start ${isDark ? "" : "bg-[#FBF9F6] border border-[#F3EFE9]"}`}
+                    className={`mt-6 rounded lg:rounded-lg p-4 sm:p-5 transition-colors ${isDark ? "" : "bg-[#FBF9F6] border border-[#F3EFE9]"}`}
                     style={isDark ? { background: PANEL_DARK_BG, border: `1px solid ${dark?.dividerColor}` } : undefined}
                 >
-                    <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
-                    <p className="text-xs lg:text-sm leading-relaxed" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
-                        {data.footerDisclaimer || "All information on this page is sourced from public records, financial filings and official disclosures. Please refer to the Sources & Verification section for detailed references."}
-                    </p>
+                    <div className="lg:hidden">
+                        <MobileNoteBox
+                            icon={<LuInfo className="text-2xl" />}
+                            textClassName={isDark ? "" : "text-[#4A4A4A]"}
+                            textStyle={isDark ? { color: t.textSecondary } : undefined}
+                        >
+                            {data.footerDisclaimer || "All information on this page is sourced from public records, financial filings and official disclosures. Please refer to the Sources & Verification section for detailed references."}
+                        </MobileNoteBox>
+                    </div>
+                    <div className="hidden lg:flex gap-3 sm:gap-4 items-start">
+                        <LuInfo className="text-[#B68A35] text-2xl shrink-0 mt-0.5" />
+                        <p className="text-sm leading-relaxed" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
+                            {data.footerDisclaimer || "All information on this page is sourced from public records, financial filings and official disclosures. Please refer to the Sources & Verification section for detailed references."}
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -205,7 +290,7 @@ function TabButton({ active, onClick, icon, label, isDark, dark }) {
         <button
             onClick={onClick}
             className={`flex-1 flex items-center justify-center sm:gap-3 transition-all relative
-                min-w-0 py-2 px-1.5 sm:px-2 lg:py-6 lg:px-4 rounded-2xl lg:rounded-none lg:mx-0
+                min-w-0 py-2 px-1.5 sm:px-2 lg:py-6 lg:px-4 rounded lg:rounded-2xl lg:rounded-none lg:mx-0
                 ${active && !isDark
                     ? 'text-[#B68A35] bg-[#FDF8F0] border border-[#B68A35]/20 lg:border-none lg:bg-white'
                     : !isDark && active === false
@@ -222,7 +307,7 @@ function TabButton({ active, onClick, icon, label, isDark, dark }) {
             }
         >
             <span className="hidden lg:inline-flex">{icon}</span>
-            <span className={`text-[11px] sm:text-sm leading-tight text-center tracking-wide lg:capitalize ${active ? 'font-semibold' : 'font-medium'}`}>
+            <span className={`text-[11px] leading-normal whitespace-nowrap lg:text-sm lg:leading-tight text-center tracking-wide lg:capitalize ${active ? 'font-semibold' : 'font-medium'}`}>
                 {label}
             </span>
             {active && !isDark && (
@@ -262,7 +347,7 @@ function FoundingView({ data, timelineData, isDark, dark, t }) {
             </div>
 
             <div className="space-y-2.5">
-                <p className="leading-relaxed text-[12px] sm:text-sm lg:text-[15px] font-medium" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
+                <p className="text-[13px] leading-normal lg:text-sm lg:text-[15px] lg:leading-relaxed font-medium" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                     {displayText}
                 </p>
                 <button
@@ -336,8 +421,8 @@ function LeadershipView({ data, leaders, isDark, dark, t }) {
                     : leader.bio;
 
                 return (
-                    <div key={idx} className="flex flex-row lg:flex-row gap-4 lg:gap-8 rounded-xl p-2 lg:p-5 items-start" style={isDark ? { background: PANEL_DARK_BG, border: `1px solid ${dark?.dividerColor}` } : { background: 'white', border: '1px solid #E5E5E5' }}>
-                        <div className="w-24 h-24 lg:w-48 lg:h-48 relative rounded-xl overflow-hidden shrink-0">
+                    <div key={idx} className="flex flex-row lg:flex-row gap-4 lg:gap-8 rounded lg:rounded-xl p-2 lg:p-5 items-start" style={isDark ? { background: PANEL_DARK_BG, border: `1px solid ${dark?.dividerColor}` } : { background: 'white', border: '1px solid #E5E5E5' }}>
+                        <div className="w-24 h-24 lg:w-48 lg:h-48 relative rounded lg:rounded-xl overflow-hidden shrink-0">
                             {leader.image ? (
                                 <Image
                                     src={leader.image}
@@ -357,7 +442,7 @@ function LeadershipView({ data, leaders, isDark, dark, t }) {
                                 <p className="text-[#B68A35] text-[10px] lg:text-[12px] font-bold tracking-widest mt-1 uppercase">{leader.role}</p>
                             </div>
 
-                            <p className={isDesktop ? "text-[12px] lg:text-[14px] leading-relaxed" : `text-[12px] lg:text-[14px] leading-relaxed lg:line-clamp-none ${expandedLeaderIndex === idx ? '' : 'line-clamp-4'}`} style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
+                            <p className={isDesktop ? "text-[12px] lg:text-[14px] leading-[17px] lg:leading-relaxed" : `text-[13px] leading-[17px] lg:text-[14px] lg:leading-relaxed lg:line-clamp-none ${expandedLeaderIndex === idx ? '' : 'line-clamp-4'}`} style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                                 {isDesktop ? desktopDisplay : leader.bio}
                             </p>
 
@@ -439,7 +524,7 @@ function OwnershipView({ data, isDark, dark, t }) {
                         {data?.ownershipTitle || "Ownership structure"}
                     </h4>
                 </div>
-                <p className="leading-[1.8] text-[12px] sm:text-[15px] font-normal mb-2 sm:mb-8 mt-2" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
+                <p className="text-[13px] leading-normal lg:text-[15px] lg:leading-[1.8] font-normal mb-2 sm:mb-8 mt-2" style={isDark ? { color: t.textSecondary } : { color: '#4A4A4A' }}>
                     {displayText}
                 </p>
 
@@ -498,7 +583,7 @@ function StatBox({ icon, label, value, isDark, dark, t }) {
 }
 
 const ShareholderCard = ({ icon, percent, name, source, date, isDark, dark, t }) => (
-    <div className="flex item-start sm:items-center gap-5 p-2 sm:p-6 rounded-2xl shadow-sm" style={!isDark ? { border: '1px solid #F3EFE9', background: 'white' } : { border: `1px solid ${dark?.dividerColor}`, background: PANEL_DARK_BG }}>
+    <div className="flex item-start sm:items-center gap-5 p-2 sm:p-6 rounded lg:rounded-2xl shadow-sm" style={!isDark ? { border: '1px solid #F3EFE9', background: 'white' } : { border: `1px solid ${dark?.dividerColor}`, background: PANEL_DARK_BG }}>
         <div className="w-10 h-10 sm:w-20 sm:h-20 shrink-0 rounded-full text-2xl flex items-center justify-center text-[#B68A35]" style={!isDark ? { background: '#FBF9F6' } : { background: 'rgba(182,138,53,0.08)' }}>
             {icon}
         </div>

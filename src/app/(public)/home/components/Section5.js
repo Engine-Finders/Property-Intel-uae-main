@@ -17,8 +17,41 @@ import { useThemeStyles } from '@/app/components/context/themeStyles';
 const GOLD = "#B68A35";
 const GOLD_BORDER = "rgba(182,138,53,0.25)";
 
+const MobileNoteBox = ({ icon, title, children, textClassName = "", textStyle }) => {
+    if (title) {
+        return (
+            <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="shrink-0 text-[#B68A35]">{icon}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#B68A35]">{title}</span>
+                </div>
+                <div className="flex gap-3 items-stretch">
+                    <span className="w-px shrink-0 self-stretch" style={{ background: GOLD }} aria-hidden />
+                    <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex min-w-0 gap-3 items-stretch">
+            <div className="flex shrink-0 flex-col items-center gap-2 self-stretch">
+                <span className="text-[#B68A35]">{icon}</span>
+                <span className="mx-auto w-px min-h-0 flex-1" style={{ background: GOLD }} aria-hidden />
+            </div>
+            <div className={`min-w-0 text-[12px] leading-normal ${textClassName}`} style={textStyle}>
+                {children}
+            </div>
+        </div>
+    );
+};
+
 const Section5 = ({ data }) => {
     const [isDesktop, setIsDesktop] = useState(false);
+    const [isHandoverOpen, setIsHandoverOpen] = useState(false);
+    const [isQualityOpen, setIsQualityOpen] = useState(false);
     const [isInsightOpen, setIsInsightOpen] = useState(false);
     const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
     const [isSourcesOpen, setIsSourcesOpen] = useState(false);
@@ -35,6 +68,8 @@ const Section5 = ({ data }) => {
         const updateViewport = () => {
             const desktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
             setIsDesktop(desktop);
+            setIsHandoverOpen(desktop);
+            setIsQualityOpen(desktop);
             setIsInsightOpen(desktop);
             setIsDisclaimerOpen(desktop);
             setIsSourcesOpen(desktop);
@@ -62,11 +97,50 @@ const Section5 = ({ data }) => {
     const sourcesDesktop = data.sourcesDesktop || [];
     const sourcesMobile = data.sourcesMobile || [];
 
+    const headerDescription = data.header?.description || "We have analysed official handover records and verified owner feedback to present an honest picture of Emaar's delivery performance.";
+
     return (
         <section style={{ background: sectionBg }} className="py-12 font-sans">
 
-            {/* Header Section */}
-            <div className="relative w-full h-[320px] lg:h-[400px] flex items-center overflow-hidden">
+            {/* Mobile header */}
+            <div className="md:hidden">
+                <div className="relative min-h-[285px] overflow-hidden">
+                    <Image
+                        src="/projects/cm-projects.webp"
+                        alt={data.heroAlt || "Dubai Skyline"}
+                        fill
+                        className="object-cover object-center grayscale-[10%]"
+                        priority
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background: isDark
+                                ? "linear-gradient(90deg, rgba(37,40,45,0.86) 0%, rgba(37,40,45,0.78) 42%, rgba(37,40,45,0.56) 62%, rgba(37,40,45,0.22) 80%, transparent 100%)"
+                                : "linear-gradient(90deg, rgba(255,253,250,0.78) 0%, rgba(255,253,250,0.68) 42%, rgba(255,253,250,0.42) 62%, rgba(255,253,250,0.16) 80%, transparent 100%)",
+                        }}
+                    />
+                    <div className="relative z-10 max-w-full px-2 py-8 text-left">
+                        <h2
+                            className="text-[32px] font-semibold leading-none tracking-[-0.01em]"
+                            style={{ color: isDark ? t.text : "#1A1A1A" }}
+                        >
+                            {data.header?.title?.line1 || "Emaar Delivery Track Record:"}
+                            <span className="block text-[#B68A35]">{data.header?.title?.line2 || "Transparency You Can Trust"}</span>
+                        </h2>
+                        <p
+                            className="mt-4 max-w-[380px] text-[14px] font-normal leading-[17px] tracking-[-0.01em]"
+                            style={{ color: isDark ? t.textSecondary : bodyColor }}
+                        >
+                            {headerDescription}
+                        </p>
+                        <span className="mt-5 block h-px w-20 bg-[#B68A35]" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Desktop header */}
+            <div className="hidden md:flex relative w-full h-[320px] lg:h-[400px] items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={data.heroImage || "/Home/Section3bg.webp"}
@@ -86,15 +160,15 @@ const Section5 = ({ data }) => {
                     <h3 className="text-3xl lg:text-5xl font-serif text-[#B68A35] mb-6">
                         {data.header?.title?.line2 || "Transparency You Can Trust"}
                     </h3>
-                    <p className="max-w-xl text-sm lg:text-base leading-relaxed font-medium" style={{ color: bodyColor }}>
-                        {data.header?.description || "We have analysed official handover records and verified owner feedback to present an honest picture of Emaar's delivery performance."}
+                    <p className="max-w-xl text-sm lg:text-base leading-[17px] font-medium" style={{ color: bodyColor }}>
+                        {headerDescription}
                     </p>
                 </div>
             </div>
 
-            <div className="max-w-[1400px] mx-auto -mt-12 relative z-20">
+            <div className="max-w-[1400px] mx-auto px-2 md:-mt-12 relative z-20">
                 {/* --- STATS OVERVIEW CARDS --- */}
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-0 mb-8 rounded-2xl overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-0 mb-8 rounded lg:rounded-2xl overflow-hidden" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                     {statCards.map((stat, idx) => (
                         <StatCard
                             key={idx}
@@ -120,16 +194,23 @@ const Section5 = ({ data }) => {
                     <div className="lg:col-span-8 space-y-6">
 
                         {/* Project Handover Analysis */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-5 flex items-center justify-between" style={{ borderBottom: `1px solid ${cardBorder}` }}>
-                                <div className="flex items-center gap-3">
-                                    <PiBuildingApartmentLight className="text-[#B68A35] w-8 h-8" />
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <button
+                                type="button"
+                                onClick={() => !isDesktop && setIsHandoverOpen((s) => !s)}
+                                aria-expanded={isHandoverOpen || isDesktop}
+                                className="w-full p-5 flex items-center justify-between text-left lg:cursor-default"
+                                style={{ borderBottom: (isHandoverOpen || isDesktop) ? `1px solid ${cardBorder}` : 'none' }}
+                            >
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <PiBuildingApartmentLight className="text-[#B68A35] w-8 h-8 shrink-0" />
                                     <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.handoverAnalysis?.title || "Project Handover Analysis"}</h4>
                                 </div>
-                                <ChevronUp className="w-5 h-5" style={{ color: subtextColor }} />
-                            </div>
+                                <ChevronUp className={`w-5 h-5 shrink-0 transition-transform lg:hidden ${isHandoverOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isHandoverOpen ? { color: subtextColor } : undefined} />
+                            </button>
+                            {(isHandoverOpen || isDesktop) && (
                             <div className="p-2">
-                                <p className="text-[14px] mb-4" style={{ color: bodyColor }}>
+                                <p className="text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed mb-4" style={{ color: bodyColor }}>
                                     {data.handoverAnalysis?.description || "The following projects have been analysed using official DLD handover records, RERA progress reports, and developer announcements."}
                                 </p>
                                 <div className="overflow-x-auto">
@@ -161,26 +242,46 @@ const Section5 = ({ data }) => {
                                         </tbody>
                                     </table>
                                 </div>
-                                <div className="mt-4 p-3 rounded-lg flex gap-3 items-start" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-                                    <Info className="text-[#B68A35] w-6 h-6" />
-                                    <p className="text-[12px] leading-relaxed" style={{ color: subtextColor }}>
-                                        {data.handoverAnalysis?.note || ""}
-                                    </p>
-                                </div>
+                                {data.handoverAnalysis?.note ? (
+                                    <div className="mt-4 p-3 rounded lg:rounded-lg" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
+                                        <div className="lg:hidden">
+                                            <MobileNoteBox
+                                                icon={<Info className="w-5 h-5" />}
+                                                textStyle={{ color: subtextColor }}
+                                            >
+                                                {data.handoverAnalysis.note}
+                                            </MobileNoteBox>
+                                        </div>
+                                        <div className="hidden lg:flex gap-3 items-start">
+                                            <Info className="text-[#B68A35] w-6 h-6 shrink-0" />
+                                            <p className="text-[12px] leading-relaxed" style={{ color: subtextColor }}>
+                                                {data.handoverAnalysis.note}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ) : null}
                             </div>
+                            )}
                         </div>
 
                         {/* Quality & Owner Satisfaction Insights */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-5 flex items-center justify-between" style={{ borderBottom: `1px solid ${cardBorder}` }}>
-                                <div className="flex items-center gap-3">
-                                    <Star className="text-[#B68A35] w-8 h-8" />
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <button
+                                type="button"
+                                onClick={() => !isDesktop && setIsQualityOpen((s) => !s)}
+                                aria-expanded={isQualityOpen || isDesktop}
+                                className="w-full p-5 flex items-center justify-between text-left lg:cursor-default"
+                                style={{ borderBottom: (isQualityOpen || isDesktop) ? `1px solid ${cardBorder}` : 'none' }}
+                            >
+                                <div className="flex items-center gap-3 min-w-0">
+                                    <Star className="text-[#B68A35] w-8 h-8 shrink-0" />
                                     <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.qualityInsights?.title || "Quality & Owner Satisfaction Insights"}</h4>
                                 </div>
-                                <ChevronUp className="w-5 h-5" style={{ color: subtextColor }} />
-                            </div>
+                                <ChevronUp className={`w-5 h-5 shrink-0 transition-transform lg:hidden ${isQualityOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isQualityOpen ? { color: subtextColor } : undefined} />
+                            </button>
+                            {(isQualityOpen || isDesktop) && (
                             <div className="p-2 sm:p-6">
-                                <p className="text-[14px] leading-relaxed mb-4" style={{ color: bodyColor }}>
+                                <p className="text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed mb-4" style={{ color: bodyColor }}>
                                     <span className="font-bold text-[#B68A35]">Summary:</span> {data.qualityInsights?.summary || ""}
                                 </p>
 
@@ -215,7 +316,7 @@ const Section5 = ({ data }) => {
                                                     {prosItems.map((item, idx) => (
                                                         <li key={idx} className="flex gap-2">
                                                             <span className="text-[#89C587] font-bold">•</span>
-                                                            <span className="text-[12px]" style={{ color: bodyColor }}>{item}</span>
+                                                            <span className="text-[13px] leading-normal lg:text-[12px] lg:leading-normal" style={{ color: bodyColor }}>{item}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -231,7 +332,7 @@ const Section5 = ({ data }) => {
                                                     {consItems.map((item, idx) => (
                                                         <li key={idx} className="flex gap-2">
                                                             <span className="text-[#E87E7E] font-bold">•</span>
-                                                            <span className="text-[12px]" style={{ color: bodyColor }}>{item}</span>
+                                                            <span className="text-[13px] leading-normal lg:text-[12px] lg:leading-normal" style={{ color: bodyColor }}>{item}</span>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -253,7 +354,7 @@ const Section5 = ({ data }) => {
 
                                 {/* Mobile sources accordion */}
                                 <div className="mt-6 lg:hidden">
-                                    <div className="rounded-lg overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                                    <div className="rounded overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
                                         <button
                                             type="button"
                                             onClick={() => setIsSourcesOpen((s) => !s)}
@@ -261,8 +362,9 @@ const Section5 = ({ data }) => {
                                             className="w-full flex items-center justify-between p-4"
                                         >
                                             <div className="flex items-center gap-3">
+                                                <span className="w-px self-stretch shrink-0 h-5" style={{ background: GOLD }} aria-hidden />
                                                 <Building2 className="w-5 h-5 text-[#B68A35]" />
-                                                <span className="text-[14px] font-bold uppercase tracking-wider" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Sources</span>
+                                                <span className="text-[12px] leading-normal font-bold uppercase tracking-wider" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>Sources</span>
                                             </div>
                                             <ChevronUp className={`w-5 h-5 transition-transform ${isSourcesOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isSourcesOpen ? { color: subtextColor } : undefined} />
                                         </button>
@@ -272,11 +374,11 @@ const Section5 = ({ data }) => {
                                                 <ul className="space-y-3">
                                                     {sourcesMobile.map((source, idx) => (
                                                         <li key={idx} className="flex items-center justify-between">
-                                                            <div className="flex items-center gap-3">
-                                                                <span className="w-2 h-2 rounded-full" style={{ background: subtextColor }} />
-                                                                <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-[14px] underline decoration-gray-200" style={{ color: bodyColor }}>{source.label}</a>
+                                                            <div className="flex items-center gap-3 min-w-0">
+                                                                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: subtextColor }} />
+                                                                <a href={source.href} target="_blank" rel="noopener noreferrer" className="text-[13px] leading-normal underline decoration-gray-200 truncate" style={{ color: bodyColor }}>{source.label}</a>
                                                             </div>
-                                                            <a href={source.href} target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35]"><ExternalLink className="w-4 h-4" /></a>
+                                                            <a href={source.href} target="_blank" rel="noopener noreferrer" className="ml-3 text-[#B68A35] shrink-0"><ExternalLink className="w-4 h-4" /></a>
                                                         </li>
                                                     ))}
                                                 </ul>
@@ -285,6 +387,7 @@ const Section5 = ({ data }) => {
                                     </div>
                                 </div>
                             </div>
+                            )}
                         </div>
                     </div>
 
@@ -292,36 +395,36 @@ const Section5 = ({ data }) => {
                     <div className="lg:col-span-4 sm:space-y-4 p-2 space-y-2">
 
                         {/* On-Ground Analyst Insight */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-3" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <div className="p-3" style={{ borderBottom: isInsightOpen ? `1px solid ${cardBorder}` : 'none' }}>
                                 <button
                                     type="button"
                                     onClick={() => setIsInsightOpen((s) => !s)}
                                     aria-expanded={isInsightOpen}
                                     className="w-full flex items-center justify-between"
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <TbBulb className="text-[#B68A35] w-8 h-8 text-2xl" />
-                                        <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.insight?.title || "On-Ground Analyst Insight"}</h4>
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        <TbBulb className="text-[#B68A35] w-8 h-8 text-2xl shrink-0" />
+                                        <h4 className="font-bold text-sm lg:text-base text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.insight?.title || "On-Ground Analyst Insight"}</h4>
                                     </div>
-                                    <ChevronUp className={`w-5 h-5 transition-transform ${isInsightOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isInsightOpen ? { color: subtextColor } : undefined} />
+                                    <ChevronUp className={`w-5 h-5 shrink-0 transition-transform ${isInsightOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isInsightOpen ? { color: subtextColor } : undefined} />
                                 </button>
                             </div>
 
                             {isInsightOpen && (
                                 <div className="p-3">
-                                    <div className="p-3 rounded-lg flex gap-3 mb-5" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
+                                    <div className="hidden lg:block p-3 rounded-lg flex gap-3 mb-5" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
                                         <Info className="text-[#B68A35] w-4 h-4 mt-0.5 shrink-0" />
                                         <p className="text-[12px] text-[#B68A35] uppercase font-bold leading-tight">
                                             {data.insight?.note || "NOTE:"} <span className="font-normal capitalize tracking-normal italic" style={{ color: bodyColor }}>{data.insight?.noteText || ""}</span>
                                         </p>
                                     </div>
-                                    <div className="space-y-4 text-[14px] leading-relaxed" style={{ color: bodyColor }}>
+                                    <div className="space-y-4 text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed" style={{ color: bodyColor }}>
                                         <p>{data.insight?.content || ""}</p>
                                     </div>
                                     <div className="mt-6 flex items-center gap-3 pt-4" style={{ borderTop: `1px solid ${cardBorder}` }}>
-                                        <Building2 className="text-[#B68A35] w-4 h-4" />
-                                        <p className="text-[12px]" style={{ color: subtextColor }}>
+                                        <Building2 className="text-[#B68A35] w-4 h-4 shrink-0" />
+                                        <p className="text-[12px] leading-normal lg:leading-normal" style={{ color: subtextColor }}>
                                             {data.insight?.sourceLabel || "Source:"} <span className="text-[#B68A35] font-medium cursor-pointer">{data.insight?.sourceName || "PropertyIntel on-ground analysis"}</span> ({data.insight?.sourceDate || "21 February 2026"})
                                         </p>
                                     </div>
@@ -330,32 +433,43 @@ const Section5 = ({ data }) => {
                         </div>
 
                         {/* Disclaimer */}
-                        <div className="rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
-                            <div className="p-3" style={{ borderBottom: `1px solid ${cardBorder}` }}>
+                        <div className="rounded lg:rounded-xl overflow-hidden shadow-sm" style={{ background: cardBg, border: `1px solid ${cardBorder}` }}>
+                            <div className="p-3" style={{ borderBottom: isDisclaimerOpen ? `1px solid ${cardBorder}` : 'none' }}>
                                 <button
                                     type="button"
                                     onClick={() => setIsDisclaimerOpen((s) => !s)}
                                     aria-expanded={isDisclaimerOpen}
                                     className="w-full flex items-center justify-between"
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <ShieldCheck className="text-[#B68A35] w-8 h-8 text-xl" />
-                                        <h4 className="font-bold text-sm lg:text-base" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.title || "Disclaimer"}</h4>
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        <ShieldCheck className="text-[#B68A35] w-8 h-8 text-xl shrink-0" />
+                                        <h4 className="font-bold text-sm lg:text-base text-left" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.title || "Disclaimer"}</h4>
                                     </div>
-                                    <ChevronUp className={`w-5 h-5 transition-transform ${isDisclaimerOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isDisclaimerOpen ? { color: subtextColor } : undefined} />
+                                    <ChevronUp className={`w-5 h-5 shrink-0 transition-transform ${isDisclaimerOpen ? 'rotate-180 text-[#B68A35]' : ''}`} style={!isDisclaimerOpen ? { color: subtextColor } : undefined} />
                                 </button>
                             </div>
 
                             {isDisclaimerOpen && (
                                 <div className="p-2">
-                                    <p className="text-[14px] leading-relaxed" style={{ color: bodyColor }}>
+                                    <p className="text-[13px] leading-normal lg:text-[14px] lg:leading-relaxed" style={{ color: bodyColor }}>
                                         {data.disclaimer?.content || ""}
                                     </p>
-                                    <div className="mt-6 flex items-center gap-3 p-2 rounded-xl" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
-                                        <Calendar className="text-[#B68A35] w-5 h-5" />
-                                        <div>
-                                            <p className="text-[12px] font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.lastUpdated || "Last updated: 21 February 2026"}</p>
-                                            <p className="text-[12px] mt-0.5 leading-tight" style={{ color: subtextColor }}>{data.disclaimer?.note || "Some legacy projects may lack granular public delay records."}</p>
+                                    <div className="mt-6 p-2 rounded lg:rounded-xl" style={{ background: isDark ? 'rgba(182,138,53,0.08)' : '#FBF9F6', border: `1px solid ${cardBorder}` }}>
+                                        <div className="lg:hidden">
+                                            <MobileNoteBox
+                                                icon={<Calendar className="w-5 h-5" />}
+                                                textStyle={{ color: subtextColor }}
+                                            >
+                                                <span className="font-bold block mb-1" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.lastUpdated || "Last updated: 21 February 2026"}</span>
+                                                {data.disclaimer?.note || "Some legacy projects may lack granular public delay records."}
+                                            </MobileNoteBox>
+                                        </div>
+                                        <div className="hidden lg:flex items-center gap-3">
+                                            <Calendar className="text-[#B68A35] w-5 h-5 shrink-0" />
+                                            <div>
+                                                <p className="text-[12px] font-bold" style={isDark ? { color: t.text } : { color: '#1A1A1A' }}>{data.disclaimer?.lastUpdated || "Last updated: 21 February 2026"}</p>
+                                                <p className="text-[12px] mt-0.5 leading-tight" style={{ color: subtextColor }}>{data.disclaimer?.note || "Some legacy projects may lack granular public delay records."}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
