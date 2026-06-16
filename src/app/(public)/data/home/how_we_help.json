@@ -1,0 +1,35 @@
+{
+    "h2": "How We Help You Make the Right Decision",
+    "h3": "Transparent analysis. No sales pressure. Just clarity.",
+    "cards": [
+      {
+        "step": "01",
+        "title": "We Analyse Every Project",
+        "front_badges": ["No Sales Bias", "Real Pros & Cons"],
+        "back": [
+          "Every project is reviewed beyond marketing brochures - from pricing trends and location growth to developer track record.",
+          "We highlight what works, what doesn’t, and where the real opportunity is."
+        ],
+        "icon": "analyse"
+      },
+      {
+        "step": "02",
+        "title": "We Match You to What Fits",
+        "front_badges": ["ROI", "Family", "Visa"],
+        "back": [
+          "Whether you’re buying your first home, investing for rental income, or planning long-term growth - we filter projects based on your actual goals, not what someone wants to sell you."
+        ],
+        "icon": "match"
+      },
+      {
+        "step": "03",
+        "title": "We Connect You",
+        "front_badges": ["2-3 Vetted Brokers", "No Spam"],
+        "back": [
+          "When you’re ready, we connect you with 2–3 vetted specialists suited to your needs.",
+          "No spam. No pressure. Your details are never sold - just real experts when you need them."
+        ],
+        "icon": "connect"
+      }
+    ]
+  }
